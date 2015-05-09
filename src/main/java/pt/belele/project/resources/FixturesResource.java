@@ -1,21 +1,21 @@
-package pt.belele.project.data;
+package pt.belele.project.resources;
 
 import java.util.List;
 
 import ch.halarious.core.HalLink;
 import ch.halarious.core.HalResource;
 
-public class TeamsResource implements HalResource
+public class FixturesResource implements HalResource
 {
 	@HalLink
 	private String self;
-
+	
 	@HalLink
 	private String soccerseason;
-
+	
 	private Integer count;
-
-	private List<TeamResource> teams;
+	
+	private List<FixtureResource> fixtures;
 
 	public String getSelf()
 	{
@@ -47,13 +47,13 @@ public class TeamsResource implements HalResource
 		this.count = count;
 	}
 
-	public List<TeamResource> getTeams()
+	public List<FixtureResource> getFixtures()
 	{
-		return teams;
+		return fixtures;
 	}
 
-	public void setTeams(List<TeamResource> teams)
+	public void setFixtures(List<FixtureResource> fixtures)
 	{
-		this.teams = teams;
+		this.fixtures = fixtures;
 	}
 }

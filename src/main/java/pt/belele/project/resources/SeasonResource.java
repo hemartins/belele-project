@@ -1,4 +1,4 @@
-package pt.belele.project.data;
+package pt.belele.project.resources;
 
 import org.joda.time.DateTime;
 

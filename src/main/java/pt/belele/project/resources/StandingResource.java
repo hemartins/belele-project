@@ -1,4 +1,4 @@
-package pt.belele.project.data;
+package pt.belele.project.resources;
 
 import ch.halarious.core.HalLink;
 import ch.halarious.core.HalResource;
