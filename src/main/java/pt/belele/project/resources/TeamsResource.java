@@ -1,40 +1,36 @@
 package pt.belele.project.resources;
 
-import java.util.List;
-
-import ch.halarious.core.HalLink;
-import ch.halarious.core.HalResource;
-
-public class TeamsResource implements HalResource
+public class TeamsResource
 {
-	@HalLink
-	private String self;
-
-	@HalLink
-	private String soccerseason;
+	private TeamsLinks[] _links;
 
 	private Integer count;
 
-	private List<TeamResource> teams;
+	private TeamResource[] teams;
+
+	public TeamsResource()
+	{
+
+	}
+
+	public TeamsLinks[] get_links()
+	{
+		return _links;
+	}
+
+	public void set_links(TeamsLinks[] _links)
+	{
+		this._links = _links;
+	}
 
 	public String getSelf()
 	{
-		return self;
-	}
-
-	public void setSelf(String self)
-	{
-		this.self = self;
+		return _links[0].getSelf() != null ? _links[0].getSelf() : _links[1].getSelf();
 	}
 
 	public String getSoccerseason()
 	{
-		return soccerseason;
-	}
-
-	public void setSoccerseason(String soccerseason)
-	{
-		this.soccerseason = soccerseason;
+		return _links[0].getSoccerseason() != null ? _links[0].getSoccerseason() : _links[1].getSoccerseason();
 	}
 
 	public Integer getCount()
@@ -47,12 +43,12 @@ public class TeamsResource implements HalResource
 		this.count = count;
 	}
 
-	public List<TeamResource> getTeams()
+	public TeamResource[] getTeams()
 	{
 		return teams;
 	}
 
-	public void setTeams(List<TeamResource> teams)
+	public void setTeams(TeamResource[] teams)
 	{
 		this.teams = teams;
 	}

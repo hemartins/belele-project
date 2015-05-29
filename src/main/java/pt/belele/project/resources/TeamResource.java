@@ -1,15 +1,8 @@
 package pt.belele.project.resources;
 
-import ch.halarious.core.HalBaseResource;
-import ch.halarious.core.HalLink;
-
-public class TeamResource extends HalBaseResource
+public class TeamResource
 {
-	@HalLink
-	private String fixtures;
-
-	@HalLink
-	private String players;
+	private LinksResource _links;
 
 	private String name;
 
@@ -21,25 +14,30 @@ public class TeamResource extends HalBaseResource
 
 	private String crestUrl;
 
+	public TeamResource()
+	{
+
+	}
+
+	public LinksResource get_links()
+	{
+		return _links;
+	}
+
+	public void set_links(LinksResource _links)
+	{
+		this._links = _links;
+	}
+
 	public String getFixtures()
 	{
-		return fixtures;
+		return _links.getFixtures().getHref();
 	}
 
-	public void setFixtures(String fixtures)
-	{
-		this.fixtures = fixtures;
-	}
-
-	public String getPlayers()
-	{
-		return players;
-	}
-
-	public void setPlayers(String players)
-	{
-		this.players = players;
-	}
+	// public String getPlayers()
+	// {
+	// return players;
+	// }
 
 	public String getName()
 	{

@@ -1,7 +1,5 @@
 package pt.belele.project.data;
 
-import java.util.List;
-
 import pt.belele.project.resources.SeasonResource;
 import pt.belele.project.resources.TeamResource;
 import pt.belele.project.resources.TeamsResource;
@@ -20,12 +18,14 @@ public class SeasonTeams
 	{
 		return new Season((SeasonResource) HttpUtil.doGet(teams.getSoccerseason(), SeasonResource.class));
 	}
-	
-	public int getCount(){
+
+	public int getCount()
+	{
 		return teams.getCount();
 	}
-	
-	public List<TeamResource> getTeams(){
+
+	public TeamResource[] getTeams()
+	{
 		return teams.getTeams();
 	}
 }

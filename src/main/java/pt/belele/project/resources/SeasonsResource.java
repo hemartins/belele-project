@@ -1,17 +1,20 @@
 package pt.belele.project.resources;
 
-import java.util.List;
-
 public class SeasonsResource
 {
-	private List<SeasonResource> seasons;
+	private SeasonResource[] seasons;
 
-	public List<SeasonResource> getSeasons()
+	public SeasonsResource()
+	{
+
+	}
+
+	public SeasonResource[] getSeasons()
 	{
 		return seasons;
 	}
 
-	public void setSeasons(List<SeasonResource> seasons)
+	public void setSeasons(SeasonResource[] seasons)
 	{
 		this.seasons = seasons;
 	}

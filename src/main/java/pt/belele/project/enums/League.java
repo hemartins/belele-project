@@ -37,7 +37,6 @@ public final class League
 		public static final String SERIE_B = "SB";
 	}
 
-
 	public static final class Netherlands
 	{
 		public static final String EREDIVISIE = "DED";

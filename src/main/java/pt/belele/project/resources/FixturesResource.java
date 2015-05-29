@@ -1,40 +1,36 @@
 package pt.belele.project.resources;
 
-import java.util.List;
-
-import ch.halarious.core.HalLink;
-import ch.halarious.core.HalResource;
-
-public class FixturesResource implements HalResource
+public class FixturesResource
 {
-	@HalLink
-	private String self;
-	
-	@HalLink
-	private String soccerseason;
-	
+	private FixturesLinks[] _links;
+
 	private Integer count;
-	
-	private List<FixtureResource> fixtures;
+
+	private FixtureResource[] fixtures;
+
+	public FixturesResource()
+	{
+
+	}
+
+	public FixturesLinks[] get_links()
+	{
+		return _links;
+	}
+
+	public void set_links(FixturesLinks[] _links)
+	{
+		this._links = _links;
+	}
 
 	public String getSelf()
 	{
-		return self;
+		return _links[0].getSelf() != null ? _links[0].getSelf() : _links[1].getSelf();
 	}
 
-	public void setSelf(String self)
+	public String getSoccerSeason()
 	{
-		this.self = self;
-	}
-
-	public String getSoccerseason()
-	{
-		return soccerseason;
-	}
-
-	public void setSoccerseason(String soccerseason)
-	{
-		this.soccerseason = soccerseason;
+		return _links[0].getSoccerseason() != null ? _links[0].getSoccerseason() : _links[1].getSoccerseason();
 	}
 
 	public Integer getCount()
@@ -47,12 +43,12 @@ public class FixturesResource implements HalResource
 		this.count = count;
 	}
 
-	public List<FixtureResource> getFixtures()
+	public FixtureResource[] getFixtures()
 	{
 		return fixtures;
 	}
 
-	public void setFixtures(List<FixtureResource> fixtures)
+	public void setFixtures(FixtureResource[] fixtures)
 	{
 		this.fixtures = fixtures;
 	}

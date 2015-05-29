@@ -3,73 +3,56 @@ package pt.belele.project.resources;
 import org.joda.time.DateTime;
 
 import pt.belele.project.enums.FixtureStatus;
-import ch.halarious.core.HalLink;
-import ch.halarious.core.HalResource;
 
-public class FixtureResource implements HalResource
+public class FixtureResource
 {
-	@HalLink
-	private String self;
-	
-	@HalLink
-	private String soccerseason;
-	
-	@HalLink
-	private String homeTeam;
-	
-	@HalLink
-	private String awayTeam;
-	
+	private LinksResource _links;
+
 	private DateTime date;
-	
+
 	private FixtureStatus status;
-	
+
 	private Integer matchday;
-	
+
 	private String homeTeamName;
-	
+
 	private String awayTeamName;
-	
+
 	private Result result;
+
+	public FixtureResource()
+	{
+
+	}
+
+	public LinksResource get_links()
+	{
+		return _links;
+	}
+
+	public void set_links(LinksResource _links)
+	{
+		this._links = _links;
+	}
 
 	public String getSelf()
 	{
-		return self;
-	}
-
-	public void setSelf(String self)
-	{
-		this.self = self;
+		return _links.getSelf().getHref();
 	}
 
 	public String getSoccerseason()
 	{
-		return soccerseason;
-	}
-
-	public void setSoccerseason(String soccerseason)
-	{
-		this.soccerseason = soccerseason;
+		return _links.getSoccerseason().getHref();
 	}
 
 	public String getHomeTeam()
 	{
-		return homeTeam;
-	}
-
-	public void setHomeTeam(String homeTeam)
-	{
-		this.homeTeam = homeTeam;
+		return _links.getHomeTeam().getHref();
 	}
 
 	public String getAwayTeam()
 	{
-		return awayTeam;
-	}
-
-	public void setAwayTeam(String awayTeam)
-	{
-		this.awayTeam = awayTeam;
+		return _links.getAwayTeam().getHref();
 	}
 
 	public DateTime getDate()

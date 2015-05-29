@@ -3,8 +3,13 @@ package pt.belele.project.resources;
 public class Fixture
 {
 	private FixtureResource fixture;
-	
+
 	private Head2Head head2head;
+
+	public Fixture()
+	{
+
+	}
 
 	public FixtureResource getFixture()
 	{

@@ -29,9 +29,9 @@ public class Season
 			if (season.getLeague().equals(league))
 			{
 				this.season = season;
+				break;
 			}
 		}
-		System.out.println("SEASON " + league + year + "NOT FOUND!");
 	}
 
 	public Season(SeasonResource season)
@@ -72,6 +72,9 @@ public class Season
 	{
 		MultivaluedMap<String, Object> params = new MultivaluedHashMap<String, Object>();
 		params.add("season", year);
-		return (SeasonsResource) HttpUtil.doGet(API_ENDPOINT, SeasonResource.class, params);
+		SeasonResource[] arr = (SeasonResource[]) HttpUtil.doGet(API_ENDPOINT, SeasonResource[].class, params);
+		SeasonsResource sr = new SeasonsResource();
+		sr.setSeasons(arr);
+		return sr;
 	}
 }

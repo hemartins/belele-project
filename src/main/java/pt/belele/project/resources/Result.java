@@ -6,6 +6,11 @@ public class Result
 
 	private Integer goalsAwayTeam;
 
+	public Result()
+	{
+
+	}
+
 	public Integer getGoalsHomeTeam()
 	{
 		return goalsHomeTeam;

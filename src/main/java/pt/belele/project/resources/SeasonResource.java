@@ -2,22 +2,9 @@ package pt.belele.project.resources;
 
 import org.joda.time.DateTime;
 
-import ch.halarious.core.HalLink;
-import ch.halarious.core.HalResource;
-
-public class SeasonResource implements HalResource
+public class SeasonResource
 {
-	@HalLink
-	private String self;
-
-	@HalLink
-	private String teams;
-
-	@HalLink
-	private String fixtures;
-
-	@HalLink
-	private String leagueTable;
+	private LinksResource _links;
 
 	private String caption;
 
@@ -31,44 +18,39 @@ public class SeasonResource implements HalResource
 
 	private DateTime lastUpdated;
 
-	public String getSelf()
+	public SeasonResource()
 	{
-		return self;
+
 	}
 
-	public void setSelf(String self)
+	public LinksResource get_links()
 	{
-		this.self = self;
+		return _links;
+	}
+
+	public void set_links(LinksResource _links)
+	{
+		this._links = _links;
+	}
+
+	public String getSelf()
+	{
+		return _links.getSelf().getHref();
 	}
 
 	public String getTeams()
 	{
-		return teams;
-	}
-
-	public void setTeams(String teams)
-	{
-		this.teams = teams;
+		return _links.getTeams().getHref();
 	}
 
 	public String getFixtures()
 	{
-		return fixtures;
-	}
-
-	public void setFixtures(String fixtures)
-	{
-		this.fixtures = fixtures;
+		return _links.getFixtures().getHref();
 	}
 
 	public String getLeagueTable()
 	{
-		return leagueTable;
-	}
-
-	public void setLeagueTable(String leagueTable)
-	{
-		this.leagueTable = leagueTable;
+		return _links.getLeagueTable().getHref();
 	}
 
 	public String getCaption()

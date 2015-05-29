@@ -25,8 +25,13 @@ public class Head2Head
 	private FixtureResource lastAwayWinAwayTeam;
 
 	private FixtureResource lastWinAwayTeam;
-	
+
 	private List<FixtureResource> fixtures;
+
+	public Head2Head()
+	{
+
+	}
 
 	public Integer getCount()
 	{

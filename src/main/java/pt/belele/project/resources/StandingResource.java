@@ -1,35 +1,41 @@
 package pt.belele.project.resources;
 
-import ch.halarious.core.HalLink;
-import ch.halarious.core.HalResource;
-
-public class StandingResource implements HalResource
+public class StandingResource
 {
-	@HalLink
-	private String team;
-	
+	private LinksResource _links;
+
 	private Integer position;
-	
+
 	private String teamName;
-	
+
 	private Integer playedGames;
-	
+
 	private Integer points;
-	
+
 	private Integer goals;
-	
+
 	private Integer goalsAgainst;
-	
+
 	private Integer goalDifference;
+
+	public StandingResource()
+	{
+
+	}
+
+	public LinksResource get_links()
+	{
+		return _links;
+	}
+
+	public void set_links(LinksResource _links)
+	{
+		this._links = _links;
+	}
 
 	public String getTeam()
 	{
-		return team;
-	}
-
-	public void setTeam(String team)
-	{
-		this.team = team;
+		return _links.getTeam().getHref();
 	}
 
 	public Integer getPosition()

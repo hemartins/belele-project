@@ -24,7 +24,7 @@ public class Fixture
 		return new Season((SeasonResource) HttpUtil.doGet(fixture.getSoccerseason(), SeasonResource.class));
 	}
 	
-	public Team getHomeTeam(){
+	public Team getHomeTeam(){	
 		return new Team((TeamResource) HttpUtil.doGet(fixture.getHomeTeam(), TeamResource.class));
 	}
 	

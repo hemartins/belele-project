@@ -2,41 +2,39 @@ package pt.belele.project.resources;
 
 import java.util.List;
 
-import ch.halarious.core.HalLink;
-import ch.halarious.core.HalResource;
-
-public class LeagueTableResource implements HalResource
+public class LeagueTableResource
 {
-	@HalLink
-	private String self;
-	
-	@HalLink
-	private String soccerseason;
-	
+	private LeagueTableLinks _links;
+
 	private String leagueCaption;
-	
+
 	private Integer matchday;
-	
+
 	private List<StandingResource> standing;
+
+	public LeagueTableResource()
+	{
+
+	}
+
+	public LeagueTableLinks get_links()
+	{
+		return _links;
+	}
+
+	public void set_links(LeagueTableLinks _links)
+	{
+		this._links = _links;
+	}
 
 	public String getSelf()
 	{
-		return self;
-	}
-
-	public void setSelf(String self)
-	{
-		this.self = self;
+		return _links.getSelf();
 	}
 
 	public String getSoccerseason()
 	{
-		return soccerseason;
-	}
-
-	public void setSoccerseason(String soccerseason)
-	{
-		this.soccerseason = soccerseason;
+		return _links.getSoccerseason();
 	}
 
 	public String getLeagueCaption()

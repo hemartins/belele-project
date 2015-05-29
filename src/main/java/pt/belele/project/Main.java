@@ -17,6 +17,8 @@ public class Main
 		LeagueTable table = s.getLeagueTable();
 		List<Fixture> fixtures = s.getFixtures();
 		List<Team> teams = s.getTeams();
+		
+		System.out.println("END");
 	}
 
 }
