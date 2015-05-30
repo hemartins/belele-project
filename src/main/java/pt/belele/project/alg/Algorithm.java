@@ -11,11 +11,11 @@ public class Algorithm {
 	
 	public void calculoLucro(){
 
-		for(int i=1; i <= numero_jornadas_disputadas; i++)
+		for(Integer i=1; i <= numero_jornadas_disputadas; i++)
 		lucro_total = lucro_total + lucro_por_jornada.get(i);
 	}
 	
-	public static void main(String [ ] args)
+	public static void main(String [] args)
 	{
 	      
 	}
