@@ -8,6 +8,8 @@ public class Standing
 {
 	private StandingResource standing;
 
+	private Team team;
+
 	public Standing(StandingResource standing)
 	{
 		this.standing = standing;
@@ -15,7 +17,9 @@ public class Standing
 
 	public Team getTeam()
 	{
-		return new Team((TeamResource) HttpUtil.doGet(standing.getTeam(), TeamResource.class));
+		if (team == null)
+			this.team = getTeamResource();
+		return team;
 	}
 
 	public Integer getPosition()
@@ -51,5 +55,10 @@ public class Standing
 	public Integer getGoalDifference()
 	{
 		return standing.getGoalDifference();
+	}
+
+	private Team getTeamResource()
+	{
+		return new Team((TeamResource) HttpUtil.doGet(standing.getTeam(), TeamResource.class));
 	}
 }

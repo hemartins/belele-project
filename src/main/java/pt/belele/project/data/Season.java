@@ -1,14 +1,18 @@
 package pt.belele.project.data;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.ws.rs.core.MultivaluedHashMap;
 import javax.ws.rs.core.MultivaluedMap;
 
+import org.joda.time.DateTime;
+
 import pt.belele.project.resources.FixtureResource;
-import pt.belele.project.resources.FixturesResource;
 import pt.belele.project.resources.LeagueTableResource;
+import pt.belele.project.resources.SeasonFixtureResource;
 import pt.belele.project.resources.SeasonResource;
 import pt.belele.project.resources.SeasonsResource;
 import pt.belele.project.resources.TeamResource;
@@ -21,6 +25,16 @@ public class Season
 
 	private SeasonResource season;
 
+	private List<Team> teams;
+
+	private List<Fixture> fixtures;
+
+	private Map<Integer, List<Fixture>> matchdayFixtures;
+
+	private LeagueTable leagueTable;
+
+	private Map<Integer, LeagueTable> matchdayLeagueTable;
+
 	public Season(String league, int year)
 	{
 		SeasonsResource seasons = getSeasons(year);
@@ -29,6 +43,8 @@ public class Season
 			if (season.getLeague().equals(league))
 			{
 				this.season = season;
+				this.matchdayFixtures = new HashMap<Integer, List<Fixture>>();
+				this.matchdayLeagueTable = new HashMap<Integer, LeagueTable>();
 				break;
 			}
 		}
@@ -37,9 +53,80 @@ public class Season
 	public Season(SeasonResource season)
 	{
 		this.season = season;
+		this.matchdayFixtures = new HashMap<Integer, List<Fixture>>();
+		this.matchdayLeagueTable = new HashMap<Integer, LeagueTable>();
 	}
 
 	public List<Team> getTeams()
+	{
+		if (teams == null)
+			this.teams = getTeamsResource();
+		return teams;
+	}
+
+	public List<Fixture> getFixtures()
+	{
+		if (fixtures == null)
+			this.fixtures = getFixturesResource();
+		return fixtures;
+	}
+
+	public List<Fixture> getFixtures(int matchday)
+	{
+		if (!matchdayFixtures.containsKey(matchday))
+		{
+			matchdayFixtures.put(matchday, getFixturesResource(matchday));
+		}
+		return matchdayFixtures.get(matchday);
+	}
+
+	public LeagueTable getLeagueTable()
+	{
+		if (leagueTable == null)
+			this.leagueTable = getLeagueTableResource();
+		return leagueTable;
+	}
+
+	public LeagueTable getLeagueTable(int matchday)
+	{
+		if (!matchdayLeagueTable.containsKey(matchday))
+		{
+			matchdayLeagueTable.put(matchday, getLeagueTableResource(matchday));
+		}
+		return matchdayLeagueTable.get(matchday);
+	}
+
+	public String getCaption()
+	{
+		return season.getCaption();
+	}
+
+	public String getLeague()
+	{
+		return season.getLeague();
+	}
+
+	public String getYear()
+	{
+		return season.getYear();
+	}
+
+	public Integer getNumberOfTeams()
+	{
+		return season.getNumberOfTeams();
+	}
+
+	public Integer getNumberOfGames()
+	{
+		return season.getNumberOfGames();
+	}
+
+	public DateTime getLastUpdated()
+	{
+		return season.getLastUpdated();
+	}
+
+	private List<Team> getTeamsResource()
 	{
 		TeamsResource teams = (TeamsResource) HttpUtil.doGet(season.getTeams(), TeamsResource.class);
 		List<Team> teamsList = new ArrayList<Team>();
@@ -50,9 +137,9 @@ public class Season
 		return teamsList;
 	}
 
-	public List<Fixture> getFixtures()
+	private List<Fixture> getFixturesResource()
 	{
-		FixturesResource fixtures = (FixturesResource) HttpUtil.doGet(season.getFixtures(), FixturesResource.class);
+		SeasonFixtureResource fixtures = (SeasonFixtureResource) HttpUtil.doGet(season.getFixtures(), SeasonFixtureResource.class);
 
 		List<Fixture> fixtureList = new ArrayList<Fixture>();
 		for (FixtureResource fix : fixtures.getFixtures())
@@ -63,9 +150,31 @@ public class Season
 		return fixtureList;
 	}
 
-	public LeagueTable getLeagueTable()
+	private List<Fixture> getFixturesResource(int matchday)
+	{
+		MultivaluedMap<String, Object> params = new MultivaluedHashMap<String, Object>();
+		params.add("matchday", matchday);
+		SeasonFixtureResource fixtures = (SeasonFixtureResource) HttpUtil.doGet(season.getFixtures(), SeasonFixtureResource.class, params);
+
+		List<Fixture> fixtureList = new ArrayList<Fixture>();
+		for (FixtureResource fix : fixtures.getFixtures())
+		{
+			fixtureList.add(new Fixture(fix));
+		}
+
+		return fixtureList;
+	}
+
+	private LeagueTable getLeagueTableResource()
 	{
 		return new LeagueTable((LeagueTableResource) HttpUtil.doGet(season.getLeagueTable(), LeagueTableResource.class));
+	}
+
+	private LeagueTable getLeagueTableResource(int matchday)
+	{
+		MultivaluedMap<String, Object> params = new MultivaluedHashMap<String, Object>();
+		params.add("matchday", matchday);
+		return new LeagueTable((LeagueTableResource) HttpUtil.doGet(season.getLeagueTable(), LeagueTableResource.class, params));
 	}
 
 	private SeasonsResource getSeasons(int year)

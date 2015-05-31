@@ -10,7 +10,7 @@ public class OurHomeWinRow {
 	Integer FR_diasDescansoFRVisitante;
 	Double FR_ratingVitoriasFRVisitado; // pontuação por cada vitória obtida nos
 										// últimos 5 jogos, consoante o quão
-										// recente o jogo é
+										// recente o jogo é [0.3, 0.25, 0.2, 0.15, 0.1]
 	Double FR_ratingDerrotasFRVisitante;
 	Double FR_dificuldadeVisitado; // média das qualidades dos adversários dos
 									// últimos 5 jogos

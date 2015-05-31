@@ -4,7 +4,7 @@ public final class League
 {
 	public static final class Germany
 	{
-		public static final String BUNDESLIGA_1 = "BU";
+		public static final String BUNDESLIGA_1 = "BL1";
 		public static final String BUNDESLIGA_2 = "BL2";
 		public static final String BUNDESLIGA_3 = "BL3";
 	}
@@ -31,7 +31,7 @@ public final class League
 		public static final String PRIMEIRA_LIGA = "PPL";
 	}
 
-	public static final class Italia
+	public static final class Italy
 	{
 		public static final String SERIE_A = "SA";
 		public static final String SERIE_B = "SB";
@@ -42,8 +42,14 @@ public final class League
 		public static final String EREDIVISIE = "DED";
 	}
 
+	public static final class Greece
+	{
+		public static final String SUPER_LEAGUE = "GSL";
+	}
+
 	public static final class Uefa
 	{
 		public static final String CHAMPIONS_LEAGUE = "CL";
+		public static final String EUROPA_LEAGUE = "EL";
 	}
 }

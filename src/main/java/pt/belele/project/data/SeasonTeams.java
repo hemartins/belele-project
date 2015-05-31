@@ -9,6 +9,8 @@ public class SeasonTeams
 {
 	private TeamsResource teams;
 
+	private Season season;
+
 	public SeasonTeams(TeamsResource teams)
 	{
 		this.teams = teams;
@@ -16,7 +18,9 @@ public class SeasonTeams
 
 	public Season getSeason()
 	{
-		return new Season((SeasonResource) HttpUtil.doGet(teams.getSoccerseason(), SeasonResource.class));
+		if (season == null)
+			this.season = getSeasonResource();
+		return season;
 	}
 
 	public int getCount()
@@ -27,5 +31,10 @@ public class SeasonTeams
 	public TeamResource[] getTeams()
 	{
 		return teams.getTeams();
+	}
+
+	private Season getSeasonResource()
+	{
+		return new Season((SeasonResource) HttpUtil.doGet(teams.getSoccerseason(), SeasonResource.class));
 	}
 }

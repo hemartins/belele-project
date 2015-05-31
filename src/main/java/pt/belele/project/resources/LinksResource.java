@@ -4,6 +4,8 @@ public class LinksResource
 {
 	private Link self;
 
+	private Link _self;
+
 	private Link teams;
 
 	private Link fixtures;
@@ -33,6 +35,16 @@ public class LinksResource
 	public void setSelf(Link self)
 	{
 		this.self = self;
+	}
+
+	public Link get_self()
+	{
+		return _self;
+	}
+
+	public void set_self(Link _self)
+	{
+		this._self = _self;
 	}
 
 	public Link getTeams()

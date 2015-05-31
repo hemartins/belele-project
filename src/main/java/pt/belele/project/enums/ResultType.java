@@ -1,6 +1,6 @@
 package pt.belele.project.enums;
 
-public enum Result
+public enum ResultType
 {
 	LOSE, WIN, DRAW;
 }

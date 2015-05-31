@@ -2,5 +2,5 @@ package pt.belele.project.enums;
 
 public enum FixtureStatus
 {
-	FINISHED;
+	FINISHED, SCHEDULED, TIMED;
 }

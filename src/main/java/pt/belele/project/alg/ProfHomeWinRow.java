@@ -3,8 +3,8 @@ package pt.belele.project.alg;
 public class ProfHomeWinRow {
 
 	Integer jornada;
-	Integer idVisitado;
-	Integer idVisitante;
+	String idVisitado;
+	String idVisitante;
 	Double qualidadeVisitado; // pontos por jogo da equipa na jornada que se
 								// quer prever
 	Double qualidadeVisitante;
@@ -27,10 +27,10 @@ public class ProfHomeWinRow {
 										// caso tenha vencido os últimos 5 jogos
 										// =5;
 	Integer Ciclo_numeroJogosVisitante;
-	Integer Ciclo_dificuldadeVisitado; // média das qualidades dos adversários
+	Double Ciclo_dificuldadeVisitado; // média das qualidades dos adversários
 										// desse que a equipa enfrentou nesse
 										// ciclo
-	Integer Ciclo_dificuldadeVisitante;
+	Double Ciclo_dificuldadeVisitante;
 	Integer Ciclo_HistoricosVisitado; // número de históricos que a equipa
 										// enfrentou durante esse ciclo
 	Integer Ciclo_HistoricosVisitante;
@@ -38,8 +38,8 @@ public class ProfHomeWinRow {
 								// jogos entre essas equipas
 	Integer H2H_numeroJogos;
 
-	public ProfHomeWinRow(Integer jornada, Integer idVisitado,
-			Integer idVisitante, Double qualidadeVisitado,
+	public ProfHomeWinRow(Integer jornada, String idVisitado,
+			String idVisitante, Double qualidadeVisitado,
 			Double qualidadeVisitante, Integer fR_diasDescansoVisitado,
 			Integer fR_diasDescansoFRVisitante,
 			Double fR_ratingVitoriasFRVisitado,
@@ -47,8 +47,8 @@ public class ProfHomeWinRow {
 			Double fR_dificuldadeVisistante, Integer fR_HistoricosVisitado,
 			Integer fR_HistoricosVisitante, Integer ciclo_numeroJogosVisitado,
 			Integer ciclo_numeroJogosVisitante,
-			Integer ciclo_dificuldadeVisitado,
-			Integer ciclo_dificuldadeVisitante,
+			Double ciclo_dificuldadeVisitado,
+			Double ciclo_dificuldadeVisitante,
 			Integer ciclo_HistoricosVisitado,
 			Integer ciclo_HistoricosVisitante, Double h2h_ratingVitorias,
 			Integer h2h_numeroJogos) {
@@ -84,19 +84,19 @@ public class ProfHomeWinRow {
 		this.jornada = jornada;
 	}
 
-	public Integer getIdVisitado() {
+	public String getIdVisitado() {
 		return idVisitado;
 	}
 
-	public void setIdVisitado(Integer idVisitado) {
+	public void setIdVisitado(String idVisitado) {
 		this.idVisitado = idVisitado;
 	}
 
-	public Integer getIdVisitante() {
+	public String getIdVisitante() {
 		return idVisitante;
 	}
 
-	public void setIdVisitante(Integer idVisitante) {
+	public void setIdVisitante(String idVisitante) {
 		this.idVisitante = idVisitante;
 	}
 
@@ -198,19 +198,19 @@ public class ProfHomeWinRow {
 		Ciclo_numeroJogosVisitante = ciclo_numeroJogosVisitante;
 	}
 
-	public Integer getCiclo_dificuldadeVisitado() {
+	public Double getCiclo_dificuldadeVisitado() {
 		return Ciclo_dificuldadeVisitado;
 	}
 
-	public void setCiclo_dificuldadeVisitado(Integer ciclo_dificuldadeVisitado) {
+	public void setCiclo_dificuldadeVisitado(Double ciclo_dificuldadeVisitado) {
 		Ciclo_dificuldadeVisitado = ciclo_dificuldadeVisitado;
 	}
 
-	public Integer getCiclo_dificuldadeVisitante() {
+	public Double getCiclo_dificuldadeVisitante() {
 		return Ciclo_dificuldadeVisitante;
 	}
 
-	public void setCiclo_dificuldadeVisitante(Integer ciclo_dificuldadeVisitante) {
+	public void setCiclo_dificuldadeVisitante(Double ciclo_dificuldadeVisitante) {
 		Ciclo_dificuldadeVisitante = ciclo_dificuldadeVisitante;
 	}
 
@@ -245,5 +245,21 @@ public class ProfHomeWinRow {
 	public void setH2H_numeroJogos(Integer h2h_numeroJogos) {
 		H2H_numeroJogos = h2h_numeroJogos;
 	}
+
+	@Override
+	public String toString()
+	{
+		return "ProfHomeWinRow [jornada=" + jornada + ", idVisitado=" + idVisitado + ", idVisitante=" + idVisitante + ", qualidadeVisitado="
+				+ qualidadeVisitado + ", qualidadeVisitante=" + qualidadeVisitante + ", FR_diasDescansoVisitado=" + FR_diasDescansoVisitado
+				+ ", FR_diasDescansoFRVisitante=" + FR_diasDescansoFRVisitante + ", FR_ratingVitoriasFRVisitado=" + FR_ratingVitoriasFRVisitado
+				+ ", FR_ratingDerrotasFRVisitante=" + FR_ratingDerrotasFRVisitante + ", FR_dificuldadeVisitado=" + FR_dificuldadeVisitado
+				+ ", FR_dificuldadeVisistante=" + FR_dificuldadeVisistante + ", FR_HistoricosVisitado=" + FR_HistoricosVisitado + ", FR_HistoricosVisitante="
+				+ FR_HistoricosVisitante + ", Ciclo_numeroJogosVisitado=" + Ciclo_numeroJogosVisitado + ", Ciclo_numeroJogosVisitante="
+				+ Ciclo_numeroJogosVisitante + ", Ciclo_dificuldadeVisitado=" + Ciclo_dificuldadeVisitado + ", Ciclo_dificuldadeVisitante="
+				+ Ciclo_dificuldadeVisitante + ", Ciclo_HistoricosVisitado=" + Ciclo_HistoricosVisitado + ", Ciclo_HistoricosVisitante="
+				+ Ciclo_HistoricosVisitante + ", H2H_ratingVitorias=" + H2H_ratingVitorias + ", H2H_numeroJogos=" + H2H_numeroJogos + "]";
+	}
+	
+	
 
 }

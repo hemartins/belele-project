@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.joda.time.DateTime;
 
-public class Head2Head
+public class Head2HeadResource
 {
 	private Integer count;
 
@@ -28,7 +28,7 @@ public class Head2Head
 
 	private List<FixtureResource> fixtures;
 
-	public Head2Head()
+	public Head2HeadResource()
 	{
 
 	}
