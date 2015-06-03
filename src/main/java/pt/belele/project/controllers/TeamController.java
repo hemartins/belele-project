@@ -7,6 +7,7 @@ import org.joda.time.DateTime;
 import org.joda.time.Days;
 
 import pt.belele.project.controllers.util.ResultCycle;
+import pt.belele.project.controllers.util.TeamRating;
 import pt.belele.project.data.Fixture;
 import pt.belele.project.data.Head2Head;
 import pt.belele.project.data.Season;
@@ -162,6 +163,42 @@ public class TeamController
 		}
 
 		return rating;
+	}
+
+	public TeamRating getResultPercentage(Fixture nextFixture, Venue venue, ResultType type, Double interval)
+	{
+		Season s = nextFixture.getSeason();
+		List<Fixture> fixtures = team.getFixtures(Integer.valueOf(s.getYear()), venue);
+		Double resultSum = 0.0;
+		Double opponentSum = 0.0;
+		Double intervalSum = 0.0;
+		TeamController tc = new TeamController(venue == Venue.home ? nextFixture.getAwayTeam() : nextFixture.getHomeTeam());
+		Double opponentQuality = tc.getTeamQuality(s);
+
+		for (Fixture f : fixtures)
+		{
+			TeamController tec = new TeamController(venue == Venue.home ? f.getAwayTeam() : f.getHomeTeam());
+			Double fixtureOpponentQuality = tec.getTeamQuality(s);
+
+			if (fixtureOpponentQuality != null)
+			{
+
+				if (getResultType(f).equals(type))
+				{
+					resultSum++;
+					if (interval != null)
+					{
+						if (opponentQuality + interval >= fixtureOpponentQuality && opponentQuality - interval <= fixtureOpponentQuality)
+							intervalSum++;
+					}
+				}
+
+				opponentSum += fixtureOpponentQuality;
+			}
+
+		}
+		int size = fixtures.size();
+		return new TeamRating(resultSum / size, opponentSum / size, intervalSum / resultSum, resultSum.intValue());
 	}
 
 	/****************/
