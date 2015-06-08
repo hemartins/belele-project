@@ -38,9 +38,9 @@ public class Main
 		Double qualidadeVisitado = homeTeam.getTeamQuality(s);
 		Double qualidadeVisitante = awayTeam.getTeamQuality(s);
 		Integer fR_diasDescansoVisitado = homeTeam.getRestingDays(f);
-		Integer fR_diasDescansoFRVisitante = awayTeam.getRestingDays(f);
-		Double fR_ratingVitoriasFRVisitado = homeTeam.getLastFixturesRating(f, Venue.home, 5, ratings, ResultType.WIN);
-		Double fR_ratingDerrotasFRVisitante = awayTeam.getLastFixturesRating(f, Venue.away, 5, ratings, ResultType.LOSE);
+		Integer fR_diasDescansoVisitante = awayTeam.getRestingDays(f);
+		Double fR_ratingVitoriasVisitado = homeTeam.getLastFixturesRating(f, Venue.home, 5, ratings, ResultType.WIN);
+		Double fR_ratingDerrotasVisitante = awayTeam.getLastFixturesRating(f, Venue.away, 5, ratings, ResultType.LOSE);
 		Double fR_dificuldadeVisitado = homeTeam.getLastFixturesOpponentAverageQuality(f, Venue.home, 5);
 		Double fR_dificuldadeVisistante = awayTeam.getLastFixturesOpponentAverageQuality(f, Venue.away, 5);
 		// Integer fR_HistoricosVisitado =
@@ -77,12 +77,12 @@ public class Main
 		Integer qLT_numeroJogosVisitante = awayTR.getResultIntervalGames();
 		
 		ProfHomeWinRow phwr = new ProfHomeWinRow(jornada, idVisitado, idVisitante, qualidadeVisitado, qualidadeVisitante, fR_diasDescansoVisitado,
-				fR_diasDescansoFRVisitante, fR_ratingVitoriasFRVisitado, fR_ratingDerrotasFRVisitante, fR_dificuldadeVisitado, fR_dificuldadeVisistante,
+				fR_diasDescansoVisitante, fR_ratingVitoriasVisitado, fR_ratingDerrotasVisitante, fR_dificuldadeVisitado, fR_dificuldadeVisistante,
 				fR_HistoricosVisitado, fR_HistoricosVisitante, ciclo_numeroJogosVisitado, ciclo_numeroJogosVisitante, ciclo_dificuldadeVisitado,
 				ciclo_dificuldadeVisitante, ciclo_HistoricosVisitado, ciclo_HistoricosVisitante, h2h_ratingVitorias, h2h_numeroJogos);
 
 		OurHomeWinRow ohwr = new OurHomeWinRow(jornada, qualidadeVisitado, qualidadeVisitante, fR_diasDescansoVisitado, fR_diasDescansoFRVisitante,
-				fR_ratingVitoriasFRVisitado, fR_ratingDerrotasFRVisitante, fR_dificuldadeVisitado, fR_dificuldadeVisistante, fR_HistoricosVisitado,
+				fR_ratingVitoriasVisitado, fR_ratingDerrotasVisitante, fR_dificuldadeVisitado, fR_dificuldadeVisistante, fR_HistoricosVisitado,
 				fR_HistoricosVisitante, ciclo_numeroJogosVisitado, ciclo_numeroJogosVisitante, ciclo_dificuldadeVisitado, ciclo_dificuldadeVisitante,
 				ciclo_HistoricosVisitado, ciclo_HistoricosVisitante, h2h_ratingVitorias, h2h_numeroJogos, qLT_percentagemVitoriasVisitado,
 				qLT_percentagemDerrotasVisitante, qLT_dificuldadeVitoriasVisitado, qLT_dificuldadeDerrotasVisitante,
