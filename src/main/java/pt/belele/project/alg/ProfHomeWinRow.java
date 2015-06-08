@@ -10,11 +10,11 @@ public class ProfHomeWinRow {
 	Double qualidadeVisitante;
 	Integer FR_diasDescansoVisitado; // diferença entre a data do jogo a
 										// calcular e do jogo anterior
-	Integer FR_diasDescansoFRVisitante;
-	Double FR_ratingVitoriasFRVisitado; // pontuação por cada vitória obtida nos
+	Integer FR_diasDescansoVisitante;
+	Double FR_ratingVitoriasVisitado; // pontuação por cada vitória obtida nos
 										// últimos 5 jogos, consoante o quão
 										// recente o jogo é
-	Double FR_ratingDerrotasFRVisitante;
+	Double FR_ratingDerrotasVisitante;
 	Double FR_dificuldadeVisitado; // média das qualidades dos adversários dos
 									// últimos 5 jogos
 	Double FR_dificuldadeVisistante;
@@ -41,9 +41,9 @@ public class ProfHomeWinRow {
 	public ProfHomeWinRow(Integer jornada, String idVisitado,
 			String idVisitante, Double qualidadeVisitado,
 			Double qualidadeVisitante, Integer fR_diasDescansoVisitado,
-			Integer fR_diasDescansoFRVisitante,
-			Double fR_ratingVitoriasFRVisitado,
-			Double fR_ratingDerrotasFRVisitante, Double fR_dificuldadeVisitado,
+			Integer fR_diasDescansoVisitante,
+			Double fR_ratingVitoriasVisitado,
+			Double fR_ratingDerrotasVisitante, Double fR_dificuldadeVisitado,
 			Double fR_dificuldadeVisistante, Integer fR_HistoricosVisitado,
 			Integer fR_HistoricosVisitante, Integer ciclo_numeroJogosVisitado,
 			Integer ciclo_numeroJogosVisitante,
@@ -59,9 +59,9 @@ public class ProfHomeWinRow {
 		this.qualidadeVisitado = qualidadeVisitado;
 		this.qualidadeVisitante = qualidadeVisitante;
 		FR_diasDescansoVisitado = fR_diasDescansoVisitado;
-		FR_diasDescansoFRVisitante = fR_diasDescansoFRVisitante;
-		FR_ratingVitoriasFRVisitado = fR_ratingVitoriasFRVisitado;
-		FR_ratingDerrotasFRVisitante = fR_ratingDerrotasFRVisitante;
+		FR_diasDescansoVisitante = fR_diasDescansoVisitante;
+		FR_ratingVitoriasVisitado = fR_ratingVitoriasVisitado;
+		FR_ratingDerrotasVisitante = fR_ratingDerrotasVisitante;
 		FR_dificuldadeVisitado = fR_dificuldadeVisitado;
 		FR_dificuldadeVisistante = fR_dificuldadeVisistante;
 		FR_HistoricosVisitado = fR_HistoricosVisitado;
@@ -124,30 +124,30 @@ public class ProfHomeWinRow {
 		FR_diasDescansoVisitado = fR_diasDescansoVisitado;
 	}
 
-	public Integer getFR_diasDescansoFRVisitante() {
-		return FR_diasDescansoFRVisitante;
+	public Integer getFR_diasDescansoVisitante() {
+		return FR_diasDescansoVisitante;
 	}
 
-	public void setFR_diasDescansoFRVisitante(Integer fR_diasDescansoFRVisitante) {
-		FR_diasDescansoFRVisitante = fR_diasDescansoFRVisitante;
+	public void setFR_diasDescansoVisitante(Integer fR_diasDescansoVisitante) {
+		FR_diasDescansoVisitante = fR_diasDescansoVisitante;
 	}
 
-	public Double getFR_ratingVitoriasFRVisitado() {
-		return FR_ratingVitoriasFRVisitado;
+	public Double getFR_ratingVitoriasVisitado() {
+		return FR_ratingVitoriasVisitado;
 	}
 
-	public void setFR_ratingVitoriasFRVisitado(
-			Double fR_ratingVitoriasFRVisitado) {
-		FR_ratingVitoriasFRVisitado = fR_ratingVitoriasFRVisitado;
+	public void setFR_ratingVitoriasVisitado(
+			Double fR_ratingVitoriasVisitado) {
+		FR_ratingVitoriasVisitado = fR_ratingVitoriasVisitado;
 	}
 
-	public Double getFR_ratingDerrotasFRVisitante() {
-		return FR_ratingDerrotasFRVisitante;
+	public Double getFR_ratingDerrotasVisitante() {
+		return FR_ratingDerrotasVisitante;
 	}
 
-	public void setFR_ratingDerrotasFRVisitante(
-			Double fR_ratingDerrotasFRVisitante) {
-		FR_ratingDerrotasFRVisitante = fR_ratingDerrotasFRVisitante;
+	public void setFR_ratingDerrotasVisitante(
+			Double fR_ratingDerrotasVisitante) {
+		FR_ratingDerrotasVisitante = fR_ratingDerrotasVisitante;
 	}
 
 	public Double getFR_dificuldadeVisitado() {
@@ -251,8 +251,8 @@ public class ProfHomeWinRow {
 	{
 		return "ProfHomeWinRow [jornada=" + jornada + ", idVisitado=" + idVisitado + ", idVisitante=" + idVisitante + ", qualidadeVisitado="
 				+ qualidadeVisitado + ", qualidadeVisitante=" + qualidadeVisitante + ", FR_diasDescansoVisitado=" + FR_diasDescansoVisitado
-				+ ", FR_diasDescansoFRVisitante=" + FR_diasDescansoFRVisitante + ", FR_ratingVitoriasFRVisitado=" + FR_ratingVitoriasFRVisitado
-				+ ", FR_ratingDerrotasFRVisitante=" + FR_ratingDerrotasFRVisitante + ", FR_dificuldadeVisitado=" + FR_dificuldadeVisitado
+				+ ", FR_diasDescansoFRVisitante=" + FR_diasDescansoVisitante + ", FR_ratingVitoriasFRVisitado=" + FR_ratingVitoriasVisitado
+				+ ", FR_ratingDerrotasFRVisitante=" + FR_ratingDerrotasVisitante + ", FR_dificuldadeVisitado=" + FR_dificuldadeVisitado
 				+ ", FR_dificuldadeVisistante=" + FR_dificuldadeVisistante + ", FR_HistoricosVisitado=" + FR_HistoricosVisitado + ", FR_HistoricosVisitante="
 				+ FR_HistoricosVisitante + ", Ciclo_numeroJogosVisitado=" + Ciclo_numeroJogosVisitado + ", Ciclo_numeroJogosVisitante="
 				+ Ciclo_numeroJogosVisitante + ", Ciclo_dificuldadeVisitado=" + Ciclo_dificuldadeVisitado + ", Ciclo_dificuldadeVisitante="
