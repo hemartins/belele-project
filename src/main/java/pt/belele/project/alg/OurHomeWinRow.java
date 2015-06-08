@@ -25,10 +25,10 @@ public class OurHomeWinRow {
 										// caso tenha vencido os últimos 5 jogos
 										// =5;
 	Integer Ciclo_numeroJogosVisitante;
-	Integer Ciclo_dificuldadeVisitado; // média das qualidades dos adversários
+	Double Ciclo_dificuldadeVisitado; // média das qualidades dos adversários
 										// desse que a equipa enfrentou nesse
 										// ciclo
-	Integer Ciclo_dificuldadeVisitante;
+	Double Ciclo_dificuldadeVisitante;
 	Integer Ciclo_HistoricosVisitado; // número de históricos que a equipa
 										// enfrentou durante esse ciclo
 	Integer Ciclo_HistoricosVisitante;
@@ -52,9 +52,9 @@ public class OurHomeWinRow {
 														// qualidade_do_adversário
 														// + x]
 	Double QLT_percentagemDerrotasVisitanteNoIntervalo;
-	Double QLT_numeroJogosVisitado; // quantas equipas enfrentou no intervalo
+	Integer QLT_numeroJogosVisitado; // quantas equipas enfrentou no intervalo
 									// citado em cima
-	Double QLT_numeroJogosVisitante;
+	Integer QLT_numeroJogosVisitante;
 
 	public OurHomeWinRow(Integer jornada, Double qualidadeVisitado,
 			Double qualidadeVisitante, Integer fR_diasDescansoVisitado,
@@ -63,8 +63,8 @@ public class OurHomeWinRow {
 			Double fR_dificuldadeVisistante, Integer fR_HistoricosVisitado,
 			Integer fR_HistoricosVisitante, Integer ciclo_numeroJogosVisitado,
 			Integer ciclo_numeroJogosVisitante,
-			Integer ciclo_dificuldadeVisitado,
-			Integer ciclo_dificuldadeVisitante,
+			Double ciclo_dificuldadeVisitado,
+			Double ciclo_dificuldadeVisitante,
 			Integer ciclo_HistoricosVisitado,
 			Integer ciclo_HistoricosVisitante, Double h2h_ratingVitorias,
 			Integer h2h_numeroJogos, Double qLT_percentagemVitoriasVisitado,
@@ -73,7 +73,7 @@ public class OurHomeWinRow {
 			Double qLT_dificuldadeDerrotasVisitante,
 			Double qLT_percentagemVitoriasVisitadoNoIntervalo,
 			Double qLT_percentagemDerrotasVisitanteNoIntervalo,
-			Double qLT_numeroJogosVisitado, Double qLT_numeroJogosVisitante) {
+			Integer qLT_numeroJogosVisitado, Integer qLT_numeroJogosVisitante) {
 
 		this.jornada = jornada;
 		this.qualidadeVisitado = qualidadeVisitado;
@@ -208,19 +208,19 @@ public class OurHomeWinRow {
 		Ciclo_numeroJogosVisitante = ciclo_numeroJogosVisitante;
 	}
 
-	public Integer getCiclo_dificuldadeVisitado() {
+	public Double getCiclo_dificuldadeVisitado() {
 		return Ciclo_dificuldadeVisitado;
 	}
 
-	public void setCiclo_dificuldadeVisitado(Integer ciclo_dificuldadeVisitado) {
+	public void setCiclo_dificuldadeVisitado(Double ciclo_dificuldadeVisitado) {
 		Ciclo_dificuldadeVisitado = ciclo_dificuldadeVisitado;
 	}
 
-	public Integer getCiclo_dificuldadeVisitante() {
+	public Double getCiclo_dificuldadeVisitante() {
 		return Ciclo_dificuldadeVisitante;
 	}
 
-	public void setCiclo_dificuldadeVisitante(Integer ciclo_dificuldadeVisitante) {
+	public void setCiclo_dificuldadeVisitante(Double ciclo_dificuldadeVisitante) {
 		Ciclo_dificuldadeVisitante = ciclo_dificuldadeVisitante;
 	}
 
@@ -310,19 +310,19 @@ public class OurHomeWinRow {
 		QLT_percentagemDerrotasVisitanteNoIntervalo = qLT_percentagemDerrotasVisitanteNoIntervalo;
 	}
 
-	public Double getQLT_numeroJogosVisitado() {
+	public Integer getQLT_numeroJogosVisitado() {
 		return QLT_numeroJogosVisitado;
 	}
 
-	public void setQLT_numeroJogosVisitado(Double qLT_numeroJogosVisitado) {
+	public void setQLT_numeroJogosVisitado(Integer qLT_numeroJogosVisitado) {
 		QLT_numeroJogosVisitado = qLT_numeroJogosVisitado;
 	}
 
-	public Double getQLT_numeroJogosVisitante() {
+	public Integer getQLT_numeroJogosVisitante() {
 		return QLT_numeroJogosVisitante;
 	}
 
-	public void setQLT_numeroJogosVisitante(Double qLT_numeroJogosVisitante) {
+	public void setQLT_numeroJogosVisitante(Integer qLT_numeroJogosVisitante) {
 		QLT_numeroJogosVisitante = qLT_numeroJogosVisitante;
 	}
 
