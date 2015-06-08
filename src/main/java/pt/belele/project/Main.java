@@ -81,7 +81,7 @@ public class Main
 				fR_HistoricosVisitado, fR_HistoricosVisitante, ciclo_numeroJogosVisitado, ciclo_numeroJogosVisitante, ciclo_dificuldadeVisitado,
 				ciclo_dificuldadeVisitante, ciclo_HistoricosVisitado, ciclo_HistoricosVisitante, h2h_ratingVitorias, h2h_numeroJogos);
 
-		OurHomeWinRow ohwr = new OurHomeWinRow(jornada, qualidadeVisitado, qualidadeVisitante, fR_diasDescansoVisitado, fR_diasDescansoFRVisitante,
+		OurHomeWinRow ohwr = new OurHomeWinRow(jornada, qualidadeVisitado, qualidadeVisitante, fR_diasDescansoVisitado, fR_diasDescansoVisitante,
 				fR_ratingVitoriasVisitado, fR_ratingDerrotasVisitante, fR_dificuldadeVisitado, fR_dificuldadeVisistante, fR_HistoricosVisitado,
 				fR_HistoricosVisitante, ciclo_numeroJogosVisitado, ciclo_numeroJogosVisitante, ciclo_dificuldadeVisitado, ciclo_dificuldadeVisitante,
 				ciclo_HistoricosVisitado, ciclo_HistoricosVisitante, h2h_ratingVitorias, h2h_numeroJogos, qLT_percentagemVitoriasVisitado,
