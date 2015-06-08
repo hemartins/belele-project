@@ -1,6 +1,6 @@
 package pt.belele.project.alg;
 
-public class ProfHomeWinRow {
+public class ProfRow {
 
 	Integer jornada;
 	String idVisitado;
@@ -11,10 +11,10 @@ public class ProfHomeWinRow {
 	Integer FR_diasDescansoVisitado; // diferença entre a data do jogo a
 										// calcular e do jogo anterior
 	Integer FR_diasDescansoVisitante;
-	Double FR_ratingVitoriasVisitado; // pontuação por cada vitória obtida nos
+	Double FR_ratingResultadoVisitado; // pontuação por cada vitória obtida nos
 										// últimos 5 jogos, consoante o quão
 										// recente o jogo é
-	Double FR_ratingDerrotasVisitante;
+	Double FR_ratingResultadoVisitante;
 	Double FR_dificuldadeVisitado; // média das qualidades dos adversários dos
 									// últimos 5 jogos
 	Double FR_dificuldadeVisistante;
@@ -34,23 +34,23 @@ public class ProfHomeWinRow {
 	Integer Ciclo_HistoricosVisitado; // número de históricos que a equipa
 										// enfrentou durante esse ciclo
 	Integer Ciclo_HistoricosVisitante;
-	Double H2H_ratingVitorias; // pontuação por cada vitória obtida nos últimos
+	Double H2H_ratingResultado; // pontuação por cada vitória obtida nos últimos
 								// jogos entre essas equipas
 	Integer H2H_numeroJogos;
 
-	public ProfHomeWinRow(Integer jornada, String idVisitado,
+	public ProfRow(Integer jornada, String idVisitado,
 			String idVisitante, Double qualidadeVisitado,
 			Double qualidadeVisitante, Integer fR_diasDescansoVisitado,
 			Integer fR_diasDescansoVisitante,
-			Double fR_ratingVitoriasVisitado,
-			Double fR_ratingDerrotasVisitante, Double fR_dificuldadeVisitado,
+			Double fR_ratingResultadoVisitado,
+			Double fR_ratingResultadoVisitante, Double fR_dificuldadeVisitado,
 			Double fR_dificuldadeVisistante, Integer fR_HistoricosVisitado,
 			Integer fR_HistoricosVisitante, Integer ciclo_numeroJogosVisitado,
 			Integer ciclo_numeroJogosVisitante,
 			Double ciclo_dificuldadeVisitado,
 			Double ciclo_dificuldadeVisitante,
 			Integer ciclo_HistoricosVisitado,
-			Integer ciclo_HistoricosVisitante, Double h2h_ratingVitorias,
+			Integer ciclo_HistoricosVisitante, Double h2h_ratingResultado,
 			Integer h2h_numeroJogos) {
 
 		this.jornada = jornada;
@@ -60,8 +60,8 @@ public class ProfHomeWinRow {
 		this.qualidadeVisitante = qualidadeVisitante;
 		FR_diasDescansoVisitado = fR_diasDescansoVisitado;
 		FR_diasDescansoVisitante = fR_diasDescansoVisitante;
-		FR_ratingVitoriasVisitado = fR_ratingVitoriasVisitado;
-		FR_ratingDerrotasVisitante = fR_ratingDerrotasVisitante;
+		FR_ratingResultadoVisitado = fR_ratingResultadoVisitado;
+		FR_ratingResultadoVisitante = fR_ratingResultadoVisitante;
 		FR_dificuldadeVisitado = fR_dificuldadeVisitado;
 		FR_dificuldadeVisistante = fR_dificuldadeVisistante;
 		FR_HistoricosVisitado = fR_HistoricosVisitado;
@@ -72,7 +72,7 @@ public class ProfHomeWinRow {
 		Ciclo_dificuldadeVisitante = ciclo_dificuldadeVisitante;
 		Ciclo_HistoricosVisitado = ciclo_HistoricosVisitado;
 		Ciclo_HistoricosVisitante = ciclo_HistoricosVisitante;
-		H2H_ratingVitorias = h2h_ratingVitorias;
+		H2H_ratingResultado = h2h_ratingResultado;
 		H2H_numeroJogos = h2h_numeroJogos;
 	}
 
@@ -132,22 +132,22 @@ public class ProfHomeWinRow {
 		FR_diasDescansoVisitante = fR_diasDescansoVisitante;
 	}
 
-	public Double getFR_ratingVitoriasVisitado() {
-		return FR_ratingVitoriasVisitado;
+	public Double getFR_ratingResultadoVisitado() {
+		return FR_ratingResultadoVisitado;
 	}
 
-	public void setFR_ratingVitoriasVisitado(
-			Double fR_ratingVitoriasVisitado) {
-		FR_ratingVitoriasVisitado = fR_ratingVitoriasVisitado;
+	public void setFR_ratingResultadoVisitado(
+			Double fR_ratingResultadoVisitado) {
+		FR_ratingResultadoVisitado = fR_ratingResultadoVisitado;
 	}
 
-	public Double getFR_ratingDerrotasVisitante() {
-		return FR_ratingDerrotasVisitante;
+	public Double getFR_ratingResultadoVisitante() {
+		return FR_ratingResultadoVisitante;
 	}
 
-	public void setFR_ratingDerrotasVisitante(
-			Double fR_ratingDerrotasVisitante) {
-		FR_ratingDerrotasVisitante = fR_ratingDerrotasVisitante;
+	public void setFR_ratingResultadoVisitante(
+			Double fR_ratingResultadoVisitante) {
+		FR_ratingResultadoVisitante = fR_ratingResultadoVisitante;
 	}
 
 	public Double getFR_dificuldadeVisitado() {
@@ -231,11 +231,11 @@ public class ProfHomeWinRow {
 	}
 
 	public Double getH2H_ratingVitorias() {
-		return H2H_ratingVitorias;
+		return H2H_ratingResultado;
 	}
 
-	public void setH2H_ratingVitorias(Double h2h_ratingVitorias) {
-		H2H_ratingVitorias = h2h_ratingVitorias;
+	public void ResultadoResultado(Double h2h_ratingResultado) {
+		H2H_ratingResultado = h2h_ratingResultado;
 	}
 
 	public Integer getH2H_numeroJogos() {
@@ -251,13 +251,13 @@ public class ProfHomeWinRow {
 	{
 		return "ProfHomeWinRow [jornada=" + jornada + ", idVisitado=" + idVisitado + ", idVisitante=" + idVisitante + ", qualidadeVisitado="
 				+ qualidadeVisitado + ", qualidadeVisitante=" + qualidadeVisitante + ", FR_diasDescansoVisitado=" + FR_diasDescansoVisitado
-				+ ", FR_diasDescansoFRVisitante=" + FR_diasDescansoVisitante + ", FR_ratingVitoriasFRVisitado=" + FR_ratingVitoriasVisitado
-				+ ", FR_ratingDerrotasFRVisitante=" + FR_ratingDerrotasVisitante + ", FR_dificuldadeVisitado=" + FR_dificuldadeVisitado
+				+ ", FR_diasDescansoFRVisitante=" + FR_diasDescansoVisitante + ", FR_ratingVitoriasFRVisitado=" + FR_ratingResultadoVisitado
+				+ ", FR_ratingDerrotasFRVisitante=" + FR_ratingResultadoVisitante + ", FR_dificuldadeVisitado=" + FR_dificuldadeVisitado
 				+ ", FR_dificuldadeVisistante=" + FR_dificuldadeVisistante + ", FR_HistoricosVisitado=" + FR_HistoricosVisitado + ", FR_HistoricosVisitante="
 				+ FR_HistoricosVisitante + ", Ciclo_numeroJogosVisitado=" + Ciclo_numeroJogosVisitado + ", Ciclo_numeroJogosVisitante="
 				+ Ciclo_numeroJogosVisitante + ", Ciclo_dificuldadeVisitado=" + Ciclo_dificuldadeVisitado + ", Ciclo_dificuldadeVisitante="
 				+ Ciclo_dificuldadeVisitante + ", Ciclo_HistoricosVisitado=" + Ciclo_HistoricosVisitado + ", Ciclo_HistoricosVisitante="
-				+ Ciclo_HistoricosVisitante + ", H2H_ratingVitorias=" + H2H_ratingVitorias + ", H2H_numeroJogos=" + H2H_numeroJogos + "]";
+				+ Ciclo_HistoricosVisitante + ", H2H_ratingVitorias=" + H2H_ratingResultado + ", H2H_numeroJogos=" + H2H_numeroJogos + "]";
 	}
 	
 	

@@ -10,14 +10,14 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import pt.belele.project.alg.OurHomeWinRow;
-import pt.belele.project.alg.ProfHomeWinRow;
+import pt.belele.project.alg.OurRow;
+import pt.belele.project.alg.ProfRow;
 
 public class WriteToExcel {
 	
 	private static final String FILE_PATH = "/Users/JRicardoRG/Desktop/";
 	
-	public void writeOurDataExcelTable(String path, List<OurHomeWinRow> dataList){
+	public void writeOurDataExcelTable(String path, List<OurRow> dataList){
 		
 		// Using XSSF for xlsx format, for xls use HSSF
         Workbook workbook = new XSSFWorkbook();
@@ -25,7 +25,7 @@ public class WriteToExcel {
         Sheet ourSheet = workbook.createSheet("ourSheet");
 
         int rowIndex = 0;
-        for(OurHomeWinRow winrow : dataList){
+        for(OurRow winrow : dataList){
             Row row = ourSheet.createRow(rowIndex++);
             int cellIndex = 0;
             
@@ -45,10 +45,10 @@ public class WriteToExcel {
             row.createCell(cellIndex++).setCellValue(winrow.getFR_diasDescansoVisitante());
             
             //sexta posição da linha é o rating de vitórias do visitado nos últimos 5 jogos
-            row.createCell(cellIndex++).setCellValue(winrow.getFR_ratingVitoriasVisitado());
+            row.createCell(cellIndex++).setCellValue(winrow.getFR_ratingResultadoVisitado());
 
             //sétima posição da linha é o rating de derrotas do visitante nos últimos 5 jogos
-            row.createCell(cellIndex++).setCellValue(winrow.getFR_ratingDerrotasVisitante());
+            row.createCell(cellIndex++).setCellValue(winrow.getFR_ratingResultadoVisitante());
             
             //oitava posição da linha é a dificuldade dos últimos 5 jogos do visitado
             row.createCell(cellIndex++).setCellValue(winrow.getFR_dificuldadeVisitado());
@@ -81,28 +81,28 @@ public class WriteToExcel {
             row.createCell(cellIndex++).setCellValue(winrow.getCiclo_HistoricosVisitante());
             
             //décima oitava posição da linha é o rating de vitórias no head 2 head
-            row.createCell(cellIndex++).setCellValue(winrow.getH2H_ratingVitorias());
+            row.createCell(cellIndex++).setCellValue(winrow.getH2H_ratingResultado());
             
             //décima nona rta posição da linha é o número de jogos considerados do head 2 head
             row.createCell(cellIndex++).setCellValue(winrow.getH2H_numeroJogos());
             
             //vigésima posição da linha é a percentagem total de vitórias do visitado em casa
-            row.createCell(cellIndex++).setCellValue(winrow.getQLT_percentagemVitoriasVisitado());
+            row.createCell(cellIndex++).setCellValue(winrow.getQLT_percentagemResultadoVisitado());
             
             //vigésima primeira posição da linha é a percentagem total de derrotas do visitante fora
-            row.createCell(cellIndex++).setCellValue(winrow.getQLT_percentagemDerrotasVisitante());
+            row.createCell(cellIndex++).setCellValue(winrow.getQLT_percentagemResultadoVisitante());
 
             //vigésima segunda posição da linha é a percentagem total de vitórias do visitado em casa
-            row.createCell(cellIndex++).setCellValue(winrow.getQLT_dificuldadeVitoriasVisitado());
+            row.createCell(cellIndex++).setCellValue(winrow.getQLT_dificuldadeResultadoVisitado());
             
             //vigésima terceira posição da linha é a dificuldade das derrotas do visitante
-            row.createCell(cellIndex++).setCellValue(winrow.getQLT_dificuldadeDerrotasVisitante());
+            row.createCell(cellIndex++).setCellValue(winrow.getQLT_dificuldadeResultadoVisitante());
             
             //vigésima quarta posição da linha é a percentagem de vitórias do visitado no intervalo
-            row.createCell(cellIndex++).setCellValue(winrow.getQLT_percentagemVitoriasVisitadoNoIntervalo());
+            row.createCell(cellIndex++).setCellValue(winrow.getQLT_percentagemResultadoVisitadoNoIntervalo());
 
             //vigésima quinta posição da linha é a percentagem de derrotas do visitante no intervalo
-            row.createCell(cellIndex++).setCellValue(winrow.getQLT_percentagemDerrotasVisitanteNoIntervalo());
+            row.createCell(cellIndex++).setCellValue(winrow.getQLT_percentagemResultadoVisitanteNoIntervalo());
             
             //vigésima sexta posição da linha é o número de jogos do visitado no intervalo
             row.createCell(cellIndex++).setCellValue(winrow.getQLT_numeroJogosVisitado());
@@ -128,7 +128,7 @@ public class WriteToExcel {
 
     }
 	
-	public void writeProfDataExcelTable(String path, List<ProfHomeWinRow> dataList){
+	public void writeProfDataExcelTable(String path, List<ProfRow> dataList){
 		
 		// Using XSSF for xlsx format, for xls use HSSF
         Workbook workbook = new XSSFWorkbook();
@@ -136,7 +136,7 @@ public class WriteToExcel {
         Sheet ourSheet = workbook.createSheet("ourSheet");
 
         int rowIndex = 0;
-        for(ProfHomeWinRow winrow : dataList){
+        for(ProfRow winrow : dataList){
             Row row = ourSheet.createRow(rowIndex++);
             int cellIndex = 0;
             
@@ -162,10 +162,10 @@ public class WriteToExcel {
             row.createCell(cellIndex++).setCellValue(winrow.getFR_diasDescansoVisitante());
             
             //oitava posição da linha é o rating de vitórias do visitado nos últimos 5 jogos
-            row.createCell(cellIndex++).setCellValue(winrow.getFR_ratingVitoriasVisitado());
+            row.createCell(cellIndex++).setCellValue(winrow.getFR_ratingResultadoVisitado());
 
             //nona posição da linha é o rating de derrotas do visitante nos últimos 5 jogos
-            row.createCell(cellIndex++).setCellValue(winrow.getFR_ratingDerrotasVisitante());
+            row.createCell(cellIndex++).setCellValue(winrow.getFR_ratingResultadoVisitante());
             
             //décima posição da linha é a dificuldade dos últimos 5 jogos do visitado
             row.createCell(cellIndex++).setCellValue(winrow.getFR_dificuldadeVisitado());

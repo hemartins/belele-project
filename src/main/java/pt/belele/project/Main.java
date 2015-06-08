@@ -3,8 +3,8 @@ package pt.belele.project;
 import java.util.ArrayList;
 import java.util.List;
 
-import pt.belele.project.alg.OurHomeWinRow;
-import pt.belele.project.alg.ProfHomeWinRow;
+import pt.belele.project.alg.OurRow;
+import pt.belele.project.alg.ProfRow;
 import pt.belele.project.controllers.TeamController;
 import pt.belele.project.controllers.util.ResultCycle;
 import pt.belele.project.controllers.util.TeamRating;
@@ -76,12 +76,12 @@ public class Main
 		Integer qLT_numeroJogosVisitado = homeTR.getResultIntervalGames();
 		Integer qLT_numeroJogosVisitante = awayTR.getResultIntervalGames();
 		
-		ProfHomeWinRow phwr = new ProfHomeWinRow(jornada, idVisitado, idVisitante, qualidadeVisitado, qualidadeVisitante, fR_diasDescansoVisitado,
+		ProfRow phwr = new ProfRow(jornada, idVisitado, idVisitante, qualidadeVisitado, qualidadeVisitante, fR_diasDescansoVisitado,
 				fR_diasDescansoVisitante, fR_ratingVitoriasVisitado, fR_ratingDerrotasVisitante, fR_dificuldadeVisitado, fR_dificuldadeVisistante,
 				fR_HistoricosVisitado, fR_HistoricosVisitante, ciclo_numeroJogosVisitado, ciclo_numeroJogosVisitante, ciclo_dificuldadeVisitado,
 				ciclo_dificuldadeVisitante, ciclo_HistoricosVisitado, ciclo_HistoricosVisitante, h2h_ratingVitorias, h2h_numeroJogos);
 
-		OurHomeWinRow ohwr = new OurHomeWinRow(jornada, qualidadeVisitado, qualidadeVisitante, fR_diasDescansoVisitado, fR_diasDescansoVisitante,
+		OurRow ohwr = new OurRow(jornada, qualidadeVisitado, qualidadeVisitante, fR_diasDescansoVisitado, fR_diasDescansoVisitante,
 				fR_ratingVitoriasVisitado, fR_ratingDerrotasVisitante, fR_dificuldadeVisitado, fR_dificuldadeVisistante, fR_HistoricosVisitado,
 				fR_HistoricosVisitante, ciclo_numeroJogosVisitado, ciclo_numeroJogosVisitante, ciclo_dificuldadeVisitado, ciclo_dificuldadeVisitante,
 				ciclo_HistoricosVisitado, ciclo_HistoricosVisitante, h2h_ratingVitorias, h2h_numeroJogos, qLT_percentagemVitoriasVisitado,
