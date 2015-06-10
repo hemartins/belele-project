@@ -167,8 +167,7 @@ public class TeamController
 		Head2Head h2h = nextFixture.getHead2Head();
 		for (int i = 0; i < h2h.getFixtures().size(); i++)
 		{
-			if (ratings.get(i) != null)
-			{
+			if (i<ratings.size()){
 				Fixture f = h2h.getFixtures().get(i);
 				if (getResultType(f).equals(type))
 					rating += ratings.get(i);
