@@ -80,6 +80,10 @@ public class TeamController
 			{
 				TeamController tc = new TeamController(f.getAwayTeam());
 				sum += tc.getTeamQuality(nextFixture.getSeason());
+			} else
+			{
+				TeamController tc = new TeamController(f.getHomeTeam());
+				sum += tc.getTeamQuality(nextFixture.getSeason());
 			}
 		}
 		return sum / fixtures.size();
@@ -114,6 +118,12 @@ public class TeamController
 					sum--;
 			} else
 			{
+				if (!actualResult.equals(getResultType(f)))
+				{
+					actualResult = getResultType(f);
+					equals = false;
+				}
+
 				if (actualResult.equals(type) && equals)
 					sum++;
 				else if (!actualResult.equals(type) && !equals)
