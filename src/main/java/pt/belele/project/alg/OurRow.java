@@ -3,6 +3,9 @@ package pt.belele.project.alg;
 public class OurRow {
 
 	Integer jornada;
+	Integer idVisitado;
+	Integer idVisitante;
+
 	Double qualidadeVisitado; // pontos por jogo da equipa
 	Double qualidadeVisitante;
 	Integer FR_diasDescansoVisitado; // diferença entra a data do jogo a
@@ -36,11 +39,12 @@ public class OurRow {
 								// jogos entre essas equipas
 	Integer H2H_numeroJogos;
 	Double QLT_percentagemResultadoVisitado; // percentagem total de vitórias da
-											// equipa em casa
+												// equipa em casa
 	Double QLT_percentagemResultadoVisitante;
 	Double QLT_dificuldadeResultadoVisitado; // média das qualidades dos
-											// adversários que enfrentou em casa
-											// até à data
+												// adversários que enfrentou em
+												// casa
+												// até à data
 	Double QLT_dificuldadeResultadoVisitante;
 	Double QLT_percentagemResultadoVisitadoNoIntervalo; // percentagem de
 														// vitórias frente a
@@ -53,12 +57,13 @@ public class OurRow {
 														// + x]
 	Double QLT_percentagemResultadoVisitanteNoIntervalo;
 	Integer QLT_numeroJogosVisitado; // quantas equipas enfrentou no intervalo
-									// citado em cima
+										// citado em cima
 	Integer QLT_numeroJogosVisitante;
 
-	public OurRow(Integer jornada, Double qualidadeVisitado,
-			Double qualidadeVisitante, Integer fR_diasDescansoVisitado,
-			Integer fR_diasDescansoVisitante, Double fR_ratingResultadoVisitado,
+	public OurRow(Integer jornada, Integer idVisitado, Integer idVisitante,
+			Double qualidadeVisitado, Double qualidadeVisitante,
+			Integer fR_diasDescansoVisitado, Integer fR_diasDescansoVisitante,
+			Double fR_ratingResultadoVisitado,
 			Double fR_ratingResultadoVisitante, Double fR_dificuldadeVisitado,
 			Double fR_dificuldadeVisistante, Integer fR_HistoricosVisitado,
 			Integer fR_HistoricosVisitante, Integer ciclo_numeroJogosVisitado,
@@ -76,6 +81,8 @@ public class OurRow {
 			Integer qLT_numeroJogosVisitado, Integer qLT_numeroJogosVisitante) {
 
 		this.jornada = jornada;
+		this.idVisitado = idVisitado;
+		this.idVisitante = idVisitante;
 		this.qualidadeVisitado = qualidadeVisitado;
 		this.qualidadeVisitante = qualidadeVisitante;
 		FR_diasDescansoVisitado = fR_diasDescansoVisitado;
@@ -110,6 +117,22 @@ public class OurRow {
 
 	public void setJornada(Integer jornada) {
 		this.jornada = jornada;
+	}
+
+	public Integer getIdVisitado() {
+		return idVisitado;
+	}
+
+	public void setIdVisitado(Integer idVisitado) {
+		this.idVisitado = idVisitado;
+	}
+
+	public Integer getIdVisitante() {
+		return idVisitante;
+	}
+
+	public void setIdVisitante(Integer idVisitante) {
+		this.idVisitante = idVisitante;
 	}
 
 	public Double getQualidadeVisitado() {
@@ -156,7 +179,8 @@ public class OurRow {
 		return FR_ratingResultadoVisitante;
 	}
 
-	public void setFR_ratingResultadoVisitante(Double fR_ratingResultadoVisitante) {
+	public void setFR_ratingResultadoVisitante(
+			Double fR_ratingResultadoVisitante) {
 		FR_ratingResultadoVisitante = fR_ratingResultadoVisitante;
 	}
 

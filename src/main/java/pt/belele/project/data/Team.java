@@ -67,6 +67,13 @@ public class Team
 	}
 
 	// public List<Player> getPlayers(){}
+	
+	public Integer getId()
+	{
+		String self = team.get_links().getSelf().getHref();
+		int pos =  self.lastIndexOf('/');
+		return Integer.valueOf(self.substring(pos+1));
+	}
 
 	public String getName()
 	{
