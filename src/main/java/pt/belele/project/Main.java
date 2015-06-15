@@ -30,7 +30,7 @@ public class Main
 		List<ProfRow> ProfLoseDataList = new ArrayList<ProfRow>();
 		
 		Season s = new Season(League.Italy.SERIE_A, 2014);
-		List<Fixture> fixtures = s.getFixtures();
+		List<Fixture> fixtures = s.getFixtures(38);
 		
 		for (int round=38; round>=14 ;round--){
 			

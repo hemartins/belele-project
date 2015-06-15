@@ -31,6 +31,18 @@ public class WriteToExcel {
             
             //primeira posição da linha é a jornada
             row.createCell(cellIndex++).setCellValue(winrow.getJornada());
+            
+            //primeira posição da linha é o id do visitado
+            row.createCell(cellIndex++).setCellValue(winrow.getIdVisitado());
+            
+            //primeira posição da linha é o id do visitante
+            row.createCell(cellIndex++).setCellValue(winrow.getIdVisitante());
+            
+            //primeira posição da linha é o nome do visitado
+            row.createCell(cellIndex++).setCellValue(winrow.getHomeTeamName());
+            
+          //primeira posição da linha é o nome do visitante
+            row.createCell(cellIndex++).setCellValue(winrow.getAwayTeamName());
 
             //segunda posição da linha é a qualidade do visitado
             row.createCell(cellIndex++).setCellValue(winrow.getQualidadeVisitado());
@@ -109,6 +121,9 @@ public class WriteToExcel {
             
             //vigésima sétima posição da linha é o número de jogos do visitante no intervalo
             row.createCell(cellIndex++).setCellValue(winrow.getQLT_numeroJogosVisitante());
+            
+           //vigésima sétima posição da linha é o número de jogos do visitante no intervalo
+            row.createCell(cellIndex++).setCellValue(winrow.getResult());
 
         }
 
@@ -142,6 +157,18 @@ public class WriteToExcel {
             
             //primeira posição da linha é a jornada
             row.createCell(cellIndex++).setCellValue(winrow.getJornada());
+            
+            //primeira posição da linha é o id do visitado
+            row.createCell(cellIndex++).setCellValue(winrow.getIdVisitado());
+            
+            //primeira posição da linha é o id do visitante
+            row.createCell(cellIndex++).setCellValue(winrow.getIdVisitante());
+            
+            //primeira posição da linha é o nome do visitado
+            row.createCell(cellIndex++).setCellValue(winrow.getHomeTeamName());
+            
+          //primeira posição da linha é o nome do visitante
+            row.createCell(cellIndex++).setCellValue(winrow.getAwayTeamName());
 
             //segunda posição da linha é a qualidade do visitado
             row.createCell(cellIndex++).setCellValue(winrow.getIdVisitado());
@@ -202,6 +229,9 @@ public class WriteToExcel {
             
             //vigésima primeira posição da linha é o número de jogos considerados do head 2 head
             row.createCell(cellIndex++).setCellValue(winrow.getH2H_numeroJogos());
+            
+            //vigésima sétima posição da linha é o número de jogos do visitante no intervalo
+            row.createCell(cellIndex++).setCellValue(winrow.getResult());
 
         }
 
