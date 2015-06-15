@@ -5,6 +5,8 @@ public class ProfRow {
 	Integer jornada;
 	Integer idVisitado;
 	Integer idVisitante;
+	String homeTeamName;
+	String awayTeamName;
 	Double qualidadeVisitado; // pontos por jogo da equipa na jornada que se
 								// quer prever
 	Double qualidadeVisitante;
@@ -37,8 +39,9 @@ public class ProfRow {
 	Double H2H_ratingResultado; // pontuação por cada vitória obtida nos últimos
 								// jogos entre essas equipas
 	Integer H2H_numeroJogos;
+	Integer result;
 
-	public ProfRow(Integer jornada, Integer idVisitado, Integer idVisitante,
+	public ProfRow(Integer jornada, Integer idVisitado, Integer idVisitante, String homeTeamName, String awayTeamName,
 			Double qualidadeVisitado, Double qualidadeVisitante,
 			Integer fR_diasDescansoVisitado, Integer fR_diasDescansoVisitante,
 			Double fR_ratingResultadoVisitado,
@@ -50,11 +53,13 @@ public class ProfRow {
 			Double ciclo_dificuldadeVisitante,
 			Integer ciclo_HistoricosVisitado,
 			Integer ciclo_HistoricosVisitante, Double h2h_ratingResultado,
-			Integer h2h_numeroJogos) {
+			Integer h2h_numeroJogos, Integer result) {
 
 		this.jornada = jornada;
 		this.idVisitado = idVisitado;
 		this.idVisitante = idVisitante;
+		this.homeTeamName = homeTeamName;
+		this.awayTeamName = awayTeamName;
 		this.qualidadeVisitado = qualidadeVisitado;
 		this.qualidadeVisitante = qualidadeVisitante;
 		FR_diasDescansoVisitado = fR_diasDescansoVisitado;
@@ -73,6 +78,7 @@ public class ProfRow {
 		Ciclo_HistoricosVisitante = ciclo_HistoricosVisitante;
 		H2H_ratingResultado = h2h_ratingResultado;
 		H2H_numeroJogos = h2h_numeroJogos;
+		this.result = result;
 	}
 
 	public Integer getJornada() {
@@ -97,6 +103,22 @@ public class ProfRow {
 
 	public void setIdVisitante(Integer idVisitante) {
 		this.idVisitante = idVisitante;
+	}
+
+	public String getHomeTeamName() {
+		return homeTeamName;
+	}
+
+	public void setHomeTeamName(String homeTeamName) {
+		this.homeTeamName = homeTeamName;
+	}
+
+	public String getAwayTeamName() {
+		return awayTeamName;
+	}
+
+	public void setAwayTeamName(String awayTeamName) {
+		this.awayTeamName = awayTeamName;
 	}
 
 	public Double getQualidadeVisitado() {
@@ -243,6 +265,24 @@ public class ProfRow {
 	public void setH2H_numeroJogos(Integer h2h_numeroJogos) {
 		H2H_numeroJogos = h2h_numeroJogos;
 	}
+	
+	
+
+	public Double getH2H_ratingResultado() {
+		return H2H_ratingResultado;
+	}
+
+	public void setH2H_ratingResultado(Double h2h_ratingResultado) {
+		H2H_ratingResultado = h2h_ratingResultado;
+	}
+
+	public Integer getResult() {
+		return result;
+	}
+
+	public void setResult(Integer result) {
+		this.result = result;
+	}
 
 	@Override
 	public String toString() {
@@ -265,7 +305,7 @@ public class ProfRow {
 				+ Ciclo_dificuldadeVisitante + ", Ciclo_HistoricosVisitado="
 				+ Ciclo_HistoricosVisitado + ", Ciclo_HistoricosVisitante="
 				+ Ciclo_HistoricosVisitante + ", H2H_ratingVitorias="
-				+ H2H_ratingResultado + ", H2H_numeroJogos=" + H2H_numeroJogos
+				+ H2H_ratingResultado + ", H2H_numeroJogos=" + H2H_numeroJogos + ", result =" + result
 				+ "]";
 	}
 

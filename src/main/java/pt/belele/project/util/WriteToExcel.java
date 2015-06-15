@@ -92,7 +92,7 @@ public class WriteToExcel {
             //vigésima primeira posição da linha é a percentagem total de derrotas do visitante fora
             row.createCell(cellIndex++).setCellValue(winrow.getQLT_percentagemResultadoVisitante());
 
-            //vigésima segunda posição da linha é a percentagem total de vitórias do visitado em casa
+            //vigésima segunda posição da linha é a dificuldade de vitórias do visitado em casa
             row.createCell(cellIndex++).setCellValue(winrow.getQLT_dificuldadeResultadoVisitado());
             
             //vigésima terceira posição da linha é a dificuldade das derrotas do visitante

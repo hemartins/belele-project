@@ -5,6 +5,8 @@ public class OurRow {
 	Integer jornada;
 	Integer idVisitado;
 	Integer idVisitante;
+	String homeTeamName;
+	String awayTeamName;
 
 	Double qualidadeVisitado; // pontos por jogo da equipa
 	Double qualidadeVisitante;
@@ -59,8 +61,9 @@ public class OurRow {
 	Integer QLT_numeroJogosVisitado; // quantas equipas enfrentou no intervalo
 										// citado em cima
 	Integer QLT_numeroJogosVisitante;
+	Integer result;
 
-	public OurRow(Integer jornada, Integer idVisitado, Integer idVisitante,
+	public OurRow(Integer jornada, Integer idVisitado, Integer idVisitante, String homeTeamName, String awayTeamName,
 			Double qualidadeVisitado, Double qualidadeVisitante,
 			Integer fR_diasDescansoVisitado, Integer fR_diasDescansoVisitante,
 			Double fR_ratingResultadoVisitado,
@@ -78,11 +81,13 @@ public class OurRow {
 			Double qLT_dificuldadeResultadoVisitante,
 			Double qLT_percentagemResultadoVisitadoNoIntervalo,
 			Double qLT_percentagemResultadoVisitanteNoIntervalo,
-			Integer qLT_numeroJogosVisitado, Integer qLT_numeroJogosVisitante) {
+			Integer qLT_numeroJogosVisitado, Integer qLT_numeroJogosVisitante, Integer result) {
 
 		this.jornada = jornada;
 		this.idVisitado = idVisitado;
 		this.idVisitante = idVisitante;
+		this.homeTeamName = homeTeamName;
+		this.awayTeamName = awayTeamName;
 		this.qualidadeVisitado = qualidadeVisitado;
 		this.qualidadeVisitante = qualidadeVisitante;
 		FR_diasDescansoVisitado = fR_diasDescansoVisitado;
@@ -109,6 +114,7 @@ public class OurRow {
 		QLT_percentagemResultadoVisitanteNoIntervalo = qLT_percentagemResultadoVisitanteNoIntervalo;
 		QLT_numeroJogosVisitado = qLT_numeroJogosVisitado;
 		QLT_numeroJogosVisitante = qLT_numeroJogosVisitante;
+		this.result = result;
 	}
 
 	public Integer getJornada() {
@@ -133,6 +139,22 @@ public class OurRow {
 
 	public void setIdVisitante(Integer idVisitante) {
 		this.idVisitante = idVisitante;
+	}
+
+	public String getHomeTeamName() {
+		return homeTeamName;
+	}
+
+	public void setHomeTeamName(String homeTeamName) {
+		this.homeTeamName = homeTeamName;
+	}
+
+	public String getAwayTeamName() {
+		return awayTeamName;
+	}
+
+	public void setAwayTeamName(String awayTeamName) {
+		this.awayTeamName = awayTeamName;
 	}
 
 	public Double getQualidadeVisitado() {
@@ -348,6 +370,18 @@ public class OurRow {
 
 	public void setQLT_numeroJogosVisitante(Integer qLT_numeroJogosVisitante) {
 		QLT_numeroJogosVisitante = qLT_numeroJogosVisitante;
+	}
+
+	public Integer getResult() {
+		return result;
+	}
+
+	public void setResult(Integer result) {
+		this.result = result;
+	}
+
+	public void setH2H_ratingResultado(Double h2h_ratingResultado) {
+		H2H_ratingResultado = h2h_ratingResultado;
 	}
 
 }

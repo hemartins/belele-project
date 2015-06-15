@@ -265,7 +265,7 @@ public class TeamController {
 		return null;
 	}
 
-	private ResultType getResultType(Fixture fixture) {
+	public ResultType getResultType(Fixture fixture) {
 		Result r = fixture.getResult();
 		if (fixture.getHomeTeam().equals(team)) {
 			if (r.getGoalsHomeTeam() > r.getGoalsAwayTeam())
