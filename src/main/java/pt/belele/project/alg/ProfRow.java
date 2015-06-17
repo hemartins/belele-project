@@ -250,11 +250,11 @@ public class ProfRow {
 		Ciclo_HistoricosVisitante = ciclo_HistoricosVisitante;
 	}
 
-	public Double getH2H_ratingVitorias() {
+	public Double getH2H_ratingResultado() {
 		return H2H_ratingResultado;
 	}
 
-	public void ResultadoResultado(Double h2h_ratingResultado) {
+	public void setH2H_ratingResultado(Double h2h_ratingResultado) {
 		H2H_ratingResultado = h2h_ratingResultado;
 	}
 
@@ -264,16 +264,6 @@ public class ProfRow {
 
 	public void setH2H_numeroJogos(Integer h2h_numeroJogos) {
 		H2H_numeroJogos = h2h_numeroJogos;
-	}
-	
-	
-
-	public Double getH2H_ratingResultado() {
-		return H2H_ratingResultado;
-	}
-
-	public void setH2H_ratingResultado(Double h2h_ratingResultado) {
-		H2H_ratingResultado = h2h_ratingResultado;
 	}
 
 	public Integer getResult() {
@@ -292,7 +282,7 @@ public class ProfRow {
 				+ ", qualidadeVisitante=" + qualidadeVisitante
 				+ ", FR_diasDescansoVisitado=" + FR_diasDescansoVisitado
 				+ ", FR_diasDescansoFRVisitante=" + FR_diasDescansoVisitante
-				+ ", FR_ratingVitoriasFRVisitado=" + FR_ratingResultadoVisitado
+				+ ", FR_ratingResultadoFRVisitado=" + FR_ratingResultadoVisitado
 				+ ", FR_ratingDerrotasFRVisitante="
 				+ FR_ratingResultadoVisitante + ", FR_dificuldadeVisitado="
 				+ FR_dificuldadeVisitado + ", FR_dificuldadeVisistante="
@@ -304,7 +294,7 @@ public class ProfRow {
 				+ Ciclo_dificuldadeVisitado + ", Ciclo_dificuldadeVisitante="
 				+ Ciclo_dificuldadeVisitante + ", Ciclo_HistoricosVisitado="
 				+ Ciclo_HistoricosVisitado + ", Ciclo_HistoricosVisitante="
-				+ Ciclo_HistoricosVisitante + ", H2H_ratingVitorias="
+				+ Ciclo_HistoricosVisitante + ", H2H_ratingResultado="
 				+ H2H_ratingResultado + ", H2H_numeroJogos=" + H2H_numeroJogos + ", result =" + result
 				+ "]";
 	}
