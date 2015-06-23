@@ -3,6 +3,8 @@ package pt.belele.project;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.poi.ss.usermodel.Workbook;
+
 import pt.belele.project.alg.OurRow;
 import pt.belele.project.alg.ProfRow;
 import pt.belele.project.util.WriteToExcel;
@@ -22,6 +24,10 @@ public class Main
 	{
 		
 		WriteToExcel writeToExcelObj = new WriteToExcel();
+		
+		Workbook NossoWorkbook = writeToExcelObj.newWorkbook();
+		Workbook ProfWorkbook = writeToExcelObj.newWorkbook();
+		
 		List<OurRow> OurWinDataList = new ArrayList<OurRow>();
 		List<ProfRow> ProfWinDataList = new ArrayList<ProfRow>();
 		List<OurRow> OurDrawDataList = new ArrayList<OurRow>();
@@ -31,11 +37,11 @@ public class Main
 		
 		Season s = new Season(League.Italy.SERIE_A, 2014);
 		List<Fixture> fixtures = s.getFixtures(38);
-		
+				
 		for (int round=38; round>=14 ;round--){
 			
-			for (Fixture f: s.getFixtures(round)){
-				
+			for (Fixture f: s.getFixtures(14)){
+		
 				TeamController homeTeam = new TeamController(f.getHomeTeam());
 				TeamController awayTeam = new TeamController(f.getAwayTeam());
 				List<Double> ratings = new ArrayList<Double>();
@@ -193,12 +199,15 @@ public class Main
 			
 		}
 		
-		writeToExcelObj.writeOurDataExcelTable("NossoVitoriaItalia", OurWinDataList);
-		writeToExcelObj.writeProfDataExcelTable("ProfVitoriaItalia", ProfWinDataList);
-		writeToExcelObj.writeOurDataExcelTable("NossoEmpateItalia", OurDrawDataList);
-		writeToExcelObj.writeProfDataExcelTable("ProfEmpateItalia", ProfDrawDataList);
-		writeToExcelObj.writeOurDataExcelTable("NossoDerrotaItalia", OurLoseDataList);
-		writeToExcelObj.writeProfDataExcelTable("ProfDerrotaItalia", ProfLoseDataList);
+		writeToExcelObj.writeOurDataExcelTable(OurWinDataList, NossoWorkbook, "Vitoria");
+		writeToExcelObj.writeOurDataExcelTable(OurDrawDataList, NossoWorkbook, "Empate");
+		writeToExcelObj.writeOurDataExcelTable(OurLoseDataList, NossoWorkbook, "Derrota");
+		writeToExcelObj.writeWorkbookToExcelFile("NossoItalia", NossoWorkbook);
+		
+		writeToExcelObj.writeProfDataExcelTable(ProfWinDataList, ProfWorkbook, "Vitoria");
+		writeToExcelObj.writeProfDataExcelTable(ProfDrawDataList,ProfWorkbook, "Empate");
+		writeToExcelObj.writeProfDataExcelTable(ProfLoseDataList, ProfWorkbook, "Derrota");
+		writeToExcelObj.writeWorkbookToExcelFile("ProfItalia", ProfWorkbook);
 		
 	}
 }

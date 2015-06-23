@@ -17,27 +17,104 @@ public class WriteToExcel {
 	
 	private static final String FILE_PATH = "/Users/JRicardoRG/Desktop/";
 	
-	public void writeOurDataExcelTable(String path, List<OurRow> dataList){
-		
+	public Workbook newWorkbook(){
 		// Using XSSF for xlsx format, for xls use HSSF
         Workbook workbook = new XSSFWorkbook();
-
-        Sheet ourSheet = workbook.createSheet("ourSheet");
+		return workbook;
+	}
+	
+	public void writeOurDataExcelTable(List<OurRow> dataList, Workbook workbook, String sheetName){
+		
+        Sheet ourSheet = workbook.createSheet(sheetName);
 
         int rowIndex = 0;
+        
+        Row row = ourSheet.createRow(rowIndex++);
+        
+        int cellIndex = 0;
+        
+        row.createCell(cellIndex++).setCellValue("Nome do Visitado");
+        
+        row.createCell(cellIndex++).setCellValue("Nome do Visitante");
+        
+        row.createCell(cellIndex++).setCellValue("Id do Visitado");
+        
+        row.createCell(cellIndex++).setCellValue("Id do Visitante");
+        
+        row.createCell(cellIndex++).setCellValue("Jornada");
+
+        row.createCell(cellIndex++).setCellValue("Qualidade do Visitado");
+        
+        row.createCell(cellIndex++).setCellValue("Qualidade do Visitante");
+
+        row.createCell(cellIndex++).setCellValue("[FR] Dias de Descanso do Visitado");
+        
+        row.createCell(cellIndex++).setCellValue("[FR] Dias de Descanso do Visitante");
+        
+        row.createCell(cellIndex++).setCellValue("[FR] Rating de Resultados do Visitado");
+
+        row.createCell(cellIndex++).setCellValue("[FR] Rating de Resultados do Visitante");
+        
+        row.createCell(cellIndex++).setCellValue("[FR] Dificuldade do Visitado");
+        
+        row.createCell(cellIndex++).setCellValue("[FR] Rating de Resultados do Visitado");
+        
+        row.createCell(cellIndex++).setCellValue("[FR] Número de Historicos do Visitado");
+        
+        row.createCell(cellIndex++).setCellValue("[FR] Número de Historicos do Visitante");
+        
+        row.createCell(cellIndex++).setCellValue("[Ciclo] Número de Jogos do Visitado");
+        
+        row.createCell(cellIndex++).setCellValue("[Ciclo] Número de Jogos do Visitante");
+        
+        row.createCell(cellIndex++).setCellValue("[Ciclo] Dificuldade do Visitado");
+        
+        row.createCell(cellIndex++).setCellValue("[Ciclo] Dificuldade do Visitado");
+        
+        row.createCell(cellIndex++).setCellValue("[Ciclo] Número de Historicos do Visitado");
+        
+        row.createCell(cellIndex++).setCellValue("[Ciclo] Número de Historicos do Visitante");
+        
+        row.createCell(cellIndex++).setCellValue("[H2H] Número de Jogos");
+        
+        row.createCell(cellIndex++).setCellValue("[H2H] Rating de Resultado");
+               
+        row.createCell(cellIndex++).setCellValue("[QLT] Percentagem de Resultados do Visitado");
+        
+        row.createCell(cellIndex++).setCellValue("[QLT] Percentagem de Resultados do Visitante");
+
+        row.createCell(cellIndex++).setCellValue("[QLT] Dificuldade dos Resultados do Visitado");
+        
+        row.createCell(cellIndex++).setCellValue("[QLT] Dificuldade dos Resultados do Visitante");
+        
+        row.createCell(cellIndex++).setCellValue("[QLT] Percentagem de Resultados do Visitado no Intervalo");
+
+        row.createCell(cellIndex++).setCellValue("[QLT] Percentagem de Resultados do Visitante no Intervalo");
+        
+        row.createCell(cellIndex++).setCellValue("[QLT] Numero de Jogos do Visitado");
+        
+        row.createCell(cellIndex++).setCellValue("[QLT] Numero de Jogos do Visitante");
+        
+        row.createCell(cellIndex++).setCellValue("[QLT] Resultado");
+        
+        rowIndex++;
+        
+        
         for(OurRow winrow : dataList){
-            Row row = ourSheet.createRow(rowIndex++);
-            int cellIndex = 0;
+        	
+        	row = ourSheet.createRow(rowIndex++);
+        	
+        	cellIndex = 0;
             
-            row.createCell(cellIndex++).setCellValue(winrow.getJornada());
+            row.createCell(cellIndex++).setCellValue(winrow.getHomeTeamName());
+            
+            row.createCell(cellIndex++).setCellValue(winrow.getAwayTeamName());
             
             row.createCell(cellIndex++).setCellValue(winrow.getIdVisitado());
             
             row.createCell(cellIndex++).setCellValue(winrow.getIdVisitante());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getHomeTeamName());
-            
-            row.createCell(cellIndex++).setCellValue(winrow.getAwayTeamName());
+            row.createCell(cellIndex++).setCellValue(winrow.getJornada());
 
             row.createCell(cellIndex++).setCellValue(winrow.getQualidadeVisitado());
             
@@ -71,9 +148,9 @@ public class WriteToExcel {
             
             row.createCell(cellIndex++).setCellValue(winrow.getCiclo_HistoricosVisitante());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getH2H_ratingResultado());
-            
             row.createCell(cellIndex++).setCellValue(winrow.getH2H_numeroJogos());
+            
+            row.createCell(cellIndex++).setCellValue(winrow.getH2H_ratingResultado());
             
             row.createCell(cellIndex++).setCellValue(winrow.getQLT_percentagemResultadoVisitado());
             
@@ -95,43 +172,81 @@ public class WriteToExcel {
 
         }
 
-        //write this workbook in excel file.
-        try {
-            FileOutputStream fos = new FileOutputStream(FILE_PATH+path+".xlsx");
-            workbook.write(fos);
-            fos.close();
-
-            System.out.println(FILE_PATH+path+".xlsx" + " is successfully written");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
     }
 	
-	public void writeProfDataExcelTable(String path, List<ProfRow> dataList){
-		
-		// Using XSSF for xlsx format, for xls use HSSF
-        Workbook workbook = new XSSFWorkbook();
-
-        Sheet ourSheet = workbook.createSheet("ourSheet");
+	public void writeProfDataExcelTable(List<ProfRow> dataList, Workbook workbook, String sheetName){
+		        
+        Sheet ourSheet = workbook.createSheet(sheetName);
 
         int rowIndex = 0;
+        
+        Row row = ourSheet.createRow(rowIndex++);
+        
+        int cellIndex = 0;
+        
+        row.createCell(cellIndex++).setCellValue("Nome do Visitado");
+        
+        row.createCell(cellIndex++).setCellValue("Nome do Visitante");
+        
+        row.createCell(cellIndex++).setCellValue("Id do Visitado");
+        
+        row.createCell(cellIndex++).setCellValue("Id do Visitante");
+        
+        row.createCell(cellIndex++).setCellValue("Jornada");
+
+        row.createCell(cellIndex++).setCellValue("Qualidade do Visitado");
+        
+        row.createCell(cellIndex++).setCellValue("Qualidade do Visitante");
+
+        row.createCell(cellIndex++).setCellValue("[FR] Dias de Descanso do Visitado");
+        
+        row.createCell(cellIndex++).setCellValue("[FR] Dias de Descanso do Visitante");
+        
+        row.createCell(cellIndex++).setCellValue("[FR] Rating de Resultados do Visitado");
+
+        row.createCell(cellIndex++).setCellValue("[FR] Rating de Resultados do Visitante");
+        
+        row.createCell(cellIndex++).setCellValue("[FR] Dificuldade do Visitado");
+        
+        row.createCell(cellIndex++).setCellValue("[FR] Rating de Resultados do Visitado");
+        
+        row.createCell(cellIndex++).setCellValue("[FR] Número de Historicos do Visitado");
+        
+        row.createCell(cellIndex++).setCellValue("[FR] Número de Historicos do Visitante");
+        
+        row.createCell(cellIndex++).setCellValue("[Ciclo] Número de Jogos do Visitado");
+        
+        row.createCell(cellIndex++).setCellValue("[Ciclo] Número de Jogos do Visitante");
+        
+        row.createCell(cellIndex++).setCellValue("[Ciclo] Dificuldade do Visitado");
+        
+        row.createCell(cellIndex++).setCellValue("[Ciclo] Dificuldade do Visitado");
+        
+        row.createCell(cellIndex++).setCellValue("[Ciclo] Número de Historicos do Visitado");
+        
+        row.createCell(cellIndex++).setCellValue("[Ciclo] Número de Historicos do Visitante");
+        
+        row.createCell(cellIndex++).setCellValue("[H2H] Número de Jogos");
+        
+        row.createCell(cellIndex++).setCellValue("[H2H] Rating de Resultado");
+               
+        rowIndex++;
+        
         for(ProfRow winrow : dataList){
-            Row row = ourSheet.createRow(rowIndex++);
-            int cellIndex = 0;
             
-            row.createCell(cellIndex++).setCellValue(winrow.getJornada());
+        	row = ourSheet.createRow(rowIndex++);
+
+        	cellIndex = 0;
+            
+            row.createCell(cellIndex++).setCellValue(winrow.getHomeTeamName());
+            
+            row.createCell(cellIndex++).setCellValue(winrow.getAwayTeamName());
             
             row.createCell(cellIndex++).setCellValue(winrow.getIdVisitado());
             
             row.createCell(cellIndex++).setCellValue(winrow.getIdVisitante());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getHomeTeamName());
-            
-            row.createCell(cellIndex++).setCellValue(winrow.getAwayTeamName());
+            row.createCell(cellIndex++).setCellValue(winrow.getJornada());
             
             row.createCell(cellIndex++).setCellValue(winrow.getQualidadeVisitado());
             
@@ -165,14 +280,17 @@ public class WriteToExcel {
              
             row.createCell(cellIndex++).setCellValue(winrow.getCiclo_HistoricosVisitante());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getH2H_ratingResultado());
-            
             row.createCell(cellIndex++).setCellValue(winrow.getH2H_numeroJogos());
+            
+            row.createCell(cellIndex++).setCellValue(winrow.getH2H_ratingResultado());
             
             row.createCell(cellIndex++).setCellValue(winrow.getResult());
 
         }
 
+    }
+	
+	public void writeWorkbookToExcelFile(String path, Workbook workbook){
         //write this workbook in excel file.
         try {
             FileOutputStream fos = new FileOutputStream(FILE_PATH+path+".xlsx");
@@ -186,6 +304,6 @@ public class WriteToExcel {
             e.printStackTrace();
         }
 
-    }
+	}
 
 }
