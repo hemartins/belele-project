@@ -290,7 +290,7 @@ public class OurRow {
 		return H2H_ratingResultado;
 	}
 
-	public void setH2H_ratingVitorias(Double h2h_ratingResultado) {
+	public void setH2H_ratingResultado(Double h2h_ratingResultado) {
 		H2H_ratingResultado = h2h_ratingResultado;
 	}
 
@@ -380,8 +380,5 @@ public class OurRow {
 		this.result = result;
 	}
 
-	public void setH2H_ratingResultado(Double h2h_ratingResultado) {
-		H2H_ratingResultado = h2h_ratingResultado;
-	}
 
 }
