@@ -95,6 +95,13 @@ public class Season
 		}
 		return matchdayLeagueTable.get(matchday);
 	}
+	
+	public Integer getId()
+	{
+		String self = season.get_links().getSelf().getHref();
+		int pos =  self.lastIndexOf('/');
+		return Integer.valueOf(self.substring(pos+1));
+	}
 
 	public String getCaption()
 	{

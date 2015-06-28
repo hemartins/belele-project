@@ -74,7 +74,7 @@ public class TeamController {
 		List<Fixture> fixtures = getBeforeFixtures(nextFixture.getSeason(),
 				nextFixture.getMatchday(), venue, numberOfFixtures);
 		for (Fixture f : fixtures) {
-			if (f.getHomeTeam().equals(team)) {
+			if (f.getHomeTeamId().equals(team.getId())) {
 				TeamController tc = new TeamController(f.getAwayTeam());
 				sum += tc.getTeamQuality(nextFixture.getSeason());
 			} else {
@@ -229,7 +229,7 @@ public class TeamController {
 		for (Fixture f : team.getFixtures(Integer.valueOf(season.getYear()),
 				venue)) {
 			if (f.getMatchday() < matchday
-					&& f.getSeason().getCaption().equals(season.getCaption()))
+					&& f.getSeasonId().equals(season.getId()))
 				fixtures.add(f);
 		}
 		return fixtures.subList(
@@ -267,7 +267,7 @@ public class TeamController {
 
 	public ResultType getResultType(Fixture fixture) {
 		Result r = fixture.getResult();
-		if (fixture.getHomeTeam().equals(team)) {
+		if (fixture.getHomeTeamId().equals(team.getId())) {
 			if (r.getGoalsHomeTeam() > r.getGoalsAwayTeam())
 				return ResultType.WIN;
 			else if (r.getGoalsHomeTeam() < r.getGoalsAwayTeam())

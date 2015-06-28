@@ -36,11 +36,25 @@ public class Fixture
 		return season;
 	}
 
+	public Integer getSeasonId()
+	{
+		String self = fixture.getSoccerseason();
+		int pos =  self.lastIndexOf('/');
+		return Integer.valueOf(self.substring(pos+1));
+	}
+	
 	public Team getHomeTeam()
 	{
 		if (homeTeam == null)
 			this.homeTeam = getHomeTeamResource();
 		return homeTeam;
+	}
+	
+	public Integer getHomeTeamId()
+	{
+		String self = fixture.getHomeTeam();
+		int pos =  self.lastIndexOf('/');
+		return Integer.valueOf(self.substring(pos+1));
 	}
 
 	public Team getAwayTeam()
@@ -48,6 +62,13 @@ public class Fixture
 		if (awayTeam == null)
 			this.awayTeam = getAwayTeamResource();
 		return awayTeam;
+	}
+	
+	public Integer getAwayTeamId()
+	{
+		String self = fixture.getAwayTeam();
+		int pos =  self.lastIndexOf('/');
+		return Integer.valueOf(self.substring(pos+1));
 	}
 
 	public DateTime getDate()
