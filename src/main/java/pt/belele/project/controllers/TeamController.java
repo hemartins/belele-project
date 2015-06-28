@@ -26,8 +26,8 @@ public class TeamController {
 	}
 
 	// Qualidade da equipa consoante competicao
-	public Double getTeamQuality(Season season) {
-		Standing s = getTeamStanding(season);
+	public Double getTeamQuality(Season season, int matchday) {
+		Standing s = getTeamStanding(season, matchday);
 		if (s != null) {
 			return s.getPoints().doubleValue()
 					/ s.getPlayedGames().doubleValue();
@@ -46,7 +46,7 @@ public class TeamController {
 	}
 
 	// Rating dos ultimos jogos, venue opcional, ratings ordenados por ordem
-	// crescente
+	// decrescente
 	public Double getLastFixturesRating(Fixture nextFixture, Venue venue,
 			Integer numberOfFixtures, List<Double> ratings, ResultType type) {
 		if (ratings.size() != numberOfFixtures) {
@@ -76,10 +76,10 @@ public class TeamController {
 		for (Fixture f : fixtures) {
 			if (f.getHomeTeamId().equals(team.getId())) {
 				TeamController tc = new TeamController(f.getAwayTeam());
-				sum += tc.getTeamQuality(nextFixture.getSeason());
+				sum += tc.getTeamQuality(nextFixture.getSeason(), nextFixture.getMatchday());
 			} else {
 				TeamController tc = new TeamController(f.getHomeTeam());
-				sum += tc.getTeamQuality(nextFixture.getSeason());
+				sum += tc.getTeamQuality(nextFixture.getSeason(), nextFixture.getMatchday());
 			}
 		}
 		return sum / fixtures.size();
@@ -87,9 +87,20 @@ public class TeamController {
 
 	// Numero de historicos defrontados
 	public Integer getLastHardGamesFixturesNumber(Fixture nextFixture,
-			Venue venue, Integer numberOfFixtures) {
-		System.out.println("NOT YET IMPLEMENTED");
-		return null;
+			Venue venue, Integer numberOfFixtures, List<Integer> hardTeamsIds) {
+
+		List<Fixture> fixtures = getBeforeFixtures(nextFixture.getSeason(),
+				nextFixture.getMatchday(), venue, numberOfFixtures);
+
+		int sum = 0;
+
+		for (Fixture f : fixtures) {
+			if (hardTeamsIds.contains(f.getAwayTeamId())
+					|| hardTeamsIds.contains(f.getHomeTeamId())) {
+				sum++;
+			}
+		}
+		return sum;
 	}
 
 	// Calculo ciclos
@@ -130,7 +141,7 @@ public class TeamController {
 				teams.add(f.getHomeTeam());
 		}
 
-		return new ResultCycle(nextFixture.getSeason(), type, teams, sum);
+		return new ResultCycle(nextFixture.getSeason(), type, teams, sum, nextFixture.getMatchday());
 	}
 
 	// Media da qualidade das equipas dum ciclo
@@ -138,15 +149,24 @@ public class TeamController {
 		double sum = 0;
 		for (Team t : cycle.getTeams()) {
 			TeamController tc = new TeamController(t);
-			sum += tc.getTeamQuality(cycle.getSeason());
+			sum += tc.getTeamQuality(cycle.getSeason(), cycle.getMatchday());
 		}
 		return sum / cycle.getTeams().size();
 	}
 
 	// Numero de historicos defrontados num ciclo
-	public Integer getCycleHardGamesNumber(ResultCycle cycle) {
-		System.out.println("NOT YET IMPLEMENTED");
-		return null;
+	public Integer getCycleHardGamesNumber(ResultCycle cycle, List<Integer> hardTeamsIds) {
+		int sum = 0;
+		
+		for(Team t : cycle.getTeams())
+		{
+			if(hardTeamsIds.contains(t.getId()))
+			{
+				sum++;
+			}
+		}
+		
+		return sum;
 	}
 
 	// Rating do h2h
@@ -176,12 +196,12 @@ public class TeamController {
 		TeamController tc = new TeamController(
 				venue == Venue.home ? nextFixture.getAwayTeam()
 						: nextFixture.getHomeTeam());
-		Double opponentQuality = tc.getTeamQuality(s);
+		Double opponentQuality = tc.getTeamQuality(s, nextFixture.getMatchday());
 
 		for (Fixture f : fixtures) {
 			TeamController tec = new TeamController(
 					venue == Venue.home ? f.getAwayTeam() : f.getHomeTeam());
-			Double fixtureOpponentQuality = tec.getTeamQuality(s);
+			Double fixtureOpponentQuality = tec.getTeamQuality(s, f.getMatchday());
 
 			if (fixtureOpponentQuality != null) {
 
@@ -254,8 +274,8 @@ public class TeamController {
 	}
 
 	// Classificação da equipa consoante competicao e epoca
-	public Standing getTeamStanding(Season season) {
-		List<Standing> standings = season.getLeagueTable().getStanding();
+	public Standing getTeamStanding(Season season, int matchday) {
+		List<Standing> standings = season.getLeagueTable(matchday-1).getStanding();
 		for (Standing s : standings) {
 			if (s.getTeamName().equals(team.getName())) {
 				return s;
