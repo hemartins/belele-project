@@ -15,7 +15,12 @@ import pt.belele.project.alg.ProfRow;
 
 public class WriteToExcel {
 	
-	private static final String FILE_PATH = "/Users/JRicardoRG/Desktop/";
+	private String filePath = "/Users/JRicardoRG/Desktop/";
+	
+	public WriteToExcel(String filePath)
+	{
+		this.filePath = filePath;
+	}
 	
 	public Workbook newWorkbook(){
 		// Using XSSF for xlsx format, for xls use HSSF
@@ -293,11 +298,11 @@ public class WriteToExcel {
 	public void writeWorkbookToExcelFile(String path, Workbook workbook){
         //write this workbook in excel file.
         try {
-            FileOutputStream fos = new FileOutputStream(FILE_PATH+path+".xlsx");
+            FileOutputStream fos = new FileOutputStream(filePath+path+".xlsx");
             workbook.write(fos);
             fos.close();
 
-            System.out.println(FILE_PATH+path+".xlsx" + " is successfully written");
+            System.out.println(filePath+path+".xlsx" + " is successfully written");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

@@ -36,33 +36,44 @@
 			<artifactId>resteasy-jackson-provider</artifactId>
 			<version>3.0.11.Final</version>
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>ch.halarious</groupId> -->
-<!-- 			<artifactId>halarious-core</artifactId> -->
-<!-- 			<version>0.13</version> -->
-<!-- 		</dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>ch.halarious</groupId> -->
+		<!-- <artifactId>halarious-core</artifactId> -->
+		<!-- <version>0.13</version> -->
+		<!-- </dependency> -->
 		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
 			<version>2.7</version>
 		</dependency>
 		<dependency>
-           <groupId>org.apache.poi</groupId>
-           <artifactId>poi</artifactId>
-           <version>3.10-FINAL</version>
-       </dependency>
-       <dependency>
-        <groupId>org.apache.poi</groupId>
-        <artifactId>poi-ooxml</artifactId>
-        <version>3.10-FINAL</version>
-    </dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.10-FINAL</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.10-FINAL</version>
+		</dependency>
 	</dependencies>
-
-<!-- 	<repositories> -->
-<!-- 		<repository> -->
-<!-- 			<id>hosted.halarious.releases</id> -->
-<!-- 			<name>halarious Maven Repository</name> -->
-<!-- 			<url>http://repo.surech.ch/content/repositories/hosted.halarious.releases/</url> -->
-<!-- 		</repository> -->
-<!-- 	</repositories> -->
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.2.1</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>java</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<mainClass>pt.belele.project.Main</mainClass>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>
