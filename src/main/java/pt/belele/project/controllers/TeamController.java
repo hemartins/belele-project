@@ -275,7 +275,7 @@ public class TeamController {
 
 	// Classificação da equipa consoante competicao e epoca
 	public Standing getTeamStanding(Season season, int matchday) {
-		List<Standing> standings = season.getLeagueTable(matchday-1).getStanding();
+		List<Standing> standings = season.getLeagueTable(matchday).getStanding();
 		for (Standing s : standings) {
 			if (s.getTeamName().equals(team.getName())) {
 				return s;
