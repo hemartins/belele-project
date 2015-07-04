@@ -69,16 +69,16 @@ public class Main {
 				Integer idVisitado = f.getHomeTeam().getId();
 				Integer idVisitante = f.getAwayTeam().getId();
 				Double qualidadeVisitado = homeTeam.getTeamQuality(s,
-						f.getMatchday());
+						f.getMatchday() - 1);
 				Double qualidadeVisitante = awayTeam.getTeamQuality(s,
-						f.getMatchday());
+						f.getMatchday() - 1);
 				Integer fR_diasDescansoVisitado = homeTeam.getRestingDays(f);
 				Integer fR_diasDescansoVisitante = awayTeam.getRestingDays(f);
 				Double fR_ratingVitoriasVisitado = homeTeam
-						.getLastFixturesRating(f, Venue.home, 5, ratings,
+						.getLastFixturesRating(f, null, 5, ratings,
 								ResultType.WIN);
 				Double fR_ratingDerrotasVisitante = awayTeam
-						.getLastFixturesRating(f, Venue.away, 5, ratings,
+						.getLastFixturesRating(f, null, 5, ratings,
 								ResultType.LOSE);
 				Double fR_dificuldadeVisitado = homeTeam
 						.getLastFixturesOpponentAverageQuality(f, Venue.home, 5);
@@ -105,8 +105,9 @@ public class Main {
 				Integer ciclo_HistoricosVisitante = awayTeam
 						.getCycleHardGamesNumber(awayCycle, historicos);
 				Double h2h_ratingVitorias = homeTeam.getH2HRating(f, ratings,
-						ResultType.WIN);
-				Integer h2h_numeroJogos = ratings.size();
+						ResultType.WIN); // VER DE NOVO. VAI TER QUE SE CALCULAR
+											// MANUALMENTE
+				Integer h2h_numeroJogos = f.getHead2Head().getFixtures().size();
 				ResultType result = homeTeam.getResultType(f);
 
 				Double fR_ratingEmpatesVisitado = homeTeam

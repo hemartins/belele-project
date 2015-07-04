@@ -112,7 +112,7 @@ public class Team
 		MultivaluedMap<String, Object> params = new MultivaluedHashMap<String, Object>();
 		params.add("season", season);
 		params.add("venue", venue);
-		TeamFixtureResource fixtures = (TeamFixtureResource) HttpUtil.doGet(team.getFixtures(), TeamFixtureResource.class);
+		TeamFixtureResource fixtures = (TeamFixtureResource) HttpUtil.doGet(team.getFixtures(), TeamFixtureResource.class, params);
 		List<Fixture> fixtureList = new ArrayList<Fixture>();
 		for (FixtureResource fix : fixtures.getFixtures())
 		{

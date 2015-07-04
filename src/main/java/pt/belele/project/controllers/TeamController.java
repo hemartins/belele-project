@@ -42,7 +42,7 @@ public class TeamController {
 				getBeforeFixture(
 						Integer.valueOf(nextFixture.getSeason().getYear()),
 						nextFixture.getDate(), null).getDate(),
-				nextFixture.getDate()).getDays();
+				nextFixture.getDate()).getDays() + 1;
 	}
 
 	// Rating dos ultimos jogos, venue opcional, ratings ordenados por ordem
@@ -61,7 +61,7 @@ public class TeamController {
 		for (int i = 0; i < fixtures.size(); i++) {
 			Fixture f = fixtures.get(i);
 			if (getResultType(f).equals(type))
-				rating += ratings.get(i);
+				rating += ratings.get(ratings.size() - 1 - i);
 		}
 
 		return rating;
@@ -76,10 +76,12 @@ public class TeamController {
 		for (Fixture f : fixtures) {
 			if (f.getHomeTeamId().equals(team.getId())) {
 				TeamController tc = new TeamController(f.getAwayTeam());
-				sum += tc.getTeamQuality(nextFixture.getSeason(), nextFixture.getMatchday());
+				sum += tc.getTeamQuality(nextFixture.getSeason(),
+						nextFixture.getMatchday() - 1);
 			} else {
 				TeamController tc = new TeamController(f.getHomeTeam());
-				sum += tc.getTeamQuality(nextFixture.getSeason(), nextFixture.getMatchday());
+				sum += tc.getTeamQuality(nextFixture.getSeason(),
+						nextFixture.getMatchday() - 1);
 			}
 		}
 		return sum / fixtures.size();
@@ -129,19 +131,20 @@ public class TeamController {
 
 				if (actualResult.equals(type) && equals)
 					sum++;
-				else if (!actualResult.equals(type) && !equals)
+				else if (!actualResult.equals(type) && equals)
 					sum--;
 				else
 					break;
 			}
 
-			if (f.getHomeTeam().equals(team))
+			if (f.getHomeTeam().getId().equals(team.getId()))
 				teams.add(f.getAwayTeam());
 			else
 				teams.add(f.getHomeTeam());
 		}
 
-		return new ResultCycle(nextFixture.getSeason(), type, teams, sum, nextFixture.getMatchday());
+		return new ResultCycle(nextFixture.getSeason(), type, teams, sum,
+				nextFixture.getMatchday());
 	}
 
 	// Media da qualidade das equipas dum ciclo
@@ -149,23 +152,23 @@ public class TeamController {
 		double sum = 0;
 		for (Team t : cycle.getTeams()) {
 			TeamController tc = new TeamController(t);
-			sum += tc.getTeamQuality(cycle.getSeason(), cycle.getMatchday());
+			sum += tc
+					.getTeamQuality(cycle.getSeason(), cycle.getMatchday() - 1);
 		}
 		return sum / cycle.getTeams().size();
 	}
 
 	// Numero de historicos defrontados num ciclo
-	public Integer getCycleHardGamesNumber(ResultCycle cycle, List<Integer> hardTeamsIds) {
+	public Integer getCycleHardGamesNumber(ResultCycle cycle,
+			List<Integer> hardTeamsIds) {
 		int sum = 0;
-		
-		for(Team t : cycle.getTeams())
-		{
-			if(hardTeamsIds.contains(t.getId()))
-			{
+
+		for (Team t : cycle.getTeams()) {
+			if (hardTeamsIds.contains(t.getId())) {
 				sum++;
 			}
 		}
-		
+
 		return sum;
 	}
 
@@ -188,29 +191,36 @@ public class TeamController {
 	public TeamRating getResultPercentage(Fixture nextFixture, Venue venue,
 			ResultType type, Double interval) {
 		Season s = nextFixture.getSeason();
-		List<Fixture> fixtures = team.getFixtures(Integer.valueOf(s.getYear()),
-				venue);
+		List<Fixture> fixtures = getBeforeFixtures(nextFixture.getSeason(),
+				nextFixture.getMatchday(), venue, nextFixture.getMatchday());
 		Double resultSum = 0.0;
 		Double opponentSum = 0.0;
 		Double intervalSum = 0.0;
+		Double resultIntervalSum = 0.0;
 		TeamController tc = new TeamController(
 				venue == Venue.home ? nextFixture.getAwayTeam()
 						: nextFixture.getHomeTeam());
-		Double opponentQuality = tc.getTeamQuality(s, nextFixture.getMatchday());
+		Double opponentQuality = tc.getTeamQuality(s,
+				nextFixture.getMatchday() - 1);
 
 		for (Fixture f : fixtures) {
 			TeamController tec = new TeamController(
 					venue == Venue.home ? f.getAwayTeam() : f.getHomeTeam());
-			Double fixtureOpponentQuality = tec.getTeamQuality(s, f.getMatchday());
-
+			Double fixtureOpponentQuality = tec.getTeamQuality(s,
+					nextFixture.getMatchday() - 1);
+		
 			if (fixtureOpponentQuality != null) {
 
-				if (getResultType(f).equals(type)) {
+				if (getResultType(f).equals(type))
 					resultSum++;
-					if (interval != null) {
-						if (opponentQuality + interval >= fixtureOpponentQuality
-								&& opponentQuality - interval <= fixtureOpponentQuality)
-							intervalSum++;
+
+				if (interval != null) {
+					if (opponentQuality + interval >= fixtureOpponentQuality
+							&& opponentQuality - interval <= fixtureOpponentQuality) {
+						intervalSum++;
+
+						if (getResultType(f).equals(type))
+							resultIntervalSum++;
 					}
 				}
 
@@ -219,8 +229,8 @@ public class TeamController {
 
 		}
 		int size = fixtures.size();
-		return new TeamRating(resultSum / size, opponentSum / size, intervalSum
-				/ resultSum, resultSum.intValue());
+		return new TeamRating(resultSum / size, opponentSum / size, resultIntervalSum
+				/ intervalSum, intervalSum.intValue());
 	}
 
 	/****************/
@@ -253,8 +263,8 @@ public class TeamController {
 				fixtures.add(f);
 		}
 		return fixtures.subList(
-				fixtures.size() - 1 - numberOfFixtures > 0 ? fixtures.size()
-						- 1 - numberOfFixtures : 0, fixtures.size() - 1);
+				fixtures.size() - numberOfFixtures > 0 ? fixtures.size()
+						- numberOfFixtures : 0, fixtures.size());
 	}
 
 	// Ultimo jogo jogado
@@ -275,7 +285,8 @@ public class TeamController {
 
 	// Classificação da equipa consoante competicao e epoca
 	public Standing getTeamStanding(Season season, int matchday) {
-		List<Standing> standings = season.getLeagueTable(matchday).getStanding();
+		List<Standing> standings = season.getLeagueTable(matchday)
+				.getStanding();
 		for (Standing s : standings) {
 			if (s.getTeamName().equals(team.getName())) {
 				return s;
