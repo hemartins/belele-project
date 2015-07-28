@@ -6,6 +6,7 @@ import java.util.List;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
 
+import pt.belele.project.controllers.util.H2H;
 import pt.belele.project.controllers.util.ResultCycle;
 import pt.belele.project.controllers.util.TeamRating;
 import pt.belele.project.data.Fixture;
@@ -173,19 +174,22 @@ public class TeamController {
 	}
 
 	// Rating do h2h
-	public Double getH2HRating(Fixture nextFixture, List<Double> ratings,
-			ResultType type) {
+	public H2H getH2HRating(Fixture nextFixture, List<Double> ratings,
+			Venue venue, ResultType type) {
 		double rating = 0;
 		Head2Head h2h = nextFixture.getHead2Head();
-		for (int i = 0; i < h2h.getFixtures().size(); i++) {
-			if (i < ratings.size()) {
-				Fixture f = h2h.getFixtures().get(i);
+		int rat = 0;
+		for (int i = 0; i < h2h.getFixtures().size() && rat < ratings.size(); i++) {
+			Fixture f = h2h.getFixtures().get(i);
+			if (venue.equals(Venue.home) ? f.getHomeTeamId().equals(
+					team.getId()) : f.getAwayTeamId().equals(team.getId())) {
 				if (getResultType(f).equals(type))
-					rating += ratings.get(i);
+					rating += ratings.get(rat);
+				rat++;
 			}
 		}
 
-		return rating;
+		return new H2H(rating, rat);
 	}
 
 	public TeamRating getResultPercentage(Fixture nextFixture, Venue venue,
@@ -208,7 +212,7 @@ public class TeamController {
 					venue == Venue.home ? f.getAwayTeam() : f.getHomeTeam());
 			Double fixtureOpponentQuality = tec.getTeamQuality(s,
 					nextFixture.getMatchday() - 1);
-		
+
 			if (fixtureOpponentQuality != null) {
 
 				if (getResultType(f).equals(type))
@@ -229,8 +233,8 @@ public class TeamController {
 
 		}
 		int size = fixtures.size();
-		return new TeamRating(resultSum / size, opponentSum / size, resultIntervalSum
-				/ intervalSum, intervalSum.intValue());
+		return new TeamRating(resultSum / size, opponentSum / size,
+				resultIntervalSum / intervalSum, intervalSum.intValue());
 	}
 
 	/****************/

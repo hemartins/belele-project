@@ -104,7 +104,7 @@ public class Fixture
 	public Head2Head getHead2Head()
 	{
 		if (head2head == null)
-			this.head2head = getHead2HeadResource(5);
+			this.head2head = getHead2HeadResource(50);
 		return head2head;
 	}
 

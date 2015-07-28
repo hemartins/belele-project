@@ -30,7 +30,6 @@ public class HttpUtil
 					Thread.sleep(60000);
 				} catch (InterruptedException e)
 				{
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				response.close();
@@ -67,7 +66,6 @@ public class HttpUtil
 					Thread.sleep(60000);
 				} catch (InterruptedException e)
 				{
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				response.close();

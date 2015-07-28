@@ -7,8 +7,8 @@ import org.apache.poi.ss.usermodel.Workbook;
 
 import pt.belele.project.alg.OurRow;
 import pt.belele.project.alg.ProfRow;
-import pt.belele.project.util.WriteToExcel;
 import pt.belele.project.controllers.TeamController;
+import pt.belele.project.controllers.util.H2H;
 import pt.belele.project.controllers.util.ResultCycle;
 import pt.belele.project.controllers.util.TeamRating;
 import pt.belele.project.data.Fixture;
@@ -16,13 +16,14 @@ import pt.belele.project.data.Season;
 import pt.belele.project.enums.League;
 import pt.belele.project.enums.ResultType;
 import pt.belele.project.enums.Venue;
+import pt.belele.project.util.WriteToExcel;
 
 public class Main {
 
 	public static void main(String[] args) {
 		boolean generateProf = true;
-		boolean generateOurs = true;
-		String filePath = "/Users/JRicardoRG/Desktop/";
+		boolean generateOurs = false;
+		String filePath = "/Users/p056913/Desktop/";
 
 		if (args.length != 3) {
 			System.out
@@ -30,7 +31,6 @@ public class Main {
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else {
@@ -42,6 +42,14 @@ public class Main {
 				+ generateProf + " " + generateOurs + " " + filePath);
 
 		WriteToExcel writeToExcelObj = new WriteToExcel(filePath);
+
+		List<OurRow> OurWinDataList = new ArrayList<OurRow>();
+		List<OurRow> OurDrawDataList = new ArrayList<OurRow>();
+		List<OurRow> OurLoseDataList = new ArrayList<OurRow>();
+
+		List<ProfRow> ProfWinDataList = new ArrayList<ProfRow>();
+		List<ProfRow> ProfDrawDataList = new ArrayList<ProfRow>();
+		List<ProfRow> ProfLoseDataList = new ArrayList<ProfRow>();
 
 		Season s = new Season(League.Italy.SERIE_A, 2014);
 
@@ -104,10 +112,10 @@ public class Main {
 						.getCycleHardGamesNumber(homeCycle, historicos);
 				Integer ciclo_HistoricosVisitante = awayTeam
 						.getCycleHardGamesNumber(awayCycle, historicos);
-				Double h2h_ratingVitorias = homeTeam.getH2HRating(f, ratings,
-						ResultType.WIN); // VER DE NOVO. VAI TER QUE SE CALCULAR
-											// MANUALMENTE
-				Integer h2h_numeroJogos = f.getHead2Head().getFixtures().size();
+				H2H h2hRatings = homeTeam.getH2HRating(f, ratings, Venue.home,
+						ResultType.WIN);
+				Double h2h_ratingVitorias = h2hRatings.getRating();
+				Integer h2h_numeroJogos = h2hRatings.getSize();
 				ResultType result = homeTeam.getResultType(f);
 
 				Double fR_ratingEmpatesVisitado = homeTeam
@@ -130,8 +138,9 @@ public class Main {
 						homeCycle, historicos);
 				ciclo_HistoricosVisitante = awayTeam.getCycleHardGamesNumber(
 						awayCycle, historicos);
-				Double h2h_ratingEmpates = homeTeam.getH2HRating(f, ratings,
+				h2hRatings = homeTeam.getH2HRating(f, ratings, Venue.home,
 						ResultType.DRAW);
+				Double h2h_ratingEmpates = h2hRatings.getRating();
 
 				Double fR_ratingDerrotasVisitado = homeTeam
 						.getLastFixturesRating(f, Venue.home, 5, ratings,
@@ -153,14 +162,11 @@ public class Main {
 						homeCycle, historicos);
 				ciclo_HistoricosVisitante = awayTeam.getCycleHardGamesNumber(
 						awayCycle, historicos);
-				Double h2h_ratingDerrotas = homeTeam.getH2HRating(f, ratings,
+				h2hRatings = homeTeam.getH2HRating(f, ratings, Venue.home,
 						ResultType.LOSE);
+				Double h2h_ratingDerrotas = h2hRatings.getRating();
 
 				if (generateOurs) {
-					List<OurRow> OurWinDataList = new ArrayList<OurRow>();
-					List<OurRow> OurDrawDataList = new ArrayList<OurRow>();
-					List<OurRow> OurLoseDataList = new ArrayList<OurRow>();
-
 					TeamRating homeTR = homeTeam.getResultPercentage(f,
 							Venue.home, ResultType.WIN, 0.15);
 					TeamRating awayTR = awayTeam.getResultPercentage(f,
@@ -291,24 +297,9 @@ public class Main {
 							result.equals(ResultType.LOSE) ? 1 : 0);
 
 					OurLoseDataList.add(lohwr);
-
-					Workbook NossoWorkbook = writeToExcelObj.newWorkbook();
-
-					writeToExcelObj.writeOurDataExcelTable(OurWinDataList,
-							NossoWorkbook, "Vitoria");
-					writeToExcelObj.writeOurDataExcelTable(OurDrawDataList,
-							NossoWorkbook, "Empate");
-					writeToExcelObj.writeOurDataExcelTable(OurLoseDataList,
-							NossoWorkbook, "Derrota");
-					writeToExcelObj.writeWorkbookToExcelFile("NossoItalia",
-							NossoWorkbook);
 				}
 
 				if (generateProf) {
-					List<ProfRow> ProfWinDataList = new ArrayList<ProfRow>();
-					List<ProfRow> ProfDrawDataList = new ArrayList<ProfRow>();
-					List<ProfRow> ProfLoseDataList = new ArrayList<ProfRow>();
-
 					ProfRow wphwr = new ProfRow(jornada, idVisitado,
 							idVisitante, f.getHomeTeamName(),
 							f.getAwayTeamName(), qualidadeVisitado,
@@ -365,18 +356,28 @@ public class Main {
 
 					ProfLoseDataList.add(lphwr);
 
-					Workbook ProfWorkbook = writeToExcelObj.newWorkbook();
-
-					writeToExcelObj.writeProfDataExcelTable(ProfWinDataList,
-							ProfWorkbook, "Vitoria");
-					writeToExcelObj.writeProfDataExcelTable(ProfDrawDataList,
-							ProfWorkbook, "Empate");
-					writeToExcelObj.writeProfDataExcelTable(ProfLoseDataList,
-							ProfWorkbook, "Derrota");
-					writeToExcelObj.writeWorkbookToExcelFile("ProfItalia",
-							ProfWorkbook);
 				}
 			}
 		}
+
+		Workbook NossoWorkbook = writeToExcelObj.newWorkbook();
+
+		writeToExcelObj.writeOurDataExcelTable(OurWinDataList, NossoWorkbook,
+				"Vitoria");
+		writeToExcelObj.writeOurDataExcelTable(OurDrawDataList, NossoWorkbook,
+				"Empate");
+		writeToExcelObj.writeOurDataExcelTable(OurLoseDataList, NossoWorkbook,
+				"Derrota");
+		writeToExcelObj.writeWorkbookToExcelFile("NossoItalia", NossoWorkbook);
+
+		Workbook ProfWorkbook = writeToExcelObj.newWorkbook();
+
+		writeToExcelObj.writeProfDataExcelTable(ProfWinDataList, ProfWorkbook,
+				"Vitoria");
+		writeToExcelObj.writeProfDataExcelTable(ProfDrawDataList, ProfWorkbook,
+				"Empate");
+		writeToExcelObj.writeProfDataExcelTable(ProfLoseDataList, ProfWorkbook,
+				"Derrota");
+		writeToExcelObj.writeWorkbookToExcelFile("ProfItalia", ProfWorkbook);
 	}
 }
