@@ -177,12 +177,18 @@ public class TeamController {
 	public H2H getH2HRating(Fixture nextFixture, List<Double> ratings,
 			Venue venue, ResultType type) {
 		double rating = 0;
-		Head2Head h2h = nextFixture.getHead2Head();
+		Head2Head h2h = nextFixture.getHead2Head((ratings.size()+2) * 2);
 		int rat = 0;
 		for (int i = 0; i < h2h.getFixtures().size() && rat < ratings.size(); i++) {
 			Fixture f = h2h.getFixtures().get(i);
-			if (venue.equals(Venue.home) ? f.getHomeTeamId().equals(
-					team.getId()) : f.getAwayTeamId().equals(team.getId())) {
+			boolean isVenue = venue.equals(Venue.home) ? f.getHomeTeamId().equals(
+					team.getId())
+					: f.getAwayTeamId().equals(team.getId());
+			boolean seasonBefore = Integer.parseInt(f.getSeason().getYear()) >= (Integer
+					.parseInt(nextFixture.getSeason().getYear()) - (ratings
+					.size()));
+			boolean isBefore = f.getDate().isBefore(nextFixture.getDate());
+			if (isVenue && seasonBefore && isBefore) {
 				if (getResultType(f).equals(type))
 					rating += ratings.get(rat);
 				rat++;

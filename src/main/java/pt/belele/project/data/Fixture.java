@@ -101,10 +101,10 @@ public class Fixture
 		return fixture.getResult();
 	}
 
-	public Head2Head getHead2Head()
+	public Head2Head getHead2Head(int fixtures)
 	{
 		if (head2head == null)
-			this.head2head = getHead2HeadResource(50);
+			this.head2head = getHead2HeadResource(fixtures);
 		return head2head;
 	}
 
