@@ -10,10 +10,9 @@ import pt.belele.project.resources.FixtureResource;
 import pt.belele.project.resources.Result;
 import pt.belele.project.resources.SeasonResource;
 import pt.belele.project.resources.TeamResource;
-import pt.belele.project.util.HttpUtil;
+import pt.belele.project.util.Database;
 
-public class Fixture
-{
+public class Fixture {
 	private FixtureResource fixture;
 
 	private Season season;
@@ -24,111 +23,97 @@ public class Fixture
 
 	private Head2Head head2head;
 
-	public Fixture(FixtureResource fixture)
-	{
+	public Fixture(FixtureResource fixture) {
 		this.fixture = fixture;
 	}
 
-	public Season getSeason()
-	{
+	public Season getSeason() {
 		if (season == null)
 			this.season = getSeasonResource();
 		return season;
 	}
 
-	public Integer getSeasonId()
-	{
+	public Integer getSeasonId() {
 		String self = fixture.getSoccerseason();
-		int pos =  self.lastIndexOf('/');
-		return Integer.valueOf(self.substring(pos+1));
+		int pos = self.lastIndexOf('/');
+		return Integer.valueOf(self.substring(pos + 1));
 	}
-	
-	public Team getHomeTeam()
-	{
+
+	public Team getHomeTeam() {
 		if (homeTeam == null)
 			this.homeTeam = getHomeTeamResource();
 		return homeTeam;
 	}
-	
-	public Integer getHomeTeamId()
-	{
+
+	public Integer getHomeTeamId() {
 		String self = fixture.getHomeTeam();
-		int pos =  self.lastIndexOf('/');
-		return Integer.valueOf(self.substring(pos+1));
+		int pos = self.lastIndexOf('/');
+		return Integer.valueOf(self.substring(pos + 1));
 	}
 
-	public Team getAwayTeam()
-	{
+	public Team getAwayTeam() {
 		if (awayTeam == null)
 			this.awayTeam = getAwayTeamResource();
 		return awayTeam;
 	}
-	
-	public Integer getAwayTeamId()
-	{
+
+	public Integer getAwayTeamId() {
 		String self = fixture.getAwayTeam();
-		int pos =  self.lastIndexOf('/');
-		return Integer.valueOf(self.substring(pos+1));
+		int pos = self.lastIndexOf('/');
+		return Integer.valueOf(self.substring(pos + 1));
 	}
 
-	public DateTime getDate()
-	{
+	public DateTime getDate() {
 		return fixture.getDate();
 	}
 
-	public FixtureStatus getStatus()
-	{
+	public FixtureStatus getStatus() {
 		return fixture.getStatus();
 	}
 
-	public Integer getMatchday()
-	{
+	public Integer getMatchday() {
 		return fixture.getMatchday();
 	}
 
-	public String getHomeTeamName()
-	{
+	public String getHomeTeamName() {
 		return fixture.getHomeTeamName();
 	}
 
-	public String getAwayTeamName()
-	{
+	public String getAwayTeamName() {
 		return fixture.getAwayTeamName();
 	}
 
-	public Result getResult()
-	{
+	public Result getResult() {
 		return fixture.getResult();
 	}
 
-	public Head2Head getHead2Head(int fixtures)
-	{
+	public Head2Head getHead2Head(int fixtures) {
 		if (head2head == null)
 			this.head2head = getHead2HeadResource(fixtures);
 		return head2head;
 	}
 
-	private Season getSeasonResource()
-	{
-		return new Season((SeasonResource) HttpUtil.doGet(fixture.getSoccerseason(), SeasonResource.class));
+	private Season getSeasonResource() {
+		return new Season((SeasonResource) Database.getObject(
+				fixture.getSoccerseason(), SeasonResource.class));
 	}
 
-	private Team getHomeTeamResource()
-	{
-		return new Team((TeamResource) HttpUtil.doGet(fixture.getHomeTeam(), TeamResource.class));
+	private Team getHomeTeamResource() {
+		return new Team((TeamResource) Database.getObject(
+				fixture.getHomeTeam(), TeamResource.class));
 	}
 
-	private Team getAwayTeamResource()
-	{
-		return new Team((TeamResource) HttpUtil.doGet(fixture.getAwayTeam(), TeamResource.class));
+	private Team getAwayTeamResource() {
+		return new Team((TeamResource) Database.getObject(
+				fixture.getAwayTeam(), TeamResource.class));
 	}
 
-	private Head2Head getHead2HeadResource(Integer numberOfFixtures)
-	{
+	private Head2Head getHead2HeadResource(Integer numberOfFixtures) {
 		MultivaluedMap<String, Object> params = new MultivaluedHashMap<String, Object>();
 		params.add("head2head", numberOfFixtures);
-		pt.belele.project.resources.Fixture fixt = (pt.belele.project.resources.Fixture) HttpUtil.doGet(fixture.getSelf(),
-				pt.belele.project.resources.Fixture.class);
+		pt.belele.project.resources.Fixture fixt = (pt.belele.project.resources.Fixture) Database
+				.getObject(fixture.getSelf(),
+						pt.belele.project.resources.Fixture.class, params);
 		return new Head2Head(fixt.getHead2head());
 	}
 }

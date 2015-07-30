@@ -3,38 +3,33 @@ package pt.belele.project.data;
 import pt.belele.project.resources.SeasonResource;
 import pt.belele.project.resources.TeamResource;
 import pt.belele.project.resources.TeamsResource;
-import pt.belele.project.util.HttpUtil;
+import pt.belele.project.util.Database;
 
-public class SeasonTeams
-{
+public class SeasonTeams {
 	private TeamsResource teams;
 
 	private Season season;
 
-	public SeasonTeams(TeamsResource teams)
-	{
+	public SeasonTeams(TeamsResource teams) {
 		this.teams = teams;
 	}
 
-	public Season getSeason()
-	{
+	public Season getSeason() {
 		if (season == null)
 			this.season = getSeasonResource();
 		return season;
 	}
 
-	public int getCount()
-	{
+	public int getCount() {
 		return teams.getCount();
 	}
 
-	public TeamResource[] getTeams()
-	{
+	public TeamResource[] getTeams() {
 		return teams.getTeams();
 	}
 
-	private Season getSeasonResource()
-	{
-		return new Season((SeasonResource) HttpUtil.doGet(teams.getSoccerseason(), SeasonResource.class));
+	private Season getSeasonResource() {
+		return new Season((SeasonResource) Database.getObject(
+				teams.getSoccerseason(), SeasonResource.class));
 	}
 }

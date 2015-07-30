@@ -7,7 +7,6 @@ import javax.ws.rs.core.Response;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
-import org.joda.time.DateTime;
 
 public class HttpUtil
 {
@@ -15,7 +14,7 @@ public class HttpUtil
 
 	public static Object doGet(String endpoint, Class<?> objectClass)
 	{
-		System.out.println("["+new DateTime()+"] GETTING " + endpoint);
+		System.out.println("GETTING " + endpoint);
 		ResteasyClient client = new ResteasyClientBuilder().build();
 		ResteasyWebTarget target = client.target(endpoint);
 		Response response = target.request().accept(MediaType.APPLICATION_JSON).header("X-Auth-Token", TOKEN).get();
@@ -34,7 +33,6 @@ public class HttpUtil
 				}
 				response.close();
 				return doGet(endpoint, objectClass);
-
 			}
 			response.close();
 			System.out.println("HTTP GET TO " + endpoint + " RETURNED " + response.getStatus());
@@ -51,7 +49,7 @@ public class HttpUtil
 
 	public static Object doGet(String endpoint, Class<?> objectClass, MultivaluedMap<String, Object> queryParams)
 	{
-		System.out.println("GETTING " + endpoint);
+		System.out.println("GETTING " +  endpoint);
 		ResteasyClient client = new ResteasyClientBuilder().build();
 		ResteasyWebTarget target = client.target(endpoint).queryParams(queryParams);
 		Response response = target.request().accept(MediaType.APPLICATION_JSON).header("X-Auth-Token", TOKEN).get();
@@ -69,8 +67,7 @@ public class HttpUtil
 					e.printStackTrace();
 				}
 				response.close();
-				return doGet(endpoint, objectClass);
-
+				return doGet(endpoint, objectClass, queryParams);
 			}
 			response.close();
 			System.out.println("HTTP GET TO " + endpoint + " RETURNED " + response.getStatus());

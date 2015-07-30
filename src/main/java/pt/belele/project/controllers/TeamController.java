@@ -39,11 +39,13 @@ public class TeamController {
 
 	// Dias de descanso antes do jogo
 	public Integer getRestingDays(Fixture nextFixture) {
-		return Days.daysBetween(
-				getBeforeFixture(
-						Integer.valueOf(nextFixture.getSeason().getYear()),
-						nextFixture.getDate(), null).getDate(),
-				nextFixture.getDate()).getDays() + 1;
+		int year = Integer.valueOf(nextFixture.getSeason().getYear());
+		DateTime date = nextFixture.getDate();
+		Fixture f = getBeforeFixture(year, date, null);
+		DateTime fixtureDate = f.getDate();
+		Days days = Days.daysBetween(fixtureDate, date);
+		int nmrDays = days.getDays();
+		return nmrDays + 1;
 	}
 
 	// Rating dos ultimos jogos, venue opcional, ratings ordenados por ordem
@@ -181,6 +183,8 @@ public class TeamController {
 		int rat = 0;
 		for (int i = 0; i < h2h.getFixtures().size() && rat < ratings.size(); i++) {
 			Fixture f = h2h.getFixtures().get(i);
+			if(f.getDate().getYear()+ratings.size()+2<nextFixture.getDate().getYear())
+				break;
 			boolean isVenue = venue.equals(Venue.home) ? f.getHomeTeamId().equals(
 					team.getId())
 					: f.getAwayTeamId().equals(team.getId());
@@ -269,7 +273,7 @@ public class TeamController {
 		for (Fixture f : team.getFixtures(Integer.valueOf(season.getYear()),
 				venue)) {
 			if (f.getMatchday() < matchday
-					&& f.getSeasonId().equals(season.getId()))
+					&& f.getMatchday() > 0 && f.getSeasonId().equals(season.getId()))
 				fixtures.add(f);
 		}
 		return fixtures.subList(

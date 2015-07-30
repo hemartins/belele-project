@@ -358,6 +358,7 @@ public class Main {
 
 				}
 			}
+			System.out.println("FINISHED PROCESSING ROUND "+ round);
 		}
 
 		Workbook NossoWorkbook = writeToExcelObj.newWorkbook();
