@@ -2,9 +2,9 @@ package pt.belele.project.controllers.util;
 
 import java.util.List;
 
-import pt.belele.project.data.Season;
-import pt.belele.project.data.Team;
-import pt.belele.project.enums.ResultType;
+import pt.belele.project.entities.Result.ResultType;
+import pt.belele.project.entities.Season;
+import pt.belele.project.entities.Team;
 
 public class ResultCycle {
 	private Season season;
