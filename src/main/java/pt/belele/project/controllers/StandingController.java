@@ -1,5 +1,8 @@
 package pt.belele.project.controllers;
 
+import java.util.Date;
+
+import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 
 import pt.belele.project.entities.Fixture;
@@ -13,8 +16,8 @@ public class StandingController {
 
 	private StandingDAO standingDAO;
 
-	public StandingController() {
-		standingDAO = new StandingDAO();
+	public StandingController(EntityManager em) {
+		standingDAO = new StandingDAO(em);
 	}
 
 	public Standing createStanding(Team team, Season season, Fixture fixture) {
@@ -28,9 +31,14 @@ public class StandingController {
 		}
 		return standingDAO.findStanding(team.getId(), fixture.getDate(), season.getId());
 	}
+	
+	public Standing getTeamStanding(Season season, Team team, Date date)
+	{
+		return standingDAO.findNewestByNameAndDate(team.getId(), date, season.getId());
+	}
 
 	public void calculateStandingValues(Standing standing, Fixture fixture) {
-		Standing oldStanding = standingDAO.findNewestByNameAndDate(standing.getTeam().getName(), standing.getDate(),
+		Standing oldStanding = standingDAO.findNewestByNameAndDate(standing.getTeam().getId(), standing.getDate(),
 				standing.getSeason().getId());
 		if (oldStanding != null) {
 			if (fixture.getHomeTeam().equals(standing.getTeam())) {

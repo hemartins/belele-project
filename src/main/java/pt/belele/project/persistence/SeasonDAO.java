@@ -1,14 +1,15 @@
 package pt.belele.project.persistence;
 
+import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import pt.belele.project.entities.Season;
 
 public class SeasonDAO extends GenericDAO<Season> {
 
-	public SeasonDAO()
+	public SeasonDAO(EntityManager em)
 	{
-		super();
+		super(em);
 	}
 	
 	public Season findByNameAndYear(String name, Integer year)

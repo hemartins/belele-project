@@ -2,6 +2,8 @@ package pt.belele.project.controllers.util;
 
 import java.util.List;
 
+import org.joda.time.DateTime;
+
 import pt.belele.project.entities.Result.ResultType;
 import pt.belele.project.entities.Season;
 import pt.belele.project.entities.Team;
@@ -11,15 +13,15 @@ public class ResultCycle {
 	private ResultType type;
 	private List<Team> teams;
 	private Integer cycle;
-	private Integer matchday;
+	private DateTime date;
 
 	public ResultCycle(Season season, ResultType type, List<Team> teams,
-			Integer cycle, Integer matchday) {
+			Integer cycle, DateTime date) {
 		this.season = season;
 		this.type = type;
 		this.teams = teams;
 		this.cycle = cycle;
-		this.matchday = matchday;
+		this.date = date;
 	}
 
 	public Season getSeason() {
@@ -54,12 +56,12 @@ public class ResultCycle {
 		this.cycle = cycle;
 	}
 
-	public Integer getMatchday() {
-		return matchday;
+	public DateTime getDate() {
+		return date;
 	}
 
-	public void setMatchday(Integer matchday) {
-		this.matchday = matchday;
+	public void setDate(DateTime date) {
+		this.date = date;
 	}
 
 }

@@ -1,19 +1,14 @@
 package pt.belele.project.persistence;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 public class GenericDAO<T> {
-
-	protected EntityManagerFactory emf;
-
+	
 	protected EntityManager em;
 	
-	public GenericDAO()
+	public GenericDAO(EntityManager em)
 	{
-		emf = Persistence.createEntityManagerFactory("database.odb");
-		em = emf.createEntityManager();
+		this.em = em;
 	}
 
 	public void insert(T entity) {

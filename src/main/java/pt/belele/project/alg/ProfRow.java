@@ -3,8 +3,8 @@ package pt.belele.project.alg;
 public class ProfRow {
 
 	Integer jornada;
-	Integer idVisitado;
-	Integer idVisitante;
+	Long idVisitado;
+	Long idVisitante;
 	String homeTeamName;
 	String awayTeamName;
 	Double qualidadeVisitado; // pontos por jogo da equipa na jornada que se
@@ -41,7 +41,7 @@ public class ProfRow {
 	Integer H2H_numeroJogos;
 	Integer result;
 
-	public ProfRow(Integer jornada, Integer idVisitado, Integer idVisitante, String homeTeamName, String awayTeamName,
+	public ProfRow(Integer jornada, Long idVisitado, Long idVisitante, String homeTeamName, String awayTeamName,
 			Double qualidadeVisitado, Double qualidadeVisitante,
 			Integer fR_diasDescansoVisitado, Integer fR_diasDescansoVisitante,
 			Double fR_ratingResultadoVisitado,
@@ -89,19 +89,19 @@ public class ProfRow {
 		this.jornada = jornada;
 	}
 
-	public Integer getIdVisitado() {
+	public Long getIdVisitado() {
 		return idVisitado;
 	}
 
-	public void setIdVisitado(Integer idVisitado) {
+	public void setIdVisitado(Long idVisitado) {
 		this.idVisitado = idVisitado;
 	}
 
-	public Integer getIdVisitante() {
+	public Long getIdVisitante() {
 		return idVisitante;
 	}
 
-	public void setIdVisitante(Integer idVisitante) {
+	public void setIdVisitante(Long idVisitante) {
 		this.idVisitante = idVisitante;
 	}
 

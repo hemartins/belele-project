@@ -3,8 +3,8 @@ package pt.belele.project.alg;
 public class OurRow {
 
 	Integer jornada;
-	Integer idVisitado;
-	Integer idVisitante;
+	Long idVisitado;
+	Long idVisitante;
 	String homeTeamName;
 	String awayTeamName;
 
@@ -63,7 +63,7 @@ public class OurRow {
 	Integer QLT_numeroJogosVisitante;
 	Integer result;
 
-	public OurRow(Integer jornada, Integer idVisitado, Integer idVisitante, String homeTeamName, String awayTeamName,
+	public OurRow(Integer jornada, Long idVisitado, Long idVisitante, String homeTeamName, String awayTeamName,
 			Double qualidadeVisitado, Double qualidadeVisitante,
 			Integer fR_diasDescansoVisitado, Integer fR_diasDescansoVisitante,
 			Double fR_ratingResultadoVisitado,
@@ -125,19 +125,19 @@ public class OurRow {
 		this.jornada = jornada;
 	}
 
-	public Integer getIdVisitado() {
+	public Long getIdVisitado() {
 		return idVisitado;
 	}
 
-	public void setIdVisitado(Integer idVisitado) {
+	public void setIdVisitado(Long idVisitado) {
 		this.idVisitado = idVisitado;
 	}
 
-	public Integer getIdVisitante() {
+	public Long getIdVisitante() {
 		return idVisitante;
 	}
 
-	public void setIdVisitante(Integer idVisitante) {
+	public void setIdVisitante(Long idVisitante) {
 		this.idVisitante = idVisitante;
 	}
 

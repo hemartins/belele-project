@@ -3,6 +3,7 @@ package pt.belele.project.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 
 import pt.belele.project.entities.Season;
@@ -14,9 +15,9 @@ public class SeasonController
 {
 	private SeasonDAO seasonDAO;
 	
-	public SeasonController()
+	public SeasonController(EntityManager em)
 	{
-			seasonDAO = new SeasonDAO();
+			seasonDAO = new SeasonDAO(em);
 	}
 	
 	public Season createSeason(String name, int year)

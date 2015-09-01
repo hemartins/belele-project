@@ -1,5 +1,6 @@
 package pt.belele.project.persistence;
 
+import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import pt.belele.project.entities.Team;
@@ -7,8 +8,8 @@ import pt.belele.project.entities.Team;
 
 public class TeamDAO extends GenericDAO<Team> {
 
-	public TeamDAO() {
-		super();
+	public TeamDAO(EntityManager em) {
+		super(em);
 	}
 
 	public Team findByName(String name) {

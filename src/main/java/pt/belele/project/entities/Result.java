@@ -1,17 +1,9 @@
 package pt.belele.project.entities;
 
-import java.io.Serializable;
+import javax.persistence.Embeddable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-
-@Entity
-public class Result implements Serializable {
-
-	private static final long serialVersionUID = -6193187044927697467L;
+@Embeddable
+public class Result {
 	
 	public static enum ResultType {
 		WIN(0), DRAW(1), LOSE(2);
@@ -37,11 +29,7 @@ public class Result implements Serializable {
 			return type;
 		}
 	}
-
-	@Id
-	@GeneratedValue
-	private long id;
-
+	
 	private int fullTimeHomeTeamGoals;
 
 	private int fullTimeAwayTeamGoals;
@@ -50,29 +38,15 @@ public class Result implements Serializable {
 
 	private int halfTimeAwayTeamGoals;
 
-	@OneToOne(optional = false)
-	@JoinColumn(name = "id", nullable = false)
-	private Fixture fixture;
-
 	public Result() {
 	}
 
 	public Result(int fullTimeHomeTeamGoals, int fullTimeAwayTeamGoals,
-			int halfTimeHomeTeamGoals, int halfTimeAwayTeamGoals,
-			Fixture fixture) {
+			int halfTimeHomeTeamGoals, int halfTimeAwayTeamGoals) {
 		this.fullTimeHomeTeamGoals = fullTimeHomeTeamGoals;
 		this.fullTimeAwayTeamGoals = fullTimeAwayTeamGoals;
 		this.halfTimeHomeTeamGoals = halfTimeHomeTeamGoals;
 		this.halfTimeAwayTeamGoals = halfTimeAwayTeamGoals;
-		this.fixture = fixture;
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
 	}
 
 	public int getFullTimeHomeTeamGoals() {
@@ -105,13 +79,5 @@ public class Result implements Serializable {
 
 	public void setHalfTimeAwayTeamGoals(int halfTimeAwayTeamGoals) {
 		this.halfTimeAwayTeamGoals = halfTimeAwayTeamGoals;
-	}
-
-	public Fixture getFixture() {
-		return fixture;
-	}
-
-	public void setFixture(Fixture fixture) {
-		this.fixture = fixture;
 	}
 }
