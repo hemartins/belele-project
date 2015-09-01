@@ -35,7 +35,7 @@ public class Standing implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name = "id", nullable = false)
-	private LeagueTable leagueTable;
+	private Season season;
 
 	public Standing() {
 	}
@@ -104,12 +104,12 @@ public class Standing implements Serializable {
 		this.team = team;
 	}
 
-	public LeagueTable getLeagueTable() {
-		return leagueTable;
+	public Season getSeason() {
+		return season;
 	}
 
-	public void setLeagueTable(LeagueTable leagueTable) {
-		this.leagueTable = leagueTable;
+	public void setSeason(Season season) {
+		this.season = season;
 	}
 
 }

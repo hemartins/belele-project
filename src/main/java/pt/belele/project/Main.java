@@ -1,22 +1,14 @@
 package pt.belele.project;
 
 import java.util.Date;
-import java.util.List;
 
-import pt.belele.project.controllers.FixtureController;
-import pt.belele.project.controllers.ResultController;
-import pt.belele.project.controllers.SeasonController;
-import pt.belele.project.controllers.TeamController;
-import pt.belele.project.entities.Fixture;
-import pt.belele.project.entities.Season;
-import pt.belele.project.entities.Team;
-import pt.belele.project.util.CSVReader;
+import pt.belele.project.persistence.StandingDAO;
 
 public class Main {
 
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
-		SeasonController seasonController = new SeasonController();
+	/*	SeasonController seasonController = new SeasonController();
 		TeamController teamController = new TeamController();
 		FixtureController fixtureController = new FixtureController();
 		ResultController resultController = new ResultController();
@@ -34,7 +26,9 @@ public class Main {
 					s, t1, t2);
 			resultController.createResult(fixture, arr[4], arr[5], arr[7],
 					arr[8]);
-		}
+		}*/
 
+		StandingDAO stddao = new StandingDAO();
+		stddao.findByNameAndDate("Nacional", new Date ("01/10/2015"), 1);
 	}
 }
