@@ -2,9 +2,10 @@ package pt.belele.project.persistence;
 
 import java.util.Date;
 
+import javax.persistence.NoResultException;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
-import pt.belele.project.entities.Season;
 import pt.belele.project.entities.Standing;
 
 public class StandingDAO extends GenericDAO<Standing> {
@@ -14,13 +15,26 @@ public class StandingDAO extends GenericDAO<Standing> {
 		super();
 	}
 	
-	public Standing findByNameAndDate(String name, Date date, long seasonId)
+	public Standing findStanding(long teamId, Date date, long seasonId)
 	{
-		TypedQuery<Standing> query = em.createQuery("SELECT s FROM Standing s WHERE s.name = :name AND s.season.id = :seasonId  AND s.date < :date ORDER BY s.date DESC LIMIT 1", Standing.class);
+		TypedQuery<Standing> query = em.createQuery("SELECT s from Standing s WHERE s.date=:date AND s.team.id = :teamId AND s.season.id = :seasonId", Standing.class);
+		query.setParameter("date", date);
+		query.setParameter("teamId", teamId);
+		query.setParameter("seasonId", seasonId);
+		return query.getSingleResult();
+	}
+	
+	public Standing findNewestByNameAndDate(String name, Date date, long seasonId) throws NoResultException
+	{
+		Query query = em.createQuery("SELECT s FROM Standing s WHERE s.team.name = :name AND s.season.id = :seasonId  AND s.date < :date ORDER BY s.date DESC");
 		query.setParameter("name", name);
 		query.setParameter("date", date);
 		query.setParameter("seasonId", seasonId);
-		return query.getResultList().get(0);
+		if(query.getResultList().isEmpty())
+			return null;
+		else
+			return (Standing) query.getResultList().get(0);
 	}
+	
 
 }

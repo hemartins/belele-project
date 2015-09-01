@@ -1,6 +1,7 @@
 package pt.belele.project.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,8 +18,6 @@ public class Standing implements Serializable {
 	@GeneratedValue
 	private long id;
 
-	private int position;
-
 	private int playedGames;
 
 	private int points;
@@ -28,6 +27,8 @@ public class Standing implements Serializable {
 	private int goalsAgainst;
 
 	private int goalsDifference;
+	
+	private Date date;
 
 	@ManyToOne
 	@JoinColumn(name = "id", nullable = false)
@@ -39,6 +40,12 @@ public class Standing implements Serializable {
 
 	public Standing() {
 	}
+	
+	public Standing(Season season, Team team, Date date) {
+		this.season = season;
+		this.team = team;
+		this.date = date;
+	}
 
 	public long getId() {
 		return id;
@@ -46,14 +53,6 @@ public class Standing implements Serializable {
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public int getPosition() {
-		return position;
-	}
-
-	public void setPosition(int position) {
-		this.position = position;
 	}
 
 	public int getPlayedGames() {
@@ -110,6 +109,14 @@ public class Standing implements Serializable {
 
 	public void setSeason(Season season) {
 		this.season = season;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 }

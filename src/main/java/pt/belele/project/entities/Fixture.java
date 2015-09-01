@@ -71,6 +71,7 @@ public class Fixture implements Serializable {
 		this.season = season;
 		this.homeTeam = homeTeam;
 		this.awayTeam = awayTeam;
+		this.status = FixtureStatus.SCHEDULED;
 	}
 
 	public long getId() {
