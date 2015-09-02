@@ -197,22 +197,25 @@ public class Algorithm {
 		double rating = 0;
 		Head2Head h2h = nextFixture.getHead2Head();
 		int rat = 0;
-		for (int i = 0; i < h2h.getFixtures().size() && rat < ratings.size(); i++) {
-			Fixture f = h2h.getFixtures().get(i);
-			if (f.getDate().getYear() + ratings.size() + 2 < nextFixture
-					.getDate().getYear())
-				break;
-			boolean isVenue = venue.equals(Venue.HOME) ? f.getHomeTeam()
-					.getId() == team.getId() : f.getAwayTeam().getId() == team
-					.getId();
-			boolean seasonBefore = f.getSeason().getYear() >= nextFixture
-					.getSeason().getYear() - (ratings.size());
-			boolean isBefore = new DateTime(f.getDate()).isBefore(new DateTime(
-					nextFixture.getDate()));
-			if (isVenue && seasonBefore && isBefore) {
-				if (getResultType(f).equals(type))
-					rating += ratings.get(rat);
-				rat++;
+		if (h2h != null) {
+			for (int i = 0; i < h2h.getFixtures().size()
+					&& rat < ratings.size(); i++) {
+				Fixture f = h2h.getFixtures().get(i);
+				if (f.getDate().getYear() + ratings.size() + 2 < nextFixture
+						.getDate().getYear())
+					break;
+				boolean isVenue = venue.equals(Venue.HOME) ? f.getHomeTeam()
+						.getId() == team.getId()
+						: f.getAwayTeam().getId() == team.getId();
+				boolean seasonBefore = f.getSeason().getYear() >= nextFixture
+						.getSeason().getYear() - (ratings.size());
+				boolean isBefore = new DateTime(f.getDate())
+						.isBefore(new DateTime(nextFixture.getDate()));
+				if (isVenue && seasonBefore && isBefore) {
+					if (getResultType(f).equals(type))
+						rating += ratings.get(rat);
+					rat++;
+				}
 			}
 		}
 

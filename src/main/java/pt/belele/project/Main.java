@@ -18,6 +18,7 @@ import pt.belele.project.controllers.FixtureController;
 import pt.belele.project.controllers.SeasonController;
 import pt.belele.project.controllers.StandingController;
 import pt.belele.project.controllers.TeamController;
+import pt.belele.project.controllers.util.H2H;
 import pt.belele.project.controllers.util.ResultCycle;
 import pt.belele.project.controllers.util.TeamRating;
 import pt.belele.project.entities.Fixture;
@@ -32,44 +33,25 @@ import pt.belele.project.util.WriteToExcel;
 
 public class Main {
 
+	private static DateTimeFormatter formatter = DateTimeFormat
+			.forPattern("dd/MM/yy");
+
 	public static void main(String[] args) {
 		EntityManagerFactory emf = Persistence
 				.createEntityManagerFactory("database.odb");
 		EntityManager em = emf.createEntityManager();
 
-		SeasonController seasonController = new SeasonController(em);
-		TeamController teamController = new TeamController(em);
-		FixtureController fixtureController = new FixtureController(em);
-		StandingController standingController = new StandingController(em);
+		populateDatabase(em, "I1.csv", "1011", 10);
+		populateDatabase(em, "I1.csv", "1112", 11);
+		populateDatabase(em, "I1.csv", "1213", 12);
+		populateDatabase(em, "I1.csv", "1314", 13);
+		Season s = populateDatabase(em, "I1.csv", "1415", 14);
 
-		List<String[]> list = CSVReader
-				.readFromCSV("http://www.football-data.co.uk/mmz4281/1415/I1.csv");
+		runAlgorithm(s, em, "/Users/p056913/Desktop/", true, true);
+	}
 
-		DateTimeFormatter formatter = DateTimeFormat.forPattern("dd/MM/yy");
-
-		Season s = null;
-		for (String[] arr : list) {
-			s = seasonController.createSeason(arr[0], 14);
-			Team t1 = teamController.createTeam(arr[2]);
-			Team t2 = teamController.createTeam(arr[3]);
-			seasonController.addTeam(s, t1);
-			seasonController.addTeam(s, t2);
-			Result result = new Result(Integer.valueOf(arr[4]),
-					Integer.valueOf(arr[5]), Integer.valueOf(arr[7]),
-					Integer.valueOf(arr[8]));
-
-			Fixture fixture = fixtureController.createFixture(formatter
-					.parseDateTime(arr[1]).toDate(), s, t1, t2, result);
-			if (fixture.getStatus().equals(FixtureStatus.FINISHED)) {
-				standingController.createStanding(t1, s, fixture);
-				standingController.createStanding(t2, s, fixture);
-			}
-		}
-
-		boolean generateProf = true;
-		boolean generateOurs = true;
-		String filePath = "/Users/p056913/Desktop/";
-
+	private static void runAlgorithm(Season s, EntityManager em,
+			String filePath, boolean generateProf, boolean generateOurs) {
 		WriteToExcel writeToExcelObj = new WriteToExcel(filePath);
 
 		List<OurRow> OurWinDataList = new ArrayList<OurRow>();
@@ -138,12 +120,10 @@ public class Main {
 					.getCycleHardGamesNumber(homeWinCycle, historicos);
 			Integer awayLoseCycle_HistoricosVisitante = awayTeam
 					.getCycleHardGamesNumber(awayLoseCycle, historicos);
-			// H2H h2hRatings = homeTeam.getH2HRating(f, ratings, Venue.HOME,
-			// ResultType.WIN);
-			// Double h2hWin_ratingVitorias = h2hRatings.getRating();
-			// Integer h2hWin_numeroJogos = h2hRatings.getSize();
-			Double h2hWin_ratingVitorias = 0.0;
-			Integer h2hWin_numeroJogos = 0;
+			H2H h2hRatings = homeTeam.getH2HRating(f, ratings, Venue.HOME,
+					ResultType.WIN);
+			Double h2hWin_ratingVitorias = h2hRatings.getRating();
+			Integer h2hWin_numeroJogos = h2hRatings.getSize();
 			ResultType result = homeTeam.getResultType(f);
 
 			Double fR_ratingEmpatesVisitado = homeTeam.getLastFixturesRating(f,
@@ -166,13 +146,10 @@ public class Main {
 					.getCycleHardGamesNumber(homeDrawCycle, historicos);
 			Integer awayDrawCycle_HistoricosVisitante = awayTeam
 					.getCycleHardGamesNumber(awayDrawCycle, historicos);
-			// h2hRatings = homeTeam.getH2HRating(f, ratings, Venue.HOME,
-			// ResultType.DRAW);
-			// Double h2hDraw_rating = h2hRatings.getRating();
-			// Integer h2hDraw_numeroJogos = h2hRatings.getSize();
-
-			Double h2hDraw_rating = 0.0;
-			Integer h2hDraw_numeroJogos = 0;
+			h2hRatings = homeTeam.getH2HRating(f, ratings, Venue.HOME,
+					ResultType.DRAW);
+			Double h2hDraw_rating = h2hRatings.getRating();
+			Integer h2hDraw_numeroJogos = h2hRatings.getSize();
 
 			Double fR_ratingDerrotasVisitado = homeTeam.getLastFixturesRating(
 					f, null, 5, ratings, ResultType.LOSE);
@@ -193,13 +170,10 @@ public class Main {
 					.getCycleHardGamesNumber(homeLoseCycle, historicos);
 			Integer awayWinCycle_HistoricosVisitante = awayTeam
 					.getCycleHardGamesNumber(awayWinCycle, historicos);
-			// h2hRatings = homeTeam.getH2HRating(f, ratings, Venue.HOME,
-			// ResultType.LOSE);
-			// Double h2hLose_rating = h2hRatings.getRating();
-			// Integer h2hLose_numeroJogos = h2hRatings.getSize();
-
-			Double h2hLose_rating = 0.0;
-			Integer h2hLose_numeroJogos = 0;
+			h2hRatings = homeTeam.getH2HRating(f, ratings, Venue.HOME,
+					ResultType.LOSE);
+			Double h2hLose_rating = h2hRatings.getRating();
+			Integer h2hLose_numeroJogos = h2hRatings.getSize();
 
 			if (generateOurs) {
 				TeamRating homeTR = homeTeam.getResultPercentage(f, Venue.HOME,
@@ -412,5 +386,54 @@ public class Main {
 		writeToExcelObj.writeProfDataExcelTable(ProfLoseDataList, ProfWorkbook,
 				"Derrota");
 		writeToExcelObj.writeWorkbookToExcelFile("ProfItalia", ProfWorkbook);
+	}
+
+	private static Season populateDatabase(EntityManager em,
+			String competitionFile, String season, Integer year) {
+		SeasonController seasonController = new SeasonController(em);
+		TeamController teamController = new TeamController(em);
+		FixtureController fixtureController = new FixtureController(em);
+		StandingController standingController = new StandingController(em);
+
+		List<String[]> list = CSVReader
+				.readFromCSV("http://www.football-data.co.uk/mmz4281/" + season
+						+ "/" + competitionFile);
+
+		Season s = null;
+		for (String[] arr : list) {
+			s = seasonController.createSeason(arr[0], year);
+			Team t1 = teamController.createTeam(arr[2]);
+			Team t2 = teamController.createTeam(arr[3]);
+			seasonController.addTeam(s, t1);
+			seasonController.addTeam(s, t2);
+
+			Result result = null;
+			try {
+				result = new Result(Integer.valueOf(arr[4]),
+						Integer.valueOf(arr[5]), Integer.valueOf(arr[7]),
+						Integer.valueOf(arr[8]));
+			} catch (NumberFormatException e) {
+				e.printStackTrace(System.out);
+				System.out.println(arr[0]);
+				System.out.println(arr[1]);
+				System.out.println(arr[2]);
+				System.out.println(arr[3]);
+				System.out.println(arr[4]);
+				System.out.println(arr[5]);
+				System.out.println(arr[7]);
+				System.out.println(arr[8]);
+				result = new Result(Integer.valueOf(arr[4]),
+						Integer.valueOf(arr[5]), 0, 0);
+			}
+
+			Fixture fixture = fixtureController.createFixture(formatter
+					.parseDateTime(arr[1]).toDate(), s, t1, t2, result);
+			if (fixture.getStatus().equals(FixtureStatus.FINISHED)) {
+				standingController.createStanding(t1, s, fixture);
+				standingController.createStanding(t2, s, fixture);
+			}
+		}
+
+		return s;
 	}
 }
