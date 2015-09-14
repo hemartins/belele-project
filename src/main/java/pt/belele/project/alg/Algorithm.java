@@ -75,7 +75,7 @@ public class Algorithm {
 		for (int i = 0; i < fixtures.size(); i++) {
 			Fixture f = fixtures.get(i);
 			if (getResultType(f).equals(type))
-				rating += ratings.get(ratings.size() - 1 - i);
+				rating += ratings.get(i);
 		}
 
 		return rating;
@@ -132,7 +132,7 @@ public class Algorithm {
 		ResultType actualResult = null;
 		int sum = 0;
 		List<Team> teams = new ArrayList<Team>();
-		for (int i = fixtures.size() - 1; i >= 0; i--) {
+		for (int i = 0; i < fixtures.size(); i++) {
 			Fixture f = fixtures.get(i);
 			if (actualResult == null) {
 				actualResult = getResultType(f);

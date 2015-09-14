@@ -37,7 +37,9 @@ public class FixtureDAO extends GenericDAO<Fixture> {
 		query.setParameter("date", date);
 		query.setParameter("seasonId", seasonId);
 		query.setParameter("teamId", teamId);
-		return query.getResultList().get(0);
+		query.setMaxResults(1);
+		
+		return query.getSingleResult();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -65,14 +67,18 @@ public class FixtureDAO extends GenericDAO<Fixture> {
 		query.setParameter("date", date);
 		query.setParameter("seasonId", seasonId);
 		query.setParameter("teamId", teamId);
-
+		
+		if(numberOfFixtures != null)
+			query.setMaxResults(numberOfFixtures);
+		
 		List<Fixture> fixtures = query.getResultList();
-		if (numberOfFixtures == null)
-			return fixtures;
-		else
-			return fixtures.subList(
-					fixtures.size() - numberOfFixtures > 0 ? fixtures.size()
-							- numberOfFixtures : 0, fixtures.size());
+		return fixtures;
+//		if (numberOfFixtures == null)
+//			return fixtures;
+//		else
+//			return fixtures.subList(
+//					fixtures.size() - numberOfFixtures > 0 ? fixtures.size()
+//							- numberOfFixtures : 0, fixtures.size());
 	}
 	
 	@SuppressWarnings("unchecked")

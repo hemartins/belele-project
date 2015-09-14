@@ -41,13 +41,15 @@ public class Main {
 				.createEntityManagerFactory("database.odb");
 		EntityManager em = emf.createEntityManager();
 
-		populateDatabase(em, "I1.csv", "1011", 10);
-		populateDatabase(em, "I1.csv", "1112", 11);
-		populateDatabase(em, "I1.csv", "1213", 12);
-		populateDatabase(em, "I1.csv", "1314", 13);
-		Season s = populateDatabase(em, "I1.csv", "1415", 14);
-
-		runAlgorithm(s, em, "/Users/p056913/Desktop/", true, true);
+//		populateDatabase(em, "I1.csv", "1011", 10);
+//		populateDatabase(em, "I1.csv", "1112", 11);
+//		populateDatabase(em, "I1.csv", "1213", 12);
+//		populateDatabase(em, "I1.csv", "1314", 13);
+//		Season s = populateDatabase(em, "I1.csv", "1415", 14);
+		
+		SeasonController sc = new SeasonController(em);
+		Season s = sc.createSeason("I1", 14);
+		runAlgorithm(s, em, "/Users/henri/Desktop/", true, true);
 	}
 
 	private static void runAlgorithm(Season s, EntityManager em,
