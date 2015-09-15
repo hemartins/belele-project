@@ -176,7 +176,65 @@ public class Main {
 					ResultType.LOSE);
 			Double h2hLose_rating = h2hRatings.getRating();
 			Integer h2hLose_numeroJogos = h2hRatings.getSize();
-
+			
+			
+			
+			//CICLO PERNA
+			
+			
+			ResultCycle homeWinCyclePerna = homeTeam.getTeamCyclePerna(f, Venue.HOME,
+					ResultType.WIN);
+			ResultCycle awayLoseCyclePerna = awayTeam.getTeamCyclePerna(f, Venue.AWAY,
+					ResultType.LOSE);
+			Integer homeWinCyclePerna_numeroJogosVisitado = homeWinCyclePerna.getCycle();
+			Integer awayLoseCyclePerna_numeroJogosVisitante = awayLoseCyclePerna
+					.getCycle();
+			Double homeWinCyclePerna_dificuldadeVisitado = homeTeam
+					.getCycleOpponentAverageQuality(homeWinCyclePerna);
+			Double awayLoseCyclePerna_dificuldadeVisitante = awayTeam
+					.getCycleOpponentAverageQuality(awayLoseCyclePerna);
+			Integer homeWinCyclePerna_HistoricosVisitado = homeTeam
+					.getCycleHardGamesNumber(homeWinCyclePerna, historicos);
+			Integer awayLoseCyclePerna_HistoricosVisitante = awayTeam
+					.getCycleHardGamesNumber(awayLoseCyclePerna, historicos);
+			
+			ResultCycle homeDrawCyclePerna = homeTeam.getTeamCyclePerna(f, Venue.HOME,
+					ResultType.DRAW);
+			ResultCycle awayDrawCyclePerna = awayTeam.getTeamCyclePerna(f, Venue.AWAY,
+					ResultType.DRAW);
+			Integer homeDrawCyclePerna_numeroJogosVisitado = homeDrawCyclePerna
+					.getCycle();
+			Integer awayDrawCyclePerna_numeroJogosVisitante = awayDrawCyclePerna
+					.getCycle();
+			Double homeDrawCyclePerna_dificuldadeVisitado = homeTeam
+					.getCycleOpponentAverageQuality(homeDrawCyclePerna);
+			Double awayDrawCyclePerna_dificuldadeVisitante = awayTeam
+					.getCycleOpponentAverageQuality(awayDrawCyclePerna);
+			Integer homeDrawCyclePerna_HistoricosVisitado = homeTeam
+					.getCycleHardGamesNumber(homeDrawCyclePerna, historicos);
+			Integer awayDrawCyclePerna_HistoricosVisitante = awayTeam
+					.getCycleHardGamesNumber(awayDrawCyclePerna, historicos);
+			
+			ResultCycle homeLoseCyclePerna = homeTeam.getTeamCyclePerna(f, Venue.HOME,
+					ResultType.LOSE);
+			ResultCycle awayWinCyclePerna = awayTeam.getTeamCyclePerna(f, Venue.AWAY,
+					ResultType.WIN);
+			Integer homeLoseCyclePerna_numeroJogosVisitado = homeLoseCyclePerna
+					.getCycle();
+			Integer awayWinCyclePerna_numeroJogosVisitante = awayWinCyclePerna.getCycle();
+			Double homeLoseCyclePerna_dificuldadeVisitado = homeTeam
+					.getCycleOpponentAverageQuality(homeLoseCyclePerna);
+			Double awayWinCyclePerna_dificuldadeVisitante = awayTeam
+					.getCycleOpponentAverageQuality(awayWinCyclePerna);
+			Integer homeLoseCyclePerna_HistoricosVisitado = homeTeam
+					.getCycleHardGamesNumber(homeLoseCyclePerna, historicos);
+			Integer awayWinCyclePerna_HistoricosVisitante = awayTeam
+					.getCycleHardGamesNumber(awayWinCyclePerna, historicos);
+			
+			
+			//FIM CICLO PERNA
+			
+			
 			if (generateOurs) {
 				TeamRating homeTR = homeTeam.getResultPercentage(f, Venue.HOME,
 						ResultType.WIN, 0.15);
@@ -220,7 +278,13 @@ public class Main {
 						qLT_percentagemVitoriasVisitadoNoIntervalo,
 						qLT_percentagemDerrotasVisitanteNoIntervalo,
 						qLT_numeroJogosVisitado, qLT_numeroJogosVisitante,
-						result.equals(ResultType.WIN) ? 1 : 0);
+						result.equals(ResultType.WIN) ? 1 : 0,
+						homeWinCyclePerna_numeroJogosVisitado,
+						awayLoseCyclePerna_numeroJogosVisitante,
+						homeWinCyclePerna_dificuldadeVisitado,
+						awayLoseCyclePerna_dificuldadeVisitante,
+						homeWinCyclePerna_HistoricosVisitado,
+						awayLoseCyclePerna_HistoricosVisitante);
 
 				OurWinDataList.add(wohwr);
 
@@ -263,7 +327,13 @@ public class Main {
 						qLT_percentagemEmpatesVisitadoNoIntervalo,
 						qLT_percentagemEmpatesVisitanteNoIntervalo,
 						qLT_numeroJogosVisitado, qLT_numeroJogosVisitante,
-						result.equals(ResultType.DRAW) ? 1 : 0);
+						result.equals(ResultType.DRAW) ? 1 : 0,
+						homeDrawCyclePerna_numeroJogosVisitado,
+						awayDrawCyclePerna_numeroJogosVisitante,
+						homeDrawCyclePerna_dificuldadeVisitado,
+						awayDrawCyclePerna_dificuldadeVisitante,
+						homeDrawCyclePerna_HistoricosVisitado,
+						awayDrawCyclePerna_HistoricosVisitante);
 
 				OurDrawDataList.add(dohwr);
 
@@ -306,7 +376,13 @@ public class Main {
 						qLT_percentagemDerrotasVisitadoNoIntervalo,
 						qLT_percentagemVitoriasVisitanteNoIntervalo,
 						qLT_numeroJogosVisitado, qLT_numeroJogosVisitante,
-						result.equals(ResultType.LOSE) ? 1 : 0);
+						result.equals(ResultType.LOSE) ? 1 : 0,
+						homeLoseCyclePerna_numeroJogosVisitado,
+						awayWinCyclePerna_numeroJogosVisitante,
+						homeLoseCyclePerna_dificuldadeVisitado,
+						awayWinCyclePerna_dificuldadeVisitante,
+						homeLoseCyclePerna_HistoricosVisitado,
+						awayWinCyclePerna_HistoricosVisitante);
 
 				OurLoseDataList.add(lohwr);
 			}

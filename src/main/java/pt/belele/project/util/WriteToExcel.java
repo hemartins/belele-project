@@ -102,6 +102,18 @@ public class WriteToExcel {
         
         row.createCell(cellIndex++).setCellValue("[QLT] Resultado");
         
+        row.createCell(cellIndex++).setCellValue("[Ciclo Perna] Número de Jogos do Visitado");
+        
+        row.createCell(cellIndex++).setCellValue("[Ciclo Perna] Número de Jogos do Visitante");
+        
+        row.createCell(cellIndex++).setCellValue("[Ciclo Perna] Dificuldade do Visitado");
+        
+        row.createCell(cellIndex++).setCellValue("[Ciclo Perna] Dificuldade do Visitado");
+        
+        row.createCell(cellIndex++).setCellValue("[Ciclo Perna] Número de Historicos do Visitado");
+        
+        row.createCell(cellIndex++).setCellValue("[Ciclo Perna] Número de Historicos do Visitante");
+        
         rowIndex++;
         
         
@@ -174,6 +186,18 @@ public class WriteToExcel {
             row.createCell(cellIndex++).setCellValue(winrow.getQLT_numeroJogosVisitante());
             
             row.createCell(cellIndex++).setCellValue(winrow.getResult());
+            
+            row.createCell(cellIndex++).setCellValue(winrow.getCicloPerna_numeroJogosVisitado());
+            
+            row.createCell(cellIndex++).setCellValue(winrow.getCicloPerna_numeroJogosVisitante());
+            
+            row.createCell(cellIndex++).setCellValue(winrow.getCicloPerna_dificuldadeVisitado());
+            
+            row.createCell(cellIndex++).setCellValue(winrow.getCicloPerna_dificuldadeVisitante());
+            
+            row.createCell(cellIndex++).setCellValue(winrow.getCicloPerna_HistoricosVisitado());
+            
+            row.createCell(cellIndex++).setCellValue(winrow.getCicloPerna_HistoricosVisitante());
 
         }
 

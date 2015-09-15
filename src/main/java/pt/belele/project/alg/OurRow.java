@@ -1,5 +1,7 @@
 package pt.belele.project.alg;
 
+import pt.belele.project.entities.Result.ResultType;
+
 public class OurRow {
 
 	Integer jornada;
@@ -37,6 +39,27 @@ public class OurRow {
 	Integer Ciclo_HistoricosVisitado; // número de históricos que a equipa
 										// enfrentou durante esse ciclo
 	Integer Ciclo_HistoricosVisitante;
+	
+	
+	
+	
+	Integer CicloPerna_numeroJogosVisitado; // número de jogos que a equipa venceu
+	// seguidos (ex: caso não tenha vencido
+	// nenhum dos últimos 3 jogos é =-3;
+	// caso tenha vencido os últimos 5 jogos
+	// =5;
+	Integer CicloPerna_numeroJogosVisitante;
+	Double CicloPerna_dificuldadeVisitado; // média das qualidades dos adversários
+	// desse que a equipa enfrentou nesse
+	// ciclo
+	Double CicloPerna_dificuldadeVisitante;
+	Integer CicloPerna_HistoricosVisitado; // número de históricos que a equipa
+	// enfrentou durante esse ciclo
+	Integer CicloPerna_HistoricosVisitante;
+	
+	
+	
+	
 	Double H2H_ratingResultado; // pontuação por cada vitória obtida nos últimos
 								// jogos entre essas equipas
 	Integer H2H_numeroJogos;
@@ -81,7 +104,13 @@ public class OurRow {
 			Double qLT_dificuldadeResultadoVisitante,
 			Double qLT_percentagemResultadoVisitadoNoIntervalo,
 			Double qLT_percentagemResultadoVisitanteNoIntervalo,
-			Integer qLT_numeroJogosVisitado, Integer qLT_numeroJogosVisitante, Integer result) {
+			Integer qLT_numeroJogosVisitado, Integer qLT_numeroJogosVisitante, Integer result,
+			Integer cicloPerna_numeroJogosVisitado,
+			Integer cicloPerna_numeroJogosVisitante,
+			Double cicloPerna_dificuldadeVisitado,
+			Double cicloPerna_dificuldadeVisitante,
+			Integer cicloPerna_HistoricosVisitado,
+			Integer cicloPerna_HistoricosVisitante) {
 
 		this.jornada = jornada;
 		this.idVisitado = idVisitado;
@@ -104,6 +133,18 @@ public class OurRow {
 		Ciclo_dificuldadeVisitante = ciclo_dificuldadeVisitante;
 		Ciclo_HistoricosVisitado = ciclo_HistoricosVisitado;
 		Ciclo_HistoricosVisitante = ciclo_HistoricosVisitante;
+		
+		
+		CicloPerna_numeroJogosVisitado = ciclo_numeroJogosVisitado;
+		CicloPerna_numeroJogosVisitante = ciclo_numeroJogosVisitante;
+		CicloPerna_dificuldadeVisitado = ciclo_dificuldadeVisitado;
+		CicloPerna_dificuldadeVisitante = ciclo_dificuldadeVisitante;
+		CicloPerna_HistoricosVisitado = ciclo_HistoricosVisitado;
+		CicloPerna_HistoricosVisitante = ciclo_HistoricosVisitante;
+		
+		
+		
+		
 		H2H_ratingResultado = h2h_ratingResultado;
 		H2H_numeroJogos = h2h_numeroJogos;
 		QLT_percentagemResultadoVisitado = qLT_percentagemResultadoVisitado;
@@ -285,6 +326,64 @@ public class OurRow {
 	public void setCiclo_HistoricosVisitante(Integer ciclo_HistoricosVisitante) {
 		Ciclo_HistoricosVisitante = ciclo_HistoricosVisitante;
 	}
+	
+	
+	
+	
+	
+	
+	public Integer getCicloPerna_numeroJogosVisitado() {
+		return Ciclo_numeroJogosVisitado;
+	}
+
+	public void setCicloPerna_numeroJogosVisitado(Integer ciclo_numeroJogosVisitado) {
+		Ciclo_numeroJogosVisitado = ciclo_numeroJogosVisitado;
+	}
+
+	public Integer getCicloPerna_numeroJogosVisitante() {
+		return Ciclo_numeroJogosVisitante;
+	}
+
+	public void setCicloPerna_numeroJogosVisitante(Integer ciclo_numeroJogosVisitante) {
+		Ciclo_numeroJogosVisitante = ciclo_numeroJogosVisitante;
+	}
+
+	public Double getCicloPerna_dificuldadeVisitado() {
+		return Ciclo_dificuldadeVisitado;
+	}
+
+	public void setCicloPerna_dificuldadeVisitado(Double ciclo_dificuldadeVisitado) {
+		Ciclo_dificuldadeVisitado = ciclo_dificuldadeVisitado;
+	}
+
+	public Double getCicloPerna_dificuldadeVisitante() {
+		return Ciclo_dificuldadeVisitante;
+	}
+
+	public void setCicloPerna_dificuldadeVisitante(Double ciclo_dificuldadeVisitante) {
+		Ciclo_dificuldadeVisitante = ciclo_dificuldadeVisitante;
+	}
+
+	public Integer getCicloPerna_HistoricosVisitado() {
+		return Ciclo_HistoricosVisitado;
+	}
+
+	public void setCicloPerna_HistoricosVisitado(Integer ciclo_HistoricosVisitado) {
+		Ciclo_HistoricosVisitado = ciclo_HistoricosVisitado;
+	}
+
+	public Integer getCicloPerna_HistoricosVisitante() {
+		return Ciclo_HistoricosVisitante;
+	}
+
+	public void setCicloPerna_HistoricosVisitante(Integer ciclo_HistoricosVisitante) {
+		Ciclo_HistoricosVisitante = ciclo_HistoricosVisitante;
+	}
+	
+	
+	
+	
+	
 
 	public Double getH2H_ratingResultado() {
 		return H2H_ratingResultado;

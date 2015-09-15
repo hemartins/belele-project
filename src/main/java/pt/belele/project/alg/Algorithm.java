@@ -164,6 +164,51 @@ public class Algorithm {
 		return new ResultCycle(nextFixture.getSeason(), type, teams, sum,
 				new DateTime(nextFixture.getDate()));
 	}
+	
+	
+	// Calculo ciclos à sapateiro que o perna pediu para testar a correlacao
+		public ResultCycle getTeamCyclePerna(Fixture nextFixture, Venue venue,
+				ResultType type) {
+			List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team,
+					nextFixture.getSeason(), nextFixture.getDate(), venue, null);
+			boolean equals = false;
+			ResultType actualResult = null;
+			ResultType lastResult = null;
+			int sum = 0;
+			List<Team> teams = new ArrayList<Team>();
+			for (int i = 0; i < fixtures.size(); i++) {
+				Fixture f = fixtures.get(i);
+				if (actualResult == null) {
+					actualResult = getResultType(f);
+					if (actualResult.equals(type)) {
+						sum++;
+						equals = true;
+					} else
+						sum--;
+				} else {
+					if (!actualResult.equals(getResultType(f))) {
+						lastResult = actualResult;
+						actualResult = getResultType(f);
+						equals = false;
+					}
+
+					if (actualResult.equals(type) && equals)
+						sum++;
+					else if (!actualResult.equals(type) && actualResult.equals(lastResult))
+						sum--;
+					else
+						break;
+				}
+
+				if (f.getHomeTeam().getId() == team.getId())
+					teams.add(f.getAwayTeam());
+				else
+					teams.add(f.getHomeTeam());
+			}
+
+			return new ResultCycle(nextFixture.getSeason(), type, teams, sum,
+					new DateTime(nextFixture.getDate()));
+		}
 
 	// Media da qualidade das equipas dum ciclo
 	public Double getCycleOpponentAverageQuality(ResultCycle cycle) {
