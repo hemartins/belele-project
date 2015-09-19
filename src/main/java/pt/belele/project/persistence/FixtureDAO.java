@@ -82,11 +82,13 @@ public class FixtureDAO extends GenericDAO<Fixture> {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Fixture> getH2H(long homeTeamId, long awayTeamId)
+	public List<Fixture> getH2H(long homeTeamId, long awayTeamId, Date date, int numberOfGames)
 	{
-		Query query = em.createQuery("SELECT f FROM Fixture f WHERE f.homeTeam.id = :homeId AND f.awayTeam.id = :awayId ORDER BY f.date DESC");
+		Query query = em.createQuery("SELECT f FROM Fixture f WHERE f.homeTeam.id = :homeId AND f.awayTeam.id = :awayId AND f.date < :date ORDER BY f.date DESC");
 		query.setParameter("homeId", homeTeamId);
 		query.setParameter("awayId", awayTeamId);
+		query.setParameter("date", date);
+		query.setMaxResults(numberOfGames);
 		return query.getResultList();
 	}
 }

@@ -30,54 +30,54 @@ public class Result {
 		}
 	}
 	
-	private int fullTimeHomeTeamGoals;
+	private Integer fullTimeHomeTeamGoals;
 
-	private int fullTimeAwayTeamGoals;
+	private Integer fullTimeAwayTeamGoals;
 
-	private int halfTimeHomeTeamGoals;
+	private Integer halfTimeHomeTeamGoals;
 
-	private int halfTimeAwayTeamGoals;
+	private Integer halfTimeAwayTeamGoals;
 
 	public Result() {
 	}
 
-	public Result(int fullTimeHomeTeamGoals, int fullTimeAwayTeamGoals,
-			int halfTimeHomeTeamGoals, int halfTimeAwayTeamGoals) {
+	public Result(Integer fullTimeHomeTeamGoals, Integer fullTimeAwayTeamGoals,
+			Integer halfTimeHomeTeamGoals, Integer halfTimeAwayTeamGoals) {
 		this.fullTimeHomeTeamGoals = fullTimeHomeTeamGoals;
 		this.fullTimeAwayTeamGoals = fullTimeAwayTeamGoals;
 		this.halfTimeHomeTeamGoals = halfTimeHomeTeamGoals;
 		this.halfTimeAwayTeamGoals = halfTimeAwayTeamGoals;
 	}
 
-	public int getFullTimeHomeTeamGoals() {
+	public Integer getFullTimeHomeTeamGoals() {
 		return fullTimeHomeTeamGoals;
 	}
 
-	public void setFullTimeHomeTeamGoals(int fullTimeHomeTeamGoals) {
+	public void setFullTimeHomeTeamGoals(Integer fullTimeHomeTeamGoals) {
 		this.fullTimeHomeTeamGoals = fullTimeHomeTeamGoals;
 	}
 
-	public int getFullTimeAwayTeamGoals() {
+	public Integer getFullTimeAwayTeamGoals() {
 		return fullTimeAwayTeamGoals;
 	}
 
-	public void setFullTimeAwayTeamGoals(int fullTimeAwayTeamGoals) {
+	public void setFullTimeAwayTeamGoals(Integer fullTimeAwayTeamGoals) {
 		this.fullTimeAwayTeamGoals = fullTimeAwayTeamGoals;
 	}
 
-	public int getHalfTimeHomeTeamGoals() {
+	public Integer getHalfTimeHomeTeamGoals() {
 		return halfTimeHomeTeamGoals;
 	}
 
-	public void setHalfTimeHomeTeamGoals(int halfTimeHomeTeamGoals) {
+	public void setHalfTimeHomeTeamGoals(Integer halfTimeHomeTeamGoals) {
 		this.halfTimeHomeTeamGoals = halfTimeHomeTeamGoals;
 	}
 
-	public int getHalfTimeAwayTeamGoals() {
+	public Integer getHalfTimeAwayTeamGoals() {
 		return halfTimeAwayTeamGoals;
 	}
 
-	public void setHalfTimeAwayTeamGoals(int halfTimeAwayTeamGoals) {
+	public void setHalfTimeAwayTeamGoals(Integer halfTimeAwayTeamGoals) {
 		this.halfTimeAwayTeamGoals = halfTimeAwayTeamGoals;
 	}
 }

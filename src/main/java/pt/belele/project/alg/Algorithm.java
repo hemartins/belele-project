@@ -16,7 +16,6 @@ import pt.belele.project.controllers.util.ResultCycle;
 import pt.belele.project.controllers.util.TeamRating;
 import pt.belele.project.entities.Fixture;
 import pt.belele.project.entities.Fixture.Venue;
-import pt.belele.project.entities.Head2Head;
 import pt.belele.project.entities.Result;
 import pt.belele.project.entities.Result.ResultType;
 import pt.belele.project.entities.Season;
@@ -128,7 +127,7 @@ public class Algorithm {
 			ResultType type) {
 		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team,
 				nextFixture.getSeason(), nextFixture.getDate(), venue, null);
-		boolean equals = false;
+		boolean positive = false;
 		ResultType actualResult = null;
 		int sum = 0;
 		List<Team> teams = new ArrayList<Team>();
@@ -138,14 +137,54 @@ public class Algorithm {
 				actualResult = getResultType(f);
 				if (actualResult.equals(type)) {
 					sum++;
-					equals = true;
+					positive = true;
 				} else
+					sum--;
+			} else {
+				if (actualResult.equals(getResultType(f)) && positive) {
+					sum++;
+				} else if (!actualResult.equals(getResultType(f)) && positive) {
+					break;
+				} else if (!positive) {
+					if (getResultType(f).equals(type))
+						break;
+					sum--;
+				}
+			}
+
+			if (f.getHomeTeam().getId() == team.getId())
+				teams.add(f.getAwayTeam());
+			else
+				teams.add(f.getHomeTeam());
+		}
+
+		return new ResultCycle(nextFixture.getSeason(), type, teams, sum,
+				new DateTime(nextFixture.getDate()));
+	}
+
+	// Calculo ciclos à sapateiro que o perna pediu para testar a correlacao
+	public ResultCycle getTeamCyclePerna(Fixture nextFixture, Venue venue,
+			ResultType type) {
+		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team,
+				nextFixture.getSeason(), nextFixture.getDate(), venue, null);
+		boolean equals = true;
+		ResultType actualResult = null;
+		int sum = 0;
+		List<Team> teams = new ArrayList<Team>();
+		for (int i = 0; i < fixtures.size(); i++) {
+			Fixture f = fixtures.get(i);
+			if (actualResult == null) {
+				actualResult = getResultType(f);
+				if (actualResult.equals(type))
+					sum++;
+				else
 					sum--;
 			} else {
 				if (!actualResult.equals(getResultType(f))) {
 					actualResult = getResultType(f);
 					equals = false;
-				}
+				} else
+					equals = true;
 
 				if (actualResult.equals(type) && equals)
 					sum++;
@@ -164,51 +203,6 @@ public class Algorithm {
 		return new ResultCycle(nextFixture.getSeason(), type, teams, sum,
 				new DateTime(nextFixture.getDate()));
 	}
-	
-	
-	// Calculo ciclos à sapateiro que o perna pediu para testar a correlacao
-		public ResultCycle getTeamCyclePerna(Fixture nextFixture, Venue venue,
-				ResultType type) {
-			List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team,
-					nextFixture.getSeason(), nextFixture.getDate(), venue, null);
-			boolean equals = false;
-			ResultType actualResult = null;
-			ResultType lastResult = null;
-			int sum = 0;
-			List<Team> teams = new ArrayList<Team>();
-			for (int i = 0; i < fixtures.size(); i++) {
-				Fixture f = fixtures.get(i);
-				if (actualResult == null) {
-					actualResult = getResultType(f);
-					if (actualResult.equals(type)) {
-						sum++;
-						equals = true;
-					} else
-						sum--;
-				} else {
-					if (!actualResult.equals(getResultType(f))) {
-						lastResult = actualResult;
-						actualResult = getResultType(f);
-						equals = false;
-					}
-
-					if (actualResult.equals(type) && equals)
-						sum++;
-					else if (!actualResult.equals(type) && actualResult.equals(lastResult))
-						sum--;
-					else
-						break;
-				}
-
-				if (f.getHomeTeam().getId() == team.getId())
-					teams.add(f.getAwayTeam());
-				else
-					teams.add(f.getHomeTeam());
-			}
-
-			return new ResultCycle(nextFixture.getSeason(), type, teams, sum,
-					new DateTime(nextFixture.getDate()));
-		}
 
 	// Media da qualidade das equipas dum ciclo
 	public Double getCycleOpponentAverageQuality(ResultCycle cycle) {
@@ -236,30 +230,20 @@ public class Algorithm {
 	}
 
 	// Rating do h2h
-	@SuppressWarnings("deprecation")
 	public H2H getH2HRating(Fixture nextFixture, List<Double> ratings,
 			Venue venue, ResultType type) {
 		double rating = 0;
-		Head2Head h2h = nextFixture.getHead2Head();
 		int rat = 0;
-		if (h2h != null) {
-			for (int i = 0; i < h2h.getFixtures().size()
-					&& rat < ratings.size(); i++) {
-				Fixture f = h2h.getFixtures().get(i);
-				if (f.getDate().getYear() + ratings.size() + 2 < nextFixture
-						.getDate().getYear())
-					break;
-				boolean isVenue = venue.equals(Venue.HOME) ? f.getHomeTeam()
-						.getId() == team.getId()
-						: f.getAwayTeam().getId() == team.getId();
-				boolean seasonBefore = f.getSeason().getYear() >= nextFixture
-						.getSeason().getYear() - (ratings.size());
-				boolean isBefore = new DateTime(f.getDate())
-						.isBefore(new DateTime(nextFixture.getDate()));
-				if (isVenue && seasonBefore && isBefore) {
+		if (nextFixture.getH2h() != null) {
+			if (!nextFixture.getH2h().isEmpty()) {
+				for (Fixture f : nextFixture.getH2h()) {
+					rat = nextFixture.getSeason().getYear()
+							- f.getSeason().getYear() - 1;
+					if (rat >= ratings.size())
+						break;
+
 					if (getResultType(f).equals(type))
 						rating += ratings.get(rat);
-					rat++;
 				}
 			}
 		}

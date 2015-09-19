@@ -41,15 +41,40 @@ public class Main {
 				.createEntityManagerFactory("database.odb");
 		EntityManager em = emf.createEntityManager();
 
+//		populateDatabase(em, "I2.csv", "0203", 2);
+//		populateDatabase(em, "I2.csv", "0304", 3);
+//		populateDatabase(em, "I2.csv", "0405", 4);
+//		populateDatabase(em, "I2.csv", "0506", 5);
+//		populateDatabase(em, "I2.csv", "0607", 6);
+//		populateDatabase(em, "I2.csv", "0708", 7);
+//		populateDatabase(em, "I2.csv", "0809", 8);
+//		populateDatabase(em, "I2.csv", "0910", 9);
+//		populateDatabase(em, "I2.csv", "1011", 10);
+//		populateDatabase(em, "I2.csv", "1112", 11);
+//		populateDatabase(em, "I2.csv", "1213", 12);
+//		populateDatabase(em, "I2.csv", "1314", 13);
+//		populateDatabase(em, "I2.csv", "1415", 14);
+//		
+//		populateDatabase(em, "I1.csv", "0203", 2);
+//		populateDatabase(em, "I1.csv", "0304", 3);
+//		populateDatabase(em, "I1.csv", "0405", 4);
+//		populateDatabase(em, "I1.csv", "0506", 5);
+//		populateDatabase(em, "I1.csv", "0607", 6);
+//		populateDatabase(em, "I1.csv", "0708", 7);
+//		populateDatabase(em, "I1.csv", "0809", 8);
+//		populateDatabase(em, "I1.csv", "0910", 9);
 //		populateDatabase(em, "I1.csv", "1011", 10);
 //		populateDatabase(em, "I1.csv", "1112", 11);
 //		populateDatabase(em, "I1.csv", "1213", 12);
 //		populateDatabase(em, "I1.csv", "1314", 13);
-//		Season s = populateDatabase(em, "I1.csv", "1415", 14);
+//		populateDatabase(em, "I1.csv", "1415", 14);
 		
 		SeasonController sc = new SeasonController(em);
-		Season s = sc.createSeason("I1", 14);
-		runAlgorithm(s, em, "/Users/henri/Desktop/", true, true);
+		Season s = sc.createSeason("I1", 13);
+		runAlgorithm(s, em, "/Users/p056913/Desktop/", true, true);
+		
+		s = sc.createSeason("I1", 14);
+		runAlgorithm(s, em, "/Users/p056913/Desktop/", true, true);
 	}
 
 	private static void runAlgorithm(Season s, EntityManager em,
@@ -76,7 +101,7 @@ public class Main {
 			System.out.println(f.toString());
 
 			if (f.getDate()
-					.before(formatter.parseDateTime("01/12/14").toDate()))
+					.before(formatter.parseDateTime("01/12/"+s.getYear()).toDate()))
 				continue;
 
 			Algorithm homeTeam = new Algorithm(f.getHomeTeam(), em);
@@ -87,6 +112,13 @@ public class Main {
 			ratings.add(0.2);
 			ratings.add(0.15);
 			ratings.add(0.1);
+			
+			List<Double> ratingsH2H = new ArrayList<Double>();
+			ratingsH2H.add(0.3);
+			ratingsH2H.add(0.25);
+			ratingsH2H.add(0.2);
+			ratingsH2H.add(0.15);
+			ratingsH2H.add(0.1);
 
 			Integer jornada = 0;
 			Long idVisitado = f.getHomeTeam().getId();
@@ -453,7 +485,7 @@ public class Main {
 				"Empate");
 		writeToExcelObj.writeOurDataExcelTable(OurLoseDataList, NossoWorkbook,
 				"Derrota");
-		writeToExcelObj.writeWorkbookToExcelFile("NossoItalia", NossoWorkbook);
+		writeToExcelObj.writeWorkbookToExcelFile("Nosso"+s.getName()+s.getYear(), NossoWorkbook);
 
 		Workbook ProfWorkbook = writeToExcelObj.newWorkbook();
 
@@ -463,7 +495,7 @@ public class Main {
 				"Empate");
 		writeToExcelObj.writeProfDataExcelTable(ProfLoseDataList, ProfWorkbook,
 				"Derrota");
-		writeToExcelObj.writeWorkbookToExcelFile("ProfItalia", ProfWorkbook);
+		writeToExcelObj.writeWorkbookToExcelFile("Prof"+s.getName()+s.getYear(), ProfWorkbook);
 	}
 
 	private static Season populateDatabase(EntityManager em,
@@ -487,9 +519,14 @@ public class Main {
 
 			Result result = null;
 			try {
+//				result = new Result(Integer.valueOf(arr[4]),
+//						Integer.valueOf(arr[5]), Integer.valueOf(arr[7]),
+//						Integer.valueOf(arr[8]));
+				
 				result = new Result(Integer.valueOf(arr[4]),
-						Integer.valueOf(arr[5]), Integer.valueOf(arr[7]),
-						Integer.valueOf(arr[8]));
+						Integer.valueOf(arr[5]), null,
+						null);
+				
 			} catch (NumberFormatException e) {
 				e.printStackTrace(System.out);
 				System.out.println(arr[0]);
@@ -498,8 +535,8 @@ public class Main {
 				System.out.println(arr[3]);
 				System.out.println(arr[4]);
 				System.out.println(arr[5]);
-				System.out.println(arr[7]);
-				System.out.println(arr[8]);
+//				System.out.println(arr[7]);
+//				System.out.println(arr[8]);
 				result = new Result(Integer.valueOf(arr[4]),
 						Integer.valueOf(arr[5]), 0, 0);
 			}

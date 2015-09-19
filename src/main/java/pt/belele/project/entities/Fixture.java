@@ -2,6 +2,7 @@ package pt.belele.project.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Fixture implements Serializable {
@@ -88,9 +90,9 @@ public class Fixture implements Serializable {
 	@Embedded
 	private Result result;
 
-	@ManyToOne(optional = true)
-	@JoinColumn(name = "id", nullable = true)
-	private Head2Head head2Head;
+	@OneToMany(orphanRemoval=true)
+    @JoinColumn(name="id")
+	private List<Fixture> h2h;
 
 	public Fixture() {
 	}
@@ -160,12 +162,12 @@ public class Fixture implements Serializable {
 		this.result = result;
 	}
 
-	public Head2Head getHead2Head() {
-		return head2Head;
+	public List<Fixture> getH2h() {
+		return h2h;
 	}
 
-	public void setHead2Head(Head2Head head2Head) {
-		this.head2Head = head2Head;
+	public void setH2h(List<Fixture> h2h) {
+		this.h2h = h2h;
 	}
 
 	@Override
@@ -173,7 +175,7 @@ public class Fixture implements Serializable {
 		return "Fixture [id=" + id + ", date=" + date + ", status=" + status
 				+ ", season=" + season + ", homeTeam=" + homeTeam
 				+ ", awayTeam=" + awayTeam + ", result=" + result
-				+ ", head2Head=" + head2Head + "]";
+				+ ", head2Head=" + h2h + "]";
 	}
 
 }
