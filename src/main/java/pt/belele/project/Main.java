@@ -154,7 +154,7 @@ public class Main {
 					.getCycleHardGamesNumber(homeWinCycle, historicos);
 			Integer awayLoseCycle_HistoricosVisitante = awayTeam
 					.getCycleHardGamesNumber(awayLoseCycle, historicos);
-			H2H h2hRatings = homeTeam.getH2HRating(f, ratings, Venue.HOME,
+			H2H h2hRatings = homeTeam.getH2HRating(f, ratingsH2H, Venue.HOME,
 					ResultType.WIN);
 			Double h2hWin_ratingVitorias = h2hRatings.getRating();
 			Integer h2hWin_numeroJogos = h2hRatings.getSize();
@@ -180,7 +180,7 @@ public class Main {
 					.getCycleHardGamesNumber(homeDrawCycle, historicos);
 			Integer awayDrawCycle_HistoricosVisitante = awayTeam
 					.getCycleHardGamesNumber(awayDrawCycle, historicos);
-			h2hRatings = homeTeam.getH2HRating(f, ratings, Venue.HOME,
+			h2hRatings = homeTeam.getH2HRating(f, ratingsH2H, Venue.HOME,
 					ResultType.DRAW);
 			Double h2hDraw_rating = h2hRatings.getRating();
 			Integer h2hDraw_numeroJogos = h2hRatings.getSize();
@@ -204,7 +204,7 @@ public class Main {
 					.getCycleHardGamesNumber(homeLoseCycle, historicos);
 			Integer awayWinCycle_HistoricosVisitante = awayTeam
 					.getCycleHardGamesNumber(awayWinCycle, historicos);
-			h2hRatings = homeTeam.getH2HRating(f, ratings, Venue.HOME,
+			h2hRatings = homeTeam.getH2HRating(f, ratingsH2H, Venue.HOME,
 					ResultType.LOSE);
 			Double h2hLose_rating = h2hRatings.getRating();
 			Integer h2hLose_numeroJogos = h2hRatings.getSize();
