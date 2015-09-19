@@ -70,10 +70,10 @@ public class Main {
 //		populateDatabase(em, "I1.csv", "1415", 14);
 		
 		SeasonController sc = new SeasonController(em);
-		Season s = sc.createSeason("I1", 13);
+		Season s = sc.createSeason("I1", 14);
 		runAlgorithm(s, em, "/Users/p056913/Desktop/", true, true);
 		
-		s = sc.createSeason("I1", 14);
+		s = sc.createSeason("I1", 13);
 		runAlgorithm(s, em, "/Users/p056913/Desktop/", true, true);
 	}
 
@@ -101,7 +101,7 @@ public class Main {
 			System.out.println(f.toString());
 
 			if (f.getDate()
-					.before(formatter.parseDateTime("01/12/"+s.getYear()).toDate()))
+					.before(formatter.parseDateTime("01/11/"+s.getYear()).toDate()))
 				continue;
 
 			Algorithm homeTeam = new Algorithm(f.getHomeTeam(), em);

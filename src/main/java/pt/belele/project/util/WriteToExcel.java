@@ -62,7 +62,7 @@ public class WriteToExcel {
         
         row.createCell(cellIndex++).setCellValue("[FR] Dificuldade do Visitado");
         
-        row.createCell(cellIndex++).setCellValue("[FR] Rating de Resultados do Visitado");
+        row.createCell(cellIndex++).setCellValue("[FR] Dificuldade do Visitante");
         
         row.createCell(cellIndex++).setCellValue("[FR] Número de Historicos do Visitado");
         
@@ -237,7 +237,7 @@ public class WriteToExcel {
         
         row.createCell(cellIndex++).setCellValue("[FR] Dificuldade do Visitado");
         
-        row.createCell(cellIndex++).setCellValue("[FR] Rating de Resultados do Visitado");
+        row.createCell(cellIndex++).setCellValue("[FR] Dificuldade do Visitante");
         
         row.createCell(cellIndex++).setCellValue("[FR] Número de Historicos do Visitado");
         

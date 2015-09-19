@@ -131,8 +131,7 @@ public class Algorithm {
 		ResultType actualResult = null;
 		int sum = 0;
 		List<Team> teams = new ArrayList<Team>();
-		for (int i = 0; i < fixtures.size(); i++) {
-			Fixture f = fixtures.get(i);
+		for (Fixture f : fixtures) {
 			if (actualResult == null) {
 				actualResult = getResultType(f);
 				if (actualResult.equals(type)) {
@@ -167,31 +166,24 @@ public class Algorithm {
 			ResultType type) {
 		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team,
 				nextFixture.getSeason(), nextFixture.getDate(), venue, null);
-		boolean equals = true;
-		ResultType actualResult = null;
+		ResultType firstResult = null;
 		int sum = 0;
 		List<Team> teams = new ArrayList<Team>();
-		for (int i = 0; i < fixtures.size(); i++) {
-			Fixture f = fixtures.get(i);
-			if (actualResult == null) {
-				actualResult = getResultType(f);
-				if (actualResult.equals(type))
+		for (Fixture f : fixtures) {
+			if (firstResult == null) {
+				firstResult = getResultType(f);
+				if (firstResult.equals(type))
 					sum++;
 				else
 					sum--;
 			} else {
-				if (!actualResult.equals(getResultType(f))) {
-					actualResult = getResultType(f);
-					equals = false;
-				} else
-					equals = true;
-
-				if (actualResult.equals(type) && equals)
-					sum++;
-				else if (!actualResult.equals(type) && equals)
-					sum--;
-				else
+				if (!firstResult.equals(getResultType(f)))
 					break;
+
+				if (firstResult.equals(type))
+					sum++;
+				else
+					sum--;
 			}
 
 			if (f.getHomeTeam().getId() == team.getId())

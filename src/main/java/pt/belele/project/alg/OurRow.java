@@ -1,6 +1,5 @@
 package pt.belele.project.alg;
 
-import pt.belele.project.entities.Result.ResultType;
 
 public class OurRow {
 
@@ -333,51 +332,51 @@ public class OurRow {
 	
 	
 	public Integer getCicloPerna_numeroJogosVisitado() {
-		return Ciclo_numeroJogosVisitado;
+		return CicloPerna_numeroJogosVisitado;
 	}
 
 	public void setCicloPerna_numeroJogosVisitado(Integer ciclo_numeroJogosVisitado) {
-		Ciclo_numeroJogosVisitado = ciclo_numeroJogosVisitado;
+		CicloPerna_numeroJogosVisitado = ciclo_numeroJogosVisitado;
 	}
 
 	public Integer getCicloPerna_numeroJogosVisitante() {
-		return Ciclo_numeroJogosVisitante;
+		return CicloPerna_numeroJogosVisitante;
 	}
 
 	public void setCicloPerna_numeroJogosVisitante(Integer ciclo_numeroJogosVisitante) {
-		Ciclo_numeroJogosVisitante = ciclo_numeroJogosVisitante;
+		CicloPerna_numeroJogosVisitante = ciclo_numeroJogosVisitante;
 	}
 
 	public Double getCicloPerna_dificuldadeVisitado() {
-		return Ciclo_dificuldadeVisitado;
+		return CicloPerna_dificuldadeVisitado;
 	}
 
 	public void setCicloPerna_dificuldadeVisitado(Double ciclo_dificuldadeVisitado) {
-		Ciclo_dificuldadeVisitado = ciclo_dificuldadeVisitado;
+		CicloPerna_dificuldadeVisitado = ciclo_dificuldadeVisitado;
 	}
 
 	public Double getCicloPerna_dificuldadeVisitante() {
-		return Ciclo_dificuldadeVisitante;
+		return CicloPerna_dificuldadeVisitante;
 	}
 
 	public void setCicloPerna_dificuldadeVisitante(Double ciclo_dificuldadeVisitante) {
-		Ciclo_dificuldadeVisitante = ciclo_dificuldadeVisitante;
+		CicloPerna_dificuldadeVisitante = ciclo_dificuldadeVisitante;
 	}
 
 	public Integer getCicloPerna_HistoricosVisitado() {
-		return Ciclo_HistoricosVisitado;
+		return CicloPerna_HistoricosVisitado;
 	}
 
 	public void setCicloPerna_HistoricosVisitado(Integer ciclo_HistoricosVisitado) {
-		Ciclo_HistoricosVisitado = ciclo_HistoricosVisitado;
+		CicloPerna_HistoricosVisitado = ciclo_HistoricosVisitado;
 	}
 
 	public Integer getCicloPerna_HistoricosVisitante() {
-		return Ciclo_HistoricosVisitante;
+		return CicloPerna_HistoricosVisitante;
 	}
 
 	public void setCicloPerna_HistoricosVisitante(Integer ciclo_HistoricosVisitante) {
-		Ciclo_HistoricosVisitante = ciclo_HistoricosVisitante;
+		CicloPerna_HistoricosVisitante = ciclo_HistoricosVisitante;
 	}
 	
 	
