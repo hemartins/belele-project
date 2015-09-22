@@ -114,6 +114,10 @@ public class WriteToExcel {
         
         row.createCell(cellIndex++).setCellValue("[Ciclo Perna] Número de Historicos do Visitante");
         
+        row.createCell(cellIndex++).setCellValue("[FR] Rating com Qualidade de Resultados do Visitado");
+
+        row.createCell(cellIndex++).setCellValue("[FR] Rating com Qualidade de Resultados do Visitante");
+        
         rowIndex++;
         
         
@@ -198,6 +202,10 @@ public class WriteToExcel {
             row.createCell(cellIndex++).setCellValue(winrow.getCicloPerna_HistoricosVisitado());
             
             row.createCell(cellIndex++).setCellValue(winrow.getCicloPerna_HistoricosVisitante());
+            
+            row.createCell(cellIndex++).setCellValue(winrow.getfR_ratingQualidadeResultadoVisitado());
+
+            row.createCell(cellIndex++).setCellValue(winrow.getfR_ratingQualidadeResultadoVisitante());
 
         }
 

@@ -87,6 +87,25 @@ public class OurRow {
 										// citado em cima
 	Integer QLT_numeroJogosVisitante;
 	Integer result;
+	
+	Double fR_ratingQualidadeResultadoVisitado;
+	public Double getfR_ratingQualidadeResultadoVisitado() {
+		return fR_ratingQualidadeResultadoVisitado;
+	}
+
+	public void setfR_ratingQualidadeResultadoVisitado(Double fR_ratingQualidadeResultadoVisitado) {
+		this.fR_ratingQualidadeResultadoVisitado = fR_ratingQualidadeResultadoVisitado;
+	}
+
+	public Double getfR_ratingQualidadeResultadoVisitante() {
+		return fR_ratingQualidadeResultadoVisitante;
+	}
+
+	public void setfR_ratingQualidadeResultadoVisitante(Double fR_ratingQualidadeResultadoVisitante) {
+		this.fR_ratingQualidadeResultadoVisitante = fR_ratingQualidadeResultadoVisitante;
+	}
+
+	Double fR_ratingQualidadeResultadoVisitante;
 
 	public OurRow(Date data, Long idVisitado, Long idVisitante, String homeTeamName, String awayTeamName,
 			Double qualidadeVisitado, Double qualidadeVisitante,
@@ -112,7 +131,9 @@ public class OurRow {
 			Double cicloPerna_dificuldadeVisitado,
 			Double cicloPerna_dificuldadeVisitante,
 			Integer cicloPerna_HistoricosVisitado,
-			Integer cicloPerna_HistoricosVisitante) {
+			Integer cicloPerna_HistoricosVisitante,
+			Double fR_ratingQualidadeResultadoVisitado,
+			Double fR_ratingQualidadeResultadoVisitante) {
 
 		this.data = data;
 		this.idVisitado = idVisitado;
