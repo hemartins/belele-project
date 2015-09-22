@@ -38,6 +38,8 @@ public class WriteToExcel {
         
         int cellIndex = 0;
         
+        row.createCell(cellIndex++).setCellValue("Data");
+        
         row.createCell(cellIndex++).setCellValue("Nome do Visitado");
         
         row.createCell(cellIndex++).setCellValue("Nome do Visitante");
@@ -45,8 +47,6 @@ public class WriteToExcel {
         row.createCell(cellIndex++).setCellValue("Id do Visitado");
         
         row.createCell(cellIndex++).setCellValue("Id do Visitante");
-        
-        row.createCell(cellIndex++).setCellValue("Jornada");
 
         row.createCell(cellIndex++).setCellValue("Qualidade do Visitado");
         
@@ -62,7 +62,7 @@ public class WriteToExcel {
         
         row.createCell(cellIndex++).setCellValue("[FR] Dificuldade do Visitado");
         
-        row.createCell(cellIndex++).setCellValue("[FR] Dificuldade do Visitante");
+        row.createCell(cellIndex++).setCellValue("[FR] Rating de Resultados do Visitado");
         
         row.createCell(cellIndex++).setCellValue("[FR] Número de Historicos do Visitado");
         
@@ -123,6 +123,8 @@ public class WriteToExcel {
         	
         	cellIndex = 0;
             
+        	row.createCell(cellIndex++).setCellValue(winrow.getData());
+        	
             row.createCell(cellIndex++).setCellValue(winrow.getHomeTeamName());
             
             row.createCell(cellIndex++).setCellValue(winrow.getAwayTeamName());
@@ -130,8 +132,6 @@ public class WriteToExcel {
             row.createCell(cellIndex++).setCellValue(winrow.getIdVisitado());
             
             row.createCell(cellIndex++).setCellValue(winrow.getIdVisitante());
-            
-            row.createCell(cellIndex++).setCellValue(winrow.getJornada());
 
             row.createCell(cellIndex++).setCellValue(winrow.getQualidadeVisitado());
             
@@ -213,6 +213,8 @@ public class WriteToExcel {
         
         int cellIndex = 0;
         
+        row.createCell(cellIndex++).setCellValue("Data");
+        
         row.createCell(cellIndex++).setCellValue("Nome do Visitado");
         
         row.createCell(cellIndex++).setCellValue("Nome do Visitante");
@@ -220,8 +222,6 @@ public class WriteToExcel {
         row.createCell(cellIndex++).setCellValue("Id do Visitado");
         
         row.createCell(cellIndex++).setCellValue("Id do Visitante");
-        
-        row.createCell(cellIndex++).setCellValue("Jornada");
 
         row.createCell(cellIndex++).setCellValue("Qualidade do Visitado");
         
@@ -237,7 +237,7 @@ public class WriteToExcel {
         
         row.createCell(cellIndex++).setCellValue("[FR] Dificuldade do Visitado");
         
-        row.createCell(cellIndex++).setCellValue("[FR] Dificuldade do Visitante");
+        row.createCell(cellIndex++).setCellValue("[FR] Rating de Resultados do Visitado");
         
         row.createCell(cellIndex++).setCellValue("[FR] Número de Historicos do Visitado");
         
@@ -266,6 +266,8 @@ public class WriteToExcel {
         	row = ourSheet.createRow(rowIndex++);
 
         	cellIndex = 0;
+        	
+        	row.createCell(cellIndex++).setCellValue(winrow.getData());
             
             row.createCell(cellIndex++).setCellValue(winrow.getHomeTeamName());
             
@@ -274,8 +276,6 @@ public class WriteToExcel {
             row.createCell(cellIndex++).setCellValue(winrow.getIdVisitado());
             
             row.createCell(cellIndex++).setCellValue(winrow.getIdVisitante());
-            
-            row.createCell(cellIndex++).setCellValue(winrow.getJornada());
             
             row.createCell(cellIndex++).setCellValue(winrow.getQualidadeVisitado());
             

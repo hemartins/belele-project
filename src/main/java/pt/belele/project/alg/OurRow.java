@@ -1,9 +1,12 @@
 package pt.belele.project.alg;
 
+import java.util.Date;
+
+import pt.belele.project.entities.Result.ResultType;
 
 public class OurRow {
 
-	Integer jornada;
+	Date data;
 	Long idVisitado;
 	Long idVisitante;
 	String homeTeamName;
@@ -85,7 +88,7 @@ public class OurRow {
 	Integer QLT_numeroJogosVisitante;
 	Integer result;
 
-	public OurRow(Integer jornada, Long idVisitado, Long idVisitante, String homeTeamName, String awayTeamName,
+	public OurRow(Date data, Long idVisitado, Long idVisitante, String homeTeamName, String awayTeamName,
 			Double qualidadeVisitado, Double qualidadeVisitante,
 			Integer fR_diasDescansoVisitado, Integer fR_diasDescansoVisitante,
 			Double fR_ratingResultadoVisitado,
@@ -111,7 +114,7 @@ public class OurRow {
 			Integer cicloPerna_HistoricosVisitado,
 			Integer cicloPerna_HistoricosVisitante) {
 
-		this.jornada = jornada;
+		this.data = data;
 		this.idVisitado = idVisitado;
 		this.idVisitante = idVisitante;
 		this.homeTeamName = homeTeamName;
@@ -157,12 +160,12 @@ public class OurRow {
 		this.result = result;
 	}
 
-	public Integer getJornada() {
-		return jornada;
+	public Date getData() {
+		return data;
 	}
 
-	public void setJornada(Integer jornada) {
-		this.jornada = jornada;
+	public void setData(Date data) {
+		this.data = data;
 	}
 
 	public Long getIdVisitado() {
@@ -332,51 +335,51 @@ public class OurRow {
 	
 	
 	public Integer getCicloPerna_numeroJogosVisitado() {
-		return CicloPerna_numeroJogosVisitado;
+		return Ciclo_numeroJogosVisitado;
 	}
 
 	public void setCicloPerna_numeroJogosVisitado(Integer ciclo_numeroJogosVisitado) {
-		CicloPerna_numeroJogosVisitado = ciclo_numeroJogosVisitado;
+		Ciclo_numeroJogosVisitado = ciclo_numeroJogosVisitado;
 	}
 
 	public Integer getCicloPerna_numeroJogosVisitante() {
-		return CicloPerna_numeroJogosVisitante;
+		return Ciclo_numeroJogosVisitante;
 	}
 
 	public void setCicloPerna_numeroJogosVisitante(Integer ciclo_numeroJogosVisitante) {
-		CicloPerna_numeroJogosVisitante = ciclo_numeroJogosVisitante;
+		Ciclo_numeroJogosVisitante = ciclo_numeroJogosVisitante;
 	}
 
 	public Double getCicloPerna_dificuldadeVisitado() {
-		return CicloPerna_dificuldadeVisitado;
+		return Ciclo_dificuldadeVisitado;
 	}
 
 	public void setCicloPerna_dificuldadeVisitado(Double ciclo_dificuldadeVisitado) {
-		CicloPerna_dificuldadeVisitado = ciclo_dificuldadeVisitado;
+		Ciclo_dificuldadeVisitado = ciclo_dificuldadeVisitado;
 	}
 
 	public Double getCicloPerna_dificuldadeVisitante() {
-		return CicloPerna_dificuldadeVisitante;
+		return Ciclo_dificuldadeVisitante;
 	}
 
 	public void setCicloPerna_dificuldadeVisitante(Double ciclo_dificuldadeVisitante) {
-		CicloPerna_dificuldadeVisitante = ciclo_dificuldadeVisitante;
+		Ciclo_dificuldadeVisitante = ciclo_dificuldadeVisitante;
 	}
 
 	public Integer getCicloPerna_HistoricosVisitado() {
-		return CicloPerna_HistoricosVisitado;
+		return Ciclo_HistoricosVisitado;
 	}
 
 	public void setCicloPerna_HistoricosVisitado(Integer ciclo_HistoricosVisitado) {
-		CicloPerna_HistoricosVisitado = ciclo_HistoricosVisitado;
+		Ciclo_HistoricosVisitado = ciclo_HistoricosVisitado;
 	}
 
 	public Integer getCicloPerna_HistoricosVisitante() {
-		return CicloPerna_HistoricosVisitante;
+		return Ciclo_HistoricosVisitante;
 	}
 
 	public void setCicloPerna_HistoricosVisitante(Integer ciclo_HistoricosVisitante) {
-		CicloPerna_HistoricosVisitante = ciclo_HistoricosVisitante;
+		Ciclo_HistoricosVisitante = ciclo_HistoricosVisitante;
 	}
 	
 	

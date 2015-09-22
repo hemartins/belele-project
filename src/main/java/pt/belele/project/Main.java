@@ -1,6 +1,7 @@
 package pt.belele.project;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -71,10 +72,7 @@ public class Main {
 		
 		SeasonController sc = new SeasonController(em);
 		Season s = sc.createSeason("I1", 14);
-		runAlgorithm(s, em, "/Users/p056913/Desktop/", true, true);
-		
-		s = sc.createSeason("I1", 13);
-		runAlgorithm(s, em, "/Users/p056913/Desktop/", true, true);
+		runAlgorithm(s, em, "/Users/Ricardo/Desktop/", true, true);
 	}
 
 	private static void runAlgorithm(Season s, EntityManager em,
@@ -101,7 +99,7 @@ public class Main {
 			System.out.println(f.toString());
 
 			if (f.getDate()
-					.before(formatter.parseDateTime("01/11/"+s.getYear()).toDate()))
+					.before(formatter.parseDateTime("01/12/"+s.getYear()).toDate()))
 				continue;
 
 			Algorithm homeTeam = new Algorithm(f.getHomeTeam(), em);
@@ -114,13 +112,18 @@ public class Main {
 			ratings.add(0.1);
 			
 			List<Double> ratingsH2H = new ArrayList<Double>();
-			ratingsH2H.add(0.3);
-			ratingsH2H.add(0.25);
 			ratingsH2H.add(0.2);
-			ratingsH2H.add(0.15);
+			ratingsH2H.add(0.19);
+			ratingsH2H.add(0.17);
+			ratingsH2H.add(0.14);
 			ratingsH2H.add(0.1);
+			ratingsH2H.add(0.06);
+			ratingsH2H.add(0.05);
+			ratingsH2H.add(0.04);
+			ratingsH2H.add(0.03);
+			ratingsH2H.add(0.02);
 
-			Integer jornada = 0;
+			Date data = f.getDate();
 			Long idVisitado = f.getHomeTeam().getId();
 			Long idVisitante = f.getAwayTeam().getId();
 			Double qualidadeVisitado = homeTeam.getTeamQuality(s, f.getDate());
@@ -154,7 +157,7 @@ public class Main {
 					.getCycleHardGamesNumber(homeWinCycle, historicos);
 			Integer awayLoseCycle_HistoricosVisitante = awayTeam
 					.getCycleHardGamesNumber(awayLoseCycle, historicos);
-			H2H h2hRatings = homeTeam.getH2HRating(f, ratingsH2H, Venue.HOME,
+			H2H h2hRatings = homeTeam.getH2HRating(f, ratings, Venue.HOME,
 					ResultType.WIN);
 			Double h2hWin_ratingVitorias = h2hRatings.getRating();
 			Integer h2hWin_numeroJogos = h2hRatings.getSize();
@@ -180,7 +183,7 @@ public class Main {
 					.getCycleHardGamesNumber(homeDrawCycle, historicos);
 			Integer awayDrawCycle_HistoricosVisitante = awayTeam
 					.getCycleHardGamesNumber(awayDrawCycle, historicos);
-			h2hRatings = homeTeam.getH2HRating(f, ratingsH2H, Venue.HOME,
+			h2hRatings = homeTeam.getH2HRating(f, ratings, Venue.HOME,
 					ResultType.DRAW);
 			Double h2hDraw_rating = h2hRatings.getRating();
 			Integer h2hDraw_numeroJogos = h2hRatings.getSize();
@@ -204,7 +207,7 @@ public class Main {
 					.getCycleHardGamesNumber(homeLoseCycle, historicos);
 			Integer awayWinCycle_HistoricosVisitante = awayTeam
 					.getCycleHardGamesNumber(awayWinCycle, historicos);
-			h2hRatings = homeTeam.getH2HRating(f, ratingsH2H, Venue.HOME,
+			h2hRatings = homeTeam.getH2HRating(f, ratings, Venue.HOME,
 					ResultType.LOSE);
 			Double h2hLose_rating = h2hRatings.getRating();
 			Integer h2hLose_numeroJogos = h2hRatings.getSize();
@@ -289,7 +292,7 @@ public class Main {
 				Integer qLT_numeroJogosVisitante = awayTR
 						.getResultIntervalGames();
 
-				OurRow wohwr = new OurRow(jornada, idVisitado, idVisitante, f
+				OurRow wohwr = new OurRow(data, idVisitado, idVisitante, f
 						.getHomeTeam().getName(), f.getAwayTeam().getName(),
 						qualidadeVisitado, qualidadeVisitante,
 						fR_diasDescansoVisitado, fR_diasDescansoVisitante,
@@ -339,7 +342,7 @@ public class Main {
 				qLT_numeroJogosVisitado = homeTR.getResultIntervalGames();
 				qLT_numeroJogosVisitante = awayTR.getResultIntervalGames();
 
-				OurRow dohwr = new OurRow(jornada, idVisitado, idVisitante, f
+				OurRow dohwr = new OurRow(data, idVisitado, idVisitante, f
 						.getHomeTeam().getName(), f.getAwayTeam().getName(),
 						qualidadeVisitado, qualidadeVisitante,
 						fR_diasDescansoVisitado, fR_diasDescansoVisitante,
@@ -388,7 +391,7 @@ public class Main {
 				qLT_numeroJogosVisitado = homeTR.getResultIntervalGames();
 				qLT_numeroJogosVisitante = awayTR.getResultIntervalGames();
 
-				OurRow lohwr = new OurRow(jornada, idVisitado, idVisitante, f
+				OurRow lohwr = new OurRow(data, idVisitado, idVisitante, f
 						.getHomeTeam().getName(), f.getAwayTeam().getName(),
 						qualidadeVisitado, qualidadeVisitante,
 						fR_diasDescansoVisitado, fR_diasDescansoVisitante,
@@ -420,7 +423,7 @@ public class Main {
 			}
 
 			if (generateProf) {
-				ProfRow wphwr = new ProfRow(jornada, idVisitado, idVisitante, f
+				ProfRow wphwr = new ProfRow(data, idVisitado, idVisitante, f
 						.getHomeTeam().getName(), f.getAwayTeam().getName(),
 						qualidadeVisitado, qualidadeVisitante,
 						fR_diasDescansoVisitado, fR_diasDescansoVisitante,
@@ -438,7 +441,7 @@ public class Main {
 
 				ProfWinDataList.add(wphwr);
 
-				ProfRow dphwr = new ProfRow(jornada, idVisitado, idVisitante, f
+				ProfRow dphwr = new ProfRow(data, idVisitado, idVisitante, f
 						.getHomeTeam().getName(), f.getAwayTeam().getName(),
 						qualidadeVisitado, qualidadeVisitante,
 						fR_diasDescansoVisitado, fR_diasDescansoVisitante,
@@ -456,7 +459,7 @@ public class Main {
 
 				ProfDrawDataList.add(dphwr);
 
-				ProfRow lphwr = new ProfRow(jornada, idVisitado, idVisitante, f
+				ProfRow lphwr = new ProfRow(data, idVisitado, idVisitante, f
 						.getHomeTeam().getName(), f.getAwayTeam().getName(),
 						qualidadeVisitado, qualidadeVisitante,
 						fR_diasDescansoVisitado, fR_diasDescansoVisitante,

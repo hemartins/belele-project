@@ -1,8 +1,10 @@
 package pt.belele.project.alg;
 
+import java.util.Date;
+
 public class ProfRow {
 
-	Integer jornada;
+	Date data;
 	Long idVisitado;
 	Long idVisitante;
 	String homeTeamName;
@@ -41,7 +43,7 @@ public class ProfRow {
 	Integer H2H_numeroJogos;
 	Integer result;
 
-	public ProfRow(Integer jornada, Long idVisitado, Long idVisitante, String homeTeamName, String awayTeamName,
+	public ProfRow(Date data, Long idVisitado, Long idVisitante, String homeTeamName, String awayTeamName,
 			Double qualidadeVisitado, Double qualidadeVisitante,
 			Integer fR_diasDescansoVisitado, Integer fR_diasDescansoVisitante,
 			Double fR_ratingResultadoVisitado,
@@ -55,7 +57,7 @@ public class ProfRow {
 			Integer ciclo_HistoricosVisitante, Double h2h_ratingResultado,
 			Integer h2h_numeroJogos, Integer result) {
 
-		this.jornada = jornada;
+		this.data = data;
 		this.idVisitado = idVisitado;
 		this.idVisitante = idVisitante;
 		this.homeTeamName = homeTeamName;
@@ -81,12 +83,12 @@ public class ProfRow {
 		this.result = result;
 	}
 
-	public Integer getJornada() {
-		return jornada;
+	public Date getData() {
+		return data;
 	}
 
-	public void setJornada(Integer jornada) {
-		this.jornada = jornada;
+	public void setData(Date data) {
+		this.data = data;
 	}
 
 	public Long getIdVisitado() {
@@ -276,7 +278,7 @@ public class ProfRow {
 
 	@Override
 	public String toString() {
-		return "ProfHomeWinRow [jornada=" + jornada + ", idVisitado="
+		return "ProfHomeWinRow [data=" + data + ", idVisitado="
 				+ idVisitado + ", idVisitante=" + idVisitante
 				+ ", qualidadeVisitado=" + qualidadeVisitado
 				+ ", qualidadeVisitante=" + qualidadeVisitante
