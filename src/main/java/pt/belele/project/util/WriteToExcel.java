@@ -127,7 +127,7 @@ public class WriteToExcel {
         	
         	cellIndex = 0;
             
-        	row.createCell(cellIndex++).setCellValue(winrow.getData());
+        	row.createCell(cellIndex++).setCellValue(winrow.getData().getDate()+"-"+(winrow.getData().getMonth()+1)+"-"+(winrow.getData().getYear()+1900));
         	
             row.createCell(cellIndex++).setCellValue(winrow.getHomeTeamName());
             
@@ -203,9 +203,9 @@ public class WriteToExcel {
             
             row.createCell(cellIndex++).setCellValue(winrow.getCicloPerna_HistoricosVisitante());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getfR_ratingQualidadeResultadoVisitado());
+            row.createCell(cellIndex++).setCellValue(winrow.getFR_ratingQualidadeResultadoVisitado());
 
-            row.createCell(cellIndex++).setCellValue(winrow.getfR_ratingQualidadeResultadoVisitante());
+            row.createCell(cellIndex++).setCellValue(winrow.getFR_ratingQualidadeResultadoVisitante());
 
         }
 

@@ -42,26 +42,6 @@ public class OurRow {
 										// enfrentou durante esse ciclo
 	Integer Ciclo_HistoricosVisitante;
 	
-	
-	
-	
-	Integer CicloPerna_numeroJogosVisitado; // número de jogos que a equipa venceu
-	// seguidos (ex: caso não tenha vencido
-	// nenhum dos últimos 3 jogos é =-3;
-	// caso tenha vencido os últimos 5 jogos
-	// =5;
-	Integer CicloPerna_numeroJogosVisitante;
-	Double CicloPerna_dificuldadeVisitado; // média das qualidades dos adversários
-	// desse que a equipa enfrentou nesse
-	// ciclo
-	Double CicloPerna_dificuldadeVisitante;
-	Integer CicloPerna_HistoricosVisitado; // número de históricos que a equipa
-	// enfrentou durante esse ciclo
-	Integer CicloPerna_HistoricosVisitante;
-	
-	
-	
-	
 	Double H2H_ratingResultado; // pontuação por cada vitória obtida nos últimos
 								// jogos entre essas equipas
 	Integer H2H_numeroJogos;
@@ -88,24 +68,44 @@ public class OurRow {
 	Integer QLT_numeroJogosVisitante;
 	Integer result;
 	
-	Double fR_ratingQualidadeResultadoVisitado;
-	public Double getfR_ratingQualidadeResultadoVisitado() {
-		return fR_ratingQualidadeResultadoVisitado;
+	
+	
+	Integer CicloPerna_numeroJogosVisitado; // número de jogos que a equipa venceu
+	// seguidos (ex: caso não tenha vencido
+	// nenhum dos últimos 3 jogos é =-3;
+	// caso tenha vencido os últimos 5 jogos
+	// =5;
+	Integer CicloPerna_numeroJogosVisitante;
+	Double CicloPerna_dificuldadeVisitado; // média das qualidades dos adversários
+	// desse que a equipa enfrentou nesse
+	// ciclo
+	Double CicloPerna_dificuldadeVisitante;
+	Integer CicloPerna_HistoricosVisitado; // número de históricos que a equipa
+	// enfrentou durante esse ciclo
+	Integer CicloPerna_HistoricosVisitante;
+	
+	Double FR_ratingQualidadeResultadoVisitado;
+	Double FR_ratingQualidadeResultadoVisitante;
+	
+	
+	
+	public Double getFR_ratingQualidadeResultadoVisitado() {
+		return FR_ratingQualidadeResultadoVisitado;
 	}
 
-	public void setfR_ratingQualidadeResultadoVisitado(Double fR_ratingQualidadeResultadoVisitado) {
-		this.fR_ratingQualidadeResultadoVisitado = fR_ratingQualidadeResultadoVisitado;
+	public void setFR_ratingQualidadeResultadoVisitado(Double fR_ratingQualidadeResultadoVisitado) {
+		this.FR_ratingQualidadeResultadoVisitado = fR_ratingQualidadeResultadoVisitado;
 	}
 
-	public Double getfR_ratingQualidadeResultadoVisitante() {
-		return fR_ratingQualidadeResultadoVisitante;
+	public Double getFR_ratingQualidadeResultadoVisitante() {
+		return FR_ratingQualidadeResultadoVisitante;
 	}
 
-	public void setfR_ratingQualidadeResultadoVisitante(Double fR_ratingQualidadeResultadoVisitante) {
-		this.fR_ratingQualidadeResultadoVisitante = fR_ratingQualidadeResultadoVisitante;
+	public void setFR_ratingQualidadeResultadoVisitante(Double fR_ratingQualidadeResultadoVisitante) {
+		this.FR_ratingQualidadeResultadoVisitante = fR_ratingQualidadeResultadoVisitante;
 	}
 
-	Double fR_ratingQualidadeResultadoVisitante;
+	
 
 	public OurRow(Date data, Long idVisitado, Long idVisitante, String homeTeamName, String awayTeamName,
 			Double qualidadeVisitado, Double qualidadeVisitante,
@@ -156,18 +156,6 @@ public class OurRow {
 		Ciclo_dificuldadeVisitante = ciclo_dificuldadeVisitante;
 		Ciclo_HistoricosVisitado = ciclo_HistoricosVisitado;
 		Ciclo_HistoricosVisitante = ciclo_HistoricosVisitante;
-		
-		
-		CicloPerna_numeroJogosVisitado = ciclo_numeroJogosVisitado;
-		CicloPerna_numeroJogosVisitante = ciclo_numeroJogosVisitante;
-		CicloPerna_dificuldadeVisitado = ciclo_dificuldadeVisitado;
-		CicloPerna_dificuldadeVisitante = ciclo_dificuldadeVisitante;
-		CicloPerna_HistoricosVisitado = ciclo_HistoricosVisitado;
-		CicloPerna_HistoricosVisitante = ciclo_HistoricosVisitante;
-		
-		
-		
-		
 		H2H_ratingResultado = h2h_ratingResultado;
 		H2H_numeroJogos = h2h_numeroJogos;
 		QLT_percentagemResultadoVisitado = qLT_percentagemResultadoVisitado;
@@ -179,6 +167,16 @@ public class OurRow {
 		QLT_numeroJogosVisitado = qLT_numeroJogosVisitado;
 		QLT_numeroJogosVisitante = qLT_numeroJogosVisitante;
 		this.result = result;
+		
+		
+		CicloPerna_numeroJogosVisitado = ciclo_numeroJogosVisitado;
+		CicloPerna_numeroJogosVisitante = ciclo_numeroJogosVisitante;
+		CicloPerna_dificuldadeVisitado = ciclo_dificuldadeVisitado;
+		CicloPerna_dificuldadeVisitante = ciclo_dificuldadeVisitante;
+		CicloPerna_HistoricosVisitado = ciclo_HistoricosVisitado;
+		CicloPerna_HistoricosVisitante = ciclo_HistoricosVisitante;
+		FR_ratingQualidadeResultadoVisitado = fR_ratingQualidadeResultadoVisitado;
+		FR_ratingQualidadeResultadoVisitante = fR_ratingQualidadeResultadoVisitante;
 	}
 
 	public Date getData() {

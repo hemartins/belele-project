@@ -91,6 +91,27 @@ public class Main {
 		historicos.add("Milan");
 		historicos.add("Napoli");
 		historicos.add("Inter");
+		
+		List<Double> ratings = new ArrayList<Double>();
+		ratings.add(0.3);
+		ratings.add(0.25);
+		ratings.add(0.2);
+		ratings.add(0.15);
+		ratings.add(0.1);
+
+		List<Double> ratingsH2H = new ArrayList<Double>();
+		ratingsH2H.add(0.2);
+		ratingsH2H.add(0.19);
+		ratingsH2H.add(0.17);
+		ratingsH2H.add(0.14);
+		ratingsH2H.add(0.1);
+		ratingsH2H.add(0.06);
+		ratingsH2H.add(0.05);
+		ratingsH2H.add(0.04);
+		ratingsH2H.add(0.03);
+		ratingsH2H.add(0.02);
+		
+		double interval = 0.15;
 
 		for (Fixture f : s.getFixtures()) {
 
@@ -101,24 +122,6 @@ public class Main {
 
 			Algorithm homeTeam = new Algorithm(f.getHomeTeam(), em);
 			Algorithm awayTeam = new Algorithm(f.getAwayTeam(), em);
-			List<Double> ratings = new ArrayList<Double>();
-			ratings.add(0.3);
-			ratings.add(0.25);
-			ratings.add(0.2);
-			ratings.add(0.15);
-			ratings.add(0.1);
-
-			List<Double> ratingsH2H = new ArrayList<Double>();
-			ratingsH2H.add(0.2);
-			ratingsH2H.add(0.19);
-			ratingsH2H.add(0.17);
-			ratingsH2H.add(0.14);
-			ratingsH2H.add(0.1);
-			ratingsH2H.add(0.06);
-			ratingsH2H.add(0.05);
-			ratingsH2H.add(0.04);
-			ratingsH2H.add(0.03);
-			ratingsH2H.add(0.02);
 
 			Date data = f.getDate();
 			Long idVisitado = f.getHomeTeam().getId();
@@ -231,8 +234,8 @@ public class Main {
 			// FIM RATING COM QUALIDADE DO ADVERSARIO
 
 			if (generateOurs) {
-				TeamRating homeTR = homeTeam.getResultPercentage(f, Venue.HOME, ResultType.WIN, 0.15);
-				TeamRating awayTR = awayTeam.getResultPercentage(f, Venue.AWAY, ResultType.LOSE, 0.15);
+				TeamRating homeTR = homeTeam.getResultPercentage(f, Venue.HOME, ResultType.WIN, interval);
+				TeamRating awayTR = awayTeam.getResultPercentage(f, Venue.AWAY, ResultType.LOSE, interval);
 				Double qLT_percentagemVitoriasVisitado = homeTR.getResultPercentage();
 				Double qLT_percentagemDerrotasVisitante = awayTR.getResultPercentage();
 				Double qLT_dificuldadeVitoriasVisitado = homeTR.getQualityAverage();
@@ -260,8 +263,8 @@ public class Main {
 
 				OurWinDataList.add(wohwr);
 
-				homeTR = homeTeam.getResultPercentage(f, Venue.HOME, ResultType.DRAW, 0.15);
-				awayTR = awayTeam.getResultPercentage(f, Venue.AWAY, ResultType.DRAW, 0.15);
+				homeTR = homeTeam.getResultPercentage(f, Venue.HOME, ResultType.DRAW, interval);
+				awayTR = awayTeam.getResultPercentage(f, Venue.AWAY, ResultType.DRAW, interval);
 				Double qLT_percentagemEmpatesVisitado = homeTR.getResultPercentage();
 				Double qLT_percentagemEmpatesVisitante = awayTR.getResultPercentage();
 				Double qLT_dificuldadeEmpatesVisitado = homeTR.getQualityAverage();
@@ -285,12 +288,12 @@ public class Main {
 						homeDrawCyclePerna_numeroJogosVisitado, awayDrawCyclePerna_numeroJogosVisitante,
 						homeDrawCyclePerna_dificuldadeVisitado, awayDrawCyclePerna_dificuldadeVisitante,
 						homeDrawCyclePerna_HistoricosVisitado, awayDrawCyclePerna_HistoricosVisitante,
-						fR_ratingQualidadeVitoriasVisitado, fR_ratingQualidadeVitoriasVisitante);
+						fR_ratingQualidadeEmpatesVisitado, fR_ratingQualidadeEmpatesVisitante);
 
 				OurDrawDataList.add(dohwr);
 
-				homeTR = homeTeam.getResultPercentage(f, Venue.HOME, ResultType.LOSE, 0.15);
-				awayTR = awayTeam.getResultPercentage(f, Venue.AWAY, ResultType.WIN, 0.15);
+				homeTR = homeTeam.getResultPercentage(f, Venue.HOME, ResultType.LOSE, interval);
+				awayTR = awayTeam.getResultPercentage(f, Venue.AWAY, ResultType.WIN, interval);
 				Double qLT_percentagemDerrotasVisitado = homeTR.getResultPercentage();
 				Double qLT_percentagemVitoriasVisitante = awayTR.getResultPercentage();
 				Double qLT_dificuldadeDerrotasVisitado = homeTR.getQualityAverage();
