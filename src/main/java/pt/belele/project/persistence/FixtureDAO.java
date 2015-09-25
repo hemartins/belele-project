@@ -16,12 +16,10 @@ public class FixtureDAO extends GenericDAO<Fixture> {
 		super(em);
 	}
 
-	public Fixture findFixture(Date date, Long seasonId, Long homeTeamId,
-			Long awayTeamId) {
-		TypedQuery<Fixture> query = em
-				.createQuery(
-						"SELECT f from Fixture f WHERE f.date=:date AND f.season.id = :seasonId AND f.homeTeam.id = :homeTeamId AND f.awayTeam.id = :awayTeamId",
-						Fixture.class);
+	public Fixture findFixture(Date date, Long seasonId, Long homeTeamId, Long awayTeamId) {
+		TypedQuery<Fixture> query = em.createQuery(
+				"SELECT f from Fixture f WHERE f.date=:date AND f.season.id = :seasonId AND f.homeTeam.id = :homeTeamId AND f.awayTeam.id = :awayTeamId",
+				Fixture.class);
 		query.setParameter("date", date);
 		query.setParameter("seasonId", seasonId);
 		query.setParameter("homeTeamId", homeTeamId);
@@ -30,21 +28,20 @@ public class FixtureDAO extends GenericDAO<Fixture> {
 	}
 
 	public Fixture findFixtureBeforeDate(Date date, Long seasonId, Long teamId) {
-		TypedQuery<Fixture> query = em
-				.createQuery(
-						"SELECT f from Fixture f WHERE f.date < :date AND f.season.id = :seasonId AND (f.homeTeam.id = :teamId OR f.awayTeam.id = :teamId) ORDER BY f.date DESC",
-						Fixture.class);
+		TypedQuery<Fixture> query = em.createQuery(
+				"SELECT f from Fixture f WHERE f.date < :date AND f.season.id = :seasonId AND (f.homeTeam.id = :teamId OR f.awayTeam.id = :teamId) ORDER BY f.date DESC",
+				Fixture.class);
 		query.setParameter("date", date);
 		query.setParameter("seasonId", seasonId);
 		query.setParameter("teamId", teamId);
 		query.setMaxResults(1);
-		
+
 		return query.getSingleResult();
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Fixture> findFixturesBeforeDate(Date date, Long seasonId,
-			Long teamId, Venue venue, Integer numberOfFixtures) {
+	public List<Fixture> findFixturesBeforeDate(Date date, Long seasonId, Long teamId, Venue venue,
+			Integer numberOfFixtures) {
 		String sql = "SELECT f from Fixture f WHERE f.date < :date AND f.season.id = :seasonId ";
 
 		if (venue != null) {
@@ -67,24 +64,17 @@ public class FixtureDAO extends GenericDAO<Fixture> {
 		query.setParameter("date", date);
 		query.setParameter("seasonId", seasonId);
 		query.setParameter("teamId", teamId);
-		
-		if(numberOfFixtures != null)
+
+		if (numberOfFixtures != null)
 			query.setMaxResults(numberOfFixtures);
-		
-		List<Fixture> fixtures = query.getResultList();
-		return fixtures;
-//		if (numberOfFixtures == null)
-//			return fixtures;
-//		else
-//			return fixtures.subList(
-//					fixtures.size() - numberOfFixtures > 0 ? fixtures.size()
-//							- numberOfFixtures : 0, fixtures.size());
+
+		return query.getResultList();
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	public List<Fixture> getH2H(long homeTeamId, long awayTeamId, Date date, int numberOfGames)
-	{
-		Query query = em.createQuery("SELECT f FROM Fixture f WHERE f.homeTeam.id = :homeId AND f.awayTeam.id = :awayId AND f.date < :date ORDER BY f.date DESC");
+	public List<Fixture> getH2H(long homeTeamId, long awayTeamId, Date date, int numberOfGames) {
+		Query query = em.createQuery(
+				"SELECT f FROM Fixture f WHERE f.homeTeam.id = :homeId AND f.awayTeam.id = :awayId AND f.date < :date ORDER BY f.date DESC");
 		query.setParameter("homeId", homeTeamId);
 		query.setParameter("awayId", awayTeamId);
 		query.setParameter("date", date);

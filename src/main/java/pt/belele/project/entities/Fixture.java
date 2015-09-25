@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -86,10 +87,19 @@ public class Fixture implements Serializable {
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "id", nullable = false)
 	private Team awayTeam;
+	
+	@ManyToMany(targetEntity=Bet.class)
+	private List<Bet> bets;
 
 	@Embedded
 	private Result result;
+	
+	@Embedded
+	private Odd backOdd;
 
+	@Embedded
+	private Odd layOdd;
+	
 	@OneToMany(orphanRemoval=true)
     @JoinColumn(name="id")
 	private List<Fixture> h2h;
@@ -97,13 +107,15 @@ public class Fixture implements Serializable {
 	public Fixture() {
 	}
 
-	public Fixture(Date date, Season season, Team homeTeam, Team awayTeam, Result result) {
+	public Fixture(Date date, Season season, Team homeTeam, Team awayTeam, Result result, Odd backOdd, Odd layOdd) {
 		this.date = date;
 		this.season = season;
 		this.homeTeam = homeTeam;
 		this.awayTeam = awayTeam;
 		this.result = result;
 		this.status = FixtureStatus.FINISHED;
+		this.backOdd = backOdd;
+		this.layOdd = layOdd;
 	}
 
 	public long getId() {
@@ -168,6 +180,30 @@ public class Fixture implements Serializable {
 
 	public void setH2h(List<Fixture> h2h) {
 		this.h2h = h2h;
+	}
+
+	public Odd getBackOdd() {
+		return backOdd;
+	}
+
+	public void setBackOdd(Odd backOdd) {
+		this.backOdd = backOdd;
+	}
+
+	public Odd getLayOdd() {
+		return layOdd;
+	}
+
+	public void setLayOdd(Odd layOdd) {
+		this.layOdd = layOdd;
+	}
+
+	public List<Bet> getBets() {
+		return bets;
+	}
+
+	public void setBets(List<Bet> bets) {
+		this.bets = bets;
 	}
 
 	@Override

@@ -42,7 +42,7 @@ public class ProfRow {
 								// jogos entre essas equipas
 	Integer H2H_numeroJogos;
 	Integer result;
-
+	
 	public ProfRow(Date data, Long idVisitado, Long idVisitante, String homeTeamName, String awayTeamName,
 			Double qualidadeVisitado, Double qualidadeVisitante,
 			Integer fR_diasDescansoVisitado, Integer fR_diasDescansoVisitante,

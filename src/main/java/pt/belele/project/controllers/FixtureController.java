@@ -8,6 +8,7 @@ import javax.persistence.NoResultException;
 
 import pt.belele.project.entities.Fixture;
 import pt.belele.project.entities.Fixture.Venue;
+import pt.belele.project.entities.Odd;
 import pt.belele.project.entities.Result;
 import pt.belele.project.entities.Season;
 import pt.belele.project.entities.Team;
@@ -25,7 +26,9 @@ public class FixtureController {
 		try {
 			fixtureDAO.findFixture(date, s.getId(), home.getId(), away.getId());
 		} catch (NoResultException e) {
-			Fixture f = new Fixture(date, s, home, away, result);
+			//CALCULAR BACK E LAY ODS
+			Odd o = new Odd();
+			Fixture f = new Fixture(date, s, home, away, result, o, o);
 			f.setH2h(fixtureDAO.getH2H(f.getHomeTeam().getId(), f.getAwayTeam()
 					.getId(), f.getDate(),10));
 			fixtureDAO.insert(f);
