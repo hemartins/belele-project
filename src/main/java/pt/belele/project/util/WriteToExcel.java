@@ -3,6 +3,7 @@ package pt.belele.project.util;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.apache.poi.ss.usermodel.Row;
@@ -16,6 +17,7 @@ import pt.belele.project.alg.ProfRow;
 public class WriteToExcel {
 	
 	private String filePath = "/Users/JRicardoRG/Desktop/";
+	private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	
 	public WriteToExcel(String filePath)
 	{
@@ -127,7 +129,7 @@ public class WriteToExcel {
         	
         	cellIndex = 0;
             
-        	row.createCell(cellIndex++).setCellValue(winrow.getData().getDate()+"-"+(winrow.getData().getMonth()+1)+"-"+(winrow.getData().getYear()+1900));
+        	row.createCell(cellIndex++).setCellValue(sdf.format(winrow.getData()));
         	
             row.createCell(cellIndex++).setCellValue(winrow.getHomeTeamName());
             
