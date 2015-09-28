@@ -38,6 +38,9 @@ public class CSVReader {
 							" , fullTimeAway=" + fixture[5] +
 //						" , halfTimeHome=" + fixture[7] +
 //						" , halfTimeAway=" + fixture[8] +
+							" , Home Win Odd=" + fixture[22] +
+							" , Draw Odd=" + fixture[23] +
+							" , Away Win Odd=" + fixture[24] +
 							"]");
 				
 					list.add(fixture);

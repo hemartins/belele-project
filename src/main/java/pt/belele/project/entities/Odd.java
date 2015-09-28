@@ -5,35 +5,69 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class Odd {
 
-	private Double homeWin;
-	private Double draw;
-	private Double awayWin;
+	private Double backHomeWin;
+	private Double backDraw;
+	private Double backAwayWin;
+	private Double layHomeWin;
+	private Double layDraw;
+	private Double layAwayWin;
 	
 	public Odd() {
 
 	}
-
-	public Double getHomeWin() {
-		return homeWin;
+	
+	public Odd(Double backHomeWin, Double backDraw, Double backAwayWin) {
+		this.backHomeWin = backHomeWin;
+		this.backDraw = backDraw;
+		this.backAwayWin = backAwayWin;
 	}
 
-	public void setHomeWin(Double homeWin) {
-		this.homeWin = homeWin;
+	public Double getBackHomeWin() {
+		return backHomeWin;
 	}
 
-	public Double getDraw() {
-		return draw;
+	public void setBackHomeWin(Double backHomeWin) {
+		this.backHomeWin = backHomeWin;
 	}
 
-	public void setDraw(Double draw) {
-		this.draw = draw;
+	public Double getBackDraw() {
+		return backDraw;
 	}
 
-	public Double getAwayWin() {
-		return awayWin;
+	public void setBackDraw(Double backDraw) {
+		this.backDraw = backDraw;
 	}
 
-	public void setAwayWin(Double awayWin) {
-		this.awayWin = awayWin;
+	public Double getBackAwayWin() {
+		return backAwayWin;
 	}
+
+	public void setBackAwayWin(Double awayWin) {
+		this.backAwayWin = awayWin;
+	}
+
+	public Double getLayHomeWin() {
+		return layHomeWin;
+	}
+
+	public void setLayHomeWin(Double layHomeWin) {
+		this.layHomeWin = layHomeWin;
+	}
+
+	public Double getLayDraw() {
+		return layDraw;
+	}
+
+	public void setLayDraw(Double layDraw) {
+		this.layDraw = layDraw;
+	}
+
+	public Double getLayAwayWin() {
+		return layAwayWin;
+	}
+
+	public void setLayAwayWin(Double layAwayWin) {
+		this.layAwayWin = layAwayWin;
+	}
+	
 }

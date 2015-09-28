@@ -1,5 +1,6 @@
 package pt.belele.project.alg;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -275,7 +276,8 @@ public class Algorithm {
 		double rating = 0;
 
 		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team, nextFixture.getSeason(),
-				nextFixture.getDate(), venue, numberOfFixtures);
+				nextFixture.getDate(), venue, numberOfFixtures);		
+		
 		for (int i = 0; i < fixtures.size(); i++) {
 			Fixture f = fixtures.get(i);
 			if (getResultType(f).equals(type)) {
@@ -291,6 +293,8 @@ public class Algorithm {
 
 		return rating;
 	}
+	
+	
 
 	/****************/
 	/* AUX METHODS */

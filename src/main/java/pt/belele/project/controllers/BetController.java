@@ -1,19 +1,25 @@
 package pt.belele.project.controllers;
 
 import pt.belele.project.entities.Bet;
-import pt.belele.project.entities.Result.ResultType;
+import pt.belele.project.entities.Bet.MatchOddsBet;
 
 public class BetController {
-	public Double calculateOdd(Bet bet, ResultType result) {
+	public Double calculateOdd(Bet bet, MatchOddsBet matchOddsBet) {
 		switch (bet.getBetType()) {
 		case SIMPLE:
-			switch (result) {
+			switch (matchOddsBet) {
 			case WIN:
-				return bet.getFixtures().get(0).getBackOdd().getHomeWin();
+				return bet.getFixtures().get(0).getOdd().getBackHomeWin();
 			case DRAW:
-				return bet.getFixtures().get(0).getBackOdd().getDraw();
+				return bet.getFixtures().get(0).getOdd().getBackDraw();
 			case LOSE:
-				return bet.getFixtures().get(0).getBackOdd().getAwayWin();
+				return bet.getFixtures().get(0).getOdd().getBackAwayWin();
+			case DONOTWIN:
+				return bet.getFixtures().get(0).getOdd().getLayHomeWin();
+			case DONOTDRAW:
+				return bet.getFixtures().get(0).getOdd().getLayDraw();
+			case DONOTLOSE:
+				return bet.getFixtures().get(0).getOdd().getLayAwayWin();
 			}
 		default:
 			return null;

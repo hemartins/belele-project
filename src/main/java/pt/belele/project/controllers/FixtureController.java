@@ -22,13 +22,14 @@ public class FixtureController {
 	}
 
 	public Fixture createFixture(Date date, Season s, Team home, Team away,
-			Result result) {
+			Result result, Odd odd) {
 		try {
 			fixtureDAO.findFixture(date, s.getId(), home.getId(), away.getId());
 		} catch (NoResultException e) {
 			//CALCULAR BACK E LAY ODS
-			Odd o = new Odd();
-			Fixture f = new Fixture(date, s, home, away, result, o, o);
+			OddController oddController = new OddController();
+			oddController.calculateLayOddsAsBackOdds(odd);
+			Fixture f = new Fixture(date, s, home, away, result, odd);
 			f.setH2h(fixtureDAO.getH2H(f.getHomeTeam().getId(), f.getAwayTeam()
 					.getId(), f.getDate(),10));
 			fixtureDAO.insert(f);

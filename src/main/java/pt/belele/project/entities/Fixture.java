@@ -94,11 +94,14 @@ public class Fixture implements Serializable {
 	@Embedded
 	private Result result;
 	
-	@Embedded
+	/*@Embedded
 	private Odd backOdd;
 
 	@Embedded
-	private Odd layOdd;
+	private Odd layOdd;*/
+	
+	@Embedded
+	private Odd odd;
 	
 	@OneToMany(orphanRemoval=true)
     @JoinColumn(name="id")
@@ -107,15 +110,16 @@ public class Fixture implements Serializable {
 	public Fixture() {
 	}
 
-	public Fixture(Date date, Season season, Team homeTeam, Team awayTeam, Result result, Odd backOdd, Odd layOdd) {
+	public Fixture(Date date, Season season, Team homeTeam, Team awayTeam, Result result, /*Odd backOdd, Odd layOdd*/ Odd odd) {
 		this.date = date;
 		this.season = season;
 		this.homeTeam = homeTeam;
 		this.awayTeam = awayTeam;
 		this.result = result;
 		this.status = FixtureStatus.FINISHED;
-		this.backOdd = backOdd;
-		this.layOdd = layOdd;
+		/*this.backOdd = backOdd;
+		this.layOdd = layOdd;*/
+		this.odd = odd;
 	}
 
 	public long getId() {
@@ -182,7 +186,7 @@ public class Fixture implements Serializable {
 		this.h2h = h2h;
 	}
 
-	public Odd getBackOdd() {
+	/*public Odd getBackOdd() {
 		return backOdd;
 	}
 
@@ -196,6 +200,14 @@ public class Fixture implements Serializable {
 
 	public void setLayOdd(Odd layOdd) {
 		this.layOdd = layOdd;
+	}*/
+	
+	public Odd getOdd() {
+		return odd;
+	}
+
+	public void setOdd(Odd odd) {
+		this.odd = odd;
 	}
 
 	public List<Bet> getBets() {

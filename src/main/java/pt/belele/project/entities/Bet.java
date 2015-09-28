@@ -42,6 +42,20 @@ public class Bet implements Serializable {
 			return betResult;
 		}
 	}
+	
+	public static enum MatchOddsBet {
+		WIN(0), DRAW(1), LOSE(2), DONOTWIN(3), DONOTDRAW(4), DONOTLOSE(5);
+
+		private int matchOddsBet;
+
+		private MatchOddsBet(int matchOddsBet) {
+			this.matchOddsBet = matchOddsBet;
+		}
+
+		public int getMatchOddsBet() {
+			return matchOddsBet;
+		}
+	}
 
 	@Id
 	@GeneratedValue

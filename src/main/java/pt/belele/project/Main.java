@@ -25,6 +25,7 @@ import pt.belele.project.controllers.util.TeamRating;
 import pt.belele.project.entities.Fixture;
 import pt.belele.project.entities.Fixture.FixtureStatus;
 import pt.belele.project.entities.Fixture.Venue;
+import pt.belele.project.entities.Odd;
 import pt.belele.project.entities.Result;
 import pt.belele.project.entities.Result.ResultType;
 import pt.belele.project.entities.Season;
@@ -40,37 +41,50 @@ public class Main {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("database.odb");
 		EntityManager em = emf.createEntityManager();
 
-		// populateDatabase(em, "I2.csv", "0203", 2);
-		// populateDatabase(em, "I2.csv", "0304", 3);
-		// populateDatabase(em, "I2.csv", "0405", 4);
-		// populateDatabase(em, "I2.csv", "0506", 5);
-		// populateDatabase(em, "I2.csv", "0607", 6);
-		// populateDatabase(em, "I2.csv", "0708", 7);
-		// populateDatabase(em, "I2.csv", "0809", 8);
-		// populateDatabase(em, "I2.csv", "0910", 9);
-		// populateDatabase(em, "I2.csv", "1011", 10);
-		// populateDatabase(em, "I2.csv", "1112", 11);
-		// populateDatabase(em, "I2.csv", "1213", 12);
-		// populateDatabase(em, "I2.csv", "1314", 13);
-		// populateDatabase(em, "I2.csv", "1415", 14);
-		//
-		// populateDatabase(em, "I1.csv", "0203", 2);
-		// populateDatabase(em, "I1.csv", "0304", 3);
-		// populateDatabase(em, "I1.csv", "0405", 4);
-		// populateDatabase(em, "I1.csv", "0506", 5);
-		// populateDatabase(em, "I1.csv", "0607", 6);
-		// populateDatabase(em, "I1.csv", "0708", 7);
-		// populateDatabase(em, "I1.csv", "0809", 8);
-		// populateDatabase(em, "I1.csv", "0910", 9);
-		// populateDatabase(em, "I1.csv", "1011", 10);
-		// populateDatabase(em, "I1.csv", "1112", 11);
-		// populateDatabase(em, "I1.csv", "1213", 12);
-		// populateDatabase(em, "I1.csv", "1314", 13);
-		// populateDatabase(em, "I1.csv", "1415", 14);
+		/*populateDatabase(em, "I2.csv", "0203", 2);
+		populateDatabase(em, "I2.csv", "0304", 3);
+		populateDatabase(em, "I2.csv", "0405", 4);
+		populateDatabase(em, "I2.csv", "0506", 5);
+		populateDatabase(em, "I2.csv", "0607", 6);
+		populateDatabase(em, "I2.csv", "0708", 7);
+		populateDatabase(em, "I2.csv", "0809", 8);
+		populateDatabase(em, "I2.csv", "0910", 9);
+		populateDatabase(em, "I2.csv", "1011", 10);
+		populateDatabase(em, "I2.csv", "1112", 11);
+		populateDatabase(em, "I2.csv", "1213", 12);
+		populateDatabase(em, "I2.csv", "1314", 13);
+		populateDatabase(em, "I2.csv", "1415", 14);
+		
+		populateDatabase(em, "I1.csv", "0203", 2);
+		populateDatabase(em, "I1.csv", "0304", 3);
+		populateDatabase(em, "I1.csv", "0405", 4);
+		populateDatabase(em, "I1.csv", "0506", 5);
+		populateDatabase(em, "I1.csv", "0607", 6);
+		populateDatabase(em, "I1.csv", "0708", 7);
+		populateDatabase(em, "I1.csv", "0809", 8);
+		populateDatabase(em, "I1.csv", "0910", 9);*/
+		populateDatabase(em, "I1.csv", "1011", 10);
+		populateDatabase(em, "I1.csv", "1112", 11);
+		populateDatabase(em, "I1.csv", "1213", 12);
+		populateDatabase(em, "I1.csv", "1314", 13);
+		populateDatabase(em, "I1.csv", "1415", 14);
 
 		SeasonController sc = new SeasonController(em);
-		Season s = sc.createSeason("I1", 14);
-		runAlgorithm(s, em, "/Users/Ricardo/Desktop/", true, true);
+		Season s14 = sc.createSeason("I1", 14);
+		runAlgorithm(s14, em, "/Users/Ricardo/Desktop/", true, true);
+		
+		Season s13 = sc.createSeason("I1", 13);
+		runAlgorithm(s13, em, "/Users/Ricardo/Desktop/", true, true);
+		
+		Season s12 = sc.createSeason("I1", 12);
+		runAlgorithm(s12, em, "/Users/Ricardo/Desktop/", true, true);
+		
+		Season s11 = sc.createSeason("I1", 11);
+		runAlgorithm(s11, em, "/Users/Ricardo/Desktop/", true, true);
+		
+		Season s10 = sc.createSeason("I1", 10);
+		runAlgorithm(s10, em, "/Users/Ricardo/Desktop/", true, true);
+		
 	}
 
 	private static void runAlgorithm(Season s, EntityManager em, String filePath, boolean generateProf,
@@ -409,11 +423,23 @@ public class Main {
 				System.out.println(arr[5]);
 				// System.out.println(arr[7]);
 				// System.out.println(arr[8]);
+				System.out.println(arr[22]);
+				System.out.println(arr[23]);
+				System.out.println(arr[24]);
 				result = new Result(Integer.valueOf(arr[4]), Integer.valueOf(arr[5]), 0, 0);
+			}
+			
+			Odd odd = null;
+			
+			try {
+				odd = new Odd(Double.valueOf(arr[22]), Double.valueOf(arr[23]), Double.valueOf(arr[24]));
+			} catch (NumberFormatException e) {
+				e.printStackTrace(System.out);
+				odd = new Odd(0.0,0.0,0.0);
 			}
 
 			Fixture fixture = fixtureController.createFixture(formatter.parseDateTime(arr[1]).toDate(), s, t1, t2,
-					result);
+					result, odd);
 			if (fixture.getStatus().equals(FixtureStatus.FINISHED)) {
 				standingController.createStanding(t1, s, fixture);
 				standingController.createStanding(t2, s, fixture);
