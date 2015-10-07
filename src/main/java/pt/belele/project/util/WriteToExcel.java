@@ -11,8 +11,8 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import pt.belele.project.alg.OurRow;
-import pt.belele.project.alg.ProfRow;
+import pt.belele.project.algorithm.ExcelRow;
+import pt.belele.project.algorithm.ProfRow;
 
 public class WriteToExcel {
 	
@@ -30,7 +30,7 @@ public class WriteToExcel {
 		return workbook;
 	}
 	
-	public void writeOurDataExcelTable(List<OurRow> dataList, Workbook workbook, String sheetName){
+	public void writeOurDataExcelTable(List<ExcelRow> dataList, Workbook workbook, String sheetName){
 		
         Sheet ourSheet = workbook.createSheet(sheetName);
 
@@ -85,6 +85,10 @@ public class WriteToExcel {
         row.createCell(cellIndex++).setCellValue("[H2H] Número de Jogos");
         
         row.createCell(cellIndex++).setCellValue("[H2H] Rating de Resultado");
+        
+        row.createCell(cellIndex++).setCellValue("[QLT] Número de Jogos do Visitado");
+        
+        row.createCell(cellIndex++).setCellValue("[QLT] Número de Jogos do Visitante");
                
         row.createCell(cellIndex++).setCellValue("[QLT] Percentagem de Resultados do Visitado");
         
@@ -123,92 +127,96 @@ public class WriteToExcel {
         rowIndex++;
         
         
-        for(OurRow winrow : dataList){
+        for(ExcelRow excelrow : dataList){
         	
         	row = ourSheet.createRow(rowIndex++);
         	
         	cellIndex = 0;
             
-        	row.createCell(cellIndex++).setCellValue(sdf.format(winrow.getData()));
+        	row.createCell(cellIndex++).setCellValue(sdf.format(excelrow.getData()));
         	
-            row.createCell(cellIndex++).setCellValue(winrow.getHomeTeamName());
+            row.createCell(cellIndex++).setCellValue(excelrow.getHomeTeamName());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getAwayTeamName());
+            row.createCell(cellIndex++).setCellValue(excelrow.getAwayTeamName());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getIdVisitado());
+            row.createCell(cellIndex++).setCellValue(excelrow.getIdVisitado());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getIdVisitante());
+            row.createCell(cellIndex++).setCellValue(excelrow.getIdVisitante());
 
-            row.createCell(cellIndex++).setCellValue(winrow.getQualidadeVisitado());
+            row.createCell(cellIndex++).setCellValue(excelrow.getQualidadeVisitado());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getQualidadeVisitante());
+            row.createCell(cellIndex++).setCellValue(excelrow.getQualidadeVisitante());
 
-            row.createCell(cellIndex++).setCellValue(winrow.getFR_diasDescansoVisitado());
+            row.createCell(cellIndex++).setCellValue(excelrow.getFR_diasDescansoVisitado());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getFR_diasDescansoVisitante());
+            row.createCell(cellIndex++).setCellValue(excelrow.getFR_diasDescansoVisitante());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getFR_ratingResultadoVisitado());
+            row.createCell(cellIndex++).setCellValue(excelrow.getFR_ratingResultadoVisitado());
 
-            row.createCell(cellIndex++).setCellValue(winrow.getFR_ratingResultadoVisitante());
+            row.createCell(cellIndex++).setCellValue(excelrow.getFR_ratingResultadoVisitante());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getFR_dificuldadeVisitado());
+            row.createCell(cellIndex++).setCellValue(excelrow.getFR_dificuldadeVisitado());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getFR_dificuldadeVisistante());
+            row.createCell(cellIndex++).setCellValue(excelrow.getFR_dificuldadeVisistante());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getFR_HistoricosVisitado());
+            row.createCell(cellIndex++).setCellValue(excelrow.getFR_HistoricosVisitado());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getFR_HistoricosVisitante());
+            row.createCell(cellIndex++).setCellValue(excelrow.getFR_HistoricosVisitante());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getCiclo_numeroJogosVisitado());
+            row.createCell(cellIndex++).setCellValue(excelrow.getCiclo_numeroJogosVisitado());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getCiclo_numeroJogosVisitante());
+            row.createCell(cellIndex++).setCellValue(excelrow.getCiclo_numeroJogosVisitante());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getCiclo_dificuldadeVisitado());
+            row.createCell(cellIndex++).setCellValue(excelrow.getCiclo_dificuldadeVisitado());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getCiclo_dificuldadeVisitante());
+            row.createCell(cellIndex++).setCellValue(excelrow.getCiclo_dificuldadeVisitante());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getCiclo_HistoricosVisitado());
+            row.createCell(cellIndex++).setCellValue(excelrow.getCiclo_HistoricosVisitado());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getCiclo_HistoricosVisitante());
+            row.createCell(cellIndex++).setCellValue(excelrow.getCiclo_HistoricosVisitante());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getH2H_numeroJogos());
+            row.createCell(cellIndex++).setCellValue(excelrow.getH2H_numeroJogos());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getH2H_ratingResultado());
+            row.createCell(cellIndex++).setCellValue(excelrow.getH2H_ratingResultado());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getQLT_percentagemResultadoVisitado());
+            row.createCell(cellIndex++).setCellValue(excelrow.getQLT_numeroJogosVisitadoDaPercentagem());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getQLT_percentagemResultadoVisitante());
+            row.createCell(cellIndex++).setCellValue(excelrow.getQLT_numeroJogosVisitanteDaPercentagem());
+            
+            row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitado());
+            
+            row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitante());
 
-            row.createCell(cellIndex++).setCellValue(winrow.getQLT_dificuldadeResultadoVisitado());
+            row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeResultadoVisitado());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getQLT_dificuldadeResultadoVisitante());
+            row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeResultadoVisitante());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getQLT_percentagemResultadoVisitadoNoIntervalo());
+            row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitadoNoIntervalo());
 
-            row.createCell(cellIndex++).setCellValue(winrow.getQLT_percentagemResultadoVisitanteNoIntervalo());
+            row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitanteNoIntervalo());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getQLT_numeroJogosVisitado());
+            row.createCell(cellIndex++).setCellValue(excelrow.getQLT_numeroJogosVisitado());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getQLT_numeroJogosVisitante());
+            row.createCell(cellIndex++).setCellValue(excelrow.getQLT_numeroJogosVisitante());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getResult());
+            row.createCell(cellIndex++).setCellValue(excelrow.getResult());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getCicloPerna_numeroJogosVisitado());
+            row.createCell(cellIndex++).setCellValue(excelrow.getCicloPerna_numeroJogosVisitado());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getCicloPerna_numeroJogosVisitante());
+            row.createCell(cellIndex++).setCellValue(excelrow.getCicloPerna_numeroJogosVisitante());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getCicloPerna_dificuldadeVisitado());
+            row.createCell(cellIndex++).setCellValue(excelrow.getCicloPerna_dificuldadeVisitado());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getCicloPerna_dificuldadeVisitante());
+            row.createCell(cellIndex++).setCellValue(excelrow.getCicloPerna_dificuldadeVisitante());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getCicloPerna_HistoricosVisitado());
+            row.createCell(cellIndex++).setCellValue(excelrow.getCicloPerna_HistoricosVisitado());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getCicloPerna_HistoricosVisitante());
+            row.createCell(cellIndex++).setCellValue(excelrow.getCicloPerna_HistoricosVisitante());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getFR_ratingQualidadeResultadoVisitado());
+            row.createCell(cellIndex++).setCellValue(excelrow.getFR_ratingQualidadeResultadoVisitado());
 
-            row.createCell(cellIndex++).setCellValue(winrow.getFR_ratingQualidadeResultadoVisitante());
-
+            row.createCell(cellIndex++).setCellValue(excelrow.getFR_ratingQualidadeResultadoVisitante());
+            
         }
 
     }
@@ -271,59 +279,59 @@ public class WriteToExcel {
                
         rowIndex++;
         
-        for(ProfRow winrow : dataList){
+        for(ProfRow profrow : dataList){
             
         	row = ourSheet.createRow(rowIndex++);
 
         	cellIndex = 0;
         	
-        	row.createCell(cellIndex++).setCellValue(winrow.getData());
+        	row.createCell(cellIndex++).setCellValue(profrow.getData());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getHomeTeamName());
+            row.createCell(cellIndex++).setCellValue(profrow.getHomeTeamName());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getAwayTeamName());
+            row.createCell(cellIndex++).setCellValue(profrow.getAwayTeamName());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getIdVisitado());
+            row.createCell(cellIndex++).setCellValue(profrow.getIdVisitado());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getIdVisitante());
+            row.createCell(cellIndex++).setCellValue(profrow.getIdVisitante());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getQualidadeVisitado());
+            row.createCell(cellIndex++).setCellValue(profrow.getQualidadeVisitado());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getQualidadeVisitante());
+            row.createCell(cellIndex++).setCellValue(profrow.getQualidadeVisitante());
 
-            row.createCell(cellIndex++).setCellValue(winrow.getFR_diasDescansoVisitado());
+            row.createCell(cellIndex++).setCellValue(profrow.getFR_diasDescansoVisitado());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getFR_diasDescansoVisitante());
+            row.createCell(cellIndex++).setCellValue(profrow.getFR_diasDescansoVisitante());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getFR_ratingResultadoVisitado());
+            row.createCell(cellIndex++).setCellValue(profrow.getFR_ratingResultadoVisitado());
 
-            row.createCell(cellIndex++).setCellValue(winrow.getFR_ratingResultadoVisitante());
+            row.createCell(cellIndex++).setCellValue(profrow.getFR_ratingResultadoVisitante());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getFR_dificuldadeVisitado());
+            row.createCell(cellIndex++).setCellValue(profrow.getFR_dificuldadeVisitado());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getFR_dificuldadeVisistante());
+            row.createCell(cellIndex++).setCellValue(profrow.getFR_dificuldadeVisistante());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getFR_HistoricosVisitado());
+            row.createCell(cellIndex++).setCellValue(profrow.getFR_HistoricosVisitado());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getFR_HistoricosVisitante());
+            row.createCell(cellIndex++).setCellValue(profrow.getFR_HistoricosVisitante());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getCiclo_numeroJogosVisitado());
+            row.createCell(cellIndex++).setCellValue(profrow.getCiclo_numeroJogosVisitado());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getCiclo_numeroJogosVisitante());
+            row.createCell(cellIndex++).setCellValue(profrow.getCiclo_numeroJogosVisitante());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getCiclo_dificuldadeVisitado());
+            row.createCell(cellIndex++).setCellValue(profrow.getCiclo_dificuldadeVisitado());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getCiclo_dificuldadeVisitante());
+            row.createCell(cellIndex++).setCellValue(profrow.getCiclo_dificuldadeVisitante());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getCiclo_HistoricosVisitado());
+            row.createCell(cellIndex++).setCellValue(profrow.getCiclo_HistoricosVisitado());
              
-            row.createCell(cellIndex++).setCellValue(winrow.getCiclo_HistoricosVisitante());
+            row.createCell(cellIndex++).setCellValue(profrow.getCiclo_HistoricosVisitante());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getH2H_numeroJogos());
+            row.createCell(cellIndex++).setCellValue(profrow.getH2H_numeroJogos());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getH2H_ratingResultado());
+            row.createCell(cellIndex++).setCellValue(profrow.getH2H_ratingResultado());
             
-            row.createCell(cellIndex++).setCellValue(winrow.getResult());
+            row.createCell(cellIndex++).setCellValue(profrow.getResult());
 
         }
 

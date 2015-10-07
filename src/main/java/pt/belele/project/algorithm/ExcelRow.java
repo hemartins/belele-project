@@ -1,10 +1,10 @@
-package pt.belele.project.alg;
+package pt.belele.project.algorithm;
 
 import java.util.Date;
 
 import pt.belele.project.entities.Result.ResultType;
 
-public class OurRow {
+public class ExcelRow {
 
 	Date data;
 	Long idVisitado;
@@ -87,27 +87,10 @@ public class OurRow {
 	Double FR_ratingQualidadeResultadoVisitado;
 	Double FR_ratingQualidadeResultadoVisitante;
 	
-	
-	
-	public Double getFR_ratingQualidadeResultadoVisitado() {
-		return FR_ratingQualidadeResultadoVisitado;
-	}
+	Integer QLT_numeroJogosVisitadoDaPercentagem;
+	Integer QLT_numeroJogosVisitanteDaPercentagem;
 
-	public void setFR_ratingQualidadeResultadoVisitado(Double fR_ratingQualidadeResultadoVisitado) {
-		this.FR_ratingQualidadeResultadoVisitado = fR_ratingQualidadeResultadoVisitado;
-	}
-
-	public Double getFR_ratingQualidadeResultadoVisitante() {
-		return FR_ratingQualidadeResultadoVisitante;
-	}
-
-	public void setFR_ratingQualidadeResultadoVisitante(Double fR_ratingQualidadeResultadoVisitante) {
-		this.FR_ratingQualidadeResultadoVisitante = fR_ratingQualidadeResultadoVisitante;
-	}
-
-	
-
-	public OurRow(Date data, Long idVisitado, Long idVisitante, String homeTeamName, String awayTeamName,
+	public ExcelRow(Date data, Long idVisitado, Long idVisitante, String homeTeamName, String awayTeamName,
 			Double qualidadeVisitado, Double qualidadeVisitante,
 			Integer fR_diasDescansoVisitado, Integer fR_diasDescansoVisitante,
 			Double fR_ratingResultadoVisitado,
@@ -133,7 +116,9 @@ public class OurRow {
 			Integer cicloPerna_HistoricosVisitado,
 			Integer cicloPerna_HistoricosVisitante,
 			Double fR_ratingQualidadeResultadoVisitado,
-			Double fR_ratingQualidadeResultadoVisitante) {
+			Double fR_ratingQualidadeResultadoVisitante,
+			Integer qLT_numeroJogosVisitadoDaPercentagem,
+			Integer qLT_numeroJogosVisitanteDaPercentagem) {
 
 		this.data = data;
 		this.idVisitado = idVisitado;
@@ -177,6 +162,9 @@ public class OurRow {
 		CicloPerna_HistoricosVisitante = ciclo_HistoricosVisitante;
 		FR_ratingQualidadeResultadoVisitado = fR_ratingQualidadeResultadoVisitado;
 		FR_ratingQualidadeResultadoVisitante = fR_ratingQualidadeResultadoVisitante;
+		QLT_numeroJogosVisitadoDaPercentagem = qLT_numeroJogosVisitadoDaPercentagem;
+		QLT_numeroJogosVisitanteDaPercentagem = qLT_numeroJogosVisitanteDaPercentagem;
+		
 	}
 
 	public Date getData() {
@@ -348,11 +336,6 @@ public class OurRow {
 		Ciclo_HistoricosVisitante = ciclo_HistoricosVisitante;
 	}
 	
-	
-	
-	
-	
-	
 	public Integer getCicloPerna_numeroJogosVisitado() {
 		return Ciclo_numeroJogosVisitado;
 	}
@@ -401,11 +384,6 @@ public class OurRow {
 		Ciclo_HistoricosVisitante = ciclo_HistoricosVisitante;
 	}
 	
-	
-	
-	
-	
-
 	public Double getH2H_ratingResultado() {
 		return H2H_ratingResultado;
 	}
@@ -499,6 +477,36 @@ public class OurRow {
 	public void setResult(Integer result) {
 		this.result = result;
 	}
+	
+	public Double getFR_ratingQualidadeResultadoVisitado() {
+		return FR_ratingQualidadeResultadoVisitado;
+	}
 
+	public void setFR_ratingQualidadeResultadoVisitado(Double fR_ratingQualidadeResultadoVisitado) {
+		this.FR_ratingQualidadeResultadoVisitado = fR_ratingQualidadeResultadoVisitado;
+	}
 
+	public Double getFR_ratingQualidadeResultadoVisitante() {
+		return FR_ratingQualidadeResultadoVisitante;
+	}
+
+	public void setFR_ratingQualidadeResultadoVisitante(Double fR_ratingQualidadeResultadoVisitante) {
+		this.FR_ratingQualidadeResultadoVisitante = fR_ratingQualidadeResultadoVisitante;
+	}
+
+	public Integer getQLT_numeroJogosVisitadoDaPercentagem() {
+		return QLT_numeroJogosVisitadoDaPercentagem;
+	}
+
+	public void setQLT_numeroJogosVisitadoDaPercentagem(Integer qLT_numeroJogosVisitadoDaPercentagem) {
+		QLT_numeroJogosVisitadoDaPercentagem = qLT_numeroJogosVisitadoDaPercentagem;
+	}
+
+	public Integer getQLT_numeroJogosVisitanteDaPercentagem() {
+		return QLT_numeroJogosVisitanteDaPercentagem;
+	}
+
+	public void setQLT_numeroJogosVisitanteDaPercentagem(Integer qLT_numeroJogosVisitanteDaPercentagem) {
+		QLT_numeroJogosVisitanteDaPercentagem = qLT_numeroJogosVisitanteDaPercentagem;
+	}
 }

@@ -2,35 +2,46 @@ package pt.belele.project.entities;
 
 public class CutOff {
 	
-	Double betfairOpinionWIN;
-	Double betfairOpinionDRAW;
-	Double betfairOpinionLOSE;
-	Double minimumLayOdd;
-	Double minimumBackOdd;
-	Double relationQuality;
+	private Double oddWightHigherValue;
 	
-	public Double getBetfairOpinionWIN() {
-		return betfairOpinionWIN;
+	private Double oddWightMediumValue;
+	
+	private Double oddWightLowerValue;
+	
+	private Double minimumLayOdd;
+	
+	private Double minimumBackOdd;
+	
+	private Double nnOddWeight;
+	
+	private Double minimumQualityRelation;
+	
+	public CutOff() {
+		
 	}
 
-	public void setBetfairOpinionWIN(Double betfairOpinionWIN) {
-		this.betfairOpinionWIN = betfairOpinionWIN;
+	public Double getOddWightHigherValue() {
+		return oddWightHigherValue;
 	}
 
-	public Double getBetfairOpinionDRAW() {
-		return betfairOpinionDRAW;
+	public void setOddWightHigherValue(Double oddWightHigherValue) {
+		this.oddWightHigherValue = oddWightHigherValue;
 	}
 
-	public void setBetfairOpinionDRAW(Double betfairOpinionDRAW) {
-		this.betfairOpinionDRAW = betfairOpinionDRAW;
+	public Double getOddWightMediumValue() {
+		return oddWightMediumValue;
 	}
 
-	public Double getBetfairOpinionLOSE() {
-		return betfairOpinionLOSE;
+	public void setOddWightMediumValue(Double oddWightMediumValue) {
+		this.oddWightMediumValue = oddWightMediumValue;
 	}
 
-	public void setBetfairOpinionLOSE(Double betfairOpinionLOSE) {
-		this.betfairOpinionLOSE = betfairOpinionLOSE;
+	public Double getOddWightLowerValue() {
+		return oddWightLowerValue;
+	}
+
+	public void setOddWightLowerValue(Double oddWightLowerValue) {
+		this.oddWightLowerValue = oddWightLowerValue;
 	}
 
 	public Double getMinimumLayOdd() {
@@ -49,12 +60,19 @@ public class CutOff {
 		this.minimumBackOdd = minimumBackOdd;
 	}
 
-	public Double getRelationQuality() {
-		return relationQuality;
+	public Double getNnOddWeight() {
+		return nnOddWeight;
 	}
 
-	public void setRelationQuality(Double relationQuality) {
-		this.relationQuality = relationQuality;
+	public void setNnOddWeight(Double nnOddWeight) {
+		this.nnOddWeight = nnOddWeight;
 	}
 
+	public Double getMinimumQualityRelation() {
+		return minimumQualityRelation;
+	}
+
+	public void setMinimumQualityRelation(Double minimumQualityRelation) {
+		this.minimumQualityRelation = minimumQualityRelation;
+	}
 }

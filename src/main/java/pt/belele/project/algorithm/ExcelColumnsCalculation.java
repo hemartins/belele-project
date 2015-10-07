@@ -1,4 +1,4 @@
-package pt.belele.project.alg;
+package pt.belele.project.algorithm;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -23,13 +23,13 @@ import pt.belele.project.entities.Season;
 import pt.belele.project.entities.Standing;
 import pt.belele.project.entities.Team;
 
-public class Algorithm {
+public class ExcelColumnsCalculation {
 	private Team team;
 	private FixtureController fixtureController;
 	private StandingController standingController;
 	private EntityManager em;
 
-	public Algorithm(Team team, EntityManager em) {
+	public ExcelColumnsCalculation(Team team, EntityManager em) {
 		this.team = team;
 		this.em = em;
 		this.fixtureController = new FixtureController(em);
@@ -84,10 +84,10 @@ public class Algorithm {
 				nextFixture.getDate(), venue, numberOfFixtures);
 		for (Fixture f : fixtures) {
 			if (f.getHomeTeam().getId() == team.getId()) {
-				Algorithm tc = new Algorithm(f.getAwayTeam(), em);
+				ExcelColumnsCalculation tc = new ExcelColumnsCalculation(f.getAwayTeam(), em);
 				sum += tc.getTeamQuality(nextFixture.getSeason(), nextFixture.getDate());
 			} else {
-				Algorithm tc = new Algorithm(f.getHomeTeam(), em);
+				ExcelColumnsCalculation tc = new ExcelColumnsCalculation(f.getHomeTeam(), em);
 				sum += tc.getTeamQuality(nextFixture.getSeason(), nextFixture.getDate());
 			}
 		}
@@ -186,7 +186,7 @@ public class Algorithm {
 	public Double getCycleOpponentAverageQuality(ResultCycle cycle) {
 		double sum = 0;
 		for (Team t : cycle.getTeams()) {
-			Algorithm tc = new Algorithm(t, em);
+			ExcelColumnsCalculation tc = new ExcelColumnsCalculation(t, em);
 			sum += tc.getTeamQuality(cycle.getSeason(), cycle.getDate().toDate());
 		}
 		return cycle.getTeams().size() > 0 ? sum / cycle.getTeams().size() : 0;
@@ -233,11 +233,11 @@ public class Algorithm {
 		Double opponentSum = 0.0;
 		Double intervalSum = 0.0;
 		Double resultIntervalSum = 0.0;
-		Algorithm tc = new Algorithm(venue == Venue.HOME ? nextFixture.getAwayTeam() : nextFixture.getHomeTeam(), em);
+		ExcelColumnsCalculation tc = new ExcelColumnsCalculation(venue == Venue.HOME ? nextFixture.getAwayTeam() : nextFixture.getHomeTeam(), em);
 		Double opponentQuality = tc.getTeamQuality(s, nextFixture.getDate());
 
 		for (Fixture f : fixtures) {
-			Algorithm tec = new Algorithm(venue == Venue.HOME ? f.getAwayTeam() : f.getHomeTeam(), em);
+			ExcelColumnsCalculation tec = new ExcelColumnsCalculation(venue == Venue.HOME ? f.getAwayTeam() : f.getHomeTeam(), em);
 			Double fixtureOpponentQuality = tec.getTeamQuality(s, nextFixture.getDate());
 
 			if (fixtureOpponentQuality != null) {
@@ -263,6 +263,13 @@ public class Algorithm {
 		return new TeamRating(size > 0 ? resultSum / size : 0, size > 0 ? opponentSum / size : 0,
 				intervalSum > 0 ? resultIntervalSum / intervalSum : 0, intervalSum.intValue());
 	}
+	
+	public Integer getNumberOfFixtures(Fixture nextFixture, Venue venue)
+	{
+		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team, nextFixture.getSeason(),
+				nextFixture.getDate(), venue, null);
+		return fixtures.size();
+	}
 
 	// Rating dos ultimos jogos, venue opcional, ratings ordenados por ordem
 	// decrescente
@@ -282,10 +289,10 @@ public class Algorithm {
 			Fixture f = fixtures.get(i);
 			if (getResultType(f).equals(type)) {
 				if (f.getHomeTeam().equals(team)) {
-					Algorithm opponentTeam = new Algorithm(f.getAwayTeam(), em);
+					ExcelColumnsCalculation opponentTeam = new ExcelColumnsCalculation(f.getAwayTeam(), em);
 					rating += ratings.get(i) * opponentTeam.getTeamQuality(nextFixture.getSeason(), nextFixture.getDate());
 				} else {
-					Algorithm opponentTeam = new Algorithm(f.getHomeTeam(), em);
+					ExcelColumnsCalculation opponentTeam = new ExcelColumnsCalculation(f.getHomeTeam(), em);
 					rating += ratings.get(i) * opponentTeam.getTeamQuality(nextFixture.getSeason(), nextFixture.getDate());
 				}
 			}

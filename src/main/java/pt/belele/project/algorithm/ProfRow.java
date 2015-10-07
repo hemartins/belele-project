@@ -1,4 +1,4 @@
-package pt.belele.project.alg;
+package pt.belele.project.algorithm;
 
 import java.util.Date;
 

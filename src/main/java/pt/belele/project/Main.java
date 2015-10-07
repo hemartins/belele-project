@@ -12,9 +12,9 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
-import pt.belele.project.alg.Algorithm;
-import pt.belele.project.alg.OurRow;
-import pt.belele.project.alg.ProfRow;
+import pt.belele.project.algorithm.ExcelColumnsCalculation;
+import pt.belele.project.algorithm.ExcelRow;
+import pt.belele.project.algorithm.ProfRow;
 import pt.belele.project.controllers.FixtureController;
 import pt.belele.project.controllers.SeasonController;
 import pt.belele.project.controllers.StandingController;
@@ -91,9 +91,9 @@ public class Main {
 			boolean generateOurs) {
 		WriteToExcel writeToExcelObj = new WriteToExcel(filePath);
 
-		List<OurRow> OurWinDataList = new ArrayList<OurRow>();
-		List<OurRow> OurDrawDataList = new ArrayList<OurRow>();
-		List<OurRow> OurLoseDataList = new ArrayList<OurRow>();
+		List<ExcelRow> OurWinDataList = new ArrayList<ExcelRow>();
+		List<ExcelRow> OurDrawDataList = new ArrayList<ExcelRow>();
+		List<ExcelRow> OurLoseDataList = new ArrayList<ExcelRow>();
 
 		List<ProfRow> ProfWinDataList = new ArrayList<ProfRow>();
 		List<ProfRow> ProfDrawDataList = new ArrayList<ProfRow>();
@@ -131,11 +131,11 @@ public class Main {
 
 			System.out.println(f.toString());
 
-			if (f.getDate().before(formatter.parseDateTime("01/12/" + s.getYear()).toDate()))
+			if (f.getDate().before(formatter.parseDateTime("15/11/" + s.getYear()).toDate()))
 				continue;
 
-			Algorithm homeTeam = new Algorithm(f.getHomeTeam(), em);
-			Algorithm awayTeam = new Algorithm(f.getAwayTeam(), em);
+			ExcelColumnsCalculation homeTeam = new ExcelColumnsCalculation(f.getHomeTeam(), em);
+			ExcelColumnsCalculation awayTeam = new ExcelColumnsCalculation(f.getAwayTeam(), em);
 
 			Date data = f.getDate();
 			Long idVisitado = f.getHomeTeam().getId();
@@ -250,6 +250,8 @@ public class Main {
 			if (generateOurs) {
 				TeamRating homeTR = homeTeam.getResultPercentage(f, Venue.HOME, ResultType.WIN, interval);
 				TeamRating awayTR = awayTeam.getResultPercentage(f, Venue.AWAY, ResultType.LOSE, interval);
+				Integer qLT_homeTeamNumeroJogos = homeTeam.getNumberOfFixtures(f, Venue.HOME);
+				Integer qLT_awayTeamNumeroJogos = awayTeam.getNumberOfFixtures(f, Venue.HOME);
 				Double qLT_percentagemVitoriasVisitado = homeTR.getResultPercentage();
 				Double qLT_percentagemDerrotasVisitante = awayTR.getResultPercentage();
 				Double qLT_dificuldadeVitoriasVisitado = homeTR.getQualityAverage();
@@ -259,7 +261,7 @@ public class Main {
 				Integer qLT_numeroJogosVisitado = homeTR.getResultIntervalGames();
 				Integer qLT_numeroJogosVisitante = awayTR.getResultIntervalGames();
 
-				OurRow wohwr = new OurRow(data, idVisitado, idVisitante, f.getHomeTeam().getName(),
+				ExcelRow wohwr = new ExcelRow(data, idVisitado, idVisitante, f.getHomeTeam().getName(),
 						f.getAwayTeam().getName(), qualidadeVisitado, qualidadeVisitante, fR_diasDescansoVisitado,
 						fR_diasDescansoVisitante, fR_ratingVitoriasVisitado, fR_ratingDerrotasVisitante,
 						fR_dificuldadeVisitado, fR_dificuldadeVisistante, fR_HistoricosVisitado, fR_HistoricosVisitante,
@@ -273,7 +275,7 @@ public class Main {
 						homeWinCyclePerna_numeroJogosVisitado, awayLoseCyclePerna_numeroJogosVisitante,
 						homeWinCyclePerna_dificuldadeVisitado, awayLoseCyclePerna_dificuldadeVisitante,
 						homeWinCyclePerna_HistoricosVisitado, awayLoseCyclePerna_HistoricosVisitante,
-						fR_ratingQualidadeVitoriasVisitado, fR_ratingQualidadeDerrotasVisitante);
+						fR_ratingQualidadeVitoriasVisitado, fR_ratingQualidadeDerrotasVisitante, qLT_homeTeamNumeroJogos, qLT_awayTeamNumeroJogos);
 
 				OurWinDataList.add(wohwr);
 
@@ -288,7 +290,7 @@ public class Main {
 				qLT_numeroJogosVisitado = homeTR.getResultIntervalGames();
 				qLT_numeroJogosVisitante = awayTR.getResultIntervalGames();
 
-				OurRow dohwr = new OurRow(data, idVisitado, idVisitante, f.getHomeTeam().getName(),
+				ExcelRow dohwr = new ExcelRow(data, idVisitado, idVisitante, f.getHomeTeam().getName(),
 						f.getAwayTeam().getName(), qualidadeVisitado, qualidadeVisitante, fR_diasDescansoVisitado,
 						fR_diasDescansoVisitante, fR_ratingEmpatesVisitado, fR_ratingEmpatesVisitante,
 						fR_dificuldadeVisitado, fR_dificuldadeVisistante, fR_HistoricosVisitado, fR_HistoricosVisitante,
@@ -302,7 +304,7 @@ public class Main {
 						homeDrawCyclePerna_numeroJogosVisitado, awayDrawCyclePerna_numeroJogosVisitante,
 						homeDrawCyclePerna_dificuldadeVisitado, awayDrawCyclePerna_dificuldadeVisitante,
 						homeDrawCyclePerna_HistoricosVisitado, awayDrawCyclePerna_HistoricosVisitante,
-						fR_ratingQualidadeEmpatesVisitado, fR_ratingQualidadeEmpatesVisitante);
+						fR_ratingQualidadeEmpatesVisitado, fR_ratingQualidadeEmpatesVisitante, qLT_homeTeamNumeroJogos, qLT_awayTeamNumeroJogos);
 
 				OurDrawDataList.add(dohwr);
 
@@ -317,7 +319,7 @@ public class Main {
 				qLT_numeroJogosVisitado = homeTR.getResultIntervalGames();
 				qLT_numeroJogosVisitante = awayTR.getResultIntervalGames();
 
-				OurRow lohwr = new OurRow(data, idVisitado, idVisitante, f.getHomeTeam().getName(),
+				ExcelRow lohwr = new ExcelRow(data, idVisitado, idVisitante, f.getHomeTeam().getName(),
 						f.getAwayTeam().getName(), qualidadeVisitado, qualidadeVisitante, fR_diasDescansoVisitado,
 						fR_diasDescansoVisitante, fR_ratingDerrotasVisitado, fR_ratingVitoriasVisitante,
 						fR_dificuldadeVisitado, fR_dificuldadeVisistante, fR_HistoricosVisitado, fR_HistoricosVisitante,
@@ -331,11 +333,11 @@ public class Main {
 						homeLoseCyclePerna_numeroJogosVisitado, awayWinCyclePerna_numeroJogosVisitante,
 						homeLoseCyclePerna_dificuldadeVisitado, awayWinCyclePerna_dificuldadeVisitante,
 						homeLoseCyclePerna_HistoricosVisitado, awayWinCyclePerna_HistoricosVisitante,
-						fR_ratingQualidadeDerrotasVisitado, fR_ratingQualidadeVitoriasVisitante);
+						fR_ratingQualidadeDerrotasVisitado, fR_ratingQualidadeVitoriasVisitante, qLT_homeTeamNumeroJogos, qLT_awayTeamNumeroJogos);
 
 				OurLoseDataList.add(lohwr);
 			}
-
+			/*
 			if (generateProf) {
 				ProfRow wphwr = new ProfRow(data, idVisitado, idVisitante, f.getHomeTeam().getName(),
 						f.getAwayTeam().getName(), qualidadeVisitado, qualidadeVisitante, fR_diasDescansoVisitado,
@@ -370,7 +372,7 @@ public class Main {
 
 				ProfLoseDataList.add(lphwr);
 
-			}
+			}*/
 		}
 
 		Workbook NossoWorkbook = writeToExcelObj.newWorkbook();
@@ -378,14 +380,14 @@ public class Main {
 		writeToExcelObj.writeOurDataExcelTable(OurWinDataList, NossoWorkbook, "Vitoria");
 		writeToExcelObj.writeOurDataExcelTable(OurDrawDataList, NossoWorkbook, "Empate");
 		writeToExcelObj.writeOurDataExcelTable(OurLoseDataList, NossoWorkbook, "Derrota");
-		writeToExcelObj.writeWorkbookToExcelFile("Nosso" + s.getName() + s.getYear(), NossoWorkbook);
+		writeToExcelObj.writeWorkbookToExcelFile(/*"Nosso" + */s.getName() + s.getYear(), NossoWorkbook);
 
-		Workbook ProfWorkbook = writeToExcelObj.newWorkbook();
+		/*Workbook ProfWorkbook = writeToExcelObj.newWorkbook();
 
 		writeToExcelObj.writeProfDataExcelTable(ProfWinDataList, ProfWorkbook, "Vitoria");
 		writeToExcelObj.writeProfDataExcelTable(ProfDrawDataList, ProfWorkbook, "Empate");
 		writeToExcelObj.writeProfDataExcelTable(ProfLoseDataList, ProfWorkbook, "Derrota");
-		writeToExcelObj.writeWorkbookToExcelFile("Prof" + s.getName() + s.getYear(), ProfWorkbook);
+		writeToExcelObj.writeWorkbookToExcelFile("Prof" + s.getName() + s.getYear(), ProfWorkbook);*/
 	}
 
 	private static Season populateDatabase(EntityManager em, String competitionFile, String season, Integer year) {
