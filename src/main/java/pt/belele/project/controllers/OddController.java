@@ -9,12 +9,11 @@ public class OddController {
 	}
 	
 	public void calculateLayOddsAsBackOdds(Odd odd){
-		Double layHomeWin = odd.getBackHomeWin() / (odd.getBackHomeWin() - 1);
+		Double layHomeWin = (odd.getBackHomeWin()+0.05) / ((odd.getBackHomeWin()+0.05) - 1);
 		odd.setLayHomeWin(layHomeWin);
-		Double layDraw = odd.getBackDraw() / (odd.getBackDraw() - 1);
+		Double layDraw = (odd.getBackDraw()+0.05) / ((odd.getBackDraw()+0.05) - 1);
 		odd.setLayDraw(layDraw);
-		Double layAwayWin = odd.getBackAwayWin() / (odd.getBackAwayWin() - 1);
+		Double layAwayWin = (odd.getBackAwayWin()+0.05) / ((odd.getBackAwayWin()+0.05) - 1);
 		odd.setLayAwayWin(layAwayWin);
 	}
-
 }

@@ -549,7 +549,7 @@ public class Algorithm {
 		}
 	}
 
-	public void runAlgorithm(Fixture fixture, CutOff cutOffSimple, CutOff cutOffMultiple, double neuralNetworkBackWIN, double neuralNetworkBackDRAW,
+	public void runAlgorithm(Fixture fixture, CutOff cutOffSimple, CutOff cutOffDouble, CutOff cutOffTriple, CutOff cutOffMultiple, double neuralNetworkBackWIN, double neuralNetworkBackDRAW,
 			double neuralNetworkBackLOSE, double neuralNetworkLayWIN, double neuralNetworkLayDRAW,
 			double neuralNetworkLayLOSE) {
 		atributeOddWeightCutOff(fixture, cutOffSimple);
@@ -557,6 +557,8 @@ public class Algorithm {
 				neuralNetworkLayWIN, neuralNetworkLayDRAW, neuralNetworkLayLOSE);
 		calculateSimpleBetProcessedOdds(cutOffSimple);
 		simpleBetDecision(cutOffSimple);
+		calculateMultipleBetProcessedOdds(cutOffDouble);
+		calculateMultipleBetProcessedOdds(cutOffTriple);
 		calculateMultipleBetProcessedOdds(cutOffMultiple);
 	}
 

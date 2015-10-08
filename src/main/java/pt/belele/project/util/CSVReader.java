@@ -30,23 +30,67 @@ public class CSVReader {
 					// use comma as separator
 					String[] fixture = line.split(csvSplitBy);
 	
-					System.out.println("Fixture [liga= " + fixture[0] + 
-							" , data=" + fixture[1] +
-							" , casa=" + fixture[2] +
-							" , fora=" + fixture[3] +
-							" , fullTimeHome=" + fixture[4] +
-							" , fullTimeAway=" + fixture[5] +
-//						" , halfTimeHome=" + fixture[7] +
-//						" , halfTimeAway=" + fixture[8] +
-							" , Home Win Odd=" + fixture[22] +
-							" , Draw Odd=" + fixture[23] +
-							" , Away Win Odd=" + fixture[24] +
-							"]");
-				
-					list.add(fixture);
+					if (fixture[0].contains("E0") || fixture[0].contains("E1") || fixture[0].contains("E2") || fixture[0].contains("SC0")){
+						System.out.println("Fixture [liga= " + fixture[0] + 
+								" , data=" + fixture[1] +
+								" , casa=" + fixture[2] +
+								" , fora=" + fixture[3] +
+								" , fullTimeHome=" + fixture[4] +
+								" , fullTimeAway=" + fixture[5] +
+//							" , halfTimeHome=" + fixture[7] +
+//							" , halfTimeAway=" + fixture[8] +
+								" , Home Win Odd=" + fixture[23] +
+								" , Draw Odd=" + fixture[24] +
+								" , Away Win Odd=" + fixture[25] +
+								"]");
 					
-					writer.write(line);
-					writer.newLine();
+						list.add(fixture);
+						
+						writer.write(line);
+						writer.newLine();
+					}
+					else if (fixture[0].contains("D1") || fixture[0].contains("I1") || fixture[0].contains("SP1") || fixture[0].contains("F1")){
+						System.out.println("Fixture [liga= " + fixture[0] + 
+								" , data=" + fixture[1] +
+								" , casa=" + fixture[2] +
+								" , fora=" + fixture[3] +
+								" , fullTimeHome=" + fixture[4] +
+								" , fullTimeAway=" + fixture[5] +
+//							" , halfTimeHome=" + fixture[7] +
+//							" , halfTimeAway=" + fixture[8] +
+								" , Home Win Odd=" + fixture[22] +
+								" , Draw Odd=" + fixture[23] +
+								" , Away Win Odd=" + fixture[24] +
+								"]");
+					
+						list.add(fixture);
+						
+						writer.write(line);
+						writer.newLine();
+					}
+					else if (fixture[0].contains("D2") || fixture[0].contains("I2") || fixture[0].contains("SP2") || fixture[0].contains("F2") || fixture[0].contains("N1") || fixture[0].contains("B1") || fixture[0].contains("P1") || fixture[0].contains("T1") || fixture[0].contains("G1")){
+						System.out.println("Fixture [liga= " + fixture[0] + 
+								" , data=" + fixture[1] +
+								" , casa=" + fixture[2] +
+								" , fora=" + fixture[3] +
+								" , fullTimeHome=" + fixture[4] +
+								" , fullTimeAway=" + fixture[5] +
+//							" , halfTimeHome=" + fixture[7] +
+//							" , halfTimeAway=" + fixture[8] +
+								" , Home Win Odd=" + fixture[10] +
+								" , Draw Odd=" + fixture[11] +
+								" , Away Win Odd=" + fixture[12] +
+								"]");
+					
+						list.add(fixture);
+						
+						writer.write(line);
+						writer.newLine();
+					}
+					else {
+						System.out.println("FODEU CARA!!");
+					}
+					
 				} catch(ArrayIndexOutOfBoundsException ex)
 				{
 					ex.printStackTrace();

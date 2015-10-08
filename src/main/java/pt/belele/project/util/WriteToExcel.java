@@ -106,7 +106,7 @@ public class WriteToExcel {
         
         row.createCell(cellIndex++).setCellValue("[QLT] Numero de Jogos do Visitante");
         
-        row.createCell(cellIndex++).setCellValue("[QLT] Resultado");
+        row.createCell(cellIndex++).setCellValue("Resultado");
         
         row.createCell(cellIndex++).setCellValue("[Ciclo Perna] Número de Jogos do Visitado");
         
