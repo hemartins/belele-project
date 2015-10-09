@@ -7,6 +7,8 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
 
@@ -29,6 +31,8 @@ public class ExcelColumnsCalculation {
 	private StandingController standingController;
 	private EntityManager em;
 
+	private static final Logger logger = LogManager.getLogger(ExcelColumnsCalculation.class);
+	
 	public ExcelColumnsCalculation(Team team, EntityManager em) {
 		this.team = team;
 		this.em = em;
@@ -60,7 +64,7 @@ public class ExcelColumnsCalculation {
 	public Double getLastFixturesRating(Fixture nextFixture, Venue venue, Integer numberOfFixtures,
 			List<Double> ratings, ResultType type) {
 		if (ratings.size() != numberOfFixtures) {
-			System.out.println("RATINGS SIZE != NUMBER OF FIXTURES");
+			logger.debug("RATINGS SIZE != NUMBER OF FIXTURES");
 			return null;
 		}
 
@@ -276,7 +280,7 @@ public class ExcelColumnsCalculation {
 	public Double getLastFixturesRatingQuality(Fixture nextFixture, Venue venue, Integer numberOfFixtures,
 			List<Double> ratings, ResultType type) {
 		if (ratings.size() != numberOfFixtures) {
-			System.out.println("RATINGS SIZE != NUMBER OF FIXTURES");
+			logger.debug("RATINGS SIZE != NUMBER OF FIXTURES");
 			return null;
 		}
 

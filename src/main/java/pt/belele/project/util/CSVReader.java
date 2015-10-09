@@ -13,7 +13,12 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class CSVReader {
+	private static final Logger logger = LogManager.getLogger(CSVReader.class);
+	
 	public static List<String[]> readFromCSV(String path) {
 		BufferedReader br = null;
 		List<String[]> list = new ArrayList<String[]>();
@@ -31,7 +36,7 @@ public class CSVReader {
 					String[] fixture = line.split(csvSplitBy);
 	
 					if (fixture[0].contains("E0") || fixture[0].contains("E1") || fixture[0].contains("E2") || fixture[0].contains("SC0")){
-						System.out.println("Fixture [liga= " + fixture[0] + 
+						logger.debug("Fixture [liga= " + fixture[0] + 
 								" , data=" + fixture[1] +
 								" , casa=" + fixture[2] +
 								" , fora=" + fixture[3] +
@@ -50,7 +55,7 @@ public class CSVReader {
 						writer.newLine();
 					}
 					else if (fixture[0].contains("D1") || fixture[0].contains("I1") || fixture[0].contains("SP1") || fixture[0].contains("F1")){
-						System.out.println("Fixture [liga= " + fixture[0] + 
+						logger.debug("Fixture [liga= " + fixture[0] + 
 								" , data=" + fixture[1] +
 								" , casa=" + fixture[2] +
 								" , fora=" + fixture[3] +
@@ -69,7 +74,7 @@ public class CSVReader {
 						writer.newLine();
 					}
 					else if (fixture[0].contains("D2") || fixture[0].contains("I2") || fixture[0].contains("SP2") || fixture[0].contains("F2") || fixture[0].contains("N1") || fixture[0].contains("B1") || fixture[0].contains("P1") || fixture[0].contains("T1") || fixture[0].contains("G1")){
-						System.out.println("Fixture [liga= " + fixture[0] + 
+						logger.debug("Fixture [liga= " + fixture[0] + 
 								" , data=" + fixture[1] +
 								" , casa=" + fixture[2] +
 								" , fora=" + fixture[3] +
@@ -88,7 +93,7 @@ public class CSVReader {
 						writer.newLine();
 					}
 					else {
-						System.out.println("FODEU CARA!! porque o array[0] é " + fixture[0]);
+						logger.debug("FODEU CARA!! porque o array[0] é " + fixture[0]);
 					}
 					
 				} catch(ArrayIndexOutOfBoundsException ex)
@@ -112,7 +117,7 @@ public class CSVReader {
 			}
 		}
 
-		System.out.println("Done");
+		logger.debug("Done");
 		return list;
 	}
 }

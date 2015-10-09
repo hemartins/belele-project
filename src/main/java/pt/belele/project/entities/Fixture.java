@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.jdo.annotations.Index;
+import javax.jdo.annotations.Indices;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -87,38 +89,40 @@ public class Fixture implements Serializable {
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "id", nullable = false)
 	private Team awayTeam;
-	
-	@ManyToMany(targetEntity=Bet.class)
+
+	@ManyToMany(targetEntity = Bet.class)
 	private List<Bet> bets;
 
 	@Embedded
 	private Result result;
-	
-	/*@Embedded
-	private Odd backOdd;
+
+	/*
+	 * @Embedded private Odd backOdd;
+	 * 
+	 * @Embedded private Odd layOdd;
+	 */
 
 	@Embedded
-	private Odd layOdd;*/
-	
-	@Embedded
 	private Odd odd;
-	
-	@OneToMany(orphanRemoval=true)
-    @JoinColumn(name="id")
+
+	@OneToMany(orphanRemoval = true)
+	@JoinColumn(name = "id")
 	private List<Fixture> h2h;
 
 	public Fixture() {
 	}
 
-	public Fixture(Date date, Season season, Team homeTeam, Team awayTeam, Result result, /*Odd backOdd, Odd layOdd*/ Odd odd) {
+	public Fixture(Date date, Season season, Team homeTeam, Team awayTeam, Result result,
+			/* Odd backOdd, Odd layOdd */ Odd odd) {
 		this.date = date;
 		this.season = season;
 		this.homeTeam = homeTeam;
 		this.awayTeam = awayTeam;
 		this.result = result;
 		this.status = FixtureStatus.FINISHED;
-		/*this.backOdd = backOdd;
-		this.layOdd = layOdd;*/
+		/*
+		 * this.backOdd = backOdd; this.layOdd = layOdd;
+		 */
 		this.odd = odd;
 	}
 
@@ -186,22 +190,16 @@ public class Fixture implements Serializable {
 		this.h2h = h2h;
 	}
 
-	/*public Odd getBackOdd() {
-		return backOdd;
-	}
+	/*
+	 * public Odd getBackOdd() { return backOdd; }
+	 * 
+	 * public void setBackOdd(Odd backOdd) { this.backOdd = backOdd; }
+	 * 
+	 * public Odd getLayOdd() { return layOdd; }
+	 * 
+	 * public void setLayOdd(Odd layOdd) { this.layOdd = layOdd; }
+	 */
 
-	public void setBackOdd(Odd backOdd) {
-		this.backOdd = backOdd;
-	}
-
-	public Odd getLayOdd() {
-		return layOdd;
-	}
-
-	public void setLayOdd(Odd layOdd) {
-		this.layOdd = layOdd;
-	}*/
-	
 	public Odd getOdd() {
 		return odd;
 	}
@@ -220,10 +218,7 @@ public class Fixture implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Fixture [id=" + id + ", date=" + date + ", status=" + status
-				+ ", season=" + season + ", homeTeam=" + homeTeam
-				+ ", awayTeam=" + awayTeam + ", result=" + result
-				+ ", head2Head=" + h2h + "]";
+		return "Fixture [date=" + date + " homeTeam=" + homeTeam + ", awayTeam=" + awayTeam + "]";
 	}
 
 }

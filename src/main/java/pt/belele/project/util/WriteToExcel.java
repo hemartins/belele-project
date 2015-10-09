@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -15,6 +17,8 @@ import pt.belele.project.algorithm.ExcelRow;
 import pt.belele.project.algorithm.ProfRow;
 
 public class WriteToExcel {
+	
+	private static final Logger logger = LogManager.getLogger(WriteToExcel.class);
 	
 	private String filePath = "/Users/JRicardoRG/Desktop/";
 	private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -45,10 +49,6 @@ public class WriteToExcel {
         row.createCell(cellIndex++).setCellValue("Nome do Visitado");
         
         row.createCell(cellIndex++).setCellValue("Nome do Visitante");
-        
-        row.createCell(cellIndex++).setCellValue("Id do Visitado");
-        
-        row.createCell(cellIndex++).setCellValue("Id do Visitante");
 
         row.createCell(cellIndex++).setCellValue("Qualidade do Visitado");
         
@@ -76,7 +76,7 @@ public class WriteToExcel {
         
         row.createCell(cellIndex++).setCellValue("[Ciclo] Dificuldade do Visitado");
         
-        row.createCell(cellIndex++).setCellValue("[Ciclo] Dificuldade do Visitado");
+        row.createCell(cellIndex++).setCellValue("[Ciclo] Dificuldade do Visitante");
         
         row.createCell(cellIndex++).setCellValue("[Ciclo] Número de Historicos do Visitado");
         
@@ -138,10 +138,6 @@ public class WriteToExcel {
             row.createCell(cellIndex++).setCellValue(excelrow.getHomeTeamName());
             
             row.createCell(cellIndex++).setCellValue(excelrow.getAwayTeamName());
-            
-            row.createCell(cellIndex++).setCellValue(excelrow.getIdVisitado());
-            
-            row.createCell(cellIndex++).setCellValue(excelrow.getIdVisitante());
 
             row.createCell(cellIndex++).setCellValue(excelrow.getQualidadeVisitado());
             
@@ -344,7 +340,7 @@ public class WriteToExcel {
             workbook.write(fos);
             fos.close();
 
-            System.out.println(filePath+path+".xlsx" + " is successfully written");
+            logger.debug(filePath+path+".xlsx" + " is successfully written");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

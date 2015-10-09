@@ -8,6 +8,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -37,13 +39,23 @@ import pt.belele.project.util.WriteToExcel;
 public class Main {
 
 	private static DateTimeFormatter formatter = DateTimeFormat.forPattern("dd/MM/yy");
-
+	
+	private static final Logger logger = LogManager.getLogger(Main.class);
+	
 	public static void main(String[] args) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("database.odb");
 		EntityManager em = emf.createEntityManager();
-		
-		/*// INGLATERRA - PREMIER LEAGUE
-		populateDatabase(em, "E0.csv", "0403", 4);
+		generateDatabase(em);
+//		generateExcelFiles(em);
+	}
+
+	private static void generateDatabase(EntityManager em) {
+		// INGLATERRA - PREMIER LEAGUE
+		populateDatabase(em, "E0.csv", "0001", 0);
+		populateDatabase(em, "E0.csv", "0102", 1);
+		populateDatabase(em, "E0.csv", "0203", 2);
+		populateDatabase(em, "E0.csv", "0304", 3);
+		populateDatabase(em, "E0.csv", "0405", 4);
 		populateDatabase(em, "E0.csv", "0506", 5);
 		populateDatabase(em, "E0.csv", "0607", 6);
 		populateDatabase(em, "E0.csv", "0708", 7);
@@ -54,9 +66,13 @@ public class Main {
 		populateDatabase(em, "E0.csv", "1213", 12);
 		populateDatabase(em, "E0.csv", "1314", 13);
 		populateDatabase(em, "E0.csv", "1415", 14);
-		
-		 // INGLATERRA - CHAMPIONSHIP
-		populateDatabase(em, "E1.csv", "0403", 4);
+
+		// INGLATERRA - CHAMPIONSHIP
+		populateDatabase(em, "E1.csv", "0001", 0);
+		populateDatabase(em, "E1.csv", "0102", 1);
+		populateDatabase(em, "E1.csv", "0203", 2);
+		populateDatabase(em, "E1.csv", "0304", 3);
+		populateDatabase(em, "E1.csv", "0405", 4);
 		populateDatabase(em, "E1.csv", "0506", 5);
 		populateDatabase(em, "E1.csv", "0607", 6);
 		populateDatabase(em, "E1.csv", "0708", 7);
@@ -69,7 +85,11 @@ public class Main {
 		populateDatabase(em, "E1.csv", "1415", 14);
 
 		// INGLATERRA - LEAGUE 1
-		populateDatabase(em, "E2.csv", "0403", 4);
+		populateDatabase(em, "E2.csv", "0001", 0);
+		populateDatabase(em, "E2.csv", "0102", 1);
+		populateDatabase(em, "E2.csv", "0203", 2);
+		populateDatabase(em, "E2.csv", "0304", 3);
+		populateDatabase(em, "E2.csv", "0405", 4);
 		populateDatabase(em, "E2.csv", "0506", 5);
 		populateDatabase(em, "E2.csv", "0607", 6);
 		populateDatabase(em, "E2.csv", "0708", 7);
@@ -82,7 +102,11 @@ public class Main {
 		populateDatabase(em, "E2.csv", "1415", 14);
 
 		// ESCOCIA - PREMIER LEAGUE
-		populateDatabase(em, "SC0.csv", "0403", 4);
+		populateDatabase(em, "SC0.csv", "0001", 0);
+		populateDatabase(em, "SC0.csv", "0102", 1);
+		populateDatabase(em, "SC0.csv", "0203", 2);
+		populateDatabase(em, "SC0.csv", "0304", 3);
+		populateDatabase(em, "SC0.csv", "0405", 4);
 		populateDatabase(em, "SC0.csv", "0506", 5);
 		populateDatabase(em, "SC0.csv", "0607", 6);
 		populateDatabase(em, "SC0.csv", "0708", 7);
@@ -95,7 +119,11 @@ public class Main {
 		populateDatabase(em, "SC0.csv", "1415", 14);
 
 		// ALEMANHA - BUNDESLIGA 1
-		populateDatabase(em, "D1.csv", "0403", 4);
+		populateDatabase(em, "D1.csv", "0001", 0);
+		populateDatabase(em, "D1.csv", "0102", 1);
+		populateDatabase(em, "D1.csv", "0203", 2);
+		populateDatabase(em, "D1.csv", "0304", 3);
+		populateDatabase(em, "D1.csv", "0405", 4);
 		populateDatabase(em, "D1.csv", "0506", 5);
 		populateDatabase(em, "D1.csv", "0607", 6);
 		populateDatabase(em, "D1.csv", "0708", 7);
@@ -108,7 +136,11 @@ public class Main {
 		populateDatabase(em, "D1.csv", "1415", 14);
 
 		// ALEMANHA - BUNDESLIGA 2
-		populateDatabase(em, "D2.csv", "0403", 4);
+		populateDatabase(em, "D2.csv", "0001", 0);
+		populateDatabase(em, "D2.csv", "0102", 1);
+		populateDatabase(em, "D2.csv", "0203", 2);
+		populateDatabase(em, "D2.csv", "0304", 3);
+		populateDatabase(em, "D2.csv", "0405", 4);
 		populateDatabase(em, "D2.csv", "0506", 5);
 		populateDatabase(em, "D2.csv", "0607", 6);
 		populateDatabase(em, "D2.csv", "0708", 7);
@@ -121,7 +153,11 @@ public class Main {
 		populateDatabase(em, "D2.csv", "1415", 14);
 
 		// ITALIA - SERIE A
-		populateDatabase(em, "I1.csv", "0403", 4);
+		populateDatabase(em, "I1.csv", "0001", 0);
+		populateDatabase(em, "I1.csv", "0102", 1);
+		populateDatabase(em, "I1.csv", "0203", 2);
+		populateDatabase(em, "I1.csv", "0304", 3);
+		populateDatabase(em, "I1.csv", "0405", 4);
 		populateDatabase(em, "I1.csv", "0506", 5);
 		populateDatabase(em, "I1.csv", "0607", 6);
 		populateDatabase(em, "I1.csv", "0708", 7);
@@ -134,7 +170,11 @@ public class Main {
 		populateDatabase(em, "I1.csv", "1415", 14);
 
 		// ITALIA - SERIE B
-		populateDatabase(em, "I2.csv", "0403", 4);
+		populateDatabase(em, "I2.csv", "0001", 0);
+		populateDatabase(em, "I2.csv", "0102", 1);
+		populateDatabase(em, "I2.csv", "0203", 2);
+		populateDatabase(em, "I2.csv", "0304", 3);
+		populateDatabase(em, "I2.csv", "0405", 4);
 		populateDatabase(em, "I2.csv", "0506", 5);
 		populateDatabase(em, "I2.csv", "0607", 6);
 		populateDatabase(em, "I2.csv", "0708", 7);
@@ -147,7 +187,11 @@ public class Main {
 		populateDatabase(em, "I2.csv", "1415", 14);
 
 		// ESPANHA - LA LIGA PRIMERA DIVISION
-		populateDatabase(em, "SP1.csv", "0403", 4);
+		populateDatabase(em, "SP1.csv", "0001", 0);
+		populateDatabase(em, "SP1.csv", "0102", 1);
+		populateDatabase(em, "SP1.csv", "0203", 2);
+		populateDatabase(em, "SP1.csv", "0304", 3);
+		populateDatabase(em, "SP1.csv", "0405", 4);
 		populateDatabase(em, "SP1.csv", "0506", 5);
 		populateDatabase(em, "SP1.csv", "0607", 6);
 		populateDatabase(em, "SP1.csv", "0708", 7);
@@ -160,7 +204,11 @@ public class Main {
 		populateDatabase(em, "SP1.csv", "1415", 14);
 
 		// ESPANHA - LA LIGA SEGUNDA DIVISION
-		populateDatabase(em, "SP2.csv", "0403", 4);
+		populateDatabase(em, "SP2.csv", "0001", 0);
+		populateDatabase(em, "SP2.csv", "0102", 1);
+		populateDatabase(em, "SP2.csv", "0203", 2);
+		populateDatabase(em, "SP2.csv", "0304", 3);
+		populateDatabase(em, "SP2.csv", "0405", 4);
 		populateDatabase(em, "SP2.csv", "0506", 5);
 		populateDatabase(em, "SP2.csv", "0607", 6);
 		populateDatabase(em, "SP2.csv", "0708", 7);
@@ -173,7 +221,11 @@ public class Main {
 		populateDatabase(em, "SP2.csv", "1415", 14);
 
 		// FRANÇA - LE CHAMPIONNAT
-		populateDatabase(em, "F1.csv", "0403", 4);
+		populateDatabase(em, "F1.csv", "0001", 0);
+		populateDatabase(em, "F1.csv", "0102", 1);
+		populateDatabase(em, "F1.csv", "0203", 2);
+		populateDatabase(em, "F1.csv", "0304", 3);
+		populateDatabase(em, "F1.csv", "0405", 4);
 		populateDatabase(em, "F1.csv", "0506", 5);
 		populateDatabase(em, "F1.csv", "0607", 6);
 		populateDatabase(em, "F1.csv", "0708", 7);
@@ -186,7 +238,11 @@ public class Main {
 		populateDatabase(em, "F1.csv", "1415", 14);
 
 		// FRANÇA - DIVISION2
-		populateDatabase(em, "F2.csv", "0403", 4);
+		populateDatabase(em, "F2.csv", "0001", 0);
+		populateDatabase(em, "F2.csv", "0102", 1);
+		populateDatabase(em, "F2.csv", "0203", 2);
+		populateDatabase(em, "F2.csv", "0304", 3);
+		populateDatabase(em, "F2.csv", "0405", 4);
 		populateDatabase(em, "F2.csv", "0506", 5);
 		populateDatabase(em, "F2.csv", "0607", 6);
 		populateDatabase(em, "F2.csv", "0708", 7);
@@ -199,7 +255,11 @@ public class Main {
 		populateDatabase(em, "F2.csv", "1415", 14);
 
 		// HOLANDA - EREDIVISE
-		populateDatabase(em, "N1.csv", "0403", 4);
+		populateDatabase(em, "N1.csv", "0001", 0);
+		populateDatabase(em, "N1.csv", "0102", 1);
+		populateDatabase(em, "N1.csv", "0203", 2);
+		populateDatabase(em, "N1.csv", "0304", 3);
+		populateDatabase(em, "N1.csv", "0405", 4);
 		populateDatabase(em, "N1.csv", "0506", 5);
 		populateDatabase(em, "N1.csv", "0607", 6);
 		populateDatabase(em, "N1.csv", "0708", 7);
@@ -212,7 +272,11 @@ public class Main {
 		populateDatabase(em, "N1.csv", "1415", 14);
 
 		// BELGICA - JUPILER LEAGUE
-		populateDatabase(em, "B1.csv", "0403", 4);
+		populateDatabase(em, "B1.csv", "0001", 0);
+		populateDatabase(em, "B1.csv", "0102", 1);
+		populateDatabase(em, "B1.csv", "0203", 2);
+		populateDatabase(em, "B1.csv", "0304", 3);
+		populateDatabase(em, "B1.csv", "0405", 4);
 		populateDatabase(em, "B1.csv", "0506", 5);
 		populateDatabase(em, "B1.csv", "0607", 6);
 		populateDatabase(em, "B1.csv", "0708", 7);
@@ -225,7 +289,11 @@ public class Main {
 		populateDatabase(em, "B1.csv", "1415", 14);
 
 		// PORTUGAL - PRIMEIRA LIGA
-		populateDatabase(em, "P1.csv", "0403", 4);
+		populateDatabase(em, "P1.csv", "0001", 0);
+		populateDatabase(em, "P1.csv", "0102", 1);
+		populateDatabase(em, "P1.csv", "0203", 2);
+		populateDatabase(em, "P1.csv", "0304", 3);
+		populateDatabase(em, "P1.csv", "0405", 4);
 		populateDatabase(em, "P1.csv", "0506", 5);
 		populateDatabase(em, "P1.csv", "0607", 6);
 		populateDatabase(em, "P1.csv", "0708", 7);
@@ -238,7 +306,11 @@ public class Main {
 		populateDatabase(em, "P1.csv", "1415", 14);
 
 		// TURQUIA - FUTBOL LIGI 1
-		populateDatabase(em, "T1.csv", "0403", 4);
+		populateDatabase(em, "T1.csv", "0001", 0);
+		populateDatabase(em, "T1.csv", "0102", 1);
+		populateDatabase(em, "T1.csv", "0203", 2);
+		populateDatabase(em, "T1.csv", "0304", 3);
+		populateDatabase(em, "T1.csv", "0405", 4);
 		populateDatabase(em, "T1.csv", "0506", 5);
 		populateDatabase(em, "T1.csv", "0607", 6);
 		populateDatabase(em, "T1.csv", "0708", 7);
@@ -251,7 +323,11 @@ public class Main {
 		populateDatabase(em, "T1.csv", "1415", 14);
 
 		// GRECIA - ETHNIKI KATIGORIA
-		populateDatabase(em, "G1.csv", "0403", 4);
+		populateDatabase(em, "G1.csv", "0001", 0);
+		populateDatabase(em, "G1.csv", "0102", 1);
+		populateDatabase(em, "G1.csv", "0203", 2);
+		populateDatabase(em, "G1.csv", "0304", 3);
+		populateDatabase(em, "G1.csv", "0405", 4);
 		populateDatabase(em, "G1.csv", "0506", 5);
 		populateDatabase(em, "G1.csv", "0607", 6);
 		populateDatabase(em, "G1.csv", "0708", 7);
@@ -261,282 +337,287 @@ public class Main {
 		populateDatabase(em, "G1.csv", "1112", 11);
 		populateDatabase(em, "G1.csv", "1213", 12);
 		populateDatabase(em, "G1.csv", "1314", 13);
-		populateDatabase(em, "G1.csv", "1415", 14);*/
+		populateDatabase(em, "G1.csv", "1415", 14);
+	}
 
-		SeasonController sc = new SeasonController(em);
-
+	private static void generateExcelFiles(EntityManager em) {
 		
-		/*// INGLATERRA - PREMIER LEAGUE
+		SeasonController sc = new SeasonController(em);
+		
+		String dir = "/Users/Ricardo/Desktop/";
+
+		// INGLATERRA - PREMIER LEAGUE
 		Season e14 = sc.createSeason("E0", 14);
-		runAlgorithm(e14, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(e14, em, dir, true, true);
 
 		Season e13 = sc.createSeason("E0", 13);
-		runAlgorithm(e13, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(e13, em, dir, true, true);
 
 		Season e12 = sc.createSeason("E0", 12);
-		runAlgorithm(e12, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(e12, em, dir, true, true);
 
 		Season e11 = sc.createSeason("E0", 11);
-		runAlgorithm(e11, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(e11, em, dir, true, true);
 
 		Season e10 = sc.createSeason("E0", 10);
-		runAlgorithm(e10, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(e10, em, dir, true, true);
 
 		// INGLATERRA - PREMIERSHIP
 		Season ee14 = sc.createSeason("E1", 14);
-		runAlgorithm(ee14, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(ee14, em, dir, true, true);
 
 		Season ee13 = sc.createSeason("E1", 13);
-		runAlgorithm(ee13, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(ee13, em, dir, true, true);
 
 		Season ee12 = sc.createSeason("E1", 12);
-		runAlgorithm(ee12, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(ee12, em, dir, true, true);
 
 		Season ee11 = sc.createSeason("E1", 11);
-		runAlgorithm(ee11, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(ee11, em, dir, true, true);
 
 		Season ee10 = sc.createSeason("E1", 10);
-		runAlgorithm(ee10, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(ee10, em, dir, true, true);
 
 		// INGLATERRA - LEAGUE 1
 		Season eee14 = sc.createSeason("E2", 14);
-		runAlgorithm(eee14, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(eee14, em, dir, true, true);
 
 		Season eee13 = sc.createSeason("E2", 13);
-		runAlgorithm(eee13, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(eee13, em, dir, true, true);
 
 		Season eee12 = sc.createSeason("E2", 12);
-		runAlgorithm(eee12, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(eee12, em, dir, true, true);
 
 		Season eee11 = sc.createSeason("E2", 11);
-		runAlgorithm(eee11, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(eee11, em, dir, true, true);
 
 		Season eee10 = sc.createSeason("E2", 10);
-		runAlgorithm(eee10, em, "/Users/Ricardo/Desktop/", true, true);*/
+		runAlgorithm(eee10, em, dir, true, true);
 
-		// ESCOCIA - PREMIER LEAGUE -> Dá erro no H2H, penso que é por serem menos equipas e haver muito mais jogos entre elas devido as 4 voltas
+		// ESCOCIA - PREMIER LEAGUE
 		Season sc14 = sc.createSeason("SC0", 14);
-		runAlgorithm(sc14, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(sc14, em, dir, true, true);
 
 		Season sc13 = sc.createSeason("SC0", 13);
-		runAlgorithm(sc13, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(sc13, em, dir, true, true);
 
 		Season sc12 = sc.createSeason("SC0", 12);
-		runAlgorithm(sc12, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(sc12, em, dir, true, true);
 
 		Season sc11 = sc.createSeason("SC0", 11);
-		runAlgorithm(sc11, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(sc11, em, dir, true, true);
 
 		Season sc10 = sc.createSeason("SC0", 10);
-		runAlgorithm(sc10, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(sc10, em, dir, true, true);
 
-		/*// ALEMANHA - BUNDESLIGA1
+		// ALEMANHA - BUNDESLIGA1
 		Season d14 = sc.createSeason("D1", 14);
-		runAlgorithm(d14, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(d14, em, dir, true, true);
 
 		Season d13 = sc.createSeason("D1", 13);
-		runAlgorithm(d13, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(d13, em, dir, true, true);
 
 		Season d12 = sc.createSeason("D1", 12);
-		runAlgorithm(d12, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(d12, em, dir, true, true);
 
 		Season d11 = sc.createSeason("D1", 11);
-		runAlgorithm(d11, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(d11, em, dir, true, true);
 
 		Season d10 = sc.createSeason("D1", 10);
-		runAlgorithm(d10, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(d10, em, dir, true, true);
 
 		// ALEMANHA - BUNDESLIGA2
 		Season dd14 = sc.createSeason("D2", 14);
-		runAlgorithm(dd14, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(dd14, em, dir, true, true);
 
 		Season dd13 = sc.createSeason("D2", 13);
-		runAlgorithm(dd13, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(dd13, em, dir, true, true);
 
 		Season dd12 = sc.createSeason("D2", 12);
-		runAlgorithm(dd12, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(dd12, em, dir, true, true);
 
 		Season dd11 = sc.createSeason("D2", 11);
-		runAlgorithm(dd11, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(dd11, em, dir, true, true);
 
 		Season dd10 = sc.createSeason("D2", 10);
-		runAlgorithm(dd10, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(dd10, em, dir, true, true);
 
 		// ITALIA - SERIE A
 		Season i14 = sc.createSeason("I1", 14);
-		runAlgorithm(i14, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(i14, em, dir, true, true);
 
 		Season i13 = sc.createSeason("I1", 13);
-		runAlgorithm(i13, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(i13, em, dir, true, true);
 
 		Season i12 = sc.createSeason("I1", 12);
-		runAlgorithm(i12, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(i12, em, dir, true, true);
 
 		Season i11 = sc.createSeason("I1", 11);
-		runAlgorithm(i11, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(i11, em, dir, true, true);
 
 		Season i10 = sc.createSeason("I1", 10);
-		runAlgorithm(i10, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(i10, em, dir, true, true);
 
 		// ITALIA - SERIE B
 		Season ii14 = sc.createSeason("I2", 14);
-		runAlgorithm(ii14, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(ii14, em, dir, true, true);
 
 		Season ii13 = sc.createSeason("I2", 13);
-		runAlgorithm(ii13, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(ii13, em, dir, true, true);
 
 		Season ii12 = sc.createSeason("I2", 12);
-		runAlgorithm(ii12, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(ii12, em, dir, true, true);
 
 		Season ii11 = sc.createSeason("I2", 11);
-		runAlgorithm(ii11, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(ii11, em, dir, true, true);
 
 		Season ii10 = sc.createSeason("I2", 10);
-		runAlgorithm(ii10, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(ii10, em, dir, true, true);
 
 		// ESPANHA - LA LIGA PRIMERA DIVISION
 		Season sp14 = sc.createSeason("SP1", 14);
-		runAlgorithm(sp14, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(sp14, em, dir, true, true);
 
 		Season sp13 = sc.createSeason("SP1", 13);
-		runAlgorithm(sp13, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(sp13, em, dir, true, true);
 
 		Season sp12 = sc.createSeason("SP1", 12);
-		runAlgorithm(sp12, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(sp12, em, dir, true, true);
 
 		Season sp11 = sc.createSeason("SP1", 11);
-		runAlgorithm(sp11, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(sp11, em, dir, true, true);
 
 		Season sp10 = sc.createSeason("SP1", 10);
-		runAlgorithm(sp10, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(sp10, em, dir, true, true);
 
 		// ESPANHA - LA LIGA SEGUNDA DIVISION
 		Season spsp14 = sc.createSeason("SP2", 14);
-		runAlgorithm(spsp14, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(spsp14, em, dir, true, true);
 
 		Season spsp13 = sc.createSeason("SP2", 13);
-		runAlgorithm(spsp13, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(spsp13, em, dir, true, true);
 
 		Season spsp12 = sc.createSeason("SP2", 12);
-		runAlgorithm(spsp12, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(spsp12, em, dir, true, true);
 
 		Season spsp11 = sc.createSeason("SP2", 11);
-		runAlgorithm(spsp11, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(spsp11, em, dir, true, true);
 
 		Season spsp10 = sc.createSeason("SP2", 10);
-		runAlgorithm(spsp10, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(spsp10, em, dir, true, true);
 
 		// FRANÇA - CHAMPIONNAT
 		Season f14 = sc.createSeason("F1", 14);
-		runAlgorithm(f14, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(f14, em, dir, true, true);
 
 		Season f13 = sc.createSeason("F1", 13);
-		runAlgorithm(f13, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(f13, em, dir, true, true);
 
 		Season f12 = sc.createSeason("F1", 12);
-		runAlgorithm(f12, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(f12, em, dir, true, true);
 
 		Season f11 = sc.createSeason("F1", 11);
-		runAlgorithm(f11, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(f11, em, dir, true, true);
 
 		Season f10 = sc.createSeason("F1", 10);
-		runAlgorithm(f10, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(f10, em, dir, true, true);
 
 		// FRANÇA - DIVISION2
 		Season ff14 = sc.createSeason("F2", 14);
-		runAlgorithm(ff14, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(ff14, em, dir, true, true);
 
 		Season ff13 = sc.createSeason("F2", 13);
-		runAlgorithm(ff13, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(ff13, em, dir, true, true);
 
 		Season ff12 = sc.createSeason("F2", 12);
-		runAlgorithm(ff12, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(ff12, em, dir, true, true);
 
 		Season ff11 = sc.createSeason("F2", 11);
-		runAlgorithm(ff11, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(ff11, em, dir, true, true);
 
 		Season ff10 = sc.createSeason("F2", 10);
-		runAlgorithm(ff10, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(ff10, em, dir, true, true);
 
 		// HOLANDA - EREDIVISE
 		Season n14 = sc.createSeason("N1", 14);
-		runAlgorithm(n14, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(n14, em, dir, true, true);
 
 		Season n13 = sc.createSeason("N1", 13);
-		runAlgorithm(n13, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(n13, em, dir, true, true);
 
 		Season n12 = sc.createSeason("N1", 12);
-		runAlgorithm(n12, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(n12, em, dir, true, true);
 
 		Season n11 = sc.createSeason("N1", 11);
-		runAlgorithm(n11, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(n11, em, dir, true, true);
 
 		Season n10 = sc.createSeason("N1", 10);
-		runAlgorithm(n10, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(n10, em, dir, true, true);
 
 		// BÉLGICA - JUPILER LEAGUE
 		Season b14 = sc.createSeason("B1", 14);
-		runAlgorithm(b14, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(b14, em, dir, true, true);
 
 		Season b13 = sc.createSeason("B1", 13);
-		runAlgorithm(b13, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(b13, em, dir, true, true);
 
 		Season b12 = sc.createSeason("B1", 12);
-		runAlgorithm(b12, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(b12, em, dir, true, true);
 
 		Season b11 = sc.createSeason("B1", 11);
-		runAlgorithm(b11, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(b11, em, dir, true, true);
 
 		Season b10 = sc.createSeason("B1", 10);
-		runAlgorithm(b10, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(b10, em, dir, true, true);
 
 		// PORTUGAL - PRIMEIRA LIGA
 		Season p14 = sc.createSeason("P1", 14);
-		runAlgorithm(p14, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(p14, em, dir, true, true);
 
 		Season p13 = sc.createSeason("P1", 13);
-		runAlgorithm(p13, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(p13, em, dir, true, true);
 
 		Season p12 = sc.createSeason("P1", 12);
-		runAlgorithm(p12, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(p12, em, dir, true, true);
 
 		Season p11 = sc.createSeason("P1", 11);
-		runAlgorithm(p11, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(p11, em, dir, true, true);
 
 		Season p10 = sc.createSeason("P1", 10);
-		runAlgorithm(p10, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(p10, em, dir, true, true);
 
 		// TURQUIA - FUTBOL LIGI 1
 		Season t14 = sc.createSeason("T1", 14);
-		runAlgorithm(t14, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(t14, em, dir, true, true);
 
 		Season t13 = sc.createSeason("T1", 13);
-		runAlgorithm(t13, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(t13, em, dir, true, true);
 
 		Season t12 = sc.createSeason("T1", 12);
-		runAlgorithm(t12, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(t12, em, dir, true, true);
 
 		Season t11 = sc.createSeason("T1", 11);
-		runAlgorithm(t11, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(t11, em, dir, true, true);
 
 		Season t10 = sc.createSeason("T1", 10);
-		runAlgorithm(t10, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(t10, em, dir, true, true);
 
 		// GRÉCIA - ETHNIKI KATIGORIA
 		Season g14 = sc.createSeason("G1", 14);
-		runAlgorithm(g14, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(g14, em, dir, true, true);
 
 		Season g13 = sc.createSeason("G1", 13);
-		runAlgorithm(g13, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(g13, em, dir, true, true);
 
 		Season g12 = sc.createSeason("G1", 12);
-		runAlgorithm(g12, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(g12, em, dir, true, true);
 
 		Season g11 = sc.createSeason("G1", 11);
-		runAlgorithm(g11, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(g11, em, dir, true, true);
 
 		Season g10 = sc.createSeason("G1", 10);
-		runAlgorithm(g10, em, "/Users/Ricardo/Desktop/", true, true);*/
+		runAlgorithm(g10, em, dir, true, true);
+
 	}
 
 	private static void runAlgorithm(Season s, EntityManager em, String filePath, boolean generateProf,
@@ -635,7 +716,7 @@ public class Main {
 
 		for (Fixture f : s.getFixtures()) {
 
-			System.out.println(f.toString());
+			logger.debug(f.toString());
 
 			if (f.getDate().before(formatter.parseDateTime("25/11/" + s.getYear()).toDate()))
 				continue;
@@ -934,7 +1015,8 @@ public class Main {
 				.readFromCSV("http://www.football-data.co.uk/mmz4281/" + season + "/" + competitionFile);
 
 		Season s = null;
-		if (competitionFile.contains("E0") || competitionFile.contains("E1") || competitionFile.contains("E2") || competitionFile.contains("SC0")) {
+		if (competitionFile.contains("E0") || competitionFile.contains("E1") || competitionFile.contains("E2")
+				|| competitionFile.contains("SC0")) {
 			for (String[] arr : list) {
 				s = seasonController.createSeason(arr[0], year);
 				Team t1 = teamController.createTeam(arr[2]);
@@ -952,17 +1034,17 @@ public class Main {
 
 				} catch (NumberFormatException e) {
 					e.printStackTrace(System.out);
-					System.out.println(arr[0]);
-					System.out.println(arr[1]);
-					System.out.println(arr[2]);
-					System.out.println(arr[3]);
-					System.out.println(arr[4]);
-					System.out.println(arr[5]);
-					// System.out.println(arr[7]);
-					// System.out.println(arr[8]);
-					System.out.println(arr[23]);
-					System.out.println(arr[24]);
-					System.out.println(arr[25]);
+					logger.debug(arr[0]);
+					logger.debug(arr[1]);
+					logger.debug(arr[2]);
+					logger.debug(arr[3]);
+					logger.debug(arr[4]);
+					logger.debug(arr[5]);
+					// logger.debug(arr[7]);
+					// logger.debug(arr[8]);
+					logger.debug(arr[23]);
+					logger.debug(arr[24]);
+					logger.debug(arr[25]);
 					result = new Result(Integer.valueOf(arr[4]), Integer.valueOf(arr[5]), 0, 0);
 				}
 
@@ -984,8 +1066,8 @@ public class Main {
 			}
 			return s;
 
-		
-		}  else if (competitionFile.contains("D1") || competitionFile.contains("I1") || competitionFile.contains("SP1") || competitionFile.contains("F1")) {
+		} else if (competitionFile.contains("D1") || competitionFile.contains("I1") || competitionFile.contains("SP1")
+				|| competitionFile.contains("F1")) {
 			for (String[] arr : list) {
 				s = seasonController.createSeason(arr[0], year);
 				Team t1 = teamController.createTeam(arr[2]);
@@ -1003,17 +1085,17 @@ public class Main {
 
 				} catch (NumberFormatException e) {
 					e.printStackTrace(System.out);
-					System.out.println(arr[0]);
-					System.out.println(arr[1]);
-					System.out.println(arr[2]);
-					System.out.println(arr[3]);
-					System.out.println(arr[4]);
-					System.out.println(arr[5]);
-					// System.out.println(arr[7]);
-					// System.out.println(arr[8]);
-					System.out.println(arr[22]);
-					System.out.println(arr[23]);
-					System.out.println(arr[24]);
+					logger.debug(arr[0]);
+					logger.debug(arr[1]);
+					logger.debug(arr[2]);
+					logger.debug(arr[3]);
+					logger.debug(arr[4]);
+					logger.debug(arr[5]);
+					// logger.debug(arr[7]);
+					// logger.debug(arr[8]);
+					logger.debug(arr[22]);
+					logger.debug(arr[23]);
+					logger.debug(arr[24]);
 					result = new Result(Integer.valueOf(arr[4]), Integer.valueOf(arr[5]), 0, 0);
 				}
 
@@ -1035,7 +1117,9 @@ public class Main {
 			}
 			return s;
 
-		} else if (competitionFile.contains("D2") || competitionFile.contains("I2") || competitionFile.contains("SP2") || competitionFile.contains("F2") || competitionFile.contains("N1") || competitionFile.contains("B1") || competitionFile.contains("P1") || competitionFile.contains("T1") || competitionFile.contains("G1")) {
+		} else if (competitionFile.contains("D2") || competitionFile.contains("I2") || competitionFile.contains("SP2")
+				|| competitionFile.contains("F2") || competitionFile.contains("N1") || competitionFile.contains("B1")
+				|| competitionFile.contains("P1") || competitionFile.contains("T1") || competitionFile.contains("G1")) {
 			for (String[] arr : list) {
 				s = seasonController.createSeason(arr[0], year);
 				Team t1 = teamController.createTeam(arr[2]);
@@ -1053,17 +1137,17 @@ public class Main {
 
 				} catch (NumberFormatException e) {
 					e.printStackTrace(System.out);
-					System.out.println(arr[0]);
-					System.out.println(arr[1]);
-					System.out.println(arr[2]);
-					System.out.println(arr[3]);
-					System.out.println(arr[4]);
-					System.out.println(arr[5]);
-					// System.out.println(arr[7]);
-					// System.out.println(arr[8]);
-					System.out.println(arr[10]);
-					System.out.println(arr[11]);
-					System.out.println(arr[12]);
+					logger.debug(arr[0]);
+					logger.debug(arr[1]);
+					logger.debug(arr[2]);
+					logger.debug(arr[3]);
+					logger.debug(arr[4]);
+					logger.debug(arr[5]);
+					// logger.debug(arr[7]);
+					// logger.debug(arr[8]);
+					logger.debug(arr[10]);
+					logger.debug(arr[11]);
+					logger.debug(arr[12]);
 					result = new Result(Integer.valueOf(arr[4]), Integer.valueOf(arr[5]), 0, 0);
 				}
 
@@ -1084,9 +1168,8 @@ public class Main {
 				}
 			}
 			return s;
-		}
-		else {
-			System.out.println("NAO PREENCHEU BEM, MANDA TUDO A BAIXO!!!");
+		} else {
+			logger.debug("NAO PREENCHEU BEM, MANDA TUDO A BAIXO!!!");
 		}
 		return s;
 	}
