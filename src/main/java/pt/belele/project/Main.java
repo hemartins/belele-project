@@ -718,7 +718,7 @@ public class Main {
 
 			logger.debug(f.toString());
 
-			if (f.getDate().before(formatter.parseDateTime("25/11/" + s.getYear()).toDate()))
+			if (f.getDate().before(formatter.parseDateTime("23/11/" + s.getYear()).toDate()))
 				continue;
 
 			ExcelColumnsCalculation homeTeam = new ExcelColumnsCalculation(f.getHomeTeam(), em);

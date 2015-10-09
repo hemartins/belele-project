@@ -571,8 +571,11 @@ public class Algorithm {
 		calculateSimpleBetProcessedOdds(cutOffSimple);
 		simpleBetDecision(cutOffSimple);
 		calculateMultipleBetProcessedOdds(cutOffDouble);
+		doubleBetDecision(cutOffDouble);
 		calculateMultipleBetProcessedOdds(cutOffTriple);
+		tripleBetDecision(cutOffTriple);
 		calculateMultipleBetProcessedOdds(cutOffMultiple);
+		multipleBetDecision(cutOffMultiple);
 
 	}
 
