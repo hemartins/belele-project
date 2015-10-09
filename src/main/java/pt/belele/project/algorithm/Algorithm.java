@@ -414,41 +414,41 @@ public class Algorithm {
 		if (backWinOdd * nnBackWinOdd == 0) {
 			this.setBackWinProcessedOdd(0);
 		} else {
-			this.setBackWinProcessedOdd((boWin * (backWinOdd - 1) + backWinOdd - 1)
-					* (backWinOdd * cutOff.getNnOddWeight()));
+			this.setBackWinProcessedOdd(
+					(boWin * (backWinOdd - 1) + backWinOdd - 1) * (backWinOdd * cutOff.getNnOddWeight()));
 		}
 		if (backDrawOdd * nnBackDrawOdd == 0) {
 			this.setBackDrawProcessedOdd(0);
 		} else {
-			this.setBackDrawProcessedOdd((boDraw * (backDrawOdd - 1) + backDrawOdd - 1)
-					* (backDrawOdd  * cutOff.getNnOddWeight()));
+			this.setBackDrawProcessedOdd(
+					(boDraw * (backDrawOdd - 1) + backDrawOdd - 1) * (backDrawOdd * cutOff.getNnOddWeight()));
 		}
 		if (backLoseOdd * nnBackLoseOdd == 0) {
 			this.setBackLoseProcessedOdd(0);
 		} else {
-			this.setBackLoseProcessedOdd((boLose * (backLoseOdd - 1) + backLoseOdd - 1)
-					* (backLoseOdd * cutOff.getNnOddWeight()));
+			this.setBackLoseProcessedOdd(
+					(boLose * (backLoseOdd - 1) + backLoseOdd - 1) * (backLoseOdd * cutOff.getNnOddWeight()));
 		}
 		if (layWinOdd * nnLayWinOdd == 0) {
 			this.setLayWinProcessedOdd(0);
 		} else {
-			this.setLayWinProcessedOdd((boWin * (layWinOdd - 1) + layWinOdd - 1)
-					* (layWinOdd * cutOff.getNnOddWeight()));
+			this.setLayWinProcessedOdd(
+					(boWin * (layWinOdd - 1) + layWinOdd - 1) * (layWinOdd * cutOff.getNnOddWeight()));
 		}
 		if (layDrawOdd * nnLayDrawOdd == 0) {
 			this.setLayDrawProcessedOdd(0);
 		} else {
-			this.setLayDrawProcessedOdd((boDraw * (layDrawOdd - 1) + layDrawOdd - 1)
-					* (layDrawOdd * cutOff.getNnOddWeight()));
+			this.setLayDrawProcessedOdd(
+					(boDraw * (layDrawOdd - 1) + layDrawOdd - 1) * (layDrawOdd * cutOff.getNnOddWeight()));
 		}
 		if (layLoseOdd * nnLayLoseOdd == 0) {
 			this.setLayLoseProcessedOdd(0);
 		} else {
-			this.setLayLoseProcessedOdd((boLose * (layLoseOdd - 1) + layLoseOdd - 1)
-					* (layLoseOdd * cutOff.getNnOddWeight()));
+			this.setLayLoseProcessedOdd(
+					(boLose * (layLoseOdd - 1) + layLoseOdd - 1) * (layLoseOdd * cutOff.getNnOddWeight()));
 		}
 	}
-	
+
 	public void calculateMultipleBetProcessedOdds(CutOff cutOff) {
 
 		double backWinOdd = this.getBackWinOdd();
@@ -475,7 +475,7 @@ public class Algorithm {
 		if (backDrawOdd * nnBackDrawOdd == 0) {
 			this.setBackDrawProcessedOdd(0);
 		} else {
-			this.setBackDrawProcessedOdd((boDraw * backDrawOdd)+ (backDrawOdd * cutOff.getNnOddWeight()));
+			this.setBackDrawProcessedOdd((boDraw * backDrawOdd) + (backDrawOdd * cutOff.getNnOddWeight()));
 		}
 		if (backLoseOdd * nnBackLoseOdd == 0) {
 			this.setBackLoseProcessedOdd(0);
@@ -498,7 +498,7 @@ public class Algorithm {
 			this.setLayLoseProcessedOdd((boLose * layLoseOdd) + (layLoseOdd * cutOff.getNnOddWeight()));
 		}
 	}
-	
+
 	public void simpleBetDecision(CutOff cutOff) {
 		double backWinProcessedOdd = this.getBackWinProcessedOdd();
 		double backDrawProcessedOdd = this.getBackDrawNeuralNetworkOdd();
@@ -549,7 +549,20 @@ public class Algorithm {
 		}
 	}
 
-	public void runAlgorithm(Fixture fixture, CutOff cutOffSimple, CutOff cutOffDouble, CutOff cutOffTriple, CutOff cutOffMultiple, double neuralNetworkBackWIN, double neuralNetworkBackDRAW,
+	public void doubleBetDecision(CutOff doubleBetCutoff) {
+
+	}
+
+	public void tripleBetDecision(CutOff tripleBetCutoff) {
+
+	}
+
+	public void  multipleBetDecision(CutOff multipleBetCutoff) {
+
+	}
+
+	public void runAlgorithm(Fixture fixture, CutOff cutOffSimple, CutOff cutOffDouble, CutOff cutOffTriple,
+			CutOff cutOffMultiple, double neuralNetworkBackWIN, double neuralNetworkBackDRAW,
 			double neuralNetworkBackLOSE, double neuralNetworkLayWIN, double neuralNetworkLayDRAW,
 			double neuralNetworkLayLOSE) {
 		atributeOddWeightCutOff(fixture, cutOffSimple);
@@ -560,6 +573,7 @@ public class Algorithm {
 		calculateMultipleBetProcessedOdds(cutOffDouble);
 		calculateMultipleBetProcessedOdds(cutOffTriple);
 		calculateMultipleBetProcessedOdds(cutOffMultiple);
+
 	}
 
 	/****************/
@@ -573,7 +587,7 @@ public class Algorithm {
 			if (listUnit == max) {
 				count++;
 			}
-			if (count > 1){
+			if (count > 1) {
 				hasManyMax = true;
 			}
 		}

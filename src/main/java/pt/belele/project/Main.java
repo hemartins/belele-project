@@ -16,6 +16,7 @@ import pt.belele.project.algorithm.ExcelColumnsCalculation;
 import pt.belele.project.algorithm.ExcelRow;
 import pt.belele.project.algorithm.ProfRow;
 import pt.belele.project.controllers.FixtureController;
+import pt.belele.project.controllers.OddController;
 import pt.belele.project.controllers.SeasonController;
 import pt.belele.project.controllers.StandingController;
 import pt.belele.project.controllers.TeamController;
@@ -41,7 +42,13 @@ public class Main {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("database.odb");
 		EntityManager em = emf.createEntityManager();
 		
-		// INGLATERRA - PREMIER LEAGUE
+		/*// INGLATERRA - PREMIER LEAGUE
+		populateDatabase(em, "E0.csv", "0403", 4);
+		populateDatabase(em, "E0.csv", "0506", 5);
+		populateDatabase(em, "E0.csv", "0607", 6);
+		populateDatabase(em, "E0.csv", "0708", 7);
+		populateDatabase(em, "E0.csv", "0809", 8);
+		populateDatabase(em, "E0.csv", "0910", 9);
 		populateDatabase(em, "E0.csv", "1011", 10);
 		populateDatabase(em, "E0.csv", "1112", 11);
 		populateDatabase(em, "E0.csv", "1213", 12);
@@ -49,6 +56,12 @@ public class Main {
 		populateDatabase(em, "E0.csv", "1415", 14);
 		
 		 // INGLATERRA - CHAMPIONSHIP
+		populateDatabase(em, "E1.csv", "0403", 4);
+		populateDatabase(em, "E1.csv", "0506", 5);
+		populateDatabase(em, "E1.csv", "0607", 6);
+		populateDatabase(em, "E1.csv", "0708", 7);
+		populateDatabase(em, "E1.csv", "0809", 8);
+		populateDatabase(em, "E1.csv", "0910", 9);
 		populateDatabase(em, "E1.csv", "1011", 10);
 		populateDatabase(em, "E1.csv", "1112", 11);
 		populateDatabase(em, "E1.csv", "1213", 12);
@@ -56,20 +69,38 @@ public class Main {
 		populateDatabase(em, "E1.csv", "1415", 14);
 
 		// INGLATERRA - LEAGUE 1
+		populateDatabase(em, "E2.csv", "0403", 4);
+		populateDatabase(em, "E2.csv", "0506", 5);
+		populateDatabase(em, "E2.csv", "0607", 6);
+		populateDatabase(em, "E2.csv", "0708", 7);
+		populateDatabase(em, "E2.csv", "0809", 8);
+		populateDatabase(em, "E2.csv", "0910", 9);
 		populateDatabase(em, "E2.csv", "1011", 10);
 		populateDatabase(em, "E2.csv", "1112", 11);
 		populateDatabase(em, "E2.csv", "1213", 12);
 		populateDatabase(em, "E2.csv", "1314", 13);
 		populateDatabase(em, "E2.csv", "1415", 14);
 
-		/*// ESCOCIA - PREMIER LEAGUE
+		// ESCOCIA - PREMIER LEAGUE
+		populateDatabase(em, "SC0.csv", "0403", 4);
+		populateDatabase(em, "SC0.csv", "0506", 5);
+		populateDatabase(em, "SC0.csv", "0607", 6);
+		populateDatabase(em, "SC0.csv", "0708", 7);
+		populateDatabase(em, "SC0.csv", "0809", 8);
+		populateDatabase(em, "SC0.csv", "0910", 9);
 		populateDatabase(em, "SC0.csv", "1011", 10);
 		populateDatabase(em, "SC0.csv", "1112", 11);
 		populateDatabase(em, "SC0.csv", "1213", 12);
 		populateDatabase(em, "SC0.csv", "1314", 13);
-		populateDatabase(em, "SC0.csv", "1415", 14);*/
+		populateDatabase(em, "SC0.csv", "1415", 14);
 
 		// ALEMANHA - BUNDESLIGA 1
+		populateDatabase(em, "D1.csv", "0403", 4);
+		populateDatabase(em, "D1.csv", "0506", 5);
+		populateDatabase(em, "D1.csv", "0607", 6);
+		populateDatabase(em, "D1.csv", "0708", 7);
+		populateDatabase(em, "D1.csv", "0809", 8);
+		populateDatabase(em, "D1.csv", "0910", 9);
 		populateDatabase(em, "D1.csv", "1011", 10);
 		populateDatabase(em, "D1.csv", "1112", 11);
 		populateDatabase(em, "D1.csv", "1213", 12);
@@ -77,6 +108,12 @@ public class Main {
 		populateDatabase(em, "D1.csv", "1415", 14);
 
 		// ALEMANHA - BUNDESLIGA 2
+		populateDatabase(em, "D2.csv", "0403", 4);
+		populateDatabase(em, "D2.csv", "0506", 5);
+		populateDatabase(em, "D2.csv", "0607", 6);
+		populateDatabase(em, "D2.csv", "0708", 7);
+		populateDatabase(em, "D2.csv", "0809", 8);
+		populateDatabase(em, "D2.csv", "0910", 9);
 		populateDatabase(em, "D2.csv", "1011", 10);
 		populateDatabase(em, "D2.csv", "1112", 11);
 		populateDatabase(em, "D2.csv", "1213", 12);
@@ -84,6 +121,12 @@ public class Main {
 		populateDatabase(em, "D2.csv", "1415", 14);
 
 		// ITALIA - SERIE A
+		populateDatabase(em, "I1.csv", "0403", 4);
+		populateDatabase(em, "I1.csv", "0506", 5);
+		populateDatabase(em, "I1.csv", "0607", 6);
+		populateDatabase(em, "I1.csv", "0708", 7);
+		populateDatabase(em, "I1.csv", "0809", 8);
+		populateDatabase(em, "I1.csv", "0910", 9);
 		populateDatabase(em, "I1.csv", "1011", 10);
 		populateDatabase(em, "I1.csv", "1112", 11);
 		populateDatabase(em, "I1.csv", "1213", 12);
@@ -91,6 +134,12 @@ public class Main {
 		populateDatabase(em, "I1.csv", "1415", 14);
 
 		// ITALIA - SERIE B
+		populateDatabase(em, "I2.csv", "0403", 4);
+		populateDatabase(em, "I2.csv", "0506", 5);
+		populateDatabase(em, "I2.csv", "0607", 6);
+		populateDatabase(em, "I2.csv", "0708", 7);
+		populateDatabase(em, "I2.csv", "0809", 8);
+		populateDatabase(em, "I2.csv", "0910", 9);
 		populateDatabase(em, "I2.csv", "1011", 10);
 		populateDatabase(em, "I2.csv", "1112", 11);
 		populateDatabase(em, "I2.csv", "1213", 12);
@@ -98,6 +147,12 @@ public class Main {
 		populateDatabase(em, "I2.csv", "1415", 14);
 
 		// ESPANHA - LA LIGA PRIMERA DIVISION
+		populateDatabase(em, "SP1.csv", "0403", 4);
+		populateDatabase(em, "SP1.csv", "0506", 5);
+		populateDatabase(em, "SP1.csv", "0607", 6);
+		populateDatabase(em, "SP1.csv", "0708", 7);
+		populateDatabase(em, "SP1.csv", "0809", 8);
+		populateDatabase(em, "SP1.csv", "0910", 9);
 		populateDatabase(em, "SP1.csv", "1011", 10);
 		populateDatabase(em, "SP1.csv", "1112", 11);
 		populateDatabase(em, "SP1.csv", "1213", 12);
@@ -105,6 +160,12 @@ public class Main {
 		populateDatabase(em, "SP1.csv", "1415", 14);
 
 		// ESPANHA - LA LIGA SEGUNDA DIVISION
+		populateDatabase(em, "SP2.csv", "0403", 4);
+		populateDatabase(em, "SP2.csv", "0506", 5);
+		populateDatabase(em, "SP2.csv", "0607", 6);
+		populateDatabase(em, "SP2.csv", "0708", 7);
+		populateDatabase(em, "SP2.csv", "0809", 8);
+		populateDatabase(em, "SP2.csv", "0910", 9);
 		populateDatabase(em, "SP2.csv", "1011", 10);
 		populateDatabase(em, "SP2.csv", "1112", 11);
 		populateDatabase(em, "SP2.csv", "1213", 12);
@@ -112,6 +173,12 @@ public class Main {
 		populateDatabase(em, "SP2.csv", "1415", 14);
 
 		// FRANÇA - LE CHAMPIONNAT
+		populateDatabase(em, "F1.csv", "0403", 4);
+		populateDatabase(em, "F1.csv", "0506", 5);
+		populateDatabase(em, "F1.csv", "0607", 6);
+		populateDatabase(em, "F1.csv", "0708", 7);
+		populateDatabase(em, "F1.csv", "0809", 8);
+		populateDatabase(em, "F1.csv", "0910", 9);
 		populateDatabase(em, "F1.csv", "1011", 10);
 		populateDatabase(em, "F1.csv", "1112", 11);
 		populateDatabase(em, "F1.csv", "1213", 12);
@@ -119,6 +186,12 @@ public class Main {
 		populateDatabase(em, "F1.csv", "1415", 14);
 
 		// FRANÇA - DIVISION2
+		populateDatabase(em, "F2.csv", "0403", 4);
+		populateDatabase(em, "F2.csv", "0506", 5);
+		populateDatabase(em, "F2.csv", "0607", 6);
+		populateDatabase(em, "F2.csv", "0708", 7);
+		populateDatabase(em, "F2.csv", "0809", 8);
+		populateDatabase(em, "F2.csv", "0910", 9);
 		populateDatabase(em, "F2.csv", "1011", 10);
 		populateDatabase(em, "F2.csv", "1112", 11);
 		populateDatabase(em, "F2.csv", "1213", 12);
@@ -126,6 +199,12 @@ public class Main {
 		populateDatabase(em, "F2.csv", "1415", 14);
 
 		// HOLANDA - EREDIVISE
+		populateDatabase(em, "N1.csv", "0403", 4);
+		populateDatabase(em, "N1.csv", "0506", 5);
+		populateDatabase(em, "N1.csv", "0607", 6);
+		populateDatabase(em, "N1.csv", "0708", 7);
+		populateDatabase(em, "N1.csv", "0809", 8);
+		populateDatabase(em, "N1.csv", "0910", 9);
 		populateDatabase(em, "N1.csv", "1011", 10);
 		populateDatabase(em, "N1.csv", "1112", 11);
 		populateDatabase(em, "N1.csv", "1213", 12);
@@ -133,6 +212,12 @@ public class Main {
 		populateDatabase(em, "N1.csv", "1415", 14);
 
 		// BELGICA - JUPILER LEAGUE
+		populateDatabase(em, "B1.csv", "0403", 4);
+		populateDatabase(em, "B1.csv", "0506", 5);
+		populateDatabase(em, "B1.csv", "0607", 6);
+		populateDatabase(em, "B1.csv", "0708", 7);
+		populateDatabase(em, "B1.csv", "0809", 8);
+		populateDatabase(em, "B1.csv", "0910", 9);
 		populateDatabase(em, "B1.csv", "1011", 10);
 		populateDatabase(em, "B1.csv", "1112", 11);
 		populateDatabase(em, "B1.csv", "1213", 12);
@@ -140,6 +225,12 @@ public class Main {
 		populateDatabase(em, "B1.csv", "1415", 14);
 
 		// PORTUGAL - PRIMEIRA LIGA
+		populateDatabase(em, "P1.csv", "0403", 4);
+		populateDatabase(em, "P1.csv", "0506", 5);
+		populateDatabase(em, "P1.csv", "0607", 6);
+		populateDatabase(em, "P1.csv", "0708", 7);
+		populateDatabase(em, "P1.csv", "0809", 8);
+		populateDatabase(em, "P1.csv", "0910", 9);
 		populateDatabase(em, "P1.csv", "1011", 10);
 		populateDatabase(em, "P1.csv", "1112", 11);
 		populateDatabase(em, "P1.csv", "1213", 12);
@@ -147,6 +238,12 @@ public class Main {
 		populateDatabase(em, "P1.csv", "1415", 14);
 
 		// TURQUIA - FUTBOL LIGI 1
+		populateDatabase(em, "T1.csv", "0403", 4);
+		populateDatabase(em, "T1.csv", "0506", 5);
+		populateDatabase(em, "T1.csv", "0607", 6);
+		populateDatabase(em, "T1.csv", "0708", 7);
+		populateDatabase(em, "T1.csv", "0809", 8);
+		populateDatabase(em, "T1.csv", "0910", 9);
 		populateDatabase(em, "T1.csv", "1011", 10);
 		populateDatabase(em, "T1.csv", "1112", 11);
 		populateDatabase(em, "T1.csv", "1213", 12);
@@ -154,16 +251,22 @@ public class Main {
 		populateDatabase(em, "T1.csv", "1415", 14);
 
 		// GRECIA - ETHNIKI KATIGORIA
+		populateDatabase(em, "G1.csv", "0403", 4);
+		populateDatabase(em, "G1.csv", "0506", 5);
+		populateDatabase(em, "G1.csv", "0607", 6);
+		populateDatabase(em, "G1.csv", "0708", 7);
+		populateDatabase(em, "G1.csv", "0809", 8);
+		populateDatabase(em, "G1.csv", "0910", 9);
 		populateDatabase(em, "G1.csv", "1011", 10);
 		populateDatabase(em, "G1.csv", "1112", 11);
 		populateDatabase(em, "G1.csv", "1213", 12);
 		populateDatabase(em, "G1.csv", "1314", 13);
-		populateDatabase(em, "G1.csv", "1415", 14);
+		populateDatabase(em, "G1.csv", "1415", 14);*/
 
 		SeasonController sc = new SeasonController(em);
 
-		/*
-		// INGLATERRA - PREMIER LEAGUE
+		
+		/*// INGLATERRA - PREMIER LEAGUE
 		Season e14 = sc.createSeason("E0", 14);
 		runAlgorithm(e14, em, "/Users/Ricardo/Desktop/", true, true);
 
@@ -209,7 +312,7 @@ public class Main {
 		runAlgorithm(eee11, em, "/Users/Ricardo/Desktop/", true, true);
 
 		Season eee10 = sc.createSeason("E2", 10);
-		runAlgorithm(eee10, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(eee10, em, "/Users/Ricardo/Desktop/", true, true);*/
 
 		// ESCOCIA - PREMIER LEAGUE -> Dá erro no H2H, penso que é por serem menos equipas e haver muito mais jogos entre elas devido as 4 voltas
 		Season sc14 = sc.createSeason("SC0", 14);
@@ -227,7 +330,7 @@ public class Main {
 		Season sc10 = sc.createSeason("SC0", 10);
 		runAlgorithm(sc10, em, "/Users/Ricardo/Desktop/", true, true);
 
-		// ALEMANHA - BUNDESLIGA1
+		/*// ALEMANHA - BUNDESLIGA1
 		Season d14 = sc.createSeason("D1", 14);
 		runAlgorithm(d14, em, "/Users/Ricardo/Desktop/", true, true);
 
@@ -273,7 +376,7 @@ public class Main {
 		runAlgorithm(i11, em, "/Users/Ricardo/Desktop/", true, true);
 
 		Season i10 = sc.createSeason("I1", 10);
-		runAlgorithm(i10, em, "/Users/Ricardo/Desktop/", true, true);*/
+		runAlgorithm(i10, em, "/Users/Ricardo/Desktop/", true, true);
 
 		// ITALIA - SERIE B
 		Season ii14 = sc.createSeason("I2", 14);
@@ -433,7 +536,7 @@ public class Main {
 		runAlgorithm(g11, em, "/Users/Ricardo/Desktop/", true, true);
 
 		Season g10 = sc.createSeason("G1", 10);
-		runAlgorithm(g10, em, "/Users/Ricardo/Desktop/", true, true);
+		runAlgorithm(g10, em, "/Users/Ricardo/Desktop/", true, true);*/
 	}
 
 	private static void runAlgorithm(Season s, EntityManager em, String filePath, boolean generateProf,
@@ -534,7 +637,7 @@ public class Main {
 
 			System.out.println(f.toString());
 
-			if (f.getDate().before(formatter.parseDateTime("15/11/" + s.getYear()).toDate()))
+			if (f.getDate().before(formatter.parseDateTime("25/11/" + s.getYear()).toDate()))
 				continue;
 
 			ExcelColumnsCalculation homeTeam = new ExcelColumnsCalculation(f.getHomeTeam(), em);
@@ -825,6 +928,7 @@ public class Main {
 		TeamController teamController = new TeamController(em);
 		FixtureController fixtureController = new FixtureController(em);
 		StandingController standingController = new StandingController(em);
+		OddController oddController = new OddController();
 
 		List<String[]> list = CSVReader
 				.readFromCSV("http://www.football-data.co.uk/mmz4281/" + season + "/" + competitionFile);

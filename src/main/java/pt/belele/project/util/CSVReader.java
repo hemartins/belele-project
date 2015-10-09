@@ -88,7 +88,7 @@ public class CSVReader {
 						writer.newLine();
 					}
 					else {
-						System.out.println("FODEU CARA!!");
+						System.out.println("FODEU CARA!! porque o array[0] é " + fixture[0]);
 					}
 					
 				} catch(ArrayIndexOutOfBoundsException ex)
