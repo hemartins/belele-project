@@ -32,7 +32,7 @@ public class ExcelColumnsCalculation {
 	private EntityManager em;
 
 	private static final Logger logger = LogManager.getLogger(ExcelColumnsCalculation.class);
-	
+
 	public ExcelColumnsCalculation(Team team, EntityManager em) {
 		this.team = team;
 		this.em = em;
@@ -209,8 +209,8 @@ public class ExcelColumnsCalculation {
 		return sum;
 	}
 
-	// Rating do h2h
-	public H2H getH2HRating(Fixture nextFixture, List<Double> ratings, Venue venue, ResultType type) {
+	// Rating do h2h - PROBLEMA! Se houver 2 jogos no mesmo ano, como proceder?
+	/*public H2H getH2HRating(Fixture nextFixture, List<Double> ratings, Venue venue, ResultType type) {
 		double rating = 0;
 		int rat = 0;
 		if (nextFixture.getH2h() != null) {
@@ -225,8 +225,37 @@ public class ExcelColumnsCalculation {
 				}
 			}
 		}
+		// return new H2H(rating, rat);
+		return new H2H(rating, nextFixture.getH2h().size());
+	}*/
 
-		return new H2H(rating, rat);
+	public H2H getH2HRating(Fixture nextFixture, List<Double> ratings, Venue venue, ResultType type) {
+		double rating = 0;
+		double ratingSum = 0;
+		double resultTypeRating = 0;
+		int timeInYears = 0;
+		if (nextFixture.getH2h() != null) {
+			if (!nextFixture.getH2h().isEmpty()) {
+				for (Fixture f : nextFixture.getH2h()) {
+					timeInYears = nextFixture.getSeason().getYear() - f.getSeason().getYear() - 1;
+					if (timeInYears >= ratings.size())
+						continue;
+
+					ratingSum += ratings.get(timeInYears);
+
+					if (getResultType(f).equals(type))
+						rating += ratings.get(timeInYears);
+				}
+
+				if (rating != 0) {
+					resultTypeRating = rating / ratingSum;
+				} else {
+					resultTypeRating = 0;
+				}
+			}
+
+		}
+		return new H2H(resultTypeRating, nextFixture.getH2h().size());
 	}
 
 	public TeamRating getResultPercentage(Fixture nextFixture, Venue venue, ResultType type, Double interval) {
@@ -237,11 +266,13 @@ public class ExcelColumnsCalculation {
 		Double opponentSum = 0.0;
 		Double intervalSum = 0.0;
 		Double resultIntervalSum = 0.0;
-		ExcelColumnsCalculation tc = new ExcelColumnsCalculation(venue == Venue.HOME ? nextFixture.getAwayTeam() : nextFixture.getHomeTeam(), em);
+		ExcelColumnsCalculation tc = new ExcelColumnsCalculation(
+				venue == Venue.HOME ? nextFixture.getAwayTeam() : nextFixture.getHomeTeam(), em);
 		Double opponentQuality = tc.getTeamQuality(s, nextFixture.getDate());
 
 		for (Fixture f : fixtures) {
-			ExcelColumnsCalculation tec = new ExcelColumnsCalculation(venue == Venue.HOME ? f.getAwayTeam() : f.getHomeTeam(), em);
+			ExcelColumnsCalculation tec = new ExcelColumnsCalculation(
+					venue == Venue.HOME ? f.getAwayTeam() : f.getHomeTeam(), em);
 			Double fixtureOpponentQuality = tec.getTeamQuality(s, nextFixture.getDate());
 
 			if (fixtureOpponentQuality != null) {
@@ -267,9 +298,8 @@ public class ExcelColumnsCalculation {
 		return new TeamRating(size > 0 ? resultSum / size : 0, size > 0 ? opponentSum / size : 0,
 				intervalSum > 0 ? resultIntervalSum / intervalSum : 0, intervalSum.intValue());
 	}
-	
-	public Integer getNumberOfFixtures(Fixture nextFixture, Venue venue)
-	{
+
+	public Integer getNumberOfFixtures(Fixture nextFixture, Venue venue) {
 		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team, nextFixture.getSeason(),
 				nextFixture.getDate(), venue, null);
 		return fixtures.size();
@@ -287,25 +317,25 @@ public class ExcelColumnsCalculation {
 		double rating = 0;
 
 		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team, nextFixture.getSeason(),
-				nextFixture.getDate(), venue, numberOfFixtures);		
-		
+				nextFixture.getDate(), venue, numberOfFixtures);
+
 		for (int i = 0; i < fixtures.size(); i++) {
 			Fixture f = fixtures.get(i);
 			if (getResultType(f).equals(type)) {
 				if (f.getHomeTeam().equals(team)) {
 					ExcelColumnsCalculation opponentTeam = new ExcelColumnsCalculation(f.getAwayTeam(), em);
-					rating += ratings.get(i) * opponentTeam.getTeamQuality(nextFixture.getSeason(), nextFixture.getDate());
+					rating += ratings.get(i)
+							* opponentTeam.getTeamQuality(nextFixture.getSeason(), nextFixture.getDate());
 				} else {
 					ExcelColumnsCalculation opponentTeam = new ExcelColumnsCalculation(f.getHomeTeam(), em);
-					rating += ratings.get(i) * opponentTeam.getTeamQuality(nextFixture.getSeason(), nextFixture.getDate());
+					rating += ratings.get(i)
+							* opponentTeam.getTeamQuality(nextFixture.getSeason(), nextFixture.getDate());
 				}
 			}
 		}
 
 		return rating;
 	}
-	
-	
 
 	/****************/
 	/* AUX METHODS */

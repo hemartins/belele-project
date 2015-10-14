@@ -154,12 +154,12 @@ public class ExcelRow {
 		this.result = result;
 		
 		
-		CicloPerna_numeroJogosVisitado = ciclo_numeroJogosVisitado;
-		CicloPerna_numeroJogosVisitante = ciclo_numeroJogosVisitante;
-		CicloPerna_dificuldadeVisitado = ciclo_dificuldadeVisitado;
-		CicloPerna_dificuldadeVisitante = ciclo_dificuldadeVisitante;
-		CicloPerna_HistoricosVisitado = ciclo_HistoricosVisitado;
-		CicloPerna_HistoricosVisitante = ciclo_HistoricosVisitante;
+		CicloPerna_numeroJogosVisitado = cicloPerna_numeroJogosVisitado;
+		CicloPerna_numeroJogosVisitante = cicloPerna_numeroJogosVisitante;
+		CicloPerna_dificuldadeVisitado = cicloPerna_dificuldadeVisitado;
+		CicloPerna_dificuldadeVisitante = cicloPerna_dificuldadeVisitante;
+		CicloPerna_HistoricosVisitado = cicloPerna_HistoricosVisitado;
+		CicloPerna_HistoricosVisitante = cicloPerna_HistoricosVisitante;
 		FR_ratingQualidadeResultadoVisitado = fR_ratingQualidadeResultadoVisitado;
 		FR_ratingQualidadeResultadoVisitante = fR_ratingQualidadeResultadoVisitante;
 		QLT_numeroJogosVisitadoDaPercentagem = qLT_numeroJogosVisitadoDaPercentagem;
@@ -337,51 +337,51 @@ public class ExcelRow {
 	}
 	
 	public Integer getCicloPerna_numeroJogosVisitado() {
-		return Ciclo_numeroJogosVisitado;
+		return CicloPerna_numeroJogosVisitado;
 	}
 
-	public void setCicloPerna_numeroJogosVisitado(Integer ciclo_numeroJogosVisitado) {
-		Ciclo_numeroJogosVisitado = ciclo_numeroJogosVisitado;
+	public void setCicloPerna_numeroJogosVisitado(Integer cicloPerna_numeroJogosVisitado) {
+		CicloPerna_numeroJogosVisitado = cicloPerna_numeroJogosVisitado;
 	}
 
 	public Integer getCicloPerna_numeroJogosVisitante() {
-		return Ciclo_numeroJogosVisitante;
+		return CicloPerna_numeroJogosVisitante;
 	}
 
-	public void setCicloPerna_numeroJogosVisitante(Integer ciclo_numeroJogosVisitante) {
-		Ciclo_numeroJogosVisitante = ciclo_numeroJogosVisitante;
+	public void setCicloPerna_numeroJogosVisitante(Integer cicloPerna_numeroJogosVisitante) {
+		CicloPerna_numeroJogosVisitante = cicloPerna_numeroJogosVisitante;
 	}
 
 	public Double getCicloPerna_dificuldadeVisitado() {
-		return Ciclo_dificuldadeVisitado;
+		return CicloPerna_dificuldadeVisitado;
 	}
 
-	public void setCicloPerna_dificuldadeVisitado(Double ciclo_dificuldadeVisitado) {
-		Ciclo_dificuldadeVisitado = ciclo_dificuldadeVisitado;
+	public void setCicloPerna_dificuldadeVisitado(Double cicloPerna_dificuldadeVisitado) {
+		CicloPerna_dificuldadeVisitado = cicloPerna_dificuldadeVisitado;
 	}
 
 	public Double getCicloPerna_dificuldadeVisitante() {
-		return Ciclo_dificuldadeVisitante;
+		return CicloPerna_dificuldadeVisitante;
 	}
 
-	public void setCicloPerna_dificuldadeVisitante(Double ciclo_dificuldadeVisitante) {
-		Ciclo_dificuldadeVisitante = ciclo_dificuldadeVisitante;
+	public void setCicloPerna_dificuldadeVisitante(Double cicloPerna_dificuldadeVisitante) {
+		CicloPerna_dificuldadeVisitante = cicloPerna_dificuldadeVisitante;
 	}
 
 	public Integer getCicloPerna_HistoricosVisitado() {
-		return Ciclo_HistoricosVisitado;
+		return CicloPerna_HistoricosVisitado;
 	}
 
-	public void setCicloPerna_HistoricosVisitado(Integer ciclo_HistoricosVisitado) {
-		Ciclo_HistoricosVisitado = ciclo_HistoricosVisitado;
+	public void setCicloPerna_HistoricosVisitado(Integer cicloPerna_HistoricosVisitado) {
+		CicloPerna_HistoricosVisitado = cicloPerna_HistoricosVisitado;
 	}
 
 	public Integer getCicloPerna_HistoricosVisitante() {
-		return Ciclo_HistoricosVisitante;
+		return CicloPerna_HistoricosVisitante;
 	}
 
-	public void setCicloPerna_HistoricosVisitante(Integer ciclo_HistoricosVisitante) {
-		Ciclo_HistoricosVisitante = ciclo_HistoricosVisitante;
+	public void setCicloPerna_HistoricosVisitante(Integer cicloPerna_HistoricosVisitante) {
+		CicloPerna_HistoricosVisitante = cicloPerna_HistoricosVisitante;
 	}
 	
 	public Double getH2H_ratingResultado() {

@@ -45,8 +45,8 @@ public class Main {
 	public static void main(String[] args) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("database.odb");
 		EntityManager em = emf.createEntityManager();
-		generateDatabase(em);
-//		generateExcelFiles(em);
+		//generateDatabase(em);
+		generateExcelFiles(em);
 	}
 
 	private static void generateDatabase(EntityManager em) {
@@ -392,9 +392,9 @@ public class Main {
 		runAlgorithm(eee11, em, dir, true, true);
 
 		Season eee10 = sc.createSeason("E2", 10);
-		runAlgorithm(eee10, em, dir, true, true);
+		runAlgorithm(eee10, em, dir, true, true); 
 
-		// ESCOCIA - PREMIER LEAGUE
+		/*// ESCOCIA - PREMIER LEAGUE
 		Season sc14 = sc.createSeason("SC0", 14);
 		runAlgorithm(sc14, em, dir, true, true);
 
@@ -408,7 +408,7 @@ public class Main {
 		runAlgorithm(sc11, em, dir, true, true);
 
 		Season sc10 = sc.createSeason("SC0", 10);
-		runAlgorithm(sc10, em, dir, true, true);
+		runAlgorithm(sc10, em, dir, true, true);*/
 
 		// ALEMANHA - BUNDESLIGA1
 		Season d14 = sc.createSeason("D1", 14);
@@ -622,6 +622,7 @@ public class Main {
 
 	private static void runAlgorithm(Season s, EntityManager em, String filePath, boolean generateProf,
 			boolean generateOurs) {
+				
 		WriteToExcel writeToExcelObj = new WriteToExcel(filePath);
 
 		List<ExcelRow> OurWinDataList = new ArrayList<ExcelRow>();
@@ -648,15 +649,15 @@ public class Main {
 		// ALEMANHA
 		historicos.add("Bayern Munich");
 		historicos.add("Dortmund");
+		historicos.add("Schalke 04");
 		// historicos.add("Leverkusen");
-		// historicos.add("Schalke 04");
 
 		// ITALIA
 		historicos.add("Juventus");
 		historicos.add("Roma");
 		historicos.add("Milan");
 		historicos.add("Inter");
-		// historicos.add("Napoli");
+		historicos.add("Napoli");
 
 		// ESPANHA
 		historicos.add("Ath Madrid");
@@ -746,8 +747,9 @@ public class Main {
 			Integer homeWinCycle_HistoricosVisitado = homeTeam.getCycleHardGamesNumber(homeWinCycle, historicos);
 			Integer awayLoseCycle_HistoricosVisitante = awayTeam.getCycleHardGamesNumber(awayLoseCycle, historicos);
 			H2H h2hRatings = homeTeam.getH2HRating(f, ratings, Venue.HOME, ResultType.WIN);
-			Double h2hWin_ratingVitorias = h2hRatings.getRating();
+			Double h2hWin_rating = h2hRatings.getRating();
 			Integer h2hWin_numeroJogos = h2hRatings.getSize();
+			//Integer h2hWin_numeroJogos = f.getH2h().size();
 			ResultType result = homeTeam.getResultType(f);
 
 			Double fR_ratingEmpatesVisitado = homeTeam.getLastFixturesRating(f, null, 5, ratings, ResultType.DRAW);
@@ -854,7 +856,7 @@ public class Main {
 						fR_dificuldadeVisitado, fR_dificuldadeVisistante, fR_HistoricosVisitado, fR_HistoricosVisitante,
 						homeWinCycle_numeroJogosVisitado, awayLoseCycle_numeroJogosVisitante,
 						homeWinCycle_dificuldadeVisitado, awayLoseCycle_dificuldadeVisitante,
-						homeWinCycle_HistoricosVisitado, awayLoseCycle_HistoricosVisitante, h2hWin_ratingVitorias,
+						homeWinCycle_HistoricosVisitado, awayLoseCycle_HistoricosVisitante, h2hWin_rating,
 						h2hWin_numeroJogos, qLT_percentagemVitoriasVisitado, qLT_percentagemDerrotasVisitante,
 						qLT_dificuldadeVitoriasVisitado, qLT_dificuldadeDerrotasVisitante,
 						qLT_percentagemVitoriasVisitadoNoIntervalo, qLT_percentagemDerrotasVisitanteNoIntervalo,
@@ -927,6 +929,7 @@ public class Main {
 
 				OurLoseDataList.add(lohwr);
 			}
+			
 			/*
 			 * if (generateProf) { ProfRow wphwr = new ProfRow(data, idVisitado,
 			 * idVisitante, f.getHomeTeam().getName(),
@@ -980,7 +983,7 @@ public class Main {
 			 * }
 			 */
 		}
-
+				
 		Workbook NossoWorkbook = writeToExcelObj.newWorkbook();
 
 		writeToExcelObj.writeOurDataExcelTable(OurWinDataList, NossoWorkbook, "Vitoria");
