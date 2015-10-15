@@ -346,7 +346,7 @@ public class Main {
 		
 		String dir = "/Users/Ricardo/Desktop/";
 
-		// INGLATERRA - PREMIER LEAGUE
+		/*//INGLATERRA - PREMIER LEAGUE
 		Season e14 = sc.createSeason("E0", 14);
 		runAlgorithm(e14, em, dir, true, true);
 
@@ -392,9 +392,9 @@ public class Main {
 		runAlgorithm(eee11, em, dir, true, true);
 
 		Season eee10 = sc.createSeason("E2", 10);
-		runAlgorithm(eee10, em, dir, true, true); 
+		runAlgorithm(eee10, em, dir, true, true);*/ 
 
-		/*// ESCOCIA - PREMIER LEAGUE
+		// ESCOCIA - PREMIER LEAGUE
 		Season sc14 = sc.createSeason("SC0", 14);
 		runAlgorithm(sc14, em, dir, true, true);
 
@@ -408,9 +408,9 @@ public class Main {
 		runAlgorithm(sc11, em, dir, true, true);
 
 		Season sc10 = sc.createSeason("SC0", 10);
-		runAlgorithm(sc10, em, dir, true, true);*/
+		runAlgorithm(sc10, em, dir, true, true);
 
-		// ALEMANHA - BUNDESLIGA1
+		/*// ALEMANHA - BUNDESLIGA1
 		Season d14 = sc.createSeason("D1", 14);
 		runAlgorithm(d14, em, dir, true, true);
 
@@ -616,7 +616,7 @@ public class Main {
 		runAlgorithm(g11, em, dir, true, true);
 
 		Season g10 = sc.createSeason("G1", 10);
-		runAlgorithm(g10, em, dir, true, true);
+		runAlgorithm(g10, em, dir, true, true);*/
 
 	}
 
@@ -840,7 +840,7 @@ public class Main {
 				TeamRating homeTR = homeTeam.getResultPercentage(f, Venue.HOME, ResultType.WIN, interval);
 				TeamRating awayTR = awayTeam.getResultPercentage(f, Venue.AWAY, ResultType.LOSE, interval);
 				Integer qLT_homeTeamNumeroJogos = homeTeam.getNumberOfFixtures(f, Venue.HOME);
-				Integer qLT_awayTeamNumeroJogos = awayTeam.getNumberOfFixtures(f, Venue.HOME);
+				Integer qLT_awayTeamNumeroJogos = awayTeam.getNumberOfFixtures(f, Venue.AWAY);
 				Double qLT_percentagemVitoriasVisitado = homeTR.getResultPercentage();
 				Double qLT_percentagemDerrotasVisitante = awayTR.getResultPercentage();
 				Double qLT_dificuldadeVitoriasVisitado = homeTR.getQualityAverage();
