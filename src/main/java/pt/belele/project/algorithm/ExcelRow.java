@@ -2,6 +2,7 @@ package pt.belele.project.algorithm;
 
 import java.util.Date;
 
+import pt.belele.project.entities.Fixture.Venue;
 import pt.belele.project.entities.Result.ResultType;
 
 public class ExcelRow {
@@ -41,7 +42,7 @@ public class ExcelRow {
 	Integer Ciclo_HistoricosVisitado; // número de históricos que a equipa
 										// enfrentou durante esse ciclo
 	Integer Ciclo_HistoricosVisitante;
-	
+
 	Double H2H_ratingResultado; // pontuação por cada vitória obtida nos últimos
 								// jogos entre essas equipas
 	Integer H2H_numeroJogos;
@@ -67,58 +68,89 @@ public class ExcelRow {
 										// citado em cima
 	Integer QLT_numeroJogosVisitante;
 	Integer result;
-	
-	
-	
-	Integer CicloPerna_numeroJogosVisitado; // número de jogos que a equipa venceu
+
+	Integer CicloPerna_numeroJogosVisitado; // número de jogos que a equipa
+											// venceu
 	// seguidos (ex: caso não tenha vencido
 	// nenhum dos últimos 3 jogos é =-3;
 	// caso tenha vencido os últimos 5 jogos
 	// =5;
 	Integer CicloPerna_numeroJogosVisitante;
-	Double CicloPerna_dificuldadeVisitado; // média das qualidades dos adversários
+	Double CicloPerna_dificuldadeVisitado; // média das qualidades dos
+											// adversários
 	// desse que a equipa enfrentou nesse
 	// ciclo
 	Double CicloPerna_dificuldadeVisitante;
 	Integer CicloPerna_HistoricosVisitado; // número de históricos que a equipa
 	// enfrentou durante esse ciclo
 	Integer CicloPerna_HistoricosVisitante;
-	
+
 	Double FR_ratingQualidadeResultadoVisitado;
 	Double FR_ratingQualidadeResultadoVisitante;
-	
+
 	Integer QLT_numeroJogosVisitadoDaPercentagem;
 	Integer QLT_numeroJogosVisitanteDaPercentagem;
 
+	Double QLT_percentagemResultadoVisitado2;
+	Double QLT_percentagemResultadoVisitante2;
+	Double QLT_dificuldadeResultadoVisitado2;
+	Double QLT_dificuldadeResultadoVisitante2;
+	Double QLT_percentagemResultadoVisitadoNoIntervalo2;
+	Double QLT_percentagemResultadoVisitanteNoIntervalo2;
+	Integer QLT_numeroJogosVisitado2;
+	Integer QLT_numeroJogosVisitante2;
+
+	Integer H2h_Results;
+
+	Integer FR_ResultadosVisitado;
+	Integer FR_ResultadosVisitante;
+	
+	Integer QLT_homeTeamNumeroJogos2;
+	Integer QLT_awayTeamNumeroJogos2;
+	
+	Integer golosVisitado;
+	Integer golosSofridosVisitado;
+	Integer diferencaGolosVisitado;
+	Integer golosVisitante;
+	Integer golosSofridosVisitante;
+	Integer diferencaGolosVisitante;
+	Integer golosVisitadoCasa;
+	Integer golosSofridosVisitadoCasa;
+	Integer diferencaGolosVisitadoCasa;
+	Integer golosVisitanteFora;
+	Integer golosSofridosVisitanteFora;
+	Integer diferencaGolosVisitanteFora;
+	Integer classificacaoVisitado;
+	Integer classificacaoVisitante;
+	
+	Double qualidadeVisitadoCasa;
+	Double qualidadeVisitanteFora;
+
 	public ExcelRow(Date data, Long idVisitado, Long idVisitante, String homeTeamName, String awayTeamName,
-			Double qualidadeVisitado, Double qualidadeVisitante,
-			Integer fR_diasDescansoVisitado, Integer fR_diasDescansoVisitante,
-			Double fR_ratingResultadoVisitado,
-			Double fR_ratingResultadoVisitante, Double fR_dificuldadeVisitado,
-			Double fR_dificuldadeVisistante, Integer fR_HistoricosVisitado,
-			Integer fR_HistoricosVisitante, Integer ciclo_numeroJogosVisitado,
-			Integer ciclo_numeroJogosVisitante,
-			Double ciclo_dificuldadeVisitado,
-			Double ciclo_dificuldadeVisitante,
-			Integer ciclo_HistoricosVisitado,
-			Integer ciclo_HistoricosVisitante, Double h2h_ratingResultado,
-			Integer h2h_numeroJogos, Double qLT_percentagemResultadoVisitado,
-			Double qLT_percentagemResultadoVisitante,
-			Double qLT_dificuldadeResultadoVisitado,
-			Double qLT_dificuldadeResultadoVisitante,
-			Double qLT_percentagemResultadoVisitadoNoIntervalo,
-			Double qLT_percentagemResultadoVisitanteNoIntervalo,
+			Double qualidadeVisitado, Double qualidadeVisitante, Integer fR_diasDescansoVisitado,
+			Integer fR_diasDescansoVisitante, Double fR_ratingResultadoVisitado, Double fR_ratingResultadoVisitante,
+			Double fR_dificuldadeVisitado, Double fR_dificuldadeVisistante, Integer fR_HistoricosVisitado,
+			Integer fR_HistoricosVisitante, Integer ciclo_numeroJogosVisitado, Integer ciclo_numeroJogosVisitante,
+			Double ciclo_dificuldadeVisitado, Double ciclo_dificuldadeVisitante, Integer ciclo_HistoricosVisitado,
+			Integer ciclo_HistoricosVisitante, Double h2h_ratingResultado, Integer h2h_numeroJogos,
+			Double qLT_percentagemResultadoVisitado, Double qLT_percentagemResultadoVisitante,
+			Double qLT_dificuldadeResultadoVisitado, Double qLT_dificuldadeResultadoVisitante,
+			Double qLT_percentagemResultadoVisitadoNoIntervalo, Double qLT_percentagemResultadoVisitanteNoIntervalo,
 			Integer qLT_numeroJogosVisitado, Integer qLT_numeroJogosVisitante, Integer result,
-			Integer cicloPerna_numeroJogosVisitado,
-			Integer cicloPerna_numeroJogosVisitante,
-			Double cicloPerna_dificuldadeVisitado,
-			Double cicloPerna_dificuldadeVisitante,
-			Integer cicloPerna_HistoricosVisitado,
-			Integer cicloPerna_HistoricosVisitante,
-			Double fR_ratingQualidadeResultadoVisitado,
-			Double fR_ratingQualidadeResultadoVisitante,
-			Integer qLT_numeroJogosVisitadoDaPercentagem,
-			Integer qLT_numeroJogosVisitanteDaPercentagem) {
+			Integer cicloPerna_numeroJogosVisitado, Integer cicloPerna_numeroJogosVisitante,
+			Double cicloPerna_dificuldadeVisitado, Double cicloPerna_dificuldadeVisitante,
+			Integer cicloPerna_HistoricosVisitado, Integer cicloPerna_HistoricosVisitante,
+			Double fR_ratingQualidadeResultadoVisitado, Double fR_ratingQualidadeResultadoVisitante,
+			Integer qLT_numeroJogosVisitadoDaPercentagem, Integer qLT_numeroJogosVisitanteDaPercentagem, Integer qLT_homeTeamNumeroJogos2, Integer qLT_awayTeamNumeroJogos2,
+			Double qLT_percentagemResultadoVisitado2, Double qLT_percentagemResultadoVisitante2,
+			Double qLT_dificuldadeResultadoVisitado2, Double qLT_dificuldadeResultadoVisitante2,
+			Double qLT_percentagemResultadoVisitadoNoIntervalo2, Double qLT_percentagemResultadoVisitanteNoIntervalo2,
+			Integer qLT_numeroJogosVisitado2, Integer qLT_numeroJogosVisitante2, Integer h2h_Results,
+			Integer fR_ResultadosVisitado, Integer fR_ResultadosVisitante, Integer golosVisitado, Integer golosContraVisitado, Integer diferencaGolosVisitado,
+			Integer golosVisitante, Integer golosContraVisitante, Integer diferencaGolosVisitante, Integer golosVisitadoCasa,
+			Integer golosContraVisitadoCasa, Integer diferencaGolosVisitadoCasa, Integer golosVisitanteFora,
+			Integer golosContraVisitanteFora, Integer diferencaGolosVisitanteFora, Integer classificacaoVisitado,
+			Integer classificacaoVisitante,	Double qualidadeVisitadoCasa, Double qualidadeVisitanteFora) {
 
 		this.data = data;
 		this.idVisitado = idVisitado;
@@ -152,8 +184,7 @@ public class ExcelRow {
 		QLT_numeroJogosVisitado = qLT_numeroJogosVisitado;
 		QLT_numeroJogosVisitante = qLT_numeroJogosVisitante;
 		this.result = result;
-		
-		
+
 		CicloPerna_numeroJogosVisitado = cicloPerna_numeroJogosVisitado;
 		CicloPerna_numeroJogosVisitante = cicloPerna_numeroJogosVisitante;
 		CicloPerna_dificuldadeVisitado = cicloPerna_dificuldadeVisitado;
@@ -164,7 +195,40 @@ public class ExcelRow {
 		FR_ratingQualidadeResultadoVisitante = fR_ratingQualidadeResultadoVisitante;
 		QLT_numeroJogosVisitadoDaPercentagem = qLT_numeroJogosVisitadoDaPercentagem;
 		QLT_numeroJogosVisitanteDaPercentagem = qLT_numeroJogosVisitanteDaPercentagem;
+
+		QLT_homeTeamNumeroJogos2 = qLT_homeTeamNumeroJogos2;
+		QLT_awayTeamNumeroJogos2 = qLT_awayTeamNumeroJogos2;
+		QLT_percentagemResultadoVisitado2 = qLT_percentagemResultadoVisitado2;
+		QLT_percentagemResultadoVisitante2 = qLT_percentagemResultadoVisitante2;
+		QLT_dificuldadeResultadoVisitado2 = qLT_dificuldadeResultadoVisitado2;
+		QLT_dificuldadeResultadoVisitante2 = qLT_dificuldadeResultadoVisitante2;
+		QLT_percentagemResultadoVisitadoNoIntervalo2 = qLT_percentagemResultadoVisitadoNoIntervalo2;
+		QLT_percentagemResultadoVisitanteNoIntervalo2 = qLT_percentagemResultadoVisitanteNoIntervalo2;
+		QLT_numeroJogosVisitado2 = qLT_numeroJogosVisitado2;
+		QLT_numeroJogosVisitante2 = qLT_numeroJogosVisitante2;
+
+		H2h_Results = h2h_Results;
+
+		FR_ResultadosVisitado = fR_ResultadosVisitado;
+		FR_ResultadosVisitante = fR_ResultadosVisitante;
 		
+		this.golosVisitado = golosVisitado;
+		this.golosSofridosVisitado = golosContraVisitado;
+		this.diferencaGolosVisitado = diferencaGolosVisitado;
+		this.golosVisitante = golosVisitante;
+		this.golosSofridosVisitante = golosContraVisitante;
+		this.diferencaGolosVisitante = diferencaGolosVisitante;
+		this.golosVisitadoCasa = golosVisitadoCasa;
+		this.golosSofridosVisitadoCasa = golosContraVisitadoCasa;
+		this.diferencaGolosVisitadoCasa = diferencaGolosVisitadoCasa;
+		this.golosVisitanteFora = golosVisitanteFora;
+		this.golosSofridosVisitanteFora = golosContraVisitanteFora;
+		this.diferencaGolosVisitanteFora = diferencaGolosVisitanteFora;
+		this.classificacaoVisitado = classificacaoVisitado;
+		this.classificacaoVisitante = classificacaoVisitante;
+		this.qualidadeVisitadoCasa = qualidadeVisitadoCasa;
+		this.qualidadeVisitanteFora = qualidadeVisitanteFora;
+
 	}
 
 	public Date getData() {
@@ -251,8 +315,7 @@ public class ExcelRow {
 		return FR_ratingResultadoVisitante;
 	}
 
-	public void setFR_ratingResultadoVisitante(
-			Double fR_ratingResultadoVisitante) {
+	public void setFR_ratingResultadoVisitante(Double fR_ratingResultadoVisitante) {
 		FR_ratingResultadoVisitante = fR_ratingResultadoVisitante;
 	}
 
@@ -335,7 +398,7 @@ public class ExcelRow {
 	public void setCiclo_HistoricosVisitante(Integer ciclo_HistoricosVisitante) {
 		Ciclo_HistoricosVisitante = ciclo_HistoricosVisitante;
 	}
-	
+
 	public Integer getCicloPerna_numeroJogosVisitado() {
 		return CicloPerna_numeroJogosVisitado;
 	}
@@ -383,7 +446,7 @@ public class ExcelRow {
 	public void setCicloPerna_HistoricosVisitante(Integer cicloPerna_HistoricosVisitante) {
 		CicloPerna_HistoricosVisitante = cicloPerna_HistoricosVisitante;
 	}
-	
+
 	public Double getH2H_ratingResultado() {
 		return H2H_ratingResultado;
 	}
@@ -404,8 +467,7 @@ public class ExcelRow {
 		return QLT_percentagemResultadoVisitado;
 	}
 
-	public void setQLT_percentagemResultadoVisitado(
-			Double qLT_percentagemResultadoVisitado) {
+	public void setQLT_percentagemResultadoVisitado(Double qLT_percentagemResultadoVisitado) {
 		QLT_percentagemResultadoVisitado = qLT_percentagemResultadoVisitado;
 	}
 
@@ -413,8 +475,7 @@ public class ExcelRow {
 		return QLT_percentagemResultadoVisitante;
 	}
 
-	public void setQLT_percentagemResultadoVisitante(
-			Double qLT_percentagemResultadoVisitante) {
+	public void setQLT_percentagemResultadoVisitante(Double qLT_percentagemResultadoVisitante) {
 		QLT_percentagemResultadoVisitante = qLT_percentagemResultadoVisitante;
 	}
 
@@ -422,8 +483,7 @@ public class ExcelRow {
 		return QLT_dificuldadeResultadoVisitado;
 	}
 
-	public void setQLT_dificuldadeResultadoVisitado(
-			Double qLT_dificuldadeResultadoVisitado) {
+	public void setQLT_dificuldadeResultadoVisitado(Double qLT_dificuldadeResultadoVisitado) {
 		QLT_dificuldadeResultadoVisitado = qLT_dificuldadeResultadoVisitado;
 	}
 
@@ -431,8 +491,7 @@ public class ExcelRow {
 		return QLT_dificuldadeResultadoVisitante;
 	}
 
-	public void setQLT_dificuldadeResultadoVisitante(
-			Double qLT_dificuldadeResultadoVisitante) {
+	public void setQLT_dificuldadeResultadoVisitante(Double qLT_dificuldadeResultadoVisitante) {
 		QLT_dificuldadeResultadoVisitante = qLT_dificuldadeResultadoVisitante;
 	}
 
@@ -440,8 +499,7 @@ public class ExcelRow {
 		return QLT_percentagemResultadoVisitadoNoIntervalo;
 	}
 
-	public void setQLT_percentagemResultadoVisitadoNoIntervalo(
-			Double qLT_percentagemResultadoVisitadoNoIntervalo) {
+	public void setQLT_percentagemResultadoVisitadoNoIntervalo(Double qLT_percentagemResultadoVisitadoNoIntervalo) {
 		QLT_percentagemResultadoVisitadoNoIntervalo = qLT_percentagemResultadoVisitadoNoIntervalo;
 	}
 
@@ -449,8 +507,7 @@ public class ExcelRow {
 		return QLT_percentagemResultadoVisitanteNoIntervalo;
 	}
 
-	public void setQLT_percentagemResultadoVisitanteNoIntervalo(
-			Double qLT_percentagemResultadoVisitanteNoIntervalo) {
+	public void setQLT_percentagemResultadoVisitanteNoIntervalo(Double qLT_percentagemResultadoVisitanteNoIntervalo) {
 		QLT_percentagemResultadoVisitanteNoIntervalo = qLT_percentagemResultadoVisitanteNoIntervalo;
 	}
 
@@ -477,7 +534,7 @@ public class ExcelRow {
 	public void setResult(Integer result) {
 		this.result = result;
 	}
-	
+
 	public Double getFR_ratingQualidadeResultadoVisitado() {
 		return FR_ratingQualidadeResultadoVisitado;
 	}
@@ -509,4 +566,237 @@ public class ExcelRow {
 	public void setQLT_numeroJogosVisitanteDaPercentagem(Integer qLT_numeroJogosVisitanteDaPercentagem) {
 		QLT_numeroJogosVisitanteDaPercentagem = qLT_numeroJogosVisitanteDaPercentagem;
 	}
+
+	public Double getQLT_percentagemResultadoVisitado2() {
+		return QLT_percentagemResultadoVisitado2;
+	}
+
+	public void setQLT_percentagemResultadoVisitado2(Double qLT_percentagemResultadoVisitado2) {
+		QLT_percentagemResultadoVisitado2 = qLT_percentagemResultadoVisitado2;
+	}
+
+	public Double getQLT_percentagemResultadoVisitante2() {
+		return QLT_percentagemResultadoVisitante2;
+	}
+
+	public void setQLT_percentagemResultadoVisitante2(Double qLT_percentagemResultadoVisitante2) {
+		QLT_percentagemResultadoVisitante2 = qLT_percentagemResultadoVisitante2;
+	}
+
+	public Double getQLT_dificuldadeResultadoVisitado2() {
+		return QLT_dificuldadeResultadoVisitado2;
+	}
+
+	public void setQLT_dificuldadeResultadoVisitado2(Double qLT_dificuldadeResultadoVisitado2) {
+		QLT_dificuldadeResultadoVisitado2 = qLT_dificuldadeResultadoVisitado2;
+	}
+
+	public Double getQLT_dificuldadeResultadoVisitante2() {
+		return QLT_dificuldadeResultadoVisitante2;
+	}
+
+	public void setQLT_dificuldadeResultadoVisitante2(Double qLT_dificuldadeResultadoVisitante2) {
+		QLT_dificuldadeResultadoVisitante2 = qLT_dificuldadeResultadoVisitante2;
+	}
+
+	public Double getQLT_percentagemResultadoVisitadoNoIntervalo2() {
+		return QLT_percentagemResultadoVisitadoNoIntervalo2;
+	}
+
+	public void setQLT_percentagemResultadoVisitadoNoIntervalo2(Double qLT_percentagemResultadoVisitadoNoIntervalo2) {
+		QLT_percentagemResultadoVisitadoNoIntervalo2 = qLT_percentagemResultadoVisitadoNoIntervalo2;
+	}
+
+	public Double getQLT_percentagemResultadoVisitanteNoIntervalo2() {
+		return QLT_percentagemResultadoVisitanteNoIntervalo2;
+	}
+
+	public void setQLT_percentagemResultadoVisitanteNoIntervalo2(Double qLT_percentagemResultadoVisitanteNoIntervalo2) {
+		QLT_percentagemResultadoVisitanteNoIntervalo2 = qLT_percentagemResultadoVisitanteNoIntervalo2;
+	}
+
+	public Integer getQLT_numeroJogosVisitado2() {
+		return QLT_numeroJogosVisitado2;
+	}
+
+	public void setQLT_numeroJogosVisitado2(Integer qLT_numeroJogosVisitado2) {
+		QLT_numeroJogosVisitado2 = qLT_numeroJogosVisitado2;
+	}
+
+	public Integer getQLT_numeroJogosVisitante2() {
+		return QLT_numeroJogosVisitante2;
+	}
+
+	public void setQLT_numeroJogosVisitante2(Integer qLT_numeroJogosVisitante2) {
+		QLT_numeroJogosVisitante2 = qLT_numeroJogosVisitante2;
+	}
+
+	public Integer getH2h_Results() {
+		return H2h_Results;
+	}
+
+	public void setH2h_Results(Integer h2h_Results) {
+		H2h_Results = h2h_Results;
+	}
+
+	public Integer getFR_ResultadosVisitado() {
+		return FR_ResultadosVisitado;
+	}
+
+	public void setFR_ResultadosVisitado(Integer fR_ResultadosVisitado) {
+		FR_ResultadosVisitado = fR_ResultadosVisitado;
+	}
+
+	public Integer getFR_ResultadosVisitante() {
+		return FR_ResultadosVisitante;
+	}
+
+	public void setFR_ResultadosVisitante(Integer fR_ResultadosVisitante) {
+		FR_ResultadosVisitante = fR_ResultadosVisitante;
+	}
+
+	public Integer getQLT_homeTeamNumeroJogos2() {
+		return QLT_homeTeamNumeroJogos2;
+	}
+
+	public void setQLT_homeTeamNumeroJogos2(Integer qLT_homeTeamNumeroJogos2) {
+		QLT_homeTeamNumeroJogos2 = qLT_homeTeamNumeroJogos2;
+	}
+
+	public Integer getQLT_awayTeamNumeroJogos2() {
+		return QLT_awayTeamNumeroJogos2;
+	}
+
+	public void setQLT_awayTeamNumeroJogos2(Integer qLT_awayTeamNumeroJogos2) {
+		QLT_awayTeamNumeroJogos2 = qLT_awayTeamNumeroJogos2;
+	}
+
+	public Integer getGolosVisitado() {
+		return golosVisitado;
+	}
+
+	public void setGolosVisitado(Integer golosVisitado) {
+		this.golosVisitado = golosVisitado;
+	}
+
+	public Integer getGolosSofridosVisitado() {
+		return golosSofridosVisitado;
+	}
+
+	public void setGolosSofridosVisitado(Integer golosSofridosVisitado) {
+		this.golosSofridosVisitado = golosSofridosVisitado;
+	}
+
+	public Integer getDiferencaGolosVisitado() {
+		return diferencaGolosVisitado;
+	}
+
+	public void setDiferencaGolosVisitado(Integer diferencaGolosVisitado) {
+		this.diferencaGolosVisitado = diferencaGolosVisitado;
+	}
+
+	public Integer getGolosVisitante() {
+		return golosVisitante;
+	}
+
+	public void setGolosVisitante(Integer golosVisitante) {
+		this.golosVisitante = golosVisitante;
+	}
+
+	public Integer getGolosSofridosVisitante() {
+		return golosSofridosVisitante;
+	}
+
+	public void setGolosSofridosVisitante(Integer golosSofridosVisitante) {
+		this.golosSofridosVisitante = golosSofridosVisitante;
+	}
+
+	public Integer getDiferencaGolosVisitante() {
+		return diferencaGolosVisitante;
+	}
+
+	public void setDiferencaGolosVisitante(Integer diferencaGolosVisitante) {
+		this.diferencaGolosVisitante = diferencaGolosVisitante;
+	}
+
+	public Integer getGolosVisitadoCasa() {
+		return golosVisitadoCasa;
+	}
+
+	public void setGolosVisitadoCasa(Integer golosVisitadoCasa) {
+		this.golosVisitadoCasa = golosVisitadoCasa;
+	}
+
+	public Integer getGolosSofridosVisitadoCasa() {
+		return golosSofridosVisitadoCasa;
+	}
+
+	public void setGolosSofridosVisitadoCasa(Integer golosSofridosVisitadoCasa) {
+		this.golosSofridosVisitadoCasa = golosSofridosVisitadoCasa;
+	}
+
+	public Integer getDiferencaGolosVisitadoCasa() {
+		return diferencaGolosVisitadoCasa;
+	}
+
+	public void setDiferencaGolosVisitadoCasa(Integer diferencaGolosVisitadoCasa) {
+		this.diferencaGolosVisitadoCasa = diferencaGolosVisitadoCasa;
+	}
+
+	public Integer getGolosVisitanteFora() {
+		return golosVisitanteFora;
+	}
+
+	public void setGolosVisitanteFora(Integer golosVisitanteFora) {
+		this.golosVisitanteFora = golosVisitanteFora;
+	}
+
+	public Integer getGolosSofridosVisitanteFora() {
+		return golosSofridosVisitanteFora;
+	}
+
+	public void setGolosSofridosVisitanteFora(Integer golosSofridosVisitanteFora) {
+		this.golosSofridosVisitanteFora = golosSofridosVisitanteFora;
+	}
+
+	public Integer getDiferencaGolosVisitanteFora() {
+		return diferencaGolosVisitanteFora;
+	}
+
+	public void setDiferencaGolosVisitanteFora(Integer diferencaGolosVisitanteFora) {
+		this.diferencaGolosVisitanteFora = diferencaGolosVisitanteFora;
+	}
+
+	public Integer getClassificacaoVisitado() {
+		return classificacaoVisitado;
+	}
+
+	public void setClassificacaoVisitado(Integer classificacaoVisitado) {
+		this.classificacaoVisitado = classificacaoVisitado;
+	}
+
+	public Integer getClassificacaoVisitante() {
+		return classificacaoVisitante;
+	}
+
+	public void setClassificacaoVisitante(Integer classificacaoVisitante) {
+		this.classificacaoVisitante = classificacaoVisitante;
+	}
+
+	public Double getQualidadeVisitadoCasa() {
+		return qualidadeVisitadoCasa;
+	}
+
+	public void setQualidadeVisitadoCasa(Double qualidadeVisitadoCasa) {
+		this.qualidadeVisitadoCasa = qualidadeVisitadoCasa;
+	}
+
+	public Double getQualidadeVisitanteFora() {
+		return qualidadeVisitanteFora;
+	}
+
+	public void setQualidadeVisitanteFora(Double qualidadeVisitanteFora) {
+		this.qualidadeVisitanteFora = qualidadeVisitanteFora;
+	}
+	
 }

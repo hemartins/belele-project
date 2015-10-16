@@ -19,14 +19,34 @@ public class Standing implements Serializable {
 	private long id;
 
 	private int playedGames;
+	
+	private int homePlayedGames;
+	
+	private int awayPlayedGames;
 
 	private int points;
+	
+	private int homePoints;
+	
+	private int awayPoints;
 
 	private int goals;
 
 	private int goalsAgainst;
 
 	private int goalsDifference;
+	
+	private int homeGoals;
+
+	private int homeGoalsAgainst;
+
+	private int homeGoalsDifference;
+	
+	private int awayGoals;
+
+	private int awayGoalsAgainst;
+
+	private int awayGoalsDifference;
 	
 	private Date date;
 
@@ -63,12 +83,44 @@ public class Standing implements Serializable {
 		this.playedGames = playedGames;
 	}
 
+	public int getHomePlayedGames() {
+		return homePlayedGames;
+	}
+
+	public void setHomePlayedGames(int homePlayedGames) {
+		this.homePlayedGames = homePlayedGames;
+	}
+
+	public int getAwayPlayedGames() {
+		return awayPlayedGames;
+	}
+
+	public void setAwayPlayedGames(int awayPlayedGames) {
+		this.awayPlayedGames = awayPlayedGames;
+	}
+
 	public int getPoints() {
 		return points;
 	}
 
 	public void setPoints(int points) {
 		this.points = points;
+	}
+
+	public int getHomePoints() {
+		return homePoints;
+	}
+
+	public void setHomePoints(int homePoints) {
+		this.homePoints = homePoints;
+	}
+
+	public int getAwayPoints() {
+		return awayPoints;
+	}
+
+	public void setAwayPoints(int awayPoints) {
+		this.awayPoints = awayPoints;
 	}
 
 	public int getGoals() {
@@ -93,6 +145,54 @@ public class Standing implements Serializable {
 
 	public void setGoalsDifference(int goalsDifference) {
 		this.goalsDifference = goalsDifference;
+	}
+
+	public int getHomeGoals() {
+		return homeGoals;
+	}
+
+	public void setHomeGoals(int homeGoals) {
+		this.homeGoals = homeGoals;
+	}
+
+	public int getHomeGoalsAgainst() {
+		return homeGoalsAgainst;
+	}
+
+	public void setHomeGoalsAgainst(int homeGoalsAgainst) {
+		this.homeGoalsAgainst = homeGoalsAgainst;
+	}
+
+	public int getHomeGoalsDifference() {
+		return homeGoalsDifference;
+	}
+
+	public void setHomeGoalsDifference(int homeGoalsDifference) {
+		this.homeGoalsDifference = homeGoalsDifference;
+	}
+
+	public int getAwayGoals() {
+		return awayGoals;
+	}
+
+	public void setAwayGoals(int awayGoals) {
+		this.awayGoals = awayGoals;
+	}
+
+	public int getAwayGoalsAgainst() {
+		return awayGoalsAgainst;
+	}
+
+	public void setAwayGoalsAgainst(int awayGoalsAgainst) {
+		this.awayGoalsAgainst = awayGoalsAgainst;
+	}
+
+	public int getAwayGoalsDifference() {
+		return awayGoalsDifference;
+	}
+
+	public void setAwayGoalsDifference(int awayGoalsDifference) {
+		this.awayGoalsDifference = awayGoalsDifference;
 	}
 
 	public Team getTeam() {

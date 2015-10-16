@@ -1,6 +1,5 @@
 package pt.belele.project.algorithm;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -47,7 +46,22 @@ public class ExcelColumnsCalculation {
 			return (double) s.getPlayedGames() > 0 ? (double) s.getPoints() / s.getPlayedGames() : 0;
 		} else
 			return null;
+	}
 
+	public Double getHomeTeamQuality(Season season, Date date) {
+		Standing s = standingController.getTeamStanding(season, team, date);
+		if (s != null) {
+			return (double) s.getHomePlayedGames() > 0 ? (double) s.getHomePoints() / s.getHomePlayedGames() : 0;
+		} else
+			return null;
+	}
+
+	public Double getAwayTeamQuality(Season season, Date date) {
+		Standing s = standingController.getTeamStanding(season, team, date);
+		if (s != null) {
+			return (double) s.getAwayPlayedGames() > 0 ? (double) s.getAwayPoints() / s.getAwayPlayedGames() : 0;
+		} else
+			return null;
 	}
 
 	// Dias de descanso antes do jogo
@@ -79,6 +93,26 @@ public class ExcelColumnsCalculation {
 		}
 
 		return rating;
+	}
+
+	public Integer getLastFixturesResults(Fixture nextFixture, Venue venue, Integer numberOfFixtures,
+			List<Double> ratings, ResultType type) {
+		if (ratings.size() != numberOfFixtures) {
+			logger.debug("RATINGS SIZE != NUMBER OF FIXTURES");
+			return null;
+		}
+
+		int results = 0;
+
+		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team, nextFixture.getSeason(),
+				nextFixture.getDate(), venue, numberOfFixtures);
+		for (int i = 0; i < fixtures.size(); i++) {
+			Fixture f = fixtures.get(i);
+			if (getResultType(f).equals(type))
+				results++;
+		}
+
+		return results;
 	}
 
 	// Media da qualidade das ultimas equipas defrontadas
@@ -210,29 +244,24 @@ public class ExcelColumnsCalculation {
 	}
 
 	// Rating do h2h - PROBLEMA! Se houver 2 jogos no mesmo ano, como proceder?
-	/*public H2H getH2HRating(Fixture nextFixture, List<Double> ratings, Venue venue, ResultType type) {
-		double rating = 0;
-		int rat = 0;
-		if (nextFixture.getH2h() != null) {
-			if (!nextFixture.getH2h().isEmpty()) {
-				for (Fixture f : nextFixture.getH2h()) {
-					rat = nextFixture.getSeason().getYear() - f.getSeason().getYear() - 1;
-					if (rat >= ratings.size())
-						break;
-
-					if (getResultType(f).equals(type))
-						rating += ratings.get(rat);
-				}
-			}
-		}
-		// return new H2H(rating, rat);
-		return new H2H(rating, nextFixture.getH2h().size());
-	}*/
+	/*
+	 * public H2H getH2HRating(Fixture nextFixture, List<Double> ratings, Venue
+	 * venue, ResultType type) { double rating = 0; int rat = 0; if
+	 * (nextFixture.getH2h() != null) { if (!nextFixture.getH2h().isEmpty()) {
+	 * for (Fixture f : nextFixture.getH2h()) { rat =
+	 * nextFixture.getSeason().getYear() - f.getSeason().getYear() - 1; if (rat
+	 * >= ratings.size()) break;
+	 * 
+	 * if (getResultType(f).equals(type)) rating += ratings.get(rat); } } } //
+	 * return new H2H(rating, rat); return new H2H(rating,
+	 * nextFixture.getH2h().size()); }
+	 */
 
 	public H2H getH2HRating(Fixture nextFixture, List<Double> ratings, Venue venue, ResultType type) {
 		double rating = 0;
 		double ratingSum = 0;
 		double resultTypeRating = 0;
+		int numberResults = 0;
 		int timeInYears = 0;
 		if (nextFixture.getH2h() != null) {
 			if (!nextFixture.getH2h().isEmpty()) {
@@ -245,6 +274,7 @@ public class ExcelColumnsCalculation {
 
 					if (getResultType(f).equals(type))
 						rating += ratings.get(timeInYears);
+					numberResults++;
 				}
 
 				if (rating != 0) {
@@ -255,7 +285,7 @@ public class ExcelColumnsCalculation {
 			}
 
 		}
-		return new H2H(resultTypeRating, nextFixture.getH2h().size());
+		return new H2H(resultTypeRating, nextFixture.getH2h().size(), numberResults);
 	}
 
 	public TeamRating getResultPercentage(Fixture nextFixture, Venue venue, ResultType type, Double interval) {
@@ -335,6 +365,96 @@ public class ExcelColumnsCalculation {
 		}
 
 		return rating;
+	}
+
+	public Integer getGoals(Season season, Date date) {
+		Standing s = standingController.getTeamStanding(season, team, date);
+		if (s != null) {
+			return s.getGoals();
+		} else
+			return null;
+	}
+
+	public Integer getGoalsAgainst(Season season, Date date) {
+		Standing s = standingController.getTeamStanding(season, team, date);
+		if (s != null) {
+			return s.getGoalsAgainst();
+		} else
+			return null;
+	}
+
+	public Integer getGoalsDifference(Season season, Date date) {
+		Standing s = standingController.getTeamStanding(season, team, date);
+		if (s != null) {
+			return s.getGoalsDifference();
+		} else
+			return null;
+	}
+
+	public Integer getHomeGoals(Season season, Date date) {
+		Standing s = standingController.getTeamStanding(season, team, date);
+		if (s != null) {
+			return s.getHomeGoals();
+		} else
+			return null;
+	}
+
+	public Integer getHomeGoalsAgainst(Season season, Date date) {
+		Standing s = standingController.getTeamStanding(season, team, date);
+		if (s != null) {
+			return s.getHomeGoalsAgainst();
+		} else
+			return null;
+	}
+
+	public Integer getHomeGoalsDifference(Season season, Date date) {
+		Standing s = standingController.getTeamStanding(season, team, date);
+		if (s != null) {
+			return s.getHomeGoalsDifference();
+		} else
+			return null;
+	}
+
+	public Integer getAwayGoals(Season season, Date date) {
+		Standing s = standingController.getTeamStanding(season, team, date);
+		if (s != null) {
+			return s.getAwayGoals();
+		} else
+			return null;
+	}
+
+	public Integer getAwayGoalsAgainst(Season season, Date date) {
+		Standing s = standingController.getTeamStanding(season, team, date);
+		if (s != null) {
+			return s.getAwayGoalsAgainst();
+		} else
+			return null;
+	}
+
+	public Integer getAwayGoalsDifference(Season season, Date date) {
+		Standing s = standingController.getTeamStanding(season, team, date);
+		if (s != null) {
+			return s.getAwayGoalsDifference();
+		} else
+			return null;
+	}
+
+	public Integer getClassification(Season season, Date date) {
+		List<Standing> ls = standingController.getStandingsByClassification(season, team, date);
+
+		if (ls != null) {
+			int classificacao = 1;
+			for (Standing l : ls) {
+				if (l.getTeam() == team) {
+					break;
+				} else {
+					classificacao++;
+				}
+			}
+			return classificacao;
+		} else {
+			return null;
+		}
 	}
 
 	/****************/
