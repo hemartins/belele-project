@@ -644,6 +644,7 @@ public class Main {
 		ratingsH2H.add(0.04);
 		ratingsH2H.add(0.03);
 		ratingsH2H.add(0.02);
+		ratingsH2H.add(0.01);
 
 		double interval = 0.15;
 
