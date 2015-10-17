@@ -208,6 +208,22 @@ public class WriteToExcel {
 		row.createCell(cellIndex++).setCellValue("[Ciclo Perna] Número de Historicos do Visitado Total");
 
 		row.createCell(cellIndex++).setCellValue("[Ciclo Perna] Número de Historicos do Visitante Total");
+		
+		row.createCell(cellIndex++).setCellValue("[FR] Dificuldade do Visitado em Casa");
+
+		row.createCell(cellIndex++).setCellValue("[FR] Dificuldade do Visitante Fora");
+
+		row.createCell(cellIndex++).setCellValue("[FR] Número de Historicos do Visitado em Casa");
+
+		row.createCell(cellIndex++).setCellValue("[FR] Número de Historicos do Visitante Fora");
+		
+		row.createCell(cellIndex++).setCellValue("[FR] Rating de Resultados do Visitado em Casa");
+
+		row.createCell(cellIndex++).setCellValue("[FR] Rating de Resultados do Visitante Fora");
+		
+		row.createCell(cellIndex++).setCellValue("[FR] Total Resultados do Visitado em Casa");
+
+		row.createCell(cellIndex++).setCellValue("[FR] Total Resultados do Visitante Fora");
 
 		rowIndex++;
 
@@ -237,7 +253,7 @@ public class WriteToExcel {
 
 			row.createCell(cellIndex++).setCellValue(excelrow.getFR_dificuldadeVisitado());
 
-			row.createCell(cellIndex++).setCellValue(excelrow.getFR_dificuldadeVisistante());
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_dificuldadeVisitante());
 
 			row.createCell(cellIndex++).setCellValue(excelrow.getFR_HistoricosVisitado());
 
@@ -382,6 +398,22 @@ public class WriteToExcel {
 			row.createCell(cellIndex++).setCellValue(excelrow.getCicloPerna_HistoricosVisitadoTotal());
 
 			row.createCell(cellIndex++).setCellValue(excelrow.getCicloPerna_HistoricosVisitanteTotal());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_dificuldadeVisitadoHome());
+
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_dificuldadeVisitanteAway());
+
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_HistoricosVisitadoHome());
+
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_HistoricosVisitanteAway());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_ratingResultadoVisitadoHome());
+
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_ratingResultadoVisitanteAway());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_ResultadoVisitadoHome());
+
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_ResultadoVisitanteAway());
 
 		}
 

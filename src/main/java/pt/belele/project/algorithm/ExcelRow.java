@@ -25,7 +25,7 @@ public class ExcelRow {
 	// recente o jogo é [0.3, 0.25, 0.2, 0.15, 0.1]
 	Double FR_dificuldadeVisitado; // média das qualidades dos adversários dos
 									// últimos 5 jogos
-	Double FR_dificuldadeVisistante;
+	Double FR_dificuldadeVisitante;
 	Integer FR_HistoricosVisitado; // número de históricos que a equipa
 									// enfrentou nos últimos 5 jogos
 	Integer FR_HistoricosVisitante;
@@ -159,10 +159,19 @@ public class ExcelRow {
 	// enfrentou durante esse ciclo
 	Integer CicloPerna_HistoricosVisitanteTotal;
 
+	Double FR_dificuldadeVisitadoHome;
+	Double FR_dificuldadeVisitanteAway;
+	Integer FR_HistoricosVisitadoHome;
+	Integer FR_HistoricosVisitanteAway;
+	Double FR_ratingResultadoVisitadoHome;
+	Double FR_ratingResultadoVisitanteAway;
+	Integer FR_ResultadoVisitadoHome;
+	Integer FR_ResultadoVisitanteAway;
+
 	public ExcelRow(Date data, Long idVisitado, Long idVisitante, String homeTeamName, String awayTeamName,
 			Double qualidadeVisitado, Double qualidadeVisitante, Integer fR_diasDescansoVisitado,
 			Integer fR_diasDescansoVisitante, Double fR_ratingResultadoVisitado, Double fR_ratingResultadoVisitante,
-			Double fR_dificuldadeVisitado, Double fR_dificuldadeVisistante, Integer fR_HistoricosVisitado,
+			Double fR_dificuldadeVisitado, Double fR_dificuldadeVisitante, Integer fR_HistoricosVisitado,
 			Integer fR_HistoricosVisitante, Integer ciclo_numeroJogosVisitado, Integer ciclo_numeroJogosVisitante,
 			Double ciclo_dificuldadeVisitado, Double ciclo_dificuldadeVisitante, Integer ciclo_HistoricosVisitado,
 			Integer ciclo_HistoricosVisitante, Double h2h_ratingResultado, Integer h2h_numeroJogos,
@@ -191,7 +200,9 @@ public class ExcelRow {
 			Integer ciclo_HistoricosVisitadoTotal, Integer ciclo_HistoricosVisitanteTotal, Integer cicloPerna_numeroJogosVisitadoTotal,
 			Integer cicloPerna_numeroJogosVisitanteTotal, Double cicloPerna_dificuldadeVisitadoTotal,
 			Double cicloPerna_dificuldadeVisitanteTotal, Integer cicloPerna_HistoricosVisitadoTotal,
-			Integer cicloPerna_HistoricosVisitanteTotal) {
+			Integer cicloPerna_HistoricosVisitanteTotal,Double fR_dificuldadeVisitadoHome, Double fR_dificuldadeVisitanteAway, 
+			Integer fR_HistoricosVisitadoHome, Integer fR_HistoricosVisitanteAway, Double fR_ratingResultadoVisitadoHome,
+			Double fR_ratingResultadoVisitanteAway, Integer fR_ResultadoVisitadoHome, Integer fR_ResultadoVisitanteAway) {
 
 		this.data = data;
 		this.idVisitado = idVisitado;
@@ -205,7 +216,7 @@ public class ExcelRow {
 		FR_ratingResultadoVisitado = fR_ratingResultadoVisitado;
 		FR_ratingResultadoVisitante = fR_ratingResultadoVisitante;
 		FR_dificuldadeVisitado = fR_dificuldadeVisitado;
-		FR_dificuldadeVisistante = fR_dificuldadeVisistante;
+		FR_dificuldadeVisitante = fR_dificuldadeVisitante;
 		FR_HistoricosVisitado = fR_HistoricosVisitado;
 		FR_HistoricosVisitante = fR_HistoricosVisitante;
 		Ciclo_numeroJogosVisitado = ciclo_numeroJogosVisitado;
@@ -282,6 +293,15 @@ public class ExcelRow {
 		CicloPerna_dificuldadeVisitanteTotal = cicloPerna_dificuldadeVisitanteTotal;
 		CicloPerna_HistoricosVisitadoTotal = cicloPerna_HistoricosVisitadoTotal;
 		CicloPerna_HistoricosVisitanteTotal = cicloPerna_HistoricosVisitanteTotal;
+		
+		FR_dificuldadeVisitadoHome = fR_dificuldadeVisitadoHome;
+		FR_dificuldadeVisitanteAway = fR_dificuldadeVisitanteAway;
+		FR_HistoricosVisitadoHome = fR_HistoricosVisitadoHome;
+		FR_HistoricosVisitanteAway = fR_HistoricosVisitanteAway;
+		FR_ratingResultadoVisitadoHome = fR_ratingResultadoVisitadoHome;
+		FR_ratingResultadoVisitanteAway = fR_ratingResultadoVisitanteAway;
+		FR_ResultadoVisitadoHome = fR_ResultadoVisitadoHome;
+		FR_ResultadoVisitanteAway = fR_ResultadoVisitanteAway;
 	}
 
 	public Date getData() {
@@ -380,12 +400,12 @@ public class ExcelRow {
 		FR_dificuldadeVisitado = fR_dificuldadeVisitado;
 	}
 
-	public Double getFR_dificuldadeVisistante() {
-		return FR_dificuldadeVisistante;
+	public Double getFR_dificuldadeVisitante() {
+		return FR_dificuldadeVisitante;
 	}
 
-	public void setFR_dificuldadeVisistante(Double fR_dificuldadeVisistante) {
-		FR_dificuldadeVisistante = fR_dificuldadeVisistante;
+	public void setFR_dificuldadeVisitante(Double fR_dificuldadeVisitante) {
+		FR_dificuldadeVisitante = fR_dificuldadeVisitante;
 	}
 
 	public Integer getFR_HistoricosVisitado() {
@@ -947,5 +967,69 @@ public class ExcelRow {
 	public void setCicloPerna_HistoricosVisitanteTotal(Integer cicloPerna_HistoricosVisitanteTotal) {
 		CicloPerna_HistoricosVisitanteTotal = cicloPerna_HistoricosVisitanteTotal;
 	}
-	
+
+	public Double getFR_dificuldadeVisitadoHome() {
+		return FR_dificuldadeVisitadoHome;
+	}
+
+	public void setFR_dificuldadeVisitadoHome(Double fR_dificuldadeVisitadoHome) {
+		FR_dificuldadeVisitadoHome = fR_dificuldadeVisitadoHome;
+	}
+
+	public Double getFR_dificuldadeVisitanteAway() {
+		return FR_dificuldadeVisitanteAway;
+	}
+
+	public void setFR_dificuldadeVisitanteAway(Double fR_dificuldadeVisitanteAway) {
+		FR_dificuldadeVisitanteAway = fR_dificuldadeVisitanteAway;
+	}
+
+	public Integer getFR_HistoricosVisitadoHome() {
+		return FR_HistoricosVisitadoHome;
+	}
+
+	public void setFR_HistoricosVisitadoHome(Integer fR_HistoricosVisitadoHome) {
+		FR_HistoricosVisitadoHome = fR_HistoricosVisitadoHome;
+	}
+
+	public Integer getFR_HistoricosVisitanteAway() {
+		return FR_HistoricosVisitanteAway;
+	}
+
+	public void setFR_HistoricosVisitanteAway(Integer fR_HistoricosVisitanteAway) {
+		FR_HistoricosVisitanteAway = fR_HistoricosVisitanteAway;
+	}
+
+	public Double getFR_ratingResultadoVisitadoHome() {
+		return FR_ratingResultadoVisitadoHome;
+	}
+
+	public void setFR_ratingResultadoVisitadoHome(Double fR_ratingResultadoVisitadoHome) {
+		FR_ratingResultadoVisitadoHome = fR_ratingResultadoVisitadoHome;
+	}
+
+	public Double getFR_ratingResultadoVisitanteAway() {
+		return FR_ratingResultadoVisitanteAway;
+	}
+
+	public void setFR_ratingResultadoVisitanteAway(Double fR_ratingResultadoVisitanteAway) {
+		FR_ratingResultadoVisitanteAway = fR_ratingResultadoVisitanteAway;
+	}
+
+	public Integer getFR_ResultadoVisitadoHome() {
+		return FR_ResultadoVisitadoHome;
+	}
+
+	public void setFR_ResultadoVisitadoHome(Integer fR_ResultadoVisitadoHome) {
+		FR_ResultadoVisitadoHome = fR_ResultadoVisitadoHome;
+	}
+
+	public Integer getFR_ResultadoVisitanteAway() {
+		return FR_ResultadoVisitanteAway;
+	}
+
+	public void setFR_ResultadoVisitanteAway(Integer fR_ResultadoVisitanteAway) {
+		FR_ResultadoVisitanteAway = fR_ResultadoVisitanteAway;
+	}
+
 }

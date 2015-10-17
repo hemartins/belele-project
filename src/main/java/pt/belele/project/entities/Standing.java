@@ -33,20 +33,14 @@ public class Standing implements Serializable {
 	private int goals;
 
 	private int goalsAgainst;
-
-	private int goalsDifference;
 	
 	private int homeGoals;
 
 	private int homeGoalsAgainst;
-
-	private int homeGoalsDifference;
 	
 	private int awayGoals;
 
 	private int awayGoalsAgainst;
-
-	private int awayGoalsDifference;
 	
 	private Date date;
 
@@ -139,14 +133,6 @@ public class Standing implements Serializable {
 		this.goalsAgainst = goalsAgainst;
 	}
 
-	public int getGoalsDifference() {
-		return goalsDifference;
-	}
-
-	public void setGoalsDifference(int goalsDifference) {
-		this.goalsDifference = goalsDifference;
-	}
-
 	public int getHomeGoals() {
 		return homeGoals;
 	}
@@ -163,14 +149,6 @@ public class Standing implements Serializable {
 		this.homeGoalsAgainst = homeGoalsAgainst;
 	}
 
-	public int getHomeGoalsDifference() {
-		return homeGoalsDifference;
-	}
-
-	public void setHomeGoalsDifference(int homeGoalsDifference) {
-		this.homeGoalsDifference = homeGoalsDifference;
-	}
-
 	public int getAwayGoals() {
 		return awayGoals;
 	}
@@ -185,14 +163,6 @@ public class Standing implements Serializable {
 
 	public void setAwayGoalsAgainst(int awayGoalsAgainst) {
 		this.awayGoalsAgainst = awayGoalsAgainst;
-	}
-
-	public int getAwayGoalsDifference() {
-		return awayGoalsDifference;
-	}
-
-	public void setAwayGoalsDifference(int awayGoalsDifference) {
-		this.awayGoalsDifference = awayGoalsDifference;
 	}
 
 	public Team getTeam() {

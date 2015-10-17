@@ -51,11 +51,9 @@ public class StandingController {
 				standing.setHomeGoalsAgainst(
 						oldStanding.getHomeGoalsAgainst() + fixture.getResult().getFullTimeAwayTeamGoals());
 				standing.setHomePlayedGames(oldStanding.getHomePlayedGames() + 1);
-				standing.setHomeGoalsDifference(standing.getHomeGoals() - standing.getHomeGoalsAgainst());
 				standing.setAwayGoals(oldStanding.getAwayGoals());
 				standing.setAwayGoalsAgainst(oldStanding.getAwayGoalsAgainst());
 				standing.setAwayPlayedGames(oldStanding.getAwayPlayedGames());
-				standing.setAwayGoalsDifference(oldStanding.getAwayGoalsDifference());
 				standing.setAwayPoints(oldStanding.getAwayPoints());
 			} else if (fixture.getAwayTeam().equals(standing.getTeam())) {
 				standing.setPoints(calculatePoints(fixture, "Away") + oldStanding.getPoints());
@@ -63,19 +61,16 @@ public class StandingController {
 				standing.setGoals(oldStanding.getGoals() + fixture.getResult().getFullTimeAwayTeamGoals());
 				standing.setGoalsAgainst(
 						oldStanding.getGoalsAgainst() + fixture.getResult().getFullTimeHomeTeamGoals());
-				standing.setAwayGoals(oldStanding.getAwayGoals() + fixture.getResult().getFullTimeHomeTeamGoals());
+				standing.setAwayGoals(oldStanding.getAwayGoals() + fixture.getResult().getFullTimeAwayTeamGoals());
 				standing.setAwayGoalsAgainst(
 						oldStanding.getAwayGoalsAgainst() + fixture.getResult().getFullTimeHomeTeamGoals());
 				standing.setAwayPlayedGames(oldStanding.getAwayPlayedGames() + 1);
-				standing.setAwayGoalsDifference(standing.getAwayGoals() - standing.getAwayGoalsAgainst());
-				standing.setHomeGoals(oldStanding.getAwayGoals());
-				standing.setHomeGoalsAgainst(oldStanding.getAwayGoalsAgainst());
+				standing.setHomeGoals(oldStanding.getHomeGoals());
+				standing.setHomeGoalsAgainst(oldStanding.getHomeGoalsAgainst());
 				standing.setHomePlayedGames(oldStanding.getHomePlayedGames());
-				standing.setHomeGoalsDifference(oldStanding.getAwayGoalsDifference());
 				standing.setHomePoints(oldStanding.getHomePoints());
 			}
 			standing.setPlayedGames(oldStanding.getPlayedGames() + 1);
-			standing.setGoalsDifference(standing.getGoals() - standing.getGoalsAgainst());
 		} else {
 			if (fixture.getHomeTeam().equals(standing.getTeam())) {
 				standing.setPoints(calculatePoints(fixture, "Home"));
@@ -86,11 +81,9 @@ public class StandingController {
 				standing.setHomeGoals(fixture.getResult().getFullTimeHomeTeamGoals());
 				standing.setHomeGoalsAgainst(fixture.getResult().getFullTimeAwayTeamGoals());
 				standing.setHomePlayedGames(1);
-				standing.setHomeGoalsDifference(standing.getHomeGoals() - standing.getHomeGoalsAgainst());
 				standing.setAwayGoals(0);
 				standing.setAwayGoalsAgainst(0);
 				standing.setAwayPlayedGames(0);
-				standing.setAwayGoalsDifference(0);
 			} else if (fixture.getAwayTeam().equals(standing.getTeam())) {
 				standing.setPoints(calculatePoints(fixture, "Away"));
 				standing.setAwayPoints(calculateAwayPoints(fixture));
@@ -100,14 +93,11 @@ public class StandingController {
 				standing.setAwayGoals(fixture.getResult().getFullTimeAwayTeamGoals());
 				standing.setAwayGoalsAgainst(fixture.getResult().getFullTimeHomeTeamGoals());
 				standing.setAwayPlayedGames(1);
-				standing.setAwayGoalsDifference(standing.getAwayGoals() - standing.getAwayGoalsAgainst());
 				standing.setHomeGoals(0);
 				standing.setHomeGoalsAgainst(0);
 				standing.setHomePlayedGames(0);
-				standing.setHomeGoalsDifference(0);
 			}
 			standing.setPlayedGames(1);
-			standing.setGoalsDifference(standing.getGoals() - standing.getGoalsAgainst());
 		}
 	}
 

@@ -387,13 +387,6 @@ public class ExcelColumnsCalculation {
 			return null;
 	}
 
-	public Integer getGoalsDifference(Season season, Date date) {
-		Standing s = standingController.getTeamStanding(season, team, date);
-		if (s != null) {
-			return s.getGoalsDifference();
-		} else
-			return null;
-	}
 
 	public Integer getHomeGoals(Season season, Date date) {
 		Standing s = standingController.getTeamStanding(season, team, date);
@@ -411,14 +404,6 @@ public class ExcelColumnsCalculation {
 			return null;
 	}
 
-	public Integer getHomeGoalsDifference(Season season, Date date) {
-		Standing s = standingController.getTeamStanding(season, team, date);
-		if (s != null) {
-			return s.getHomeGoalsDifference();
-		} else
-			return null;
-	}
-
 	public Integer getAwayGoals(Season season, Date date) {
 		Standing s = standingController.getTeamStanding(season, team, date);
 		if (s != null) {
@@ -431,14 +416,6 @@ public class ExcelColumnsCalculation {
 		Standing s = standingController.getTeamStanding(season, team, date);
 		if (s != null) {
 			return s.getAwayGoalsAgainst();
-		} else
-			return null;
-	}
-
-	public Integer getAwayGoalsDifference(Season season, Date date) {
-		Standing s = standingController.getTeamStanding(season, team, date);
-		if (s != null) {
-			return s.getAwayGoalsDifference();
 		} else
 			return null;
 	}
