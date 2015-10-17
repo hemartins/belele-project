@@ -1,10 +1,15 @@
 package pt.belele.project.algorithm;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import pt.belele.project.entities.Bet;
+import pt.belele.project.entities.Bet.BetType;
+import pt.belele.project.entities.Bet.MatchOddBet;
 import pt.belele.project.entities.CutOff;
 import pt.belele.project.entities.Fixture;
 import pt.belele.project.entities.Odd;
+import pt.belele.project.entities.Week;
 
 public class Algorithm {
 
@@ -50,462 +55,245 @@ public class Algorithm {
 
 	private double layLoseNeuralNetworkOdd;
 
-	private boolean backWinBet;
-
-	private boolean backDrawBet;
-
-	private boolean backLoseBet;
-
-	private boolean layWinBet;
-
-	private boolean layDrawBet;
-
-	private boolean layLoseBet;
-
 	public Algorithm() {
-
 	}
 
-	public double getOddWeightWIN() {
-		return oddWeightWIN;
+	public List<Bet> runAlgorithm(Week w, List<Fixture> fixtures, CutOff cutOffSimple,
+			CutOff cutOffDouble, CutOff cutOffTriple, CutOff cutOffMultiple,
+			double neuralNetworkBackWIN, double neuralNetworkBackDRAW,
+			double neuralNetworkBackLOSE, double neuralNetworkLayWIN,
+			double neuralNetworkLayDRAW, double neuralNetworkLayLOSE) {
+		
+		List<Bet> bets = new ArrayList<Bet>();
+		
+		for(Fixture f : fixtures)
+		{
+			atributeOddWeightCutOff(f, cutOffSimple);
+			calculateNNOdds(f, cutOffSimple, neuralNetworkBackWIN,
+					neuralNetworkBackDRAW, neuralNetworkBackLOSE,
+					neuralNetworkLayWIN, neuralNetworkLayDRAW, neuralNetworkLayLOSE);
+			calculateSimpleBetProcessedOdds(cutOffSimple);
+			bets.addAll(simpleBetDecision(w, f, cutOffSimple));
+		}
+		
+		
+		calculateMultipleBetProcessedOdds(cutOffDouble);
+		doubleBetDecision(cutOffDouble);
+		calculateMultipleBetProcessedOdds(cutOffTriple);
+		tripleBetDecision(cutOffTriple);
+		calculateMultipleBetProcessedOdds(cutOffMultiple);
+		multipleBetDecision(cutOffMultiple);
+
+		
+		return bets;
 	}
 
-	public void setOddWeightWIN(double oddWeightWIN) {
-		this.oddWeightWIN = oddWeightWIN;
-	}
+	/****************/
+	/* AUX METHODS */
+	/****************/
 
-	public double getOddWeightDRAW() {
-		return oddWeightDRAW;
-	}
-
-	public void setOddWeightDRAW(double oddWeightDRAW) {
-		this.oddWeightDRAW = oddWeightDRAW;
-	}
-
-	public double getOddWeightLOSE() {
-		return oddWeightLOSE;
-	}
-
-	public void setOddWeightLOSE(double oddWeightLOSE) {
-		this.oddWeightLOSE = oddWeightLOSE;
-	}
-
-	public double getBackWinOdd() {
-		return backWinOdd;
-	}
-
-	public void setBackWinOdd(double backWinOdd) {
-		this.backWinOdd = backWinOdd;
-	}
-
-	public double getBackDrawOdd() {
-		return backDrawOdd;
-	}
-
-	public void setBackDrawOdd(double backDrawOdd) {
-		this.backDrawOdd = backDrawOdd;
-	}
-
-	public double getBackLoseOdd() {
-		return backLoseOdd;
-	}
-
-	public void setBackLoseOdd(double backLoseOdd) {
-		this.backLoseOdd = backLoseOdd;
-	}
-
-	public double getLayWinOdd() {
-		return layWinOdd;
-	}
-
-	public void setLayWinOdd(double layWinOdd) {
-		this.layWinOdd = layWinOdd;
-	}
-
-	public double getLayDrawOdd() {
-		return layDrawOdd;
-	}
-
-	public void setLayDrawOdd(double layDrawOdd) {
-		this.layDrawOdd = layDrawOdd;
-	}
-
-	public double getLayLoseOdd() {
-		return layLoseOdd;
-	}
-
-	public void setLayLoseOdd(double layLoseOdd) {
-		this.layLoseOdd = layLoseOdd;
-	}
-
-	public double getBackWinProcessedOdd() {
-		return backWinProcessedOdd;
-	}
-
-	public void setBackWinProcessedOdd(double backWinProcessedOdd) {
-		this.backWinProcessedOdd = backWinProcessedOdd;
-	}
-
-	public double getBackDrawProcessedOdd() {
-		return backDrawProcessedOdd;
-	}
-
-	public void setBackDrawProcessedOdd(double backDrawProcessedOdd) {
-		this.backDrawProcessedOdd = backDrawProcessedOdd;
-	}
-
-	public double getBackLoseProcessedOdd() {
-		return backLoseProcessedOdd;
-	}
-
-	public void setBackLoseProcessedOdd(double backLoseProcessedOdd) {
-		this.backLoseProcessedOdd = backLoseProcessedOdd;
-	}
-
-	public double getLayWinProcessedOdd() {
-		return layWinProcessedOdd;
-	}
-
-	public void setLayWinProcessedOdd(double layWinProcessedOdd) {
-		this.layWinProcessedOdd = layWinProcessedOdd;
-	}
-
-	public double getLayDrawProcessedOdd() {
-		return layDrawProcessedOdd;
-	}
-
-	public void setLayDrawProcessedOdd(double layDrawProcessedOdd) {
-		this.layDrawProcessedOdd = layDrawProcessedOdd;
-	}
-
-	public double getLayLoseProcessedOdd() {
-		return layLoseProcessedOdd;
-	}
-
-	public void setLayLoseProcessedOdd(double layLoseProcessedOdd) {
-		this.layLoseProcessedOdd = layLoseProcessedOdd;
-	}
-
-	public double getBackWinNeuralNetworkOdd() {
-		return backWinNeuralNetworkOdd;
-	}
-
-	public void setBackWinNeuralNetworkOdd(double backWinNeuralNetworkOdd) {
-		this.backWinNeuralNetworkOdd = backWinNeuralNetworkOdd;
-	}
-
-	public double getBackDrawNeuralNetworkOdd() {
-		return backDrawNeuralNetworkOdd;
-	}
-
-	public void setBackDrawNeuralNetworkOdd(double backDrawNeuralNetworkOdd) {
-		this.backDrawNeuralNetworkOdd = backDrawNeuralNetworkOdd;
-	}
-
-	public double getBackLoseNeuralNetworkOdd() {
-		return backLoseNeuralNetworkOdd;
-	}
-
-	public void setBackLoseNeuralNetworkOdd(double backLoseNeuralNetworkOdd) {
-		this.backLoseNeuralNetworkOdd = backLoseNeuralNetworkOdd;
-	}
-
-	public double getLayWinNeuralNetworkOdd() {
-		return layWinNeuralNetworkOdd;
-	}
-
-	public void setLayWinNeuralNetworkOdd(double layWinNeuralNetworkOdd) {
-		this.layWinNeuralNetworkOdd = layWinNeuralNetworkOdd;
-	}
-
-	public double getLayDrawNeuralNetworkOdd() {
-		return layDrawNeuralNetworkOdd;
-	}
-
-	public void setLayDrawNeuralNetworkOdd(double layDrawNeuralNetworkOdd) {
-		this.layDrawNeuralNetworkOdd = layDrawNeuralNetworkOdd;
-	}
-
-	public double getLayLoseNeuralNetworkOdd() {
-		return layLoseNeuralNetworkOdd;
-	}
-
-	public void setLayLoseNeuralNetworkOdd(double layLoseNeuralNetworkOdd) {
-		this.layLoseNeuralNetworkOdd = layLoseNeuralNetworkOdd;
-	}
-
-	public boolean isBackWinBet() {
-		return backWinBet;
-	}
-
-	public void setBackWinBet(boolean backWinBet) {
-		this.backWinBet = backWinBet;
-	}
-
-	public boolean isBackDrawBet() {
-		return backDrawBet;
-	}
-
-	public void setBackDrawBet(boolean backDrawBet) {
-		this.backDrawBet = backDrawBet;
-	}
-
-	public boolean isBackLoseBet() {
-		return backLoseBet;
-	}
-
-	public void setBackLoseBet(boolean backLoseBet) {
-		this.backLoseBet = backLoseBet;
-	}
-
-	public boolean isLayWinBet() {
-		return layWinBet;
-	}
-
-	public void setLayWinBet(boolean layWinBet) {
-		this.layWinBet = layWinBet;
-	}
-
-	public boolean isLayDrawBet() {
-		return layDrawBet;
-	}
-
-	public void setLayDrawBet(boolean layDrawBet) {
-		this.layDrawBet = layDrawBet;
-	}
-
-	public boolean isLayLoseBet() {
-		return layLoseBet;
-	}
-
-	public void setLayLoseBet(boolean layLoseBet) {
-		this.layLoseBet = layLoseBet;
-	}
-
-	public void atributeOddWeightCutOff(Fixture fixture, CutOff cutOff) {
+	private void atributeOddWeightCutOff(Fixture fixture, CutOff cutOff) {
 		Odd odd = fixture.getOdd();
-		if (odd.getBackHomeWin() > odd.getBackAwayWin() && odd.getBackHomeWin() > odd.getBackDraw()) {
-			this.setOddWeightWIN(cutOff.getOddWightHigherValue());
+		if (odd.getBackHomeWin() > odd.getBackAwayWin()
+				&& odd.getBackHomeWin() > odd.getBackDraw()) {
+			oddWeightWIN = cutOff.getOddWightHigherValue();
 			if (odd.getBackDraw() > odd.getBackAwayWin()) {
-				this.setOddWeightDRAW(cutOff.getOddWightMediumValue());
-				this.setOddWeightLOSE(cutOff.getOddWightLowerValue());
+				oddWeightDRAW = cutOff.getOddWightMediumValue();
+				oddWeightLOSE = cutOff.getOddWightLowerValue();
 			} else if (odd.getBackDraw() < odd.getBackAwayWin()) {
-				this.setOddWeightLOSE(cutOff.getOddWightMediumValue());
-				this.setOddWeightDRAW(cutOff.getOddWightLowerValue());
+				oddWeightLOSE = cutOff.getOddWightMediumValue();
+				oddWeightDRAW = cutOff.getOddWightLowerValue();
 			} else {
-				this.setOddWeightLOSE(cutOff.getOddWightMediumValue());
-				this.setOddWeightDRAW(cutOff.getOddWightMediumValue());
+				oddWeightLOSE = cutOff.getOddWightMediumValue();
+				oddWeightDRAW = cutOff.getOddWightMediumValue();
 			}
-		} else if (odd.getBackDraw() > odd.getBackAwayWin() && odd.getBackDraw() > odd.getBackHomeWin()) {
-			this.setOddWeightDRAW(cutOff.getOddWightHigherValue());
+		} else if (odd.getBackDraw() > odd.getBackAwayWin()
+				&& odd.getBackDraw() > odd.getBackHomeWin()) {
+			oddWeightDRAW = cutOff.getOddWightHigherValue();
 			if (odd.getBackHomeWin() > odd.getBackAwayWin()) {
-				this.setOddWeightWIN(cutOff.getOddWightMediumValue());
-				this.setOddWeightLOSE(cutOff.getOddWightLowerValue());
+				oddWeightWIN = cutOff.getOddWightMediumValue();
+				oddWeightLOSE = cutOff.getOddWightLowerValue();
 			} else if (odd.getBackHomeWin() < odd.getBackAwayWin()) {
-				this.setOddWeightLOSE(cutOff.getOddWightMediumValue());
-				this.setOddWeightWIN(cutOff.getOddWightLowerValue());
+				oddWeightLOSE = cutOff.getOddWightMediumValue();
+				oddWeightWIN = cutOff.getOddWightLowerValue();
 			} else {
-				this.setOddWeightWIN(cutOff.getOddWightMediumValue());
-				this.setOddWeightLOSE(cutOff.getOddWightMediumValue());
+				oddWeightWIN = cutOff.getOddWightMediumValue();
+				oddWeightLOSE = cutOff.getOddWightMediumValue();
 			}
-		} else if (odd.getBackAwayWin() > odd.getBackHomeWin() && odd.getBackAwayWin() > odd.getBackDraw()) {
-			this.setOddWeightLOSE(cutOff.getOddWightHigherValue());
+		} else if (odd.getBackAwayWin() > odd.getBackHomeWin()
+				&& odd.getBackAwayWin() > odd.getBackDraw()) {
+			oddWeightLOSE = cutOff.getOddWightHigherValue();
 			if (odd.getBackHomeWin() > odd.getBackDraw()) {
-				this.setOddWeightWIN(cutOff.getOddWightMediumValue());
-				this.setOddWeightDRAW(cutOff.getOddWightLowerValue());
+				oddWeightWIN = cutOff.getOddWightMediumValue();
+				oddWeightDRAW = cutOff.getOddWightLowerValue();
 			} else if (odd.getBackHomeWin() < odd.getBackDraw()) {
-				this.setOddWeightDRAW(cutOff.getOddWightMediumValue());
-				this.setOddWeightWIN(cutOff.getOddWightLowerValue());
+				oddWeightDRAW = cutOff.getOddWightMediumValue();
+				oddWeightWIN = cutOff.getOddWightLowerValue();
 			} else {
-				this.setOddWeightWIN(cutOff.getOddWightMediumValue());
-				this.setOddWeightDRAW(cutOff.getOddWightMediumValue());
+				oddWeightWIN = cutOff.getOddWightMediumValue();
+				oddWeightDRAW = cutOff.getOddWightMediumValue();
 			}
-		} else if (odd.getBackHomeWin() == odd.getBackAwayWin() && odd.getBackHomeWin() != odd.getBackDraw()) {
+		} else if (odd.getBackHomeWin() == odd.getBackAwayWin()
+				&& odd.getBackHomeWin() != odd.getBackDraw()) {
 			if (odd.getBackHomeWin() > odd.getBackDraw()) {
-				this.setOddWeightWIN(cutOff.getOddWightHigherValue());
-				this.setOddWeightLOSE(cutOff.getOddWightHigherValue());
-				this.setOddWeightDRAW(cutOff.getOddWightMediumValue());
+				oddWeightWIN = cutOff.getOddWightHigherValue();
+				oddWeightLOSE = cutOff.getOddWightHigherValue();
+				oddWeightDRAW = cutOff.getOddWightMediumValue();
 			} else {
-				this.setOddWeightDRAW(cutOff.getOddWightHigherValue());
-				this.setOddWeightWIN(cutOff.getOddWightMediumValue());
-				this.setOddWeightLOSE(cutOff.getOddWightMediumValue());
+				oddWeightDRAW = cutOff.getOddWightHigherValue();
+				oddWeightWIN = cutOff.getOddWightMediumValue();
+				oddWeightLOSE = cutOff.getOddWightMediumValue();
 			}
-		} else if (odd.getBackHomeWin() == odd.getBackDraw() && odd.getBackHomeWin() != odd.getBackAwayWin()) {
+		} else if (odd.getBackHomeWin() == odd.getBackDraw()
+				&& odd.getBackHomeWin() != odd.getBackAwayWin()) {
 			if (odd.getBackHomeWin() > odd.getBackAwayWin()) {
-				this.setOddWeightWIN(cutOff.getOddWightHigherValue());
-				this.setOddWeightDRAW(cutOff.getOddWightHigherValue());
-				this.setOddWeightLOSE(cutOff.getOddWightMediumValue());
+				oddWeightWIN = cutOff.getOddWightHigherValue();
+				oddWeightDRAW = cutOff.getOddWightHigherValue();
+				oddWeightLOSE = cutOff.getOddWightMediumValue();
 			} else {
-				this.setOddWeightLOSE(cutOff.getOddWightHigherValue());
-				this.setOddWeightWIN(cutOff.getOddWightMediumValue());
-				this.setOddWeightDRAW(cutOff.getOddWightMediumValue());
+				oddWeightLOSE = cutOff.getOddWightHigherValue();
+				oddWeightWIN = cutOff.getOddWightMediumValue();
+				oddWeightDRAW = cutOff.getOddWightMediumValue();
 			}
-		} else if (odd.getBackAwayWin() == odd.getBackDraw() && odd.getBackHomeWin() != odd.getBackAwayWin()) {
+		} else if (odd.getBackAwayWin() == odd.getBackDraw()
+				&& odd.getBackHomeWin() != odd.getBackAwayWin()) {
 			if (odd.getBackAwayWin() > odd.getBackHomeWin()) {
-				this.setOddWeightLOSE(cutOff.getOddWightHigherValue());
-				this.setOddWeightDRAW(cutOff.getOddWightHigherValue());
-				this.setOddWeightWIN(cutOff.getOddWightMediumValue());
+				oddWeightLOSE = cutOff.getOddWightHigherValue();
+				oddWeightDRAW = cutOff.getOddWightHigherValue();
+				oddWeightWIN = cutOff.getOddWightMediumValue();
 			} else {
-				this.setOddWeightWIN(cutOff.getOddWightHigherValue());
-				this.setOddWeightDRAW(cutOff.getOddWightMediumValue());
-				this.setOddWeightLOSE(cutOff.getOddWightMediumValue());
+				oddWeightWIN = cutOff.getOddWightHigherValue();
+				oddWeightDRAW = cutOff.getOddWightMediumValue();
+				oddWeightLOSE = cutOff.getOddWightMediumValue();
 			}
 		} else {
-			this.setOddWeightWIN(cutOff.getOddWightHigherValue());
-			this.setOddWeightDRAW(cutOff.getOddWightHigherValue());
-			this.setOddWeightLOSE(cutOff.getOddWightHigherValue());
+			oddWeightWIN = cutOff.getOddWightHigherValue();
+			oddWeightDRAW = cutOff.getOddWightHigherValue();
+			oddWeightLOSE = cutOff.getOddWightHigherValue();
 		}
 	}
 
-	public void calculateNNOdds(Fixture f, CutOff cutOff, double neuralNetworkBackWIN, double neuralNetworkBackDRAW,
-			double neuralNetworkBackLOSE, double neuralNetworkLayWIN, double neuralNetworkLayDRAW,
-			double neuralNetworkLayLOSE) {
+	private void calculateNNOdds(Fixture f, CutOff cutOff,
+			double neuralNetworkBackWIN, double neuralNetworkBackDRAW,
+			double neuralNetworkBackLOSE, double neuralNetworkLayWIN,
+			double neuralNetworkLayDRAW, double neuralNetworkLayLOSE) {
 
 		if (f.getOdd().getBackHomeWin() < cutOff.getMinimumBackOdd()) {
-			this.setBackWinNeuralNetworkOdd(0);
+			backWinNeuralNetworkOdd = 0;
 		} else {
-			this.setBackWinNeuralNetworkOdd(neuralNetworkBackWIN);
+			backWinNeuralNetworkOdd = neuralNetworkBackWIN;
 		}
 		if (f.getOdd().getBackDraw() < cutOff.getMinimumBackOdd()) {
-			this.setBackDrawNeuralNetworkOdd(0);
+			backDrawNeuralNetworkOdd = 0;
 		} else {
-			this.setBackDrawNeuralNetworkOdd(neuralNetworkBackDRAW);
+			backDrawNeuralNetworkOdd = neuralNetworkBackDRAW;
 		}
 		if (f.getOdd().getBackAwayWin() < cutOff.getMinimumBackOdd()) {
-			this.setBackLoseNeuralNetworkOdd(0);
+			backLoseNeuralNetworkOdd = 0;
 		} else {
-			this.setBackLoseNeuralNetworkOdd(neuralNetworkBackLOSE);
+			backLoseNeuralNetworkOdd = neuralNetworkBackLOSE;
 		}
 		if (f.getOdd().getLayHomeWin() < cutOff.getMinimumLayOdd()) {
-			this.setLayWinNeuralNetworkOdd(0);
+			layWinNeuralNetworkOdd = 0;
 		} else {
-			this.setLayWinNeuralNetworkOdd(neuralNetworkLayWIN);
+			layWinNeuralNetworkOdd = neuralNetworkLayWIN;
 		}
 		if (f.getOdd().getLayDraw() < cutOff.getMinimumLayOdd()) {
-			this.setLayDrawNeuralNetworkOdd(0);
+			layDrawNeuralNetworkOdd = 0;
 		} else {
-			this.setLayDrawNeuralNetworkOdd(neuralNetworkLayDRAW);
+			layDrawNeuralNetworkOdd = neuralNetworkLayDRAW;
 		}
 		if (f.getOdd().getLayAwayWin() < cutOff.getMinimumLayOdd()) {
-			this.setLayLoseNeuralNetworkOdd(0);
+			layLoseNeuralNetworkOdd = 0;
 		} else {
-			this.setLayLoseNeuralNetworkOdd(neuralNetworkLayLOSE);
+			layLoseNeuralNetworkOdd = neuralNetworkLayLOSE;
 		}
 	}
 
-	public void calculateSimpleBetProcessedOdds(CutOff cutOff) {
+	private void calculateSimpleBetProcessedOdds(CutOff cutOff) {
 
-		double backWinOdd = this.getBackWinOdd();
-		double backDrawOdd = this.getBackDrawOdd();
-		double backLoseOdd = this.getBackLoseOdd();
-		double layWinOdd = this.getLayWinOdd();
-		double layDrawOdd = this.getLayDrawOdd();
-		double layLoseOdd = this.getLayLoseOdd();
-		double nnBackWinOdd = this.getBackWinNeuralNetworkOdd();
-		double nnBackDrawOdd = this.getBackDrawNeuralNetworkOdd();
-		double nnBackLoseOdd = this.getBackLoseNeuralNetworkOdd();
-		double nnLayWinOdd = this.getLayWinNeuralNetworkOdd();
-		double nnLayDrawOdd = this.getLayDrawNeuralNetworkOdd();
-		double nnLayLoseOdd = this.getLayLoseNeuralNetworkOdd();
-		double boWin = this.getOddWeightWIN();
-		double boDraw = this.getOddWeightDRAW();
-		double boLose = this.getOddWeightLOSE();
-
-		if (backWinOdd * nnBackWinOdd == 0) {
-			this.setBackWinProcessedOdd(0);
+		if (backWinOdd * backWinNeuralNetworkOdd == 0) {
+			backWinProcessedOdd = 0;
 		} else {
-			this.setBackWinProcessedOdd(
-					(boWin * (backWinOdd - 1) + backWinOdd - 1) * (backWinOdd * cutOff.getNnOddWeight()));
+			backWinProcessedOdd = (oddWeightWIN * (backWinOdd - 1) + backWinOdd - 1)
+					* (backWinOdd * cutOff.getNnOddWeight());
 		}
-		if (backDrawOdd * nnBackDrawOdd == 0) {
-			this.setBackDrawProcessedOdd(0);
+		if (backDrawOdd * backDrawNeuralNetworkOdd == 0) {
+			backDrawProcessedOdd = 0;
 		} else {
-			this.setBackDrawProcessedOdd(
-					(boDraw * (backDrawOdd - 1) + backDrawOdd - 1) * (backDrawOdd * cutOff.getNnOddWeight()));
+			backDrawProcessedOdd = (oddWeightDRAW * (backDrawOdd - 1)
+					+ backDrawOdd - 1)
+					* (backDrawOdd * cutOff.getNnOddWeight());
 		}
-		if (backLoseOdd * nnBackLoseOdd == 0) {
-			this.setBackLoseProcessedOdd(0);
+		if (backLoseOdd * backLoseNeuralNetworkOdd == 0) {
+			backLoseProcessedOdd = 0;
 		} else {
-			this.setBackLoseProcessedOdd(
-					(boLose * (backLoseOdd - 1) + backLoseOdd - 1) * (backLoseOdd * cutOff.getNnOddWeight()));
+			backLoseProcessedOdd = (oddWeightLOSE * (backLoseOdd - 1)
+					+ backLoseOdd - 1)
+					* (backLoseOdd * cutOff.getNnOddWeight());
 		}
-		if (layWinOdd * nnLayWinOdd == 0) {
-			this.setLayWinProcessedOdd(0);
+		if (layWinOdd * layWinNeuralNetworkOdd == 0) {
+			layWinProcessedOdd = (0);
 		} else {
-			this.setLayWinProcessedOdd(
-					(boWin * (layWinOdd - 1) + layWinOdd - 1) * (layWinOdd * cutOff.getNnOddWeight()));
+			layWinProcessedOdd = ((oddWeightWIN * (layWinOdd - 1) + layWinOdd - 1) * (layWinOdd * cutOff
+					.getNnOddWeight()));
 		}
-		if (layDrawOdd * nnLayDrawOdd == 0) {
-			this.setLayDrawProcessedOdd(0);
+		if (layDrawOdd * layDrawNeuralNetworkOdd == 0) {
+			layDrawProcessedOdd = 0;
 		} else {
-			this.setLayDrawProcessedOdd(
-					(boDraw * (layDrawOdd - 1) + layDrawOdd - 1) * (layDrawOdd * cutOff.getNnOddWeight()));
+			layDrawProcessedOdd = (oddWeightDRAW * (layDrawOdd - 1)
+					+ layDrawOdd - 1)
+					* (layDrawOdd * cutOff.getNnOddWeight());
 		}
-		if (layLoseOdd * nnLayLoseOdd == 0) {
-			this.setLayLoseProcessedOdd(0);
+		if (layLoseOdd * layLoseNeuralNetworkOdd == 0) {
+			layLoseProcessedOdd = 0;
 		} else {
-			this.setLayLoseProcessedOdd(
-					(boLose * (layLoseOdd - 1) + layLoseOdd - 1) * (layLoseOdd * cutOff.getNnOddWeight()));
+			layLoseProcessedOdd = (oddWeightLOSE * (layLoseOdd - 1)
+					+ layLoseOdd - 1)
+					* (layLoseOdd * cutOff.getNnOddWeight());
 		}
 	}
 
-	public void calculateMultipleBetProcessedOdds(CutOff cutOff) {
-
-		double backWinOdd = this.getBackWinOdd();
-		double backDrawOdd = this.getBackDrawOdd();
-		double backLoseOdd = this.getBackLoseOdd();
-		double layWinOdd = this.getLayWinOdd();
-		double layDrawOdd = this.getLayDrawOdd();
-		double layLoseOdd = this.getLayLoseOdd();
-		double nnBackWinOdd = this.getBackWinNeuralNetworkOdd();
-		double nnBackDrawOdd = this.getBackDrawNeuralNetworkOdd();
-		double nnBackLoseOdd = this.getBackLoseNeuralNetworkOdd();
-		double nnLayWinOdd = this.getLayWinNeuralNetworkOdd();
-		double nnLayDrawOdd = this.getLayDrawNeuralNetworkOdd();
-		double nnLayLoseOdd = this.getLayLoseNeuralNetworkOdd();
-		double boWin = this.getOddWeightWIN();
-		double boDraw = this.getOddWeightDRAW();
-		double boLose = this.getOddWeightLOSE();
-
-		if (backWinOdd * nnBackWinOdd == 0) {
-			this.setBackWinProcessedOdd(0);
+	private void calculateMultipleBetProcessedOdds(CutOff cutOff) {
+		if (backWinOdd * backWinNeuralNetworkOdd == 0) {
+			backWinProcessedOdd = 0;
 		} else {
-			this.setBackWinProcessedOdd((boWin * backWinOdd) + (backWinOdd * cutOff.getNnOddWeight()));
+			backWinProcessedOdd = (oddWeightWIN * backWinOdd)
+					+ (backWinOdd * cutOff.getNnOddWeight());
 		}
-		if (backDrawOdd * nnBackDrawOdd == 0) {
-			this.setBackDrawProcessedOdd(0);
+		if (backDrawOdd * backDrawNeuralNetworkOdd == 0) {
+			backDrawProcessedOdd = 0;
 		} else {
-			this.setBackDrawProcessedOdd((boDraw * backDrawOdd) + (backDrawOdd * cutOff.getNnOddWeight()));
+			backDrawProcessedOdd = (oddWeightDRAW * backDrawOdd)
+					+ (backDrawOdd * cutOff.getNnOddWeight());
 		}
-		if (backLoseOdd * nnBackLoseOdd == 0) {
-			this.setBackLoseProcessedOdd(0);
+		if (backLoseOdd * backLoseNeuralNetworkOdd == 0) {
+			backLoseProcessedOdd = 0;
 		} else {
-			this.setBackLoseProcessedOdd((boLose * backLoseOdd) + (backLoseOdd * cutOff.getNnOddWeight()));
+			backLoseProcessedOdd = (oddWeightLOSE * backLoseOdd)
+					+ (backLoseOdd * cutOff.getNnOddWeight());
 		}
-		if (layWinOdd * nnLayWinOdd == 0) {
-			this.setLayWinProcessedOdd(0);
+		if (layWinOdd * layWinNeuralNetworkOdd == 0) {
+			layWinProcessedOdd = 0;
 		} else {
-			this.setLayWinProcessedOdd((boWin * layWinOdd) + (layWinOdd * cutOff.getNnOddWeight()));
+			layWinProcessedOdd = (oddWeightWIN * layWinOdd)
+					+ (layWinOdd * cutOff.getNnOddWeight());
 		}
-		if (layDrawOdd * nnLayDrawOdd == 0) {
-			this.setLayDrawProcessedOdd(0);
+		if (layDrawOdd * layDrawNeuralNetworkOdd == 0) {
+			layDrawProcessedOdd = 0;
 		} else {
-			this.setLayDrawProcessedOdd((boDraw * layDrawOdd) + (layDrawOdd * cutOff.getNnOddWeight()));
+			layDrawProcessedOdd = (oddWeightDRAW * layDrawOdd)
+					+ (layDrawOdd * cutOff.getNnOddWeight());
 		}
-		if (layLoseOdd * nnLayLoseOdd == 0) {
-			this.setLayLoseProcessedOdd(0);
+		if (layLoseOdd * layLoseNeuralNetworkOdd == 0) {
+			layLoseProcessedOdd = 0;
 		} else {
-			this.setLayLoseProcessedOdd((boLose * layLoseOdd) + (layLoseOdd * cutOff.getNnOddWeight()));
+			layLoseProcessedOdd = (oddWeightLOSE * layLoseOdd)
+					+ (layLoseOdd * cutOff.getNnOddWeight());
 		}
 	}
 
-	public void simpleBetDecision(CutOff cutOff) {
-		double backWinProcessedOdd = this.getBackWinProcessedOdd();
-		double backDrawProcessedOdd = this.getBackDrawNeuralNetworkOdd();
-		double backLoseProcessedOdd = this.getBackLoseProcessedOdd();
-		double layWinProcessedOdd = this.getLayWinProcessedOdd();
-		double layDrawProcessedOdd = this.getLayDrawProcessedOdd();
-		double layLoseProcessedOdd = this.getLayLoseProcessedOdd();
+	private List<Bet> simpleBetDecision(Week w, Fixture f, CutOff cutOff) {
 		ArrayList<Double> processedOdds = new ArrayList<Double>();
 		processedOdds.add(backWinProcessedOdd);
 		processedOdds.add(backDrawProcessedOdd);
@@ -514,76 +302,111 @@ public class Algorithm {
 		processedOdds.add(layDrawProcessedOdd);
 		processedOdds.add(layLoseProcessedOdd);
 
-		if (backWinProcessedOdd + backDrawProcessedOdd + backLoseProcessedOdd + layWinProcessedOdd + layDrawProcessedOdd
-				+ layLoseProcessedOdd == 0 || this.hasManyMax(processedOdds, this.getMaxValue(processedOdds))) {
-			this.setBackWinBet(false);
-			this.setBackDrawBet(false);
-			this.setBackLoseBet(false);
-			this.setLayWinBet(false);
-			this.setLayDrawBet(false);
-			this.setLayLoseBet(false);
-		} else if (backWinProcessedOdd == this.getMaxValue(processedOdds)) {
+		List<Bet> bets = new ArrayList<Bet>();
+		
+		if (backWinProcessedOdd + backDrawProcessedOdd + backLoseProcessedOdd
+				+ layWinProcessedOdd + layDrawProcessedOdd
+				+ layLoseProcessedOdd == 0
+				|| hasManyMax(processedOdds, getMaxValue(processedOdds))) {
+			
+			return null;
+		} else if (backWinProcessedOdd == getMaxValue(processedOdds)) {
 			if (backWinProcessedOdd >= cutOff.getMinimumQualityRelation()) {
-				this.setLayLoseBet(true);
+				Bet bet = new Bet();
+				bet.setOdd(f.getOdd().getBackHomeWin());
+				bet.setBetType(BetType.SIMPLE);
+				List<Fixture> fixtures = new ArrayList<Fixture>();
+				fixtures.add(f);
+				bet.setFixtures(fixtures);
+				bet.setMatchOddBet(MatchOddBet.WIN);
+				bet.setWeek(w);
+				
+				bets.add(bet);
 			}
-		} else if (backDrawProcessedOdd == this.getMaxValue(processedOdds)) {
+		} else if (backDrawProcessedOdd == getMaxValue(processedOdds)) {
 			if (backDrawProcessedOdd >= cutOff.getMinimumQualityRelation()) {
-				this.setBackDrawBet(true);
+				Bet bet = new Bet();
+				bet.setOdd(f.getOdd().getBackDraw());
+				bet.setBetType(BetType.SIMPLE);
+				List<Fixture> fixtures = new ArrayList<Fixture>();
+				fixtures.add(f);
+				bet.setFixtures(fixtures);
+				bet.setMatchOddBet(MatchOddBet.DRAW);
+				bet.setWeek(w);
+				
+				bets.add(bet);
 			}
-		} else if (backLoseProcessedOdd == this.getMaxValue(processedOdds)) {
+		} else if (backLoseProcessedOdd == getMaxValue(processedOdds)) {
 			if (backLoseProcessedOdd >= cutOff.getMinimumQualityRelation()) {
-				this.setBackLoseBet(true);
+				Bet bet = new Bet();
+				bet.setOdd(f.getOdd().getBackAwayWin());
+				bet.setBetType(BetType.SIMPLE);
+				List<Fixture> fixtures = new ArrayList<Fixture>();
+				fixtures.add(f);
+				bet.setFixtures(fixtures);
+				bet.setMatchOddBet(MatchOddBet.LOSE);
+				bet.setWeek(w);
+				
+				bets.add(bet);
 			}
-		} else if (layWinProcessedOdd == this.getMaxValue(processedOdds)) {
+		} else if (layWinProcessedOdd == getMaxValue(processedOdds)) {
 			if (layWinProcessedOdd >= cutOff.getMinimumQualityRelation()) {
-				this.setLayWinBet(true);
+				Bet bet = new Bet();
+				bet.setOdd(f.getOdd().getLayHomeWin());
+				bet.setBetType(BetType.SIMPLE);
+				List<Fixture> fixtures = new ArrayList<Fixture>();
+				fixtures.add(f);
+				bet.setFixtures(fixtures);
+				bet.setMatchOddBet(MatchOddBet.DONOTWIN);
+				bet.setWeek(w);
+				
+				bets.add(bet);
 			}
-		} else if (layDrawProcessedOdd == this.getMaxValue(processedOdds)) {
+		} else if (layDrawProcessedOdd == getMaxValue(processedOdds)) {
 			if (layDrawProcessedOdd >= cutOff.getMinimumQualityRelation()) {
-				this.setLayDrawBet(true);
+				Bet bet = new Bet();
+				bet.setOdd(f.getOdd().getLayDraw());
+				bet.setBetType(BetType.SIMPLE);
+				List<Fixture> fixtures = new ArrayList<Fixture>();
+				fixtures.add(f);
+				bet.setFixtures(fixtures);
+				bet.setMatchOddBet(MatchOddBet.DONOTDRAW);
+				bet.setWeek(w);
+				
+				bets.add(bet);
 			}
-		} else if (layLoseProcessedOdd == this.getMaxValue(processedOdds)) {
+		} else if (layLoseProcessedOdd == getMaxValue(processedOdds)) {
 			if (layLoseProcessedOdd >= cutOff.getMinimumQualityRelation()) {
-				this.setLayLoseBet(true);
+				Bet bet = new Bet();
+				bet.setOdd(f.getOdd().getLayAwayWin());
+				bet.setBetType(BetType.SIMPLE);
+				List<Fixture> fixtures = new ArrayList<Fixture>();
+				fixtures.add(f);
+				bet.setFixtures(fixtures);
+				bet.setMatchOddBet(MatchOddBet.DONOTLOSE);
+				bet.setWeek(w);
+				
+				bets.add(bet);
 			}
 		}
+		
+		return bets;
 	}
 
-	public void doubleBetDecision(CutOff doubleBetCutoff) {
-
-	}
-
-	public void tripleBetDecision(CutOff tripleBetCutoff) {
-
-	}
-
-	public void  multipleBetDecision(CutOff multipleBetCutoff) {
+	
+	private void doubleBetDecision(CutOff doubleBetCutoff) {
 
 	}
 
-	public void runAlgorithm(Fixture fixture, CutOff cutOffSimple, CutOff cutOffDouble, CutOff cutOffTriple,
-			CutOff cutOffMultiple, double neuralNetworkBackWIN, double neuralNetworkBackDRAW,
-			double neuralNetworkBackLOSE, double neuralNetworkLayWIN, double neuralNetworkLayDRAW,
-			double neuralNetworkLayLOSE) {
-		atributeOddWeightCutOff(fixture, cutOffSimple);
-		calculateNNOdds(fixture, cutOffSimple, neuralNetworkBackWIN, neuralNetworkBackDRAW, neuralNetworkBackLOSE,
-				neuralNetworkLayWIN, neuralNetworkLayDRAW, neuralNetworkLayLOSE);
-		calculateSimpleBetProcessedOdds(cutOffSimple);
-		simpleBetDecision(cutOffSimple);
-		calculateMultipleBetProcessedOdds(cutOffDouble);
-		doubleBetDecision(cutOffDouble);
-		calculateMultipleBetProcessedOdds(cutOffTriple);
-		tripleBetDecision(cutOffTriple);
-		calculateMultipleBetProcessedOdds(cutOffMultiple);
-		multipleBetDecision(cutOffMultiple);
+	private void tripleBetDecision(CutOff tripleBetCutoff) {
 
 	}
 
-	/****************/
-	/* AUX METHODS */
-	/****************/
+	private void multipleBetDecision(CutOff multipleBetCutoff) {
 
-	public boolean hasManyMax(ArrayList<Double> list, Double max) {
+	}
+	
+	private boolean hasManyMax(ArrayList<Double> list, Double max) {
 		int count = 0;
 		boolean hasManyMax = false;
 		for (Double listUnit : list) {
@@ -597,7 +420,7 @@ public class Algorithm {
 		return hasManyMax;
 	}
 
-	public double getMaxValue(ArrayList<Double> list) {
+	private double getMaxValue(ArrayList<Double> list) {
 		int index = 0;
 		Double max = 0.0;
 		for (Double listUnit : list) {

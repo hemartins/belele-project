@@ -43,12 +43,12 @@ public class Bet implements Serializable {
 		}
 	}
 	
-	public static enum MatchOddsBet {
+	public static enum MatchOddBet {
 		WIN(0), DRAW(1), LOSE(2), DONOTWIN(3), DONOTDRAW(4), DONOTLOSE(5);
 
 		private int matchOddsBet;
 
-		private MatchOddsBet(int matchOddsBet) {
+		private MatchOddBet(int matchOddsBet) {
 			this.matchOddsBet = matchOddsBet;
 		}
 
@@ -64,6 +64,8 @@ public class Bet implements Serializable {
 	private BetType betType;
 
 	private BetResult betResult;
+	
+	private MatchOddBet matchOddBet;
 
 	private double investedValue;
 	
@@ -112,6 +114,14 @@ public class Bet implements Serializable {
 	public void setBetResult(BetResult betResult) {
 		this.betResult = betResult;
 	}
+	
+	public MatchOddBet getMatchOddBet() {
+		return matchOddBet;
+	}
+
+	public void setMatchOddBet(MatchOddBet matchOddBet) {
+		this.matchOddBet = matchOddBet;
+	}
 
 	public double getInvestedValue() {
 		return investedValue;
@@ -144,4 +154,6 @@ public class Bet implements Serializable {
 	public void setWeek(Week week) {
 		this.week = week;
 	}
+	
+	
 }

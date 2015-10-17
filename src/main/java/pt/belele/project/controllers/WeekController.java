@@ -1,9 +1,16 @@
 package pt.belele.project.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
+import pt.belele.project.algorithm.Algorithm;
 import pt.belele.project.entities.Bet;
 import pt.belele.project.entities.Bet.BetResult;
+import pt.belele.project.entities.Bet.BetType;
+import pt.belele.project.entities.Bet.MatchOddBet;
+import pt.belele.project.entities.Fixture;
 import pt.belele.project.entities.Week;
 import pt.belele.project.persistence.BetDAO;
 import pt.belele.project.persistence.WeekDAO;
