@@ -45,112 +45,84 @@ public class Main {
 	public static void main(String[] args) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("database.odb");
 		EntityManager em = emf.createEntityManager();
-		generateDatabase(em);
-		//generateExcelFiles(em);
+		//generateDatabase(em);
+		generateExcelFiles(em);
 	}
 
 	private static void generateDatabase(EntityManager em) {
-		/*// INGLATERRA - PREMIER LEAGUE
-		populateDatabase(em, "E0.csv", "0001", 0);
-		populateDatabase(em, "E0.csv", "0102", 1);
-		populateDatabase(em, "E0.csv", "0203", 2);
-		populateDatabase(em, "E0.csv", "0304", 3);
-		populateDatabase(em, "E0.csv", "0405", 4);
-		populateDatabase(em, "E0.csv", "0506", 5);
-		populateDatabase(em, "E0.csv", "0607", 6);
-		populateDatabase(em, "E0.csv", "0708", 7);
-		populateDatabase(em, "E0.csv", "0809", 8);
-		populateDatabase(em, "E0.csv", "0910", 9);
-		populateDatabase(em, "E0.csv", "1011", 10);
-		populateDatabase(em, "E0.csv", "1112", 11);
-		populateDatabase(em, "E0.csv", "1213", 12);
-		populateDatabase(em, "E0.csv", "1314", 13);
-		populateDatabase(em, "E0.csv", "1415", 14);
-
-		// INGLATERRA - CHAMPIONSHIP
-		populateDatabase(em, "E1.csv", "0001", 0);
-		populateDatabase(em, "E1.csv", "0102", 1);
-		populateDatabase(em, "E1.csv", "0203", 2);
-		populateDatabase(em, "E1.csv", "0304", 3);
-		populateDatabase(em, "E1.csv", "0405", 4);
-		populateDatabase(em, "E1.csv", "0506", 5);
-		populateDatabase(em, "E1.csv", "0607", 6);
-		populateDatabase(em, "E1.csv", "0708", 7);
-		populateDatabase(em, "E1.csv", "0809", 8);
-		populateDatabase(em, "E1.csv", "0910", 9);
-		populateDatabase(em, "E1.csv", "1011", 10);
-		populateDatabase(em, "E1.csv", "1112", 11);
-		populateDatabase(em, "E1.csv", "1213", 12);
-		populateDatabase(em, "E1.csv", "1314", 13);
-		populateDatabase(em, "E1.csv", "1415", 14);
-
-		// INGLATERRA - LEAGUE 1
-		populateDatabase(em, "E2.csv", "0001", 0);
-		populateDatabase(em, "E2.csv", "0102", 1);
-		populateDatabase(em, "E2.csv", "0203", 2);
-		populateDatabase(em, "E2.csv", "0304", 3);
-		populateDatabase(em, "E2.csv", "0405", 4);
-		populateDatabase(em, "E2.csv", "0506", 5);
-		populateDatabase(em, "E2.csv", "0607", 6);
-		populateDatabase(em, "E2.csv", "0708", 7);
-		populateDatabase(em, "E2.csv", "0809", 8);
-		populateDatabase(em, "E2.csv", "0910", 9);
-		populateDatabase(em, "E2.csv", "1011", 10);
-		populateDatabase(em, "E2.csv", "1112", 11);
-		populateDatabase(em, "E2.csv", "1213", 12);
-		populateDatabase(em, "E2.csv", "1314", 13);
-		populateDatabase(em, "E2.csv", "1415", 14);
-
-		// ESCOCIA - PREMIER LEAGUE
-		populateDatabase(em, "SC0.csv", "0001", 0);
-		populateDatabase(em, "SC0.csv", "0102", 1);
-		populateDatabase(em, "SC0.csv", "0203", 2);
-		populateDatabase(em, "SC0.csv", "0304", 3);
-		populateDatabase(em, "SC0.csv", "0405", 4);
-		populateDatabase(em, "SC0.csv", "0506", 5);
-		populateDatabase(em, "SC0.csv", "0607", 6);
-		populateDatabase(em, "SC0.csv", "0708", 7);
-		populateDatabase(em, "SC0.csv", "0809", 8);
-		populateDatabase(em, "SC0.csv", "0910", 9);
-		populateDatabase(em, "SC0.csv", "1011", 10);
-		populateDatabase(em, "SC0.csv", "1112", 11);
-		populateDatabase(em, "SC0.csv", "1213", 12);
-		populateDatabase(em, "SC0.csv", "1314", 13);
-		populateDatabase(em, "SC0.csv", "1415", 14);
-
-		// ALEMANHA - BUNDESLIGA 1
-		populateDatabase(em, "D1.csv", "0001", 0);
-		populateDatabase(em, "D1.csv", "0102", 1);
-		populateDatabase(em, "D1.csv", "0203", 2);
-		populateDatabase(em, "D1.csv", "0304", 3);
-		populateDatabase(em, "D1.csv", "0405", 4);
-		populateDatabase(em, "D1.csv", "0506", 5);
-		populateDatabase(em, "D1.csv", "0607", 6);
-		populateDatabase(em, "D1.csv", "0708", 7);
-		populateDatabase(em, "D1.csv", "0809", 8);
-		populateDatabase(em, "D1.csv", "0910", 9);
-		populateDatabase(em, "D1.csv", "1011", 10);
-		populateDatabase(em, "D1.csv", "1112", 11);
-		populateDatabase(em, "D1.csv", "1213", 12);
-		populateDatabase(em, "D1.csv", "1314", 13);
-		populateDatabase(em, "D1.csv", "1415", 14);
-
-		// ALEMANHA - BUNDESLIGA 2
-		populateDatabase(em, "D2.csv", "0001", 0);
-		populateDatabase(em, "D2.csv", "0102", 1);
-		populateDatabase(em, "D2.csv", "0203", 2);
-		populateDatabase(em, "D2.csv", "0304", 3);
-		populateDatabase(em, "D2.csv", "0405", 4);
-		populateDatabase(em, "D2.csv", "0506", 5);
-		populateDatabase(em, "D2.csv", "0607", 6);
-		populateDatabase(em, "D2.csv", "0708", 7);
-		populateDatabase(em, "D2.csv", "0809", 8);
-		populateDatabase(em, "D2.csv", "0910", 9);
-		populateDatabase(em, "D2.csv", "1011", 10);
-		populateDatabase(em, "D2.csv", "1112", 11);
-		populateDatabase(em, "D2.csv", "1213", 12);
-		populateDatabase(em, "D2.csv", "1314", 13);
-		populateDatabase(em, "D2.csv", "1415", 14);*/
+		/*
+		 * // INGLATERRA - PREMIER LEAGUE populateDatabase(em, "E0.csv", "0001",
+		 * 0); populateDatabase(em, "E0.csv", "0102", 1); populateDatabase(em,
+		 * "E0.csv", "0203", 2); populateDatabase(em, "E0.csv", "0304", 3);
+		 * populateDatabase(em, "E0.csv", "0405", 4); populateDatabase(em,
+		 * "E0.csv", "0506", 5); populateDatabase(em, "E0.csv", "0607", 6);
+		 * populateDatabase(em, "E0.csv", "0708", 7); populateDatabase(em,
+		 * "E0.csv", "0809", 8); populateDatabase(em, "E0.csv", "0910", 9);
+		 * populateDatabase(em, "E0.csv", "1011", 10); populateDatabase(em,
+		 * "E0.csv", "1112", 11); populateDatabase(em, "E0.csv", "1213", 12);
+		 * populateDatabase(em, "E0.csv", "1314", 13); populateDatabase(em,
+		 * "E0.csv", "1415", 14);
+		 * 
+		 * // INGLATERRA - CHAMPIONSHIP populateDatabase(em, "E1.csv", "0001",
+		 * 0); populateDatabase(em, "E1.csv", "0102", 1); populateDatabase(em,
+		 * "E1.csv", "0203", 2); populateDatabase(em, "E1.csv", "0304", 3);
+		 * populateDatabase(em, "E1.csv", "0405", 4); populateDatabase(em,
+		 * "E1.csv", "0506", 5); populateDatabase(em, "E1.csv", "0607", 6);
+		 * populateDatabase(em, "E1.csv", "0708", 7); populateDatabase(em,
+		 * "E1.csv", "0809", 8); populateDatabase(em, "E1.csv", "0910", 9);
+		 * populateDatabase(em, "E1.csv", "1011", 10); populateDatabase(em,
+		 * "E1.csv", "1112", 11); populateDatabase(em, "E1.csv", "1213", 12);
+		 * populateDatabase(em, "E1.csv", "1314", 13); populateDatabase(em,
+		 * "E1.csv", "1415", 14);
+		 * 
+		 * // INGLATERRA - LEAGUE 1 populateDatabase(em, "E2.csv", "0001", 0);
+		 * populateDatabase(em, "E2.csv", "0102", 1); populateDatabase(em,
+		 * "E2.csv", "0203", 2); populateDatabase(em, "E2.csv", "0304", 3);
+		 * populateDatabase(em, "E2.csv", "0405", 4); populateDatabase(em,
+		 * "E2.csv", "0506", 5); populateDatabase(em, "E2.csv", "0607", 6);
+		 * populateDatabase(em, "E2.csv", "0708", 7); populateDatabase(em,
+		 * "E2.csv", "0809", 8); populateDatabase(em, "E2.csv", "0910", 9);
+		 * populateDatabase(em, "E2.csv", "1011", 10); populateDatabase(em,
+		 * "E2.csv", "1112", 11); populateDatabase(em, "E2.csv", "1213", 12);
+		 * populateDatabase(em, "E2.csv", "1314", 13); populateDatabase(em,
+		 * "E2.csv", "1415", 14);
+		 * 
+		 * // ESCOCIA - PREMIER LEAGUE populateDatabase(em, "SC0.csv", "0001",
+		 * 0); populateDatabase(em, "SC0.csv", "0102", 1); populateDatabase(em,
+		 * "SC0.csv", "0203", 2); populateDatabase(em, "SC0.csv", "0304", 3);
+		 * populateDatabase(em, "SC0.csv", "0405", 4); populateDatabase(em,
+		 * "SC0.csv", "0506", 5); populateDatabase(em, "SC0.csv", "0607", 6);
+		 * populateDatabase(em, "SC0.csv", "0708", 7); populateDatabase(em,
+		 * "SC0.csv", "0809", 8); populateDatabase(em, "SC0.csv", "0910", 9);
+		 * populateDatabase(em, "SC0.csv", "1011", 10); populateDatabase(em,
+		 * "SC0.csv", "1112", 11); populateDatabase(em, "SC0.csv", "1213", 12);
+		 * populateDatabase(em, "SC0.csv", "1314", 13); populateDatabase(em,
+		 * "SC0.csv", "1415", 14);
+		 * 
+		 * // ALEMANHA - BUNDESLIGA 1 populateDatabase(em, "D1.csv", "0001", 0);
+		 * populateDatabase(em, "D1.csv", "0102", 1); populateDatabase(em,
+		 * "D1.csv", "0203", 2); populateDatabase(em, "D1.csv", "0304", 3);
+		 * populateDatabase(em, "D1.csv", "0405", 4); populateDatabase(em,
+		 * "D1.csv", "0506", 5); populateDatabase(em, "D1.csv", "0607", 6);
+		 * populateDatabase(em, "D1.csv", "0708", 7); populateDatabase(em,
+		 * "D1.csv", "0809", 8); populateDatabase(em, "D1.csv", "0910", 9);
+		 * populateDatabase(em, "D1.csv", "1011", 10); populateDatabase(em,
+		 * "D1.csv", "1112", 11); populateDatabase(em, "D1.csv", "1213", 12);
+		 * populateDatabase(em, "D1.csv", "1314", 13); populateDatabase(em,
+		 * "D1.csv", "1415", 14);
+		 * 
+		 * // ALEMANHA - BUNDESLIGA 2 populateDatabase(em, "D2.csv", "0001", 0);
+		 * populateDatabase(em, "D2.csv", "0102", 1); populateDatabase(em,
+		 * "D2.csv", "0203", 2); populateDatabase(em, "D2.csv", "0304", 3);
+		 * populateDatabase(em, "D2.csv", "0405", 4); populateDatabase(em,
+		 * "D2.csv", "0506", 5); populateDatabase(em, "D2.csv", "0607", 6);
+		 * populateDatabase(em, "D2.csv", "0708", 7); populateDatabase(em,
+		 * "D2.csv", "0809", 8); populateDatabase(em, "D2.csv", "0910", 9);
+		 * populateDatabase(em, "D2.csv", "1011", 10); populateDatabase(em,
+		 * "D2.csv", "1112", 11); populateDatabase(em, "D2.csv", "1213", 12);
+		 * populateDatabase(em, "D2.csv", "1314", 13); populateDatabase(em,
+		 * "D2.csv", "1415", 14);
+		 */
 
 		// ITALIA - SERIE A
 		populateDatabase(em, "I1.csv", "0001", 0);
@@ -169,175 +141,127 @@ public class Main {
 		populateDatabase(em, "I1.csv", "1314", 13);
 		populateDatabase(em, "I1.csv", "1415", 14);
 
-		/*// ITALIA - SERIE B
-		populateDatabase(em, "I2.csv", "0001", 0);
-		populateDatabase(em, "I2.csv", "0102", 1);
-		populateDatabase(em, "I2.csv", "0203", 2);
-		populateDatabase(em, "I2.csv", "0304", 3);
-		populateDatabase(em, "I2.csv", "0405", 4);
-		populateDatabase(em, "I2.csv", "0506", 5);
-		populateDatabase(em, "I2.csv", "0607", 6);
-		populateDatabase(em, "I2.csv", "0708", 7);
-		populateDatabase(em, "I2.csv", "0809", 8);
-		populateDatabase(em, "I2.csv", "0910", 9);
-		populateDatabase(em, "I2.csv", "1011", 10);
-		populateDatabase(em, "I2.csv", "1112", 11);
-		populateDatabase(em, "I2.csv", "1213", 12);
-		populateDatabase(em, "I2.csv", "1314", 13);
-		populateDatabase(em, "I2.csv", "1415", 14);
-
-		// ESPANHA - LA LIGA PRIMERA DIVISION
-		populateDatabase(em, "SP1.csv", "0001", 0);
-		populateDatabase(em, "SP1.csv", "0102", 1);
-		populateDatabase(em, "SP1.csv", "0203", 2);
-		populateDatabase(em, "SP1.csv", "0304", 3);
-		populateDatabase(em, "SP1.csv", "0405", 4);
-		populateDatabase(em, "SP1.csv", "0506", 5);
-		populateDatabase(em, "SP1.csv", "0607", 6);
-		populateDatabase(em, "SP1.csv", "0708", 7);
-		populateDatabase(em, "SP1.csv", "0809", 8);
-		populateDatabase(em, "SP1.csv", "0910", 9);
-		populateDatabase(em, "SP1.csv", "1011", 10);
-		populateDatabase(em, "SP1.csv", "1112", 11);
-		populateDatabase(em, "SP1.csv", "1213", 12);
-		populateDatabase(em, "SP1.csv", "1314", 13);
-		populateDatabase(em, "SP1.csv", "1415", 14);
-
-		// ESPANHA - LA LIGA SEGUNDA DIVISION
-		populateDatabase(em, "SP2.csv", "0001", 0);
-		populateDatabase(em, "SP2.csv", "0102", 1);
-		populateDatabase(em, "SP2.csv", "0203", 2);
-		populateDatabase(em, "SP2.csv", "0304", 3);
-		populateDatabase(em, "SP2.csv", "0405", 4);
-		populateDatabase(em, "SP2.csv", "0506", 5);
-		populateDatabase(em, "SP2.csv", "0607", 6);
-		populateDatabase(em, "SP2.csv", "0708", 7);
-		populateDatabase(em, "SP2.csv", "0809", 8);
-		populateDatabase(em, "SP2.csv", "0910", 9);
-		populateDatabase(em, "SP2.csv", "1011", 10);
-		populateDatabase(em, "SP2.csv", "1112", 11);
-		populateDatabase(em, "SP2.csv", "1213", 12);
-		populateDatabase(em, "SP2.csv", "1314", 13);
-		populateDatabase(em, "SP2.csv", "1415", 14);
-
-		// FRANÇA - LE CHAMPIONNAT
-		populateDatabase(em, "F1.csv", "0001", 0);
-		populateDatabase(em, "F1.csv", "0102", 1);
-		populateDatabase(em, "F1.csv", "0203", 2);
-		populateDatabase(em, "F1.csv", "0304", 3);
-		populateDatabase(em, "F1.csv", "0405", 4);
-		populateDatabase(em, "F1.csv", "0506", 5);
-		populateDatabase(em, "F1.csv", "0607", 6);
-		populateDatabase(em, "F1.csv", "0708", 7);
-		populateDatabase(em, "F1.csv", "0809", 8);
-		populateDatabase(em, "F1.csv", "0910", 9);
-		populateDatabase(em, "F1.csv", "1011", 10);
-		populateDatabase(em, "F1.csv", "1112", 11);
-		populateDatabase(em, "F1.csv", "1213", 12);
-		populateDatabase(em, "F1.csv", "1314", 13);
-		populateDatabase(em, "F1.csv", "1415", 14);
-
-		// FRANÇA - DIVISION2
-		populateDatabase(em, "F2.csv", "0001", 0);
-		populateDatabase(em, "F2.csv", "0102", 1);
-		populateDatabase(em, "F2.csv", "0203", 2);
-		populateDatabase(em, "F2.csv", "0304", 3);
-		populateDatabase(em, "F2.csv", "0405", 4);
-		populateDatabase(em, "F2.csv", "0506", 5);
-		populateDatabase(em, "F2.csv", "0607", 6);
-		populateDatabase(em, "F2.csv", "0708", 7);
-		populateDatabase(em, "F2.csv", "0809", 8);
-		populateDatabase(em, "F2.csv", "0910", 9);
-		populateDatabase(em, "F2.csv", "1011", 10);
-		populateDatabase(em, "F2.csv", "1112", 11);
-		populateDatabase(em, "F2.csv", "1213", 12);
-		populateDatabase(em, "F2.csv", "1314", 13);
-		populateDatabase(em, "F2.csv", "1415", 14);
-
-		// HOLANDA - EREDIVISE
-		populateDatabase(em, "N1.csv", "0001", 0);
-		populateDatabase(em, "N1.csv", "0102", 1);
-		populateDatabase(em, "N1.csv", "0203", 2);
-		populateDatabase(em, "N1.csv", "0304", 3);
-		populateDatabase(em, "N1.csv", "0405", 4);
-		populateDatabase(em, "N1.csv", "0506", 5);
-		populateDatabase(em, "N1.csv", "0607", 6);
-		populateDatabase(em, "N1.csv", "0708", 7);
-		populateDatabase(em, "N1.csv", "0809", 8);
-		populateDatabase(em, "N1.csv", "0910", 9);
-		populateDatabase(em, "N1.csv", "1011", 10);
-		populateDatabase(em, "N1.csv", "1112", 11);
-		populateDatabase(em, "N1.csv", "1213", 12);
-		populateDatabase(em, "N1.csv", "1314", 13);
-		populateDatabase(em, "N1.csv", "1415", 14);
-
-		// BELGICA - JUPILER LEAGUE
-		populateDatabase(em, "B1.csv", "0001", 0);
-		populateDatabase(em, "B1.csv", "0102", 1);
-		populateDatabase(em, "B1.csv", "0203", 2);
-		populateDatabase(em, "B1.csv", "0304", 3);
-		populateDatabase(em, "B1.csv", "0405", 4);
-		populateDatabase(em, "B1.csv", "0506", 5);
-		populateDatabase(em, "B1.csv", "0607", 6);
-		populateDatabase(em, "B1.csv", "0708", 7);
-		populateDatabase(em, "B1.csv", "0809", 8);
-		populateDatabase(em, "B1.csv", "0910", 9);
-		populateDatabase(em, "B1.csv", "1011", 10);
-		populateDatabase(em, "B1.csv", "1112", 11);
-		populateDatabase(em, "B1.csv", "1213", 12);
-		populateDatabase(em, "B1.csv", "1314", 13);
-		populateDatabase(em, "B1.csv", "1415", 14);
-
-		// PORTUGAL - PRIMEIRA LIGA
-		populateDatabase(em, "P1.csv", "0001", 0);
-		populateDatabase(em, "P1.csv", "0102", 1);
-		populateDatabase(em, "P1.csv", "0203", 2);
-		populateDatabase(em, "P1.csv", "0304", 3);
-		populateDatabase(em, "P1.csv", "0405", 4);
-		populateDatabase(em, "P1.csv", "0506", 5);
-		populateDatabase(em, "P1.csv", "0607", 6);
-		populateDatabase(em, "P1.csv", "0708", 7);
-		populateDatabase(em, "P1.csv", "0809", 8);
-		populateDatabase(em, "P1.csv", "0910", 9);
-		populateDatabase(em, "P1.csv", "1011", 10);
-		populateDatabase(em, "P1.csv", "1112", 11);
-		populateDatabase(em, "P1.csv", "1213", 12);
-		populateDatabase(em, "P1.csv", "1314", 13);
-		populateDatabase(em, "P1.csv", "1415", 14);
-
-		// TURQUIA - FUTBOL LIGI 1
-		populateDatabase(em, "T1.csv", "0001", 0);
-		populateDatabase(em, "T1.csv", "0102", 1);
-		populateDatabase(em, "T1.csv", "0203", 2);
-		populateDatabase(em, "T1.csv", "0304", 3);
-		populateDatabase(em, "T1.csv", "0405", 4);
-		populateDatabase(em, "T1.csv", "0506", 5);
-		populateDatabase(em, "T1.csv", "0607", 6);
-		populateDatabase(em, "T1.csv", "0708", 7);
-		populateDatabase(em, "T1.csv", "0809", 8);
-		populateDatabase(em, "T1.csv", "0910", 9);
-		populateDatabase(em, "T1.csv", "1011", 10);
-		populateDatabase(em, "T1.csv", "1112", 11);
-		populateDatabase(em, "T1.csv", "1213", 12);
-		populateDatabase(em, "T1.csv", "1314", 13);
-		populateDatabase(em, "T1.csv", "1415", 14);
-
-		// GRECIA - ETHNIKI KATIGORIA
-		populateDatabase(em, "G1.csv", "0001", 0);
-		populateDatabase(em, "G1.csv", "0102", 1);
-		populateDatabase(em, "G1.csv", "0203", 2);
-		populateDatabase(em, "G1.csv", "0304", 3);
-		populateDatabase(em, "G1.csv", "0405", 4);
-		populateDatabase(em, "G1.csv", "0506", 5);
-		populateDatabase(em, "G1.csv", "0607", 6);
-		populateDatabase(em, "G1.csv", "0708", 7);
-		populateDatabase(em, "G1.csv", "0809", 8);
-		populateDatabase(em, "G1.csv", "0910", 9);
-		populateDatabase(em, "G1.csv", "1011", 10);
-		populateDatabase(em, "G1.csv", "1112", 11);
-		populateDatabase(em, "G1.csv", "1213", 12);
-		populateDatabase(em, "G1.csv", "1314", 13);
-		populateDatabase(em, "G1.csv", "1415", 14);*/
+		/*
+		 * // ITALIA - SERIE B populateDatabase(em, "I2.csv", "0001", 0);
+		 * populateDatabase(em, "I2.csv", "0102", 1); populateDatabase(em,
+		 * "I2.csv", "0203", 2); populateDatabase(em, "I2.csv", "0304", 3);
+		 * populateDatabase(em, "I2.csv", "0405", 4); populateDatabase(em,
+		 * "I2.csv", "0506", 5); populateDatabase(em, "I2.csv", "0607", 6);
+		 * populateDatabase(em, "I2.csv", "0708", 7); populateDatabase(em,
+		 * "I2.csv", "0809", 8); populateDatabase(em, "I2.csv", "0910", 9);
+		 * populateDatabase(em, "I2.csv", "1011", 10); populateDatabase(em,
+		 * "I2.csv", "1112", 11); populateDatabase(em, "I2.csv", "1213", 12);
+		 * populateDatabase(em, "I2.csv", "1314", 13); populateDatabase(em,
+		 * "I2.csv", "1415", 14);
+		 * 
+		 * // ESPANHA - LA LIGA PRIMERA DIVISION populateDatabase(em, "SP1.csv",
+		 * "0001", 0); populateDatabase(em, "SP1.csv", "0102", 1);
+		 * populateDatabase(em, "SP1.csv", "0203", 2); populateDatabase(em,
+		 * "SP1.csv", "0304", 3); populateDatabase(em, "SP1.csv", "0405", 4);
+		 * populateDatabase(em, "SP1.csv", "0506", 5); populateDatabase(em,
+		 * "SP1.csv", "0607", 6); populateDatabase(em, "SP1.csv", "0708", 7);
+		 * populateDatabase(em, "SP1.csv", "0809", 8); populateDatabase(em,
+		 * "SP1.csv", "0910", 9); populateDatabase(em, "SP1.csv", "1011", 10);
+		 * populateDatabase(em, "SP1.csv", "1112", 11); populateDatabase(em,
+		 * "SP1.csv", "1213", 12); populateDatabase(em, "SP1.csv", "1314", 13);
+		 * populateDatabase(em, "SP1.csv", "1415", 14);
+		 * 
+		 * // ESPANHA - LA LIGA SEGUNDA DIVISION populateDatabase(em, "SP2.csv",
+		 * "0001", 0); populateDatabase(em, "SP2.csv", "0102", 1);
+		 * populateDatabase(em, "SP2.csv", "0203", 2); populateDatabase(em,
+		 * "SP2.csv", "0304", 3); populateDatabase(em, "SP2.csv", "0405", 4);
+		 * populateDatabase(em, "SP2.csv", "0506", 5); populateDatabase(em,
+		 * "SP2.csv", "0607", 6); populateDatabase(em, "SP2.csv", "0708", 7);
+		 * populateDatabase(em, "SP2.csv", "0809", 8); populateDatabase(em,
+		 * "SP2.csv", "0910", 9); populateDatabase(em, "SP2.csv", "1011", 10);
+		 * populateDatabase(em, "SP2.csv", "1112", 11); populateDatabase(em,
+		 * "SP2.csv", "1213", 12); populateDatabase(em, "SP2.csv", "1314", 13);
+		 * populateDatabase(em, "SP2.csv", "1415", 14);
+		 * 
+		 * // FRANÇA - LE CHAMPIONNAT populateDatabase(em, "F1.csv", "0001", 0);
+		 * populateDatabase(em, "F1.csv", "0102", 1); populateDatabase(em,
+		 * "F1.csv", "0203", 2); populateDatabase(em, "F1.csv", "0304", 3);
+		 * populateDatabase(em, "F1.csv", "0405", 4); populateDatabase(em,
+		 * "F1.csv", "0506", 5); populateDatabase(em, "F1.csv", "0607", 6);
+		 * populateDatabase(em, "F1.csv", "0708", 7); populateDatabase(em,
+		 * "F1.csv", "0809", 8); populateDatabase(em, "F1.csv", "0910", 9);
+		 * populateDatabase(em, "F1.csv", "1011", 10); populateDatabase(em,
+		 * "F1.csv", "1112", 11); populateDatabase(em, "F1.csv", "1213", 12);
+		 * populateDatabase(em, "F1.csv", "1314", 13); populateDatabase(em,
+		 * "F1.csv", "1415", 14);
+		 * 
+		 * // FRANÇA - DIVISION2 populateDatabase(em, "F2.csv", "0001", 0);
+		 * populateDatabase(em, "F2.csv", "0102", 1); populateDatabase(em,
+		 * "F2.csv", "0203", 2); populateDatabase(em, "F2.csv", "0304", 3);
+		 * populateDatabase(em, "F2.csv", "0405", 4); populateDatabase(em,
+		 * "F2.csv", "0506", 5); populateDatabase(em, "F2.csv", "0607", 6);
+		 * populateDatabase(em, "F2.csv", "0708", 7); populateDatabase(em,
+		 * "F2.csv", "0809", 8); populateDatabase(em, "F2.csv", "0910", 9);
+		 * populateDatabase(em, "F2.csv", "1011", 10); populateDatabase(em,
+		 * "F2.csv", "1112", 11); populateDatabase(em, "F2.csv", "1213", 12);
+		 * populateDatabase(em, "F2.csv", "1314", 13); populateDatabase(em,
+		 * "F2.csv", "1415", 14);
+		 * 
+		 * // HOLANDA - EREDIVISE populateDatabase(em, "N1.csv", "0001", 0);
+		 * populateDatabase(em, "N1.csv", "0102", 1); populateDatabase(em,
+		 * "N1.csv", "0203", 2); populateDatabase(em, "N1.csv", "0304", 3);
+		 * populateDatabase(em, "N1.csv", "0405", 4); populateDatabase(em,
+		 * "N1.csv", "0506", 5); populateDatabase(em, "N1.csv", "0607", 6);
+		 * populateDatabase(em, "N1.csv", "0708", 7); populateDatabase(em,
+		 * "N1.csv", "0809", 8); populateDatabase(em, "N1.csv", "0910", 9);
+		 * populateDatabase(em, "N1.csv", "1011", 10); populateDatabase(em,
+		 * "N1.csv", "1112", 11); populateDatabase(em, "N1.csv", "1213", 12);
+		 * populateDatabase(em, "N1.csv", "1314", 13); populateDatabase(em,
+		 * "N1.csv", "1415", 14);
+		 * 
+		 * // BELGICA - JUPILER LEAGUE populateDatabase(em, "B1.csv", "0001",
+		 * 0); populateDatabase(em, "B1.csv", "0102", 1); populateDatabase(em,
+		 * "B1.csv", "0203", 2); populateDatabase(em, "B1.csv", "0304", 3);
+		 * populateDatabase(em, "B1.csv", "0405", 4); populateDatabase(em,
+		 * "B1.csv", "0506", 5); populateDatabase(em, "B1.csv", "0607", 6);
+		 * populateDatabase(em, "B1.csv", "0708", 7); populateDatabase(em,
+		 * "B1.csv", "0809", 8); populateDatabase(em, "B1.csv", "0910", 9);
+		 * populateDatabase(em, "B1.csv", "1011", 10); populateDatabase(em,
+		 * "B1.csv", "1112", 11); populateDatabase(em, "B1.csv", "1213", 12);
+		 * populateDatabase(em, "B1.csv", "1314", 13); populateDatabase(em,
+		 * "B1.csv", "1415", 14);
+		 * 
+		 * // PORTUGAL - PRIMEIRA LIGA populateDatabase(em, "P1.csv", "0001",
+		 * 0); populateDatabase(em, "P1.csv", "0102", 1); populateDatabase(em,
+		 * "P1.csv", "0203", 2); populateDatabase(em, "P1.csv", "0304", 3);
+		 * populateDatabase(em, "P1.csv", "0405", 4); populateDatabase(em,
+		 * "P1.csv", "0506", 5); populateDatabase(em, "P1.csv", "0607", 6);
+		 * populateDatabase(em, "P1.csv", "0708", 7); populateDatabase(em,
+		 * "P1.csv", "0809", 8); populateDatabase(em, "P1.csv", "0910", 9);
+		 * populateDatabase(em, "P1.csv", "1011", 10); populateDatabase(em,
+		 * "P1.csv", "1112", 11); populateDatabase(em, "P1.csv", "1213", 12);
+		 * populateDatabase(em, "P1.csv", "1314", 13); populateDatabase(em,
+		 * "P1.csv", "1415", 14);
+		 * 
+		 * // TURQUIA - FUTBOL LIGI 1 populateDatabase(em, "T1.csv", "0001", 0);
+		 * populateDatabase(em, "T1.csv", "0102", 1); populateDatabase(em,
+		 * "T1.csv", "0203", 2); populateDatabase(em, "T1.csv", "0304", 3);
+		 * populateDatabase(em, "T1.csv", "0405", 4); populateDatabase(em,
+		 * "T1.csv", "0506", 5); populateDatabase(em, "T1.csv", "0607", 6);
+		 * populateDatabase(em, "T1.csv", "0708", 7); populateDatabase(em,
+		 * "T1.csv", "0809", 8); populateDatabase(em, "T1.csv", "0910", 9);
+		 * populateDatabase(em, "T1.csv", "1011", 10); populateDatabase(em,
+		 * "T1.csv", "1112", 11); populateDatabase(em, "T1.csv", "1213", 12);
+		 * populateDatabase(em, "T1.csv", "1314", 13); populateDatabase(em,
+		 * "T1.csv", "1415", 14);
+		 * 
+		 * // GRECIA - ETHNIKI KATIGORIA populateDatabase(em, "G1.csv", "0001",
+		 * 0); populateDatabase(em, "G1.csv", "0102", 1); populateDatabase(em,
+		 * "G1.csv", "0203", 2); populateDatabase(em, "G1.csv", "0304", 3);
+		 * populateDatabase(em, "G1.csv", "0405", 4); populateDatabase(em,
+		 * "G1.csv", "0506", 5); populateDatabase(em, "G1.csv", "0607", 6);
+		 * populateDatabase(em, "G1.csv", "0708", 7); populateDatabase(em,
+		 * "G1.csv", "0809", 8); populateDatabase(em, "G1.csv", "0910", 9);
+		 * populateDatabase(em, "G1.csv", "1011", 10); populateDatabase(em,
+		 * "G1.csv", "1112", 11); populateDatabase(em, "G1.csv", "1213", 12);
+		 * populateDatabase(em, "G1.csv", "1314", 13); populateDatabase(em,
+		 * "G1.csv", "1415", 14);
+		 */
 	}
 
 	private static void generateExcelFiles(EntityManager em) {
@@ -443,20 +367,35 @@ public class Main {
 		 */
 
 		// ITALIA - SERIE A
-		Season i14 = sc.createSeason("I1", 14);
-		runAlgorithm(i14, em, dir, true, true);
+		 Season i14 = sc.createSeason("I1", 14);
+		 runAlgorithm(i14, em, dir, true, true);
+		
+		 Season i13 = sc.createSeason("I1", 13);
+		 runAlgorithm(i13, em, dir, true, true);
+		
+		 Season i12 = sc.createSeason("I1", 12);
+		 runAlgorithm(i12, em, dir, true, true);
+		
+		 Season i11 = sc.createSeason("I1", 11);
+		 runAlgorithm(i11, em, dir, true, true);
+		
+		 Season i10 = sc.createSeason("I1", 10);
+		 runAlgorithm(i10, em, dir, true, true);
 
-		Season i13 = sc.createSeason("I1", 13);
-		runAlgorithm(i13, em, dir, true, true);
+		Season i9 = sc.createSeason("I1", 9);
+		runAlgorithm(i9, em, dir, true, true);
 
-		Season i12 = sc.createSeason("I1", 12);
-		runAlgorithm(i12, em, dir, true, true);
+		Season i8 = sc.createSeason("I1", 8);
+		runAlgorithm(i8, em, dir, true, true);
 
-		Season i11 = sc.createSeason("I1", 11);
-		runAlgorithm(i11, em, dir, true, true);
+		Season i7 = sc.createSeason("I1", 7);
+		runAlgorithm(i7, em, dir, true, true);
 
-		Season i10 = sc.createSeason("I1", 10);
-		runAlgorithm(i10, em, dir, true, true);
+		Season i6 = sc.createSeason("I1", 6);
+		runAlgorithm(i6, em, dir, true, true);
+
+		Season i5 = sc.createSeason("I1", 5);
+		runAlgorithm(i5, em, dir, true, true);
 
 		/*
 		 * // ITALIA - SERIE B Season ii14 = sc.createSeason("I2", 14);
@@ -712,7 +651,7 @@ public class Main {
 
 			logger.debug(f.toString());
 
-			if (f.getDate().before(formatter.parseDateTime("23/11/" + s.getYear()).toDate()))
+			if (f.getDate().before(formatter.parseDateTime("23/11/" + (s.getYear()+2000)).toDate()))
 				continue;
 
 			ExcelColumnsCalculation homeTeam = new ExcelColumnsCalculation(f.getHomeTeam(), em);
@@ -747,7 +686,17 @@ public class Main {
 			Double awayLoseCycle_dificuldadeVisitante = awayTeam.getCycleOpponentAverageQuality(awayLoseCycle);
 			Integer homeWinCycle_HistoricosVisitado = homeTeam.getCycleHardGamesNumber(homeWinCycle, historicos);
 			Integer awayLoseCycle_HistoricosVisitante = awayTeam.getCycleHardGamesNumber(awayLoseCycle, historicos);
-			H2H h2hRatings = homeTeam.getH2HRating(f, ratings, Venue.HOME, ResultType.WIN);
+			
+			ResultCycle homeWinCycleTotal = homeTeam.getTeamCycle(f, null, ResultType.WIN);
+			ResultCycle awayLoseCycleTotal = awayTeam.getTeamCycle(f, null, ResultType.LOSE);
+			Integer homeWinCycle_numeroJogosVisitadoTotal = homeWinCycleTotal.getCycle();
+			Integer awayLoseCycle_numeroJogosVisitanteTotal = awayLoseCycleTotal.getCycle();
+			Double homeWinCycle_dificuldadeVisitadoTotal = homeTeam.getCycleOpponentAverageQuality(homeWinCycleTotal);
+			Double awayLoseCycle_dificuldadeVisitanteTotal = awayTeam.getCycleOpponentAverageQuality(awayLoseCycleTotal);
+			Integer homeWinCycle_HistoricosVisitadoTotal = homeTeam.getCycleHardGamesNumber(homeWinCycleTotal, historicos);
+			Integer awayLoseCycle_HistoricosVisitanteTotal = awayTeam.getCycleHardGamesNumber(awayLoseCycleTotal, historicos);
+			
+			H2H h2hRatings = homeTeam.getH2HRating(f, ratingsH2H, Venue.HOME, ResultType.WIN);
 			Double h2hWin_rating = h2hRatings.getRating();
 			Integer h2hWin_numeroJogos = h2hRatings.getSize();
 
@@ -755,6 +704,9 @@ public class Main {
 
 			// Integer h2hWin_numeroJogos = f.getH2h().size();
 			ResultType result = homeTeam.getResultType(f);
+			
+
+			
 
 			Double fR_ratingEmpatesVisitado = homeTeam.getLastFixturesRating(f, null, 5, ratings, ResultType.DRAW);
 			Double fR_ratingEmpatesVisitante = awayTeam.getLastFixturesRating(f, null, 5, ratings, ResultType.DRAW);
@@ -770,7 +722,18 @@ public class Main {
 			Double awayDrawCycle_dificuldadeVisitante = awayTeam.getCycleOpponentAverageQuality(awayDrawCycle);
 			Integer homeDrawCycle_HistoricosVisitado = homeTeam.getCycleHardGamesNumber(homeDrawCycle, historicos);
 			Integer awayDrawCycle_HistoricosVisitante = awayTeam.getCycleHardGamesNumber(awayDrawCycle, historicos);
-			h2hRatings = homeTeam.getH2HRating(f, ratings, Venue.HOME, ResultType.DRAW);
+			
+			
+			ResultCycle homeDrawCycleTotal = homeTeam.getTeamCycle(f, null, ResultType.DRAW);
+			ResultCycle awayDrawCycleTotal = awayTeam.getTeamCycle(f, null, ResultType.DRAW);
+			Integer homeDrawCycle_numeroJogosVisitadoTotal = homeDrawCycleTotal.getCycle();
+			Integer awayDrawCycle_numeroJogosVisitanteTotal = awayDrawCycleTotal.getCycle();
+			Double homeDrawCycle_dificuldadeVisitadoTotal = homeTeam.getCycleOpponentAverageQuality(homeDrawCycleTotal);
+			Double awayDrawCycle_dificuldadeVisitanteTotal = awayTeam.getCycleOpponentAverageQuality(awayDrawCycleTotal);
+			Integer homeDrawCycle_HistoricosVisitadoTotal = homeTeam.getCycleHardGamesNumber(homeDrawCycleTotal, historicos);
+			Integer awayDrawCycle_HistoricosVisitanteTotal = awayTeam.getCycleHardGamesNumber(awayDrawCycleTotal, historicos);
+			
+			h2hRatings = homeTeam.getH2HRating(f, ratingsH2H, Venue.HOME, ResultType.DRAW);
 			Double h2hDraw_rating = h2hRatings.getRating();
 			Integer h2hDraw_numeroJogos = h2hRatings.getSize();
 
@@ -790,7 +753,17 @@ public class Main {
 			Double awayWinCycle_dificuldadeVisitante = awayTeam.getCycleOpponentAverageQuality(awayWinCycle);
 			Integer homeLoseCycle_HistoricosVisitado = homeTeam.getCycleHardGamesNumber(homeLoseCycle, historicos);
 			Integer awayWinCycle_HistoricosVisitante = awayTeam.getCycleHardGamesNumber(awayWinCycle, historicos);
-			h2hRatings = homeTeam.getH2HRating(f, ratings, Venue.HOME, ResultType.LOSE);
+			
+			ResultCycle homeLoseCycleTotal = homeTeam.getTeamCycle(f, null, ResultType.LOSE);
+			ResultCycle awayWinCycleTotal = awayTeam.getTeamCycle(f, null, ResultType.WIN);
+			Integer homeLoseCycle_numeroJogosVisitadoTotal = homeLoseCycleTotal.getCycle();
+			Integer awayWinCycle_numeroJogosVisitanteTotal = awayWinCycleTotal.getCycle();
+			Double homeLoseCycle_dificuldadeVisitadoTotal = homeTeam.getCycleOpponentAverageQuality(homeLoseCycleTotal);
+			Double awayWinCycle_dificuldadeVisitanteTotal = awayTeam.getCycleOpponentAverageQuality(awayWinCycleTotal);
+			Integer homeLoseCycle_HistoricosVisitadoTotal = homeTeam.getCycleHardGamesNumber(homeLoseCycleTotal, historicos);
+			Integer awayWinCycle_HistoricosVisitanteTotal = awayTeam.getCycleHardGamesNumber(awayWinCycleTotal, historicos);
+			
+			h2hRatings = homeTeam.getH2HRating(f, ratingsH2H, Venue.HOME, ResultType.LOSE);
 			Double h2hLose_rating = h2hRatings.getRating();
 			Integer h2hLose_numeroJogos = h2hRatings.getSize();
 
@@ -809,6 +782,18 @@ public class Main {
 					historicos);
 			Integer awayLoseCyclePerna_HistoricosVisitante = awayTeam.getCycleHardGamesNumber(awayLoseCyclePerna,
 					historicos);
+			
+			ResultCycle homeWinCyclePernaTotal = homeTeam.getTeamCyclePerna(f, null, ResultType.WIN);
+			ResultCycle awayLoseCyclePernaTotal = awayTeam.getTeamCyclePerna(f, null, ResultType.LOSE);
+			Integer homeWinCyclePerna_numeroJogosVisitadoTotal = homeWinCyclePernaTotal.getCycle();
+			Integer awayLoseCyclePerna_numeroJogosVisitanteTotal = awayLoseCyclePernaTotal.getCycle();
+			Double homeWinCyclePerna_dificuldadeVisitadoTotal = homeTeam.getCycleOpponentAverageQuality(homeWinCyclePernaTotal);
+			Double awayLoseCyclePerna_dificuldadeVisitanteTotal = awayTeam
+					.getCycleOpponentAverageQuality(awayLoseCyclePernaTotal);
+			Integer homeWinCyclePerna_HistoricosVisitadoTotal = homeTeam.getCycleHardGamesNumber(homeWinCyclePernaTotal,
+					historicos);
+			Integer awayLoseCyclePerna_HistoricosVisitanteTotal = awayTeam.getCycleHardGamesNumber(awayLoseCyclePerna,
+					historicos);
 
 			ResultCycle homeDrawCyclePerna = homeTeam.getTeamCyclePerna(f, Venue.HOME, ResultType.DRAW);
 			ResultCycle awayDrawCyclePerna = awayTeam.getTeamCyclePerna(f, Venue.AWAY, ResultType.DRAW);
@@ -821,6 +806,18 @@ public class Main {
 					historicos);
 			Integer awayDrawCyclePerna_HistoricosVisitante = awayTeam.getCycleHardGamesNumber(awayDrawCyclePerna,
 					historicos);
+			
+			ResultCycle homeDrawCyclePernaTotal = homeTeam.getTeamCyclePerna(f, null, ResultType.DRAW);
+			ResultCycle awayDrawCyclePernaTotal = awayTeam.getTeamCyclePerna(f, null, ResultType.DRAW);
+			Integer homeDrawCyclePerna_numeroJogosVisitadoTotal = homeDrawCyclePernaTotal.getCycle();
+			Integer awayDrawCyclePerna_numeroJogosVisitanteTotal = awayDrawCyclePernaTotal.getCycle();
+			Double homeDrawCyclePerna_dificuldadeVisitadoTotal = homeTeam.getCycleOpponentAverageQuality(homeDrawCyclePernaTotal);
+			Double awayDrawCyclePerna_dificuldadeVisitanteTotal = awayTeam
+					.getCycleOpponentAverageQuality(awayDrawCyclePernaTotal);
+			Integer homeDrawCyclePerna_HistoricosVisitadoTotal = homeTeam.getCycleHardGamesNumber(homeDrawCyclePernaTotal,
+					historicos);
+			Integer awayDrawCyclePerna_HistoricosVisitanteTotal = awayTeam.getCycleHardGamesNumber(awayDrawCyclePernaTotal,
+					historicos);
 
 			ResultCycle homeLoseCyclePerna = homeTeam.getTeamCyclePerna(f, Venue.HOME, ResultType.LOSE);
 			ResultCycle awayWinCyclePerna = awayTeam.getTeamCyclePerna(f, Venue.AWAY, ResultType.WIN);
@@ -831,6 +828,17 @@ public class Main {
 			Integer homeLoseCyclePerna_HistoricosVisitado = homeTeam.getCycleHardGamesNumber(homeLoseCyclePerna,
 					historicos);
 			Integer awayWinCyclePerna_HistoricosVisitante = awayTeam.getCycleHardGamesNumber(awayWinCyclePerna,
+					historicos);
+			
+			ResultCycle homeLoseCyclePernaTotal = homeTeam.getTeamCyclePerna(f, null, ResultType.LOSE);
+			ResultCycle awayWinCyclePernaTotal = awayTeam.getTeamCyclePerna(f, null, ResultType.WIN);
+			Integer homeLoseCyclePerna_numeroJogosVisitadoTotal = homeLoseCyclePernaTotal.getCycle();
+			Integer awayWinCyclePerna_numeroJogosVisitanteTotal = awayWinCyclePernaTotal.getCycle();
+			Double homeLoseCyclePerna_dificuldadeVisitadoTotal = homeTeam.getCycleOpponentAverageQuality(homeLoseCyclePernaTotal);
+			Double awayWinCyclePerna_dificuldadeVisitanteTotal = awayTeam.getCycleOpponentAverageQuality(awayWinCyclePernaTotal);
+			Integer homeLoseCyclePerna_HistoricosVisitadoTotal = homeTeam.getCycleHardGamesNumber(homeLoseCyclePernaTotal,
+					historicos);
+			Integer awayWinCyclePerna_HistoricosVisitanteTotal = awayTeam.getCycleHardGamesNumber(awayWinCyclePernaTotal,
 					historicos);
 
 			// FIM CICLO PERNA
@@ -875,6 +883,19 @@ public class Main {
 			Integer classificacaoVisitante = awayTeam.getClassification(s, f.getDate());
 
 			// FIM CLASSIFICACAO
+			
+			Double fR_ratingVitoriasVisitadoHome = homeTeam.getLastFixturesRating(f, Venue.HOME, 5, ratings, ResultType.WIN);
+			Double fR_ratingDerrotasVisitanteAway = awayTeam.getLastFixturesRating(f, Venue.AWAY, 5, ratings, ResultType.LOSE);
+
+			Integer fR_VitoriasVisitadoHome = homeTeam.getLastFixturesResults(f, Venue.HOME, 5, ratings, ResultType.WIN);
+			Integer fR_DerrotasVisitanteAway = awayTeam.getLastFixturesResults(f, Venue.AWAY, 5, ratings, ResultType.LOSE);
+
+			Double fR_dificuldadeVisitadoHome = homeTeam.getLastFixturesOpponentAverageQuality(f, Venue.HOME, 5);
+			Double fR_dificuldadeVisistanteAway = awayTeam.getLastFixturesOpponentAverageQuality(f, Venue.AWAY, 5);
+			Integer fR_HistoricosVisitadoHome = homeTeam.getLastHardGamesFixturesNumber(f, Venue.HOME, 5, historicos);
+			Integer fR_HistoricosVisitanteAway = awayTeam.getLastHardGamesFixturesNumber(f, Venue.AWAY, 5, historicos);
+			
+			
 
 			if (generateOurs) {
 				TeamRating homeTR = homeTeam.getResultPercentage(f, Venue.HOME, ResultType.WIN, interval);
@@ -929,7 +950,13 @@ public class Main {
 						golosVisitante, golosContraVisitante, diferencaGolosVisitante, golosVisitadoCasa,
 						golosContraVisitadoCasa, diferencaGolosVisitadoCasa, golosVisitanteFora,
 						golosContraVisitanteFora, diferencaGolosVisitanteFora, classificacaoVisitado,
-						classificacaoVisitante, qualidadeVisitadoCasa, qualidadeVisitanteFora);
+						classificacaoVisitante, qualidadeVisitadoCasa, qualidadeVisitanteFora,
+						homeWinCycle_numeroJogosVisitadoTotal, awayLoseCycle_numeroJogosVisitanteTotal,
+						homeWinCycle_dificuldadeVisitadoTotal, awayLoseCycle_dificuldadeVisitanteTotal, 
+						homeWinCycle_HistoricosVisitadoTotal, awayLoseCycle_HistoricosVisitanteTotal, homeLoseCyclePerna_numeroJogosVisitadoTotal,
+						awayWinCyclePerna_numeroJogosVisitanteTotal, homeLoseCyclePerna_dificuldadeVisitadoTotal,
+						awayWinCyclePerna_dificuldadeVisitanteTotal, homeLoseCyclePerna_HistoricosVisitadoTotal,
+						awayWinCyclePerna_HistoricosVisitanteTotal);
 
 				OurWinDataList.add(wohwr);
 
@@ -981,7 +1008,13 @@ public class Main {
 						golosVisitante, golosContraVisitante, diferencaGolosVisitante, golosVisitadoCasa,
 						golosContraVisitadoCasa, diferencaGolosVisitadoCasa, golosVisitanteFora,
 						golosContraVisitanteFora, diferencaGolosVisitanteFora, classificacaoVisitado,
-						classificacaoVisitante, qualidadeVisitadoCasa, qualidadeVisitanteFora);
+						classificacaoVisitante, qualidadeVisitadoCasa, qualidadeVisitanteFora,
+						homeDrawCycle_numeroJogosVisitadoTotal, awayDrawCycle_numeroJogosVisitanteTotal,
+						homeDrawCycle_dificuldadeVisitadoTotal, awayDrawCycle_dificuldadeVisitanteTotal, 
+						homeDrawCycle_HistoricosVisitadoTotal, awayDrawCycle_HistoricosVisitanteTotal, homeDrawCyclePerna_numeroJogosVisitadoTotal,
+						awayDrawCyclePerna_numeroJogosVisitanteTotal, homeDrawCyclePerna_dificuldadeVisitadoTotal,
+						awayDrawCyclePerna_dificuldadeVisitanteTotal, homeDrawCyclePerna_HistoricosVisitadoTotal,
+						awayDrawCyclePerna_HistoricosVisitanteTotal);
 
 				OurDrawDataList.add(dohwr);
 
@@ -1033,7 +1066,13 @@ public class Main {
 						golosVisitante, golosContraVisitante, diferencaGolosVisitante, golosVisitadoCasa,
 						golosContraVisitadoCasa, diferencaGolosVisitadoCasa, golosVisitanteFora,
 						golosContraVisitanteFora, diferencaGolosVisitanteFora, classificacaoVisitado,
-						classificacaoVisitante, qualidadeVisitadoCasa, qualidadeVisitanteFora);
+						classificacaoVisitante, qualidadeVisitadoCasa, qualidadeVisitanteFora,
+						homeLoseCycle_numeroJogosVisitadoTotal, awayWinCycle_numeroJogosVisitanteTotal,
+						homeLoseCycle_dificuldadeVisitadoTotal, awayWinCycle_dificuldadeVisitanteTotal, 
+						homeLoseCycle_HistoricosVisitadoTotal, awayWinCycle_HistoricosVisitanteTotal, homeWinCyclePerna_numeroJogosVisitadoTotal,
+						awayLoseCyclePerna_numeroJogosVisitanteTotal, homeWinCyclePerna_dificuldadeVisitadoTotal,
+						awayLoseCyclePerna_dificuldadeVisitanteTotal, homeWinCyclePerna_HistoricosVisitadoTotal,
+						awayLoseCyclePerna_HistoricosVisitanteTotal);
 
 				OurLoseDataList.add(lohwr);
 			}

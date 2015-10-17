@@ -8,8 +8,8 @@ import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
-import pt.belele.project.entities.Fixture;
 import pt.belele.project.entities.Standing;
+import pt.belele.project.entities.Team;
 
 public class StandingDAO extends GenericDAO<Standing> {
 	
@@ -40,9 +40,9 @@ public class StandingDAO extends GenericDAO<Standing> {
 			return query.getSingleResult();
 	}
 	
-	public List<Standing> getStandingsByPoints(Date date, long seasonId) {
+	public List<Team> getStandingsByPoints(Date date, long seasonId) {
 		Query query = em.createQuery(
-				"SELECT s FROM Standing s WHERE s.season.id = :seasonId AND s.date < :date ORDER BY s.points DESC");
+				"SELECT t FROM Standing s, IN (s.team) t WHERE s.season.id = :seasonId AND s.date < :date GROUP BY t ORDER BY MAX(s.points) DESC");
 		query.setParameter("seasonId", seasonId);
 		query.setParameter("date", date);
 		return query.getResultList();

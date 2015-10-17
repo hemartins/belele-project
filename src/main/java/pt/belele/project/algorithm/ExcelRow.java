@@ -104,10 +104,10 @@ public class ExcelRow {
 
 	Integer FR_ResultadosVisitado;
 	Integer FR_ResultadosVisitante;
-	
+
 	Integer QLT_homeTeamNumeroJogos2;
 	Integer QLT_awayTeamNumeroJogos2;
-	
+
 	Integer golosVisitado;
 	Integer golosSofridosVisitado;
 	Integer diferencaGolosVisitado;
@@ -122,9 +122,42 @@ public class ExcelRow {
 	Integer diferencaGolosVisitanteFora;
 	Integer classificacaoVisitado;
 	Integer classificacaoVisitante;
-	
+
 	Double qualidadeVisitadoCasa;
 	Double qualidadeVisitanteFora;
+
+	Integer Ciclo_numeroJogosVisitadoTotal; // número de jogos que a equipa
+											// venceu
+	// seguidos (ex: caso não tenha vencido
+	// nenhum dos últimos 3 jogos é =-3;
+	// caso tenha vencido os últimos 5 jogos
+	// =5;
+	Integer Ciclo_numeroJogosVisitanteTotal;
+	Double Ciclo_dificuldadeVisitadoTotal; // média das qualidades dos
+											// adversários
+	// desse que a equipa enfrentou nesse
+	// ciclo
+	Double Ciclo_dificuldadeVisitanteTotal;
+	Integer Ciclo_HistoricosVisitadoTotal; // número de históricos que a equipa
+	// enfrentou durante esse ciclo
+	Integer Ciclo_HistoricosVisitanteTotal;
+
+	Integer CicloPerna_numeroJogosVisitadoTotal; // número de jogos que a equipa
+	// venceu
+	// seguidos (ex: caso não tenha vencido
+	// nenhum dos últimos 3 jogos é =-3;
+	// caso tenha vencido os últimos 5 jogos
+	// =5;
+	Integer CicloPerna_numeroJogosVisitanteTotal;
+	Double CicloPerna_dificuldadeVisitadoTotal; // média das qualidades dos
+	// adversários
+	// desse que a equipa enfrentou nesse
+	// ciclo
+	Double CicloPerna_dificuldadeVisitanteTotal;
+	Integer CicloPerna_HistoricosVisitadoTotal; // número de históricos que a
+												// equipa
+	// enfrentou durante esse ciclo
+	Integer CicloPerna_HistoricosVisitanteTotal;
 
 	public ExcelRow(Date data, Long idVisitado, Long idVisitante, String homeTeamName, String awayTeamName,
 			Double qualidadeVisitado, Double qualidadeVisitante, Integer fR_diasDescansoVisitado,
@@ -141,16 +174,24 @@ public class ExcelRow {
 			Double cicloPerna_dificuldadeVisitado, Double cicloPerna_dificuldadeVisitante,
 			Integer cicloPerna_HistoricosVisitado, Integer cicloPerna_HistoricosVisitante,
 			Double fR_ratingQualidadeResultadoVisitado, Double fR_ratingQualidadeResultadoVisitante,
-			Integer qLT_numeroJogosVisitadoDaPercentagem, Integer qLT_numeroJogosVisitanteDaPercentagem, Integer qLT_homeTeamNumeroJogos2, Integer qLT_awayTeamNumeroJogos2,
+			Integer qLT_numeroJogosVisitadoDaPercentagem, Integer qLT_numeroJogosVisitanteDaPercentagem,
+			Integer qLT_homeTeamNumeroJogos2, Integer qLT_awayTeamNumeroJogos2,
 			Double qLT_percentagemResultadoVisitado2, Double qLT_percentagemResultadoVisitante2,
 			Double qLT_dificuldadeResultadoVisitado2, Double qLT_dificuldadeResultadoVisitante2,
 			Double qLT_percentagemResultadoVisitadoNoIntervalo2, Double qLT_percentagemResultadoVisitanteNoIntervalo2,
 			Integer qLT_numeroJogosVisitado2, Integer qLT_numeroJogosVisitante2, Integer h2h_Results,
-			Integer fR_ResultadosVisitado, Integer fR_ResultadosVisitante, Integer golosVisitado, Integer golosContraVisitado, Integer diferencaGolosVisitado,
-			Integer golosVisitante, Integer golosContraVisitante, Integer diferencaGolosVisitante, Integer golosVisitadoCasa,
+			Integer fR_ResultadosVisitado, Integer fR_ResultadosVisitante, Integer golosVisitado,
+			Integer golosContraVisitado, Integer diferencaGolosVisitado, Integer golosVisitante,
+			Integer golosContraVisitante, Integer diferencaGolosVisitante, Integer golosVisitadoCasa,
 			Integer golosContraVisitadoCasa, Integer diferencaGolosVisitadoCasa, Integer golosVisitanteFora,
 			Integer golosContraVisitanteFora, Integer diferencaGolosVisitanteFora, Integer classificacaoVisitado,
-			Integer classificacaoVisitante,	Double qualidadeVisitadoCasa, Double qualidadeVisitanteFora) {
+			Integer classificacaoVisitante, Double qualidadeVisitadoCasa, Double qualidadeVisitanteFora,
+			Integer ciclo_numeroJogosVisitadoTotal, Integer ciclo_numeroJogosVisitanteTotal,
+			Double ciclo_dificuldadeVisitadoTotal, Double ciclo_dificuldadeVisitanteTotal,
+			Integer ciclo_HistoricosVisitadoTotal, Integer ciclo_HistoricosVisitanteTotal, Integer cicloPerna_numeroJogosVisitadoTotal,
+			Integer cicloPerna_numeroJogosVisitanteTotal, Double cicloPerna_dificuldadeVisitadoTotal,
+			Double cicloPerna_dificuldadeVisitanteTotal, Integer cicloPerna_HistoricosVisitadoTotal,
+			Integer cicloPerna_HistoricosVisitanteTotal) {
 
 		this.data = data;
 		this.idVisitado = idVisitado;
@@ -211,7 +252,7 @@ public class ExcelRow {
 
 		FR_ResultadosVisitado = fR_ResultadosVisitado;
 		FR_ResultadosVisitante = fR_ResultadosVisitante;
-		
+
 		this.golosVisitado = golosVisitado;
 		this.golosSofridosVisitado = golosContraVisitado;
 		this.diferencaGolosVisitado = diferencaGolosVisitado;
@@ -229,6 +270,18 @@ public class ExcelRow {
 		this.qualidadeVisitadoCasa = qualidadeVisitadoCasa;
 		this.qualidadeVisitanteFora = qualidadeVisitanteFora;
 
+		Ciclo_numeroJogosVisitadoTotal = ciclo_numeroJogosVisitadoTotal;
+		Ciclo_numeroJogosVisitanteTotal = ciclo_numeroJogosVisitanteTotal;
+		Ciclo_dificuldadeVisitadoTotal = ciclo_dificuldadeVisitadoTotal;
+		Ciclo_dificuldadeVisitanteTotal = ciclo_dificuldadeVisitanteTotal;
+		Ciclo_HistoricosVisitadoTotal = ciclo_HistoricosVisitadoTotal;
+		Ciclo_HistoricosVisitanteTotal = ciclo_HistoricosVisitanteTotal;
+		CicloPerna_numeroJogosVisitadoTotal = cicloPerna_numeroJogosVisitadoTotal;
+		CicloPerna_numeroJogosVisitanteTotal = cicloPerna_numeroJogosVisitanteTotal;
+		CicloPerna_dificuldadeVisitadoTotal = cicloPerna_dificuldadeVisitadoTotal;
+		CicloPerna_dificuldadeVisitanteTotal = cicloPerna_dificuldadeVisitanteTotal;
+		CicloPerna_HistoricosVisitadoTotal = cicloPerna_HistoricosVisitadoTotal;
+		CicloPerna_HistoricosVisitanteTotal = cicloPerna_HistoricosVisitanteTotal;
 	}
 
 	public Date getData() {
@@ -797,6 +850,102 @@ public class ExcelRow {
 
 	public void setQualidadeVisitanteFora(Double qualidadeVisitanteFora) {
 		this.qualidadeVisitanteFora = qualidadeVisitanteFora;
+	}
+
+	public Integer getCiclo_numeroJogosVisitadoTotal() {
+		return Ciclo_numeroJogosVisitadoTotal;
+	}
+
+	public void setCiclo_numeroJogosVisitadoTotal(Integer ciclo_numeroJogosVisitadoTotal) {
+		Ciclo_numeroJogosVisitadoTotal = ciclo_numeroJogosVisitadoTotal;
+	}
+
+	public Integer getCiclo_numeroJogosVisitanteTotal() {
+		return Ciclo_numeroJogosVisitanteTotal;
+	}
+
+	public void setCiclo_numeroJogosVisitanteTotal(Integer ciclo_numeroJogosVisitanteTotal) {
+		Ciclo_numeroJogosVisitanteTotal = ciclo_numeroJogosVisitanteTotal;
+	}
+
+	public Double getCiclo_dificuldadeVisitadoTotal() {
+		return Ciclo_dificuldadeVisitadoTotal;
+	}
+
+	public void setCiclo_dificuldadeVisitadoTotal(Double ciclo_dificuldadeVisitadoTotal) {
+		Ciclo_dificuldadeVisitadoTotal = ciclo_dificuldadeVisitadoTotal;
+	}
+
+	public Double getCiclo_dificuldadeVisitanteTotal() {
+		return Ciclo_dificuldadeVisitanteTotal;
+	}
+
+	public void setCiclo_dificuldadeVisitanteTotal(Double ciclo_dificuldadeVisitanteTotal) {
+		Ciclo_dificuldadeVisitanteTotal = ciclo_dificuldadeVisitanteTotal;
+	}
+
+	public Integer getCiclo_HistoricosVisitadoTotal() {
+		return Ciclo_HistoricosVisitadoTotal;
+	}
+
+	public void setCiclo_HistoricosVisitadoTotal(Integer ciclo_HistoricosVisitadoTotal) {
+		Ciclo_HistoricosVisitadoTotal = ciclo_HistoricosVisitadoTotal;
+	}
+
+	public Integer getCiclo_HistoricosVisitanteTotal() {
+		return Ciclo_HistoricosVisitanteTotal;
+	}
+
+	public void setCiclo_HistoricosVisitanteTotal(Integer ciclo_HistoricosVisitanteTotal) {
+		Ciclo_HistoricosVisitanteTotal = ciclo_HistoricosVisitanteTotal;
+	}
+
+	public Integer getCicloPerna_numeroJogosVisitadoTotal() {
+		return CicloPerna_numeroJogosVisitadoTotal;
+	}
+
+	public void setCicloPerna_numeroJogosVisitadoTotal(Integer cicloPerna_numeroJogosVisitadoTotal) {
+		CicloPerna_numeroJogosVisitadoTotal = cicloPerna_numeroJogosVisitadoTotal;
+	}
+
+	public Integer getCicloPerna_numeroJogosVisitanteTotal() {
+		return CicloPerna_numeroJogosVisitanteTotal;
+	}
+
+	public void setCicloPerna_numeroJogosVisitanteTotal(Integer cicloPerna_numeroJogosVisitanteTotal) {
+		CicloPerna_numeroJogosVisitanteTotal = cicloPerna_numeroJogosVisitanteTotal;
+	}
+
+	public Double getCicloPerna_dificuldadeVisitadoTotal() {
+		return CicloPerna_dificuldadeVisitadoTotal;
+	}
+
+	public void setCicloPerna_dificuldadeVisitadoTotal(Double cicloPerna_dificuldadeVisitadoTotal) {
+		CicloPerna_dificuldadeVisitadoTotal = cicloPerna_dificuldadeVisitadoTotal;
+	}
+
+	public Double getCicloPerna_dificuldadeVisitanteTotal() {
+		return CicloPerna_dificuldadeVisitanteTotal;
+	}
+
+	public void setCicloPerna_dificuldadeVisitanteTotal(Double cicloPerna_dificuldadeVisitanteTotal) {
+		CicloPerna_dificuldadeVisitanteTotal = cicloPerna_dificuldadeVisitanteTotal;
+	}
+
+	public Integer getCicloPerna_HistoricosVisitadoTotal() {
+		return CicloPerna_HistoricosVisitadoTotal;
+	}
+
+	public void setCicloPerna_HistoricosVisitadoTotal(Integer cicloPerna_HistoricosVisitadoTotal) {
+		CicloPerna_HistoricosVisitadoTotal = cicloPerna_HistoricosVisitadoTotal;
+	}
+
+	public Integer getCicloPerna_HistoricosVisitanteTotal() {
+		return CicloPerna_HistoricosVisitanteTotal;
+	}
+
+	public void setCicloPerna_HistoricosVisitanteTotal(Integer cicloPerna_HistoricosVisitanteTotal) {
+		CicloPerna_HistoricosVisitanteTotal = cicloPerna_HistoricosVisitanteTotal;
 	}
 	
 }

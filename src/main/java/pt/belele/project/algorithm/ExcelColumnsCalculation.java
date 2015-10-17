@@ -220,6 +220,8 @@ public class ExcelColumnsCalculation {
 		return new ResultCycle(nextFixture.getSeason(), type, teams, sum, new DateTime(nextFixture.getDate()));
 	}
 
+	
+	
 	// Media da qualidade das equipas dum ciclo
 	public Double getCycleOpponentAverageQuality(ResultCycle cycle) {
 		double sum = 0;
@@ -273,8 +275,10 @@ public class ExcelColumnsCalculation {
 					ratingSum += ratings.get(timeInYears);
 
 					if (getResultType(f).equals(type))
+					{
 						rating += ratings.get(timeInYears);
-					numberResults++;
+						numberResults++;
+					}
 				}
 
 				if (rating != 0) {
@@ -440,21 +444,9 @@ public class ExcelColumnsCalculation {
 	}
 
 	public Integer getClassification(Season season, Date date) {
-		List<Standing> ls = standingController.getStandingsByClassification(season, team, date);
+		List<Team> ls = standingController.getTeamsOrderedByClassification(season, date);
 
-		if (ls != null) {
-			int classificacao = 1;
-			for (Standing l : ls) {
-				if (l.getTeam() == team) {
-					break;
-				} else {
-					classificacao++;
-				}
-			}
-			return classificacao;
-		} else {
-			return null;
-		}
+		return ls.indexOf(team)+1;
 	}
 
 	/****************/

@@ -71,6 +71,22 @@ public class FixtureDAO extends GenericDAO<Fixture> {
 		return query.getResultList();
 	}
 
+	public List<Fixture> findFixturesBeforeDateWithoutVenue(Date date, Long seasonId, Long teamId,
+			Integer numberOfFixtures) {
+		String sql = "SELECT f from Fixture f WHERE f.date < :date AND f.season.id = :seasonId ";
+
+		sql += "ORDER BY f.date DESC";
+		Query query = em.createQuery(sql);
+		query.setParameter("date", date);
+		query.setParameter("seasonId", seasonId);
+		query.setParameter("teamId", teamId);
+
+		if (numberOfFixtures != null)
+			query.setMaxResults(numberOfFixtures);
+
+		return query.getResultList();
+	}
+
 	@SuppressWarnings("unchecked")
 	public List<Fixture> getH2H(long homeTeamId, long awayTeamId, Date date, int numberOfGames) {
 		Query query = em.createQuery(
