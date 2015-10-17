@@ -268,7 +268,7 @@ public class ExcelColumnsCalculation {
 		if (nextFixture.getH2h() != null) {
 			if (!nextFixture.getH2h().isEmpty()) {
 				for (Fixture f : nextFixture.getH2h()) {
-					timeInYears = nextFixture.getSeason().getYear() - f.getSeason().getYear() - 1;
+					timeInYears = nextFixture.getSeason().getYear() - f.getSeason().getYear();
 					if (timeInYears >= ratings.size())
 						continue;
 
