@@ -1,8 +1,5 @@
 package pt.belele.project.controllers;
 
-import pt.belele.project.entities.CutOff;
-import pt.belele.project.entities.Fixture;
-import pt.belele.project.entities.Odd;
 
 public class CutOffController {
 	//PROGRAMACAO EVOLUTIVA DE MODO A CALCULAR OS CUTOFFS

@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.jdo.annotations.Index;
-import javax.jdo.annotations.Indices;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -112,8 +110,9 @@ public class Fixture implements Serializable {
 	public Fixture() {
 	}
 
-	public Fixture(Date date, Season season, Team homeTeam, Team awayTeam, Result result,
-			/* Odd backOdd, Odd layOdd */ Odd odd) {
+	public Fixture(Date date, Season season, Team homeTeam, Team awayTeam,
+			Result result,
+			/* Odd backOdd, Odd layOdd */Odd odd) {
 		this.date = date;
 		this.season = season;
 		this.homeTeam = homeTeam;
@@ -218,7 +217,8 @@ public class Fixture implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Fixture [date=" + date + " homeTeam=" + homeTeam + ", awayTeam=" + awayTeam + "]";
+		return "Fixture [date=" + date + " homeTeam=" + homeTeam
+				+ ", awayTeam=" + awayTeam + "]";
 	}
 
 }

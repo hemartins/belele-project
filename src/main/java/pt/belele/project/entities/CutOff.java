@@ -1,23 +1,36 @@
 package pt.belele.project.entities;
 
 public class CutOff {
-	
+
 	private Double oddWightHigherValue;
-	
+
 	private Double oddWightMediumValue;
-	
+
 	private Double oddWightLowerValue;
-	
+
 	private Double minimumLayOdd;
-	
+
 	private Double minimumBackOdd;
-	
+
 	private Double nnOddWeight;
-	
+
 	private Double minimumQualityRelation;
-	
+
 	public CutOff() {
-		
+
+	}
+
+	public CutOff(Double oddWightHigherValue, Double oddWightMediumValue,
+			Double oddWightLowerValue, Double minimumLayOdd,
+			Double minimumBackOdd, Double nnOddWeight,
+			Double minimumQualityRelation) {
+		this.oddWightHigherValue = oddWightHigherValue;
+		this.oddWightMediumValue = oddWightMediumValue;
+		this.oddWightLowerValue = oddWightLowerValue;
+		this.minimumLayOdd = minimumLayOdd;
+		this.minimumBackOdd = minimumBackOdd;
+		this.nnOddWeight = nnOddWeight;
+		this.minimumQualityRelation = minimumQualityRelation;
 	}
 
 	public Double getOddWightHigherValue() {

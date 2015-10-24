@@ -4,7 +4,7 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 public class Result {
-	
+
 	public static enum ResultType {
 		WIN(0), DRAW(1), LOSE(2);
 
@@ -29,7 +29,7 @@ public class Result {
 			return type;
 		}
 	}
-	
+
 	private Integer fullTimeHomeTeamGoals;
 
 	private Integer fullTimeAwayTeamGoals;
@@ -79,5 +79,14 @@ public class Result {
 
 	public void setHalfTimeAwayTeamGoals(Integer halfTimeAwayTeamGoals) {
 		this.halfTimeAwayTeamGoals = halfTimeAwayTeamGoals;
+	}
+
+	public ResultType getResultType() {
+		if (fullTimeHomeTeamGoals > fullTimeAwayTeamGoals)
+			return ResultType.WIN;
+		else if (fullTimeAwayTeamGoals > fullTimeHomeTeamGoals)
+			return ResultType.LOSE;
+		else
+			return ResultType.DRAW;
 	}
 }

@@ -42,7 +42,7 @@ public class Bet implements Serializable {
 			return betResult;
 		}
 	}
-	
+
 	public static enum MatchOddBet {
 		WIN(0), DRAW(1), LOSE(2), DONOTWIN(3), DONOTDRAW(4), DONOTLOSE(5);
 
@@ -64,11 +64,11 @@ public class Bet implements Serializable {
 	private BetType betType;
 
 	private BetResult betResult;
-	
+
 	private MatchOddBet matchOddBet;
 
 	private double investedValue;
-	
+
 	private double odd;
 
 	@ManyToMany(targetEntity = Fixture.class, mappedBy = "bets")
@@ -82,7 +82,8 @@ public class Bet implements Serializable {
 
 	}
 
-	public Bet(BetType betType, BetResult betResult, double investedValue, double odd, List<Fixture> fixtures, Week week) {
+	public Bet(BetType betType, BetResult betResult, double investedValue,
+			double odd, List<Fixture> fixtures, Week week) {
 		this.betType = betType;
 		this.betResult = betResult;
 		this.investedValue = investedValue;
@@ -114,7 +115,7 @@ public class Bet implements Serializable {
 	public void setBetResult(BetResult betResult) {
 		this.betResult = betResult;
 	}
-	
+
 	public MatchOddBet getMatchOddBet() {
 		return matchOddBet;
 	}
@@ -130,7 +131,7 @@ public class Bet implements Serializable {
 	public void setInvestedValue(double investedValue) {
 		this.investedValue = investedValue;
 	}
-	
+
 	public double getOdd() {
 		return odd;
 	}
@@ -154,6 +155,12 @@ public class Bet implements Serializable {
 	public void setWeek(Week week) {
 		this.week = week;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Bet [betType=" + betType + ", betResult=" + betResult
+				+ ", matchOddBet=" + matchOddBet + ", investedValue="
+				+ investedValue + ", odd=" + odd + "]";
+	}
+
 }

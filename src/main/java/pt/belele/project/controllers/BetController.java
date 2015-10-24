@@ -1,10 +1,7 @@
 package pt.belele.project.controllers;
 
 import pt.belele.project.entities.Bet;
-import pt.belele.project.entities.Bet.BetType;
 import pt.belele.project.entities.Bet.MatchOddBet;
-import pt.belele.project.entities.Fixture;
-import pt.belele.project.entities.Week;
 
 public class BetController {
 	public Double calculateOdd(Bet bet, MatchOddBet matchOddsBet) {

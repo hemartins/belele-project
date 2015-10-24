@@ -30,7 +30,8 @@ public class ExcelColumnsCalculation {
 	private StandingController standingController;
 	private EntityManager em;
 
-	private static final Logger logger = LogManager.getLogger(ExcelColumnsCalculation.class);
+	private static final Logger logger = LogManager
+			.getLogger(ExcelColumnsCalculation.class);
 
 	public ExcelColumnsCalculation(Team team, EntityManager em) {
 		this.team = team;
@@ -43,7 +44,8 @@ public class ExcelColumnsCalculation {
 	public Double getTeamQuality(Season season, Date date) {
 		Standing s = standingController.getTeamStanding(season, team, date);
 		if (s != null) {
-			return (double) s.getPlayedGames() > 0 ? (double) s.getPoints() / s.getPlayedGames() : 0;
+			return (double) s.getPlayedGames() > 0 ? (double) s.getPoints()
+					/ s.getPlayedGames() : 0;
 		} else
 			return null;
 	}
@@ -51,7 +53,8 @@ public class ExcelColumnsCalculation {
 	public Double getHomeTeamQuality(Season season, Date date) {
 		Standing s = standingController.getTeamStanding(season, team, date);
 		if (s != null) {
-			return (double) s.getHomePlayedGames() > 0 ? (double) s.getHomePoints() / s.getHomePlayedGames() : 0;
+			return (double) s.getHomePlayedGames() > 0 ? (double) s
+					.getHomePoints() / s.getHomePlayedGames() : 0;
 		} else
 			return null;
 	}
@@ -59,24 +62,27 @@ public class ExcelColumnsCalculation {
 	public Double getAwayTeamQuality(Season season, Date date) {
 		Standing s = standingController.getTeamStanding(season, team, date);
 		if (s != null) {
-			return (double) s.getAwayPlayedGames() > 0 ? (double) s.getAwayPoints() / s.getAwayPlayedGames() : 0;
+			return (double) s.getAwayPlayedGames() > 0 ? (double) s
+					.getAwayPoints() / s.getAwayPlayedGames() : 0;
 		} else
 			return null;
 	}
 
 	// Dias de descanso antes do jogo
 	public Integer getRestingDays(Fixture nextFixture) {
-		Fixture f = fixtureController.getTeamFixtureBeforeDate(team, nextFixture.getSeason(), nextFixture.getDate());
+		Fixture f = fixtureController.getTeamFixtureBeforeDate(team,
+				nextFixture.getSeason(), nextFixture.getDate());
 		DateTime fixtureDate = new DateTime(f.getDate());
-		Days days = Days.daysBetween(fixtureDate, new DateTime(nextFixture.getDate()));
+		Days days = Days.daysBetween(fixtureDate,
+				new DateTime(nextFixture.getDate()));
 		int nmrDays = days.getDays();
 		return nmrDays + 1;
 	}
 
 	// Rating dos ultimos jogos, venue opcional, ratings ordenados por ordem
 	// decrescente
-	public Double getLastFixturesRating(Fixture nextFixture, Venue venue, Integer numberOfFixtures,
-			List<Double> ratings, ResultType type) {
+	public Double getLastFixturesRating(Fixture nextFixture, Venue venue,
+			Integer numberOfFixtures, List<Double> ratings, ResultType type) {
 		if (ratings.size() != numberOfFixtures) {
 			logger.debug("RATINGS SIZE != NUMBER OF FIXTURES");
 			return null;
@@ -84,8 +90,9 @@ public class ExcelColumnsCalculation {
 
 		double rating = 0;
 
-		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team, nextFixture.getSeason(),
-				nextFixture.getDate(), venue, numberOfFixtures);
+		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team,
+				nextFixture.getSeason(), nextFixture.getDate(), venue,
+				numberOfFixtures);
 		for (int i = 0; i < fixtures.size(); i++) {
 			Fixture f = fixtures.get(i);
 			if (getResultType(f).equals(type))
@@ -95,8 +102,8 @@ public class ExcelColumnsCalculation {
 		return rating;
 	}
 
-	public Integer getLastFixturesResults(Fixture nextFixture, Venue venue, Integer numberOfFixtures,
-			List<Double> ratings, ResultType type) {
+	public Integer getLastFixturesResults(Fixture nextFixture, Venue venue,
+			Integer numberOfFixtures, List<Double> ratings, ResultType type) {
 		if (ratings.size() != numberOfFixtures) {
 			logger.debug("RATINGS SIZE != NUMBER OF FIXTURES");
 			return null;
@@ -104,8 +111,9 @@ public class ExcelColumnsCalculation {
 
 		int results = 0;
 
-		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team, nextFixture.getSeason(),
-				nextFixture.getDate(), venue, numberOfFixtures);
+		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team,
+				nextFixture.getSeason(), nextFixture.getDate(), venue,
+				numberOfFixtures);
 		for (int i = 0; i < fixtures.size(); i++) {
 			Fixture f = fixtures.get(i);
 			if (getResultType(f).equals(type))
@@ -116,34 +124,43 @@ public class ExcelColumnsCalculation {
 	}
 
 	// Media da qualidade das ultimas equipas defrontadas
-	public Double getLastFixturesOpponentAverageQuality(Fixture nextFixture, Venue venue, Integer numberOfFixtures) {
+	public Double getLastFixturesOpponentAverageQuality(Fixture nextFixture,
+			Venue venue, Integer numberOfFixtures) {
 		double sum = 0;
-		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team, nextFixture.getSeason(),
-				nextFixture.getDate(), venue, numberOfFixtures);
+		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team,
+				nextFixture.getSeason(), nextFixture.getDate(), venue,
+				numberOfFixtures);
 		for (Fixture f : fixtures) {
 			if (f.getHomeTeam().getId() == team.getId()) {
-				ExcelColumnsCalculation tc = new ExcelColumnsCalculation(f.getAwayTeam(), em);
-				sum += tc.getTeamQuality(nextFixture.getSeason(), nextFixture.getDate());
+				ExcelColumnsCalculation tc = new ExcelColumnsCalculation(
+						f.getAwayTeam(), em);
+				sum += tc.getTeamQuality(nextFixture.getSeason(),
+						nextFixture.getDate());
 			} else {
-				ExcelColumnsCalculation tc = new ExcelColumnsCalculation(f.getHomeTeam(), em);
-				sum += tc.getTeamQuality(nextFixture.getSeason(), nextFixture.getDate());
+				ExcelColumnsCalculation tc = new ExcelColumnsCalculation(
+						f.getHomeTeam(), em);
+				sum += tc.getTeamQuality(nextFixture.getSeason(),
+						nextFixture.getDate());
 			}
 		}
 		return fixtures.size() > 0 ? sum / fixtures.size() : 0;
 	}
 
 	// Numero de historicos defrontados
-	public Integer getLastHardGamesFixturesNumber(Fixture nextFixture, Venue venue, Integer numberOfFixtures,
-			List<String> hardTeamsIds) {
+	public Integer getLastHardGamesFixturesNumber(Fixture nextFixture,
+			Venue venue, Integer numberOfFixtures, List<String> hardTeamsIds) {
 
-		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team, nextFixture.getSeason(),
-				nextFixture.getDate(), venue, numberOfFixtures);
+		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team,
+				nextFixture.getSeason(), nextFixture.getDate(), venue,
+				numberOfFixtures);
 
 		int sum = 0;
 
 		for (Fixture f : fixtures) {
-			if ((hardTeamsIds.contains(f.getAwayTeam().getName()) && f.getAwayTeam().getId() != team.getId())
-					|| (hardTeamsIds.contains(f.getHomeTeam().getName()) && f.getHomeTeam().getId() != team.getId())) {
+			if ((hardTeamsIds.contains(f.getAwayTeam().getName()) && f
+					.getAwayTeam().getId() != team.getId())
+					|| (hardTeamsIds.contains(f.getHomeTeam().getName()) && f
+							.getHomeTeam().getId() != team.getId())) {
 				sum++;
 			}
 		}
@@ -151,9 +168,10 @@ public class ExcelColumnsCalculation {
 	}
 
 	// Calculo ciclos
-	public ResultCycle getTeamCycle(Fixture nextFixture, Venue venue, ResultType type) {
-		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team, nextFixture.getSeason(),
-				nextFixture.getDate(), venue, null);
+	public ResultCycle getTeamCycle(Fixture nextFixture, Venue venue,
+			ResultType type) {
+		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team,
+				nextFixture.getSeason(), nextFixture.getDate(), venue, null);
 		boolean positive = false;
 		ResultType actualResult = null;
 		int sum = 0;
@@ -184,13 +202,15 @@ public class ExcelColumnsCalculation {
 				teams.add(f.getHomeTeam());
 		}
 
-		return new ResultCycle(nextFixture.getSeason(), type, teams, sum, new DateTime(nextFixture.getDate()));
+		return new ResultCycle(nextFixture.getSeason(), type, teams, sum,
+				new DateTime(nextFixture.getDate()));
 	}
 
 	// Calculo ciclos à sapateiro que o perna pediu para testar a correlacao
-	public ResultCycle getTeamCyclePerna(Fixture nextFixture, Venue venue, ResultType type) {
-		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team, nextFixture.getSeason(),
-				nextFixture.getDate(), venue, null);
+	public ResultCycle getTeamCyclePerna(Fixture nextFixture, Venue venue,
+			ResultType type) {
+		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team,
+				nextFixture.getSeason(), nextFixture.getDate(), venue, null);
 		ResultType firstResult = null;
 		int sum = 0;
 		List<Team> teams = new ArrayList<Team>();
@@ -217,23 +237,24 @@ public class ExcelColumnsCalculation {
 				teams.add(f.getHomeTeam());
 		}
 
-		return new ResultCycle(nextFixture.getSeason(), type, teams, sum, new DateTime(nextFixture.getDate()));
+		return new ResultCycle(nextFixture.getSeason(), type, teams, sum,
+				new DateTime(nextFixture.getDate()));
 	}
 
-	
-	
 	// Media da qualidade das equipas dum ciclo
 	public Double getCycleOpponentAverageQuality(ResultCycle cycle) {
 		double sum = 0;
 		for (Team t : cycle.getTeams()) {
 			ExcelColumnsCalculation tc = new ExcelColumnsCalculation(t, em);
-			sum += tc.getTeamQuality(cycle.getSeason(), cycle.getDate().toDate());
+			sum += tc.getTeamQuality(cycle.getSeason(), cycle.getDate()
+					.toDate());
 		}
 		return cycle.getTeams().size() > 0 ? sum / cycle.getTeams().size() : 0;
 	}
 
 	// Numero de historicos defrontados num ciclo
-	public Integer getCycleHardGamesNumber(ResultCycle cycle, List<String> hardTeamsIds) {
+	public Integer getCycleHardGamesNumber(ResultCycle cycle,
+			List<String> hardTeamsIds) {
 		int sum = 0;
 
 		for (Team t : cycle.getTeams()) {
@@ -259,7 +280,8 @@ public class ExcelColumnsCalculation {
 	 * nextFixture.getH2h().size()); }
 	 */
 
-	public H2H getH2HRating(Fixture nextFixture, List<Double> ratings, Venue venue, ResultType type) {
+	public H2H getH2HRating(Fixture nextFixture, List<Double> ratings,
+			Venue venue, ResultType type) {
 		double rating = 0;
 		double ratingSum = 0;
 		double resultTypeRating = 0;
@@ -268,14 +290,14 @@ public class ExcelColumnsCalculation {
 		if (nextFixture.getH2h() != null) {
 			if (!nextFixture.getH2h().isEmpty()) {
 				for (Fixture f : nextFixture.getH2h()) {
-					timeInYears = nextFixture.getSeason().getYear() - f.getSeason().getYear();
+					timeInYears = nextFixture.getSeason().getYear()
+							- f.getSeason().getYear();
 					if (timeInYears >= ratings.size())
 						continue;
 
 					ratingSum += ratings.get(timeInYears);
 
-					if (getResultType(f).equals(type))
-					{
+					if (getResultType(f).equals(type)) {
 						rating += ratings.get(timeInYears);
 						numberResults++;
 					}
@@ -289,25 +311,29 @@ public class ExcelColumnsCalculation {
 			}
 
 		}
-		return new H2H(resultTypeRating, nextFixture.getH2h().size(), numberResults);
+		return new H2H(resultTypeRating, nextFixture.getH2h().size(),
+				numberResults);
 	}
 
-	public TeamRating getResultPercentage(Fixture nextFixture, Venue venue, ResultType type, Double interval) {
+	public TeamRating getResultPercentage(Fixture nextFixture, Venue venue,
+			ResultType type, Double interval) {
 		Season s = nextFixture.getSeason();
-		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team, nextFixture.getSeason(),
-				nextFixture.getDate(), venue, null);
+		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team,
+				nextFixture.getSeason(), nextFixture.getDate(), venue, null);
 		Double resultSum = 0.0;
 		Double opponentSum = 0.0;
 		Double intervalSum = 0.0;
 		Double resultIntervalSum = 0.0;
 		ExcelColumnsCalculation tc = new ExcelColumnsCalculation(
-				venue == Venue.HOME ? nextFixture.getAwayTeam() : nextFixture.getHomeTeam(), em);
+				venue == Venue.HOME ? nextFixture.getAwayTeam()
+						: nextFixture.getHomeTeam(), em);
 		Double opponentQuality = tc.getTeamQuality(s, nextFixture.getDate());
 
 		for (Fixture f : fixtures) {
 			ExcelColumnsCalculation tec = new ExcelColumnsCalculation(
 					venue == Venue.HOME ? f.getAwayTeam() : f.getHomeTeam(), em);
-			Double fixtureOpponentQuality = tec.getTeamQuality(s, nextFixture.getDate());
+			Double fixtureOpponentQuality = tec.getTeamQuality(s,
+					nextFixture.getDate());
 
 			if (fixtureOpponentQuality != null) {
 
@@ -329,20 +355,23 @@ public class ExcelColumnsCalculation {
 
 		}
 		int size = fixtures.size();
-		return new TeamRating(size > 0 ? resultSum / size : 0, size > 0 ? opponentSum / size : 0,
-				intervalSum > 0 ? resultIntervalSum / intervalSum : 0, intervalSum.intValue());
+		return new TeamRating(size > 0 ? resultSum / size : 0,
+				size > 0 ? opponentSum / size : 0,
+				intervalSum > 0 ? resultIntervalSum / intervalSum : 0,
+				intervalSum.intValue());
 	}
 
 	public Integer getNumberOfFixtures(Fixture nextFixture, Venue venue) {
-		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team, nextFixture.getSeason(),
-				nextFixture.getDate(), venue, null);
+		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team,
+				nextFixture.getSeason(), nextFixture.getDate(), venue, null);
 		return fixtures.size();
 	}
 
 	// Rating dos ultimos jogos, venue opcional, ratings ordenados por ordem
 	// decrescente
-	public Double getLastFixturesRatingQuality(Fixture nextFixture, Venue venue, Integer numberOfFixtures,
-			List<Double> ratings, ResultType type) {
+	public Double getLastFixturesRatingQuality(Fixture nextFixture,
+			Venue venue, Integer numberOfFixtures, List<Double> ratings,
+			ResultType type) {
 		if (ratings.size() != numberOfFixtures) {
 			logger.debug("RATINGS SIZE != NUMBER OF FIXTURES");
 			return null;
@@ -350,20 +379,27 @@ public class ExcelColumnsCalculation {
 
 		double rating = 0;
 
-		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team, nextFixture.getSeason(),
-				nextFixture.getDate(), venue, numberOfFixtures);
+		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team,
+				nextFixture.getSeason(), nextFixture.getDate(), venue,
+				numberOfFixtures);
 
 		for (int i = 0; i < fixtures.size(); i++) {
 			Fixture f = fixtures.get(i);
 			if (getResultType(f).equals(type)) {
 				if (f.getHomeTeam().equals(team)) {
-					ExcelColumnsCalculation opponentTeam = new ExcelColumnsCalculation(f.getAwayTeam(), em);
+					ExcelColumnsCalculation opponentTeam = new ExcelColumnsCalculation(
+							f.getAwayTeam(), em);
 					rating += ratings.get(i)
-							* opponentTeam.getTeamQuality(nextFixture.getSeason(), nextFixture.getDate());
+							* opponentTeam.getTeamQuality(
+									nextFixture.getSeason(),
+									nextFixture.getDate());
 				} else {
-					ExcelColumnsCalculation opponentTeam = new ExcelColumnsCalculation(f.getHomeTeam(), em);
+					ExcelColumnsCalculation opponentTeam = new ExcelColumnsCalculation(
+							f.getHomeTeam(), em);
 					rating += ratings.get(i)
-							* opponentTeam.getTeamQuality(nextFixture.getSeason(), nextFixture.getDate());
+							* opponentTeam.getTeamQuality(
+									nextFixture.getSeason(),
+									nextFixture.getDate());
 				}
 			}
 		}
@@ -386,7 +422,6 @@ public class ExcelColumnsCalculation {
 		} else
 			return null;
 	}
-
 
 	public Integer getHomeGoals(Season season, Date date) {
 		Standing s = standingController.getTeamStanding(season, team, date);
@@ -421,9 +456,10 @@ public class ExcelColumnsCalculation {
 	}
 
 	public Integer getClassification(Season season, Date date) {
-		List<Team> ls = standingController.getTeamsOrderedByClassification(season, date);
+		List<Team> ls = standingController.getTeamsOrderedByClassification(
+				season, date);
 
-		return ls.indexOf(team)+1;
+		return ls.indexOf(team) + 1;
 	}
 
 	/****************/
@@ -435,14 +471,16 @@ public class ExcelColumnsCalculation {
 		if (fixture.getHomeTeam().getId() == team.getId()) {
 			if (r.getFullTimeHomeTeamGoals() > r.getFullTimeAwayTeamGoals())
 				return ResultType.WIN;
-			else if (r.getFullTimeHomeTeamGoals() < r.getFullTimeAwayTeamGoals())
+			else if (r.getFullTimeHomeTeamGoals() < r
+					.getFullTimeAwayTeamGoals())
 				return ResultType.LOSE;
 			else
 				return ResultType.DRAW;
 		} else {
 			if (r.getFullTimeAwayTeamGoals() > r.getFullTimeHomeTeamGoals())
 				return ResultType.WIN;
-			else if (r.getFullTimeAwayTeamGoals() < r.getFullTimeHomeTeamGoals())
+			else if (r.getFullTimeAwayTeamGoals() < r
+					.getFullTimeHomeTeamGoals())
 				return ResultType.LOSE;
 			else
 				return ResultType.DRAW;

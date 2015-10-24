@@ -2,9 +2,6 @@ package pt.belele.project.algorithm;
 
 import java.util.Date;
 
-import pt.belele.project.entities.Fixture.Venue;
-import pt.belele.project.entities.Result.ResultType;
-
 public class ExcelRow {
 
 	Date data;
