@@ -46,10 +46,8 @@ public class MaximFunction implements MaximisationFunction {
 									MatchOddBet.DONOTDRAW)
 							|| bet.getMatchOddBet().equals(
 									MatchOddBet.DONOTLOSE)) {
-						lucro = (bet.getInvestedValue() * bet.getOdd())
+						lucro += (bet.getInvestedValue() * bet.getOdd())
 								- bet.getInvestedValue();
-						
-						LOG.info("Lucro: " + lucro);
 					}
 					else
 					{
@@ -62,10 +60,8 @@ public class MaximFunction implements MaximisationFunction {
 									.equals(MatchOddBet.DONOTWIN)
 							|| bet.getMatchOddBet().equals(
 									MatchOddBet.DONOTLOSE)) {
-						lucro = (bet.getInvestedValue() * bet.getOdd())
+						lucro += (bet.getInvestedValue() * bet.getOdd())
 								- bet.getInvestedValue();
-						
-						LOG.info("Lucro: " + lucro);
 					}
 					else
 					{
@@ -78,10 +74,8 @@ public class MaximFunction implements MaximisationFunction {
 									MatchOddBet.DONOTDRAW)
 							|| bet.getMatchOddBet()
 									.equals(MatchOddBet.DONOTWIN)) {
-						lucro = (bet.getInvestedValue() * bet.getOdd())
+						lucro += (bet.getInvestedValue() * bet.getOdd())
 								- bet.getInvestedValue();
-						
-						LOG.info("Lucro: " + lucro);
 					}
 					else
 					{
@@ -91,6 +85,9 @@ public class MaximFunction implements MaximisationFunction {
 				default:
 					break;
 				}
+				
+
+				LOG.info("Lucro: " + lucro);
 			}
 		}
 

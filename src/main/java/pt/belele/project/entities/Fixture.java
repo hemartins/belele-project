@@ -218,7 +218,7 @@ public class Fixture implements Serializable {
 	@Override
 	public String toString() {
 		return "Fixture [date=" + date + " homeTeam=" + homeTeam
-				+ ", awayTeam=" + awayTeam + "]";
+				+ ", awayTeam=" + awayTeam + "result="+ result.getResultType().name() +"]";
 	}
 
 }

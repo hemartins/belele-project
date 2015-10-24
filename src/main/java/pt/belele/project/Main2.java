@@ -80,17 +80,17 @@ public class Main2 {
 		
 
 		// initial estimates
-		double[] start = { 1.0D, 1.0D, 1.0D, 1.0D, 1.0D, 1.0D, 1.0D };
+		double[] start = { 1, 1, 1, 1.25, 1.25, 0.5, 0.5 };
 
 		// initial step sizes
-		double[] step = { 1.0D, 1.0D, 1.0D, 1.0D, 1.0D, 1.0D, 1.0D };
+		double[] step = { 2, 2, 2, 0.25, 0.25, 0.5, 0.5 };
 
 		// convergence tolerance
 		double ftol = 1e-15;
 
 		// Nelder and Mead maximisation procedure
 		LOG.info("Start of Nelder and Mead maximisation procedure");
-		max.nelderMead(funct, start, step, ftol, 10000);
+		max.nelderMead(funct, start, step, ftol, 50000);
 		LOG.info("End of Nelder and Mead maximisation procedure");
 
 		// get the maximum value

@@ -2,19 +2,19 @@ package pt.belele.project.entities;
 
 public class CutOff {
 
-	private Double oddWightHigherValue;
+	private Double oddWightHigherValue; // ENTRE -0,9999999999 e 3
 
-	private Double oddWightMediumValue;
+	private Double oddWightMediumValue;// ENTRE -0,9999999999 e 3
 
-	private Double oddWightLowerValue;
+	private Double oddWightLowerValue; // ENTRE -0,9999999999 e 3
 
-	private Double minimumLayOdd;
+	private Double minimumLayOdd; // ENTRE 1 e 1,5
 
-	private Double minimumBackOdd;
+	private Double minimumBackOdd; // ENTRE 1 e 1,5 
 
-	private Double nnOddWeight;
+	private Double nnOddWeight; // ENTRE 0 e 1
 
-	private Double minimumQualityRelation;
+	private Double minimumQualityRelation; // ENTRE 0 e 1
 
 	public CutOff() {
 
