@@ -461,6 +461,16 @@ public class ExcelColumnsCalculation {
 
 		return ls.indexOf(team) + 1;
 	}
+	
+	//PLANO B
+	
+	public List<Integer> getNumberOfGames(Team team, List<Fixture> f){
+		List<Integer> nrDeJogos = new ArrayList<Integer>();
+		
+		
+		
+		return nrDeJogos;
+	}
 
 	/****************/
 	/* AUX METHODS */
