@@ -1323,15 +1323,252 @@ public class Main {
 
 		for (Fixture f : i14.getFixtures()) {
 			
+			ExcelColumnsCalculation exHomeTeam = new ExcelColumnsCalculation(f.getHomeTeam(), em);
+			ExcelColumnsCalculation exAwayTeam = new ExcelColumnsCalculation(f.getAwayTeam(), em);
+			
+			//data
+			Date date= f.getDate();
+			
+			//Visitado e visitante
+			String homeTeam= f.getHomeTeam().getName();
+			String awayTeam= f.getAwayTeam().getName();
+			
+			//Classificações						
+			Integer class_home = exHomeTeam.getClassification(i14, date);
+			Integer class_away = exAwayTeam.getClassification(i14, date);
+			
+			//Resultado
+			Integer res_win, res_draw, res_lose;
+			Result res =f.getResult();
+			if(res.getResultType().getValue()==0){
+				res_win=1;
+				res_draw=0;
+				res_lose=0;
+			}
+			else if(res.getResultType().getValue()==1){
+				res_win=0;
+				res_draw=1;
+				res_lose=0;
+			}
+			else{
+				res_win=0;
+				res_draw=0;
+				res_lose=1;
+			}
+			
+			//Qlt Top Visitado
+			List<Integer> topHomeGames = exHomeTeam.getTopNumberOfGames(f.getHomeTeam(), i14, date, Venue.HOME);
+			Integer Qlt_Top_Visitado_W = topHomeGames.get(0);
+			Integer Qlt_Top_Visitado_D= topHomeGames.get(1);
+			Integer Qlt_Top_Visitado_L= topHomeGames.get(2);
+			
+			//Qlt Ms Visitado
+			List<Integer> msHomeGames = exHomeTeam.getMsNumberOfGames(f.getHomeTeam(), i14, date, Venue.HOME);
+			Integer Qlt_Ms_Visitado_W = msHomeGames.get(0);
+			Integer Qlt_Ms_Visitado_D= msHomeGames.get(1);
+			Integer Qlt_Ms_Visitado_L= msHomeGames.get(2);
+			
+			//Qlt Mi Visitado
+			List<Integer> miHomeGames = exHomeTeam.getMiNumberOfGames(f.getHomeTeam(), i14, date, Venue.HOME);
+			Integer Qlt_Mi_Visitado_W = miHomeGames.get(0);
+			Integer Qlt_Mi_Visitado_D= miHomeGames.get(1);
+			Integer Qlt_Mi_Visitado_L= miHomeGames.get(2);
+			
+			//Qlt Fraco Visitado
+			List<Integer> fracoHomeGames = exHomeTeam.getFracoNumberOfGames(f.getHomeTeam(), i14, date, Venue.HOME);
+			Integer Qlt_Fraco_Visitado_W = fracoHomeGames.get(0);
+			Integer Qlt_Fraco_Visitado_D= fracoHomeGames.get(1);
+			Integer Qlt_Fraco_Visitado_L= fracoHomeGames.get(2);
+			
+			//Qlt Top Visitante
+			List<Integer> topAwayGames = exAwayTeam.getTopNumberOfGames(f.getAwayTeam(), i14, date, Venue.AWAY);
+			Integer Qlt_Top_Visitante_W = topAwayGames.get(0);
+			Integer Qlt_Top_Visitante_D = topAwayGames.get(1);
+			Integer Qlt_Top_Visitante_L = topAwayGames.get(2);
+			
+			//Qlt Ms Visitante
+			List<Integer> msAwayGames = exAwayTeam.getMsNumberOfGames(f.getAwayTeam(), i14, date, Venue.AWAY);
+			Integer Qlt_Ms_Visitante_W = msAwayGames.get(0);
+			Integer Qlt_Ms_Visitante_D = msAwayGames.get(1);
+			Integer Qlt_Ms_Visitante_L = msAwayGames.get(2);
+			
+			//Qlt Mi Visitante
+			List<Integer> miAwayGames = exAwayTeam.getMiNumberOfGames(f.getAwayTeam(), i14, date, Venue.AWAY);
+			Integer Qlt_Mi_Visitante_W = miAwayGames.get(0);
+			Integer Qlt_Mi_Visitante_D = miAwayGames.get(1);
+			Integer Qlt_Mi_Visitante_L = miAwayGames.get(2);
+			
+			//Qlt Fraco Visitante
+			List<Integer> fracoAwayGames = exAwayTeam.getFracoNumberOfGames(f.getAwayTeam(), i14, date, Venue.AWAY);
+			Integer Qlt_Fraco_Visitante_W = fracoAwayGames.get(0);
+			Integer Qlt_Fraco_Visitante_D = fracoAwayGames.get(1);
+			Integer Qlt_Fraco_Visitante_L = fracoAwayGames.get(2);
+			
+			//Ciclo visitado
+			Integer cicloTopHome_W =0;
+			Integer cicloTopHome_D =0;
+			Integer cicloTopHome_L =0;
+			Integer cicloMsHome_W =0;
+			Integer cicloMsHome_D =0;
+			Integer cicloMsHome_L =0;
+			Integer cicloMiHome_W =0;
+			Integer cicloMiHome_D =0;
+			Integer cicloMiHome_L =0;
+			Integer cicloFracoHome_W=0;
+			Integer cicloFracoHome_D=0;
+			Integer cicloFracoHome_L=0;
+			
+			ResultCycle resCyc_W = exHomeTeam.getTeamCycle(f, Venue.HOME, ResultType.WIN);
+			List<Team> teamsOp_W = resCyc_W.getTeams();
+			if(teamsOp_W.size()!=0){
+			for(int i=0; i<teamsOp_W.size();i++){
+				Team opponent = teamsOp_W.get(i);
+				ExcelColumnsCalculation exOpponent = new ExcelColumnsCalculation(opponent, em);
+				int posOp = exOpponent.getClassification(i14, date);
+				if(posOp<=5){
+					cicloTopHome_W++;
+				}
+				else if(5<posOp && posOp<=10){
+					cicloMsHome_W++;
+				}
+				else if(10<posOp && posOp<=15){
+					cicloMiHome_W++;
+				}
+				else if(15<posOp){
+					cicloFracoHome_W++;
+				}
+			}
+			}
+			
+			ResultCycle resCyc_D = exHomeTeam.getTeamCycle(f, Venue.HOME, ResultType.DRAW);
+			List<Team> teamsOp_D = resCyc_D.getTeams();
+			if(teamsOp_D.size()!=0){
+			for(int i=0; i<teamsOp_D.size();i++){
+				Team opponent = teamsOp_D.get(i);
+				ExcelColumnsCalculation exOpponent = new ExcelColumnsCalculation(opponent, em);
+				int posOp = exOpponent.getClassification(i14, date);
+				if(posOp<=5){
+					cicloTopHome_D++;
+				}
+				else if(5<posOp && posOp<=10){
+					cicloMsHome_D++;
+				}
+				else if(10<posOp && posOp<=15){
+					cicloMiHome_D++;
+				}
+				else if(15<posOp){
+					cicloFracoHome_D++;
+				}
+			}
+			}
+			
+			ResultCycle resCyc_L = exHomeTeam.getTeamCycle(f, Venue.HOME, ResultType.LOSE);
+			List<Team> teamsOp_L = resCyc_L.getTeams();
+			if(teamsOp_L.size()!=0){
+			for(int i=0; i<teamsOp_L.size();i++){
+				Team opponent = teamsOp_L.get(i);
+				ExcelColumnsCalculation exOpponent = new ExcelColumnsCalculation(opponent, em);
+				int posOp = exOpponent.getClassification(i14, date);
+				if(posOp<=5){
+					cicloTopHome_L++;
+				}
+				else if(5<posOp && posOp<=10){
+					cicloMsHome_L++;
+				}
+				else if(10<posOp && posOp<=15){
+					cicloMiHome_L++;
+				}
+				else if(15<posOp){
+					cicloFracoHome_L++;
+				}
+			}
+			}
+			
+			//Ciclo visitante
+		    Integer cicloTopAway_W =0;
+		    Integer cicloTopAway_D =0;
+		    Integer cicloTopAway_L =0;
+		    Integer cicloMsAway_W =0;
+		    Integer cicloMsAway_D =0;
+		    Integer cicloMsAway_L =0;
+		    Integer cicloMiAway_W =0;
+		    Integer cicloMiAway_D =0;
+		    Integer cicloMiAway_L =0;
+		    Integer cicloFracoAway_W=0;
+		    Integer cicloFracoAway_D=0;
+		    Integer cicloFracoAway_L=0;
+
+		    ResultCycle resCycAway_W = exHomeTeam.getTeamCycle(f, Venue.AWAY, ResultType.WIN);
+		    List<Team> teamsOpAway_W = resCycAway_W.getTeams();
+		    if(teamsOpAway_W.size()!=0){
+		        for(int i=0; i<teamsOpAway_W.size();i++){
+		            Team opponent = teamsOpAway_W.get(i);
+		            ExcelColumnsCalculation exOpponent = new ExcelColumnsCalculation(opponent, em);
+		            int posOp = exOpponent.getClassification(i14, date);
+		            if(posOp<=5){
+		                cicloTopAway_W++;
+		            }
+		            else if(5<posOp && posOp<=10){
+		                cicloMsAway_W++;
+		            }
+		            else if(10<posOp && posOp<=15){
+		                cicloMiAway_W++;
+		            }
+		            else if(15<posOp){
+		                cicloFracoAway_W++;
+		            }
+		        }
+		    }
+		    
+		    ResultCycle resCycAway_D = exHomeTeam.getTeamCycle(f, Venue.AWAY, ResultType.DRAW);
+		    List<Team> teamsOpAway_D = resCycAway_D.getTeams();
+		    if(teamsOpAway_D.size()!=0){
+		        for(int i=0; i<teamsOpAway_D.size();i++){
+		            Team opponent = teamsOpAway_D.get(i);
+		            ExcelColumnsCalculation exOpponent = new ExcelColumnsCalculation(opponent, em);
+		            int posOp = exOpponent.getClassification(i14, date);
+		            if(posOp<=5){
+		                cicloTopAway_D++;
+		            }
+		            else if(5<posOp && posOp<=10){
+		                cicloMsAway_D++;
+		            }
+		            else if(10<posOp && posOp<=15){
+		                cicloMiAway_D++;
+		            }
+		            else if(15<posOp){
+		                cicloFracoAway_D++;
+		            }
+		        }
+		    }
+		    
+		    ResultCycle resCycAway_L = exHomeTeam.getTeamCycle(f, Venue.AWAY, ResultType.LOSE);
+		    List<Team> teamsOpAway_L = resCycAway_L.getTeams();
+		    if(teamsOpAway_L.size()!=0){
+		        for(int i=0; i<teamsOpAway_L.size();i++){
+		            Team opponent = teamsOpAway_L.get(i);
+		            ExcelColumnsCalculation exOpponent = new ExcelColumnsCalculation(opponent, em);
+		            int posOp = exOpponent.getClassification(i14, date);
+		            if(posOp<=5){
+		                cicloTopAway_L++;
+		            }
+		            else if(5<posOp && posOp<=10){
+		                cicloMsAway_L++;
+		            }
+		            else if(10<posOp && posOp<=15){
+		                cicloMiAway_L++;
+		            }
+		            else if(15<posOp){
+		                cicloFracoAway_L++;
+		            }
+		        }
+		    }
 			
 			
-			ExcelColumnsCalculation homeTeam = new ExcelColumnsCalculation(f.getHomeTeam(), em);
-			ExcelColumnsCalculation awayTeam = new ExcelColumnsCalculation(f.getAwayTeam(), em);
 			
-			
-			PlanBRow planBRow_Win = new PlanBRow();
-			PlanBRow planBRow_Draw = new PlanBRow();
-			PlanBRow planBRow_Lose = new PlanBRow();
+			PlanBRow planBRow_Win = new PlanBRow(date,homeTeam,awayTeam,class_home, class_away,res_win,Qlt_Top_Visitado_W, Qlt_Ms_Visitado_W, Qlt_Mi_Visitado_W,Qlt_Fraco_Visitado_W,Qlt_Top_Visitante_L, Qlt_Ms_Visitante_L, Qlt_Mi_Visitante_L, Qlt_Fraco_Visitante_L,cicloTopHome_W, cicloMsHome_W, cicloMiHome_W, cicloFracoHome_W,cicloTopAway_L, cicloMsAway_L, cicloMiAway_L, cicloFracoAway_L,);
+			PlanBRow planBRow_Draw = new PlanBRow(date,homeTeam,awayTeam,class_home, class_away,res_draw,Qlt_Top_Visitado_D, Qlt_Ms_Visitado_D,Qlt_Mi_Visitado_D,Qlt_Fraco_Visitado_D,Qlt_Top_Visitante_D, Qlt_Ms_Visitante_D, Qlt_Mi_Visitante_D, Qlt_Fraco_Visitante_D,cicloTopHome_D,cicloMsHome_D, cicloMiHome_D, cicloFracoHome_D,cicloTopAway_D, cicloMsAway_D, cicloMiAway_D, cicloFracoAway_D,);
+			PlanBRow planBRow_Lose = new PlanBRow(date,homeTeam,awayTeam,class_home, class_away,res_lose,Qlt_Top_Visitado_L, Qlt_Ms_Visitado_L,Qlt_Mi_Visitado_L,Qlt_Fraco_Visitado_L,Qlt_Top_Visitante_W, Qlt_Ms_Visitante_W, Qlt_Mi_Visitante_W, Qlt_Fraco_Visitante_W, cicloTopHome_L,cicloMsHome_L, cicloMiHome_L, cicloFracoHome_L,cicloTopAway_W, cicloMsAway_W, cicloMiAway_W, cicloFracoAway_W,);
 			
 			planBDataList.add(planBRow_Win);
 			planBDataList.add(planBRow_Draw);
@@ -1517,5 +1754,5 @@ public class Main {
 		}
 		return s;
 	}
-	
+
 }
