@@ -1323,15 +1323,15 @@ public class Main {
 
 		for (Fixture f : i14.getFixtures()) {
 			
-			PlanBRow planBRow_Win = new PlanBRow();
-			PlanBRow planBRow_Draw = new PlanBRow();
-			PlanBRow planBRow_Lose = new PlanBRow();
+			
 			
 			ExcelColumnsCalculation homeTeam = new ExcelColumnsCalculation(f.getHomeTeam(), em);
 			ExcelColumnsCalculation awayTeam = new ExcelColumnsCalculation(f.getAwayTeam(), em);
 			
 			
-
+			PlanBRow planBRow_Win = new PlanBRow();
+			PlanBRow planBRow_Draw = new PlanBRow();
+			PlanBRow planBRow_Lose = new PlanBRow();
 			
 			planBDataList.add(planBRow_Win);
 			planBDataList.add(planBRow_Draw);
