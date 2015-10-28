@@ -1564,11 +1564,800 @@ public class Main {
 		        }
 		    }
 			
+			//FR Visitado
+		    Integer frHomeTop1_W=0;
+		    Integer frHomeTop1_D=0;
+		    Integer frHomeTop1_L=0;
+		    Integer frHomeMs1_W=0;
+		    Integer frHomeMs1_D=0;
+		    Integer frHomeMs1_L=0;
+		    Integer frHomeMi1_W=0;
+		    Integer frHomeMi1_D=0;
+		    Integer frHomeMi1_L=0;
+		    Integer frHomeFraco1_W=0;
+		    Integer frHomeFraco1_D=0;
+		    Integer frHomeFraco1_L=0;
+		    Integer frHomeTop2_W=0;
+		    Integer frHomeTop2_D=0;
+		    Integer frHomeTop2_L=0;
+		    Integer frHomeMs2_W=0;
+		    Integer frHomeMs2_D=0;
+		    Integer frHomeMs2_L=0;
+		    Integer frHomeMi2_W=0;
+		    Integer frHomeMi2_D=0;
+		    Integer frHomeMi2_L=0;
+		    Integer frHomeFraco2_W=0;
+		    Integer frHomeFraco2_D=0;
+		    Integer frHomeFraco2_L=0;
+		    Integer frHomeTop3_W=0;
+		    Integer frHomeTop3_D=0;
+		    Integer frHomeTop3_L=0;
+		    Integer frHomeMs3_W=0;
+		    Integer frHomeMs3_D=0;
+		    Integer frHomeMs3_L=0;
+		    Integer frHomeMi3_W=0;
+		    Integer frHomeMi3_D=0;
+		    Integer frHomeMi3_L=0;
+		    Integer frHomeFraco3_W=0;
+		    Integer frHomeFraco3_D=0;
+		    Integer frHomeFraco3_L=0;
+		    Integer frHomeTop4_W=0;
+		    Integer frHomeTop4_D=0;
+		    Integer frHomeTop4_L=0;
+		    Integer frHomeMs4_W=0;
+		    Integer frHomeMs4_D=0;
+		    Integer frHomeMs4_L=0;
+		    Integer frHomeMi4_W=0;
+		    Integer frHomeMi4_D=0;
+		    Integer frHomeMi4_L=0;
+		    Integer frHomeFraco4_W=0;
+		    Integer frHomeFraco4_D=0;
+		    Integer frHomeFraco4_L=0;
+		    Integer frHomeTop5_W=0;
+		    Integer frHomeTop5_D=0;
+		    Integer frHomeTop5_L=0;
+		    Integer frHomeMs5_W=0;
+		    Integer frHomeMs5_D=0;
+		    Integer frHomeMs5_L=0;
+		    Integer frHomeMi5_W=0;
+		    Integer frHomeMi5_D=0;
+		    Integer frHomeMi5_L=0;
+		    Integer frHomeFraco5_W=0;
+		    Integer frHomeFraco5_D=0;
+		    Integer frHomeFraco5_L=0;
+		    
+		    for(int i=1; i<6;i++){
+		    	Fixture mfixture = exHomeTeam.getSomeBeforeFixture(f, null, i);
+		    	Team opponent;
+		    	if(mfixture.getAwayTeam().getName().equals(homeTeam)){
+		    	opponent=mfixture.getHomeTeam();
+		    	}else{opponent=mfixture.getAwayTeam();}
+		    	ExcelColumnsCalculation exOpponent = new ExcelColumnsCalculation(opponent, em);
+		    	Integer posOp= exOpponent.getClassification(i14, date);
+		    	if(mfixture.getResult().getResultType().getValue()==0){
+		    		if(posOp<=5){
+		    			if(i==1){
+		    				frHomeTop1_W=1;
+			                frHomeTop1_D=0;
+			                frHomeTop1_L=0;
+		    			}
+		    			if(i==2){
+		    				frHomeTop2_W=1;
+			                frHomeTop2_D=0;
+			                frHomeTop2_L=0;
+		    			}
+		    			if(i==3){
+		    				frHomeTop3_W=1;
+			                frHomeTop3_D=0;
+			                frHomeTop3_L=0;
+		    			}
+		    			if(i==4){
+		    				frHomeTop4_W=1;
+			                frHomeTop4_D=0;
+			                frHomeTop4_L=0;
+		    			}
+		    			if(i==5){
+		    				frHomeTop5_W=1;
+			                frHomeTop5_D=0;
+			                frHomeTop5_L=0;
+		    			}
+		            }
+		            else if(5<posOp && posOp<=10){
+		            	if(i==1){
+		            		frHomeMs1_W=1;
+		            		frHomeMs1_D=0;
+		            		frHomeMs1_L=0;
+		            	}
+		            	if(i==2){
+		    				frHomeMs2_W=1;
+			                frHomeMs2_D=0;
+			                frHomeMs2_L=0;
+		    			}
+		            	if(i==3){
+		    				frHomeMs3_W=1;
+			                frHomeMs3_D=0;
+			                frHomeMs3_L=0;
+		    			}
+		            	if(i==4){
+		    				frHomeMs4_W=1;
+			                frHomeMs4_D=0;
+			                frHomeMs4_L=0;
+		    			}
+		            	if(i==5){
+		    				frHomeMs5_W=1;
+			                frHomeMs5_D=0;
+			                frHomeMs5_L=0;
+		    			}
+		            }
+		            else if(10<posOp && posOp<=15){
+		            	if(i==1){
+		            	frHomeMi1_W=1;
+		            	frHomeMi1_D=0;
+		            	frHomeMi1_L=0;	
+		            	}
+		            	if(i==2){
+		            		frHomeMi2_W=1;
+		            		frHomeMi2_D=0;
+		            		frHomeMi2_L=0;
+		    			}
+		            	if(i==3){
+		            		frHomeMi3_W=1;
+		            		frHomeMi3_D=0;
+		            		frHomeMi3_L=0;
+		    			}
+		            	if(i==4){
+		            		frHomeMi4_W=1;
+		            		frHomeMi4_D=0;
+		            		frHomeMi4_L=0;
+		    			}
+		            	if(i==5){
+		            		frHomeMi5_W=1;
+		            		frHomeMi5_D=0;
+		            		frHomeMi5_L=0;
+		    			}
+		            }
+		            else if(15<posOp){
+		            	if(i==1){
+		            	frHomeFraco1_W=1;
+		            	frHomeFraco1_L=0;
+		            	frHomeFraco1_D=0;
+		            	}
+		            	if(i==2){
+		            		frHomeFraco2_W=1;
+		            		frHomeFraco2_D=0;
+		            		frHomeFraco2_L=0;
+		    			}
+		            	if(i==3){
+		            		frHomeFraco3_W=1;
+		            		frHomeFraco3_D=0;
+		            		frHomeFraco3_L=0;
+		    			}
+		            	if(i==4){
+		            		frHomeFraco4_W=1;
+		            		frHomeFraco4_D=0;
+		            		frHomeFraco4_L=0;
+		    			}
+		            	if(i==5){
+		            		frHomeFraco5_W=1;
+		            		frHomeFraco5_D=0;
+		            		frHomeFraco5_L=0;
+		    			}
+		            }
+		    	}
+		    	if(mfixture.getResult().getResultType().getValue()==1){
+		    		if(posOp<=5){
+		    			if(i==1){
+		                frHomeTop1_W=0;
+		                frHomeTop1_D=1;
+		                frHomeTop1_L=0;}
+		    			if(i==2){
+		    				frHomeTop2_W=0;
+			                frHomeTop2_D=1;
+			                frHomeTop2_L=0;
+		    			}
+		    			if(i==3){
+		    				frHomeTop3_W=0;
+			                frHomeTop3_D=1;
+			                frHomeTop3_L=0;
+		    			}
+		    			if(i==4){
+		    				frHomeTop4_W=0;
+			                frHomeTop4_D=1;
+			                frHomeTop4_L=0;
+		    			}
+		    			if(i==5){
+		    				frHomeTop5_W=0;
+			                frHomeTop5_D=1;
+			                frHomeTop5_L=0;
+		    			}
+		            }
+		            else if(5<posOp && posOp<=10){
+		            	if(i==1){
+		            	frHomeMs1_W=0;
+		            	frHomeMs1_D=1;
+		            	frHomeMs1_L=0;	}
+		            	if(i==2){
+		            		frHomeMs2_W=0;
+			            	frHomeMs2_D=1;
+			            	frHomeMs2_L=0;
+		    			}
+		            	if(i==3){
+		            		frHomeMs3_W=0;
+			            	frHomeMs3_D=1;
+			            	frHomeMs3_L=0;
+		    			}
+		            	if(i==4){
+		            		frHomeMs4_W=0;
+			            	frHomeMs4_D=1;
+			            	frHomeMs4_L=0;
+		    			}
+		            	if(i==5){
+		            		frHomeMs5_W=0;
+			            	frHomeMs5_D=1;
+			            	frHomeMs5_L=0;
+		    			}
+		            }
+		            else if(10<posOp && posOp<=15){
+		            	if(i==1){
+		            	frHomeMi1_W=0;
+		            	frHomeMi1_D=1;
+		            	frHomeMi1_L=0;}	
+		            	if(i==2){
+		            		frHomeMi2_W=0;
+			            	frHomeMi2_D=1;
+			            	frHomeMi2_L=0;
+		    			}
+		            	if(i==3){
+		            		frHomeMi3_W=0;
+			            	frHomeMi3_D=1;
+			            	frHomeMi3_L=0;
+		    			}
+		            	if(i==4){
+		            		frHomeMi4_W=0;
+			            	frHomeMi4_D=1;
+			            	frHomeMi4_L=0;
+		    			}
+		            	if(i==5){
+		            		frHomeMi5_W=0;
+			            	frHomeMi5_D=1;
+			            	frHomeMi5_L=0;
+		    			}
+		            }
+		            else if(15<posOp){
+		            	if(i==1){
+		            	frHomeFraco1_W=0;
+		            	frHomeFraco1_L=1;
+		            	frHomeFraco1_D=0;}
+		            	if(i==2){
+		            		frHomeFraco2_W=0;
+		            		frHomeFraco2_D=1;
+		            		frHomeFraco2_L=0;
+		    			}
+		            	if(i==3){
+		            		frHomeFraco3_W=0;
+		            		frHomeFraco3_D=1;
+		            		frHomeFraco3_L=0;
+		    			}
+		            	if(i==4){
+		            		frHomeFraco4_W=0;
+		            		frHomeFraco4_D=1;
+		            		frHomeFraco4_L=0;
+		    			}
+		            	if(i==5){
+		            		frHomeFraco5_W=0;
+		            		frHomeFraco5_D=1;
+		            		frHomeFraco5_L=0;
+		    			}
+		            }
+		    	}
+		    	if(mfixture.getResult().getResultType().getValue()==2){
+		    		if(posOp<=5){
+		    			if(i==1){
+		    			frHomeTop1_W=0;
+		                frHomeTop1_D=0;
+		                frHomeTop1_L=1;}
+		    			if(i==2){
+		    				frHomeTop2_W=0;
+			                frHomeTop2_D=0;
+			                frHomeTop2_L=1;
+		    			}
+		    			if(i==3){
+		    				frHomeTop3_W=0;
+			                frHomeTop3_D=0;
+			                frHomeTop3_L=1;
+		    			}
+		    			if(i==4){
+		    				frHomeTop4_W=0;
+			                frHomeTop4_D=0;
+			                frHomeTop4_L=1;
+		    			}
+		    			if(i==5){
+		    				frHomeTop5_W=0;
+			                frHomeTop5_D=0;
+			                frHomeTop5_L=1;
+		    			}
+		            }
+		            else if(5<posOp && posOp<=10){
+		            	if(i==1){
+		            	frHomeMs1_W=0;
+		            	frHomeMs1_D=0;
+		            	frHomeMs1_L=1;}	 
+		            	if(i==2){
+		    				frHomeMs2_W=0;
+			                frHomeMs2_D=0;
+			                frHomeMs2_L=1;
+		    			}
+		            	if(i==3){
+		    				frHomeMs3_W=0;
+			                frHomeMs3_D=0;
+			                frHomeMs3_L=1;
+		    			}
+		            	if(i==4){
+		    				frHomeMs4_W=0;
+			                frHomeMs4_D=0;
+			                frHomeMs4_L=1;
+		    			}
+		            	if(i==5){
+		    				frHomeMs5_W=0;
+			                frHomeMs5_D=0;
+			                frHomeMs5_L=1;
+		    			}
+		            }
+		            else if(10<posOp && posOp<=15){
+		            	if(i==1){
+		            	frHomeMi1_W=0;
+		            	frHomeMi1_D=0;
+		            	frHomeMi1_L=1;}	
+		            	if(i==2){
+		    				frHomeMi2_W=0;
+			                frHomeMi2_D=0;
+			                frHomeMi2_L=1;
+		    			}
+		            	if(i==3){
+		    				frHomeMi3_W=0;
+			                frHomeMi3_D=0;
+			                frHomeMi3_L=1;
+		    			}
+		            	if(i==4){
+		    				frHomeMi4_W=0;
+			                frHomeMi4_D=0;
+			                frHomeMi4_L=1;
+		    			}
+		            	if(i==5){
+		    				frHomeMi5_W=0;
+			                frHomeMi5_D=0;
+			                frHomeMi5_L=1;
+		    			}
+		            }
+		            else if(15<posOp){
+		            	if(i==1){
+		            	frHomeFraco1_W=0;
+		            	frHomeFraco1_L=0;
+		            	frHomeFraco1_D=1;}
+		            	if(i==2){
+		    				frHomeFraco2_W=0;
+			                frHomeFraco2_D=0;
+			                frHomeFraco2_L=1;
+		    			}
+		            	if(i==3){
+		    				frHomeFraco3_W=0;
+			                frHomeFraco3_D=0;
+			                frHomeFraco3_L=1;
+		    			}
+		            	if(i==4){
+		    				frHomeFraco4_W=0;
+			                frHomeFraco4_D=0;
+			                frHomeFraco4_L=1;
+		    			}
+		            	if(i==5){
+		    				frHomeFraco5_W=0;
+			                frHomeFraco5_D=0;
+			                frHomeFraco5_L=1;
+		    			}
+		            }
+		    	}
+		    }
+		    
+		    //FR Visitante
+		    Integer frAwayTop1_W=0;
+		    Integer frAwayTop1_D=0;
+		    Integer frAwayTop1_L=0;
+		    Integer frAwayMs1_W=0;
+		    Integer frAwayMs1_D=0;
+		    Integer frAwayMs1_L=0;
+		    Integer frAwayMi1_W=0;
+		    Integer frAwayMi1_D=0;
+		    Integer frAwayMi1_L=0;
+		    Integer frAwayFraco1_W=0;
+		    Integer frAwayFraco1_D=0;
+		    Integer frAwayFraco1_L=0;
+		    Integer frAwayTop2_W=0;
+		    Integer frAwayTop2_D=0;
+		    Integer frAwayTop2_L=0;
+		    Integer frAwayMs2_W=0;
+		    Integer frAwayMs2_D=0;
+		    Integer frAwayMs2_L=0;
+		    Integer frAwayMi2_W=0;
+		    Integer frAwayMi2_D=0;
+		    Integer frAwayMi2_L=0;
+		    Integer frAwayFraco2_W=0;
+		    Integer frAwayFraco2_D=0;
+		    Integer frAwayFraco2_L=0;
+		    Integer frAwayTop3_W=0;
+		    Integer frAwayTop3_D=0;
+		    Integer frAwayTop3_L=0;
+		    Integer frAwayMs3_W=0;
+		    Integer frAwayMs3_D=0;
+		    Integer frAwayMs3_L=0;
+		    Integer frAwayMi3_W=0;
+		    Integer frAwayMi3_D=0;
+		    Integer frAwayMi3_L=0;
+		    Integer frAwayFraco3_W=0;
+		    Integer frAwayFraco3_D=0;
+		    Integer frAwayFraco3_L=0;
+		    Integer frAwayTop4_W=0;
+		    Integer frAwayTop4_D=0;
+		    Integer frAwayTop4_L=0;
+		    Integer frAwayMs4_W=0;
+		    Integer frAwayMs4_D=0;
+		    Integer frAwayMs4_L=0;
+		    Integer frAwayMi4_W=0;
+		    Integer frAwayMi4_D=0;
+		    Integer frAwayMi4_L=0;
+		    Integer frAwayFraco4_W=0;
+		    Integer frAwayFraco4_D=0;
+		    Integer frAwayFraco4_L=0;
+		    Integer frAwayTop5_W=0;
+		    Integer frAwayTop5_D=0;
+		    Integer frAwayTop5_L=0;
+		    Integer frAwayMs5_W=0;
+		    Integer frAwayMs5_D=0;
+		    Integer frAwayMs5_L=0;
+		    Integer frAwayMi5_W=0;
+		    Integer frAwayMi5_D=0;
+		    Integer frAwayMi5_L=0;
+		    Integer frAwayFraco5_W=0;
+		    Integer frAwayFraco5_D=0;
+		    Integer frAwayFraco5_L=0;
+
+		    for(int i=1; i<6;i++){
+		        Fixture mfixture = exHomeTeam.getSomeBeforeFixture(f, null, i);
+		        Team opponent;
+		        if(mfixture.getAwayTeam().getName().equals(homeTeam)){
+		            opponent=mfixture.getHomeTeam();
+		        }else{opponent=mfixture.getAwayTeam();}
+		        ExcelColumnsCalculation exOpponent = new ExcelColumnsCalculation(opponent, em);
+		        Integer posOp= exOpponent.getClassification(i14, date);
+		        if(mfixture.getResult().getResultType().getValue()==0){
+		        if(posOp<=5){
+		            if(i==1){
+		                frAwayTop1_W=1;
+		                frAwayTop1_D=0;
+		                frAwayTop1_L=0;
+		            }
+		            if(i==2){
+		                frAwayTop2_W=1;
+		                frAwayTop2_D=0;
+		                frAwayTop2_L=0;
+		            }
+		            if(i==3){
+		                frAwayTop3_W=1;
+		                frAwayTop3_D=0;
+		                frAwayTop3_L=0;
+		            }
+		            if(i==4){
+		                frAwayTop4_W=1;
+		                frAwayTop4_D=0;
+		                frAwayTop4_L=0;
+		            }
+		            if(i==5){
+		                frAwayTop5_W=1;
+		                frAwayTop5_D=0;
+		                frAwayTop5_L=0;
+		            }
+		        }
+		        else if(5<posOp && posOp<=10){
+		            if(i==1){
+		                frAwayMs1_W=1;
+		                frAwayMs1_D=0;
+		                frAwayMs1_L=0;
+		            }
+		            if(i==2){
+		                frAwayMs2_W=1;
+		                frAwayMs2_D=0;
+		                frAwayMs2_L=0;
+		            }
+		            if(i==3){
+		                frAwayMs3_W=1;
+		                frAwayMs3_D=0;
+		                frAwayMs3_L=0;
+		            }
+		            if(i==4){
+		                frAwayMs4_W=1;
+		                frAwayMs4_D=0;
+		                frAwayMs4_L=0;
+		            }
+		            if(i==5){
+		                frAwayMs5_W=1;
+		                frAwayMs5_D=0;
+		                frAwayMs5_L=0;
+		            }
+		        }
+		        else if(10<posOp && posOp<=15){
+		            if(i==1){
+		                frAwayMi1_W=1;
+		                frAwayMi1_D=0;
+		                frAwayMi1_L=0;
+		            }
+		            if(i==2){
+		                frAwayMi2_W=1;
+		                frAwayMi2_D=0;
+		                frAwayMi2_L=0;
+		            }
+		            if(i==3){
+		                frAwayMi3_W=1;
+		                frAwayMi3_D=0;
+		                frAwayMi3_L=0;
+		            }
+		            if(i==4){
+		                frAwayMi4_W=1;
+		                frAwayMi4_D=0;
+		                frAwayMi4_L=0;
+		            }
+		            if(i==5){
+		                frAwayMi5_W=1;
+		                frAwayMi5_D=0;
+		                frAwayMi5_L=0;
+		            }
+		        }
+		        else if(15<posOp){
+		            if(i==1){
+		                frAwayFraco1_W=1;
+		                frAwayFraco1_L=0;
+		                frAwayFraco1_D=0;
+		            }
+		            if(i==2){
+		                frAwayFraco2_W=1;
+		                frAwayFraco2_D=0;
+		                frAwayFraco2_L=0;
+		            }
+		            if(i==3){
+		                frAwayFraco3_W=1;
+		                frAwayFraco3_D=0;
+		                frAwayFraco3_L=0;
+		            }
+		            if(i==4){
+		                frAwayFraco4_W=1;
+		                frAwayFraco4_D=0;
+		                frAwayFraco4_L=0;
+		            }
+		            if(i==5){
+		                frAwayFraco5_W=1;
+		                frAwayFraco5_D=0;
+		                frAwayFraco5_L=0;
+		            }
+		        }
+		    }
+		    if(mfixture.getResult().getResultType().getValue()==1){
+		        if(posOp<=5){
+		            if(i==1){
+		                frAwayTop1_W=0;
+		                frAwayTop1_D=1;
+		                frAwayTop1_L=0;}
+		            if(i==2){
+		                frAwayTop2_W=0;
+		                frAwayTop2_D=1;
+		                frAwayTop2_L=0;
+		            }
+		            if(i==3){
+		                frAwayTop3_W=0;
+		                frAwayTop3_D=1;
+		                frAwayTop3_L=0;
+		            }
+		            if(i==4){
+		                frAwayTop4_W=0;
+		                frAwayTop4_D=1;
+		                frAwayTop4_L=0;
+		            }
+		            if(i==5){
+		                frAwayTop5_W=0;
+		                frAwayTop5_D=1;
+		                frAwayTop5_L=0;
+		            }
+		        }
+		        else if(5<posOp && posOp<=10){
+		            if(i==1){
+		                frAwayMs1_W=0;
+		                frAwayMs1_D=1;
+		                frAwayMs1_L=0;	}
+		            if(i==2){
+		                frAwayMs2_W=0;
+		                frAwayMs2_D=1;
+		                frAwayMs2_L=0;
+		            }
+		            if(i==3){
+		                frAwayMs3_W=0;
+		                frAwayMs3_D=1;
+		                frAwayMs3_L=0;
+		            }
+		            if(i==4){
+		                frAwayMs4_W=0;
+		                frAwayMs4_D=1;
+		                frAwayMs4_L=0;
+		            }
+		            if(i==5){
+		                frAwayMs5_W=0;
+		                frAwayMs5_D=1;
+		                frAwayMs5_L=0;
+		            }
+		        }
+		        else if(10<posOp && posOp<=15){
+		            if(i==1){
+		                frAwayMi1_W=0;
+		                frAwayMi1_D=1;
+		                frAwayMi1_L=0;}
+		            if(i==2){
+		                frAwayMi2_W=0;
+		                frAwayMi2_D=1;
+		                frAwayMi2_L=0;
+		            }
+		            if(i==3){
+		                frAwayMi3_W=0;
+		                frAwayMi3_D=1;
+		                frAwayMi3_L=0;
+		            }
+		            if(i==4){
+		                frAwayMi4_W=0;
+		                frAwayMi4_D=1;
+		                frAwayMi4_L=0;
+		            }
+		            if(i==5){
+		                frAwayMi5_W=0;
+		                frAwayMi5_D=1;
+		                frAwayMi5_L=0;
+		            }
+		        }
+		        else if(15<posOp){
+		            if(i==1){
+		                frAwayFraco1_W=0;
+		                frAwayFraco1_L=1;
+		                frAwayFraco1_D=0;}
+		            if(i==2){
+		                frAwayFraco2_W=0;
+		                frAwayFraco2_D=1;
+		                frAwayFraco2_L=0;
+		            }
+		            if(i==3){
+		                frAwayFraco3_W=0;
+		                frAwayFraco3_D=1;
+		                frAwayFraco3_L=0;
+		            }
+		            if(i==4){
+		                frAwayFraco4_W=0;
+		                frAwayFraco4_D=1;
+		                frAwayFraco4_L=0;
+		            }
+		            if(i==5){
+		                frAwayFraco5_W=0;
+		                frAwayFraco5_D=1;
+		                frAwayFraco5_L=0;
+		            }
+		        }
+		    }
+		    if(mfixture.getResult().getResultType().getValue()==2) {
+		        if (posOp <= 5) {
+		            if (i == 1) {
+		                frAwayTop1_W = 0;
+		                frAwayTop1_D = 0;
+		                frAwayTop1_L = 1;
+		            }
+		            if (i == 2) {
+		                frAwayTop2_W = 0;
+		                frAwayTop2_D = 0;
+		                frAwayTop2_L = 1;
+		            }
+		            if (i == 3) {
+		                frAwayTop3_W = 0;
+		                frAwayTop3_D = 0;
+		                frAwayTop3_L = 1;
+		            }
+		            if (i == 4) {
+		                frAwayTop4_W = 0;
+		                frAwayTop4_D = 0;
+		                frAwayTop4_L = 1;
+		            }
+		            if (i == 5) {
+		                frAwayTop5_W = 0;
+		                frAwayTop5_D = 0;
+		                frAwayTop5_L = 1;
+		            }
+		        } else if (5 < posOp && posOp <= 10) {
+		            if (i == 1) {
+		                frAwayMs1_W = 0;
+		                frAwayMs1_D = 0;
+		                frAwayMs1_L = 1;
+		            }
+		            if (i == 2) {
+		                frAwayMs2_W = 0;
+		                frAwayMs2_D = 0;
+		                frAwayMs2_L = 1;
+		            }
+		            if (i == 3) {
+		                frAwayMs3_W = 0;
+		                frAwayMs3_D = 0;
+		                frAwayMs3_L = 1;
+		            }
+		            if (i == 4) {
+		                frAwayMs4_W = 0;
+		                frAwayMs4_D = 0;
+		                frAwayMs4_L = 1;
+		            }
+		            if (i == 5) {
+		                frAwayMs5_W = 0;
+		                frAwayMs5_D = 0;
+		                frAwayMs5_L = 1;
+		            }
+		        } else if (10 < posOp && posOp <= 15) {
+		            if (i == 1) {
+		                frAwayMi1_W = 0;
+		                frAwayMi1_D = 0;
+		                frAwayMi1_L = 1;
+		            }
+		            if (i == 2) {
+		                frAwayMi2_W = 0;
+		                frAwayMi2_D = 0;
+		                frAwayMi2_L = 1;
+		            }
+		            if (i == 3) {
+		                frAwayMi3_W = 0;
+		                frAwayMi3_D = 0;
+		                frAwayMi3_L = 1;
+		            }
+		            if (i == 4) {
+		                frAwayMi4_W = 0;
+		                frAwayMi4_D = 0;
+		                frAwayMi4_L = 1;
+		            }
+		            if (i == 5) {
+		                frAwayMi5_W = 0;
+		                frAwayMi5_D = 0;
+		                frAwayMi5_L = 1;
+		            }
+		        } else if (15 < posOp) {
+		            if (i == 1) {
+		                frAwayFraco1_W = 0;
+		                frAwayFraco1_L = 0;
+		                frAwayFraco1_D = 1;
+		            }
+		            if (i == 2) {
+		                frAwayFraco2_W = 0;
+		                frAwayFraco2_D = 0;
+		                frAwayFraco2_L = 1;
+		            }
+		            if (i == 3) {
+		                frAwayFraco3_W = 0;
+		                frAwayFraco3_D = 0;
+		                frAwayFraco3_L = 1;
+		            }
+		            if (i == 4) {
+		                frAwayFraco4_W = 0;
+		                frAwayFraco4_D = 0;
+		                frAwayFraco4_L = 1;
+		            }
+		            if (i == 5) {
+		                frAwayFraco5_W = 0;
+		                frAwayFraco5_D = 0;
+		                frAwayFraco5_L = 1;
+		            }
+		        }
+		    }
+		}
+
+		    
 			
-			
-			PlanBRow planBRow_Win = new PlanBRow(date,homeTeam,awayTeam,class_home, class_away,res_win,Qlt_Top_Visitado_W, Qlt_Ms_Visitado_W, Qlt_Mi_Visitado_W,Qlt_Fraco_Visitado_W,Qlt_Top_Visitante_L, Qlt_Ms_Visitante_L, Qlt_Mi_Visitante_L, Qlt_Fraco_Visitante_L,cicloTopHome_W, cicloMsHome_W, cicloMiHome_W, cicloFracoHome_W,cicloTopAway_L, cicloMsAway_L, cicloMiAway_L, cicloFracoAway_L,);
-			PlanBRow planBRow_Draw = new PlanBRow(date,homeTeam,awayTeam,class_home, class_away,res_draw,Qlt_Top_Visitado_D, Qlt_Ms_Visitado_D,Qlt_Mi_Visitado_D,Qlt_Fraco_Visitado_D,Qlt_Top_Visitante_D, Qlt_Ms_Visitante_D, Qlt_Mi_Visitante_D, Qlt_Fraco_Visitante_D,cicloTopHome_D,cicloMsHome_D, cicloMiHome_D, cicloFracoHome_D,cicloTopAway_D, cicloMsAway_D, cicloMiAway_D, cicloFracoAway_D,);
-			PlanBRow planBRow_Lose = new PlanBRow(date,homeTeam,awayTeam,class_home, class_away,res_lose,Qlt_Top_Visitado_L, Qlt_Ms_Visitado_L,Qlt_Mi_Visitado_L,Qlt_Fraco_Visitado_L,Qlt_Top_Visitante_W, Qlt_Ms_Visitante_W, Qlt_Mi_Visitante_W, Qlt_Fraco_Visitante_W, cicloTopHome_L,cicloMsHome_L, cicloMiHome_L, cicloFracoHome_L,cicloTopAway_W, cicloMsAway_W, cicloMiAway_W, cicloFracoAway_W,);
+			PlanBRow planBRow_Win = new PlanBRow(date,homeTeam,awayTeam,class_home, class_away,res_win,Qlt_Top_Visitado_W, Qlt_Ms_Visitado_W, Qlt_Mi_Visitado_W,Qlt_Fraco_Visitado_W,Qlt_Top_Visitante_L, Qlt_Ms_Visitante_L, Qlt_Mi_Visitante_L, Qlt_Fraco_Visitante_L,cicloTopHome_W, cicloMsHome_W, cicloMiHome_W, cicloFracoHome_W,cicloTopAway_L, cicloMsAway_L, cicloMiAway_L, cicloFracoAway_L,frHomeTop1_W,frHomeTop2_W,frHomeTop3_W,frHomeTop4_W,frHomeTop5_W,frHomeMs1_W,frHomeMs2_W,frHomeMs3_W,frHomeMs4_W,frHomeMs5_W,frHomeMi1_W,frHomeMi2_W,frHomeMi3_W,frHomeMi4_W,frHomeMi5_W,frHomeFraco1_W,frHomeFraco2_W,frHomeFraco3_W,frHomeFraco4_W,frHomeFraco5_W,frAwayTop1_L,frAwayTop2_L,frAwayTop3_L,frAwayTop4_L,frAwayTop5_L,frAwayMs1_L,frAwayMs2_L,frAwayMs3_L,frAwayMs4_L,frAwayMs5_L,frAwayMi1_L,frAwayMi2_L,frAwayMi3_L,frAwayMi4_L,frAwayMi5_L,frAwayFraco1_L,frAwayFraco2_L,frAwayFraco3_L,frAwayFraco4_L,frAwayFraco5_L,);
+			PlanBRow planBRow_Draw = new PlanBRow(date,homeTeam,awayTeam,class_home, class_away,res_draw,Qlt_Top_Visitado_D, Qlt_Ms_Visitado_D,Qlt_Mi_Visitado_D,Qlt_Fraco_Visitado_D,Qlt_Top_Visitante_D, Qlt_Ms_Visitante_D, Qlt_Mi_Visitante_D, Qlt_Fraco_Visitante_D,cicloTopHome_D,cicloMsHome_D, cicloMiHome_D, cicloFracoHome_D,cicloTopAway_D, cicloMsAway_D, cicloMiAway_D, cicloFracoAway_D,frHomeTop1_D,frHomeTop2_D,frHomeTop3_D,frHomeTop4_D,frHomeTop5_D,frHomeMs1_D,frHomeMs2_D,frHomeMs3_D,frHomeMs4_D,frHomeMs5_D,frHomeMi1_D,frHomeMi2_D,frHomeMi3_D,frHomeMi4_D,frHomeMi5_D,frHomeFraco1_D,frHomeFraco2_D,frHomeFraco3_D,frHomeFraco4_D,frHomeFraco5_D,frAwayTop1_D,frAwayTop2_D,frAwayTop3_D,frAwayTop4_D,frAwayTop5_D,frAwayMs1_D,frAwayMs2_D,frAwayMs3_D,frAwayMs4_D,frAwayMs5_D,frAwayMi1_D,frAwayMi2_D,frAwayMi3_D,frAwayMi4_D,frAwayMi5_D,frAwayFraco1_D,frAwayFraco2_D,frAwayFraco3_D,frAwayFraco4_D,frAwayFraco5_D,);
+			PlanBRow planBRow_Lose = new PlanBRow(date,homeTeam,awayTeam,class_home, class_away,res_lose,Qlt_Top_Visitado_L, Qlt_Ms_Visitado_L,Qlt_Mi_Visitado_L,Qlt_Fraco_Visitado_L,Qlt_Top_Visitante_W, Qlt_Ms_Visitante_W, Qlt_Mi_Visitante_W, Qlt_Fraco_Visitante_W, cicloTopHome_L,cicloMsHome_L, cicloMiHome_L, cicloFracoHome_L,cicloTopAway_W, cicloMsAway_W, cicloMiAway_W, cicloFracoAway_W,frHomeTop1_L,frHomeTop2_L,frHomeTop3_L,frHomeTop4_L,frHomeTop5_L,frHomeMs1_L,frHomeMs2_L,frHomeMs3_L,frHomeMs4_L,frHomeMs5_L,frHomeMi1_L,frHomeMi2_L,frHomeMi3_L,frHomeMi4_L,frHomeMi5_L,frHomeFraco1_L,frHomeFraco2_L,frHomeFraco3_L,frHomeFraco4_L,frHomeFraco5_L,frAwayTop1_W,frAwayTop2_W,frAwayTop3_W,frAwayTop4_W,frAwayTop5_W,frAwayMs1_W,frAwayMs2_W,frAwayMs3_W,frAwayMs4_W,frAwayMs5_W,frAwayMi1_W,frAwayMi2_L,frAwayMi3_W,frAwayMi4_W,frAwayMi5_W,frAwayFraco1_W,frAwayFraco2_W,frAwayFraco3_W,frAwayFraco4_W,frAwayFraco5_W,);
 			
 			planBDataList.add(planBRow_Win);
 			planBDataList.add(planBRow_Draw);

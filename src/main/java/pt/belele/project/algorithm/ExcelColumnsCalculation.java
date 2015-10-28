@@ -575,6 +575,13 @@ public class ExcelColumnsCalculation {
 
 		return nrDeJogosFraco;
 	}
+	
+	public Fixture getSomeBeforeFixture(Fixture nextFixture, Venue venue, Integer numberOfFixtures) {
+		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team, nextFixture.getSeason(),
+				nextFixture.getDate(), venue, numberOfFixtures);
+			Fixture fixt = fixtures.get(0);
+		return fixt;
+	}
 
 	/****************/
 	/* AUX METHODS */
