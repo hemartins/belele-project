@@ -580,31 +580,34 @@ public class ExcelColumnsCalculation {
 		ResultCycle resCyc = this.getTeamCycle(nextFixture, venue, res);
 		List<Team> teamsOp = resCyc.getTeams();
 		int cicloTop, cicloMs, cicloMi, cicloFraco;
-		cicloTop = cicloMs = cicloMi = cicloFraco = 0;
+		cicloTop = cicloMs = cicloMi = cicloFraco = 0;		
 		List<Integer> listCy = new ArrayList<Integer>();
 		
-		if (teamsOp.size() != 0) {
-			for (int i = 0; i < teamsOp.size(); i++) {
-				Team opponent = teamsOp.get(i);
-				ExcelColumnsCalculation ex = new ExcelColumnsCalculation(opponent, em);
-				int posOp = ex.getClassification(s, date);
-				if (posOp <= 5) {
-					cicloTop++;
-				} else if (5 < posOp && posOp <= 10) {
-					cicloMs++;
-				} else if (10 < posOp && posOp <= 15) {
-					cicloMi++;
-				} else if (15 < posOp) {
-					cicloFraco++;
+		if (resCyc.getCycle() > 0){
+			if (teamsOp.size() != 0) {
+				for (int i = 0; i < teamsOp.size(); i++) {
+					Team opponent = teamsOp.get(i);
+					ExcelColumnsCalculation ex = new ExcelColumnsCalculation(opponent, em);
+					int posOp = ex.getClassification(s, date);
+					if (posOp <= 5) {
+						cicloTop++;
+					} else if (5 < posOp && posOp <= 10) {
+						cicloMs++;
+					} else if (10 < posOp && posOp <= 15) {
+						cicloMi++;
+					} else if (15 < posOp) {
+						cicloFraco++;
+					}
 				}
 			}
-		}
-		
+		}	
 		listCy.add(cicloTop);
 		listCy.add(cicloMs);
 		listCy.add(cicloMi);
 		listCy.add(cicloFraco);
-
+		
+		//System.out.println("Ciclo: "+resCyc.getCycle()+" Resultado = "+resCyc.getType()+" Equipa: "+team+" Equipas: "+resCyc.getTeams().toString());
+		
 		return listCy;
 	}
 
