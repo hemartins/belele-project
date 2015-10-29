@@ -576,14 +576,36 @@ public class ExcelColumnsCalculation {
 		return nrDeJogosFraco;
 	}
 	
-	public Fixture getSomeBeforeFixture(Fixture nextFixture, Venue venue, Integer numberOfFixtures) {
-		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team, nextFixture.getSeason(),
-				nextFixture.getDate(), venue, numberOfFixtures);
-		Fixture fixt= new Fixture();
-		if(fixtures.size()!=0){	
-		fixt = fixtures.get(0);}
+	public List<Integer> getCycleInfo(Fixture nextFixture, Venue venue, ResultType res, Season s, Date date) {
+		ResultCycle resCyc = this.getTeamCycle(nextFixture, venue, res);
+		List<Team> teamsOp = resCyc.getTeams();
+		int cicloTop, cicloMs, cicloMi, cicloFraco;
+		cicloTop = cicloMs = cicloMi = cicloFraco = 0;
+		List<Integer> listCy = new ArrayList<Integer>();
 		
-		return fixt;
+		if (teamsOp.size() != 0) {
+			for (int i = 0; i < teamsOp.size(); i++) {
+				Team opponent = teamsOp.get(i);
+				ExcelColumnsCalculation ex = new ExcelColumnsCalculation(opponent, em);
+				int posOp = ex.getClassification(s, date);
+				if (posOp <= 5) {
+					cicloTop++;
+				} else if (5 < posOp && posOp <= 10) {
+					cicloMs++;
+				} else if (10 < posOp && posOp <= 15) {
+					cicloMi++;
+				} else if (15 < posOp) {
+					cicloFraco++;
+				}
+			}
+		}
+		
+		listCy.add(cicloTop);
+		listCy.add(cicloMs);
+		listCy.add(cicloMi);
+		listCy.add(cicloFraco);
+
+		return listCy;
 	}
 
 	/****************/
