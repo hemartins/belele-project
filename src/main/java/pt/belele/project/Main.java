@@ -46,8 +46,8 @@ public class Main {
 	public static void main(String[] args) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("database.odb");
 		EntityManager em = emf.createEntityManager();
-		generateDatabase(em);
-		//createExcels_A_B(em);
+		//generateDatabase(em);
+		createExcels_A_B(em);
 	}
 
 	private static void generateDatabase(EntityManager em) {
@@ -347,384 +347,384 @@ public class Main {
 
 		SeasonController sc = new SeasonController(em);
 
-		String dir = "/Users/Ricardo/Desktop/";
+		String dir = "/Users/Utilizador/Desktop/";
 
-		// INGLATERRA - PREMIER LEAGUE
-		Season e14 = sc.createSeason("E0", 14);
-		generateExcelFiles_PlanA(e14, em, dir, true, true);
-		generateExcelFiles_PlanB(e14, em, dir);
-
-		Season e13 = sc.createSeason("E0", 13);
-		generateExcelFiles_PlanA(e13, em, dir, true, true);
-		generateExcelFiles_PlanB(e13, em, dir);
-
-		Season e12 = sc.createSeason("E0", 12);
-		generateExcelFiles_PlanA(e12, em, dir, true, true);
-		generateExcelFiles_PlanB(e12, em, dir);
-
-		Season e11 = sc.createSeason("E0", 11);
-		generateExcelFiles_PlanA(e11, em, dir, true, true);
-		generateExcelFiles_PlanB(e11, em, dir);
-
-		Season e10 = sc.createSeason("E0", 10);
-		generateExcelFiles_PlanA(e10, em, dir, true, true);
-		generateExcelFiles_PlanB(e10, em, dir);
-
-		// INGLATERRA - PREMIERSHIP
-		Season ee14 = sc.createSeason("E1", 14);
-		generateExcelFiles_PlanA(ee14, em, dir, true, true);
-		generateExcelFiles_PlanB(ee14, em, dir);
-
-		Season ee13 = sc.createSeason("E1", 13);
-		generateExcelFiles_PlanA(ee13, em, dir, true, true);
-		generateExcelFiles_PlanB(ee13, em, dir);
-
-		Season ee12 = sc.createSeason("E1", 12);
-		generateExcelFiles_PlanA(ee12, em, dir, true, true);
-		generateExcelFiles_PlanB(ee12, em, dir);
-
-		Season ee11 = sc.createSeason("E1", 11);
-		generateExcelFiles_PlanA(ee11, em, dir, true, true);
-		generateExcelFiles_PlanB(ee11, em, dir);
-
-		Season ee10 = sc.createSeason("E1", 10);
-		generateExcelFiles_PlanA(ee10, em, dir, true, true);
-		generateExcelFiles_PlanB(ee10, em, dir);
-
-		// INGLATERRA - LEAGUE 1
-		Season eee14 = sc.createSeason("E2", 14);
-		generateExcelFiles_PlanA(eee14, em, dir, true, true);
-		generateExcelFiles_PlanB(eee14, em, dir);
-
-		Season eee13 = sc.createSeason("E2", 13);
-		generateExcelFiles_PlanA(eee13, em, dir, true, true);
-		generateExcelFiles_PlanB(eee13, em, dir);
-
-		Season eee12 = sc.createSeason("E2", 12);
-		generateExcelFiles_PlanA(eee12, em, dir, true, true);
-		generateExcelFiles_PlanB(eee12, em, dir);
-
-		Season eee11 = sc.createSeason("E2", 11);
-		generateExcelFiles_PlanA(eee11, em, dir, true, true);
-		generateExcelFiles_PlanB(eee11, em, dir);
-
-		Season eee10 = sc.createSeason("E2", 10);
-		generateExcelFiles_PlanA(eee10, em, dir, true, true);
-		generateExcelFiles_PlanB(eee10, em, dir);
-
-		// ESCOCIA - PREMIER LEAGUE
-		Season sc14 = sc.createSeason("SC0", 14);
-		generateExcelFiles_PlanA(sc14, em, dir, true, true);
-		generateExcelFiles_PlanB(sc14, em, dir);
-
-		Season sc13 = sc.createSeason("SC0", 13);
-		generateExcelFiles_PlanA(sc13, em, dir, true, true);
-		generateExcelFiles_PlanB(sc13, em, dir);
-
-		Season sc12 = sc.createSeason("SC0", 12);
-		generateExcelFiles_PlanA(sc12, em, dir, true, true);
-		generateExcelFiles_PlanB(sc12, em, dir);
-
-		Season sc11 = sc.createSeason("SC0", 11);
-		generateExcelFiles_PlanA(sc11, em, dir, true, true);
-		generateExcelFiles_PlanB(sc11, em, dir);
-
-		Season sc10 = sc.createSeason("SC0", 10);
-		generateExcelFiles_PlanA(sc10, em, dir, true, true);
-		generateExcelFiles_PlanB(sc10, em, dir);
-
-		// ALEMANHA - BUNDESLIGA1
-		Season d14 = sc.createSeason("D1", 14);
-		generateExcelFiles_PlanA(d14, em, dir, true, true);
-		generateExcelFiles_PlanB(d14, em, dir);
-
-		Season d13 = sc.createSeason("D1", 13);
-		generateExcelFiles_PlanA(d13, em, dir, true, true);
-		generateExcelFiles_PlanB(d13, em, dir);
-
-		Season d12 = sc.createSeason("D1", 12);
-		generateExcelFiles_PlanA(d12, em, dir, true, true);
-		generateExcelFiles_PlanB(d12, em, dir);
-
-		Season d11 = sc.createSeason("D1", 11);
-		generateExcelFiles_PlanA(d11, em, dir, true, true);
-		generateExcelFiles_PlanB(d11, em, dir);
-
-		Season d10 = sc.createSeason("D1", 10);
-		generateExcelFiles_PlanA(d10, em, dir, true, true);
-		generateExcelFiles_PlanB(d10, em, dir);
-
-		// ALEMANHA - BUNDESLIGA2
-		Season dd14 = sc.createSeason("D2", 14);
-		generateExcelFiles_PlanA(dd14, em, dir, true, true);
-		generateExcelFiles_PlanB(dd14, em, dir);
-
-		Season dd13 = sc.createSeason("D2", 13);
-		generateExcelFiles_PlanA(dd13, em, dir, true, true);
-		generateExcelFiles_PlanB(dd13, em, dir);
-
-		Season dd12 = sc.createSeason("D2", 12);
-		generateExcelFiles_PlanA(dd12, em, dir, true, true);
-		generateExcelFiles_PlanB(dd12, em, dir);
-
-		Season dd11 = sc.createSeason("D2", 11);
-		generateExcelFiles_PlanA(dd11, em, dir, true, true);
-		generateExcelFiles_PlanB(dd11, em, dir);
-
-		Season dd10 = sc.createSeason("D2", 10);
-		generateExcelFiles_PlanA(dd10, em, dir, true, true);
-		generateExcelFiles_PlanB(dd10, em, dir);
-
-		// ITALIA - SERIE A
+//		// INGLATERRA - PREMIER LEAGUE
+//		Season e14 = sc.createSeason("E0", 14);
+//		generateExcelFiles_PlanA(e14, em, dir, true, true);
+//		generateExcelFiles_PlanB(e14, em, dir);
+//
+//		Season e13 = sc.createSeason("E0", 13);
+//		generateExcelFiles_PlanA(e13, em, dir, true, true);
+//		generateExcelFiles_PlanB(e13, em, dir);
+//
+//		Season e12 = sc.createSeason("E0", 12);
+//		generateExcelFiles_PlanA(e12, em, dir, true, true);
+//		generateExcelFiles_PlanB(e12, em, dir);
+//
+//		Season e11 = sc.createSeason("E0", 11);
+//		generateExcelFiles_PlanA(e11, em, dir, true, true);
+//		generateExcelFiles_PlanB(e11, em, dir);
+//
+//		Season e10 = sc.createSeason("E0", 10);
+//		generateExcelFiles_PlanA(e10, em, dir, true, true);
+//		generateExcelFiles_PlanB(e10, em, dir);
+//
+//		// INGLATERRA - PREMIERSHIP
+//		Season ee14 = sc.createSeason("E1", 14);
+//		generateExcelFiles_PlanA(ee14, em, dir, true, true);
+//		generateExcelFiles_PlanB(ee14, em, dir);
+//
+//		Season ee13 = sc.createSeason("E1", 13);
+//		generateExcelFiles_PlanA(ee13, em, dir, true, true);
+//		generateExcelFiles_PlanB(ee13, em, dir);
+//
+//		Season ee12 = sc.createSeason("E1", 12);
+//		generateExcelFiles_PlanA(ee12, em, dir, true, true);
+//		generateExcelFiles_PlanB(ee12, em, dir);
+//
+//		Season ee11 = sc.createSeason("E1", 11);
+//		generateExcelFiles_PlanA(ee11, em, dir, true, true);
+//		generateExcelFiles_PlanB(ee11, em, dir);
+//
+//		Season ee10 = sc.createSeason("E1", 10);
+//		generateExcelFiles_PlanA(ee10, em, dir, true, true);
+//		generateExcelFiles_PlanB(ee10, em, dir);
+//
+//		// INGLATERRA - LEAGUE 1
+//		Season eee14 = sc.createSeason("E2", 14);
+//		generateExcelFiles_PlanA(eee14, em, dir, true, true);
+//		generateExcelFiles_PlanB(eee14, em, dir);
+//
+//		Season eee13 = sc.createSeason("E2", 13);
+//		generateExcelFiles_PlanA(eee13, em, dir, true, true);
+//		generateExcelFiles_PlanB(eee13, em, dir);
+//
+//		Season eee12 = sc.createSeason("E2", 12);
+//		generateExcelFiles_PlanA(eee12, em, dir, true, true);
+//		generateExcelFiles_PlanB(eee12, em, dir);
+//
+//		Season eee11 = sc.createSeason("E2", 11);
+//		generateExcelFiles_PlanA(eee11, em, dir, true, true);
+//		generateExcelFiles_PlanB(eee11, em, dir);
+//
+//		Season eee10 = sc.createSeason("E2", 10);
+//		generateExcelFiles_PlanA(eee10, em, dir, true, true);
+//		generateExcelFiles_PlanB(eee10, em, dir);
+//
+//		// ESCOCIA - PREMIER LEAGUE
+//		Season sc14 = sc.createSeason("SC0", 14);
+//		generateExcelFiles_PlanA(sc14, em, dir, true, true);
+//		generateExcelFiles_PlanB(sc14, em, dir);
+//
+//		Season sc13 = sc.createSeason("SC0", 13);
+//		generateExcelFiles_PlanA(sc13, em, dir, true, true);
+//		generateExcelFiles_PlanB(sc13, em, dir);
+//
+//		Season sc12 = sc.createSeason("SC0", 12);
+//		generateExcelFiles_PlanA(sc12, em, dir, true, true);
+//		generateExcelFiles_PlanB(sc12, em, dir);
+//
+//		Season sc11 = sc.createSeason("SC0", 11);
+//		generateExcelFiles_PlanA(sc11, em, dir, true, true);
+//		generateExcelFiles_PlanB(sc11, em, dir);
+//
+//		Season sc10 = sc.createSeason("SC0", 10);
+//		generateExcelFiles_PlanA(sc10, em, dir, true, true);
+//		generateExcelFiles_PlanB(sc10, em, dir);
+//
+//		// ALEMANHA - BUNDESLIGA1
+//		Season d14 = sc.createSeason("D1", 14);
+//		generateExcelFiles_PlanA(d14, em, dir, true, true);
+//		generateExcelFiles_PlanB(d14, em, dir);
+//
+//		Season d13 = sc.createSeason("D1", 13);
+//		generateExcelFiles_PlanA(d13, em, dir, true, true);
+//		generateExcelFiles_PlanB(d13, em, dir);
+//
+//		Season d12 = sc.createSeason("D1", 12);
+//		generateExcelFiles_PlanA(d12, em, dir, true, true);
+//		generateExcelFiles_PlanB(d12, em, dir);
+//
+//		Season d11 = sc.createSeason("D1", 11);
+//		generateExcelFiles_PlanA(d11, em, dir, true, true);
+//		generateExcelFiles_PlanB(d11, em, dir);
+//
+//		Season d10 = sc.createSeason("D1", 10);
+//		generateExcelFiles_PlanA(d10, em, dir, true, true);
+//		generateExcelFiles_PlanB(d10, em, dir);
+//
+//		// ALEMANHA - BUNDESLIGA2
+//		Season dd14 = sc.createSeason("D2", 14);
+//		generateExcelFiles_PlanA(dd14, em, dir, true, true);
+//		generateExcelFiles_PlanB(dd14, em, dir);
+//
+//		Season dd13 = sc.createSeason("D2", 13);
+//		generateExcelFiles_PlanA(dd13, em, dir, true, true);
+//		generateExcelFiles_PlanB(dd13, em, dir);
+//
+//		Season dd12 = sc.createSeason("D2", 12);
+//		generateExcelFiles_PlanA(dd12, em, dir, true, true);
+//		generateExcelFiles_PlanB(dd12, em, dir);
+//
+//		Season dd11 = sc.createSeason("D2", 11);
+//		generateExcelFiles_PlanA(dd11, em, dir, true, true);
+//		generateExcelFiles_PlanB(dd11, em, dir);
+//
+//		Season dd10 = sc.createSeason("D2", 10);
+//		generateExcelFiles_PlanA(dd10, em, dir, true, true);
+//		generateExcelFiles_PlanB(dd10, em, dir);
+//
+//		// ITALIA - SERIE A
 		Season i14 = sc.createSeason("I1", 14);
-		generateExcelFiles_PlanA(i14, em, dir, true, true);
+//		generateExcelFiles_PlanA(i14, em, dir, true, true);
 		generateExcelFiles_PlanB(i14, em, dir);
-
-		Season i13 = sc.createSeason("I1", 13);
-		generateExcelFiles_PlanA(i13, em, dir, true, true);
-		generateExcelFiles_PlanB(i13, em, dir);
-
-		Season i12 = sc.createSeason("I1", 12);
-		generateExcelFiles_PlanA(i12, em, dir, true, true);
-		generateExcelFiles_PlanB(i12, em, dir);
-
-		Season i11 = sc.createSeason("I1", 11);
-		generateExcelFiles_PlanA(i11, em, dir, true, true);
-		generateExcelFiles_PlanB(i11, em, dir);
-
-		Season i10 = sc.createSeason("I1", 10);
-		generateExcelFiles_PlanA(i10, em, dir, true, true);
-		generateExcelFiles_PlanB(i10, em, dir);
-
-		Season i9 = sc.createSeason("I1", 9);
-		generateExcelFiles_PlanA(i9, em, dir, true, true);
-		generateExcelFiles_PlanB(i9, em, dir);
-
-		Season i8 = sc.createSeason("I1", 8);
-		generateExcelFiles_PlanA(i8, em, dir, true, true);
-		generateExcelFiles_PlanB(i8, em, dir);
-
-		Season i7 = sc.createSeason("I1", 7);
-		generateExcelFiles_PlanA(i7, em, dir, true, true);
-		generateExcelFiles_PlanB(i7, em, dir);
-
-		Season i6 = sc.createSeason("I1", 6);
-		generateExcelFiles_PlanA(i6, em, dir, true, true);
-		generateExcelFiles_PlanB(i6, em, dir);
-
-		Season i5 = sc.createSeason("I1", 5);
-		generateExcelFiles_PlanA(i5, em, dir, true, true);
-		generateExcelFiles_PlanB(i5, em, dir);
-
-		// ITALIA - SERIE B
-		Season ii14 = sc.createSeason("I2", 14);
-		generateExcelFiles_PlanA(ii14, em, dir, true, true);
-		generateExcelFiles_PlanB(ii14, em, dir);
-
-		Season ii13 = sc.createSeason("I2", 13);
-		generateExcelFiles_PlanA(ii13, em, dir, true, true);
-		generateExcelFiles_PlanB(ii13, em, dir);
-
-		Season ii12 = sc.createSeason("I2", 12);
-		generateExcelFiles_PlanA(ii12, em, dir, true, true);
-		generateExcelFiles_PlanB(ii12, em, dir);
-
-		Season ii11 = sc.createSeason("I2", 11);
-		generateExcelFiles_PlanA(ii11, em, dir, true, true);
-		generateExcelFiles_PlanB(ii11, em, dir);
-
-		Season ii10 = sc.createSeason("I2", 10);
-		generateExcelFiles_PlanA(ii10, em, dir, true, true);
-		generateExcelFiles_PlanB(ii10, em, dir);
-
-		// ESPANHA - LA LIGA PRIMERA DIVISION
-		Season sp14 = sc.createSeason("SP1", 14);
-		generateExcelFiles_PlanA(sp14, em, dir, true, true);
-		generateExcelFiles_PlanB(sp14, em, dir);
-
-		Season sp13 = sc.createSeason("SP1", 13);
-		generateExcelFiles_PlanA(sp13, em, dir, true, true);
-		generateExcelFiles_PlanB(sp13, em, dir);
-
-		Season sp12 = sc.createSeason("SP1", 12);
-		generateExcelFiles_PlanA(sp12, em, dir, true, true);
-		generateExcelFiles_PlanB(sp12, em, dir);
-
-		Season sp11 = sc.createSeason("SP1", 11);
-		generateExcelFiles_PlanA(sp11, em, dir, true, true);
-		generateExcelFiles_PlanB(sp11, em, dir);
-
-		Season sp10 = sc.createSeason("SP1", 10);
-		generateExcelFiles_PlanA(sp10, em, dir, true, true);
-		generateExcelFiles_PlanB(sp10, em, dir);
-
-		// ESPANHA - LA LIGA SEGUNDA DIVISION
-		Season spsp14 = sc.createSeason("SP2", 14);
-		generateExcelFiles_PlanA(spsp14, em, dir, true, true);
-		generateExcelFiles_PlanB(spsp14, em, dir);
-
-		Season spsp13 = sc.createSeason("SP2", 13);
-		generateExcelFiles_PlanA(spsp13, em, dir, true, true);
-		generateExcelFiles_PlanB(spsp13, em, dir);
-
-		Season spsp12 = sc.createSeason("SP2", 12);
-		generateExcelFiles_PlanA(spsp12, em, dir, true, true);
-		generateExcelFiles_PlanB(spsp12, em, dir);
-
-		Season spsp11 = sc.createSeason("SP2", 11);
-		generateExcelFiles_PlanA(spsp11, em, dir, true, true);
-		generateExcelFiles_PlanB(spsp11, em, dir);
-
-		Season spsp10 = sc.createSeason("SP2", 10);
-		generateExcelFiles_PlanA(spsp10, em, dir, true, true);
-		generateExcelFiles_PlanB(spsp10, em, dir);
-
-		// FRANÇA - CHAMPIONNAT
-		Season f14 = sc.createSeason("F1", 14);
-		generateExcelFiles_PlanA(f14, em, dir, true, true);
-		generateExcelFiles_PlanB(f14, em, dir);
-
-		Season f13 = sc.createSeason("F1", 13);
-		generateExcelFiles_PlanA(f13, em, dir, true, true);
-		generateExcelFiles_PlanB(f13, em, dir);
-
-		Season f12 = sc.createSeason("F1", 12);
-		generateExcelFiles_PlanA(f12, em, dir, true, true);
-		generateExcelFiles_PlanB(f12, em, dir);
-
-		Season f11 = sc.createSeason("F1", 11);
-		generateExcelFiles_PlanA(f11, em, dir, true, true);
-		generateExcelFiles_PlanB(f11, em, dir);
-
-		Season f10 = sc.createSeason("F1", 10);
-		generateExcelFiles_PlanA(f10, em, dir, true, true);
-		generateExcelFiles_PlanB(f10, em, dir);
-
-		// FRANÇA - DIVISION2
-		Season ff14 = sc.createSeason("F2", 14);
-		generateExcelFiles_PlanA(ff14, em, dir, true, true);
-		generateExcelFiles_PlanB(ff14, em, dir);
-
-		Season ff13 = sc.createSeason("F2", 13);
-		generateExcelFiles_PlanA(ff13, em, dir, true, true);
-		generateExcelFiles_PlanB(ff13, em, dir);
-
-		Season ff12 = sc.createSeason("F2", 12);
-		generateExcelFiles_PlanA(ff12, em, dir, true, true);
-		generateExcelFiles_PlanB(ff12, em, dir);
-
-		Season ff11 = sc.createSeason("F2", 11);
-		generateExcelFiles_PlanA(ff11, em, dir, true, true);
-		generateExcelFiles_PlanB(ff11, em, dir);
-
-		Season ff10 = sc.createSeason("F2", 10);
-		generateExcelFiles_PlanA(ff10, em, dir, true, true);
-		generateExcelFiles_PlanB(ff10, em, dir);
-
-		// HOLANDA - EREDIVISE
-		Season n14 = sc.createSeason("N1", 14);
-		generateExcelFiles_PlanA(n14, em, dir, true, true);
-		generateExcelFiles_PlanB(n14, em, dir);
-
-		Season n13 = sc.createSeason("N1", 13);
-		generateExcelFiles_PlanA(n13, em, dir, true, true);
-		generateExcelFiles_PlanB(n13, em, dir);
-
-		Season n12 = sc.createSeason("N1", 12);
-		generateExcelFiles_PlanA(n12, em, dir, true, true);
-		generateExcelFiles_PlanB(n12, em, dir);
-
-		Season n11 = sc.createSeason("N1", 11);
-		generateExcelFiles_PlanA(n11, em, dir, true, true);
-		generateExcelFiles_PlanB(n11, em, dir);
-
-		Season n10 = sc.createSeason("N1", 10);
-		generateExcelFiles_PlanA(n10, em, dir, true, true);
-		generateExcelFiles_PlanB(n10, em, dir);
-
-		// BÉLGICA - JUPILER LEAGUE
-		Season b14 = sc.createSeason("B1", 14);
-		generateExcelFiles_PlanA(b14, em, dir, true, true);
-		generateExcelFiles_PlanB(b14, em, dir);
-
-		Season b13 = sc.createSeason("B1", 13);
-		generateExcelFiles_PlanA(b13, em, dir, true, true);
-		generateExcelFiles_PlanB(b13, em, dir);
-
-		Season b12 = sc.createSeason("B1", 12);
-		generateExcelFiles_PlanA(b12, em, dir, true, true);
-		generateExcelFiles_PlanB(b12, em, dir);
-
-		Season b11 = sc.createSeason("B1", 11);
-		generateExcelFiles_PlanA(b11, em, dir, true, true);
-		generateExcelFiles_PlanB(b11, em, dir);
-
-		Season b10 = sc.createSeason("B1", 10);
-		generateExcelFiles_PlanA(b10, em, dir, true, true);
-		generateExcelFiles_PlanB(b10, em, dir);
-
-		// PORTUGAL - PRIMEIRA LIGA
-		Season p14 = sc.createSeason("P1", 14);
-		generateExcelFiles_PlanA(p14, em, dir, true, true);
-		generateExcelFiles_PlanB(p14, em, dir);
-
-		Season p13 = sc.createSeason("P1", 13);
-		generateExcelFiles_PlanA(p13, em, dir, true, true);
-		generateExcelFiles_PlanB(p13, em, dir);
-
-		Season p12 = sc.createSeason("P1", 12);
-		generateExcelFiles_PlanA(p12, em, dir, true, true);
-		generateExcelFiles_PlanB(p12, em, dir);
-
-		Season p11 = sc.createSeason("P1", 11);
-		generateExcelFiles_PlanA(p11, em, dir, true, true);
-		generateExcelFiles_PlanB(p11, em, dir);
-
-		Season p10 = sc.createSeason("P1", 10);
-		generateExcelFiles_PlanA(p10, em, dir, true, true);
-		generateExcelFiles_PlanB(p10, em, dir);
-
-		// TURQUIA - FUTBOL LIGI 1
-		Season t14 = sc.createSeason("T1", 14);
-		generateExcelFiles_PlanA(t14, em, dir, true, true);
-		generateExcelFiles_PlanB(t14, em, dir);
-
-		Season t13 = sc.createSeason("T1", 13);
-		generateExcelFiles_PlanA(t13, em, dir, true, true);
-		generateExcelFiles_PlanB(t13, em, dir);
-
-		Season t12 = sc.createSeason("T1", 12);
-		generateExcelFiles_PlanA(t12, em, dir, true, true);
-		generateExcelFiles_PlanB(t12, em, dir);
-
-		Season t11 = sc.createSeason("T1", 11);
-		generateExcelFiles_PlanA(t11, em, dir, true, true);
-		generateExcelFiles_PlanB(t11, em, dir);
-
-		Season t10 = sc.createSeason("T1", 10);
-		generateExcelFiles_PlanA(t10, em, dir, true, true);
-		generateExcelFiles_PlanB(t10, em, dir);
-
-		// GRÉCIA - ETHNIKI KATIGORIA
-		Season g14 = sc.createSeason("G1", 14);
-		generateExcelFiles_PlanA(g14, em, dir, true, true);
-		generateExcelFiles_PlanB(g14, em, dir);
-
-		Season g13 = sc.createSeason("G1", 13);
-		generateExcelFiles_PlanA(g13, em, dir, true, true);
-		generateExcelFiles_PlanB(g13, em, dir);
-
-		Season g12 = sc.createSeason("G1", 12);
-		generateExcelFiles_PlanA(g12, em, dir, true, true);
-		generateExcelFiles_PlanB(g12, em, dir);
-
-		Season g11 = sc.createSeason("G1", 11);
-		generateExcelFiles_PlanA(g11, em, dir, true, true);
-		generateExcelFiles_PlanB(g11, em, dir);
-
-		Season g10 = sc.createSeason("G1", 10);
-		generateExcelFiles_PlanA(g10, em, dir, true, true);
-		generateExcelFiles_PlanB(g10, em, dir);
+//
+//		Season i13 = sc.createSeason("I1", 13);
+//		generateExcelFiles_PlanA(i13, em, dir, true, true);
+//		generateExcelFiles_PlanB(i13, em, dir);
+//
+//		Season i12 = sc.createSeason("I1", 12);
+//		generateExcelFiles_PlanA(i12, em, dir, true, true);
+//		generateExcelFiles_PlanB(i12, em, dir);
+//
+//		Season i11 = sc.createSeason("I1", 11);
+//		generateExcelFiles_PlanA(i11, em, dir, true, true);
+//		generateExcelFiles_PlanB(i11, em, dir);
+//
+//		Season i10 = sc.createSeason("I1", 10);
+//		generateExcelFiles_PlanA(i10, em, dir, true, true);
+//		generateExcelFiles_PlanB(i10, em, dir);
+//
+//		Season i9 = sc.createSeason("I1", 9);
+//		generateExcelFiles_PlanA(i9, em, dir, true, true);
+//		generateExcelFiles_PlanB(i9, em, dir);
+//
+//		Season i8 = sc.createSeason("I1", 8);
+//		generateExcelFiles_PlanA(i8, em, dir, true, true);
+//		generateExcelFiles_PlanB(i8, em, dir);
+//
+//		Season i7 = sc.createSeason("I1", 7);
+//		generateExcelFiles_PlanA(i7, em, dir, true, true);
+//		generateExcelFiles_PlanB(i7, em, dir);
+//
+//		Season i6 = sc.createSeason("I1", 6);
+//		generateExcelFiles_PlanA(i6, em, dir, true, true);
+//		generateExcelFiles_PlanB(i6, em, dir);
+//
+//		Season i5 = sc.createSeason("I1", 5);
+//		generateExcelFiles_PlanA(i5, em, dir, true, true);
+//		generateExcelFiles_PlanB(i5, em, dir);
+//
+//		// ITALIA - SERIE B
+//		Season ii14 = sc.createSeason("I2", 14);
+//		generateExcelFiles_PlanA(ii14, em, dir, true, true);
+//		generateExcelFiles_PlanB(ii14, em, dir);
+//
+//		Season ii13 = sc.createSeason("I2", 13);
+//		generateExcelFiles_PlanA(ii13, em, dir, true, true);
+//		generateExcelFiles_PlanB(ii13, em, dir);
+//
+//		Season ii12 = sc.createSeason("I2", 12);
+//		generateExcelFiles_PlanA(ii12, em, dir, true, true);
+//		generateExcelFiles_PlanB(ii12, em, dir);
+//
+//		Season ii11 = sc.createSeason("I2", 11);
+//		generateExcelFiles_PlanA(ii11, em, dir, true, true);
+//		generateExcelFiles_PlanB(ii11, em, dir);
+//
+//		Season ii10 = sc.createSeason("I2", 10);
+//		generateExcelFiles_PlanA(ii10, em, dir, true, true);
+//		generateExcelFiles_PlanB(ii10, em, dir);
+//
+//		// ESPANHA - LA LIGA PRIMERA DIVISION
+//		Season sp14 = sc.createSeason("SP1", 14);
+//		generateExcelFiles_PlanA(sp14, em, dir, true, true);
+//		generateExcelFiles_PlanB(sp14, em, dir);
+//
+//		Season sp13 = sc.createSeason("SP1", 13);
+//		generateExcelFiles_PlanA(sp13, em, dir, true, true);
+//		generateExcelFiles_PlanB(sp13, em, dir);
+//
+//		Season sp12 = sc.createSeason("SP1", 12);
+//		generateExcelFiles_PlanA(sp12, em, dir, true, true);
+//		generateExcelFiles_PlanB(sp12, em, dir);
+//
+//		Season sp11 = sc.createSeason("SP1", 11);
+//		generateExcelFiles_PlanA(sp11, em, dir, true, true);
+//		generateExcelFiles_PlanB(sp11, em, dir);
+//
+//		Season sp10 = sc.createSeason("SP1", 10);
+//		generateExcelFiles_PlanA(sp10, em, dir, true, true);
+//		generateExcelFiles_PlanB(sp10, em, dir);
+//
+//		// ESPANHA - LA LIGA SEGUNDA DIVISION
+//		Season spsp14 = sc.createSeason("SP2", 14);
+//		generateExcelFiles_PlanA(spsp14, em, dir, true, true);
+//		generateExcelFiles_PlanB(spsp14, em, dir);
+//
+//		Season spsp13 = sc.createSeason("SP2", 13);
+//		generateExcelFiles_PlanA(spsp13, em, dir, true, true);
+//		generateExcelFiles_PlanB(spsp13, em, dir);
+//
+//		Season spsp12 = sc.createSeason("SP2", 12);
+//		generateExcelFiles_PlanA(spsp12, em, dir, true, true);
+//		generateExcelFiles_PlanB(spsp12, em, dir);
+//
+//		Season spsp11 = sc.createSeason("SP2", 11);
+//		generateExcelFiles_PlanA(spsp11, em, dir, true, true);
+//		generateExcelFiles_PlanB(spsp11, em, dir);
+//
+//		Season spsp10 = sc.createSeason("SP2", 10);
+//		generateExcelFiles_PlanA(spsp10, em, dir, true, true);
+//		generateExcelFiles_PlanB(spsp10, em, dir);
+//
+//		// FRANÇA - CHAMPIONNAT
+//		Season f14 = sc.createSeason("F1", 14);
+//		generateExcelFiles_PlanA(f14, em, dir, true, true);
+//		generateExcelFiles_PlanB(f14, em, dir);
+//
+//		Season f13 = sc.createSeason("F1", 13);
+//		generateExcelFiles_PlanA(f13, em, dir, true, true);
+//		generateExcelFiles_PlanB(f13, em, dir);
+//
+//		Season f12 = sc.createSeason("F1", 12);
+//		generateExcelFiles_PlanA(f12, em, dir, true, true);
+//		generateExcelFiles_PlanB(f12, em, dir);
+//
+//		Season f11 = sc.createSeason("F1", 11);
+//		generateExcelFiles_PlanA(f11, em, dir, true, true);
+//		generateExcelFiles_PlanB(f11, em, dir);
+//
+//		Season f10 = sc.createSeason("F1", 10);
+//		generateExcelFiles_PlanA(f10, em, dir, true, true);
+//		generateExcelFiles_PlanB(f10, em, dir);
+//
+//		// FRANÇA - DIVISION2
+//		Season ff14 = sc.createSeason("F2", 14);
+//		generateExcelFiles_PlanA(ff14, em, dir, true, true);
+//		generateExcelFiles_PlanB(ff14, em, dir);
+//
+//		Season ff13 = sc.createSeason("F2", 13);
+//		generateExcelFiles_PlanA(ff13, em, dir, true, true);
+//		generateExcelFiles_PlanB(ff13, em, dir);
+//
+//		Season ff12 = sc.createSeason("F2", 12);
+//		generateExcelFiles_PlanA(ff12, em, dir, true, true);
+//		generateExcelFiles_PlanB(ff12, em, dir);
+//
+//		Season ff11 = sc.createSeason("F2", 11);
+//		generateExcelFiles_PlanA(ff11, em, dir, true, true);
+//		generateExcelFiles_PlanB(ff11, em, dir);
+//
+//		Season ff10 = sc.createSeason("F2", 10);
+//		generateExcelFiles_PlanA(ff10, em, dir, true, true);
+//		generateExcelFiles_PlanB(ff10, em, dir);
+//
+//		// HOLANDA - EREDIVISE
+//		Season n14 = sc.createSeason("N1", 14);
+//		generateExcelFiles_PlanA(n14, em, dir, true, true);
+//		generateExcelFiles_PlanB(n14, em, dir);
+//
+//		Season n13 = sc.createSeason("N1", 13);
+//		generateExcelFiles_PlanA(n13, em, dir, true, true);
+//		generateExcelFiles_PlanB(n13, em, dir);
+//
+//		Season n12 = sc.createSeason("N1", 12);
+//		generateExcelFiles_PlanA(n12, em, dir, true, true);
+//		generateExcelFiles_PlanB(n12, em, dir);
+//
+//		Season n11 = sc.createSeason("N1", 11);
+//		generateExcelFiles_PlanA(n11, em, dir, true, true);
+//		generateExcelFiles_PlanB(n11, em, dir);
+//
+//		Season n10 = sc.createSeason("N1", 10);
+//		generateExcelFiles_PlanA(n10, em, dir, true, true);
+//		generateExcelFiles_PlanB(n10, em, dir);
+//
+//		// BÉLGICA - JUPILER LEAGUE
+//		Season b14 = sc.createSeason("B1", 14);
+//		generateExcelFiles_PlanA(b14, em, dir, true, true);
+//		generateExcelFiles_PlanB(b14, em, dir);
+//
+//		Season b13 = sc.createSeason("B1", 13);
+//		generateExcelFiles_PlanA(b13, em, dir, true, true);
+//		generateExcelFiles_PlanB(b13, em, dir);
+//
+//		Season b12 = sc.createSeason("B1", 12);
+//		generateExcelFiles_PlanA(b12, em, dir, true, true);
+//		generateExcelFiles_PlanB(b12, em, dir);
+//
+//		Season b11 = sc.createSeason("B1", 11);
+//		generateExcelFiles_PlanA(b11, em, dir, true, true);
+//		generateExcelFiles_PlanB(b11, em, dir);
+//
+//		Season b10 = sc.createSeason("B1", 10);
+//		generateExcelFiles_PlanA(b10, em, dir, true, true);
+//		generateExcelFiles_PlanB(b10, em, dir);
+//
+//		// PORTUGAL - PRIMEIRA LIGA
+//		Season p14 = sc.createSeason("P1", 14);
+//		generateExcelFiles_PlanA(p14, em, dir, true, true);
+//		generateExcelFiles_PlanB(p14, em, dir);
+//
+//		Season p13 = sc.createSeason("P1", 13);
+//		generateExcelFiles_PlanA(p13, em, dir, true, true);
+//		generateExcelFiles_PlanB(p13, em, dir);
+//
+//		Season p12 = sc.createSeason("P1", 12);
+//		generateExcelFiles_PlanA(p12, em, dir, true, true);
+//		generateExcelFiles_PlanB(p12, em, dir);
+//
+//		Season p11 = sc.createSeason("P1", 11);
+//		generateExcelFiles_PlanA(p11, em, dir, true, true);
+//		generateExcelFiles_PlanB(p11, em, dir);
+//
+//		Season p10 = sc.createSeason("P1", 10);
+//		generateExcelFiles_PlanA(p10, em, dir, true, true);
+//		generateExcelFiles_PlanB(p10, em, dir);
+//
+//		// TURQUIA - FUTBOL LIGI 1
+//		Season t14 = sc.createSeason("T1", 14);
+//		generateExcelFiles_PlanA(t14, em, dir, true, true);
+//		generateExcelFiles_PlanB(t14, em, dir);
+//
+//		Season t13 = sc.createSeason("T1", 13);
+//		generateExcelFiles_PlanA(t13, em, dir, true, true);
+//		generateExcelFiles_PlanB(t13, em, dir);
+//
+//		Season t12 = sc.createSeason("T1", 12);
+//		generateExcelFiles_PlanA(t12, em, dir, true, true);
+//		generateExcelFiles_PlanB(t12, em, dir);
+//
+//		Season t11 = sc.createSeason("T1", 11);
+//		generateExcelFiles_PlanA(t11, em, dir, true, true);
+//		generateExcelFiles_PlanB(t11, em, dir);
+//
+//		Season t10 = sc.createSeason("T1", 10);
+//		generateExcelFiles_PlanA(t10, em, dir, true, true);
+//		generateExcelFiles_PlanB(t10, em, dir);
+//
+//		// GRÉCIA - ETHNIKI KATIGORIA
+//		Season g14 = sc.createSeason("G1", 14);
+//		generateExcelFiles_PlanA(g14, em, dir, true, true);
+//		generateExcelFiles_PlanB(g14, em, dir);
+//
+//		Season g13 = sc.createSeason("G1", 13);
+//		generateExcelFiles_PlanA(g13, em, dir, true, true);
+//		generateExcelFiles_PlanB(g13, em, dir);
+//
+//		Season g12 = sc.createSeason("G1", 12);
+//		generateExcelFiles_PlanA(g12, em, dir, true, true);
+//		generateExcelFiles_PlanB(g12, em, dir);
+//
+//		Season g11 = sc.createSeason("G1", 11);
+//		generateExcelFiles_PlanA(g11, em, dir, true, true);
+//		generateExcelFiles_PlanB(g11, em, dir);
+//
+//		Season g10 = sc.createSeason("G1", 10);
+//		generateExcelFiles_PlanA(g10, em, dir, true, true);
+//		generateExcelFiles_PlanB(g10, em, dir);
 
 	}
 
@@ -2506,204 +2506,178 @@ public class Main {
 				for (int i = 0; i < h2h.size(); i++) {
 					Fixture mF = h2h.get(h2h.size() - 1 - i);
 					if (i == 0) {
-						if (mF.getResult().equals(ResultType.WIN)) {
+						if (mF.getResult().getResultType().equals(ResultType.WIN)) {
 							h2hRes1_W = 1;
 							h2hRes1_D = 0;
 							h2hRes1_L = 0;
 						}
-						;
-						if (mF.getResult().equals(ResultType.DRAW)) {
-							h2hRes1_D = 1;
+						
+						else if (mF.getResult().getResultType().equals(ResultType.DRAW)) {
 							h2hRes1_W = 0;
+							h2hRes1_D = 1;
 							h2hRes1_L = 0;
 						}
-						;
-						if (mF.getResult().equals(ResultType.LOSE)) {
-							h2hRes1_L = 1;
-							h2hRes1_D = 0;
+						
+						else{ //(mF.getResult().equals(ResultType.LOSE)) {
 							h2hRes1_W = 0;
+							h2hRes1_D = 0;
+							h2hRes1_L = 1;
 						}
-						;
+						
 					}
 					if (i == 1) {
-						if (mF.getResult().equals(ResultType.WIN)) {
+						if (mF.getResult().getResultType().equals(ResultType.WIN)) {
 							h2hRes2_W = 1;
 							h2hRes2_D = 0;
 							h2hRes2_L = 0;
 						}
-						;
-						if (mF.getResult().equals(ResultType.DRAW)) {
-							h2hRes2_D = 1;
+						else if (mF.getResult().getResultType().equals(ResultType.DRAW)) {
 							h2hRes2_W = 0;
+							h2hRes2_D = 1;
 							h2hRes2_L = 0;
 						}
-						;
-						if (mF.getResult().equals(ResultType.LOSE)) {
-							h2hRes2_L = 1;
+						else{ //(mF.getResult().equals(ResultType.LOSE)) {
 							h2hRes2_W = 0;
 							h2hRes2_D = 0;
+							h2hRes2_L = 1;
 						}
-						;
 					}
 					if (i == 2) {
-						if (mF.getResult().equals(ResultType.WIN)) {
+						if (mF.getResult().getResultType().equals(ResultType.WIN)) {
 							h2hRes3_W = 1;
 							h2hRes3_D = 0;
 							h2hRes3_L = 0;
 						}
-						;
-						if (mF.getResult().equals(ResultType.DRAW)) {
-							h2hRes3_D = 1;
+						else if (mF.getResult().getResultType().equals(ResultType.DRAW)) {
 							h2hRes3_W = 0;
+							h2hRes3_D = 1;
 							h2hRes3_L = 0;
 						}
-						;
-						if (mF.getResult().equals(ResultType.LOSE)) {
-							h2hRes3_L = 1;
+						else{ //(mF.getResult().equals(ResultType.LOSE)) {
 							h2hRes3_W = 0;
 							h2hRes3_D = 0;
+							h2hRes3_L = 1;
 						}
-						;
+						
 					}
 					if (i == 3) {
-						if (mF.getResult().equals(ResultType.WIN)) {
+						if (mF.getResult().getResultType().equals(ResultType.WIN)) {
 							h2hRes4_W = 1;
 							h2hRes4_D = 0;
 							h2hRes4_L = 0;
 						}
-						;
-						if (mF.getResult().equals(ResultType.DRAW)) {
+						else if (mF.getResult().getResultType().equals(ResultType.DRAW)) {
 							h2hRes4_W = 0;
 							h2hRes4_D = 1;
 							h2hRes4_L = 0;
 						}
-						;
-						if (mF.getResult().equals(ResultType.LOSE)) {
+						else{ //(mF.getResult().equals(ResultType.LOSE)) {
 							h2hRes4_W = 0;
 							h2hRes4_D = 0;
 							h2hRes4_L = 1;
 						}
-						;
 					}
 					if (i == 4) {
-						if (mF.getResult().equals(ResultType.WIN)) {
+						if (mF.getResult().getResultType().equals(ResultType.WIN)) {
 							h2hRes5_W = 1;
 							h2hRes5_D = 0;
 							h2hRes5_L = 0;
 						}
-						;
-						if (mF.getResult().equals(ResultType.DRAW)) {
+						else if (mF.getResult().getResultType().equals(ResultType.DRAW)) {
 							h2hRes5_W = 0;
 							h2hRes5_D = 1;
 							h2hRes5_L = 0;
 						}
-						;
-						if (mF.getResult().equals(ResultType.LOSE)) {
+						else{ //(mF.getResult().equals(ResultType.LOSE)) {
 							h2hRes5_W = 0;
 							h2hRes5_D = 0;
 							h2hRes5_L = 1;
 						}
-						;
 					}
 					if (i == 5) {
-						if (mF.getResult().equals(ResultType.WIN)) {
+						if (mF.getResult().getResultType().equals(ResultType.WIN)) {
 							h2hRes6_W = 1;
 							h2hRes6_D = 0;
 							h2hRes6_L = 0;
 						}
-						;
-						if (mF.getResult().equals(ResultType.DRAW)) {
+						else if (mF.getResult().getResultType().equals(ResultType.DRAW)) {
 							h2hRes6_W = 0;
 							h2hRes6_D = 1;
 							h2hRes6_L = 0;
 						}
-						;
-						if (mF.getResult().equals(ResultType.LOSE)) {
+						else{ //(mF.getResult().equals(ResultType.LOSE)) {
 							h2hRes6_W = 0;
 							h2hRes6_D = 0;
 							h2hRes6_L = 1;
 						}
-						;
 					}
 					if (i == 6) {
-						if (mF.getResult().equals(ResultType.WIN)) {
+						if (mF.getResult().getResultType().equals(ResultType.WIN)) {
 							h2hRes7_W = 1;
 							h2hRes7_D = 0;
 							h2hRes7_L = 0;
 						}
-						;
-						if (mF.getResult().equals(ResultType.DRAW)) {
+						else if (mF.getResult().getResultType().equals(ResultType.DRAW)) {
 							h2hRes7_W = 0;
 							h2hRes7_D = 1;
 							h2hRes7_L = 0;
 						}
-						;
-						if (mF.getResult().equals(ResultType.LOSE)) {
+						else{ //(mF.getResult().equals(ResultType.LOSE)) {
 							h2hRes7_W = 0;
 							h2hRes7_D = 0;
 							h2hRes7_L = 1;
 						}
-						;
 					}
 					if (i == 7) {
-						if (mF.getResult().equals(ResultType.WIN)) {
+						if (mF.getResult().getResultType().equals(ResultType.WIN)) {
 							h2hRes8_W = 1;
-							h2hRes8_W = 0;
-							h2hRes8_W = 0;
-						}
-						;
-						if (mF.getResult().equals(ResultType.DRAW)) {
-							h2hRes8_D = 1;
-							h2hRes8_W = 0;
+							h2hRes8_D = 0;
 							h2hRes8_L = 0;
 						}
-						;
-						if (mF.getResult().equals(ResultType.LOSE)) {
-							h2hRes8_L = 1;
+						else if (mF.getResult().getResultType().equals(ResultType.DRAW)) {
+							h2hRes8_W = 0;
+							h2hRes8_D = 1;
+							h2hRes8_L = 0;
+						}
+						else{ //(mF.getResult().equals(ResultType.LOSE)) {
 							h2hRes8_W = 0;
 							h2hRes8_D = 0;
+							h2hRes8_L = 1;
 						}
-						;
 					}
 					if (i == 8) {
-						if (mF.getResult().equals(ResultType.WIN)) {
+						if (mF.getResult().getResultType().equals(ResultType.WIN)) {
 							h2hRes9_W = 1;
 							h2hRes9_D = 0;
 							h2hRes9_L = 0;
 						}
-						;
-						if (mF.getResult().equals(ResultType.DRAW)) {
+						else if (mF.getResult().getResultType().equals(ResultType.DRAW)) {
 							h2hRes9_W = 0;
 							h2hRes9_D = 1;
 							h2hRes9_L = 0;
 						}
-						;
-						if (mF.getResult().equals(ResultType.LOSE)) {
+						else{ //(mF.getResult().equals(ResultType.LOSE)) {
 							h2hRes9_W = 0;
 							h2hRes9_D = 0;
 							h2hRes9_L = 1;
 						}
-						;
 					}
 					if (i == 9) {
-						if (mF.getResult().equals(ResultType.WIN)) {
+						if (mF.getResult().getResultType().equals(ResultType.WIN)) {
 							h2hRes10_W = 1;
 							h2hRes10_D = 0;
 							h2hRes10_L = 0;
 						}
-						;
-						if (mF.getResult().equals(ResultType.DRAW)) {
+						else if (mF.getResult().getResultType().equals(ResultType.DRAW)) {
 							h2hRes10_W = 0;
 							h2hRes10_D = 1;
 							h2hRes10_L = 0;
 						}
-						;
-						if (mF.getResult().equals(ResultType.LOSE)) {
-							h2hRes10_L = 1;
+						else{ //(mF.getResult().equals(ResultType.LOSE)) {
 							h2hRes10_W = 0;
 							h2hRes10_D = 0;
+							h2hRes10_L = 1;
 						}
-						;
 						break;
 					}
 				}
