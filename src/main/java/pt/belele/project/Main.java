@@ -1462,6 +1462,9 @@ public class Main {
 		List<PlanBRow> planBDataList = new ArrayList<PlanBRow>();
 
 		for (Fixture f : s.getFixtures()) {
+			
+			if (f.getDate().before(formatter.parseDateTime("23/11/" + (s.getYear() + 2000)).toDate()))
+				continue;
 
 			ExcelColumnsCalculation exHomeTeam = new ExcelColumnsCalculation(f.getHomeTeam(), em);
 			ExcelColumnsCalculation exAwayTeam = new ExcelColumnsCalculation(f.getAwayTeam(), em);
