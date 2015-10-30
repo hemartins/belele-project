@@ -16,6 +16,17 @@ public class Odd {
 
 	}
 	
+	public Odd(Double backHomeWin, Double backDraw, Double backAwayWin, Double layHomeWin, Double layDraw,
+			Double layAwayWin) {
+		super();
+		this.backHomeWin = backHomeWin;
+		this.backDraw = backDraw;
+		this.backAwayWin = backAwayWin;
+		this.layHomeWin = layHomeWin;
+		this.layDraw = layDraw;
+		this.layAwayWin = layAwayWin;
+	}
+
 	public Odd(Double backHomeWin, Double backDraw, Double backAwayWin) {
 		this.backHomeWin = backHomeWin;
 		this.backDraw = backDraw;

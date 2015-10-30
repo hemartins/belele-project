@@ -6,14 +6,14 @@ import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import flanagan.math.MaximisationFunction;
 import pt.belele.project.algorithm.Algorithm;
 import pt.belele.project.entities.Bet;
 import pt.belele.project.entities.Bet.MatchOddBet;
 import pt.belele.project.entities.CutOff;
 import pt.belele.project.entities.Fixture;
-import pt.belele.project.entities.PernaOdds;
+import pt.belele.project.entities.Odd;
 import pt.belele.project.entities.Week;
-import flanagan.math.MaximisationFunction;
 
 public class MaximFunction implements MaximisationFunction {
 	
@@ -21,7 +21,7 @@ public class MaximFunction implements MaximisationFunction {
 
 	private Week week;
 
-	private Map<Fixture, PernaOdds> fixtures;
+	private Map<Fixture, Odd> fixtures;
 
 	// evaluation function
 	public double function(double[] x) {
@@ -98,7 +98,7 @@ public class MaximFunction implements MaximisationFunction {
 		this.week = week;
 	}
 
-	public void setFixtures(Map<Fixture, PernaOdds> fixtures) {
+	public void setFixtures(Map<Fixture, Odd> fixtures) {
 		this.fixtures = fixtures;
 	}
 }

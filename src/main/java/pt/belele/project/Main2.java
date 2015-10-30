@@ -13,14 +13,14 @@ import javax.persistence.Persistence;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import flanagan.math.Maximisation;
 import pt.belele.project.controllers.SeasonController;
 import pt.belele.project.entities.Fixture;
-import pt.belele.project.entities.PernaOdds;
+import pt.belele.project.entities.Odd;
 import pt.belele.project.entities.Season;
 import pt.belele.project.entities.Week;
 import pt.belele.project.persistence.FixtureDAO;
 import pt.belele.project.util.MaximFunction;
-import flanagan.math.Maximisation;
 
 public class Main2 {
 	
@@ -57,15 +57,15 @@ public class Main2 {
 		LOG.info("Number of Fixtures: " + fixtures.size());
 		
 		//CONSTRUIR EXCEL E IR BUSCAR AS ODDS DO PERNA
-		Map<Fixture, PernaOdds> fixtureMap = new HashMap<Fixture, PernaOdds>();
+		Map<Fixture, Odd> fixtureMap = new HashMap<Fixture, Odd>();
 		
 		for(Fixture f: fixtures)
 		{
-			double oddsBackPerna[] = {0.2,0.7,0.1};
-			double oddsLayPerna[] = {0.6,0.1,0.3};
-			PernaOdds pernaOdds = new PernaOdds(oddsBackPerna[0], oddsBackPerna[1], oddsBackPerna[2], oddsLayPerna[0], oddsLayPerna[1], oddsLayPerna[2]);
+			double backANNOdds[] = {0.2,0.7,0.1};
+			double layANNOdds[] = {0.6,0.1,0.3};
+			Odd ANNOdds = new Odd(backANNOdds[0], backANNOdds[1], backANNOdds[2], layANNOdds[0], layANNOdds[1], layANNOdds[2]);
 			
-			fixtureMap.put(f, pernaOdds);
+			fixtureMap.put(f, ANNOdds);
 		}
 		
 		// Create instance of Maximisation

@@ -13,7 +13,6 @@ import pt.belele.project.entities.Bet.MatchOddBet;
 import pt.belele.project.entities.CutOff;
 import pt.belele.project.entities.Fixture;
 import pt.belele.project.entities.Odd;
-import pt.belele.project.entities.PernaOdds;
 import pt.belele.project.entities.Week;
 import pt.belele.project.util.Combination;
 import pt.belele.project.util.Triplet;
@@ -28,34 +27,11 @@ public class Algorithm {
 
 	private double oddWeightLOSE;
 
-	private double backWinProcessedOdd;
-
-	private double backDrawProcessedOdd;
-
-	private double backLoseProcessedOdd;
-
-	private double layWinProcessedOdd;
-
-	private double layDrawProcessedOdd;
-
-	private double layLoseProcessedOdd;
-
-	private double backWinNeuralNetworkOdd;
-
-	private double backDrawNeuralNetworkOdd;
-
-	private double backLoseNeuralNetworkOdd;
-
-	private double layWinNeuralNetworkOdd;
-
-	private double layDrawNeuralNetworkOdd;
-
-	private double layLoseNeuralNetworkOdd;
 
 	public Algorithm() {
 	}
 
-	public List<Bet> runAlgorithm(Week w, Map<Fixture, PernaOdds> fixtures, CutOff cutOffSimple,
+	public List<Bet> runAlgorithm(Week w, Map<Fixture, Odd> fixtures, CutOff cutOffSimple,
 			CutOff cutOffDouble, CutOff cutOffTriple, CutOff cutOffMultiple) {
 
 		List<Bet> bets = new ArrayList<Bet>();
@@ -65,12 +41,12 @@ public class Algorithm {
 			atributeOddWeightCutOff(f, cutOffSimple);
 
 			if (cutOffSimple != null) {
-				calculateNNOdds(f, cutOffSimple, fixtures.get(f).getNeuralNetworkBackWIN(),
-						fixtures.get(f).getNeuralNetworkBackDRAW(), fixtures.get(f).getNeuralNetworkBackLOSE(),
-						fixtures.get(f).getNeuralNetworkLayWIN(), fixtures.get(f).getNeuralNetworkLayDRAW(),
-						fixtures.get(f).getNeuralNetworkLayLOSE());
-				calculateSimpleBetProcessedOdds(f, cutOffSimple);
-				bets.addAll(simpleBetDecision(w, f, cutOffSimple));
+				Odd NNOdd = calculateNNOdds(f, cutOffSimple, fixtures.get(f).getBackHomeWin(),
+						fixtures.get(f).getBackDraw(), fixtures.get(f).getBackAwayWin(),
+						fixtures.get(f).getLayHomeWin(), fixtures.get(f).getLayDraw(),
+						fixtures.get(f).getLayAwayWin());
+				Odd processedOdds = calculateSimpleBetProcessedOdds(f, NNOdd, cutOffSimple);
+				bets.addAll(simpleBetDecision(w, f, processedOdds, cutOffSimple));
 			}
 		}
 
@@ -78,40 +54,40 @@ public class Algorithm {
 		fixtureList.addAll(fixtures.keySet());
 
 		if (cutOffDouble != null) {
-			Map<Fixture, Fixture> fixtureMap = Combination.doubleCombination(fixtureList);
 
 			for (Fixture f : fixtureList) {
-				calculateNNOdds(f, cutOffDouble, fixtures.get(f).getNeuralNetworkBackWIN(),
-						fixtures.get(f).getNeuralNetworkBackDRAW(), fixtures.get(f).getNeuralNetworkBackLOSE(),
-						fixtures.get(f).getNeuralNetworkLayWIN(), fixtures.get(f).getNeuralNetworkLayDRAW(),
-						fixtures.get(f).getNeuralNetworkLayLOSE());
+				Odd NNOdd = calculateNNOdds(f, cutOffDouble, fixtures.get(f).getBackHomeWin(),
+						fixtures.get(f).getBackDraw(), fixtures.get(f).getBackAwayWin(),
+						fixtures.get(f).getLayHomeWin(), fixtures.get(f).getLayDraw(),
+						fixtures.get(f).getLayAwayWin());
 			}
 
-			calculateMultipleBetProcessedOdds(fixtureList, cutOffDouble);
-			bets.addAll(doubleBetDecision(w, fixtureMap, cutOffDouble));
+			Map<Fixture, Fixture> fixtureMap = Combination.doubleCombination(fixtureList);
+			/*object x = */calculateDoubleBetProcessedOdds(fixtureMap, cutOffDouble);
+			//bets.addAll(doubleBetDecision(w, /*x,*/ cutOffDouble));
 		}
 		if (cutOffTriple != null) {
 			for (Fixture f : fixtureList) {
-				calculateNNOdds(f, cutOffTriple, fixtures.get(f).getNeuralNetworkBackWIN(),
-						fixtures.get(f).getNeuralNetworkBackDRAW(), fixtures.get(f).getNeuralNetworkBackLOSE(),
-						fixtures.get(f).getNeuralNetworkLayWIN(), fixtures.get(f).getNeuralNetworkLayDRAW(),
-						fixtures.get(f).getNeuralNetworkLayLOSE());
+				Odd NNOdd = calculateNNOdds(f, cutOffTriple, fixtures.get(f).getBackHomeWin(),
+						fixtures.get(f).getBackDraw(), fixtures.get(f).getBackAwayWin(),
+						fixtures.get(f).getLayHomeWin(), fixtures.get(f).getLayDraw(),
+						fixtures.get(f).getLayAwayWin());
 			}
 			
-			calculateMultipleBetProcessedOdds(fixtureList, cutOffTriple);
 			List<Triplet<Fixture, Fixture, Fixture>> fixtureTriplet = Combination.tripleCombination(fixtureList);
-			bets.addAll(tripleBetDecision(w, fixtureTriplet, cutOffTriple));
+			/*object x = */ calculateTripleBetProcessedOdds(fixtureTriplet, cutOffTriple);
+			//bets.addAll(tripleBetDecision(w, fixtureTriplet, cutOffTriple));
 		}
 		if (cutOffMultiple != null) {
 			for (Fixture f : fixtureList) {
-				calculateNNOdds(f, cutOffMultiple, fixtures.get(f).getNeuralNetworkBackWIN(),
-						fixtures.get(f).getNeuralNetworkBackDRAW(), fixtures.get(f).getNeuralNetworkBackLOSE(),
-						fixtures.get(f).getNeuralNetworkLayWIN(), fixtures.get(f).getNeuralNetworkLayDRAW(),
-						fixtures.get(f).getNeuralNetworkLayLOSE());
+				Odd NNOdd = calculateNNOdds(f, cutOffMultiple, fixtures.get(f).getBackHomeWin(),
+						fixtures.get(f).getBackDraw(), fixtures.get(f).getBackAwayWin(),
+						fixtures.get(f).getLayHomeWin(), fixtures.get(f).getLayDraw(),
+						fixtures.get(f).getLayAwayWin());
 			}
 			
 			calculateMultipleBetProcessedOdds(fixtureList, cutOffMultiple);
-			bets.addAll(multipleBetDecision(w, fixtureList, cutOffMultiple));
+			//bets.addAll(multipleBetDecision(w, fixtureList, cutOffMultiple));
 		}
 
 		return bets;
@@ -200,90 +176,147 @@ public class Algorithm {
 		LOG.trace("oddWeightLOSE " + oddWeightLOSE);
 	}
 
-	private void calculateNNOdds(Fixture f, CutOff cutOff, double neuralNetworkBackWIN, double neuralNetworkBackDRAW,
+	private Odd calculateNNOdds(Fixture f, CutOff cutOff, double neuralNetworkBackWIN, double neuralNetworkBackDRAW,
 			double neuralNetworkBackLOSE, double neuralNetworkLayWIN, double neuralNetworkLayDRAW,
 			double neuralNetworkLayLOSE) {
-
+		
+		Odd NNOdd = new Odd();
+		
 		if (f.getOdd().getBackHomeWin() < cutOff.getMinimumBackOdd()) {
-			backWinNeuralNetworkOdd = 0;
+			NNOdd.setBackHomeWin(0.0);
 		} else {
-			backWinNeuralNetworkOdd = neuralNetworkBackWIN;
+			NNOdd.setBackHomeWin(neuralNetworkBackWIN);
 		}
 		if (f.getOdd().getBackDraw() < cutOff.getMinimumBackOdd()) {
-			backDrawNeuralNetworkOdd = 0;
+			NNOdd.setBackDraw(0.0);
 		} else {
-			backDrawNeuralNetworkOdd = neuralNetworkBackDRAW;
+			NNOdd.setBackDraw(neuralNetworkBackDRAW);
 		}
 		if (f.getOdd().getBackAwayWin() < cutOff.getMinimumBackOdd()) {
-			backLoseNeuralNetworkOdd = 0;
+			NNOdd.setBackAwayWin(0.0);
 		} else {
-			backLoseNeuralNetworkOdd = neuralNetworkBackLOSE;
+			NNOdd.setBackAwayWin(neuralNetworkBackLOSE);
 		}
 		if (f.getOdd().getLayHomeWin() < cutOff.getMinimumLayOdd()) {
-			layWinNeuralNetworkOdd = 0;
+			NNOdd.setLayHomeWin(0.0);
 		} else {
-			layWinNeuralNetworkOdd = neuralNetworkLayWIN;
+			NNOdd.setLayHomeWin(neuralNetworkLayWIN);
 		}
 		if (f.getOdd().getLayDraw() < cutOff.getMinimumLayOdd()) {
-			layDrawNeuralNetworkOdd = 0;
+			NNOdd.setLayDraw(0.0);
 		} else {
-			layDrawNeuralNetworkOdd = neuralNetworkLayDRAW;
+			NNOdd.setLayDraw(neuralNetworkLayDRAW);
 		}
 		if (f.getOdd().getLayAwayWin() < cutOff.getMinimumLayOdd()) {
-			layLoseNeuralNetworkOdd = 0;
+			NNOdd.setLayAwayWin(0.0);
 		} else {
-			layLoseNeuralNetworkOdd = neuralNetworkLayLOSE;
+			NNOdd.setLayAwayWin(neuralNetworkLayLOSE);
 		}
 
-		LOG.trace("backWinNeuralNetworkOdd " + backWinNeuralNetworkOdd);
-		LOG.trace("backDrawNeuralNetworkOdd " + backDrawNeuralNetworkOdd);
-		LOG.trace("backLoseNeuralNetworkOdd " + backLoseNeuralNetworkOdd);
-		LOG.trace("layWinNeuralNetworkOdd " + layWinNeuralNetworkOdd);
-		LOG.trace("layDrawNeuralNetworkOdd " + layDrawNeuralNetworkOdd);
-		LOG.trace("layLoseNeuralNetworkOdd " + layLoseNeuralNetworkOdd);
+//		LOG.trace("backWinNeuralNetworkOdd " + backWinNeuralNetworkOdd);
+//		LOG.trace("backDrawNeuralNetworkOdd " + backDrawNeuralNetworkOdd);
+//		LOG.trace("backLoseNeuralNetworkOdd " + backLoseNeuralNetworkOdd);
+//		LOG.trace("layWinNeuralNetworkOdd " + layWinNeuralNetworkOdd);
+//		LOG.trace("layDrawNeuralNetworkOdd " + layDrawNeuralNetworkOdd);
+//		LOG.trace("layLoseNeuralNetworkOdd " + layLoseNeuralNetworkOdd);
+		
+		return NNOdd;
 	}
 
-	private void calculateSimpleBetProcessedOdds(Fixture f, CutOff cutOff) {
+	private Odd calculateSimpleBetProcessedOdds(Fixture f, Odd NNOdd, CutOff cutOff) {
+		
+		Odd processedOdds = new Odd();
+		
+		double backWinNeuralNetworkOdd = NNOdd.getBackHomeWin();
 
+		double backDrawNeuralNetworkOdd = NNOdd.getBackDraw();
+
+		double backLoseNeuralNetworkOdd = NNOdd.getBackAwayWin();
+
+		double layWinNeuralNetworkOdd = NNOdd.getLayHomeWin();
+
+		double layDrawNeuralNetworkOdd = NNOdd.getBackDraw();
+
+		double layLoseNeuralNetworkOdd = NNOdd.getBackAwayWin();
+		
 		if (f.getOdd().getBackHomeWin() * backWinNeuralNetworkOdd == 0) {
-			backWinProcessedOdd = 0;
+			processedOdds.setBackHomeWin(0.0);
 		} else {
-			backWinProcessedOdd = (oddWeightWIN * (f.getOdd().getBackHomeWin() - 1) + f.getOdd().getBackHomeWin() - 1)
-					* (f.getOdd().getBackHomeWin() * cutOff.getNnOddWeight());
+			processedOdds.setBackHomeWin((oddWeightWIN * (f.getOdd().getBackHomeWin() - 1) + f.getOdd().getBackHomeWin() - 1)
+					* (f.getOdd().getBackHomeWin() * cutOff.getNnOddWeight()));
 		}
 		if (f.getOdd().getBackDraw() * backDrawNeuralNetworkOdd == 0) {
-			backDrawProcessedOdd = 0;
+			processedOdds.setBackDraw(0.0);
 		} else {
-			backDrawProcessedOdd = (oddWeightDRAW * (f.getOdd().getBackDraw() - 1) + f.getOdd().getBackDraw() - 1)
-					* (f.getOdd().getBackDraw() * cutOff.getNnOddWeight());
+			processedOdds.setBackDraw((oddWeightDRAW * (f.getOdd().getBackDraw() - 1) + f.getOdd().getBackDraw() - 1)
+					* (f.getOdd().getBackDraw() * cutOff.getNnOddWeight()));
 		}
 		if (f.getOdd().getBackAwayWin() * backLoseNeuralNetworkOdd == 0) {
-			backLoseProcessedOdd = 0;
+			processedOdds.setBackAwayWin(0.0);
 		} else {
-			backLoseProcessedOdd = (oddWeightLOSE * (f.getOdd().getBackAwayWin() - 1) + f.getOdd().getBackAwayWin() - 1)
-					* (f.getOdd().getBackAwayWin() * cutOff.getNnOddWeight());
+			processedOdds.setBackAwayWin((oddWeightLOSE * (f.getOdd().getBackAwayWin() - 1) + f.getOdd().getBackAwayWin() - 1)
+					* (f.getOdd().getBackAwayWin() * cutOff.getNnOddWeight()));
 		}
 		if (f.getOdd().getLayHomeWin() * layWinNeuralNetworkOdd == 0) {
-			layWinProcessedOdd = (0);
+			processedOdds.setLayHomeWin(0.0);
 		} else {
-			layWinProcessedOdd = ((oddWeightWIN * (f.getOdd().getLayHomeWin() - 1) + f.getOdd().getLayHomeWin() - 1)
+			processedOdds.setLayHomeWin((oddWeightWIN * (f.getOdd().getLayHomeWin() - 1) + f.getOdd().getLayHomeWin() - 1)
 					* (f.getOdd().getLayHomeWin() * cutOff.getNnOddWeight()));
 		}
 		if (f.getOdd().getLayDraw() * layDrawNeuralNetworkOdd == 0) {
-			layDrawProcessedOdd = 0;
+			processedOdds.setLayDraw(0.0);
 		} else {
-			layDrawProcessedOdd = (oddWeightDRAW * (f.getOdd().getLayDraw() - 1) + f.getOdd().getLayDraw() - 1)
-					* (f.getOdd().getLayDraw() * cutOff.getNnOddWeight());
+			processedOdds.setLayDraw((oddWeightDRAW * (f.getOdd().getLayDraw() - 1) + f.getOdd().getLayDraw() - 1)
+					* (f.getOdd().getLayDraw() * cutOff.getNnOddWeight()));
 		}
 		if (f.getOdd().getLayAwayWin() * layLoseNeuralNetworkOdd == 0) {
-			layLoseProcessedOdd = 0;
+			processedOdds.setLayAwayWin(0.0);
 		} else {
-			layLoseProcessedOdd = (oddWeightLOSE * (f.getOdd().getLayAwayWin() - 1) + f.getOdd().getLayAwayWin() - 1)
-					* (f.getOdd().getLayAwayWin() * cutOff.getNnOddWeight());
+			processedOdds.setLayAwayWin((oddWeightLOSE * (f.getOdd().getLayAwayWin() - 1) + f.getOdd().getLayAwayWin() - 1)
+					* (f.getOdd().getLayAwayWin() * cutOff.getNnOddWeight()));
 		}
+		
+		return processedOdds;
 	}
 
-	private void calculateMultipleBetProcessedOdds(List<Fixture> f, CutOff cutOff) {
+	//not a void, object x
+	private void calculateDoubleBetProcessedOdds(Map<Fixture, Fixture> fixtureMap, CutOff cutOff) {
+		//x = Object<Map(Fix,Fix),Odd>
+		
+		//percorrer o map e fazer o calculo
+		
+		//return x;
+	}
+	
+	//not a void, object x
+	private void calculateTripleBetProcessedOdds(List<Triplet<Fixture, Fixture, Fixture>> fixtureTriplet, CutOff cutOff) {
+		//x = Object<Triplet(Fix,Fix,Fix),Odd>
+		
+		for (Triplet<Fixture, Fixture, Fixture> trip : fixtureTriplet){
+			
+		}
+				
+		//return x;
+		
+	}
+	
+	private List<Fixture> calculateMultipleBetProcessedOdds(List<Fixture> f, CutOff cutOff) {
+		
+		List<Double> processedOdds = new ArrayList<Double>();
+		
+		double backWinProcessedOdd;
+
+		double backDrawProcessedOdd;
+
+		double backLoseProcessedOdd;
+
+		double layWinProcessedOdd;
+
+		double layDrawProcessedOdd;
+
+		double layLoseProcessedOdd;
+		
+		List<Fixture> fixturesToBet = new ArrayList<Fixture>();
 		// if (f.getOdd().getBackHomeWin() * backWinNeuralNetworkOdd == 0) {
 		// backWinProcessedOdd = 0;
 		// } else {
@@ -320,16 +353,19 @@ public class Algorithm {
 		// layLoseProcessedOdd = (oddWeightLOSE * f.getOdd().getLayAwayWin())
 		// + (f.getOdd().getLayAwayWin() * cutOff.getNnOddWeight());
 		// }
+		return fixturesToBet;
 	}
 
-	private List<Bet> simpleBetDecision(Week w, Fixture f, CutOff cutOff) {
-		ArrayList<Double> processedOdds = new ArrayList<Double>();
-		processedOdds.add(backWinProcessedOdd);
-		processedOdds.add(backDrawProcessedOdd);
-		processedOdds.add(backLoseProcessedOdd);
-		processedOdds.add(layWinProcessedOdd);
-		processedOdds.add(layDrawProcessedOdd);
-		processedOdds.add(layLoseProcessedOdd);
+	private List<Bet> simpleBetDecision(Week w, Fixture f, Odd processedOdds, CutOff cutOff) {
+		
+		ArrayList<Double> processedOddsAsDoubles = new ArrayList<Double>();
+		
+		Double backWinProcessedOdd = processedOdds.getBackHomeWin();
+		Double backDrawProcessedOdd = processedOdds.getBackDraw();
+		Double backLoseProcessedOdd = processedOdds.getBackAwayWin();
+		Double layWinProcessedOdd = processedOdds.getLayHomeWin();
+		Double layDrawProcessedOdd = processedOdds.getLayDraw();
+		Double layLoseProcessedOdd = processedOdds.getLayAwayWin();
 
 		LOG.trace("backWinProcessedOdd " + backWinProcessedOdd);
 		LOG.trace("backDrawProcessedOdd " + backDrawProcessedOdd);
@@ -337,15 +373,22 @@ public class Algorithm {
 		LOG.trace("layWinProcessedOdd " + layWinProcessedOdd);
 		LOG.trace("layDrawProcessedOdd " + layDrawProcessedOdd);
 		LOG.trace("layLoseProcessedOdd " + layLoseProcessedOdd);
-
-		double maxValue = getMaxValue(processedOdds);
 		
-		LOG.trace(hasManyMax(processedOdds, maxValue));
+		processedOddsAsDoubles.add(backWinProcessedOdd);
+		processedOddsAsDoubles.add(backDrawProcessedOdd);
+		processedOddsAsDoubles.add(backLoseProcessedOdd);
+		processedOddsAsDoubles.add(layWinProcessedOdd);
+		processedOddsAsDoubles.add(layDrawProcessedOdd);
+		processedOddsAsDoubles.add(layLoseProcessedOdd);
+
+		double maxValue = getMaxValue(processedOddsAsDoubles);
+		
+		LOG.trace(hasManyMax(processedOddsAsDoubles, maxValue));
 
 		List<Bet> bets = new ArrayList<Bet>();
 
 		if (backWinProcessedOdd + backDrawProcessedOdd + backLoseProcessedOdd + layWinProcessedOdd + layDrawProcessedOdd
-				+ layLoseProcessedOdd == 0 || hasManyMax(processedOdds, maxValue)) {
+				+ layLoseProcessedOdd == 0 || hasManyMax(processedOddsAsDoubles, maxValue)) {
 
 			LOG.trace("NULL");
 
@@ -433,82 +476,17 @@ public class Algorithm {
 		return bets;
 	}
 
-	private List<Bet> doubleBetDecision(Week w, Map<Fixture, Fixture> f, CutOff doubleBetCutoff) {
-		ArrayList<Double> processedOdds = new ArrayList<Double>();
-		processedOdds.add(backWinProcessedOdd);
-		processedOdds.add(backDrawProcessedOdd);
-		processedOdds.add(backLoseProcessedOdd);
-		processedOdds.add(layWinProcessedOdd);
-		processedOdds.add(layDrawProcessedOdd);
-		processedOdds.add(layLoseProcessedOdd);
+//	private List<Bet> doubleBetDecision(Week w, Map<Fixture, Fixture> f, CutOff doubleBetCutoff) {
+//
+//	}
 
-		LOG.trace("backWinProcessedOdd " + backWinProcessedOdd);
-		LOG.trace("backDrawProcessedOdd " + backDrawProcessedOdd);
-		LOG.trace("backLoseProcessedOdd " + backLoseProcessedOdd);
-		LOG.trace("layWinProcessedOdd " + layWinProcessedOdd);
-		LOG.trace("layDrawProcessedOdd " + layDrawProcessedOdd);
-		LOG.trace("layLoseProcessedOdd " + layLoseProcessedOdd);
+//	private List<Bet> tripleBetDecision(Week w, List<Triplet<Fixture, Fixture, Fixture>> f, CutOff tripleBetCutoff) {
+//		
+//	}
 
-		double maxValue = getMaxValue(processedOdds);
-		
-		LOG.trace(hasManyMax(processedOdds, maxValue));
-
-		List<Bet> bets = new ArrayList<Bet>();
-		
-		
-
-		return bets;
-	}
-
-	private List<Bet> tripleBetDecision(Week w, List<Triplet<Fixture, Fixture, Fixture>> f, CutOff tripleBetCutoff) {
-		ArrayList<Double> processedOdds = new ArrayList<Double>();
-		processedOdds.add(backWinProcessedOdd);
-		processedOdds.add(backDrawProcessedOdd);
-		processedOdds.add(backLoseProcessedOdd);
-		processedOdds.add(layWinProcessedOdd);
-		processedOdds.add(layDrawProcessedOdd);
-		processedOdds.add(layLoseProcessedOdd);
-
-		LOG.trace("backWinProcessedOdd " + backWinProcessedOdd);
-		LOG.trace("backDrawProcessedOdd " + backDrawProcessedOdd);
-		LOG.trace("backLoseProcessedOdd " + backLoseProcessedOdd);
-		LOG.trace("layWinProcessedOdd " + layWinProcessedOdd);
-		LOG.trace("layDrawProcessedOdd " + layDrawProcessedOdd);
-		LOG.trace("layLoseProcessedOdd " + layLoseProcessedOdd);
-
-		double maxValue = getMaxValue(processedOdds);
-		
-		LOG.trace(hasManyMax(processedOdds, maxValue));
-
-		List<Bet> bets = new ArrayList<Bet>();
-
-		return bets;
-	}
-
-	private List<Bet> multipleBetDecision(Week w, List<Fixture> f, CutOff multipleBetCutoff) {
-		ArrayList<Double> processedOdds = new ArrayList<Double>();
-		processedOdds.add(backWinProcessedOdd);
-		processedOdds.add(backDrawProcessedOdd);
-		processedOdds.add(backLoseProcessedOdd);
-		processedOdds.add(layWinProcessedOdd);
-		processedOdds.add(layDrawProcessedOdd);
-		processedOdds.add(layLoseProcessedOdd);
-
-		LOG.trace("backWinProcessedOdd " + backWinProcessedOdd);
-		LOG.trace("backDrawProcessedOdd " + backDrawProcessedOdd);
-		LOG.trace("backLoseProcessedOdd " + backLoseProcessedOdd);
-		LOG.trace("layWinProcessedOdd " + layWinProcessedOdd);
-		LOG.trace("layDrawProcessedOdd " + layDrawProcessedOdd);
-		LOG.trace("layLoseProcessedOdd " + layLoseProcessedOdd);
-
-		double maxValue = getMaxValue(processedOdds);
-		
-		LOG.trace(hasManyMax(processedOdds, maxValue));
-
-		List<Bet> bets = new ArrayList<Bet>();
-
-		return bets;
-	}
+//	private List<Bet> multipleBetDecision(Week w, List<Fixture> f, CutOff multipleBetCutoff) {
+//		
+//	}
 
 	private boolean hasManyMax(ArrayList<Double> list, Double max) {
 		int count = 0;
