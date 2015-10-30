@@ -37,7 +37,8 @@ public class MaximFunction implements MaximisationFunction {
 		for (Bet bet : bets) {
 			LOG.info(bet.toString());
 			// APOSTAS SIMPLES
-			for (Fixture f : bet.getFixtures()) {
+			//for (Fixture f : bet.getFixtures()) {
+			Fixture f = bet.getFixture();
 				LOG.info(f.toString());
 				switch (f.getResult().getResultType()) {
 				case WIN:
@@ -88,7 +89,7 @@ public class MaximFunction implements MaximisationFunction {
 				
 
 				LOG.info("Lucro: " + lucro);
-			}
+			//}
 		}
 
 		return lucro;

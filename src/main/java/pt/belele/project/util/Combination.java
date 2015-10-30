@@ -5,13 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import pt.belele.project.entities.Bet;
 import pt.belele.project.entities.Fixture;
 
 public class Combination {
 
-	public static Map<Fixture, Fixture> doubleCombination(List<Fixture> elements) {
+	public static Map<Bet, Bet> doubleCombination(List<Bet> elements) {
 
-		Map<Fixture, Fixture> fixtureMap = new HashMap<Fixture, Fixture>();
+		Map<Bet, Bet> betMap = new HashMap<Bet, Bet>();
 		// get the length of the array
 		// e.g. for {'A','B','C','D'} => N = 4
 		int N = elements.size();
@@ -51,7 +52,7 @@ public class Combination {
 
 					// do something with the combination e.g. add to list or
 					// print
-					fixtureMap.put(elements.get(combination[0]), elements.get(combination[1]));
+					betMap.put(elements.get(combination[0]), elements.get(combination[1]));
 					index++;
 				} else {
 					// select index for next position
@@ -66,12 +67,12 @@ public class Combination {
 					index = combination[0] + 1;
 			}
 		}
-		return fixtureMap;
+		return betMap;
 	}
 	
-	public static List<Triplet<Fixture, Fixture, Fixture>> tripleCombination(List<Fixture> elements) {
+	public static List<Triplet<Bet, Bet, Bet>> tripleCombination(List<Bet> elements) {
 
-		List<Triplet<Fixture, Fixture, Fixture>> fixtureMap = new ArrayList<Triplet<Fixture, Fixture, Fixture>>();
+		List<Triplet<Bet, Bet, Bet>> betMap = new ArrayList<Triplet<Bet, Bet, Bet>>();
 		// get the length of the array
 		// e.g. for {'A','B','C','D'} => N = 4
 		int N = elements.size();
@@ -111,7 +112,7 @@ public class Combination {
 
 					// do something with the combination e.g. add to list or
 					// print
-					fixtureMap.add(new Triplet(elements.get(combination[0]), elements.get(combination[1]), elements.get(combination[2])));
+					betMap.add(new Triplet(elements.get(combination[0]), elements.get(combination[1]), elements.get(combination[2])));
 					index++;
 				} else {
 					// select index for next position
@@ -126,6 +127,6 @@ public class Combination {
 					index = combination[0] + 1;
 			}
 		}
-		return fixtureMap;
+		return betMap;
 	}
 }

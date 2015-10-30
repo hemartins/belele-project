@@ -3,6 +3,7 @@ package pt.belele.project.entities;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -15,19 +16,19 @@ public class Bet implements Serializable {
 
 	private static final long serialVersionUID = 5229534133139860265L;
 
-	public static enum BetType {
-		SIMPLE(0), DOUBLE(1), TRIPLE(2), MULTIPLE(3);
-
-		private int betType;
-
-		private BetType(int bettype) {
-			this.betType = bettype;
-		}
-
-		public int getBettype() {
-			return betType;
-		}
-	}
+	// public static enum BetType {
+	// SIMPLE(0), DOUBLE(1), TRIPLE(2), MULTIPLE(3);
+	//
+	// private int betType;
+	//
+	// private BetType(int bettype) {
+	// this.betType = bettype;
+	// }
+	//
+	// public int getBettype() {
+	// return betType;
+	// }
+	// }
 
 	public static enum BetResult {
 		OPEN(0), WON(1), LOST(2), VOID(3);
@@ -61,7 +62,7 @@ public class Bet implements Serializable {
 	@GeneratedValue
 	private long id;
 
-	private BetType betType;
+	// private BetType betType;
 
 	private BetResult betResult;
 
@@ -71,8 +72,11 @@ public class Bet implements Serializable {
 
 	private double odd;
 
-	@ManyToMany(targetEntity = Fixture.class, mappedBy = "bets")
-	private List<Fixture> fixtures;
+	// @ManyToMany(targetEntity = Fixture.class, mappedBy = "bets")
+	// private List<Fixture> fixtures;
+
+	@Embedded
+	private Fixture fixture;
 
 	@ManyToOne
 	@JoinColumn(name = "id", nullable = false)
@@ -82,13 +86,24 @@ public class Bet implements Serializable {
 
 	}
 
-	public Bet(BetType betType, BetResult betResult, double investedValue,
-			double odd, List<Fixture> fixtures, Week week) {
-		this.betType = betType;
+	// public Bet(BetType betType, BetResult betResult, double investedValue,
+	// double odd, List<Fixture> fixtures, Week week) {
+	// this.betType = betType;
+	// this.betResult = betResult;
+	// this.investedValue = investedValue;
+	// this.odd = odd;
+	// this.fixtures = fixtures;
+	// this.week = week;
+	// }
+
+	public Bet(BetResult betResult, MatchOddBet matchOddBet, double investedValue, double odd, Fixture fixture,
+			Week week) {
+		super();
 		this.betResult = betResult;
+		this.matchOddBet = matchOddBet;
 		this.investedValue = investedValue;
 		this.odd = odd;
-		this.fixtures = fixtures;
+		this.fixture = fixture;
 		this.week = week;
 	}
 
@@ -100,13 +115,13 @@ public class Bet implements Serializable {
 		this.id = id;
 	}
 
-	public BetType getBetType() {
-		return betType;
-	}
-
-	public void setBetType(BetType betType) {
-		this.betType = betType;
-	}
+//	public BetType getBetType() {
+//		return betType;
+//	}
+//
+//	public void setBetType(BetType betType) {
+//		this.betType = betType;
+//	}
 
 	public BetResult getBetResult() {
 		return betResult;
@@ -140,12 +155,20 @@ public class Bet implements Serializable {
 		this.odd = odd;
 	}
 
-	public List<Fixture> getFixtures() {
-		return fixtures;
+//	public List<Fixture> getFixtures() {
+//		return fixtures;
+//	}
+//
+//	public void setFixtures(List<Fixture> fixtures) {
+//		this.fixtures = fixtures;
+//	}
+
+	public Fixture getFixture() {
+		return fixture;
 	}
 
-	public void setFixtures(List<Fixture> fixtures) {
-		this.fixtures = fixtures;
+	public void setFixture(Fixture fixture) {
+		this.fixture = fixture;
 	}
 
 	public Week getWeek() {
@@ -156,11 +179,10 @@ public class Bet implements Serializable {
 		this.week = week;
 	}
 
-	@Override
-	public String toString() {
-		return "Bet [betType=" + betType + ", betResult=" + betResult
-				+ ", matchOddBet=" + matchOddBet + ", investedValue="
-				+ investedValue + ", odd=" + odd + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Bet [betType=" + betType + ", betResult=" + betResult + ", matchOddBet=" + matchOddBet
+//				+ ", investedValue=" + investedValue + ", odd=" + odd + "]";
+//	}
 
 }

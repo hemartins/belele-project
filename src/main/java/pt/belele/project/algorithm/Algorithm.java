@@ -8,10 +8,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import pt.belele.project.entities.Bet;
-import pt.belele.project.entities.Bet.BetType;
 import pt.belele.project.entities.Bet.MatchOddBet;
 import pt.belele.project.entities.CutOff;
 import pt.belele.project.entities.Fixture;
+import pt.belele.project.entities.MultipleBet;
 import pt.belele.project.entities.Odd;
 import pt.belele.project.entities.Week;
 import pt.belele.project.util.Combination;
@@ -35,60 +35,87 @@ public class Algorithm {
 			CutOff cutOffDouble, CutOff cutOffTriple, CutOff cutOffMultiple) {
 
 		List<Bet> bets = new ArrayList<Bet>();
+		List<MultipleBet> multipleBets = new ArrayList<MultipleBet>();
+		List<Bet> doubleBets = new ArrayList<Bet>();
+		List<Bet> tripleBets = new ArrayList<Bet>();
+		List<Bet> multipleBetList = new ArrayList<Bet>();
 
 		for (Fixture f : fixtures.keySet()) {
+			
+			Double backHomeWin = fixtures.get(f).getBackHomeWin();
+			Double backDraw = fixtures.get(f).getBackDraw();
+			Double backAwayWin = fixtures.get(f).getBackAwayWin();
+			Double layHomeWin = fixtures.get(f).getLayHomeWin();
+			Double layDraw = fixtures.get(f).getLayDraw();
+			Double layAwayWin = fixtures.get(f).getLayAwayWin();
+			
 			LOG.info("###########\n" + f.toString() + "\n#####");
 			atributeOddWeightCutOff(f, cutOffSimple);
 
 			if (cutOffSimple != null) {
-				Odd NNOdd = calculateNNOdds(f, cutOffSimple, fixtures.get(f).getBackHomeWin(),
-						fixtures.get(f).getBackDraw(), fixtures.get(f).getBackAwayWin(),
-						fixtures.get(f).getLayHomeWin(), fixtures.get(f).getLayDraw(),
-						fixtures.get(f).getLayAwayWin());
-				Odd processedOdds = calculateSimpleBetProcessedOdds(f, NNOdd, cutOffSimple);
-				bets.addAll(simpleBetDecision(w, f, processedOdds, cutOffSimple));
-			}
-		}
-
-		List<Fixture> fixtureList = new ArrayList<Fixture>();
-		fixtureList.addAll(fixtures.keySet());
-
-		if (cutOffDouble != null) {
-
-			for (Fixture f : fixtureList) {
-				Odd NNOdd = calculateNNOdds(f, cutOffDouble, fixtures.get(f).getBackHomeWin(),
-						fixtures.get(f).getBackDraw(), fixtures.get(f).getBackAwayWin(),
-						fixtures.get(f).getLayHomeWin(), fixtures.get(f).getLayDraw(),
-						fixtures.get(f).getLayAwayWin());
-			}
-
-			Map<Fixture, Fixture> fixtureMap = Combination.doubleCombination(fixtureList);
-			/*object x = */calculateDoubleBetProcessedOdds(fixtureMap, cutOffDouble);
-			//bets.addAll(doubleBetDecision(w, /*x,*/ cutOffDouble));
-		}
-		if (cutOffTriple != null) {
-			for (Fixture f : fixtureList) {
-				Odd NNOdd = calculateNNOdds(f, cutOffTriple, fixtures.get(f).getBackHomeWin(),
-						fixtures.get(f).getBackDraw(), fixtures.get(f).getBackAwayWin(),
-						fixtures.get(f).getLayHomeWin(), fixtures.get(f).getLayDraw(),
-						fixtures.get(f).getLayAwayWin());
+				Odd simpleNNOdd = calculateNNOdds(f, cutOffSimple, backHomeWin, backDraw, backAwayWin, layHomeWin, layDraw, layAwayWin);
+				Odd simpleProcessedOdd = calculateSimpleBetProcessedOdds(f, simpleNNOdd, cutOffSimple);
+				bets.addAll(betDecision(w, f, simpleProcessedOdd, cutOffSimple));
 			}
 			
-			List<Triplet<Fixture, Fixture, Fixture>> fixtureTriplet = Combination.tripleCombination(fixtureList);
-			/*object x = */ calculateTripleBetProcessedOdds(fixtureTriplet, cutOffTriple);
-			//bets.addAll(tripleBetDecision(w, fixtureTriplet, cutOffTriple));
-		}
-		if (cutOffMultiple != null) {
-			for (Fixture f : fixtureList) {
-				Odd NNOdd = calculateNNOdds(f, cutOffMultiple, fixtures.get(f).getBackHomeWin(),
-						fixtures.get(f).getBackDraw(), fixtures.get(f).getBackAwayWin(),
-						fixtures.get(f).getLayHomeWin(), fixtures.get(f).getLayDraw(),
-						fixtures.get(f).getLayAwayWin());
+			if (cutOffDouble != null) {
+				Odd doubleNNOdd = calculateNNOdds(f, cutOffDouble, backHomeWin, backDraw, backAwayWin, layHomeWin, layDraw, layAwayWin);
+				Odd doubleProcessedOdd = calculateDoubleBetProcessedOdds(f, doubleNNOdd, cutOffDouble);
+				doubleBets.addAll(betDecision(w, f, doubleProcessedOdd, cutOffDouble));
 			}
 			
-			calculateMultipleBetProcessedOdds(fixtureList, cutOffMultiple);
-			//bets.addAll(multipleBetDecision(w, fixtureList, cutOffMultiple));
+			if (cutOffTriple != null) {
+				Odd tripleNNOdd = calculateNNOdds(f, cutOffTriple, backHomeWin, backDraw, backAwayWin, layHomeWin, layDraw, layAwayWin);
+				Odd tripleProcessedOdd = calculateDoubleBetProcessedOdds(f, tripleNNOdd, cutOffDouble);
+				tripleBets.addAll(betDecision(w, f, tripleProcessedOdd, cutOffTriple));
+			}
+			
+			if (cutOffMultiple != null) {
+				Odd multipleNNOdd = calculateNNOdds(f, cutOffMultiple, backHomeWin, backDraw, backAwayWin, layHomeWin, layDraw, layAwayWin);
+				Odd multipleProcessedOdd = calculateMultipleBetProcessedOdds(f, multipleNNOdd, cutOffMultiple);
+				multipleBetList.addAll(betDecision(w, f, multipleProcessedOdd, cutOffMultiple));
+			}
 		}
+		
+		Map<Bet, Bet> doubleBetsCombination = Combination.doubleCombination(doubleBets);
+		List<Triplet<Bet, Bet, Bet>> tripleBetsCombination = Combination.tripleCombination(tripleBets);
+		multipleBets = addMultipleBets(doubleBetsCombination, tripleBetsCombination, multipleBetList);
+//		List<Fixture> fixtureList = new ArrayList<Fixture>();
+//		fixtureList.addAll(fixtures.keySet());
+//
+//		if (cutOffDouble != null) {
+//
+//			for (Fixture f : fixtureList) {
+//				Odd NNOdd = calculateNNOdds(f, cutOffDouble, backHomeWin, backDraw, backAwayWin, layHomeWin, layDraw, layAwayWin);
+//			}
+//
+//			Map<Fixture, Fixture> fixtureMap = Combination.doubleCombination(fixtureList);
+//			/*object x = */calculateDoubleBetProcessedOdds(fixtureMap, cutOffDouble);
+//			//bets.addAll(doubleBetDecision(w, /*x,*/ cutOffDouble));
+//		}
+//		if (cutOffTriple != null) {
+//			for (Fixture f : fixtureList) {
+//				Odd NNOdd = calculateNNOdds(f, cutOffTriple, fixtures.get(f).getBackHomeWin(),
+//						fixtures.get(f).getBackDraw(), fixtures.get(f).getBackAwayWin(),
+//						fixtures.get(f).getLayHomeWin(), fixtures.get(f).getLayDraw(),
+//						fixtures.get(f).getLayAwayWin());
+//			}
+//			
+//			List<Triplet<Fixture, Fixture, Fixture>> fixtureTriplet = Combination.tripleCombination(fixtureList);
+//			/*object x = */ calculateTripleBetProcessedOdds(fixtureTriplet, cutOffTriple);
+//			//bets.addAll(tripleBetDecision(w, fixtureTriplet, cutOffTriple));
+//		}
+//		if (cutOffMultiple != null) {
+//			for (Fixture f : fixtureList) {
+//				Odd NNOdd = calculateNNOdds(f, cutOffMultiple, fixtures.get(f).getBackHomeWin(),
+//						fixtures.get(f).getBackDraw(), fixtures.get(f).getBackAwayWin(),
+//						fixtures.get(f).getLayHomeWin(), fixtures.get(f).getLayDraw(),
+//						fixtures.get(f).getLayAwayWin());
+//			}
+//			
+//			calculateMultipleBetProcessedOdds(fixtureList, cutOffMultiple);
+//			//bets.addAll(multipleBetDecision(w, fixtureList, cutOffMultiple));
+//		}
 
 		return bets;
 	}
@@ -280,83 +307,27 @@ public class Algorithm {
 	}
 
 	//not a void, object x
-	private void calculateDoubleBetProcessedOdds(Map<Fixture, Fixture> fixtureMap, CutOff cutOff) {
-		//x = Object<Map(Fix,Fix),Odd>
+	private Odd calculateDoubleBetProcessedOdds(Fixture f, Odd NNOdd, CutOff cutOff) {
+		Odd processedOdds = new Odd();
 		
-		//percorrer o map e fazer o calculo
-		
-		//return x;
+		return processedOdds;
 	}
 	
 	//not a void, object x
-	private void calculateTripleBetProcessedOdds(List<Triplet<Fixture, Fixture, Fixture>> fixtureTriplet, CutOff cutOff) {
-		//x = Object<Triplet(Fix,Fix,Fix),Odd>
+	private Odd calculateTripleBetProcessedOdds(Fixture f, Odd NNOdd, CutOff cutOff) {
+		Odd processedOdds = new Odd();
 		
-		for (Triplet<Fixture, Fixture, Fixture> trip : fixtureTriplet){
-			
-		}
-				
-		//return x;
+		return processedOdds;
 		
 	}
 	
-	private List<Fixture> calculateMultipleBetProcessedOdds(List<Fixture> f, CutOff cutOff) {
+	private Odd calculateMultipleBetProcessedOdds(Fixture f, Odd NNOdd, CutOff cutOff) {
+		Odd processedOdds = new Odd();
 		
-		List<Double> processedOdds = new ArrayList<Double>();
-		
-		double backWinProcessedOdd;
-
-		double backDrawProcessedOdd;
-
-		double backLoseProcessedOdd;
-
-		double layWinProcessedOdd;
-
-		double layDrawProcessedOdd;
-
-		double layLoseProcessedOdd;
-		
-		List<Fixture> fixturesToBet = new ArrayList<Fixture>();
-		// if (f.getOdd().getBackHomeWin() * backWinNeuralNetworkOdd == 0) {
-		// backWinProcessedOdd = 0;
-		// } else {
-		// backWinProcessedOdd = (oddWeightWIN * f.getOdd().getBackHomeWin())
-		// + (f.getOdd().getBackHomeWin() * cutOff.getNnOddWeight());
-		// }
-		// if (f.getOdd().getBackDraw() * backDrawNeuralNetworkOdd == 0) {
-		// backDrawProcessedOdd = 0;
-		// } else {
-		// backDrawProcessedOdd = (oddWeightDRAW * f.getOdd().getBackDraw())
-		// + (f.getOdd().getBackDraw() * cutOff.getNnOddWeight());
-		// }
-		// if (f.getOdd().getBackAwayWin() * backLoseNeuralNetworkOdd == 0) {
-		// backLoseProcessedOdd = 0;
-		// } else {
-		// backLoseProcessedOdd = (oddWeightLOSE * f.getOdd().getBackAwayWin())
-		// + (f.getOdd().getBackAwayWin() * cutOff.getNnOddWeight());
-		// }
-		// if (f.getOdd().getLayHomeWin() * layWinNeuralNetworkOdd == 0) {
-		// layWinProcessedOdd = 0;
-		// } else {
-		// layWinProcessedOdd = (oddWeightWIN * f.getOdd().getLayHomeWin())
-		// + (f.getOdd().getLayHomeWin() * cutOff.getNnOddWeight());
-		// }
-		// if (f.getOdd().getLayDraw() * layDrawNeuralNetworkOdd == 0) {
-		// layDrawProcessedOdd = 0;
-		// } else {
-		// layDrawProcessedOdd = (oddWeightDRAW * f.getOdd().getLayDraw())
-		// + (f.getOdd().getLayDraw() * cutOff.getNnOddWeight());
-		// }
-		// if (f.getOdd().getLayAwayWin() * layLoseNeuralNetworkOdd == 0) {
-		// layLoseProcessedOdd = 0;
-		// } else {
-		// layLoseProcessedOdd = (oddWeightLOSE * f.getOdd().getLayAwayWin())
-		// + (f.getOdd().getLayAwayWin() * cutOff.getNnOddWeight());
-		// }
-		return fixturesToBet;
+		return processedOdds;
 	}
 
-	private List<Bet> simpleBetDecision(Week w, Fixture f, Odd processedOdds, CutOff cutOff) {
+	private List<Bet> betDecision(Week w, Fixture f, Odd processedOdds, CutOff cutOff) {
 		
 		ArrayList<Double> processedOddsAsDoubles = new ArrayList<Double>();
 		
@@ -397,10 +368,11 @@ public class Algorithm {
 			if (backWinProcessedOdd >= cutOff.getMinimumQualityRelation()) {
 				Bet bet = new Bet();
 				bet.setOdd(f.getOdd().getBackHomeWin());
-				bet.setBetType(BetType.SIMPLE);
-				List<Fixture> fixtures = new ArrayList<Fixture>();
-				fixtures.add(f);
-				bet.setFixtures(fixtures);
+				//bet.setBetType(BetType.SIMPLE);
+				//List<Fixture> fixtures = new ArrayList<Fixture>();
+				//fixtures.add(f);
+				//bet.setFixtures(fixtures);
+				bet.setFixture(f);
 				bet.setMatchOddBet(MatchOddBet.WIN);
 				bet.setWeek(w);
 				bet.setInvestedValue(1);
@@ -410,10 +382,11 @@ public class Algorithm {
 			if (backDrawProcessedOdd >= cutOff.getMinimumQualityRelation()) {
 				Bet bet = new Bet();
 				bet.setOdd(f.getOdd().getBackDraw());
-				bet.setBetType(BetType.SIMPLE);
-				List<Fixture> fixtures = new ArrayList<Fixture>();
-				fixtures.add(f);
-				bet.setFixtures(fixtures);
+				//bet.setBetType(BetType.SIMPLE);
+				//List<Fixture> fixtures = new ArrayList<Fixture>();
+				//fixtures.add(f);
+				//bet.setFixtures(fixtures);
+				bet.setFixture(f);
 				bet.setMatchOddBet(MatchOddBet.DRAW);
 				bet.setWeek(w);
 				bet.setInvestedValue(1);
@@ -423,10 +396,11 @@ public class Algorithm {
 			if (backLoseProcessedOdd >= cutOff.getMinimumQualityRelation()) {
 				Bet bet = new Bet();
 				bet.setOdd(f.getOdd().getBackAwayWin());
-				bet.setBetType(BetType.SIMPLE);
-				List<Fixture> fixtures = new ArrayList<Fixture>();
-				fixtures.add(f);
-				bet.setFixtures(fixtures);
+				//bet.setBetType(BetType.SIMPLE);
+				//List<Fixture> fixtures = new ArrayList<Fixture>();
+				//fixtures.add(f);
+				//bet.setFixtures(fixtures);
+				bet.setFixture(f);
 				bet.setMatchOddBet(MatchOddBet.LOSE);
 				bet.setWeek(w);
 				bet.setInvestedValue(1);
@@ -436,10 +410,11 @@ public class Algorithm {
 			if (layWinProcessedOdd >= cutOff.getMinimumQualityRelation()) {
 				Bet bet = new Bet();
 				bet.setOdd(f.getOdd().getLayHomeWin());
-				bet.setBetType(BetType.SIMPLE);
-				List<Fixture> fixtures = new ArrayList<Fixture>();
-				fixtures.add(f);
-				bet.setFixtures(fixtures);
+				//bet.setBetType(BetType.SIMPLE);
+				//List<Fixture> fixtures = new ArrayList<Fixture>();
+				//fixtures.add(f);
+				//bet.setFixtures(fixtures);
+				bet.setFixture(f);
 				bet.setMatchOddBet(MatchOddBet.DONOTWIN);
 				bet.setWeek(w);
 				bet.setInvestedValue(1);
@@ -449,10 +424,11 @@ public class Algorithm {
 			if (layDrawProcessedOdd >= cutOff.getMinimumQualityRelation()) {
 				Bet bet = new Bet();
 				bet.setOdd(f.getOdd().getLayDraw());
-				bet.setBetType(BetType.SIMPLE);
-				List<Fixture> fixtures = new ArrayList<Fixture>();
-				fixtures.add(f);
-				bet.setFixtures(fixtures);
+				//bet.setBetType(BetType.SIMPLE);
+				//List<Fixture> fixtures = new ArrayList<Fixture>();
+				//fixtures.add(f);
+				//bet.setFixtures(fixtures);
+				bet.setFixture(f);
 				bet.setMatchOddBet(MatchOddBet.DONOTDRAW);
 				bet.setWeek(w);
 				bet.setInvestedValue(1);
@@ -462,10 +438,11 @@ public class Algorithm {
 			if (layLoseProcessedOdd >= cutOff.getMinimumQualityRelation()) {
 				Bet bet = new Bet();
 				bet.setOdd(f.getOdd().getLayAwayWin());
-				bet.setBetType(BetType.SIMPLE);
-				List<Fixture> fixtures = new ArrayList<Fixture>();
-				fixtures.add(f);
-				bet.setFixtures(fixtures);
+				//bet.setBetType(BetType.SIMPLE);
+				//List<Fixture> fixtures = new ArrayList<Fixture>();
+				//fixtures.add(f);
+				//bet.setFixtures(fixtures);
+				bet.setFixture(f);
 				bet.setMatchOddBet(MatchOddBet.DONOTLOSE);
 				bet.setWeek(w);
 				bet.setInvestedValue(1);
@@ -487,6 +464,12 @@ public class Algorithm {
 //	private List<Bet> multipleBetDecision(Week w, List<Fixture> f, CutOff multipleBetCutoff) {
 //		
 //	}
+	
+	public List<MultipleBet> addMultipleBets(Map<Bet, Bet> doubleBetsCombination, List<Triplet<Bet, Bet, Bet>> tripleBetsCombination, List<Bet> multipleBetList){
+		List<MultipleBet> bets = new ArrayList<MultipleBet>();
+		
+		return bets;
+	}
 
 	private boolean hasManyMax(ArrayList<Double> list, Double max) {
 		int count = 0;
