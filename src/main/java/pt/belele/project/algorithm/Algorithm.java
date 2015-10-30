@@ -28,10 +28,6 @@ public class Algorithm {
 		
 
 		List<Bet> bets = new ArrayList<Bet>();
-		List<MultipleBet> multipleBets = new ArrayList<MultipleBet>();
-		List<Bet> doubleBets = new ArrayList<Bet>();
-		List<Bet> tripleBets = new ArrayList<Bet>();
-		List<Bet> multipleBetList = new ArrayList<Bet>();
 
 		for (Fixture f : fixtures.keySet()) {
 
@@ -110,7 +106,7 @@ public class Algorithm {
 	/****************/
 
 	private List<Double> atributeOddWeightCutOff(Fixture fixture, CutOff cutOff) {
-		List<Double> oddWeights = null;
+		List<Double> oddWeights = new ArrayList<Double>();
 		
 		double oddWeightWIN;
 

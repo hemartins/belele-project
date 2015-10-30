@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import pt.belele.project.entities.Bet;
-import pt.belele.project.entities.Fixture;
 
 public class Combination {
 
@@ -70,6 +69,7 @@ public class Combination {
 		return betMap;
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static List<Triplet<Bet, Bet, Bet>> tripleCombination(List<Bet> elements) {
 
 		List<Triplet<Bet, Bet, Bet>> betMap = new ArrayList<Triplet<Bet, Bet, Bet>>();
