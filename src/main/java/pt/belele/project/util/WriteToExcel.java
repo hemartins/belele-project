@@ -226,6 +226,38 @@ public class WriteToExcel {
 
 		row.createCell(cellIndex++).setCellValue("[FR] Total Resultados do Visitante Fora");
 
+		row.createCell(cellIndex++).setCellValue("[QLT] Percentagem de Resultados do Visitado Últimos 5 jogos");
+
+		row.createCell(cellIndex++).setCellValue("[QLT] Percentagem de Resultados do Visitante Últimos 5 jogos");
+
+		row.createCell(cellIndex++).setCellValue("[QLT] Dificuldade dos Resultados do Visitado Últimos 5 jogos");
+
+		row.createCell(cellIndex++).setCellValue("[QLT] Dificuldade dos Resultados do Visitante Últimos 5 jogos");
+
+		row.createCell(cellIndex++).setCellValue("[QLT] Percentagem de Resultados do Visitado no Intervalo Últimos 5 jogos");
+
+		row.createCell(cellIndex++).setCellValue("[QLT] Percentagem de Resultados do Visitante no Intervalo Últimos 5 jogos");
+
+		row.createCell(cellIndex++).setCellValue("[QLT] Numero de Jogos do Visitado no Intervalo Últimos 5 jogos");
+
+		row.createCell(cellIndex++).setCellValue("[QLT] Numero de Jogos do Visitante no Intervalo Últimos 5 jogos");
+		
+		row.createCell(cellIndex++).setCellValue("[QLT] Percentagem de Resultados do Visitado Trocado Últimos 5 jogos");
+
+		row.createCell(cellIndex++).setCellValue("[QLT] Percentagem de Resultados do Visitante Trocado Últimos 5 jogos");
+
+		row.createCell(cellIndex++).setCellValue("[QLT] Dificuldade dos Resultados do Visitado Trocado Últimos 5 jogos");
+
+		row.createCell(cellIndex++).setCellValue("[QLT] Dificuldade dos Resultados do Visitante Trocado Últimos 5 jogos");
+
+		row.createCell(cellIndex++).setCellValue("[QLT] Percentagem de Resultados do Visitado no Intervalo Trocado Últimos 5 jogos");
+
+		row.createCell(cellIndex++).setCellValue("[QLT] Percentagem de Resultados do Visitante no Intervalo Trocado Últimos 5 jogos");
+
+		row.createCell(cellIndex++).setCellValue("[QLT] Numero de Jogos do Visitado Trocado no Intervalo Últimos 5 jogos");
+
+		row.createCell(cellIndex++).setCellValue("[QLT] Numero de Jogos do Visitante Trocado no Intervalo Últimos 5 jogos");
+
 		rowIndex++;
 
 		for (ExcelRow excelrow : dataList) {
@@ -415,6 +447,38 @@ public class WriteToExcel {
 			row.createCell(cellIndex++).setCellValue(excelrow.getFR_ResultadoVisitadoHome());
 
 			row.createCell(cellIndex++).setCellValue(excelrow.getFR_ResultadoVisitanteAway());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitado_5jogos());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitante_5jogos());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeResultadoVisitado_5jogos());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeResultadoVisitante_5jogos());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitadoNoIntervalo_5jogos());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitanteNoIntervalo_5jogos());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_numeroJogosVisitado_5jogos());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_numeroJogosVisitante_5jogos());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitado2_5jogos());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitante2_5jogos());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeResultadoVisitado2_5jogos());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeResultadoVisitante2_5jogos());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitadoNoIntervalo2_5jogos());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitanteNoIntervalo2_5jogos());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_numeroJogosVisitado2_5jogos());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_numeroJogosVisitante2_5jogos());
 
 		}
 
