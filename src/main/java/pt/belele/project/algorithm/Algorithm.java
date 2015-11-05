@@ -12,6 +12,7 @@ import pt.belele.project.entities.Bet.MatchOddBet;
 import pt.belele.project.entities.CutOff;
 import pt.belele.project.entities.Fixture;
 import pt.belele.project.entities.MultipleBet;
+import pt.belele.project.entities.MultipleBet.BetType;
 import pt.belele.project.entities.Odd;
 import pt.belele.project.entities.Week;
 import pt.belele.project.util.Combination;
@@ -24,7 +25,7 @@ public class Algorithm {
 	public Algorithm() {
 	}
 
-	public List<Bet> simpleBetAlgorithm(Week w, Map<Fixture, Odd> fixtures, CutOff cutOffSimple) {
+	public List<Bet> simpleBetAlgorithm(Week w, Map<Fixture, Odd> fixtures, CutOff cutOffSimple, Double investedValue) {
 		
 
 		List<Bet> bets = new ArrayList<Bet>();
@@ -45,7 +46,7 @@ public class Algorithm {
 				Odd simpleNNOdd = calculateNNOdds(f, cutOffSimple, backHomeWin, backDraw, backAwayWin, layHomeWin,
 						layDraw, layAwayWin);
 				Odd simpleProcessedOdd = calculateSimpleBetProcessedOdds(f, simpleNNOdd, cutOffSimple, atributeOddWeightCutOff(f, cutOffSimple));
-				bets.addAll(betDecision(w, f, simpleProcessedOdd, cutOffSimple));
+				bets.addAll(betDecision(w, f, simpleProcessedOdd, cutOffSimple, investedValue));
 			}
 		}
 		
@@ -53,7 +54,7 @@ public class Algorithm {
 	}
 	
 	public List<MultipleBet> multipleBetAlgorithm(Week w, Map<Fixture, Odd> fixtures, CutOff cutOffDouble,
-			CutOff cutOffTriple, CutOff cutOffMultiple) {
+			CutOff cutOffTriple, CutOff cutOffMultiple, Double investedValue) {
 
 		List<MultipleBet> multipleBets = new ArrayList<MultipleBet>();
 		List<Bet> doubleBets = new ArrayList<Bet>();
@@ -76,27 +77,27 @@ public class Algorithm {
 				Odd doubleNNOdd = calculateNNOdds(f, cutOffDouble, backHomeWin, backDraw, backAwayWin, layHomeWin,
 						layDraw, layAwayWin);
 				Odd doubleProcessedOdd = calculateMultipleBetProcessedOdds(f, doubleNNOdd, cutOffDouble, atributeOddWeightCutOff(f, cutOffDouble));
-				doubleBets.addAll(betDecision(w, f, doubleProcessedOdd, cutOffDouble));
+				doubleBets.addAll(betDecision(w, f, doubleProcessedOdd, cutOffDouble, investedValue));
 			}
 
 			if (cutOffTriple != null) {
 				Odd tripleNNOdd = calculateNNOdds(f, cutOffTriple, backHomeWin, backDraw, backAwayWin, layHomeWin,
 						layDraw, layAwayWin);
 				Odd tripleProcessedOdd = calculateMultipleBetProcessedOdds(f, tripleNNOdd, cutOffTriple, atributeOddWeightCutOff(f, cutOffTriple));
-				tripleBets.addAll(betDecision(w, f, tripleProcessedOdd, cutOffTriple));
+				tripleBets.addAll(betDecision(w, f, tripleProcessedOdd, cutOffTriple, investedValue));
 			}
 
 			if (cutOffMultiple != null) {
 				Odd multipleNNOdd = calculateNNOdds(f, cutOffMultiple, backHomeWin, backDraw, backAwayWin, layHomeWin,
 						layDraw, layAwayWin);
 				Odd multipleProcessedOdd = calculateMultipleBetProcessedOdds(f, multipleNNOdd, cutOffMultiple, atributeOddWeightCutOff(f, cutOffMultiple));
-				multipleBetList.addAll(betDecision(w, f, multipleProcessedOdd, cutOffMultiple));
+				multipleBetList.addAll(betDecision(w, f, multipleProcessedOdd, cutOffMultiple, investedValue));
 			}
 		}
 
 		Map<Bet, Bet> doubleBetsCombination = Combination.doubleCombination(doubleBets);
 		List<Triplet<Bet, Bet, Bet>> tripleBetsCombination = Combination.tripleCombination(tripleBets);
-		multipleBets = addMultipleBets(doubleBetsCombination, tripleBetsCombination, multipleBetList);
+		multipleBets = addMultipleBets(doubleBetsCombination, tripleBetsCombination, multipleBetList, investedValue);
 		
 		return multipleBets;
 	}
@@ -366,7 +367,7 @@ public class Algorithm {
 		return processedOdds;
 	}
 
-	private List<Bet> betDecision(Week w, Fixture f, Odd processedOdds, CutOff cutOff) {
+	private List<Bet> betDecision(Week w, Fixture f, Odd processedOdds, CutOff cutOff, Double investedValue) {
 
 		ArrayList<Double> processedOddsAsDoubles = new ArrayList<Double>();
 
@@ -414,7 +415,7 @@ public class Algorithm {
 				bet.setFixture(f);
 				bet.setMatchOddBet(MatchOddBet.WIN);
 				bet.setWeek(w);
-				bet.setInvestedValue(1);
+				bet.setInvestedValue(investedValue);
 				bets.add(bet);
 			}
 		} else if (backDrawProcessedOdd == maxValue) {
@@ -428,7 +429,7 @@ public class Algorithm {
 				bet.setFixture(f);
 				bet.setMatchOddBet(MatchOddBet.DRAW);
 				bet.setWeek(w);
-				bet.setInvestedValue(1);
+				bet.setInvestedValue(investedValue);
 				bets.add(bet);
 			}
 		} else if (backLoseProcessedOdd == maxValue) {
@@ -442,7 +443,7 @@ public class Algorithm {
 				bet.setFixture(f);
 				bet.setMatchOddBet(MatchOddBet.LOSE);
 				bet.setWeek(w);
-				bet.setInvestedValue(1);
+				bet.setInvestedValue(investedValue);
 				bets.add(bet);
 			}
 		} else if (layWinProcessedOdd == maxValue) {
@@ -456,7 +457,7 @@ public class Algorithm {
 				bet.setFixture(f);
 				bet.setMatchOddBet(MatchOddBet.DONOTWIN);
 				bet.setWeek(w);
-				bet.setInvestedValue(1);
+				bet.setInvestedValue(investedValue);
 				bets.add(bet);
 			}
 		} else if (layDrawProcessedOdd == maxValue) {
@@ -470,7 +471,7 @@ public class Algorithm {
 				bet.setFixture(f);
 				bet.setMatchOddBet(MatchOddBet.DONOTDRAW);
 				bet.setWeek(w);
-				bet.setInvestedValue(1);
+				bet.setInvestedValue(investedValue);
 				bets.add(bet);
 			}
 		} else if (layLoseProcessedOdd == maxValue) {
@@ -484,7 +485,7 @@ public class Algorithm {
 				bet.setFixture(f);
 				bet.setMatchOddBet(MatchOddBet.DONOTLOSE);
 				bet.setWeek(w);
-				bet.setInvestedValue(1);
+				bet.setInvestedValue(investedValue);
 				bets.add(bet);
 			}
 		}
@@ -492,24 +493,55 @@ public class Algorithm {
 		return bets;
 	}
 
-	// private List<Bet> doubleBetDecision(Week w, Map<Fixture, Fixture> f,
-	// CutOff doubleBetCutoff) {
-	//
-	// }
-
-	// private List<Bet> tripleBetDecision(Week w, List<Triplet<Fixture,
-	// Fixture, Fixture>> f, CutOff tripleBetCutoff) {
-	//
-	// }
-
-	// private List<Bet> multipleBetDecision(Week w, List<Fixture> f, CutOff
-	// multipleBetCutoff) {
-	//
-	// }
-
 	public List<MultipleBet> addMultipleBets(Map<Bet, Bet> doubleBetsCombination,
-			List<Triplet<Bet, Bet, Bet>> tripleBetsCombination, List<Bet> multipleBetList) {
+			List<Triplet<Bet, Bet, Bet>> tripleBetsCombination, List<Bet> multipleBetList, Double investedValue) {
+		
 		List<MultipleBet> bets = new ArrayList<MultipleBet>();
+		
+		//MULTIPLA
+		MultipleBet bigMultipleBet = new MultipleBet();
+		bigMultipleBet.setBetsList(multipleBetList);
+		bigMultipleBet.setBetType(BetType.MULTIPLE);
+		Double odd = null;
+		for (Bet bet : multipleBetList){
+			odd += bet.getOdd();
+		}
+		bigMultipleBet.setOdd(odd);
+		bigMultipleBet.setInvestedValue(investedValue);
+		
+		bets.add(bigMultipleBet);
+		
+		//DUPLAS
+		for (int i=0; i<doubleBetsCombination.size(); i++){
+			MultipleBet multipleBet = new MultipleBet();
+			multipleBet.setBetType(BetType.DOUBLE);
+			multipleBet.setInvestedValue(investedValue);
+			
+			//doubleBetsCombination.
+			
+			bets.add(multipleBet);
+		}
+		
+		//TRIPLAS
+		for (int i=0; i<tripleBetsCombination.size(); i++){
+			MultipleBet multipleBet = new MultipleBet();
+			multipleBet.setBetType(BetType.TRIPLE);
+			multipleBet.setInvestedValue(investedValue);
+			List<Bet> betsList = null;
+			
+			Triplet<Bet, Bet, Bet> triplet = tripleBetsCombination.get(i);
+			Bet bet_1 = triplet.getA();
+			Bet bet_2 = triplet.getB();
+			Bet bet_3 = triplet.getC();
+			betsList.add(bet_1);
+			betsList.add(bet_2);
+			betsList.add(bet_3);
+			
+			multipleBet.setBetsList(betsList);
+			multipleBet.setOdd(bet_1.getOdd() * bet_2.getOdd() * bet_3.getOdd());
+			
+			bets.add(multipleBet);
+		}
 
 		return bets;
 	}

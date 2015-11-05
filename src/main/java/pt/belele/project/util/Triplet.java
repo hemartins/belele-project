@@ -11,15 +11,15 @@ public class Triplet<T, U, V> {
 		this.c = c;
 	}
 
-	T getA() {
+	public T getA() {
 		return a;
 	}
 
-	U getB() {
+	public U getB() {
 		return b;
 	}
 
-	V getC() {
+	public V getC() {
 		return c;
 	}
 }

@@ -28,7 +28,7 @@ public class MaximFunction implements MaximisationFunction {
 		CutOff cutOffSimple = new CutOff(x[0], x[1], x[2], x[3], x[4], x[5], x[6]);
 
 		Algorithm alg = new Algorithm();
-		List<Bet> bets = alg.simpleBetAlgorithm(week, fixtures, cutOffSimple);
+		List<Bet> bets = alg.simpleBetAlgorithm(week, fixtures, cutOffSimple, 1.0);
 
 		double lucro = 0;
 
