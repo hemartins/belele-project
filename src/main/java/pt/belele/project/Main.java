@@ -46,114 +46,114 @@ public class Main {
 	public static void main(String[] args) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("database.odb");
 		EntityManager em = emf.createEntityManager();
-		//generateDatabase(em);
+		generateDatabase(em);
 		createExcels_A_B(em);
 	}
 
 	private static void generateDatabase(EntityManager em) {
 
-		// INGLATERRA - PREMIER LEAGUE
-		populateDatabase(em, "E0.csv", "0001", 0);
-		populateDatabase(em, "E0.csv", "0102", 1);
-		populateDatabase(em, "E0.csv", "0203", 2);
-		populateDatabase(em, "E0.csv", "0304", 3);
-		populateDatabase(em, "E0.csv", "0405", 4);
-		populateDatabase(em, "E0.csv", "0506", 5);
-		populateDatabase(em, "E0.csv", "0607", 6);
-		populateDatabase(em, "E0.csv", "0708", 7);
-		populateDatabase(em, "E0.csv", "0809", 8);
-		populateDatabase(em, "E0.csv", "0910", 9);
-		populateDatabase(em, "E0.csv", "1011", 10);
-		populateDatabase(em, "E0.csv", "1112", 11);
-		populateDatabase(em, "E0.csv", "1213", 12);
-		populateDatabase(em, "E0.csv", "1314", 13);
-		populateDatabase(em, "E0.csv", "1415", 14);
-
-		// INGLATERRA - CHAMPIONSHIP
-		populateDatabase(em, "E1.csv", "0001", 0);
-		populateDatabase(em, "E1.csv", "0102", 1);
-		populateDatabase(em, "E1.csv", "0203", 2);
-		populateDatabase(em, "E1.csv", "0304", 3);
-		populateDatabase(em, "E1.csv", "0405", 4);
-		populateDatabase(em, "E1.csv", "0506", 5);
-		populateDatabase(em, "E1.csv", "0607", 6);
-		populateDatabase(em, "E1.csv", "0708", 7);
-		populateDatabase(em, "E1.csv", "0809", 8);
-		populateDatabase(em, "E1.csv", "0910", 9);
-		populateDatabase(em, "E1.csv", "1011", 10);
-		populateDatabase(em, "E1.csv", "1112", 11);
-		populateDatabase(em, "E1.csv", "1213", 12);
-		populateDatabase(em, "E1.csv", "1314", 13);
-		populateDatabase(em, "E1.csv", "1415", 14);
-
-		// INGLATERRA - LEAGUE 1
-		populateDatabase(em, "E2.csv", "0001", 0);
-		populateDatabase(em, "E2.csv", "0102", 1);
-		populateDatabase(em, "E2.csv", "0203", 2);
-		populateDatabase(em, "E2.csv", "0304", 3);
-		populateDatabase(em, "E2.csv", "0405", 4);
-		populateDatabase(em, "E2.csv", "0506", 5);
-		populateDatabase(em, "E2.csv", "0607", 6);
-		populateDatabase(em, "E2.csv", "0708", 7);
-		populateDatabase(em, "E2.csv", "0809", 8);
-		populateDatabase(em, "E2.csv", "0910", 9);
-		populateDatabase(em, "E2.csv", "1011", 10);
-		populateDatabase(em, "E2.csv", "1112", 11);
-		populateDatabase(em, "E2.csv", "1213", 12);
-		populateDatabase(em, "E2.csv", "1314", 13);
-		populateDatabase(em, "E2.csv", "1415", 14);
-
-		// ESCOCIA - PREMIER LEAGUE
-		populateDatabase(em, "SC0.csv", "0001", 0);
-		populateDatabase(em, "SC0.csv", "0102", 1);
-		populateDatabase(em, "SC0.csv", "0203", 2);
-		populateDatabase(em, "SC0.csv", "0304", 3);
-		populateDatabase(em, "SC0.csv", "0405", 4);
-		populateDatabase(em, "SC0.csv", "0506", 5);
-		populateDatabase(em, "SC0.csv", "0607", 6);
-		populateDatabase(em, "SC0.csv", "0708", 7);
-		populateDatabase(em, "SC0.csv", "0809", 8);
-		populateDatabase(em, "SC0.csv", "0910", 9);
-		populateDatabase(em, "SC0.csv", "1011", 10);
-		populateDatabase(em, "SC0.csv", "1112", 11);
-		populateDatabase(em, "SC0.csv", "1213", 12);
-		populateDatabase(em, "SC0.csv", "1314", 13);
-		populateDatabase(em, "SC0.csv", "1415", 14);
-
-		// ALEMANHA - BUNDESLIGA 1
-		populateDatabase(em, "D1.csv", "0001", 0);
-		populateDatabase(em, "D1.csv", "0102", 1);
-		populateDatabase(em, "D1.csv", "0203", 2);
-		populateDatabase(em, "D1.csv", "0304", 3);
-		populateDatabase(em, "D1.csv", "0405", 4);
-		populateDatabase(em, "D1.csv", "0506", 5);
-		populateDatabase(em, "D1.csv", "0607", 6);
-		populateDatabase(em, "D1.csv", "0708", 7);
-		populateDatabase(em, "D1.csv", "0809", 8);
-		populateDatabase(em, "D1.csv", "0910", 9);
-		populateDatabase(em, "D1.csv", "1011", 10);
-		populateDatabase(em, "D1.csv", "1112", 11);
-		populateDatabase(em, "D1.csv", "1213", 12);
-		populateDatabase(em, "D1.csv", "1314", 13);
-		populateDatabase(em, "D1.csv", "1415", 14);
-
-		// ALEMANHA - BUNDESLIGA 2
-		populateDatabase(em, "D2.csv", "0001", 0);
-		populateDatabase(em, "D2.csv", "0102", 1);
-		populateDatabase(em, "D2.csv", "0203", 2);
-		populateDatabase(em, "D2.csv", "0304", 3);
-		populateDatabase(em, "D2.csv", "0405", 4);
-		populateDatabase(em, "D2.csv", "0506", 5);
-		populateDatabase(em, "D2.csv", "0607", 6);
-		populateDatabase(em, "D2.csv", "0708", 7);
-		populateDatabase(em, "D2.csv", "0809", 8);
-		populateDatabase(em, "D2.csv", "0910", 9);
-		populateDatabase(em, "D2.csv", "1011", 10);
-		populateDatabase(em, "D2.csv", "1112", 11);
-		populateDatabase(em, "D2.csv", "1213", 12);
-		populateDatabase(em, "D2.csv", "1314", 13);
-		populateDatabase(em, "D2.csv", "1415", 14);
-
+//		// INGLATERRA - PREMIER LEAGUE
+//		populateDatabase(em, "E0.csv", "0001", 0);
+//		populateDatabase(em, "E0.csv", "0102", 1);
+//		populateDatabase(em, "E0.csv", "0203", 2);
+//		populateDatabase(em, "E0.csv", "0304", 3);
+//		populateDatabase(em, "E0.csv", "0405", 4);
+//		populateDatabase(em, "E0.csv", "0506", 5);
+//		populateDatabase(em, "E0.csv", "0607", 6);
+//		populateDatabase(em, "E0.csv", "0708", 7);
+//		populateDatabase(em, "E0.csv", "0809", 8);
+//		populateDatabase(em, "E0.csv", "0910", 9);
+//		populateDatabase(em, "E0.csv", "1011", 10);
+//		populateDatabase(em, "E0.csv", "1112", 11);
+//		populateDatabase(em, "E0.csv", "1213", 12);
+//		populateDatabase(em, "E0.csv", "1314", 13);
+//		populateDatabase(em, "E0.csv", "1415", 14);
+//
+//		// INGLATERRA - CHAMPIONSHIP
+//		populateDatabase(em, "E1.csv", "0001", 0);
+//		populateDatabase(em, "E1.csv", "0102", 1);
+//		populateDatabase(em, "E1.csv", "0203", 2);
+//		populateDatabase(em, "E1.csv", "0304", 3);
+//		populateDatabase(em, "E1.csv", "0405", 4);
+//		populateDatabase(em, "E1.csv", "0506", 5);
+//		populateDatabase(em, "E1.csv", "0607", 6);
+//		populateDatabase(em, "E1.csv", "0708", 7);
+//		populateDatabase(em, "E1.csv", "0809", 8);
+//		populateDatabase(em, "E1.csv", "0910", 9);
+//		populateDatabase(em, "E1.csv", "1011", 10);
+//		populateDatabase(em, "E1.csv", "1112", 11);
+//		populateDatabase(em, "E1.csv", "1213", 12);
+//		populateDatabase(em, "E1.csv", "1314", 13);
+//		populateDatabase(em, "E1.csv", "1415", 14);
+//
+//		// INGLATERRA - LEAGUE 1
+//		populateDatabase(em, "E2.csv", "0001", 0);
+//		populateDatabase(em, "E2.csv", "0102", 1);
+//		populateDatabase(em, "E2.csv", "0203", 2);
+//		populateDatabase(em, "E2.csv", "0304", 3);
+//		populateDatabase(em, "E2.csv", "0405", 4);
+//		populateDatabase(em, "E2.csv", "0506", 5);
+//		populateDatabase(em, "E2.csv", "0607", 6);
+//		populateDatabase(em, "E2.csv", "0708", 7);
+//		populateDatabase(em, "E2.csv", "0809", 8);
+//		populateDatabase(em, "E2.csv", "0910", 9);
+//		populateDatabase(em, "E2.csv", "1011", 10);
+//		populateDatabase(em, "E2.csv", "1112", 11);
+//		populateDatabase(em, "E2.csv", "1213", 12);
+//		populateDatabase(em, "E2.csv", "1314", 13);
+//		populateDatabase(em, "E2.csv", "1415", 14);
+//
+//		// ESCOCIA - PREMIER LEAGUE
+//		populateDatabase(em, "SC0.csv", "0001", 0);
+//		populateDatabase(em, "SC0.csv", "0102", 1);
+//		populateDatabase(em, "SC0.csv", "0203", 2);
+//		populateDatabase(em, "SC0.csv", "0304", 3);
+//		populateDatabase(em, "SC0.csv", "0405", 4);
+//		populateDatabase(em, "SC0.csv", "0506", 5);
+//		populateDatabase(em, "SC0.csv", "0607", 6);
+//		populateDatabase(em, "SC0.csv", "0708", 7);
+//		populateDatabase(em, "SC0.csv", "0809", 8);
+//		populateDatabase(em, "SC0.csv", "0910", 9);
+//		populateDatabase(em, "SC0.csv", "1011", 10);
+//		populateDatabase(em, "SC0.csv", "1112", 11);
+//		populateDatabase(em, "SC0.csv", "1213", 12);
+//		populateDatabase(em, "SC0.csv", "1314", 13);
+//		populateDatabase(em, "SC0.csv", "1415", 14);
+//
+//		// ALEMANHA - BUNDESLIGA 1
+//		populateDatabase(em, "D1.csv", "0001", 0);
+//		populateDatabase(em, "D1.csv", "0102", 1);
+//		populateDatabase(em, "D1.csv", "0203", 2);
+//		populateDatabase(em, "D1.csv", "0304", 3);
+//		populateDatabase(em, "D1.csv", "0405", 4);
+//		populateDatabase(em, "D1.csv", "0506", 5);
+//		populateDatabase(em, "D1.csv", "0607", 6);
+//		populateDatabase(em, "D1.csv", "0708", 7);
+//		populateDatabase(em, "D1.csv", "0809", 8);
+//		populateDatabase(em, "D1.csv", "0910", 9);
+//		populateDatabase(em, "D1.csv", "1011", 10);
+//		populateDatabase(em, "D1.csv", "1112", 11);
+//		populateDatabase(em, "D1.csv", "1213", 12);
+//		populateDatabase(em, "D1.csv", "1314", 13);
+//		populateDatabase(em, "D1.csv", "1415", 14);
+//
+//		// ALEMANHA - BUNDESLIGA 2
+//		populateDatabase(em, "D2.csv", "0001", 0);
+//		populateDatabase(em, "D2.csv", "0102", 1);
+//		populateDatabase(em, "D2.csv", "0203", 2);
+//		populateDatabase(em, "D2.csv", "0304", 3);
+//		populateDatabase(em, "D2.csv", "0405", 4);
+//		populateDatabase(em, "D2.csv", "0506", 5);
+//		populateDatabase(em, "D2.csv", "0607", 6);
+//		populateDatabase(em, "D2.csv", "0708", 7);
+//		populateDatabase(em, "D2.csv", "0809", 8);
+//		populateDatabase(em, "D2.csv", "0910", 9);
+//		populateDatabase(em, "D2.csv", "1011", 10);
+//		populateDatabase(em, "D2.csv", "1112", 11);
+//		populateDatabase(em, "D2.csv", "1213", 12);
+//		populateDatabase(em, "D2.csv", "1314", 13);
+//		populateDatabase(em, "D2.csv", "1415", 14);
+//
 		// ITALIA - SERIE A
 		populateDatabase(em, "I1.csv", "0001", 0);
 		populateDatabase(em, "I1.csv", "0102", 1);
@@ -170,176 +170,176 @@ public class Main {
 		populateDatabase(em, "I1.csv", "1213", 12);
 		populateDatabase(em, "I1.csv", "1314", 13);
 		populateDatabase(em, "I1.csv", "1415", 14);
-
-		// ITALIA - SERIE B
-		populateDatabase(em, "I2.csv", "0001", 0);
-		populateDatabase(em, "I2.csv", "0102", 1);
-		populateDatabase(em, "I2.csv", "0203", 2);
-		populateDatabase(em, "I2.csv", "0304", 3);
-		populateDatabase(em, "I2.csv", "0405", 4);
-		populateDatabase(em, "I2.csv", "0506", 5);
-		populateDatabase(em, "I2.csv", "0607", 6);
-		populateDatabase(em, "I2.csv", "0708", 7);
-		populateDatabase(em, "I2.csv", "0809", 8);
-		populateDatabase(em, "I2.csv", "0910", 9);
-		populateDatabase(em, "I2.csv", "1011", 10);
-		populateDatabase(em, "I2.csv", "1112", 11);
-		populateDatabase(em, "I2.csv", "1213", 12);
-		populateDatabase(em, "I2.csv", "1314", 13);
-		populateDatabase(em, "I2.csv", "1415", 14);
-
-		// ESPANHA - LA LIGA PRIMERA DIVISION
-		populateDatabase(em, "SP1.csv", "0001", 0);
-		populateDatabase(em, "SP1.csv", "0102", 1);
-		populateDatabase(em, "SP1.csv", "0203", 2);
-		populateDatabase(em, "SP1.csv", "0304", 3);
-		populateDatabase(em, "SP1.csv", "0405", 4);
-		populateDatabase(em, "SP1.csv", "0506", 5);
-		populateDatabase(em, "SP1.csv", "0607", 6);
-		populateDatabase(em, "SP1.csv", "0708", 7);
-		populateDatabase(em, "SP1.csv", "0809", 8);
-		populateDatabase(em, "SP1.csv", "0910", 9);
-		populateDatabase(em, "SP1.csv", "1011", 10);
-		populateDatabase(em, "SP1.csv", "1112", 11);
-		populateDatabase(em, "SP1.csv", "1213", 12);
-		populateDatabase(em, "SP1.csv", "1314", 13);
-		populateDatabase(em, "SP1.csv", "1415", 14);
-
-		// ESPANHA - LA LIGA SEGUNDA DIVISION
-		populateDatabase(em, "SP2.csv", "0001", 0);
-		populateDatabase(em, "SP2.csv", "0102", 1);
-		populateDatabase(em, "SP2.csv", "0203", 2);
-		populateDatabase(em, "SP2.csv", "0304", 3);
-		populateDatabase(em, "SP2.csv", "0405", 4);
-		populateDatabase(em, "SP2.csv", "0506", 5);
-		populateDatabase(em, "SP2.csv", "0607", 6);
-		populateDatabase(em, "SP2.csv", "0708", 7);
-		populateDatabase(em, "SP2.csv", "0809", 8);
-		populateDatabase(em, "SP2.csv", "0910", 9);
-		populateDatabase(em, "SP2.csv", "1011", 10);
-		populateDatabase(em, "SP2.csv", "1112", 11);
-		populateDatabase(em, "SP2.csv", "1213", 12);
-		populateDatabase(em, "SP2.csv", "1314", 13);
-		populateDatabase(em, "SP2.csv", "1415", 14);
-
-		// FRANÇA - LE CHAMPIONNAT
-		populateDatabase(em, "F1.csv", "0001", 0);
-		populateDatabase(em, "F1.csv", "0102", 1);
-		populateDatabase(em, "F1.csv", "0203", 2);
-		populateDatabase(em, "F1.csv", "0304", 3);
-		populateDatabase(em, "F1.csv", "0405", 4);
-		populateDatabase(em, "F1.csv", "0506", 5);
-		populateDatabase(em, "F1.csv", "0607", 6);
-		populateDatabase(em, "F1.csv", "0708", 7);
-		populateDatabase(em, "F1.csv", "0809", 8);
-		populateDatabase(em, "F1.csv", "0910", 9);
-		populateDatabase(em, "F1.csv", "1011", 10);
-		populateDatabase(em, "F1.csv", "1112", 11);
-		populateDatabase(em, "F1.csv", "1213", 12);
-		populateDatabase(em, "F1.csv", "1314", 13);
-		populateDatabase(em, "F1.csv", "1415", 14);
-
-		// FRANÇA - DIVISION2
-		populateDatabase(em, "F2.csv", "0001", 0);
-		populateDatabase(em, "F2.csv", "0102", 1);
-		populateDatabase(em, "F2.csv", "0203", 2);
-		populateDatabase(em, "F2.csv", "0304", 3);
-		populateDatabase(em, "F2.csv", "0405", 4);
-		populateDatabase(em, "F2.csv", "0506", 5);
-		populateDatabase(em, "F2.csv", "0607", 6);
-		populateDatabase(em, "F2.csv", "0708", 7);
-		populateDatabase(em, "F2.csv", "0809", 8);
-		populateDatabase(em, "F2.csv", "0910", 9);
-		populateDatabase(em, "F2.csv", "1011", 10);
-		populateDatabase(em, "F2.csv", "1112", 11);
-		populateDatabase(em, "F2.csv", "1213", 12);
-		populateDatabase(em, "F2.csv", "1314", 13);
-		populateDatabase(em, "F2.csv", "1415", 14);
-
-		// HOLANDA - EREDIVISE
-		populateDatabase(em, "N1.csv", "0001", 0);
-		populateDatabase(em, "N1.csv", "0102", 1);
-		populateDatabase(em, "N1.csv", "0203", 2);
-		populateDatabase(em, "N1.csv", "0304", 3);
-		populateDatabase(em, "N1.csv", "0405", 4);
-		populateDatabase(em, "N1.csv", "0506", 5);
-		populateDatabase(em, "N1.csv", "0607", 6);
-		populateDatabase(em, "N1.csv", "0708", 7);
-		populateDatabase(em, "N1.csv", "0809", 8);
-		populateDatabase(em, "N1.csv", "0910", 9);
-		populateDatabase(em, "N1.csv", "1011", 10);
-		populateDatabase(em, "N1.csv", "1112", 11);
-		populateDatabase(em, "N1.csv", "1213", 12);
-		populateDatabase(em, "N1.csv", "1314", 13);
-		populateDatabase(em, "N1.csv", "1415", 14);
-
-		// BELGICA - JUPILER LEAGUE
-		populateDatabase(em, "B1.csv", "0001", 0);
-		populateDatabase(em, "B1.csv", "0102", 1);
-		populateDatabase(em, "B1.csv", "0203", 2);
-		populateDatabase(em, "B1.csv", "0304", 3);
-		populateDatabase(em, "B1.csv", "0405", 4);
-		populateDatabase(em, "B1.csv", "0506", 5);
-		populateDatabase(em, "B1.csv", "0607", 6);
-		populateDatabase(em, "B1.csv", "0708", 7);
-		populateDatabase(em, "B1.csv", "0809", 8);
-		populateDatabase(em, "B1.csv", "0910", 9);
-		populateDatabase(em, "B1.csv", "1011", 10);
-		populateDatabase(em, "B1.csv", "1112", 11);
-		populateDatabase(em, "B1.csv", "1213", 12);
-		populateDatabase(em, "B1.csv", "1314", 13);
-		populateDatabase(em, "B1.csv", "1415", 14);
-
-		// PORTUGAL - PRIMEIRA LIGA
-		populateDatabase(em, "P1.csv", "0001", 0);
-		populateDatabase(em, "P1.csv", "0102", 1);
-		populateDatabase(em, "P1.csv", "0203", 2);
-		populateDatabase(em, "P1.csv", "0304", 3);
-		populateDatabase(em, "P1.csv", "0405", 4);
-		populateDatabase(em, "P1.csv", "0506", 5);
-		populateDatabase(em, "P1.csv", "0607", 6);
-		populateDatabase(em, "P1.csv", "0708", 7);
-		populateDatabase(em, "P1.csv", "0809", 8);
-		populateDatabase(em, "P1.csv", "0910", 9);
-		populateDatabase(em, "P1.csv", "1011", 10);
-		populateDatabase(em, "P1.csv", "1112", 11);
-		populateDatabase(em, "P1.csv", "1213", 12);
-		populateDatabase(em, "P1.csv", "1314", 13);
-		populateDatabase(em, "P1.csv", "1415", 14);
-
-		// TURQUIA - FUTBOL LIGI 1
-		populateDatabase(em, "T1.csv", "0001", 0);
-		populateDatabase(em, "T1.csv", "0102", 1);
-		populateDatabase(em, "T1.csv", "0203", 2);
-		populateDatabase(em, "T1.csv", "0304", 3);
-		populateDatabase(em, "T1.csv", "0405", 4);
-		populateDatabase(em, "T1.csv", "0506", 5);
-		populateDatabase(em, "T1.csv", "0607", 6);
-		populateDatabase(em, "T1.csv", "0708", 7);
-		populateDatabase(em, "T1.csv", "0809", 8);
-		populateDatabase(em, "T1.csv", "0910", 9);
-		populateDatabase(em, "T1.csv", "1011", 10);
-		populateDatabase(em, "T1.csv", "1112", 11);
-		populateDatabase(em, "T1.csv", "1213", 12);
-		populateDatabase(em, "T1.csv", "1314", 13);
-		populateDatabase(em, "T1.csv", "1415", 14);
-
-		// GRECIA - ETHNIKI KATIGORIA
-		populateDatabase(em, "G1.csv", "0001", 0);
-		populateDatabase(em, "G1.csv", "0102", 1);
-		populateDatabase(em, "G1.csv", "0203", 2);
-		populateDatabase(em, "G1.csv", "0304", 3);
-		populateDatabase(em, "G1.csv", "0405", 4);
-		populateDatabase(em, "G1.csv", "0506", 5);
-		populateDatabase(em, "G1.csv", "0607", 6);
-		populateDatabase(em, "G1.csv", "0708", 7);
-		populateDatabase(em, "G1.csv", "0809", 8);
-		populateDatabase(em, "G1.csv", "0910", 9);
-		populateDatabase(em, "G1.csv", "1011", 10);
-		populateDatabase(em, "G1.csv", "1112", 11);
-		populateDatabase(em, "G1.csv", "1213", 12);
-		populateDatabase(em, "G1.csv", "1314", 13);
-		populateDatabase(em, "G1.csv", "1415", 14);
+//
+//		// ITALIA - SERIE B
+//		populateDatabase(em, "I2.csv", "0001", 0);
+//		populateDatabase(em, "I2.csv", "0102", 1);
+//		populateDatabase(em, "I2.csv", "0203", 2);
+//		populateDatabase(em, "I2.csv", "0304", 3);
+//		populateDatabase(em, "I2.csv", "0405", 4);
+//		populateDatabase(em, "I2.csv", "0506", 5);
+//		populateDatabase(em, "I2.csv", "0607", 6);
+//		populateDatabase(em, "I2.csv", "0708", 7);
+//		populateDatabase(em, "I2.csv", "0809", 8);
+//		populateDatabase(em, "I2.csv", "0910", 9);
+//		populateDatabase(em, "I2.csv", "1011", 10);
+//		populateDatabase(em, "I2.csv", "1112", 11);
+//		populateDatabase(em, "I2.csv", "1213", 12);
+//		populateDatabase(em, "I2.csv", "1314", 13);
+//		populateDatabase(em, "I2.csv", "1415", 14);
+//
+//		// ESPANHA - LA LIGA PRIMERA DIVISION
+//		populateDatabase(em, "SP1.csv", "0001", 0);
+//		populateDatabase(em, "SP1.csv", "0102", 1);
+//		populateDatabase(em, "SP1.csv", "0203", 2);
+//		populateDatabase(em, "SP1.csv", "0304", 3);
+//		populateDatabase(em, "SP1.csv", "0405", 4);
+//		populateDatabase(em, "SP1.csv", "0506", 5);
+//		populateDatabase(em, "SP1.csv", "0607", 6);
+//		populateDatabase(em, "SP1.csv", "0708", 7);
+//		populateDatabase(em, "SP1.csv", "0809", 8);
+//		populateDatabase(em, "SP1.csv", "0910", 9);
+//		populateDatabase(em, "SP1.csv", "1011", 10);
+//		populateDatabase(em, "SP1.csv", "1112", 11);
+//		populateDatabase(em, "SP1.csv", "1213", 12);
+//		populateDatabase(em, "SP1.csv", "1314", 13);
+//		populateDatabase(em, "SP1.csv", "1415", 14);
+//
+//		// ESPANHA - LA LIGA SEGUNDA DIVISION
+//		populateDatabase(em, "SP2.csv", "0001", 0);
+//		populateDatabase(em, "SP2.csv", "0102", 1);
+//		populateDatabase(em, "SP2.csv", "0203", 2);
+//		populateDatabase(em, "SP2.csv", "0304", 3);
+//		populateDatabase(em, "SP2.csv", "0405", 4);
+//		populateDatabase(em, "SP2.csv", "0506", 5);
+//		populateDatabase(em, "SP2.csv", "0607", 6);
+//		populateDatabase(em, "SP2.csv", "0708", 7);
+//		populateDatabase(em, "SP2.csv", "0809", 8);
+//		populateDatabase(em, "SP2.csv", "0910", 9);
+//		populateDatabase(em, "SP2.csv", "1011", 10);
+//		populateDatabase(em, "SP2.csv", "1112", 11);
+//		populateDatabase(em, "SP2.csv", "1213", 12);
+//		populateDatabase(em, "SP2.csv", "1314", 13);
+//		populateDatabase(em, "SP2.csv", "1415", 14);
+//
+//		// FRANÇA - LE CHAMPIONNAT
+//		populateDatabase(em, "F1.csv", "0001", 0);
+//		populateDatabase(em, "F1.csv", "0102", 1);
+//		populateDatabase(em, "F1.csv", "0203", 2);
+//		populateDatabase(em, "F1.csv", "0304", 3);
+//		populateDatabase(em, "F1.csv", "0405", 4);
+//		populateDatabase(em, "F1.csv", "0506", 5);
+//		populateDatabase(em, "F1.csv", "0607", 6);
+//		populateDatabase(em, "F1.csv", "0708", 7);
+//		populateDatabase(em, "F1.csv", "0809", 8);
+//		populateDatabase(em, "F1.csv", "0910", 9);
+//		populateDatabase(em, "F1.csv", "1011", 10);
+//		populateDatabase(em, "F1.csv", "1112", 11);
+//		populateDatabase(em, "F1.csv", "1213", 12);
+//		populateDatabase(em, "F1.csv", "1314", 13);
+//		populateDatabase(em, "F1.csv", "1415", 14);
+//
+//		// FRANÇA - DIVISION2
+//		populateDatabase(em, "F2.csv", "0001", 0);
+//		populateDatabase(em, "F2.csv", "0102", 1);
+//		populateDatabase(em, "F2.csv", "0203", 2);
+//		populateDatabase(em, "F2.csv", "0304", 3);
+//		populateDatabase(em, "F2.csv", "0405", 4);
+//		populateDatabase(em, "F2.csv", "0506", 5);
+//		populateDatabase(em, "F2.csv", "0607", 6);
+//		populateDatabase(em, "F2.csv", "0708", 7);
+//		populateDatabase(em, "F2.csv", "0809", 8);
+//		populateDatabase(em, "F2.csv", "0910", 9);
+//		populateDatabase(em, "F2.csv", "1011", 10);
+//		populateDatabase(em, "F2.csv", "1112", 11);
+//		populateDatabase(em, "F2.csv", "1213", 12);
+//		populateDatabase(em, "F2.csv", "1314", 13);
+//		populateDatabase(em, "F2.csv", "1415", 14);
+//
+//		// HOLANDA - EREDIVISE
+//		populateDatabase(em, "N1.csv", "0001", 0);
+//		populateDatabase(em, "N1.csv", "0102", 1);
+//		populateDatabase(em, "N1.csv", "0203", 2);
+//		populateDatabase(em, "N1.csv", "0304", 3);
+//		populateDatabase(em, "N1.csv", "0405", 4);
+//		populateDatabase(em, "N1.csv", "0506", 5);
+//		populateDatabase(em, "N1.csv", "0607", 6);
+//		populateDatabase(em, "N1.csv", "0708", 7);
+//		populateDatabase(em, "N1.csv", "0809", 8);
+//		populateDatabase(em, "N1.csv", "0910", 9);
+//		populateDatabase(em, "N1.csv", "1011", 10);
+//		populateDatabase(em, "N1.csv", "1112", 11);
+//		populateDatabase(em, "N1.csv", "1213", 12);
+//		populateDatabase(em, "N1.csv", "1314", 13);
+//		populateDatabase(em, "N1.csv", "1415", 14);
+//
+//		// BELGICA - JUPILER LEAGUE
+//		populateDatabase(em, "B1.csv", "0001", 0);
+//		populateDatabase(em, "B1.csv", "0102", 1);
+//		populateDatabase(em, "B1.csv", "0203", 2);
+//		populateDatabase(em, "B1.csv", "0304", 3);
+//		populateDatabase(em, "B1.csv", "0405", 4);
+//		populateDatabase(em, "B1.csv", "0506", 5);
+//		populateDatabase(em, "B1.csv", "0607", 6);
+//		populateDatabase(em, "B1.csv", "0708", 7);
+//		populateDatabase(em, "B1.csv", "0809", 8);
+//		populateDatabase(em, "B1.csv", "0910", 9);
+//		populateDatabase(em, "B1.csv", "1011", 10);
+//		populateDatabase(em, "B1.csv", "1112", 11);
+//		populateDatabase(em, "B1.csv", "1213", 12);
+//		populateDatabase(em, "B1.csv", "1314", 13);
+//		populateDatabase(em, "B1.csv", "1415", 14);
+//
+//		// PORTUGAL - PRIMEIRA LIGA
+//		populateDatabase(em, "P1.csv", "0001", 0);
+//		populateDatabase(em, "P1.csv", "0102", 1);
+//		populateDatabase(em, "P1.csv", "0203", 2);
+//		populateDatabase(em, "P1.csv", "0304", 3);
+//		populateDatabase(em, "P1.csv", "0405", 4);
+//		populateDatabase(em, "P1.csv", "0506", 5);
+//		populateDatabase(em, "P1.csv", "0607", 6);
+//		populateDatabase(em, "P1.csv", "0708", 7);
+//		populateDatabase(em, "P1.csv", "0809", 8);
+//		populateDatabase(em, "P1.csv", "0910", 9);
+//		populateDatabase(em, "P1.csv", "1011", 10);
+//		populateDatabase(em, "P1.csv", "1112", 11);
+//		populateDatabase(em, "P1.csv", "1213", 12);
+//		populateDatabase(em, "P1.csv", "1314", 13);
+//		populateDatabase(em, "P1.csv", "1415", 14);
+//
+//		// TURQUIA - FUTBOL LIGI 1
+//		populateDatabase(em, "T1.csv", "0001", 0);
+//		populateDatabase(em, "T1.csv", "0102", 1);
+//		populateDatabase(em, "T1.csv", "0203", 2);
+//		populateDatabase(em, "T1.csv", "0304", 3);
+//		populateDatabase(em, "T1.csv", "0405", 4);
+//		populateDatabase(em, "T1.csv", "0506", 5);
+//		populateDatabase(em, "T1.csv", "0607", 6);
+//		populateDatabase(em, "T1.csv", "0708", 7);
+//		populateDatabase(em, "T1.csv", "0809", 8);
+//		populateDatabase(em, "T1.csv", "0910", 9);
+//		populateDatabase(em, "T1.csv", "1011", 10);
+//		populateDatabase(em, "T1.csv", "1112", 11);
+//		populateDatabase(em, "T1.csv", "1213", 12);
+//		populateDatabase(em, "T1.csv", "1314", 13);
+//		populateDatabase(em, "T1.csv", "1415", 14);
+//
+//		// GRECIA - ETHNIKI KATIGORIA
+//		populateDatabase(em, "G1.csv", "0001", 0);
+//		populateDatabase(em, "G1.csv", "0102", 1);
+//		populateDatabase(em, "G1.csv", "0203", 2);
+//		populateDatabase(em, "G1.csv", "0304", 3);
+//		populateDatabase(em, "G1.csv", "0405", 4);
+//		populateDatabase(em, "G1.csv", "0506", 5);
+//		populateDatabase(em, "G1.csv", "0607", 6);
+//		populateDatabase(em, "G1.csv", "0708", 7);
+//		populateDatabase(em, "G1.csv", "0809", 8);
+//		populateDatabase(em, "G1.csv", "0910", 9);
+//		populateDatabase(em, "G1.csv", "1011", 10);
+//		populateDatabase(em, "G1.csv", "1112", 11);
+//		populateDatabase(em, "G1.csv", "1213", 12);
+//		populateDatabase(em, "G1.csv", "1314", 13);
+//		populateDatabase(em, "G1.csv", "1415", 14);
 
 	}
 
@@ -1316,8 +1316,8 @@ public class Main {
 
 				// TROCADO
 
-				homeTR2 = homeTeam.getResultPercentage(f, Venue.HOME, ResultType.WIN, interval, null);
-				awayTR2 = awayTeam.getResultPercentage(f, Venue.AWAY, ResultType.LOSE, interval, null);
+				homeTR2 = homeTeam.getResultPercentage(f, Venue.AWAY, ResultType.LOSE, interval, null);
+				awayTR2 = awayTeam.getResultPercentage(f, Venue.HOME, ResultType.WIN, interval, null);
 				Double qLT_percentagemDerrotasVisitado2 = homeTR2.getResultPercentage();
 				Double qLT_percentagemVitoriasVisitante2 = awayTR2.getResultPercentage();
 				Double qLT_dificuldadeDerrotasVisitado2 = homeTR2.getQualityAverage();
@@ -1329,8 +1329,8 @@ public class Main {
 				
 				// TROCADO ultimos 5 jogos
 
-				homeTR2_5jogos = homeTeam.getResultPercentage(f, Venue.HOME, ResultType.WIN, interval, 5);
-				awayTR2_5jogos = awayTeam.getResultPercentage(f, Venue.AWAY, ResultType.LOSE, interval, 5);
+				homeTR2_5jogos = homeTeam.getResultPercentage(f, Venue.AWAY, ResultType.LOSE, interval, 5);
+				awayTR2_5jogos = awayTeam.getResultPercentage(f, Venue.HOME, ResultType.WIN, interval, 5);
 				Double qLT_percentagemDerrotasVisitado2_5jogos = homeTR2_5jogos.getResultPercentage();
 				Double qLT_percentagemVitoriasVisitante2_5jogos = awayTR2_5jogos.getResultPercentage();
 				Double qLT_dificuldadeDerrotasVisitado2_5jogos = homeTR2_5jogos.getQualityAverage();
