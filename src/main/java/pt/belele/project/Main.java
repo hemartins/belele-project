@@ -477,43 +477,43 @@ public class Main {
 //
 //		// ITALIA - SERIE A
 		Season i14 = sc.createSeason("I1", 14);
-//		generateExcelFiles_PlanA(i14, em, dir, true, true);
-		generateExcelFiles_PlanB(i14, em, dir);
+		generateExcelFiles_PlanA(i14, em, dir, true, true);
+//		generateExcelFiles_PlanB(i14, em, dir);
 //
-//		Season i13 = sc.createSeason("I1", 13);
-//		generateExcelFiles_PlanA(i13, em, dir, true, true);
+		Season i13 = sc.createSeason("I1", 13);
+		generateExcelFiles_PlanA(i13, em, dir, true, true);
 //		generateExcelFiles_PlanB(i13, em, dir);
 //
-//		Season i12 = sc.createSeason("I1", 12);
-//		generateExcelFiles_PlanA(i12, em, dir, true, true);
+		Season i12 = sc.createSeason("I1", 12);
+		generateExcelFiles_PlanA(i12, em, dir, true, true);
 //		generateExcelFiles_PlanB(i12, em, dir);
 //
-//		Season i11 = sc.createSeason("I1", 11);
-//		generateExcelFiles_PlanA(i11, em, dir, true, true);
+		Season i11 = sc.createSeason("I1", 11);
+		generateExcelFiles_PlanA(i11, em, dir, true, true);
 //		generateExcelFiles_PlanB(i11, em, dir);
 //
-//		Season i10 = sc.createSeason("I1", 10);
-//		generateExcelFiles_PlanA(i10, em, dir, true, true);
+		Season i10 = sc.createSeason("I1", 10);
+		generateExcelFiles_PlanA(i10, em, dir, true, true);
 //		generateExcelFiles_PlanB(i10, em, dir);
 //
-//		Season i9 = sc.createSeason("I1", 9);
-//		generateExcelFiles_PlanA(i9, em, dir, true, true);
+		Season i9 = sc.createSeason("I1", 9);
+		generateExcelFiles_PlanA(i9, em, dir, true, true);
 //		generateExcelFiles_PlanB(i9, em, dir);
 //
-//		Season i8 = sc.createSeason("I1", 8);
-//		generateExcelFiles_PlanA(i8, em, dir, true, true);
+		Season i8 = sc.createSeason("I1", 8);
+		generateExcelFiles_PlanA(i8, em, dir, true, true);
 //		generateExcelFiles_PlanB(i8, em, dir);
 //
-//		Season i7 = sc.createSeason("I1", 7);
-//		generateExcelFiles_PlanA(i7, em, dir, true, true);
+		Season i7 = sc.createSeason("I1", 7);
+		generateExcelFiles_PlanA(i7, em, dir, true, true);
 //		generateExcelFiles_PlanB(i7, em, dir);
 //
-//		Season i6 = sc.createSeason("I1", 6);
-//		generateExcelFiles_PlanA(i6, em, dir, true, true);
+		Season i6 = sc.createSeason("I1", 6);
+		generateExcelFiles_PlanA(i6, em, dir, true, true);
 //		generateExcelFiles_PlanB(i6, em, dir);
 //
-//		Season i5 = sc.createSeason("I1", 5);
-//		generateExcelFiles_PlanA(i5, em, dir, true, true);
+		Season i5 = sc.createSeason("I1", 5);
+		generateExcelFiles_PlanA(i5, em, dir, true, true);
 //		generateExcelFiles_PlanB(i5, em, dir);
 //
 //		// ITALIA - SERIE B
