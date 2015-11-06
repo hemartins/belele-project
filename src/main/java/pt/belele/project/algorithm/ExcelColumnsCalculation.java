@@ -289,10 +289,10 @@ public class ExcelColumnsCalculation {
 		return new H2H(resultTypeRating, nextFixture.getH2h().size(), numberResults);
 	}
 
-	public TeamRating getResultPercentage(Fixture nextFixture, Venue venue, ResultType type, Double interval) {
+	public TeamRating getResultPercentage(Fixture nextFixture, Venue venue, ResultType type, Double interval, Integer numerberOfGames) {
 		Season s = nextFixture.getSeason();
 		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team, nextFixture.getSeason(),
-				nextFixture.getDate(), venue, null);
+				nextFixture.getDate(), venue, numerberOfGames);
 		Double resultSum = 0.0;
 		Double opponentSum = 0.0;
 		Double intervalSum = 0.0;

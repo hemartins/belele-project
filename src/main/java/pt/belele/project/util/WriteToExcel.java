@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -258,6 +259,8 @@ public class WriteToExcel {
 
 		row.createCell(cellIndex++).setCellValue("[QLT] Numero de Jogos do Visitante Trocado no Intervalo Últimos 5 jogos");
 
+		row.createCell(cellIndex++).setCellValue("Semana");
+		
 		rowIndex++;
 
 		for (ExcelRow excelrow : dataList) {
@@ -479,6 +482,12 @@ public class WriteToExcel {
 			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_numeroJogosVisitado2_5jogos());
 			
 			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_numeroJogosVisitante2_5jogos());
+			
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(excelrow.getData());
+			int week = cal.get(Calendar.WEEK_OF_YEAR);
+			
+			row.createCell(cellIndex++).setCellValue(week);
 
 		}
 
