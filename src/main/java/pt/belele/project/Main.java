@@ -46,7 +46,7 @@ public class Main {
 	public static void main(String[] args) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("database.odb");
 		EntityManager em = emf.createEntityManager();
-		generateDatabase(em);
+		//generateDatabase(em);
 		createExcels_A_B(em);
 	}
 
@@ -347,7 +347,7 @@ public class Main {
 
 		SeasonController sc = new SeasonController(em);
 
-		String dir = "/Users/Utilizador/Desktop/";
+		String dir = "/Users/Ricardo/Desktop/";
 
 //		// INGLATERRA - PREMIER LEAGUE
 //		Season e14 = sc.createSeason("E0", 14);
@@ -834,15 +834,29 @@ public class Main {
 			ExcelColumnsCalculation homeTeam = new ExcelColumnsCalculation(f.getHomeTeam(), em);
 			ExcelColumnsCalculation awayTeam = new ExcelColumnsCalculation(f.getAwayTeam(), em);
 
+			///////////////////////////////////////////////GERAL///////////////////////////////////////////////
+			
 			Date data = f.getDate();
 			Long idVisitado = f.getHomeTeam().getId();
 			Long idVisitante = f.getAwayTeam().getId();
+			
+			/////////COMPLETO/////////
 			Double qualidadeVisitado = homeTeam.getTeamQuality(s, f.getDate());
 			Double qualidadeVisitante = awayTeam.getTeamQuality(s, f.getDate());
 
+			/////////VENUE/////////
 			Double qualidadeVisitadoCasa = homeTeam.getHomeTeamQuality(s, f.getDate());
 			Double qualidadeVisitanteFora = awayTeam.getAwayTeamQuality(s, f.getDate());
 
+			/////////VENUE TROCADO/////////
+			
+			
+			
+			///////////////////////////////////////////////[FR] FORMA RECENTE [FR]///////////////////////////////////////////////
+			
+			/////////COMPLETO/////////
+			/////////VENUE/////////
+			/////////VENUE TROCADO/////////
 			Integer fR_diasDescansoVisitado = homeTeam.getRestingDays(f);
 			Integer fR_diasDescansoVisitante = awayTeam.getRestingDays(f);
 			Double fR_ratingVitoriasVisitado = homeTeam.getLastFixturesRating(f, null, 5, ratings, ResultType.WIN);
@@ -855,6 +869,15 @@ public class Main {
 			Double fR_dificuldadeVisistante = awayTeam.getLastFixturesOpponentAverageQuality(f, null, 5);
 			Integer fR_HistoricosVisitado = homeTeam.getLastHardGamesFixturesNumber(f, null, 5, historicos);
 			Integer fR_HistoricosVisitante = awayTeam.getLastHardGamesFixturesNumber(f, null, 5, historicos);
+			
+			
+///////////////////////////////////////////////[CIC] Ciclo [CIC]///////////////////////////////////////////////
+			
+			/////////COMPLETO/////////
+			/////////VENUE/////////
+			/////////VENUE TROCADO/////////
+			
+			
 			ResultCycle homeWinCycle = homeTeam.getTeamCycle(f, Venue.HOME, ResultType.WIN);
 			ResultCycle awayLoseCycle = awayTeam.getTeamCycle(f, Venue.AWAY, ResultType.LOSE);
 			Integer homeWinCycle_numeroJogosVisitado = homeWinCycle.getCycle();
@@ -875,7 +898,13 @@ public class Main {
 					historicos);
 			Integer awayLoseCycle_HistoricosVisitanteTotal = awayTeam.getCycleHardGamesNumber(awayLoseCycleTotal,
 					historicos);
-
+			
+///////////////////////////////////////////////[H2H] Head 2 Head [H2H]///////////////////////////////////////////////
+			
+			/////////COMPLETO/////////
+			/////////VENUE/////////
+			/////////VENUE TROCADO/////////
+			
 			H2H h2hRatings = homeTeam.getH2HRating(f, ratingsH2H, Venue.HOME, ResultType.WIN);
 			Double h2hWin_rating = h2hRatings.getRating();
 			Integer h2hWin_numeroJogos = h2hRatings.getSize();
@@ -950,7 +979,11 @@ public class Main {
 
 			Integer loseH2hResults = h2hRatings.getNumberResults();
 
-			// CICLO PERNA
+///////////////////////////////////////////////[CICP] CICLO PERNA [CICP]///////////////////////////////////////////////
+			
+			/////////COMPLETO/////////
+			/////////VENUE/////////
+			/////////VENUE TROCADO/////////
 
 			ResultCycle homeWinCyclePerna = homeTeam.getTeamCyclePerna(f, Venue.HOME, ResultType.WIN);
 			ResultCycle awayLoseCyclePerna = awayTeam.getTeamCyclePerna(f, Venue.AWAY, ResultType.LOSE);
@@ -1045,7 +1078,11 @@ public class Main {
 
 			// FIM RATING COM QUALIDADE DO ADVERSARIO
 
-			// GOLOS
+///////////////////////////////////////////////[GOL] GOLOS [GOL]///////////////////////////////////////////////
+			
+/////////COMPLETO/////////
+/////////VENUE/////////
+/////////VENUE TROCADO/////////
 
 			Integer golosVisitado = homeTeam.getGoals(s, f.getDate());
 			Integer golosContraVisitado = homeTeam.getGoalsAgainst(s, f.getDate());
@@ -1111,6 +1148,13 @@ public class Main {
 			if (generateOurs) {
 				TeamRating homeTR = homeTeam.getResultPercentage(f, Venue.HOME, ResultType.WIN, interval, null);
 				TeamRating awayTR = awayTeam.getResultPercentage(f, Venue.AWAY, ResultType.LOSE, interval, null);
+				
+///////////////////////////////////////////////[QLT] Qualidade [QLT]///////////////////////////////////////////////
+				
+/////////COMPLETO/////////
+/////////VENUE/////////
+/////////VENUE TROCADO/////////
+				
 				Integer qLT_homeTeamNumeroJogos = homeTeam.getNumberOfFixtures(f, Venue.HOME);
 				Integer qLT_awayTeamNumeroJogos = awayTeam.getNumberOfFixtures(f, Venue.AWAY);
 				Double qLT_percentagemVitoriasVisitado = homeTR.getResultPercentage();

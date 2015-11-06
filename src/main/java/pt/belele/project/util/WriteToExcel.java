@@ -22,7 +22,7 @@ public class WriteToExcel {
 
 	private static final Logger logger = LogManager.getLogger(WriteToExcel.class);
 
-	private String filePath = "/Users/JRicardoRG/Desktop/";
+	private String filePath = "/Users/Ricardo/Desktop/";
 	private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
 	public WriteToExcel(String filePath) {

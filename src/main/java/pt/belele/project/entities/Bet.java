@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Bet implements Serializable {
@@ -73,7 +74,8 @@ public class Bet implements Serializable {
 	// @ManyToMany(targetEntity = Fixture.class, mappedBy = "bets")
 	// private List<Fixture> fixtures;
 
-	@Embedded
+
+	@ManyToOne
 	private Fixture fixture;
 
 	@ManyToOne
