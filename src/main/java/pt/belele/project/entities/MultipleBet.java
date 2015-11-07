@@ -106,5 +106,64 @@ public class MultipleBet {
 	public void setWeek(Week week) {
 		this.week = week;
 	}
-	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((betResult == null) ? 0 : betResult.hashCode());
+		result = prime * result + ((betType == null) ? 0 : betType.hashCode());
+		result = prime * result
+				+ ((betsList == null) ? 0 : betsList.hashCode());
+		result = prime * result + (int) (id ^ (id >>> 32));
+		long temp;
+		temp = Double.doubleToLongBits(investedValue);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(odd);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((week == null) ? 0 : week.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MultipleBet other = (MultipleBet) obj;
+		if (betResult != other.betResult)
+			return false;
+		if (betType != other.betType)
+			return false;
+		if (betsList == null) {
+			if (other.betsList != null)
+				return false;
+		} else if (!betsList.equals(other.betsList))
+			return false;
+		if (id != other.id)
+			return false;
+		if (Double.doubleToLongBits(investedValue) != Double
+				.doubleToLongBits(other.investedValue))
+			return false;
+		if (Double.doubleToLongBits(odd) != Double.doubleToLongBits(other.odd))
+			return false;
+		if (week == null) {
+			if (other.week != null)
+				return false;
+		} else if (!week.equals(other.week))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "MultipleBet [id=" + id + ", betResult=" + betResult
+				+ ", investedValue=" + investedValue + ", odd=" + odd
+				+ ", betType=" + betType + ", betsList=" + betsList + ", week="
+				+ week + "]";
+	}
 }

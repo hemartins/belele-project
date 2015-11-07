@@ -2,13 +2,11 @@ package pt.belele.project.entities;
 
 import java.io.Serializable;
 
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Bet implements Serializable {
@@ -179,10 +177,11 @@ public class Bet implements Serializable {
 		this.week = week;
 	}
 
-//	@Override
-//	public String toString() {
-//		return "Bet [betType=" + betType + ", betResult=" + betResult + ", matchOddBet=" + matchOddBet
-//				+ ", investedValue=" + investedValue + ", odd=" + odd + "]";
-//	}
+	@Override
+	public String toString() {
+		return "Bet [id=" + id + ", betResult=" + betResult + ", matchOddBet="
+				+ matchOddBet + ", investedValue=" + investedValue + ", odd="
+				+ odd + ", fixture=" + fixture + ", week=" + week + "]";
+	}
 
 }
