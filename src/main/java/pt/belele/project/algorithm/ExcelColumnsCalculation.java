@@ -114,6 +114,30 @@ public class ExcelColumnsCalculation {
 
 		return results;
 	}
+	
+	public Double[] getRecentFormResultPercentage(Fixture nextFixture, Venue venue, Integer numberOfFixtures, ResultType type){
+		Double[] percentages=new Double[1];
+		Double percentageHome=0.0;
+		Double percentageAway=0.0;
+		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team, nextFixture.getSeason(),
+				nextFixture.getDate(), venue, null);
+		Double resultTypeHome=0.0;
+		Double resultTypeAway=0.0;
+		for(Fixture f:fixtures ){
+			if(f.getResult().getResultType().equals(type)){
+				if(f.getHomeTeam().equals(team)){
+					resultTypeHome++;
+				}
+				else {resultTypeAway++;}
+				
+			}
+		}
+		percentageHome=resultTypeHome/numberOfFixtures;
+		percentages[0]=percentageHome;
+		percentageAway=resultTypeAway/numberOfFixtures;
+		percentages[1]=percentageAway;
+		return percentages;
+	}
 
 	// Media da qualidade das ultimas equipas defrontadas
 	public Double getLastFixturesOpponentAverageQuality(Fixture nextFixture, Venue venue, Integer numberOfFixtures) {
@@ -420,6 +444,62 @@ public class ExcelColumnsCalculation {
 		List<Team> ls = standingController.getTeamsOrderedByClassification(season, date);
 
 		return ls.indexOf(team) + 1;
+	}
+	
+	public Double[] averageGoalsLastGames(Fixture nextFixture, Venue venue, Integer numerberOfGames){
+		Double[] avgGoalsFR=new Double[5];
+		
+		Double avgGoalsScoredTotal =0.0;
+		Double avgGoalsConcededTotal =0.0;
+		Double avgGoalsScoredHome =0.0;
+		Double avgGoalsConcededHome =0.0;
+		Double avgGoalsScoredAway =0.0;
+		Double avgGoalsConcededAway =0.0;
+		
+		Integer nrGoalsScoredTotal=0;
+		Integer nrGoalsConcededTotal=0;
+		Integer nrGoalsScoredHome=0;
+		Integer nrGoalsConcededHome=0;
+		Integer nrGoalsScoredAway=0;
+		Integer nrGoalsConcededAway=0;
+		
+		int nrGamesHome=0;
+		int nrGamesAway=0;
+		
+		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team, nextFixture.getSeason(),
+				nextFixture.getDate(), venue, numerberOfGames);
+		for(Fixture f:fixtures){
+			if(f.getHomeTeam().equals(team)){
+				nrGamesHome++;
+				nrGoalsScoredHome=nrGoalsScoredHome+f.getResult().getFullTimeHomeTeamGoals();
+				nrGoalsConcededHome=nrGoalsConcededHome+f.getResult().getFullTimeAwayTeamGoals();
+			}
+			else{
+				nrGamesAway++;
+				nrGoalsScoredAway=nrGoalsScoredAway+f.getResult().getFullTimeAwayTeamGoals();
+				nrGoalsConcededAway=nrGoalsConcededAway+f.getResult().getFullTimeHomeTeamGoals();
+			}
+		}
+
+		nrGoalsScoredTotal=nrGoalsScoredHome+nrGoalsScoredAway;
+		nrGoalsConcededTotal=nrGoalsConcededHome+nrGoalsConcededAway;
+		
+		avgGoalsScoredHome=(double) (nrGoalsScoredHome/nrGamesHome);
+		avgGoalsConcededHome=(double) (nrGoalsConcededHome/nrGamesHome);
+		avgGoalsScoredAway=(double) (nrGoalsScoredAway/nrGamesAway);
+		avgGoalsConcededAway=(double) (nrGoalsConcededAway/nrGamesAway);
+		
+		avgGoalsScoredTotal=(double) (nrGoalsScoredTotal/numerberOfGames);
+		avgGoalsConcededTotal=(double) (nrGoalsConcededTotal/numerberOfGames);
+		
+		avgGoalsFR[0]=avgGoalsScoredTotal;
+		avgGoalsFR[1]=avgGoalsConcededTotal;
+		avgGoalsFR[2]=avgGoalsScoredHome;
+		avgGoalsFR[3]=avgGoalsConcededHome;
+		avgGoalsFR[4]=avgGoalsScoredAway;
+		avgGoalsFR[5]=avgGoalsConcededAway;
+		
+		return avgGoalsFR;
 	}
 
 	// PLANO B

@@ -849,14 +849,45 @@ public class Main {
 			Double qualidadeVisitanteFora = awayTeam.getAwayTeamQuality(s, f.getDate());
 
 			/////////VENUE TROCADO/////////
-			
+			Double qualidadeVisitadoFora = homeTeam.getAwayTeamQuality(s, f.getDate());
+			Double qualidadeVisitanteCasa = awayTeam.getHomeTeamQuality(s, f.getDate());
 			
 			
 			///////////////////////////////////////////////[FR] FORMA RECENTE [FR]///////////////////////////////////////////////
 			
+			//Vitoria Visitado
+			Double[] percFRVitóriasVisitado_5jogos = homeTeam.getRecentFormResultPercentage(f, null, 5, ResultType.WIN);
+			Double[] percFRDerrotasVisitante_5jogos = awayTeam.getRecentFormResultPercentage(f, null, 5, ResultType.LOSE);
+			
+			Double percFRVitóriasVisitadoCasa = percFRVitóriasVisitado_5jogos[0];
+			Double percFRVitóriasVisitadoFora = percFRVitóriasVisitado_5jogos[1];
+			Double percFRDerrotasVisitanteCasa = percFRDerrotasVisitante_5jogos[0];
+			Double percFRDerrotasVisitanteFora = percFRDerrotasVisitante_5jogos[1];
+			
+			//Empate
+			Double[] percFREmpatesVisitado_5jogos = homeTeam.getRecentFormResultPercentage(f, null, 5, ResultType.DRAW);
+			Double[] percFREmpatesVisitante_5jogos = awayTeam.getRecentFormResultPercentage(f, null, 5, ResultType.DRAW);
+			
+			Double percFREmpatesVisitadoCasa = percFREmpatesVisitado_5jogos[0];
+			Double percFREmpatesVisitadoFora = percFREmpatesVisitado_5jogos[1];
+			Double percFREmpatesVisitanteCasa = percFREmpatesVisitante_5jogos[0];
+			Double percFREmpatesVisitanteFora = percFREmpatesVisitante_5jogos[1];
+			
+			//Derrota Visitado
+			Double[] percFRDerrotasVisitado_5jogos = homeTeam.getRecentFormResultPercentage(f, null, 5, ResultType.LOSE);
+			Double[] percFRVitóriasVisitante_5jogos = awayTeam.getRecentFormResultPercentage(f, null, 5, ResultType.WIN);
+			
+			Double percFRDerrotasVisitadoCasa = percFREmpatesVisitado_5jogos[0];
+			Double percFRDerrotasVisitadoFora = percFREmpatesVisitado_5jogos[1];
+			Double percFRVitóriasVisitanteCasa = percFREmpatesVisitante_5jogos[0];
+			Double percFRVitóriasVisitanteFora = percFREmpatesVisitante_5jogos[1];
+			
 			/////////COMPLETO/////////
 			/////////VENUE/////////
 			/////////VENUE TROCADO/////////
+			
+			
+			
 			Integer fR_diasDescansoVisitado = homeTeam.getRestingDays(f);
 			Integer fR_diasDescansoVisitante = awayTeam.getRestingDays(f);
 			Double fR_ratingVitoriasVisitado = homeTeam.getLastFixturesRating(f, null, 5, ratings, ResultType.WIN);
@@ -1096,7 +1127,26 @@ public class Main {
 			Integer golosVisitanteFora = awayTeam.getAwayGoals(s, f.getDate());
 			Integer golosContraVisitanteFora = awayTeam.getAwayGoalsAgainst(s, f.getDate());
 			Integer diferencaGolosVisitanteFora = golosVisitanteFora - golosContraVisitanteFora;
-
+			
+			
+			//Medias de golos marcados e sofridos em casa e fora nos ultimos 5 jogos
+			Double[] percentagensGolosFRVisitado_5jogos = homeTeam.averageGoalsLastGames(f, null, 5);
+			Double[] percentagensGolosFRVisitante_5jogos = awayTeam.averageGoalsLastGames(f, null, 5);
+			
+			Double mediaGolosMarcadosVisitadoTotal=percentagensGolosFRVisitado_5jogos[0];
+			Double mediaGolosSofridosVisitadoTotal=percentagensGolosFRVisitado_5jogos[1];
+			Double mediaGolosMarcadosVisitadoCasa=percentagensGolosFRVisitado_5jogos[2];
+			Double mediaGolosSofridosVisitadoCasa=percentagensGolosFRVisitado_5jogos[3];
+			Double mediaGolosMarcadosVisitadoFora=percentagensGolosFRVisitado_5jogos[4];
+			Double mediaGolosSofridosVisitadoFora=percentagensGolosFRVisitado_5jogos[5];
+			
+			Double mediaGolosMarcadosVisitanteTotal=percentagensGolosFRVisitante_5jogos[0];
+			Double mediaGolosSofridosVisitanteTotal=percentagensGolosFRVisitante_5jogos[1];
+			Double mediaGolosMarcadosVisitanteCasa=percentagensGolosFRVisitante_5jogos[2];
+			Double mediaGolosSofridosVisitanteCasa=percentagensGolosFRVisitante_5jogos[3];
+			Double mediaGolosMarcadosVisitanteFora=percentagensGolosFRVisitante_5jogos[4];
+			Double mediaGolosSofridosVisitanteFora=percentagensGolosFRVisitante_5jogos[5];
+			
 			// FIM GOLOS
 
 			// CLASSIFICACAO
