@@ -908,11 +908,11 @@ public class Main {
 			///////////////////////////////////////////////[FR] FORMA RECENTE [FR]///////////////////////////////////////////////
 			
 			//Vitoria Visitado
-			Double[] percFRVitóriasVisitado_5jogos = homeTeam.getRecentFormResultPercentage(f, null, 5, ResultType.WIN);
+			Double[] percFRVitoriasVisitado_5jogos = homeTeam.getRecentFormResultPercentage(f, null, 5, ResultType.WIN);
 			Double[] percFRDerrotasVisitante_5jogos = awayTeam.getRecentFormResultPercentage(f, null, 5, ResultType.LOSE);
 			
-			Double percFRVitóriasVisitadoCasa = percFRVitóriasVisitado_5jogos[0];
-			Double percFRVitóriasVisitadoFora = percFRVitóriasVisitado_5jogos[1];
+			Double percFRVitoriasVisitadoCasa = percFRVitoriasVisitado_5jogos[0];
+			Double percFRVitoriasVisitadoFora = percFRVitoriasVisitado_5jogos[1];
 			Double percFRDerrotasVisitanteCasa = percFRDerrotasVisitante_5jogos[0];
 			Double percFRDerrotasVisitanteFora = percFRDerrotasVisitante_5jogos[1];
 			
@@ -927,12 +927,12 @@ public class Main {
 			
 			//Derrota Visitado
 			Double[] percFRDerrotasVisitado_5jogos = homeTeam.getRecentFormResultPercentage(f, null, 5, ResultType.LOSE);
-			Double[] percFRVitóriasVisitante_5jogos = awayTeam.getRecentFormResultPercentage(f, null, 5, ResultType.WIN);
+			Double[] percFRVitoriasVisitante_5jogos = awayTeam.getRecentFormResultPercentage(f, null, 5, ResultType.WIN);
 			
-			Double percFRDerrotasVisitadoCasa = percFREmpatesVisitado_5jogos[0];
-			Double percFRDerrotasVisitadoFora = percFREmpatesVisitado_5jogos[1];
-			Double percFRVitóriasVisitanteCasa = percFREmpatesVisitante_5jogos[0];
-			Double percFRVitóriasVisitanteFora = percFREmpatesVisitante_5jogos[1];
+			Double percFRDerrotasVisitadoCasa = percFRDerrotasVisitado_5jogos[0];
+			Double percFRDerrotasVisitadoFora = percFRDerrotasVisitado_5jogos[1];
+			Double percFRVitoriasVisitanteCasa = percFRVitoriasVisitante_5jogos[0];
+			Double percFRVitoriasVisitanteFora = percFRVitoriasVisitante_5jogos[1];
 
 
 			/////////////////////////////////////////////// [CIC] Ciclo
