@@ -830,16 +830,44 @@ public class Main {
 
 			if (f.getDate().before(formatter.parseDateTime("23/11/" + (s.getYear() + 2000)).toDate()))
 				continue;
+			
+			List<ExcelRow> rowList = new ArrayList<ExcelRow>();
+			
+//			ExcelRow winRow = new ExcelRow();
+//			ExcelRow drawRow = new ExcelRow();
+//			ExcelRow loseRow = new ExcelRow();
 
 			ExcelColumnsCalculation homeTeam = new ExcelColumnsCalculation(f.getHomeTeam(), em);
 			ExcelColumnsCalculation awayTeam = new ExcelColumnsCalculation(f.getAwayTeam(), em);
 
-			// calculateGeneralVariables(f, s, homeTeam, awayTeam);
-			// calculateCycleVariables();
-			// calculateFRVariables();
-			// calculateQLTVariables();
-			// calculateH2HVariables();
-			// calculateGoalVariables();
+//			 rowList = calculateGeneralVariables(f, s, homeTeam, awayTeam, winRow, drawRow, loseRow);
+//			 winRow = rowList.get(0);
+//			 drawRow = rowList.get(1);
+//			 loseRow = rowList.get(2);
+//			 rowList = calculateCycleVariables(f, homeTeam, awayTeam, historicos, ratings, winRow, drawRow, loseRow);
+//			 winRow = rowList.get(0);
+//			 drawRow = rowList.get(1);
+//			 loseRow = rowList.get(2);
+//			 rowList = calculateFRVariables(f, homeTeam, awayTeam, ratings, historicos, winRow, drawRow, loseRow);
+//			 winRow = rowList.get(0);
+//			 drawRow = rowList.get(1);
+//			 loseRow = rowList.get(2);
+//			 rowList = calculateQLTVariables(f, homeTeam, awayTeam, interval, winRow, drawRow, loseRow);
+//			 winRow = rowList.get(0);
+//			 drawRow = rowList.get(1);
+//			 loseRow = rowList.get(2);
+//			 rowList = calculateH2HVariables(f, ratingsH2H, homeTeam, awayTeam, winRow, drawRow, loseRow);
+//			 winRow = rowList.get(0);
+//			 drawRow = rowList.get(1);
+//			 loseRow = rowList.get(2);
+//			 rowList = calculateGoalVariables(f, s, homeTeam, awayTeam, winRow, drawRow, loseRow);
+//			 winRow = rowList.get(0);
+//			 drawRow = rowList.get(1);
+//			 loseRow = rowList.get(2);
+//			 
+//			 OurWinDataList.add(winRow);
+//			 OurDrawDataList.add(drawRow);
+//			 OurLoseDataList.add(loseRow);
 
 			/////////////////////////////////////////////// GERAL///////////////////////////////////////////////
 
@@ -1516,93 +1544,189 @@ public class Main {
 
 	}
 
-	private static void calculateGeneralVariables(Fixture f, Season s, ExcelColumnsCalculation homeTeam,
-			ExcelColumnsCalculation awayTeam) {
-		generalVenue(f, s, homeTeam, awayTeam);
-		generalSwitchedVenue(f, s, homeTeam, awayTeam);
-		generalOverall(f, s, homeTeam, awayTeam);
+	private static List<ExcelRow> calculateGeneralVariables(Fixture f, Season s, ExcelColumnsCalculation homeTeam,
+			ExcelColumnsCalculation awayTeam, ExcelRow winRow, ExcelRow drawRow, ExcelRow loseRow) {
+		
+		List<ExcelRow> excelRows = new ArrayList<ExcelRow>();
+		
+		winRow = generalVenue(f, s, homeTeam, awayTeam, winRow);
+		drawRow = generalVenue(f, s, homeTeam, awayTeam, drawRow);
+		loseRow = generalVenue(f, s, homeTeam, awayTeam, loseRow);
+		winRow = generalSwitchedVenue(f, s, homeTeam, awayTeam, winRow);
+		drawRow = generalSwitchedVenue(f, s, homeTeam, awayTeam, drawRow);
+		loseRow = generalSwitchedVenue(f, s, homeTeam, awayTeam, loseRow);
+		winRow = generalOverall(f, s, homeTeam, awayTeam, winRow, "1");
+		drawRow = generalOverall(f, s, homeTeam, awayTeam, drawRow, "X");
+		loseRow = generalOverall(f, s, homeTeam, awayTeam, loseRow, "2");
+		
+		excelRows.add(winRow);
+		excelRows.add(drawRow);
+		excelRows.add(loseRow);
+		
+		return excelRows;
 	}
 
-	private static void calculateCycleVariables(Fixture f, ExcelColumnsCalculation homeTeam,
-			ExcelColumnsCalculation awayTeam, List<String> historicos, List<Double> ratings) {
-		cycleVenue(f, homeTeam, awayTeam, historicos, "1");
-		cycleVenue(f, homeTeam, awayTeam, historicos, "X");
-		cycleVenue(f, homeTeam, awayTeam, historicos, "2");
-		cycleSwitchedVenue(f, homeTeam, awayTeam, historicos, "1");
-		cycleSwitchedVenue(f, homeTeam, awayTeam, historicos, "X");
-		cycleSwitchedVenue(f, homeTeam, awayTeam, historicos, "2");
-		cycleOverall(f, homeTeam, awayTeam, historicos, ratings, "1");
-		cycleOverall(f, homeTeam, awayTeam, historicos, ratings, "X");
-		cycleOverall(f, homeTeam, awayTeam, historicos, ratings, "2");
+	private static List<ExcelRow> calculateCycleVariables(Fixture f, ExcelColumnsCalculation homeTeam,
+			ExcelColumnsCalculation awayTeam, List<String> historicos, List<Double> ratings, ExcelRow winRow, ExcelRow drawRow, ExcelRow loseRow) {
+		
+		List<ExcelRow> excelRows = new ArrayList<ExcelRow>();
+		
+		winRow = cycleVenue(f, homeTeam, awayTeam, historicos, "1", winRow);
+		drawRow = cycleVenue(f, homeTeam, awayTeam, historicos, "X", drawRow);
+		loseRow = cycleVenue(f, homeTeam, awayTeam, historicos, "2", loseRow);
+		winRow = cycleSwitchedVenue(f, homeTeam, awayTeam, historicos, "1", winRow);
+		drawRow = cycleSwitchedVenue(f, homeTeam, awayTeam, historicos, "X", drawRow);
+		loseRow = cycleSwitchedVenue(f, homeTeam, awayTeam, historicos, "2", loseRow);
+		winRow = cycleOverall(f, homeTeam, awayTeam, historicos, ratings, "1", winRow);
+		drawRow = cycleOverall(f, homeTeam, awayTeam, historicos, ratings, "X", drawRow);
+		loseRow = cycleOverall(f, homeTeam, awayTeam, historicos, ratings, "2", loseRow);
+		
+		excelRows.add(winRow);
+		excelRows.add(drawRow);
+		excelRows.add(loseRow);
+		
+		return excelRows;
 	}
 
-	private static void calculateFRVariables(Fixture f, ExcelColumnsCalculation homeTeam,
-			ExcelColumnsCalculation awayTeam, List<Double> ratings, List<String> historicos) {
+	private static List<ExcelRow> calculateFRVariables(Fixture f, ExcelColumnsCalculation homeTeam,
+			ExcelColumnsCalculation awayTeam, List<Double> ratings, List<String> historicos, ExcelRow winRow, ExcelRow drawRow, ExcelRow loseRow) {
 
-		FRVenue(f, homeTeam, awayTeam, ratings, historicos, "1");
-		FRVenue(f, homeTeam, awayTeam, ratings, historicos, "X");
-		FRVenue(f, homeTeam, awayTeam, ratings, historicos, "2");
-		FRSwitchedVenue(f, homeTeam, awayTeam, ratings, historicos, "1");
-		FRSwitchedVenue(f, homeTeam, awayTeam, ratings, historicos, "X");
-		FRSwitchedVenue(f, homeTeam, awayTeam, ratings, historicos, "2");
-		FROverall(f, homeTeam, awayTeam, ratings, historicos, "1");
-		FROverall(f, homeTeam, awayTeam, ratings, historicos, "X");
-		FROverall(f, homeTeam, awayTeam, ratings, historicos, "2");
+		List<ExcelRow> excelRows = new ArrayList<ExcelRow>();
+		
+		winRow = FRVenue(f, homeTeam, awayTeam, ratings, historicos, "1", winRow);
+		drawRow = FRVenue(f, homeTeam, awayTeam, ratings, historicos, "X", drawRow);
+		loseRow = FRVenue(f, homeTeam, awayTeam, ratings, historicos, "2", loseRow);
+		winRow = FRSwitchedVenue(f, homeTeam, awayTeam, ratings, historicos, "1", winRow);
+		drawRow = FRSwitchedVenue(f, homeTeam, awayTeam, ratings, historicos, "X", drawRow);
+		loseRow = FRSwitchedVenue(f, homeTeam, awayTeam, ratings, historicos, "2", loseRow);
+		winRow = FROverall(f, homeTeam, awayTeam, ratings, historicos, "1", winRow);
+		drawRow = FROverall(f, homeTeam, awayTeam, ratings, historicos, "X", drawRow);
+		loseRow = FROverall(f, homeTeam, awayTeam, ratings, historicos, "2", loseRow);
+		
+		excelRows.add(winRow);
+		excelRows.add(drawRow);
+		excelRows.add(loseRow);
+		
+		return excelRows;
 	}
 
-	private static void calculateQLTVariables(Fixture f, ExcelColumnsCalculation homeTeam,
-			ExcelColumnsCalculation awayTeam, Double interval) {
-		QLTVenue(f, homeTeam, awayTeam, interval);
-		QLTSwitchedVenue(f, homeTeam, awayTeam, interval);
-		QLTOverall();
+	private static List<ExcelRow> calculateQLTVariables(Fixture f, ExcelColumnsCalculation homeTeam,
+			ExcelColumnsCalculation awayTeam, Double interval, ExcelRow winRow, ExcelRow drawRow, ExcelRow loseRow) {
+		
+		List<ExcelRow> excelRows = new ArrayList<ExcelRow>();
+		
+		winRow = QLTVenue(f, homeTeam, awayTeam, interval, winRow);
+		drawRow = QLTVenue(f, homeTeam, awayTeam, interval, drawRow);
+		loseRow = QLTVenue(f, homeTeam, awayTeam, interval, loseRow);
+		winRow = QLTSwitchedVenue(f, homeTeam, awayTeam, interval, winRow);
+		drawRow = QLTSwitchedVenue(f, homeTeam, awayTeam, interval, drawRow);
+		loseRow = QLTSwitchedVenue(f, homeTeam, awayTeam, interval, loseRow);
+		winRow = QLTOverall(winRow);
+		drawRow = QLTOverall(drawRow);
+		loseRow = QLTOverall(loseRow);
+		
+		excelRows.add(winRow);
+		excelRows.add(drawRow);
+		excelRows.add(loseRow);
+		
+		return excelRows;
 	}
 
-	private static void calculateH2HVariables(Fixture f, List<Double> ratingsH2H, ExcelColumnsCalculation homeTeam,
-			ExcelColumnsCalculation awayTeam) {
-		H2HVenue(f, ratingsH2H, homeTeam, awayTeam, "1");
-		H2HVenue(f, ratingsH2H, homeTeam, awayTeam, "X");
-		H2HVenue(f, ratingsH2H, homeTeam, awayTeam, "2");
-		H2HSwitchedVenue(f, ratingsH2H, homeTeam, awayTeam, "1");
-		H2HSwitchedVenue(f, ratingsH2H, homeTeam, awayTeam, "X");
-		H2HSwitchedVenue(f, ratingsH2H, homeTeam, awayTeam, "2");
-		H2HOverall(f, ratingsH2H, homeTeam, awayTeam, "1");
-		H2HOverall(f, ratingsH2H, homeTeam, awayTeam, "X");
-		H2HOverall(f, ratingsH2H, homeTeam, awayTeam, "2");
+	private static List<ExcelRow> calculateH2HVariables(Fixture f, List<Double> ratingsH2H, ExcelColumnsCalculation homeTeam,
+			ExcelColumnsCalculation awayTeam,  ExcelRow winRow, ExcelRow drawRow, ExcelRow loseRow) {
+		
+		List<ExcelRow> excelRows = new ArrayList<ExcelRow>();
+		
+		winRow = H2HVenue(f, ratingsH2H, homeTeam, awayTeam, "1", winRow);
+		drawRow = H2HVenue(f, ratingsH2H, homeTeam, awayTeam, "X", drawRow);
+		loseRow = H2HVenue(f, ratingsH2H, homeTeam, awayTeam, "2", loseRow);
+		winRow = H2HSwitchedVenue(f, ratingsH2H, homeTeam, awayTeam, "1", winRow);
+		drawRow = H2HSwitchedVenue(f, ratingsH2H, homeTeam, awayTeam, "X", drawRow);
+		loseRow = H2HSwitchedVenue(f, ratingsH2H, homeTeam, awayTeam, "2", loseRow);
+		winRow = H2HOverall(f, ratingsH2H, homeTeam, awayTeam, "1", winRow);
+		drawRow = H2HOverall(f, ratingsH2H, homeTeam, awayTeam, "X", drawRow);
+		loseRow = H2HOverall(f, ratingsH2H, homeTeam, awayTeam, "2", loseRow);
+		
+		excelRows.add(winRow);
+		excelRows.add(drawRow);
+		excelRows.add(loseRow);
+		
+		return excelRows;
 	}
 
-	private static void calculateGoalVariables(Fixture f, Season s, ExcelColumnsCalculation homeTeam,
-			ExcelColumnsCalculation awayTeam) {
-		goalVenue();
-		goalSwitchedVenue();
-		goalOverall(f, s, homeTeam, awayTeam);
+	private static List<ExcelRow> calculateGoalVariables(Fixture f, Season s, ExcelColumnsCalculation homeTeam,
+			ExcelColumnsCalculation awayTeam, ExcelRow winRow, ExcelRow drawRow, ExcelRow loseRow) {
+		
+		List<ExcelRow> excelRows = new ArrayList<ExcelRow>();
+		
+		winRow = goalVenue(winRow);
+		drawRow = goalVenue(drawRow);
+		loseRow = goalVenue(loseRow);
+		winRow = goalSwitchedVenue(winRow);
+		drawRow = goalSwitchedVenue(drawRow);
+		loseRow = goalSwitchedVenue(loseRow);
+		winRow = goalOverall(f, s, homeTeam, awayTeam, winRow);
+		drawRow = goalOverall(f, s, homeTeam, awayTeam, drawRow);
+		loseRow = goalOverall(f, s, homeTeam, awayTeam, loseRow);
+		
+		excelRows.add(winRow);
+		excelRows.add(drawRow);
+		excelRows.add(loseRow);
+		
+		return excelRows;
 	}
 
-	private static void generalVenue(Fixture f, Season s, ExcelColumnsCalculation homeTeam,
-			ExcelColumnsCalculation awayTeam) {
-		Double qualidadeVisitadoCasa = homeTeam.getHomeTeamQuality(s, f.getDate());
-		Double qualidadeVisitanteFora = awayTeam.getAwayTeamQuality(s, f.getDate());
+	private static ExcelRow generalVenue(Fixture f, Season s, ExcelColumnsCalculation homeTeam,
+			ExcelColumnsCalculation awayTeam, ExcelRow row) {
+		
+		row.setQualidadeVisitadoCasa(homeTeam.getHomeTeamQuality(s, f.getDate()));
+		row.setQualidadeVisitanteFora(awayTeam.getAwayTeamQuality(s, f.getDate()));
+		
+		return row;
 	}
 
-	private static void generalSwitchedVenue(Fixture f, Season s, ExcelColumnsCalculation homeTeam,
-			ExcelColumnsCalculation awayTeam) {
-		Double qualidadeVisitanteCasa = awayTeam.getHomeTeamQuality(s, f.getDate());
-		Double qualidadeVisitanteFora = homeTeam.getAwayTeamQuality(s, f.getDate());
+	private static ExcelRow generalSwitchedVenue(Fixture f, Season s, ExcelColumnsCalculation homeTeam,
+			ExcelColumnsCalculation awayTeam, ExcelRow row) {
+		
+		row.setQualidadeVisitadoFora(awayTeam.getHomeTeamQuality(s, f.getDate()));
+		row.setQualidadeVisitanteCasa(homeTeam.getAwayTeamQuality(s, f.getDate()));
+		
+		return row;
 	}
 
-	private static void generalOverall(Fixture f, Season s, ExcelColumnsCalculation homeTeam,
-			ExcelColumnsCalculation awayTeam) {
-		Date data = f.getDate();
-		Long idVisitado = f.getHomeTeam().getId();
-		Long idVisitante = f.getAwayTeam().getId();
-		Double qualidadeVisitado = homeTeam.getTeamQuality(s, f.getDate());
-		Double qualidadeVisitante = awayTeam.getTeamQuality(s, f.getDate());
+	private static ExcelRow generalOverall(Fixture f, Season s, ExcelColumnsCalculation homeTeam,
+			ExcelColumnsCalculation awayTeam, ExcelRow row, String resultado) {
+		
+		row.setData(f.getDate());
+		row.setIdVisitado(f.getHomeTeam().getId());
+		row.setIdVisitante(f.getAwayTeam().getId());
+		row.setQualidadeVisitado(homeTeam.getTeamQuality(s, f.getDate()));
+		row.setQualidadeVisitante(awayTeam.getTeamQuality(s, f.getDate()));
+		
 		ResultType result = homeTeam.getResultType(f);
-		Integer classificacaoVisitado = homeTeam.getClassification(s, f.getDate());
-		Integer classificacaoVisitante = awayTeam.getClassification(s, f.getDate());
+		
+		if (resultado.equals("1")){
+			row.setResult(result.equals(ResultType.WIN) ? 1 : 0);
+		}
+		else if (resultado.equals("X")){
+			row.setResult(result.equals(ResultType.DRAW) ? 1 : 0);
+		}
+		else if (resultado.equals("2")){
+			row.setResult(result.equals(ResultType.LOSE) ? 1 : 0);
+		}
+		else{
+			//INVALIDO
+			return null;
+		}
+		
+		row.setClassificacaoVisitado(homeTeam.getClassification(s, f.getDate()));
+		row.setClassificacaoVisitante(awayTeam.getClassification(s, f.getDate()));
+			
+		return row;
 	}
 
-	private static void cycleVenue(Fixture f, ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam,
-			List<String> historicos, String result) {
+	private static ExcelRow cycleVenue(Fixture f, ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam,
+			List<String> historicos, String result, ExcelRow row) {
 
 		ResultType homeResult;
 		ResultType awayResult;
@@ -1618,17 +1742,21 @@ public class Main {
 			awayResult = ResultType.WIN;
 		} else {
 			// INVALID RESULT
-			return;
+			return null;
 		}
 
-		ResultCycle homeWinCycle = homeTeam.getTeamCycle(f, Venue.HOME, homeResult);
-		ResultCycle awayLoseCycle = awayTeam.getTeamCycle(f, Venue.AWAY, awayResult);
-		Integer homeWinCycle_numeroJogosVisitado = homeWinCycle.getCycle();
-		Integer awayLoseCycle_numeroJogosVisitante = awayLoseCycle.getCycle();
-		Double homeWinCycle_dificuldadeVisitado = homeTeam.getCycleOpponentAverageQuality(homeWinCycle);
-		Double awayLoseCycle_dificuldadeVisitante = awayTeam.getCycleOpponentAverageQuality(awayLoseCycle);
-		Integer homeWinCycle_HistoricosVisitado = homeTeam.getCycleHardGamesNumber(homeWinCycle, historicos);
-		Integer awayLoseCycle_HistoricosVisitante = awayTeam.getCycleHardGamesNumber(awayLoseCycle, historicos);
+		ResultCycle homeTeamCycle = homeTeam.getTeamCycle(f, Venue.HOME, homeResult);
+		ResultCycle awayTeamCycle = awayTeam.getTeamCycle(f, Venue.AWAY, awayResult);
+
+		row.setCiclo_numeroJogosVisitado(homeTeamCycle.getCycle());
+		row.setCiclo_numeroJogosVisitante(awayTeamCycle.getCycle());
+		row.setCiclo_dificuldadeVisitado(homeTeam.getCycleOpponentAverageQuality(homeTeamCycle));
+		row.setCiclo_dificuldadeVisitante(awayTeam.getCycleOpponentAverageQuality(awayTeamCycle));
+		
+		
+		
+		Integer homeWinCycle_HistoricosVisitado = homeTeam.getCycleHardGamesNumber(homeTeamCycle, historicos);
+		Integer awayLoseCycle_HistoricosVisitante = awayTeam.getCycleHardGamesNumber(awayTeamCycle, historicos);
 
 		ResultCycle homeWinCyclePerna = homeTeam.getTeamCyclePerna(f, Venue.HOME, ResultType.WIN);
 		ResultCycle awayLoseCyclePerna = awayTeam.getTeamCyclePerna(f, Venue.AWAY, ResultType.LOSE);
@@ -1639,15 +1767,18 @@ public class Main {
 		Integer homeWinCyclePerna_HistoricosVisitado = homeTeam.getCycleHardGamesNumber(homeWinCyclePerna, historicos);
 		Integer awayLoseCyclePerna_HistoricosVisitante = awayTeam.getCycleHardGamesNumber(awayLoseCyclePerna,
 				historicos);
+		
+		return row;
 	}
 
-	private static void cycleSwitchedVenue(Fixture f, ExcelColumnsCalculation homeTeam,
-			ExcelColumnsCalculation awayTeam, List<String> historicos, String result) {
+	private static ExcelRow cycleSwitchedVenue(Fixture f, ExcelColumnsCalculation homeTeam,
+			ExcelColumnsCalculation awayTeam, List<String> historicos, String result, ExcelRow row) {
 
+		return row;
 	}
 
-	private static void cycleOverall(Fixture f, ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam,
-			List<String> historicos, List<Double> ratings, String result) {
+	private static ExcelRow cycleOverall(Fixture f, ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam,
+			List<String> historicos, List<Double> ratings, String result, ExcelRow row) {
 
 		ResultType homeResult;
 		ResultType awayResult;
@@ -1663,7 +1794,7 @@ public class Main {
 			awayResult = ResultType.WIN;
 		} else {
 			// INVALID RESULT
-			return;
+			return null;
 		}
 
 		ResultCycle homeWinCycleTotal = homeTeam.getTeamCycle(f, null, homeResult);
@@ -1693,10 +1824,12 @@ public class Main {
 				homeResult);
 		Double fR_ratingQualidadeDerrotasVisitante = awayTeam.getLastFixturesRatingQuality(f, null, 5, ratings,
 				awayResult);
+		
+		return row;
 	}
 
-	private static void FRVenue(Fixture f, ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam,
-			List<Double> ratings, List<String> historicos, String result) {
+	private static ExcelRow FRVenue(Fixture f, ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam,
+			List<Double> ratings, List<String> historicos, String result, ExcelRow row) {
 
 		Integer numberOfFixtures = 5;
 
@@ -1714,7 +1847,7 @@ public class Main {
 			awayResult = ResultType.WIN;
 		} else {
 			// INVALID RESULT
-			return;
+			return null;
 		}
 
 		Double fR_dificuldadeVisitadoHome = homeTeam.getLastFixturesOpponentAverageQuality(f, Venue.HOME,
@@ -1735,15 +1868,18 @@ public class Main {
 				homeResult);
 		Integer fR_DerrotasVisitanteAway = awayTeam.getLastFixturesResults(f, Venue.AWAY, numberOfFixtures, ratings,
 				awayResult);
+		
+		return row;
 	}
 
-	private static void FRSwitchedVenue(Fixture f, ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam,
-			List<Double> ratings, List<String> historicos, String result) {
-
+	private static ExcelRow FRSwitchedVenue(Fixture f, ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam,
+			List<Double> ratings, List<String> historicos, String result, ExcelRow row) {
+		
+		return row;
 	}
 
-	private static void FROverall(Fixture f, ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam,
-			List<Double> ratings, List<String> historicos, String result) {
+	private static ExcelRow FROverall(Fixture f, ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam,
+			List<Double> ratings, List<String> historicos, String result, ExcelRow row) {
 
 		Integer numberOfFixtures = 5;
 
@@ -1761,7 +1897,7 @@ public class Main {
 			awayResult = ResultType.WIN;
 		} else {
 			// INVALID RESULT
-			return;
+			return null;
 		}
 
 		Integer fR_diasDescansoVisitado = homeTeam.getRestingDays(f);
@@ -1812,10 +1948,11 @@ public class Main {
 		Double percFRVitóriasVisitanteCasa = percFREmpatesVisitante_5jogos[0];
 		Double percFRVitóriasVisitanteFora = percFREmpatesVisitante_5jogos[1];
 
+		return row;
 	}
 
-	private static void QLTVenue(Fixture f, ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam,
-			Double interval) {
+	private static ExcelRow QLTVenue(Fixture f, ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam,
+			Double interval, ExcelRow row) {
 		TeamRating homeTR = homeTeam.getResultPercentage(f, Venue.HOME, ResultType.WIN, interval, null);
 		TeamRating awayTR = awayTeam.getResultPercentage(f, Venue.AWAY, ResultType.LOSE, interval, null);
 
@@ -1850,10 +1987,11 @@ public class Main {
 		Integer qLT_numeroJogosVisitado_5jogos = homeTR_5jogos.getResultIntervalGames();
 		Integer qLT_numeroJogosVisitante_5jogos = awayTR_5jogos.getResultIntervalGames();
 
+		return row;
 	}
 
-	private static void QLTSwitchedVenue(Fixture f, ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam,
-			Double interval) {
+	private static ExcelRow QLTSwitchedVenue(Fixture f, ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam,
+			Double interval, ExcelRow row) {
 		// TROCADO
 
 		TeamRating homeTR2 = homeTeam.getResultPercentage(f, Venue.AWAY, ResultType.WIN, interval, null);
@@ -1880,14 +2018,17 @@ public class Main {
 		Double qLT_percentagemDerrotasVisitanteNoIntervalo2_5jogos = awayTR2_5jogos.getResultIntervalPercentage();
 		Integer qLT_numeroJogosVisitado2_5jogos = homeTR2_5jogos.getResultIntervalGames();
 		Integer qLT_numeroJogosVisitante2_5jogos = awayTR2_5jogos.getResultIntervalGames();
+		
+		return row;
 	}
 
-	private static void QLTOverall() {
-
+	private static ExcelRow QLTOverall(ExcelRow row) {
+		
+		return row;
 	}
 
-	private static void H2HVenue(Fixture f, List<Double> ratingsH2H, ExcelColumnsCalculation homeTeam,
-			ExcelColumnsCalculation awayTeam, String result) {
+	private static ExcelRow H2HVenue(Fixture f, List<Double> ratingsH2H, ExcelColumnsCalculation homeTeam,
+			ExcelColumnsCalculation awayTeam, String result, ExcelRow row) {
 
 		ResultType homeResult;
 		ResultType awayResult;
@@ -1903,7 +2044,7 @@ public class Main {
 			awayResult = ResultType.WIN;
 		} else {
 			// INVALID RESULT
-			return;
+			return null;
 		}
 
 		H2H h2hRatings = homeTeam.getH2HRating(f, ratingsH2H, Venue.HOME, ResultType.WIN);
@@ -1911,28 +2052,35 @@ public class Main {
 		Integer h2hWin_numeroJogos = h2hRatings.getSize();
 
 		Integer winH2hResults = h2hRatings.getNumberResults();
+		
+		return row;
 	}
 
-	private static void H2HSwitchedVenue(Fixture f, List<Double> ratingsH2H, ExcelColumnsCalculation homeTeam,
-			ExcelColumnsCalculation awayTeam, String result) {
-
-	}
-
-	private static void H2HOverall(Fixture f, List<Double> ratingsH2H, ExcelColumnsCalculation homeTeam,
-			ExcelColumnsCalculation awayTeam, String result) {
-
-	}
-
-	private static void goalVenue() {
+	private static ExcelRow H2HSwitchedVenue(Fixture f, List<Double> ratingsH2H, ExcelColumnsCalculation homeTeam,
+			ExcelColumnsCalculation awayTeam, String result, ExcelRow row) {
+		
+		return row;
 
 	}
 
-	private static void goalSwitchedVenue() {
-
+	private static ExcelRow H2HOverall(Fixture f, List<Double> ratingsH2H, ExcelColumnsCalculation homeTeam,
+			ExcelColumnsCalculation awayTeam, String result, ExcelRow row) {
+		
+		return row;
 	}
 
-	private static void goalOverall(Fixture f, Season s, ExcelColumnsCalculation homeTeam,
-			ExcelColumnsCalculation awayTeam) {
+	private static ExcelRow goalVenue(ExcelRow row) {
+		
+		return row;
+	}
+
+	private static ExcelRow goalSwitchedVenue(ExcelRow row) {
+
+		return row;
+	}
+
+	private static ExcelRow goalOverall(Fixture f, Season s, ExcelColumnsCalculation homeTeam,
+			ExcelColumnsCalculation awayTeam, ExcelRow row) {
 		Integer golosVisitado = homeTeam.getGoals(s, f.getDate());
 		Integer golosContraVisitado = homeTeam.getGoalsAgainst(s, f.getDate());
 		Integer diferencaGolosVisitado = golosVisitado - golosContraVisitado;
@@ -1964,6 +2112,8 @@ public class Main {
 		Double mediaGolosSofridosVisitanteCasa=percentagensGolosFRVisitante_5jogos[3];
 		Double mediaGolosMarcadosVisitanteFora=percentagensGolosFRVisitante_5jogos[4];
 		Double mediaGolosSofridosVisitanteFora=percentagensGolosFRVisitante_5jogos[5];
+		
+		return row;
 	}
 
 	private static void generateExcelFiles_PlanB(Season s, EntityManager em, String filePath) {

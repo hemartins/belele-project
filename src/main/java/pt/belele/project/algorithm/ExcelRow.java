@@ -122,6 +122,9 @@ public class ExcelRow {
 
 	Double qualidadeVisitadoCasa;
 	Double qualidadeVisitanteFora;
+	
+	Double qualidadeVisitadoFora;
+	Double qualidadeVisitanteCasa;
 
 	Integer Ciclo_numeroJogosVisitadoTotal; // número de jogos que a equipa
 											// venceu
@@ -185,6 +188,10 @@ public class ExcelRow {
 	Double QLT_percentagemResultadoVisitanteNoIntervalo2_5jogos;
 	Integer QLT_numeroJogosVisitado2_5jogos;
 	Integer QLT_numeroJogosVisitante2_5jogos;
+	
+	public ExcelRow(){
+		
+	}
 
 	public ExcelRow(Date data, Long idVisitado, Long idVisitante, String homeTeamName, String awayTeamName,
 			Double qualidadeVisitado, Double qualidadeVisitante, Integer fR_diasDescansoVisitado,
@@ -901,6 +908,22 @@ public class ExcelRow {
 
 	public void setQualidadeVisitadoCasa(Double qualidadeVisitadoCasa) {
 		this.qualidadeVisitadoCasa = qualidadeVisitadoCasa;
+	}
+
+	public Double getQualidadeVisitadoFora() {
+		return qualidadeVisitadoFora;
+	}
+
+	public void setQualidadeVisitadoFora(Double qualidadeVisitadoFora) {
+		this.qualidadeVisitadoFora = qualidadeVisitadoFora;
+	}
+
+	public Double getQualidadeVisitanteCasa() {
+		return qualidadeVisitanteCasa;
+	}
+
+	public void setQualidadeVisitanteCasa(Double qualidadeVisitanteCasa) {
+		this.qualidadeVisitanteCasa = qualidadeVisitanteCasa;
 	}
 
 	public Double getQualidadeVisitanteFora() {
