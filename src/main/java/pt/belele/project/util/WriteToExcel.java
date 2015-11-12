@@ -261,6 +261,38 @@ public class WriteToExcel {
 
 		row.createCell(cellIndex++).setCellValue("Semana");
 		
+		row.createCell(cellIndex++).setCellValue("[FR] Percentagem de Resultados do Visitado nos últimos 5 Jogos em Casa");
+
+		row.createCell(cellIndex++).setCellValue("[FR] Percentagem de Resultados do Visitado nos últimos 5 Jogos Fora");
+
+		row.createCell(cellIndex++).setCellValue("[FR] Percentagem de Resultados do Visitante nos últimos 5 jogos Fora");
+
+		row.createCell(cellIndex++).setCellValue("[FR] Percentagem de Resultados do Visitante nos últimos 5 jogos em Casa");
+		
+		row.createCell(cellIndex++).setCellValue("[Golos] Média de Golos Marcados Visitado - TOTAL");
+		
+		row.createCell(cellIndex++).setCellValue("[Golos] Média de Golos Sofridos Visitado - TOTAL");
+		
+		row.createCell(cellIndex++).setCellValue("[Golos] Média de Golos Marcados Visitado - CASA");
+		
+		row.createCell(cellIndex++).setCellValue("[Golos] Média de Golos Sofridos Visitado - CASA");
+		
+		row.createCell(cellIndex++).setCellValue("[Golos] Média de Golos Marcados Visitado - FORA");
+		
+		row.createCell(cellIndex++).setCellValue("[Golos] Média de Golos Sofridos Visitado - FORA");
+		
+		row.createCell(cellIndex++).setCellValue("[Golos] Média de Golos Marcados Visitante - TOTAL");
+		
+		row.createCell(cellIndex++).setCellValue("[Golos] Média de Golos Sofridos Visitante - TOTAL");
+		
+		row.createCell(cellIndex++).setCellValue("[Golos] Média de Golos Marcados Visitante - CASA");
+		
+		row.createCell(cellIndex++).setCellValue("[Golos] Média de Golos Sofridos Visitante - CASA");
+		
+		row.createCell(cellIndex++).setCellValue("[Golos] Média de Golos Marcados Visitante - FORA");
+		
+		row.createCell(cellIndex++).setCellValue("[Golos] Média de Golos Sofridos Visitante - FORA");
+		
 		rowIndex++;
 
 		for (ExcelRow excelrow : dataList) {
@@ -488,6 +520,40 @@ public class WriteToExcel {
 			int week = cal.get(Calendar.WEEK_OF_YEAR);
 			
 			row.createCell(cellIndex++).setCellValue(week);
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getPercFRResultadoVisitadoCasa());
+
+			row.createCell(cellIndex++).setCellValue(excelrow.getPercFRResultadoVisitadoFora());
+
+			row.createCell(cellIndex++).setCellValue(excelrow.getPercFRResultadoVisitanteFora());
+
+			row.createCell(cellIndex++).setCellValue(excelrow.getPercFRResultadoVisitanteCasa());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getMediaGolosMarcadosVisitadoTotal());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getMediaGolosSofridosVisitadoTotal());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getMediaGolosMarcadosVisitadoCasa());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getMediaGolosSofridosVisitadoCasa());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getMediaGolosMarcadosVisitadoFora());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getMediaGolosSofridosVisitadoFora());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getMediaGolosMarcadosVisitanteTotal());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getMediaGolosSofridosVisitanteTotal());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getMediaGolosMarcadosVisitanteCasa());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getMediaGolosSofridosVisitanteCasa());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getMediaGolosMarcadosVisitanteFora());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getMediaGolosSofridosVisitanteFora());
+			
+			
 
 		}
 

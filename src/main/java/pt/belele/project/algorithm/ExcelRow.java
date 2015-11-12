@@ -122,7 +122,7 @@ public class ExcelRow {
 
 	Double qualidadeVisitadoCasa;
 	Double qualidadeVisitanteFora;
-	
+
 	Double qualidadeVisitadoFora;
 	Double qualidadeVisitanteCasa;
 
@@ -167,9 +167,8 @@ public class ExcelRow {
 	Double FR_ratingResultadoVisitanteAway;
 	Integer FR_ResultadoVisitadoHome;
 	Integer FR_ResultadoVisitanteAway;
-	
-	
-	//últimos 5 jogos
+
+	// últimos 5 jogos
 	Double QLT_percentagemResultadoVisitado_5jogos;
 	Double QLT_percentagemResultadoVisitante_5jogos;
 	Double QLT_dificuldadeResultadoVisitado_5jogos;
@@ -178,8 +177,8 @@ public class ExcelRow {
 	Double QLT_percentagemResultadoVisitanteNoIntervalo_5jogos;
 	Integer QLT_numeroJogosVisitado_5jogos;
 	Integer QLT_numeroJogosVisitante_5jogos;
-	
-	//TROCADO últimos 5 jogos
+
+	// TROCADO últimos 5 jogos
 	Double QLT_percentagemResultadoVisitado2_5jogos;
 	Double QLT_percentagemResultadoVisitante2_5jogos;
 	Double QLT_dificuldadeResultadoVisitado2_5jogos;
@@ -188,9 +187,27 @@ public class ExcelRow {
 	Double QLT_percentagemResultadoVisitanteNoIntervalo2_5jogos;
 	Integer QLT_numeroJogosVisitado2_5jogos;
 	Integer QLT_numeroJogosVisitante2_5jogos;
-	
-	public ExcelRow(){
-		
+
+	Double percFRResultadoVisitadoCasa;
+	Double percFRResultadoVisitadoFora;
+	Double percFRResultadoVisitanteCasa;
+	Double percFRResultadoVisitanteFora;
+
+	Double mediaGolosMarcadosVisitadoTotal;
+	Double mediaGolosSofridosVisitadoTotal;
+	Double mediaGolosMarcadosVisitadoCasa;
+	Double mediaGolosSofridosVisitadoCasa;
+	Double mediaGolosMarcadosVisitadoFora;
+	Double mediaGolosSofridosVisitadoFora;
+	Double mediaGolosMarcadosVisitanteTotal;
+	Double mediaGolosSofridosVisitanteTotal;
+	Double mediaGolosMarcadosVisitanteCasa;
+	Double mediaGolosSofridosVisitanteCasa;
+	Double mediaGolosMarcadosVisitanteFora;
+	Double mediaGolosSofridosVisitanteFora;
+
+	public ExcelRow() {
+
 	}
 
 	public ExcelRow(Date data, Long idVisitado, Long idVisitante, String homeTeamName, String awayTeamName,
@@ -222,16 +239,49 @@ public class ExcelRow {
 			Integer classificacaoVisitante, Double qualidadeVisitadoCasa, Double qualidadeVisitanteFora,
 			Integer ciclo_numeroJogosVisitadoTotal, Integer ciclo_numeroJogosVisitanteTotal,
 			Double ciclo_dificuldadeVisitadoTotal, Double ciclo_dificuldadeVisitanteTotal,
-			Integer ciclo_HistoricosVisitadoTotal, Integer ciclo_HistoricosVisitanteTotal, Integer cicloPerna_numeroJogosVisitadoTotal,
-			Integer cicloPerna_numeroJogosVisitanteTotal, Double cicloPerna_dificuldadeVisitadoTotal,
-			Double cicloPerna_dificuldadeVisitanteTotal, Integer cicloPerna_HistoricosVisitadoTotal,
-			Integer cicloPerna_HistoricosVisitanteTotal,Double fR_dificuldadeVisitadoHome, Double fR_dificuldadeVisitanteAway, 
-			Integer fR_HistoricosVisitadoHome, Integer fR_HistoricosVisitanteAway, Double fR_ratingResultadoVisitadoHome,
-			Double fR_ratingResultadoVisitanteAway, Integer fR_ResultadoVisitadoHome, Integer fR_ResultadoVisitanteAway,Double qLT_percentagemResultadoVisitado_5jogos,
-			Double qLT_percentagemResultadoVisitante_5jogos, Double qLT_dificuldadeResultadoVisitado_5jogos, Double qLT_dificuldadeResultadoVisitante_5jogos,Double qLT_percentagemResultadoVisitadoNoIntervalo_5jogos,
-			Double qLT_percentagemResultadoVisitanteNoIntervalo_5jogos, Integer qLT_numeroJogosVisitado_5jogos, Integer qLT_numeroJogosVisitante_5jogos, Double qLT_percentagemResultadoVisitado2_5jogos,
-			Double qLT_percentagemResultadoVisitante2_5jogos, Double qLT_dificuldadeResultadoVisitado2_5jogos, Double qLT_dificuldadeResultadoVisitante2_5jogos,Double qLT_percentagemResultadoVisitadoNoIntervalo2_5jogos,
-			Double qLT_percentagemResultadoVisitanteNoIntervalo2_5jogos, Integer qLT_numeroJogosVisitado2_5jogos, Integer qLT_numeroJogosVisitante2_5jogos) {
+			Integer ciclo_HistoricosVisitadoTotal, Integer ciclo_HistoricosVisitanteTotal,
+			Integer cicloPerna_numeroJogosVisitadoTotal, Integer cicloPerna_numeroJogosVisitanteTotal,
+			Double cicloPerna_dificuldadeVisitadoTotal, Double cicloPerna_dificuldadeVisitanteTotal,
+			Integer cicloPerna_HistoricosVisitadoTotal, Integer cicloPerna_HistoricosVisitanteTotal,
+			Double fR_dificuldadeVisitadoHome, Double fR_dificuldadeVisitanteAway, Integer fR_HistoricosVisitadoHome,
+			Integer fR_HistoricosVisitanteAway, Double fR_ratingResultadoVisitadoHome,
+			Double fR_ratingResultadoVisitanteAway, Integer fR_ResultadoVisitadoHome, Integer fR_ResultadoVisitanteAway,
+			Double qLT_percentagemResultadoVisitado_5jogos, Double qLT_percentagemResultadoVisitante_5jogos,
+			Double qLT_dificuldadeResultadoVisitado_5jogos, Double qLT_dificuldadeResultadoVisitante_5jogos,
+			Double qLT_percentagemResultadoVisitadoNoIntervalo_5jogos,
+			Double qLT_percentagemResultadoVisitanteNoIntervalo_5jogos, Integer qLT_numeroJogosVisitado_5jogos,
+			Integer qLT_numeroJogosVisitante_5jogos, Double qLT_percentagemResultadoVisitado2_5jogos,
+			Double qLT_percentagemResultadoVisitante2_5jogos, Double qLT_dificuldadeResultadoVisitado2_5jogos,
+			Double qLT_dificuldadeResultadoVisitante2_5jogos,
+			Double qLT_percentagemResultadoVisitadoNoIntervalo2_5jogos,
+			Double qLT_percentagemResultadoVisitanteNoIntervalo2_5jogos, Integer qLT_numeroJogosVisitado2_5jogos,
+			Integer qLT_numeroJogosVisitante2_5jogos, Double percFRResultadoVisitadoCasa,
+			Double percFRResultadoVisitadoFora, Double percFRResultadoVisitanteCasa,
+			Double percFRResultadoVisitanteFora, Double mediaGolosMarcadosVisitadoTotal,
+			Double mediaGolosSofridosVisitadoTotal, Double mediaGolosMarcadosVisitadoCasa,
+			Double mediaGolosSofridosVisitadoCasa, Double mediaGolosMarcadosVisitadoFora,
+			Double mediaGolosSofridosVisitadoFora, Double mediaGolosMarcadosVisitanteTotal,
+			Double mediaGolosSofridosVisitanteTotal, Double mediaGolosMarcadosVisitanteCasa,
+			Double mediaGolosSofridosVisitanteCasa, Double mediaGolosMarcadosVisitanteFora,
+			Double mediaGolosSofridosVisitanteFora) {
+
+		this.percFRResultadoVisitadoCasa = percFRResultadoVisitadoCasa;
+		this.percFRResultadoVisitadoFora = percFRResultadoVisitadoFora;
+		this.percFRResultadoVisitanteCasa = percFRResultadoVisitanteCasa;
+		this.percFRResultadoVisitanteFora = percFRResultadoVisitanteFora;
+
+		this.mediaGolosMarcadosVisitadoTotal = mediaGolosMarcadosVisitadoTotal;
+		this.mediaGolosSofridosVisitadoTotal = mediaGolosSofridosVisitadoTotal;
+		this.mediaGolosMarcadosVisitadoCasa = mediaGolosMarcadosVisitadoCasa;
+		this.mediaGolosSofridosVisitadoCasa = mediaGolosSofridosVisitadoCasa;
+		this.mediaGolosMarcadosVisitadoFora = mediaGolosMarcadosVisitadoFora;
+		this.mediaGolosSofridosVisitadoFora = mediaGolosSofridosVisitadoFora;
+		this.mediaGolosMarcadosVisitanteTotal = mediaGolosMarcadosVisitanteTotal;
+		this.mediaGolosSofridosVisitanteTotal = mediaGolosSofridosVisitanteTotal;
+		this.mediaGolosMarcadosVisitanteCasa = mediaGolosMarcadosVisitanteCasa;
+		this.mediaGolosSofridosVisitanteCasa = mediaGolosSofridosVisitanteCasa;
+		this.mediaGolosMarcadosVisitanteFora = mediaGolosMarcadosVisitanteFora;
+		this.mediaGolosSofridosVisitanteFora = mediaGolosSofridosVisitanteFora;
 
 		this.data = data;
 		this.idVisitado = idVisitado;
@@ -322,7 +372,7 @@ public class ExcelRow {
 		CicloPerna_dificuldadeVisitanteTotal = cicloPerna_dificuldadeVisitanteTotal;
 		CicloPerna_HistoricosVisitadoTotal = cicloPerna_HistoricosVisitadoTotal;
 		CicloPerna_HistoricosVisitanteTotal = cicloPerna_HistoricosVisitanteTotal;
-		
+
 		FR_dificuldadeVisitadoHome = fR_dificuldadeVisitadoHome;
 		FR_dificuldadeVisitanteAway = fR_dificuldadeVisitanteAway;
 		FR_HistoricosVisitadoHome = fR_HistoricosVisitadoHome;
@@ -331,7 +381,7 @@ public class ExcelRow {
 		FR_ratingResultadoVisitanteAway = fR_ratingResultadoVisitanteAway;
 		FR_ResultadoVisitadoHome = fR_ResultadoVisitadoHome;
 		FR_ResultadoVisitanteAway = fR_ResultadoVisitanteAway;
-		
+
 		QLT_percentagemResultadoVisitado_5jogos = qLT_percentagemResultadoVisitado_5jogos;
 		QLT_percentagemResultadoVisitante_5jogos = qLT_percentagemResultadoVisitante_5jogos;
 		QLT_dificuldadeResultadoVisitado_5jogos = qLT_dificuldadeResultadoVisitado_5jogos;
@@ -348,6 +398,7 @@ public class ExcelRow {
 		QLT_percentagemResultadoVisitanteNoIntervalo2_5jogos = qLT_percentagemResultadoVisitanteNoIntervalo2_5jogos;
 		QLT_numeroJogosVisitado2_5jogos = qLT_numeroJogosVisitado2_5jogos;
 		QLT_numeroJogosVisitante2_5jogos = qLT_numeroJogosVisitante2_5jogos;
+
 	}
 
 	public Date getData() {
@@ -1224,6 +1275,134 @@ public class ExcelRow {
 
 	public void setQLT_numeroJogosVisitante2_5jogos(Integer qLT_numeroJogosVisitante2_5jogos) {
 		QLT_numeroJogosVisitante2_5jogos = qLT_numeroJogosVisitante2_5jogos;
+	}
+
+	public Double getPercFRResultadoVisitadoCasa() {
+		return percFRResultadoVisitadoCasa;
+	}
+
+	public void setPercFRResultadoVisitadoCasa(Double percFRResultadoVisitadoCasa) {
+		this.percFRResultadoVisitadoCasa = percFRResultadoVisitadoCasa;
+	}
+
+	public Double getPercFRResultadoVisitadoFora() {
+		return percFRResultadoVisitadoFora;
+	}
+
+	public void setPercFRResultadoVisitadoFora(Double percFRResultadoVisitadoFora) {
+		this.percFRResultadoVisitadoFora = percFRResultadoVisitadoFora;
+	}
+
+	public Double getPercFRResultadoVisitanteCasa() {
+		return percFRResultadoVisitanteCasa;
+	}
+
+	public void setPercFRResultadoVisitanteCasa(Double percFRResultadoVisitanteCasa) {
+		this.percFRResultadoVisitanteCasa = percFRResultadoVisitanteCasa;
+	}
+
+	public Double getPercFRResultadoVisitanteFora() {
+		return percFRResultadoVisitanteFora;
+	}
+
+	public void setPercFRResultadoVisitanteFora(Double percFRResultadoVisitanteFora) {
+		this.percFRResultadoVisitanteFora = percFRResultadoVisitanteFora;
+	}
+
+	public Double getMediaGolosMarcadosVisitadoTotal() {
+		return mediaGolosMarcadosVisitadoTotal;
+	}
+
+	public void setMediaGolosMarcadosVisitadoTotal(Double mediaGolosMarcadosVisitadoTotal) {
+		this.mediaGolosMarcadosVisitadoTotal = mediaGolosMarcadosVisitadoTotal;
+	}
+
+	public Double getMediaGolosSofridosVisitadoTotal() {
+		return mediaGolosSofridosVisitadoTotal;
+	}
+
+	public void setMediaGolosSofridosVisitadoTotal(Double mediaGolosSofridosVisitadoTotal) {
+		this.mediaGolosSofridosVisitadoTotal = mediaGolosSofridosVisitadoTotal;
+	}
+
+	public Double getMediaGolosMarcadosVisitadoCasa() {
+		return mediaGolosMarcadosVisitadoCasa;
+	}
+
+	public void setMediaGolosMarcadosVisitadoCasa(Double mediaGolosMarcadosVisitadoCasa) {
+		this.mediaGolosMarcadosVisitadoCasa = mediaGolosMarcadosVisitadoCasa;
+	}
+
+	public Double getMediaGolosSofridosVisitadoCasa() {
+		return mediaGolosSofridosVisitadoCasa;
+	}
+
+	public void setMediaGolosSofridosVisitadoCasa(Double mediaGolosSofridosVisitadoCasa) {
+		this.mediaGolosSofridosVisitadoCasa = mediaGolosSofridosVisitadoCasa;
+	}
+
+	public Double getMediaGolosMarcadosVisitadoFora() {
+		return mediaGolosMarcadosVisitadoFora;
+	}
+
+	public void setMediaGolosMarcadosVisitadoFora(Double mediaGolosMarcadosVisitadoFora) {
+		this.mediaGolosMarcadosVisitadoFora = mediaGolosMarcadosVisitadoFora;
+	}
+
+	public Double getMediaGolosSofridosVisitadoFora() {
+		return mediaGolosSofridosVisitadoFora;
+	}
+
+	public void setMediaGolosSofridosVisitadoFora(Double mediaGolosSofridosVisitadoFora) {
+		this.mediaGolosSofridosVisitadoFora = mediaGolosSofridosVisitadoFora;
+	}
+
+	public Double getMediaGolosMarcadosVisitanteTotal() {
+		return mediaGolosMarcadosVisitanteTotal;
+	}
+
+	public void setMediaGolosMarcadosVisitanteTotal(Double mediaGolosMarcadosVisitanteTotal) {
+		this.mediaGolosMarcadosVisitanteTotal = mediaGolosMarcadosVisitanteTotal;
+	}
+
+	public Double getMediaGolosSofridosVisitanteTotal() {
+		return mediaGolosSofridosVisitanteTotal;
+	}
+
+	public void setMediaGolosSofridosVisitanteTotal(Double mediaGolosSofridosVisitanteTotal) {
+		this.mediaGolosSofridosVisitanteTotal = mediaGolosSofridosVisitanteTotal;
+	}
+
+	public Double getMediaGolosMarcadosVisitanteCasa() {
+		return mediaGolosMarcadosVisitanteCasa;
+	}
+
+	public void setMediaGolosMarcadosVisitanteCasa(Double mediaGolosMarcadosVisitanteCasa) {
+		this.mediaGolosMarcadosVisitanteCasa = mediaGolosMarcadosVisitanteCasa;
+	}
+
+	public Double getMediaGolosSofridosVisitanteCasa() {
+		return mediaGolosSofridosVisitanteCasa;
+	}
+
+	public void setMediaGolosSofridosVisitanteCasa(Double mediaGolosSofridosVisitanteCasa) {
+		this.mediaGolosSofridosVisitanteCasa = mediaGolosSofridosVisitanteCasa;
+	}
+
+	public Double getMediaGolosMarcadosVisitanteFora() {
+		return mediaGolosMarcadosVisitanteFora;
+	}
+
+	public void setMediaGolosMarcadosVisitanteFora(Double mediaGolosMarcadosVisitanteFora) {
+		this.mediaGolosMarcadosVisitanteFora = mediaGolosMarcadosVisitanteFora;
+	}
+
+	public Double getMediaGolosSofridosVisitanteFora() {
+		return mediaGolosSofridosVisitanteFora;
+	}
+
+	public void setMediaGolosSofridosVisitanteFora(Double mediaGolosSofridosVisitanteFora) {
+		this.mediaGolosSofridosVisitanteFora = mediaGolosSofridosVisitanteFora;
 	}
 
 }

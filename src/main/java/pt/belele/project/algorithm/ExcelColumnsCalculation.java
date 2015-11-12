@@ -114,28 +114,46 @@ public class ExcelColumnsCalculation {
 
 		return results;
 	}
-	
-	public Double[] getRecentFormResultPercentage(Fixture nextFixture, Venue venue, Integer numberOfFixtures, ResultType type){
-		Double[] percentages=new Double[1];
-		Double percentageHome=0.0;
-		Double percentageAway=0.0;
+
+	public Double[] getRecentFormResultPercentage(Fixture nextFixture, Venue venue, Integer numberOfFixtures,
+			ResultType type) {
+
+		Double[] percentages = new Double[2];
+		Double percentageHome = 0.0;
+		Double percentageAway = 0.0;
 		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team, nextFixture.getSeason(),
-				nextFixture.getDate(), venue, null);
-		Double resultTypeHome=0.0;
-		Double resultTypeAway=0.0;
-		for(Fixture f:fixtures ){
-			if(f.getResult().getResultType().equals(type)){
-				if(f.getHomeTeam().equals(team)){
+				nextFixture.getDate(), venue, 5);
+		Double resultTypeHome = 0.0;
+		Double resultTypeAway = 0.0;
+		Double homeGames = 0.0;
+		Double awayGames = 0.0;
+
+		for (Fixture f : fixtures) {
+			if (f.getHomeTeam().equals(team)){
+				homeGames++;
+				if (f.getResult().getResultType().equals(type)) {
 					resultTypeHome++;
 				}
-				else {resultTypeAway++;}
-				
+			}
+			else {
+				awayGames++;
+				if (f.getResult().getResultType().equals(type)) {
+					resultTypeAway++;
+				}
 			}
 		}
-		percentageHome=resultTypeHome/numberOfFixtures;
-		percentages[0]=percentageHome;
-		percentageAway=resultTypeAway/numberOfFixtures;
-		percentages[1]=percentageAway;
+		percentageHome = resultTypeHome / homeGames;
+		percentages[0] = percentageHome;
+		percentageAway = resultTypeAway / awayGames;
+		percentages[1] = percentageAway;
+		
+		if (resultTypeHome >= 5 || resultTypeAway >= 5){
+			System.out.println("team: "+team);
+			System.out.println("resultTypeHome: "+resultTypeHome+"\n");
+			System.out.println("resultTypeAway: "+resultTypeAway+"\n");
+			System.out.println("Fixtures: "+fixtures.size());
+			System.exit(0);
+		}
 		return percentages;
 	}
 
@@ -313,7 +331,8 @@ public class ExcelColumnsCalculation {
 		return new H2H(resultTypeRating, nextFixture.getH2h().size(), numberResults);
 	}
 
-	public TeamRating getResultPercentage(Fixture nextFixture, Venue venue, ResultType type, Double interval, Integer numerberOfGames) {
+	public TeamRating getResultPercentage(Fixture nextFixture, Venue venue, ResultType type, Double interval,
+			Integer numerberOfGames) {
 		Season s = nextFixture.getSeason();
 		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team, nextFixture.getSeason(),
 				nextFixture.getDate(), venue, numerberOfGames);
@@ -445,60 +464,69 @@ public class ExcelColumnsCalculation {
 
 		return ls.indexOf(team) + 1;
 	}
-	
-	public Double[] averageGoalsLastGames(Fixture nextFixture, Venue venue, Integer numerberOfGames){
-		Double[] avgGoalsFR=new Double[5];
-		
-		Double avgGoalsScoredTotal =0.0;
-		Double avgGoalsConcededTotal =0.0;
-		Double avgGoalsScoredHome =0.0;
-		Double avgGoalsConcededHome =0.0;
-		Double avgGoalsScoredAway =0.0;
-		Double avgGoalsConcededAway =0.0;
-		
-		Integer nrGoalsScoredTotal=0;
-		Integer nrGoalsConcededTotal=0;
-		Integer nrGoalsScoredHome=0;
-		Integer nrGoalsConcededHome=0;
-		Integer nrGoalsScoredAway=0;
-		Integer nrGoalsConcededAway=0;
-		
-		int nrGamesHome=0;
-		int nrGamesAway=0;
-		
+
+	public Double[] averageGoalsLastGames(Fixture nextFixture, Venue venue, Integer numerberOfGames) {
+
+		Double[] avgGoalsFR = new Double[6];
+
+		Double avgGoalsScoredTotal = 0.0;
+		Double avgGoalsConcededTotal = 0.0;
+		Double avgGoalsScoredHome = 0.0;
+		Double avgGoalsConcededHome = 0.0;
+		Double avgGoalsScoredAway = 0.0;
+		Double avgGoalsConcededAway = 0.0;
+
+		Double nrGoalsScoredTotal = 0.0;
+		Double nrGoalsConcededTotal = 0.0;
+		Double nrGoalsScoredHome = 0.0;
+		Double nrGoalsConcededHome = 0.0;
+		Double nrGoalsScoredAway = 0.0;
+		Double nrGoalsConcededAway = 0.0;
+
+		int nrGamesHome = 0;
+		int nrGamesAway = 0;
+
 		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team, nextFixture.getSeason(),
 				nextFixture.getDate(), venue, numerberOfGames);
-		for(Fixture f:fixtures){
-			if(f.getHomeTeam().equals(team)){
+		for (Fixture f : fixtures) {
+			if (f.getHomeTeam().equals(team)) {
 				nrGamesHome++;
-				nrGoalsScoredHome=nrGoalsScoredHome+f.getResult().getFullTimeHomeTeamGoals();
-				nrGoalsConcededHome=nrGoalsConcededHome+f.getResult().getFullTimeAwayTeamGoals();
-			}
-			else{
+				nrGoalsScoredHome += f.getResult().getFullTimeHomeTeamGoals();
+				nrGoalsConcededHome += f.getResult().getFullTimeAwayTeamGoals();
+			} else {
 				nrGamesAway++;
-				nrGoalsScoredAway=nrGoalsScoredAway+f.getResult().getFullTimeAwayTeamGoals();
-				nrGoalsConcededAway=nrGoalsConcededAway+f.getResult().getFullTimeHomeTeamGoals();
+				nrGoalsScoredAway += f.getResult().getFullTimeAwayTeamGoals();
+				nrGoalsConcededAway += f.getResult().getFullTimeHomeTeamGoals();
 			}
 		}
 
-		nrGoalsScoredTotal=nrGoalsScoredHome+nrGoalsScoredAway;
-		nrGoalsConcededTotal=nrGoalsConcededHome+nrGoalsConcededAway;
-		
-		avgGoalsScoredHome=(double) (nrGoalsScoredHome/nrGamesHome);
-		avgGoalsConcededHome=(double) (nrGoalsConcededHome/nrGamesHome);
-		avgGoalsScoredAway=(double) (nrGoalsScoredAway/nrGamesAway);
-		avgGoalsConcededAway=(double) (nrGoalsConcededAway/nrGamesAway);
-		
-		avgGoalsScoredTotal=(double) (nrGoalsScoredTotal/numerberOfGames);
-		avgGoalsConcededTotal=(double) (nrGoalsConcededTotal/numerberOfGames);
-		
-		avgGoalsFR[0]=avgGoalsScoredTotal;
-		avgGoalsFR[1]=avgGoalsConcededTotal;
-		avgGoalsFR[2]=avgGoalsScoredHome;
-		avgGoalsFR[3]=avgGoalsConcededHome;
-		avgGoalsFR[4]=avgGoalsScoredAway;
-		avgGoalsFR[5]=avgGoalsConcededAway;
-		
+		nrGoalsScoredTotal = nrGoalsScoredHome + nrGoalsScoredAway;
+		nrGoalsConcededTotal = nrGoalsConcededHome + nrGoalsConcededAway;
+
+		avgGoalsScoredHome = nrGoalsScoredHome / nrGamesHome;
+
+		avgGoalsConcededHome = nrGoalsConcededHome / nrGamesHome;
+
+		avgGoalsScoredAway = nrGoalsScoredAway / nrGamesAway;
+
+		avgGoalsConcededAway = nrGoalsConcededAway / nrGamesAway;
+
+		avgGoalsScoredTotal = nrGoalsScoredTotal / numerberOfGames;
+
+		avgGoalsConcededTotal = nrGoalsConcededTotal / numerberOfGames;
+
+		avgGoalsFR[0] = avgGoalsScoredTotal;
+
+		avgGoalsFR[1] = avgGoalsConcededTotal;
+
+		avgGoalsFR[2] = avgGoalsScoredHome;
+
+		avgGoalsFR[3] = avgGoalsConcededHome;
+
+		avgGoalsFR[4] = avgGoalsScoredAway;
+
+		avgGoalsFR[5] = avgGoalsConcededAway;
+
 		return avgGoalsFR;
 	}
 
@@ -655,15 +683,15 @@ public class ExcelColumnsCalculation {
 
 		return nrDeJogosFraco;
 	}
-	
+
 	public List<Integer> getCycleInfo(Fixture nextFixture, Venue venue, ResultType res, Season s, Date date) {
 		ResultCycle resCyc = this.getTeamCycle(nextFixture, venue, res);
 		List<Team> teamsOp = resCyc.getTeams();
 		int cicloTop, cicloMs, cicloMi, cicloFraco;
-		cicloTop = cicloMs = cicloMi = cicloFraco = 0;		
+		cicloTop = cicloMs = cicloMi = cicloFraco = 0;
 		List<Integer> listCy = new ArrayList<Integer>();
-		
-		if (resCyc.getCycle() > 0){
+
+		if (resCyc.getCycle() > 0) {
 			if (teamsOp.size() != 0) {
 				for (int i = 0; i < teamsOp.size(); i++) {
 					Team opponent = teamsOp.get(i);
@@ -680,14 +708,16 @@ public class ExcelColumnsCalculation {
 					}
 				}
 			}
-		}	
+		}
 		listCy.add(cicloTop);
 		listCy.add(cicloMs);
 		listCy.add(cicloMi);
 		listCy.add(cicloFraco);
-		
-		//System.out.println("Ciclo: "+resCyc.getCycle()+" Resultado = "+resCyc.getType()+" Equipa: "+team+" Equipas: "+resCyc.getTeams().toString());
-		
+
+		// System.out.println("Ciclo: "+resCyc.getCycle()+" Resultado =
+		// "+resCyc.getType()+" Equipa: "+team+" Equipas:
+		// "+resCyc.getTeams().toString());
+
 		return listCy;
 	}
 

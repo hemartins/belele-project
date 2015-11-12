@@ -830,44 +830,50 @@ public class Main {
 
 			if (f.getDate().before(formatter.parseDateTime("23/11/" + (s.getYear() + 2000)).toDate()))
 				continue;
-			
+
 			List<ExcelRow> rowList = new ArrayList<ExcelRow>();
-			
-//			ExcelRow winRow = new ExcelRow();
-//			ExcelRow drawRow = new ExcelRow();
-//			ExcelRow loseRow = new ExcelRow();
+
+			// ExcelRow winRow = new ExcelRow();
+			// ExcelRow drawRow = new ExcelRow();
+			// ExcelRow loseRow = new ExcelRow();
 
 			ExcelColumnsCalculation homeTeam = new ExcelColumnsCalculation(f.getHomeTeam(), em);
 			ExcelColumnsCalculation awayTeam = new ExcelColumnsCalculation(f.getAwayTeam(), em);
 
-//			 rowList = calculateGeneralVariables(f, s, homeTeam, awayTeam, winRow, drawRow, loseRow);
-//			 winRow = rowList.get(0);
-//			 drawRow = rowList.get(1);
-//			 loseRow = rowList.get(2);
-//			 rowList = calculateCycleVariables(f, homeTeam, awayTeam, historicos, ratings, winRow, drawRow, loseRow);
-//			 winRow = rowList.get(0);
-//			 drawRow = rowList.get(1);
-//			 loseRow = rowList.get(2);
-//			 rowList = calculateFRVariables(f, homeTeam, awayTeam, ratings, historicos, winRow, drawRow, loseRow);
-//			 winRow = rowList.get(0);
-//			 drawRow = rowList.get(1);
-//			 loseRow = rowList.get(2);
-//			 rowList = calculateQLTVariables(f, homeTeam, awayTeam, interval, winRow, drawRow, loseRow);
-//			 winRow = rowList.get(0);
-//			 drawRow = rowList.get(1);
-//			 loseRow = rowList.get(2);
-//			 rowList = calculateH2HVariables(f, ratingsH2H, homeTeam, awayTeam, winRow, drawRow, loseRow);
-//			 winRow = rowList.get(0);
-//			 drawRow = rowList.get(1);
-//			 loseRow = rowList.get(2);
-//			 rowList = calculateGoalVariables(f, s, homeTeam, awayTeam, winRow, drawRow, loseRow);
-//			 winRow = rowList.get(0);
-//			 drawRow = rowList.get(1);
-//			 loseRow = rowList.get(2);
-//			 
-//			 OurWinDataList.add(winRow);
-//			 OurDrawDataList.add(drawRow);
-//			 OurLoseDataList.add(loseRow);
+			// rowList = calculateGeneralVariables(f, s, homeTeam, awayTeam,
+			// winRow, drawRow, loseRow);
+			// winRow = rowList.get(0);
+			// drawRow = rowList.get(1);
+			// loseRow = rowList.get(2);
+			// rowList = calculateCycleVariables(f, homeTeam, awayTeam,
+			// historicos, ratings, winRow, drawRow, loseRow);
+			// winRow = rowList.get(0);
+			// drawRow = rowList.get(1);
+			// loseRow = rowList.get(2);
+			// rowList = calculateFRVariables(f, homeTeam, awayTeam, ratings,
+			// historicos, winRow, drawRow, loseRow);
+			// winRow = rowList.get(0);
+			// drawRow = rowList.get(1);
+			// loseRow = rowList.get(2);
+			// rowList = calculateQLTVariables(f, homeTeam, awayTeam, interval,
+			// winRow, drawRow, loseRow);
+			// winRow = rowList.get(0);
+			// drawRow = rowList.get(1);
+			// loseRow = rowList.get(2);
+			// rowList = calculateH2HVariables(f, ratingsH2H, homeTeam,
+			// awayTeam, winRow, drawRow, loseRow);
+			// winRow = rowList.get(0);
+			// drawRow = rowList.get(1);
+			// loseRow = rowList.get(2);
+			// rowList = calculateGoalVariables(f, s, homeTeam, awayTeam,
+			// winRow, drawRow, loseRow);
+			// winRow = rowList.get(0);
+			// drawRow = rowList.get(1);
+			// loseRow = rowList.get(2);
+			//
+			// OurWinDataList.add(winRow);
+			// OurDrawDataList.add(drawRow);
+			// OurLoseDataList.add(loseRow);
 
 			/////////////////////////////////////////////// GERAL///////////////////////////////////////////////
 
@@ -903,37 +909,40 @@ public class Main {
 			Double fR_dificuldadeVisistante = awayTeam.getLastFixturesOpponentAverageQuality(f, null, 5);
 			Integer fR_HistoricosVisitado = homeTeam.getLastHardGamesFixturesNumber(f, null, 5, historicos);
 			Integer fR_HistoricosVisitante = awayTeam.getLastHardGamesFixturesNumber(f, null, 5, historicos);
-			
 
-			///////////////////////////////////////////////[FR] FORMA RECENTE [FR]///////////////////////////////////////////////
-			
-			//Vitoria Visitado
+			/////////////////////////////////////////////// [FR] FORMA RECENTE
+			/////////////////////////////////////////////// [FR]///////////////////////////////////////////////
+
+			// Vitoria Visitado
 			Double[] percFRVitoriasVisitado_5jogos = homeTeam.getRecentFormResultPercentage(f, null, 5, ResultType.WIN);
-			Double[] percFRDerrotasVisitante_5jogos = awayTeam.getRecentFormResultPercentage(f, null, 5, ResultType.LOSE);
-			
+			Double[] percFRDerrotasVisitante_5jogos = awayTeam.getRecentFormResultPercentage(f, null, 5,
+					ResultType.LOSE);
+
 			Double percFRVitoriasVisitadoCasa = percFRVitoriasVisitado_5jogos[0];
 			Double percFRVitoriasVisitadoFora = percFRVitoriasVisitado_5jogos[1];
 			Double percFRDerrotasVisitanteCasa = percFRDerrotasVisitante_5jogos[0];
 			Double percFRDerrotasVisitanteFora = percFRDerrotasVisitante_5jogos[1];
-			
-			//Empate
+
+			// Empate
 			Double[] percFREmpatesVisitado_5jogos = homeTeam.getRecentFormResultPercentage(f, null, 5, ResultType.DRAW);
-			Double[] percFREmpatesVisitante_5jogos = awayTeam.getRecentFormResultPercentage(f, null, 5, ResultType.DRAW);
-			
+			Double[] percFREmpatesVisitante_5jogos = awayTeam.getRecentFormResultPercentage(f, null, 5,
+					ResultType.DRAW);
+
 			Double percFREmpatesVisitadoCasa = percFREmpatesVisitado_5jogos[0];
 			Double percFREmpatesVisitadoFora = percFREmpatesVisitado_5jogos[1];
 			Double percFREmpatesVisitanteCasa = percFREmpatesVisitante_5jogos[0];
 			Double percFREmpatesVisitanteFora = percFREmpatesVisitante_5jogos[1];
-			
-			//Derrota Visitado
-			Double[] percFRDerrotasVisitado_5jogos = homeTeam.getRecentFormResultPercentage(f, null, 5, ResultType.LOSE);
-			Double[] percFRVitoriasVisitante_5jogos = awayTeam.getRecentFormResultPercentage(f, null, 5, ResultType.WIN);
-			
+
+			// Derrota Visitado
+			Double[] percFRDerrotasVisitado_5jogos = homeTeam.getRecentFormResultPercentage(f, null, 5,
+					ResultType.LOSE);
+			Double[] percFRVitoriasVisitante_5jogos = awayTeam.getRecentFormResultPercentage(f, null, 5,
+					ResultType.WIN);
+
 			Double percFRDerrotasVisitadoCasa = percFRDerrotasVisitado_5jogos[0];
 			Double percFRDerrotasVisitadoFora = percFRDerrotasVisitado_5jogos[1];
 			Double percFRVitoriasVisitanteCasa = percFRVitoriasVisitante_5jogos[0];
 			Double percFRVitoriasVisitanteFora = percFRVitoriasVisitante_5jogos[1];
-
 
 			/////////////////////////////////////////////// [CIC] Ciclo
 			/////////////////////////////////////////////// [CIC]///////////////////////////////////////////////
@@ -1335,7 +1344,13 @@ public class Main {
 						qLT_percentagemDerrotasVisitante2_5jogos, qLT_dificuldadeVitoriasVisitado2_5jogos,
 						qLT_dificuldadeDerrotasVisitante2_5jogos, qLT_percentagemVitoriasVisitadoNoIntervalo2_5jogos,
 						qLT_percentagemDerrotasVisitanteNoIntervalo2_5jogos, qLT_numeroJogosVisitado2_5jogos,
-						qLT_numeroJogosVisitante2_5jogos);
+						qLT_numeroJogosVisitante2_5jogos, percFRVitoriasVisitadoCasa, percFRVitoriasVisitadoFora,
+						percFRDerrotasVisitanteCasa, percFRDerrotasVisitanteFora, mediaGolosMarcadosVisitadoTotal, mediaGolosSofridosVisitadoTotal,
+						mediaGolosMarcadosVisitadoCasa, mediaGolosSofridosVisitadoCasa, mediaGolosMarcadosVisitadoFora,
+						mediaGolosSofridosVisitadoFora, mediaGolosMarcadosVisitanteTotal,
+						mediaGolosSofridosVisitanteTotal, mediaGolosMarcadosVisitanteCasa,
+						mediaGolosSofridosVisitanteCasa, mediaGolosMarcadosVisitanteFora,
+						mediaGolosSofridosVisitanteFora);
 
 				OurWinDataList.add(wohwr);
 
@@ -1431,7 +1446,13 @@ public class Main {
 						qLT_percentagemEmpatesVisitante2_5jogos, qLT_dificuldadeEmpatesVisitado2_5jogos,
 						qLT_dificuldadeEmpatesVisitante2_5jogos, qLT_percentagemEmpatesVisitadoNoIntervalo2_5jogos,
 						qLT_percentagemEmpatesVisitanteNoIntervalo2_5jogos, qLT_numeroJogosVisitado2_5jogos,
-						qLT_numeroJogosVisitante2_5jogos);
+						qLT_numeroJogosVisitante2_5jogos, percFREmpatesVisitadoCasa, percFREmpatesVisitadoFora,
+						percFREmpatesVisitanteCasa, percFREmpatesVisitanteFora, mediaGolosMarcadosVisitadoTotal, mediaGolosSofridosVisitadoTotal,
+						mediaGolosMarcadosVisitadoCasa, mediaGolosSofridosVisitadoCasa, mediaGolosMarcadosVisitadoFora,
+						mediaGolosSofridosVisitadoFora, mediaGolosMarcadosVisitanteTotal,
+						mediaGolosSofridosVisitanteTotal, mediaGolosMarcadosVisitanteCasa,
+						mediaGolosSofridosVisitanteCasa, mediaGolosMarcadosVisitanteFora,
+						mediaGolosSofridosVisitanteFora);
 
 				OurDrawDataList.add(dohwr);
 
@@ -1528,7 +1549,13 @@ public class Main {
 						qLT_percentagemVitoriasVisitante2_5jogos, qLT_dificuldadeDerrotasVisitado2_5jogos,
 						qLT_dificuldadeVitoriasVisitante2_5jogos, qLT_percentagemDerrotasVisitadoNoIntervalo2_5jogos,
 						qLT_percentagemVitoriasVisitanteNoIntervalo2_5jogos, qLT_numeroJogosVisitado2_5jogos,
-						qLT_numeroJogosVisitante2_5jogos);
+						qLT_numeroJogosVisitante2_5jogos, percFRDerrotasVisitadoCasa, percFRDerrotasVisitadoFora,
+						percFRVitoriasVisitanteCasa, percFRVitoriasVisitanteFora, mediaGolosMarcadosVisitadoTotal, mediaGolosSofridosVisitadoTotal,
+						mediaGolosMarcadosVisitadoCasa, mediaGolosSofridosVisitadoCasa, mediaGolosMarcadosVisitadoFora,
+						mediaGolosSofridosVisitadoFora, mediaGolosMarcadosVisitanteTotal,
+						mediaGolosSofridosVisitanteTotal, mediaGolosMarcadosVisitanteCasa,
+						mediaGolosSofridosVisitanteCasa, mediaGolosMarcadosVisitanteFora,
+						mediaGolosSofridosVisitanteFora);
 
 				OurLoseDataList.add(lohwr);
 			}
@@ -1546,9 +1573,9 @@ public class Main {
 
 	private static List<ExcelRow> calculateGeneralVariables(Fixture f, Season s, ExcelColumnsCalculation homeTeam,
 			ExcelColumnsCalculation awayTeam, ExcelRow winRow, ExcelRow drawRow, ExcelRow loseRow) {
-		
+
 		List<ExcelRow> excelRows = new ArrayList<ExcelRow>();
-		
+
 		winRow = generalVenue(f, s, homeTeam, awayTeam, winRow);
 		drawRow = generalVenue(f, s, homeTeam, awayTeam, drawRow);
 		loseRow = generalVenue(f, s, homeTeam, awayTeam, loseRow);
@@ -1558,19 +1585,20 @@ public class Main {
 		winRow = generalOverall(f, s, homeTeam, awayTeam, winRow, "1");
 		drawRow = generalOverall(f, s, homeTeam, awayTeam, drawRow, "X");
 		loseRow = generalOverall(f, s, homeTeam, awayTeam, loseRow, "2");
-		
+
 		excelRows.add(winRow);
 		excelRows.add(drawRow);
 		excelRows.add(loseRow);
-		
+
 		return excelRows;
 	}
 
 	private static List<ExcelRow> calculateCycleVariables(Fixture f, ExcelColumnsCalculation homeTeam,
-			ExcelColumnsCalculation awayTeam, List<String> historicos, List<Double> ratings, ExcelRow winRow, ExcelRow drawRow, ExcelRow loseRow) {
-		
+			ExcelColumnsCalculation awayTeam, List<String> historicos, List<Double> ratings, ExcelRow winRow,
+			ExcelRow drawRow, ExcelRow loseRow) {
+
 		List<ExcelRow> excelRows = new ArrayList<ExcelRow>();
-		
+
 		winRow = cycleVenue(f, homeTeam, awayTeam, historicos, "1", winRow);
 		drawRow = cycleVenue(f, homeTeam, awayTeam, historicos, "X", drawRow);
 		loseRow = cycleVenue(f, homeTeam, awayTeam, historicos, "2", loseRow);
@@ -1580,19 +1608,20 @@ public class Main {
 		winRow = cycleOverall(f, homeTeam, awayTeam, historicos, ratings, "1", winRow);
 		drawRow = cycleOverall(f, homeTeam, awayTeam, historicos, ratings, "X", drawRow);
 		loseRow = cycleOverall(f, homeTeam, awayTeam, historicos, ratings, "2", loseRow);
-		
+
 		excelRows.add(winRow);
 		excelRows.add(drawRow);
 		excelRows.add(loseRow);
-		
+
 		return excelRows;
 	}
 
 	private static List<ExcelRow> calculateFRVariables(Fixture f, ExcelColumnsCalculation homeTeam,
-			ExcelColumnsCalculation awayTeam, List<Double> ratings, List<String> historicos, ExcelRow winRow, ExcelRow drawRow, ExcelRow loseRow) {
+			ExcelColumnsCalculation awayTeam, List<Double> ratings, List<String> historicos, ExcelRow winRow,
+			ExcelRow drawRow, ExcelRow loseRow) {
 
 		List<ExcelRow> excelRows = new ArrayList<ExcelRow>();
-		
+
 		winRow = FRVenue(f, homeTeam, awayTeam, ratings, historicos, "1", winRow);
 		drawRow = FRVenue(f, homeTeam, awayTeam, ratings, historicos, "X", drawRow);
 		loseRow = FRVenue(f, homeTeam, awayTeam, ratings, historicos, "2", loseRow);
@@ -1602,19 +1631,19 @@ public class Main {
 		winRow = FROverall(f, homeTeam, awayTeam, ratings, historicos, "1", winRow);
 		drawRow = FROverall(f, homeTeam, awayTeam, ratings, historicos, "X", drawRow);
 		loseRow = FROverall(f, homeTeam, awayTeam, ratings, historicos, "2", loseRow);
-		
+
 		excelRows.add(winRow);
 		excelRows.add(drawRow);
 		excelRows.add(loseRow);
-		
+
 		return excelRows;
 	}
 
 	private static List<ExcelRow> calculateQLTVariables(Fixture f, ExcelColumnsCalculation homeTeam,
 			ExcelColumnsCalculation awayTeam, Double interval, ExcelRow winRow, ExcelRow drawRow, ExcelRow loseRow) {
-		
+
 		List<ExcelRow> excelRows = new ArrayList<ExcelRow>();
-		
+
 		winRow = QLTVenue(f, homeTeam, awayTeam, interval, winRow);
 		drawRow = QLTVenue(f, homeTeam, awayTeam, interval, drawRow);
 		loseRow = QLTVenue(f, homeTeam, awayTeam, interval, loseRow);
@@ -1624,19 +1653,20 @@ public class Main {
 		winRow = QLTOverall(winRow);
 		drawRow = QLTOverall(drawRow);
 		loseRow = QLTOverall(loseRow);
-		
+
 		excelRows.add(winRow);
 		excelRows.add(drawRow);
 		excelRows.add(loseRow);
-		
+
 		return excelRows;
 	}
 
-	private static List<ExcelRow> calculateH2HVariables(Fixture f, List<Double> ratingsH2H, ExcelColumnsCalculation homeTeam,
-			ExcelColumnsCalculation awayTeam,  ExcelRow winRow, ExcelRow drawRow, ExcelRow loseRow) {
-		
+	private static List<ExcelRow> calculateH2HVariables(Fixture f, List<Double> ratingsH2H,
+			ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam, ExcelRow winRow, ExcelRow drawRow,
+			ExcelRow loseRow) {
+
 		List<ExcelRow> excelRows = new ArrayList<ExcelRow>();
-		
+
 		winRow = H2HVenue(f, ratingsH2H, homeTeam, awayTeam, "1", winRow);
 		drawRow = H2HVenue(f, ratingsH2H, homeTeam, awayTeam, "X", drawRow);
 		loseRow = H2HVenue(f, ratingsH2H, homeTeam, awayTeam, "2", loseRow);
@@ -1646,19 +1676,19 @@ public class Main {
 		winRow = H2HOverall(f, ratingsH2H, homeTeam, awayTeam, "1", winRow);
 		drawRow = H2HOverall(f, ratingsH2H, homeTeam, awayTeam, "X", drawRow);
 		loseRow = H2HOverall(f, ratingsH2H, homeTeam, awayTeam, "2", loseRow);
-		
+
 		excelRows.add(winRow);
 		excelRows.add(drawRow);
 		excelRows.add(loseRow);
-		
+
 		return excelRows;
 	}
 
 	private static List<ExcelRow> calculateGoalVariables(Fixture f, Season s, ExcelColumnsCalculation homeTeam,
 			ExcelColumnsCalculation awayTeam, ExcelRow winRow, ExcelRow drawRow, ExcelRow loseRow) {
-		
+
 		List<ExcelRow> excelRows = new ArrayList<ExcelRow>();
-		
+
 		winRow = goalVenue(winRow);
 		drawRow = goalVenue(drawRow);
 		loseRow = goalVenue(loseRow);
@@ -1668,60 +1698,57 @@ public class Main {
 		winRow = goalOverall(f, s, homeTeam, awayTeam, winRow);
 		drawRow = goalOverall(f, s, homeTeam, awayTeam, drawRow);
 		loseRow = goalOverall(f, s, homeTeam, awayTeam, loseRow);
-		
+
 		excelRows.add(winRow);
 		excelRows.add(drawRow);
 		excelRows.add(loseRow);
-		
+
 		return excelRows;
 	}
 
 	private static ExcelRow generalVenue(Fixture f, Season s, ExcelColumnsCalculation homeTeam,
 			ExcelColumnsCalculation awayTeam, ExcelRow row) {
-		
+
 		row.setQualidadeVisitadoCasa(homeTeam.getHomeTeamQuality(s, f.getDate()));
 		row.setQualidadeVisitanteFora(awayTeam.getAwayTeamQuality(s, f.getDate()));
-		
+
 		return row;
 	}
 
 	private static ExcelRow generalSwitchedVenue(Fixture f, Season s, ExcelColumnsCalculation homeTeam,
 			ExcelColumnsCalculation awayTeam, ExcelRow row) {
-		
+
 		row.setQualidadeVisitadoFora(awayTeam.getHomeTeamQuality(s, f.getDate()));
 		row.setQualidadeVisitanteCasa(homeTeam.getAwayTeamQuality(s, f.getDate()));
-		
+
 		return row;
 	}
 
 	private static ExcelRow generalOverall(Fixture f, Season s, ExcelColumnsCalculation homeTeam,
 			ExcelColumnsCalculation awayTeam, ExcelRow row, String resultado) {
-		
+
 		row.setData(f.getDate());
 		row.setIdVisitado(f.getHomeTeam().getId());
 		row.setIdVisitante(f.getAwayTeam().getId());
 		row.setQualidadeVisitado(homeTeam.getTeamQuality(s, f.getDate()));
 		row.setQualidadeVisitante(awayTeam.getTeamQuality(s, f.getDate()));
-		
+
 		ResultType result = homeTeam.getResultType(f);
-		
-		if (resultado.equals("1")){
+
+		if (resultado.equals("1")) {
 			row.setResult(result.equals(ResultType.WIN) ? 1 : 0);
-		}
-		else if (resultado.equals("X")){
+		} else if (resultado.equals("X")) {
 			row.setResult(result.equals(ResultType.DRAW) ? 1 : 0);
-		}
-		else if (resultado.equals("2")){
+		} else if (resultado.equals("2")) {
 			row.setResult(result.equals(ResultType.LOSE) ? 1 : 0);
-		}
-		else{
-			//INVALIDO
+		} else {
+			// INVALIDO
 			return null;
 		}
-		
+
 		row.setClassificacaoVisitado(homeTeam.getClassification(s, f.getDate()));
 		row.setClassificacaoVisitante(awayTeam.getClassification(s, f.getDate()));
-			
+
 		return row;
 	}
 
@@ -1752,9 +1779,7 @@ public class Main {
 		row.setCiclo_numeroJogosVisitante(awayTeamCycle.getCycle());
 		row.setCiclo_dificuldadeVisitado(homeTeam.getCycleOpponentAverageQuality(homeTeamCycle));
 		row.setCiclo_dificuldadeVisitante(awayTeam.getCycleOpponentAverageQuality(awayTeamCycle));
-		
-		
-		
+
 		Integer homeWinCycle_HistoricosVisitado = homeTeam.getCycleHardGamesNumber(homeTeamCycle, historicos);
 		Integer awayLoseCycle_HistoricosVisitante = awayTeam.getCycleHardGamesNumber(awayTeamCycle, historicos);
 
@@ -1767,7 +1792,7 @@ public class Main {
 		Integer homeWinCyclePerna_HistoricosVisitado = homeTeam.getCycleHardGamesNumber(homeWinCyclePerna, historicos);
 		Integer awayLoseCyclePerna_HistoricosVisitante = awayTeam.getCycleHardGamesNumber(awayLoseCyclePerna,
 				historicos);
-		
+
 		return row;
 	}
 
@@ -1824,7 +1849,7 @@ public class Main {
 				homeResult);
 		Double fR_ratingQualidadeDerrotasVisitante = awayTeam.getLastFixturesRatingQuality(f, null, 5, ratings,
 				awayResult);
-		
+
 		return row;
 	}
 
@@ -1868,13 +1893,14 @@ public class Main {
 				homeResult);
 		Integer fR_DerrotasVisitanteAway = awayTeam.getLastFixturesResults(f, Venue.AWAY, numberOfFixtures, ratings,
 				awayResult);
-		
+
 		return row;
 	}
 
-	private static ExcelRow FRSwitchedVenue(Fixture f, ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam,
-			List<Double> ratings, List<String> historicos, String result, ExcelRow row) {
-		
+	private static ExcelRow FRSwitchedVenue(Fixture f, ExcelColumnsCalculation homeTeam,
+			ExcelColumnsCalculation awayTeam, List<Double> ratings, List<String> historicos, String result,
+			ExcelRow row) {
+
 		return row;
 	}
 
@@ -1914,35 +1940,32 @@ public class Main {
 		Double fR_dificuldadeVisistante = awayTeam.getLastFixturesOpponentAverageQuality(f, null, numberOfFixtures);
 		Integer fR_HistoricosVisitado = homeTeam.getLastHardGamesFixturesNumber(f, null, numberOfFixtures, historicos);
 		Integer fR_HistoricosVisitante = awayTeam.getLastHardGamesFixturesNumber(f, null, numberOfFixtures, historicos);
-		
-		
-		
-		
 
-		///////////////////////////////////////////////[FR] FORMA RECENTE [FR]///////////////////////////////////////////////
-		
-		//Vitoria Visitado
+		/////////////////////////////////////////////// [FR] FORMA RECENTE
+		/////////////////////////////////////////////// [FR]///////////////////////////////////////////////
+
+		// Vitoria Visitado
 		Double[] percFRVitóriasVisitado_5jogos = homeTeam.getRecentFormResultPercentage(f, null, 5, ResultType.WIN);
 		Double[] percFRDerrotasVisitante_5jogos = awayTeam.getRecentFormResultPercentage(f, null, 5, ResultType.LOSE);
-		
+
 		Double percFRVitóriasVisitadoCasa = percFRVitóriasVisitado_5jogos[0];
 		Double percFRVitóriasVisitadoFora = percFRVitóriasVisitado_5jogos[1];
 		Double percFRDerrotasVisitanteCasa = percFRDerrotasVisitante_5jogos[0];
 		Double percFRDerrotasVisitanteFora = percFRDerrotasVisitante_5jogos[1];
-		
-		//Empate
+
+		// Empate
 		Double[] percFREmpatesVisitado_5jogos = homeTeam.getRecentFormResultPercentage(f, null, 5, ResultType.DRAW);
 		Double[] percFREmpatesVisitante_5jogos = awayTeam.getRecentFormResultPercentage(f, null, 5, ResultType.DRAW);
-		
+
 		Double percFREmpatesVisitadoCasa = percFREmpatesVisitado_5jogos[0];
 		Double percFREmpatesVisitadoFora = percFREmpatesVisitado_5jogos[1];
 		Double percFREmpatesVisitanteCasa = percFREmpatesVisitante_5jogos[0];
 		Double percFREmpatesVisitanteFora = percFREmpatesVisitante_5jogos[1];
-		
-		//Derrota Visitado
+
+		// Derrota Visitado
 		Double[] percFRDerrotasVisitado_5jogos = homeTeam.getRecentFormResultPercentage(f, null, 5, ResultType.LOSE);
 		Double[] percFRVitóriasVisitante_5jogos = awayTeam.getRecentFormResultPercentage(f, null, 5, ResultType.WIN);
-		
+
 		Double percFRDerrotasVisitadoCasa = percFREmpatesVisitado_5jogos[0];
 		Double percFRDerrotasVisitadoFora = percFREmpatesVisitado_5jogos[1];
 		Double percFRVitóriasVisitanteCasa = percFREmpatesVisitante_5jogos[0];
@@ -1990,8 +2013,8 @@ public class Main {
 		return row;
 	}
 
-	private static ExcelRow QLTSwitchedVenue(Fixture f, ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam,
-			Double interval, ExcelRow row) {
+	private static ExcelRow QLTSwitchedVenue(Fixture f, ExcelColumnsCalculation homeTeam,
+			ExcelColumnsCalculation awayTeam, Double interval, ExcelRow row) {
 		// TROCADO
 
 		TeamRating homeTR2 = homeTeam.getResultPercentage(f, Venue.AWAY, ResultType.WIN, interval, null);
@@ -2018,12 +2041,12 @@ public class Main {
 		Double qLT_percentagemDerrotasVisitanteNoIntervalo2_5jogos = awayTR2_5jogos.getResultIntervalPercentage();
 		Integer qLT_numeroJogosVisitado2_5jogos = homeTR2_5jogos.getResultIntervalGames();
 		Integer qLT_numeroJogosVisitante2_5jogos = awayTR2_5jogos.getResultIntervalGames();
-		
+
 		return row;
 	}
 
 	private static ExcelRow QLTOverall(ExcelRow row) {
-		
+
 		return row;
 	}
 
@@ -2052,25 +2075,25 @@ public class Main {
 		Integer h2hWin_numeroJogos = h2hRatings.getSize();
 
 		Integer winH2hResults = h2hRatings.getNumberResults();
-		
+
 		return row;
 	}
 
 	private static ExcelRow H2HSwitchedVenue(Fixture f, List<Double> ratingsH2H, ExcelColumnsCalculation homeTeam,
 			ExcelColumnsCalculation awayTeam, String result, ExcelRow row) {
-		
+
 		return row;
 
 	}
 
 	private static ExcelRow H2HOverall(Fixture f, List<Double> ratingsH2H, ExcelColumnsCalculation homeTeam,
 			ExcelColumnsCalculation awayTeam, String result, ExcelRow row) {
-		
+
 		return row;
 	}
 
 	private static ExcelRow goalVenue(ExcelRow row) {
-		
+
 		return row;
 	}
 
@@ -2093,26 +2116,24 @@ public class Main {
 		Integer golosVisitanteFora = awayTeam.getAwayGoals(s, f.getDate());
 		Integer golosContraVisitanteFora = awayTeam.getAwayGoalsAgainst(s, f.getDate());
 		Integer diferencaGolosVisitanteFora = golosVisitanteFora - golosContraVisitanteFora;
-		
-		
-		
+
 		Double[] percentagensGolosFRVisitado_5jogos = homeTeam.averageGoalsLastGames(f, null, 5);
 		Double[] percentagensGolosFRVisitante_5jogos = awayTeam.averageGoalsLastGames(f, null, 5);
-		
-		Double mediaGolosMarcadosVisitadoTotal=percentagensGolosFRVisitado_5jogos[0];
-		Double mediaGolosSofridosVisitadoTotal=percentagensGolosFRVisitado_5jogos[1];
-		Double mediaGolosMarcadosVisitadoCasa=percentagensGolosFRVisitado_5jogos[2];
-		Double mediaGolosSofridosVisitadoCasa=percentagensGolosFRVisitado_5jogos[3];
-		Double mediaGolosMarcadosVisitadoFora=percentagensGolosFRVisitado_5jogos[4];
-		Double mediaGolosSofridosVisitadoFora=percentagensGolosFRVisitado_5jogos[5];
-		
-		Double mediaGolosMarcadosVisitanteTotal=percentagensGolosFRVisitante_5jogos[0];
-		Double mediaGolosSofridosVisitanteTotal=percentagensGolosFRVisitante_5jogos[1];
-		Double mediaGolosMarcadosVisitanteCasa=percentagensGolosFRVisitante_5jogos[2];
-		Double mediaGolosSofridosVisitanteCasa=percentagensGolosFRVisitante_5jogos[3];
-		Double mediaGolosMarcadosVisitanteFora=percentagensGolosFRVisitante_5jogos[4];
-		Double mediaGolosSofridosVisitanteFora=percentagensGolosFRVisitante_5jogos[5];
-		
+
+		Double mediaGolosMarcadosVisitadoTotal = percentagensGolosFRVisitado_5jogos[0];
+		Double mediaGolosSofridosVisitadoTotal = percentagensGolosFRVisitado_5jogos[1];
+		Double mediaGolosMarcadosVisitadoCasa = percentagensGolosFRVisitado_5jogos[2];
+		Double mediaGolosSofridosVisitadoCasa = percentagensGolosFRVisitado_5jogos[3];
+		Double mediaGolosMarcadosVisitadoFora = percentagensGolosFRVisitado_5jogos[4];
+		Double mediaGolosSofridosVisitadoFora = percentagensGolosFRVisitado_5jogos[5];
+
+		Double mediaGolosMarcadosVisitanteTotal = percentagensGolosFRVisitante_5jogos[0];
+		Double mediaGolosSofridosVisitanteTotal = percentagensGolosFRVisitante_5jogos[1];
+		Double mediaGolosMarcadosVisitanteCasa = percentagensGolosFRVisitante_5jogos[2];
+		Double mediaGolosSofridosVisitanteCasa = percentagensGolosFRVisitante_5jogos[3];
+		Double mediaGolosMarcadosVisitanteFora = percentagensGolosFRVisitante_5jogos[4];
+		Double mediaGolosSofridosVisitanteFora = percentagensGolosFRVisitante_5jogos[5];
+
 		return row;
 	}
 
