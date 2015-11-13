@@ -737,10 +737,6 @@ public class Main {
 		List<ExcelRow> OurDrawDataList = new ArrayList<ExcelRow>();
 		List<ExcelRow> OurLoseDataList = new ArrayList<ExcelRow>();
 
-		List<ProfRow> ProfWinDataList = new ArrayList<ProfRow>();
-		List<ProfRow> ProfDrawDataList = new ArrayList<ProfRow>();
-		List<ProfRow> ProfLoseDataList = new ArrayList<ProfRow>();
-
 		List<String> historicos = new ArrayList<String>();
 
 		// INGLATERRA
