@@ -43,6 +43,7 @@ public class ExcelRow {
 	Double H2H_ratingResultado; // pontuação por cada vitória obtida nos últimos
 								// jogos entre essas equipas
 	Integer H2H_numeroJogos;
+
 	Double QLT_percentagemResultadoVisitado; // percentagem total de vitórias da
 												// equipa em casa
 	Double QLT_percentagemResultadoVisitante;
@@ -61,9 +62,14 @@ public class ExcelRow {
 														// qualidade_do_adversário
 														// + x]
 	Double QLT_percentagemResultadoVisitanteNoIntervalo;
+
+	Integer QLT_numeroJogosVisitadoNoIntervalo;
+	Integer QLT_numeroJogosVisitanteNoIntervalo;
+
 	Integer QLT_numeroJogosVisitado; // quantas equipas enfrentou no intervalo
 										// citado em cima
 	Integer QLT_numeroJogosVisitante;
+
 	Integer result;
 
 	Integer CicloPerna_numeroJogosVisitado; // número de jogos que a equipa
@@ -87,23 +93,36 @@ public class ExcelRow {
 
 	Integer QLT_numeroJogosVisitadoDaPercentagem;
 	Integer QLT_numeroJogosVisitanteDaPercentagem;
-
-	Double QLT_percentagemResultadoVisitado2;
-	Double QLT_percentagemResultadoVisitante2;
-	Double QLT_dificuldadeResultadoVisitado2;
-	Double QLT_dificuldadeResultadoVisitante2;
-	Double QLT_percentagemResultadoVisitadoNoIntervalo2;
-	Double QLT_percentagemResultadoVisitanteNoIntervalo2;
-	Integer QLT_numeroJogosVisitado2;
-	Integer QLT_numeroJogosVisitante2;
+	
+	Integer QLT_numeroJogosVisitadoVenue;
+	Integer QLT_numeroJogosVisitanteVenue;
+	Double QLT_percentagemResultadoVisitadoVenue;
+	Double QLT_percentagemResultadoVisitanteVenue;
+	Double QLT_dificuldadeResultadoVisitadoVenue;
+	Double QLT_dificuldadeResultadoVisitanteVenue;
+	Double QLT_percentagemResultadoVisitadoNoIntervaloVenue;
+	Double QLT_percentagemResultadoVisitanteNoIntervaloVenue;
+	Integer QLT_numeroJogosVisitadoNoIntervaloVenue;
+	Integer QLT_numeroJogosVisitanteNoIntervaloVenue;
+	
+	Integer QLT_numeroJogosVisitadoTrocado;
+	Integer QLT_numeroJogosVisitanteTrocado;
+	Double QLT_percentagemResultadoVisitadoTrocado;
+	Double QLT_percentagemResultadoVisitanteTrocado;
+	Double QLT_dificuldadeResultadoVisitadoTrocado;
+	Double QLT_dificuldadeResultadoVisitanteTrocado;
+	Double QLT_percentagemResultadoVisitadoNoIntervaloTrocado;
+	Double QLT_percentagemResultadoVisitanteNoIntervaloTrocado;
+	Integer QLT_numeroJogosVisitadoNoIntervaloTrocado;
+	Integer QLT_numeroJogosVisitanteNoIntervaloTrocado;
 
 	Integer H2h_Results;
 
 	Integer FR_ResultadosVisitado;
 	Integer FR_ResultadosVisitante;
 
-	Integer QLT_homeTeamNumeroJogos2;
-	Integer QLT_awayTeamNumeroJogos2;
+	Integer QLT_homeTeamNumeroJogosTrocado;
+	Integer QLT_awayTeamNumeroJogosTrocado;
 
 	Integer golosVisitado;
 	Integer golosSofridosVisitado;
@@ -177,16 +196,26 @@ public class ExcelRow {
 	Double QLT_percentagemResultadoVisitanteNoIntervalo_5jogos;
 	Integer QLT_numeroJogosVisitado_5jogos;
 	Integer QLT_numeroJogosVisitante_5jogos;
+	
+	//VENUE
+	Double QLT_percentagemResultadoVisitadoVenue_5jogos;
+	Double QLT_percentagemResultadoVisitanteVenue_5jogos;
+	Double QLT_dificuldadeResultadoVisitadoVenue_5jogos;
+	Double QLT_dificuldadeResultadoVisitanteVenue_5jogos;
+	Double QLT_percentagemResultadoVisitadoNoIntervaloVenue_5jogos;
+	Double QLT_percentagemResultadoVisitanteNoIntervaloVenue_5jogos;
+	Integer QLT_numeroJogosVisitadoVenue_5jogos;
+	Integer QLT_numeroJogosVisitanteVenue_5jogos;
 
-	// TROCADO últimos 5 jogos
-	Double QLT_percentagemResultadoVisitado2_5jogos;
-	Double QLT_percentagemResultadoVisitante2_5jogos;
-	Double QLT_dificuldadeResultadoVisitado2_5jogos;
-	Double QLT_dificuldadeResultadoVisitante2_5jogos;
-	Double QLT_percentagemResultadoVisitadoNoIntervalo2_5jogos;
-	Double QLT_percentagemResultadoVisitanteNoIntervalo2_5jogos;
-	Integer QLT_numeroJogosVisitado2_5jogos;
-	Integer QLT_numeroJogosVisitante2_5jogos;
+	//SWITCHED VENUE últimos 5 jogos
+	Double QLT_percentagemResultadoVisitadoTrocado_5jogos;
+	Double QLT_percentagemResultadoVisitanteTrocado_5jogos;
+	Double QLT_dificuldadeResultadoVisitadoTrocado_5jogos;
+	Double QLT_dificuldadeResultadoVisitanteTrocado_5jogos;
+	Double QLT_percentagemResultadoVisitadoNoIntervaloTrocado_5jogos;
+	Double QLT_percentagemResultadoVisitanteNoIntervaloTrocado_5jogos;
+	Integer QLT_numeroJogosVisitadoTrocado_5jogos;
+	Integer QLT_numeroJogosVisitanteTrocado_5jogos;
 
 	Double percFRResultadoVisitadoCasa;
 	Double percFRResultadoVisitadoFora;
@@ -327,16 +356,16 @@ public class ExcelRow {
 		QLT_numeroJogosVisitadoDaPercentagem = qLT_numeroJogosVisitadoDaPercentagem;
 		QLT_numeroJogosVisitanteDaPercentagem = qLT_numeroJogosVisitanteDaPercentagem;
 
-		QLT_homeTeamNumeroJogos2 = qLT_homeTeamNumeroJogos2;
-		QLT_awayTeamNumeroJogos2 = qLT_awayTeamNumeroJogos2;
-		QLT_percentagemResultadoVisitado2 = qLT_percentagemResultadoVisitado2;
-		QLT_percentagemResultadoVisitante2 = qLT_percentagemResultadoVisitante2;
-		QLT_dificuldadeResultadoVisitado2 = qLT_dificuldadeResultadoVisitado2;
-		QLT_dificuldadeResultadoVisitante2 = qLT_dificuldadeResultadoVisitante2;
-		QLT_percentagemResultadoVisitadoNoIntervalo2 = qLT_percentagemResultadoVisitadoNoIntervalo2;
-		QLT_percentagemResultadoVisitanteNoIntervalo2 = qLT_percentagemResultadoVisitanteNoIntervalo2;
-		QLT_numeroJogosVisitado2 = qLT_numeroJogosVisitado2;
-		QLT_numeroJogosVisitante2 = qLT_numeroJogosVisitante2;
+		QLT_homeTeamNumeroJogosTrocado = qLT_homeTeamNumeroJogos2;
+		QLT_awayTeamNumeroJogosTrocado = qLT_awayTeamNumeroJogos2;
+		QLT_percentagemResultadoVisitadoTrocado = qLT_percentagemResultadoVisitado2;
+		QLT_percentagemResultadoVisitanteTrocado = qLT_percentagemResultadoVisitante2;
+		QLT_dificuldadeResultadoVisitadoTrocado = qLT_dificuldadeResultadoVisitado2;
+		QLT_dificuldadeResultadoVisitanteTrocado = qLT_dificuldadeResultadoVisitante2;
+		QLT_percentagemResultadoVisitadoNoIntervaloTrocado = qLT_percentagemResultadoVisitadoNoIntervalo2;
+		QLT_percentagemResultadoVisitanteNoIntervaloTrocado = qLT_percentagemResultadoVisitanteNoIntervalo2;
+		QLT_numeroJogosVisitadoNoIntervalo = qLT_numeroJogosVisitado2;
+		QLT_numeroJogosVisitanteNoIntervalo = qLT_numeroJogosVisitante2;
 
 		H2h_Results = h2h_Results;
 
@@ -390,14 +419,14 @@ public class ExcelRow {
 		QLT_percentagemResultadoVisitanteNoIntervalo_5jogos = qLT_percentagemResultadoVisitanteNoIntervalo_5jogos;
 		QLT_numeroJogosVisitado_5jogos = qLT_numeroJogosVisitado_5jogos;
 		QLT_numeroJogosVisitante_5jogos = qLT_numeroJogosVisitante_5jogos;
-		QLT_percentagemResultadoVisitado2_5jogos = qLT_percentagemResultadoVisitado2_5jogos;
-		QLT_percentagemResultadoVisitante2_5jogos = qLT_percentagemResultadoVisitante2_5jogos;
-		QLT_dificuldadeResultadoVisitado2_5jogos = qLT_dificuldadeResultadoVisitado2_5jogos;
-		QLT_dificuldadeResultadoVisitante2_5jogos = qLT_dificuldadeResultadoVisitante2_5jogos;
-		QLT_percentagemResultadoVisitadoNoIntervalo2_5jogos = qLT_percentagemResultadoVisitadoNoIntervalo2_5jogos;
-		QLT_percentagemResultadoVisitanteNoIntervalo2_5jogos = qLT_percentagemResultadoVisitanteNoIntervalo2_5jogos;
-		QLT_numeroJogosVisitado2_5jogos = qLT_numeroJogosVisitado2_5jogos;
-		QLT_numeroJogosVisitante2_5jogos = qLT_numeroJogosVisitante2_5jogos;
+		QLT_percentagemResultadoVisitadoTrocado_5jogos = qLT_percentagemResultadoVisitado2_5jogos;
+		QLT_percentagemResultadoVisitanteTrocado_5jogos = qLT_percentagemResultadoVisitante2_5jogos;
+		QLT_dificuldadeResultadoVisitadoTrocado_5jogos = qLT_dificuldadeResultadoVisitado2_5jogos;
+		QLT_dificuldadeResultadoVisitanteTrocado_5jogos = qLT_dificuldadeResultadoVisitante2_5jogos;
+		QLT_percentagemResultadoVisitadoNoIntervaloTrocado_5jogos = qLT_percentagemResultadoVisitadoNoIntervalo2_5jogos;
+		QLT_percentagemResultadoVisitanteNoIntervaloTrocado_5jogos = qLT_percentagemResultadoVisitanteNoIntervalo2_5jogos;
+		QLT_numeroJogosVisitadoTrocado_5jogos = qLT_numeroJogosVisitado2_5jogos;
+		QLT_numeroJogosVisitanteTrocado_5jogos = qLT_numeroJogosVisitante2_5jogos;
 
 	}
 
@@ -738,67 +767,67 @@ public class ExcelRow {
 	}
 
 	public Double getQLT_percentagemResultadoVisitado2() {
-		return QLT_percentagemResultadoVisitado2;
+		return QLT_percentagemResultadoVisitadoTrocado;
 	}
 
 	public void setQLT_percentagemResultadoVisitado2(Double qLT_percentagemResultadoVisitado2) {
-		QLT_percentagemResultadoVisitado2 = qLT_percentagemResultadoVisitado2;
+		QLT_percentagemResultadoVisitadoTrocado = qLT_percentagemResultadoVisitado2;
 	}
 
 	public Double getQLT_percentagemResultadoVisitante2() {
-		return QLT_percentagemResultadoVisitante2;
+		return QLT_percentagemResultadoVisitanteTrocado;
 	}
 
 	public void setQLT_percentagemResultadoVisitante2(Double qLT_percentagemResultadoVisitante2) {
-		QLT_percentagemResultadoVisitante2 = qLT_percentagemResultadoVisitante2;
+		QLT_percentagemResultadoVisitanteTrocado = qLT_percentagemResultadoVisitante2;
 	}
 
 	public Double getQLT_dificuldadeResultadoVisitado2() {
-		return QLT_dificuldadeResultadoVisitado2;
+		return QLT_dificuldadeResultadoVisitadoTrocado;
 	}
 
 	public void setQLT_dificuldadeResultadoVisitado2(Double qLT_dificuldadeResultadoVisitado2) {
-		QLT_dificuldadeResultadoVisitado2 = qLT_dificuldadeResultadoVisitado2;
+		QLT_dificuldadeResultadoVisitadoTrocado = qLT_dificuldadeResultadoVisitado2;
 	}
 
 	public Double getQLT_dificuldadeResultadoVisitante2() {
-		return QLT_dificuldadeResultadoVisitante2;
+		return QLT_dificuldadeResultadoVisitanteTrocado;
 	}
 
 	public void setQLT_dificuldadeResultadoVisitante2(Double qLT_dificuldadeResultadoVisitante2) {
-		QLT_dificuldadeResultadoVisitante2 = qLT_dificuldadeResultadoVisitante2;
+		QLT_dificuldadeResultadoVisitanteTrocado = qLT_dificuldadeResultadoVisitante2;
 	}
 
 	public Double getQLT_percentagemResultadoVisitadoNoIntervalo2() {
-		return QLT_percentagemResultadoVisitadoNoIntervalo2;
+		return QLT_percentagemResultadoVisitadoNoIntervaloTrocado;
 	}
 
 	public void setQLT_percentagemResultadoVisitadoNoIntervalo2(Double qLT_percentagemResultadoVisitadoNoIntervalo2) {
-		QLT_percentagemResultadoVisitadoNoIntervalo2 = qLT_percentagemResultadoVisitadoNoIntervalo2;
+		QLT_percentagemResultadoVisitadoNoIntervaloTrocado = qLT_percentagemResultadoVisitadoNoIntervalo2;
 	}
 
 	public Double getQLT_percentagemResultadoVisitanteNoIntervalo2() {
-		return QLT_percentagemResultadoVisitanteNoIntervalo2;
+		return QLT_percentagemResultadoVisitanteNoIntervaloTrocado;
 	}
 
 	public void setQLT_percentagemResultadoVisitanteNoIntervalo2(Double qLT_percentagemResultadoVisitanteNoIntervalo2) {
-		QLT_percentagemResultadoVisitanteNoIntervalo2 = qLT_percentagemResultadoVisitanteNoIntervalo2;
+		QLT_percentagemResultadoVisitanteNoIntervaloTrocado = qLT_percentagemResultadoVisitanteNoIntervalo2;
 	}
 
-	public Integer getQLT_numeroJogosVisitado2() {
-		return QLT_numeroJogosVisitado2;
+	public Integer getQLT_numeroJogosVisitadoNoIntervalo() {
+		return QLT_numeroJogosVisitadoNoIntervalo;
 	}
 
-	public void setQLT_numeroJogosVisitado2(Integer qLT_numeroJogosVisitado2) {
-		QLT_numeroJogosVisitado2 = qLT_numeroJogosVisitado2;
+	public void setQLT_numeroJogosVisitadoNoIntervalo(Integer qLT_numeroJogosVisitadoNoIntervalo) {
+		QLT_numeroJogosVisitadoNoIntervalo = qLT_numeroJogosVisitadoNoIntervalo;
 	}
 
-	public Integer getQLT_numeroJogosVisitante2() {
-		return QLT_numeroJogosVisitante2;
+	public Integer getQLT_numeroJogosVisitanteNoIntervalo() {
+		return QLT_numeroJogosVisitanteNoIntervalo;
 	}
 
-	public void setQLT_numeroJogosVisitante2(Integer qLT_numeroJogosVisitante2) {
-		QLT_numeroJogosVisitante2 = qLT_numeroJogosVisitante2;
+	public void setQLT_numeroJogosVisitanteNoIntervalo(Integer qLT_numeroJogosVisitanteNoIntervalo) {
+		QLT_numeroJogosVisitanteNoIntervalo = qLT_numeroJogosVisitanteNoIntervalo;
 	}
 
 	public Integer getH2h_Results() {
@@ -825,20 +854,20 @@ public class ExcelRow {
 		FR_ResultadosVisitante = fR_ResultadosVisitante;
 	}
 
-	public Integer getQLT_homeTeamNumeroJogos2() {
-		return QLT_homeTeamNumeroJogos2;
+	public Integer getQLT_homeTeamNumeroJogosTrocado() {
+		return QLT_homeTeamNumeroJogosTrocado;
 	}
 
-	public void setQLT_homeTeamNumeroJogos2(Integer qLT_homeTeamNumeroJogos2) {
-		QLT_homeTeamNumeroJogos2 = qLT_homeTeamNumeroJogos2;
+	public void setQLT_homeTeamNumeroJogosTrocado(Integer qLT_homeTeamNumeroJogosTrocado) {
+		QLT_homeTeamNumeroJogosTrocado = qLT_homeTeamNumeroJogosTrocado;
 	}
 
-	public Integer getQLT_awayTeamNumeroJogos2() {
-		return QLT_awayTeamNumeroJogos2;
+	public Integer getQLT_awayTeamNumeroJogosTrocado() {
+		return QLT_awayTeamNumeroJogosTrocado;
 	}
 
-	public void setQLT_awayTeamNumeroJogos2(Integer qLT_awayTeamNumeroJogos2) {
-		QLT_awayTeamNumeroJogos2 = qLT_awayTeamNumeroJogos2;
+	public void setQLT_awayTeamNumeroJogosTrocado(Integer qLT_awayTeamNumeroJogosTrocado) {
+		QLT_awayTeamNumeroJogosTrocado = qLT_awayTeamNumeroJogosTrocado;
 	}
 
 	public Integer getGolosVisitado() {
@@ -1211,70 +1240,70 @@ public class ExcelRow {
 		QLT_numeroJogosVisitante_5jogos = qLT_numeroJogosVisitante_5jogos;
 	}
 
-	public Double getQLT_percentagemResultadoVisitado2_5jogos() {
-		return QLT_percentagemResultadoVisitado2_5jogos;
+	public Double getQLT_percentagemResultadoVisitadoTrocado_5jogos() {
+		return QLT_percentagemResultadoVisitadoTrocado_5jogos;
 	}
 
-	public void setQLT_percentagemResultadoVisitado2_5jogos(Double qLT_percentagemResultadoVisitado2_5jogos) {
-		QLT_percentagemResultadoVisitado2_5jogos = qLT_percentagemResultadoVisitado2_5jogos;
+	public void setQLT_percentagemResultadoVisitadoTrocado_5jogos(Double qLT_percentagemResultadoVisitadoTrocado_5jogos) {
+		QLT_percentagemResultadoVisitadoTrocado_5jogos = qLT_percentagemResultadoVisitadoTrocado_5jogos;
 	}
 
-	public Double getQLT_percentagemResultadoVisitante2_5jogos() {
-		return QLT_percentagemResultadoVisitante2_5jogos;
+	public Double getQLT_percentagemResultadoVisitanteTrocado_5jogos() {
+		return QLT_percentagemResultadoVisitanteTrocado_5jogos;
 	}
 
-	public void setQLT_percentagemResultadoVisitante2_5jogos(Double qLT_percentagemResultadoVisitante2_5jogos) {
-		QLT_percentagemResultadoVisitante2_5jogos = qLT_percentagemResultadoVisitante2_5jogos;
+	public void setQLT_percentagemResultadoVisitanteTrocado_5jogos(Double qLT_percentagemResultadoVisitanteTrocado_5jogos) {
+		QLT_percentagemResultadoVisitanteTrocado_5jogos = qLT_percentagemResultadoVisitanteTrocado_5jogos;
 	}
 
-	public Double getQLT_dificuldadeResultadoVisitado2_5jogos() {
-		return QLT_dificuldadeResultadoVisitado2_5jogos;
+	public Double getQLT_dificuldadeResultadoVisitadoTrocado_5jogos() {
+		return QLT_dificuldadeResultadoVisitadoTrocado_5jogos;
 	}
 
-	public void setQLT_dificuldadeResultadoVisitado2_5jogos(Double qLT_dificuldadeResultadoVisitado2_5jogos) {
-		QLT_dificuldadeResultadoVisitado2_5jogos = qLT_dificuldadeResultadoVisitado2_5jogos;
+	public void setQLT_dificuldadeResultadoVisitadoTrocado_5jogos(Double qLT_dificuldadeResultadoVisitadoTrocado_5jogos) {
+		QLT_dificuldadeResultadoVisitadoTrocado_5jogos = qLT_dificuldadeResultadoVisitadoTrocado_5jogos;
 	}
 
-	public Double getQLT_dificuldadeResultadoVisitante2_5jogos() {
-		return QLT_dificuldadeResultadoVisitante2_5jogos;
+	public Double getQLT_dificuldadeResultadoVisitanteTrocado_5jogos() {
+		return QLT_dificuldadeResultadoVisitanteTrocado_5jogos;
 	}
 
-	public void setQLT_dificuldadeResultadoVisitante2_5jogos(Double qLT_dificuldadeResultadoVisitante2_5jogos) {
-		QLT_dificuldadeResultadoVisitante2_5jogos = qLT_dificuldadeResultadoVisitante2_5jogos;
+	public void setQLT_dificuldadeResultadoVisitanteTrocado_5jogos(Double qLT_dificuldadeResultadoVisitanteTrocado_5jogos) {
+		QLT_dificuldadeResultadoVisitanteTrocado_5jogos = qLT_dificuldadeResultadoVisitanteTrocado_5jogos;
 	}
 
-	public Double getQLT_percentagemResultadoVisitadoNoIntervalo2_5jogos() {
-		return QLT_percentagemResultadoVisitadoNoIntervalo2_5jogos;
+	public Double getQLT_percentagemResultadoVisitadoNoIntervaloTrocado_5jogos() {
+		return QLT_percentagemResultadoVisitadoNoIntervaloTrocado_5jogos;
 	}
 
-	public void setQLT_percentagemResultadoVisitadoNoIntervalo2_5jogos(
-			Double qLT_percentagemResultadoVisitadoNoIntervalo2_5jogos) {
-		QLT_percentagemResultadoVisitadoNoIntervalo2_5jogos = qLT_percentagemResultadoVisitadoNoIntervalo2_5jogos;
+	public void setQLT_percentagemResultadoVisitadoNoIntervaloTrocado_5jogos(
+			Double qLT_percentagemResultadoVisitadoNoIntervaloTrocado_5jogos) {
+		QLT_percentagemResultadoVisitadoNoIntervaloTrocado_5jogos = qLT_percentagemResultadoVisitadoNoIntervaloTrocado_5jogos;
 	}
 
-	public Double getQLT_percentagemResultadoVisitanteNoIntervalo2_5jogos() {
-		return QLT_percentagemResultadoVisitanteNoIntervalo2_5jogos;
+	public Double getQLT_percentagemResultadoVisitanteNoIntervaloTrocado_5jogos() {
+		return QLT_percentagemResultadoVisitanteNoIntervaloTrocado_5jogos;
 	}
 
-	public void setQLT_percentagemResultadoVisitanteNoIntervalo2_5jogos(
-			Double qLT_percentagemResultadoVisitanteNoIntervalo2_5jogos) {
-		QLT_percentagemResultadoVisitanteNoIntervalo2_5jogos = qLT_percentagemResultadoVisitanteNoIntervalo2_5jogos;
+	public void setQLT_percentagemResultadoVisitanteNoIntervaloTrocado_5jogos(
+			Double qLT_percentagemResultadoVisitanteNoIntervaloTrocado_5jogos) {
+		QLT_percentagemResultadoVisitanteNoIntervaloTrocado_5jogos = qLT_percentagemResultadoVisitanteNoIntervaloTrocado_5jogos;
 	}
 
-	public Integer getQLT_numeroJogosVisitado2_5jogos() {
-		return QLT_numeroJogosVisitado2_5jogos;
+	public Integer getQLT_numeroJogosVisitadoTrocado_5jogos() {
+		return QLT_numeroJogosVisitadoTrocado_5jogos;
 	}
 
-	public void setQLT_numeroJogosVisitado2_5jogos(Integer qLT_numeroJogosVisitado2_5jogos) {
-		QLT_numeroJogosVisitado2_5jogos = qLT_numeroJogosVisitado2_5jogos;
+	public void setQLT_numeroJogosVisitadoTrocado_5jogos(Integer qLT_numeroJogosVisitadoTrocado_5jogos) {
+		QLT_numeroJogosVisitadoTrocado_5jogos = qLT_numeroJogosVisitadoTrocado_5jogos;
 	}
 
-	public Integer getQLT_numeroJogosVisitante2_5jogos() {
-		return QLT_numeroJogosVisitante2_5jogos;
+	public Integer getQLT_numeroJogosVisitanteTrocado_5jogos() {
+		return QLT_numeroJogosVisitanteTrocado_5jogos;
 	}
 
-	public void setQLT_numeroJogosVisitante2_5jogos(Integer qLT_numeroJogosVisitante2_5jogos) {
-		QLT_numeroJogosVisitante2_5jogos = qLT_numeroJogosVisitante2_5jogos;
+	public void setQLT_numeroJogosVisitanteTrocado_5jogos(Integer qLT_numeroJogosVisitanteTrocado_5jogos) {
+		QLT_numeroJogosVisitanteTrocado_5jogos = qLT_numeroJogosVisitanteTrocado_5jogos;
 	}
 
 	public Double getPercFRResultadoVisitadoCasa() {
@@ -1403,6 +1432,236 @@ public class ExcelRow {
 
 	public void setMediaGolosSofridosVisitanteFora(Double mediaGolosSofridosVisitanteFora) {
 		this.mediaGolosSofridosVisitanteFora = mediaGolosSofridosVisitanteFora;
+	}
+
+	public Integer getQLT_numeroJogosVisitadoVenue() {
+		return QLT_numeroJogosVisitadoVenue;
+	}
+
+	public void setQLT_numeroJogosVisitadoVenue(Integer qLT_numeroJogosVisitadoVenue) {
+		QLT_numeroJogosVisitadoVenue = qLT_numeroJogosVisitadoVenue;
+	}
+
+	public Integer getQLT_numeroJogosVisitanteVenue() {
+		return QLT_numeroJogosVisitanteVenue;
+	}
+
+	public void setQLT_numeroJogosVisitanteVenue(Integer qLT_numeroJogosVisitanteVenue) {
+		QLT_numeroJogosVisitanteVenue = qLT_numeroJogosVisitanteVenue;
+	}
+
+	public Double getQLT_percentagemResultadoVisitadoVenue() {
+		return QLT_percentagemResultadoVisitadoVenue;
+	}
+
+	public void setQLT_percentagemResultadoVisitadoVenue(Double qLT_percentagemResultadoVisitadoVenue) {
+		QLT_percentagemResultadoVisitadoVenue = qLT_percentagemResultadoVisitadoVenue;
+	}
+
+	public Double getQLT_percentagemResultadoVisitanteVenue() {
+		return QLT_percentagemResultadoVisitanteVenue;
+	}
+
+	public void setQLT_percentagemResultadoVisitanteVenue(Double qLT_percentagemResultadoVisitanteVenue) {
+		QLT_percentagemResultadoVisitanteVenue = qLT_percentagemResultadoVisitanteVenue;
+	}
+
+	public Double getQLT_dificuldadeResultadoVisitadoVenue() {
+		return QLT_dificuldadeResultadoVisitadoVenue;
+	}
+
+	public void setQLT_dificuldadeResultadoVisitadoVenue(Double qLT_dificuldadeResultadoVisitadoVenue) {
+		QLT_dificuldadeResultadoVisitadoVenue = qLT_dificuldadeResultadoVisitadoVenue;
+	}
+
+	public Double getQLT_dificuldadeResultadoVisitanteVenue() {
+		return QLT_dificuldadeResultadoVisitanteVenue;
+	}
+
+	public void setQLT_dificuldadeResultadoVisitanteVenue(Double qLT_dificuldadeResultadoVisitanteVenue) {
+		QLT_dificuldadeResultadoVisitanteVenue = qLT_dificuldadeResultadoVisitanteVenue;
+	}
+
+	public Double getQLT_percentagemResultadoVisitadoNoIntervaloVenue() {
+		return QLT_percentagemResultadoVisitadoNoIntervaloVenue;
+	}
+
+	public void setQLT_percentagemResultadoVisitadoNoIntervaloVenue(
+			Double qLT_percentagemResultadoVisitadoNoIntervaloVenue) {
+		QLT_percentagemResultadoVisitadoNoIntervaloVenue = qLT_percentagemResultadoVisitadoNoIntervaloVenue;
+	}
+
+	public Double getQLT_percentagemResultadoVisitanteNoIntervaloVenue() {
+		return QLT_percentagemResultadoVisitanteNoIntervaloVenue;
+	}
+
+	public void setQLT_percentagemResultadoVisitanteNoIntervaloVenue(
+			Double qLT_percentagemResultadoVisitanteNoIntervaloVenue) {
+		QLT_percentagemResultadoVisitanteNoIntervaloVenue = qLT_percentagemResultadoVisitanteNoIntervaloVenue;
+	}
+
+	public Integer getQLT_numeroJogosVisitadoNoIntervaloVenue() {
+		return QLT_numeroJogosVisitadoNoIntervaloVenue;
+	}
+
+	public void setQLT_numeroJogosVisitadoNoIntervaloVenue(Integer qLT_numeroJogosVisitadoNoIntervaloVenue) {
+		QLT_numeroJogosVisitadoNoIntervaloVenue = qLT_numeroJogosVisitadoNoIntervaloVenue;
+	}
+
+	public Integer getQLT_numeroJogosVisitanteNoIntervaloVenue() {
+		return QLT_numeroJogosVisitanteNoIntervaloVenue;
+	}
+
+	public void setQLT_numeroJogosVisitanteNoIntervaloVenue(Integer qLT_numeroJogosVisitanteNoIntervaloVenue) {
+		QLT_numeroJogosVisitanteNoIntervaloVenue = qLT_numeroJogosVisitanteNoIntervaloVenue;
+	}
+	
+	public Double getQLT_percentagemResultadoVisitadoTrocado() {
+		return QLT_percentagemResultadoVisitadoTrocado;
+	}
+
+	public void setQLT_percentagemResultadoVisitadoTrocado(Double qLT_percentagemResultadoVisitadoTrocado) {
+		QLT_percentagemResultadoVisitadoTrocado = qLT_percentagemResultadoVisitadoTrocado;
+	}
+
+	public Double getQLT_percentagemResultadoVisitanteTrocado() {
+		return QLT_percentagemResultadoVisitanteTrocado;
+	}
+
+	public void setQLT_percentagemResultadoVisitanteTrocado(Double qLT_percentagemResultadoVisitanteTrocado) {
+		QLT_percentagemResultadoVisitanteTrocado = qLT_percentagemResultadoVisitanteTrocado;
+	}
+
+	public Double getQLT_dificuldadeResultadoVisitadoTrocado() {
+		return QLT_dificuldadeResultadoVisitadoTrocado;
+	}
+
+	public void setQLT_dificuldadeResultadoVisitadoTrocado(Double qLT_dificuldadeResultadoVisitadoTrocado) {
+		QLT_dificuldadeResultadoVisitadoTrocado = qLT_dificuldadeResultadoVisitadoTrocado;
+	}
+
+	public Double getQLT_dificuldadeResultadoVisitanteTrocado() {
+		return QLT_dificuldadeResultadoVisitanteTrocado;
+	}
+
+	public void setQLT_dificuldadeResultadoVisitanteTrocado(Double qLT_dificuldadeResultadoVisitanteTrocado) {
+		QLT_dificuldadeResultadoVisitanteTrocado = qLT_dificuldadeResultadoVisitanteTrocado;
+	}
+
+	public Double getQLT_percentagemResultadoVisitadoNoIntervaloTrocado() {
+		return QLT_percentagemResultadoVisitadoNoIntervaloTrocado;
+	}
+
+	public void setQLT_percentagemResultadoVisitadoNoIntervaloTrocado(
+			Double qLT_percentagemResultadoVisitadoNoIntervaloTrocado) {
+		QLT_percentagemResultadoVisitadoNoIntervaloTrocado = qLT_percentagemResultadoVisitadoNoIntervaloTrocado;
+	}
+
+	public Double getQLT_percentagemResultadoVisitanteNoIntervaloTrocado() {
+		return QLT_percentagemResultadoVisitanteNoIntervaloTrocado;
+	}
+
+	public void setQLT_percentagemResultadoVisitanteNoIntervaloTrocado(
+			Double qLT_percentagemResultadoVisitanteNoIntervaloTrocado) {
+		QLT_percentagemResultadoVisitanteNoIntervaloTrocado = qLT_percentagemResultadoVisitanteNoIntervaloTrocado;
+	}
+
+	public Integer getQLT_numeroJogosVisitadoNoIntervaloTrocado() {
+		return QLT_numeroJogosVisitadoNoIntervaloTrocado;
+	}
+
+	public void setQLT_numeroJogosVisitadoNoIntervaloTrocado(Integer qLT_numeroJogosVisitadoNoIntervaloTrocado) {
+		QLT_numeroJogosVisitadoNoIntervaloTrocado = qLT_numeroJogosVisitadoNoIntervaloTrocado;
+	}
+
+	public Integer getQLT_numeroJogosVisitanteNoIntervaloTrocado() {
+		return QLT_numeroJogosVisitanteNoIntervaloTrocado;
+	}
+
+	public void setQLT_numeroJogosVisitanteNoIntervaloTrocado(Integer qLT_numeroJogosVisitanteNoIntervaloTrocado) {
+		QLT_numeroJogosVisitanteNoIntervaloTrocado = qLT_numeroJogosVisitanteNoIntervaloTrocado;
+	}
+
+	public Integer getQLT_numeroJogosVisitadoTrocado() {
+		return QLT_numeroJogosVisitadoTrocado;
+	}
+
+	public void setQLT_numeroJogosVisitadoTrocado(Integer qLT_numeroJogosVisitadoTrocado) {
+		QLT_numeroJogosVisitadoTrocado = qLT_numeroJogosVisitadoTrocado;
+	}
+
+	public Integer getQLT_numeroJogosVisitanteTrocado() {
+		return QLT_numeroJogosVisitanteTrocado;
+	}
+
+	public void setQLT_numeroJogosVisitanteTrocado(Integer qLT_numeroJogosVisitanteTrocado) {
+		QLT_numeroJogosVisitanteTrocado = qLT_numeroJogosVisitanteTrocado;
+	}
+
+	public Double getQLT_percentagemResultadoVisitadoVenue_5jogos() {
+		return QLT_percentagemResultadoVisitadoVenue_5jogos;
+	}
+
+	public void setQLT_percentagemResultadoVisitadoVenue_5jogos(Double qLT_percentagemResultadoVisitadoVenue_5jogos) {
+		QLT_percentagemResultadoVisitadoVenue_5jogos = qLT_percentagemResultadoVisitadoVenue_5jogos;
+	}
+
+	public Double getQLT_percentagemResultadoVisitanteVenue_5jogos() {
+		return QLT_percentagemResultadoVisitanteVenue_5jogos;
+	}
+
+	public void setQLT_percentagemResultadoVisitanteVenue_5jogos(Double qLT_percentagemResultadoVisitanteVenue_5jogos) {
+		QLT_percentagemResultadoVisitanteVenue_5jogos = qLT_percentagemResultadoVisitanteVenue_5jogos;
+	}
+
+	public Double getQLT_dificuldadeResultadoVisitadoVenue_5jogos() {
+		return QLT_dificuldadeResultadoVisitadoVenue_5jogos;
+	}
+
+	public void setQLT_dificuldadeResultadoVisitadoVenue_5jogos(Double qLT_dificuldadeResultadoVisitadoVenue_5jogos) {
+		QLT_dificuldadeResultadoVisitadoVenue_5jogos = qLT_dificuldadeResultadoVisitadoVenue_5jogos;
+	}
+
+	public Double getQLT_dificuldadeResultadoVisitanteVenue_5jogos() {
+		return QLT_dificuldadeResultadoVisitanteVenue_5jogos;
+	}
+
+	public void setQLT_dificuldadeResultadoVisitanteVenue_5jogos(Double qLT_dificuldadeResultadoVisitanteVenue_5jogos) {
+		QLT_dificuldadeResultadoVisitanteVenue_5jogos = qLT_dificuldadeResultadoVisitanteVenue_5jogos;
+	}
+
+	public Double getQLT_percentagemResultadoVisitadoNoIntervaloVenue_5jogos() {
+		return QLT_percentagemResultadoVisitadoNoIntervaloVenue_5jogos;
+	}
+
+	public void setQLT_percentagemResultadoVisitadoNoIntervaloVenue_5jogos(
+			Double qLT_percentagemResultadoVisitadoNoIntervaloVenue_5jogos) {
+		QLT_percentagemResultadoVisitadoNoIntervaloVenue_5jogos = qLT_percentagemResultadoVisitadoNoIntervaloVenue_5jogos;
+	}
+
+	public Double getQLT_percentagemResultadoVisitanteNoIntervaloVenue_5jogos() {
+		return QLT_percentagemResultadoVisitanteNoIntervaloVenue_5jogos;
+	}
+
+	public void setQLT_percentagemResultadoVisitanteNoIntervaloVenue_5jogos(
+			Double qLT_percentagemResultadoVisitanteNoIntervaloVenue_5jogos) {
+		QLT_percentagemResultadoVisitanteNoIntervaloVenue_5jogos = qLT_percentagemResultadoVisitanteNoIntervaloVenue_5jogos;
+	}
+
+	public Integer getQLT_numeroJogosVisitadoVenue_5jogos() {
+		return QLT_numeroJogosVisitadoVenue_5jogos;
+	}
+
+	public void setQLT_numeroJogosVisitadoVenue_5jogos(Integer qLT_numeroJogosVisitadoVenue_5jogos) {
+		QLT_numeroJogosVisitadoVenue_5jogos = qLT_numeroJogosVisitadoVenue_5jogos;
+	}
+
+	public Integer getQLT_numeroJogosVisitanteVenue_5jogos() {
+		return QLT_numeroJogosVisitanteVenue_5jogos;
+	}
+
+	public void setQLT_numeroJogosVisitanteVenue_5jogos(Integer qLT_numeroJogosVisitanteVenue_5jogos) {
+		QLT_numeroJogosVisitanteVenue_5jogos = qLT_numeroJogosVisitanteVenue_5jogos;
 	}
 
 }

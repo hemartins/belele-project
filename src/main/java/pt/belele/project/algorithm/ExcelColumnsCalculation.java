@@ -231,6 +231,7 @@ public class ExcelColumnsCalculation {
 
 	// Calculo ciclos à sapateiro que o perna pediu para testar a correlacao
 	public ResultCycle getTeamCyclePerna(Fixture nextFixture, Venue venue, ResultType type) {
+		
 		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team, nextFixture.getSeason(),
 				nextFixture.getDate(), venue, null);
 		ResultType firstResult = null;

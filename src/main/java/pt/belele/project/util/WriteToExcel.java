@@ -347,21 +347,21 @@ public class WriteToExcel {
 
 			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_numeroJogosVisitanteDaPercentagem());
 
-			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitado());
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitadoVenue());
 
-			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitante());
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitanteVenue());
 
-			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeResultadoVisitado());
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeResultadoVisitadoVenue());
 
-			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeResultadoVisitante());
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeResultadoVisitanteVenue());
 
-			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitadoNoIntervalo());
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitadoNoIntervaloVenue());
 
-			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitanteNoIntervalo());
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitanteNoIntervaloVenue());
 
-			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_numeroJogosVisitado());
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_numeroJogosVisitadoNoIntervaloVenue());
 
-			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_numeroJogosVisitante());
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_numeroJogosVisitanteNoIntervaloVenue());
 
 			row.createCell(cellIndex++).setCellValue(excelrow.getResult());
 
@@ -381,25 +381,25 @@ public class WriteToExcel {
 
 			row.createCell(cellIndex++).setCellValue(excelrow.getFR_ratingQualidadeResultadoVisitante());
 
-			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_homeTeamNumeroJogos2());
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_homeTeamNumeroJogosTrocado());
 
-			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_awayTeamNumeroJogos2());
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_awayTeamNumeroJogosTrocado());
 
-			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitado2());
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitadoTrocado());
 
-			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitante2());
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitanteTrocado());
 
-			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeResultadoVisitado2());
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeResultadoVisitadoTrocado());
 
-			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeResultadoVisitante2());
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeResultadoVisitanteTrocado());
 
-			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitadoNoIntervalo2());
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitadoNoIntervaloTrocado());
 
-			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitanteNoIntervalo2());
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitanteNoIntervaloTrocado());
 
-			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_numeroJogosVisitado2());
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_numeroJogosVisitadoNoIntervaloTrocado());
 
-			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_numeroJogosVisitante2());
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_numeroJogosVisitanteNoIntervaloTrocado());
 
 			row.createCell(cellIndex++).setCellValue(excelrow.getH2h_Results());
 
@@ -483,37 +483,37 @@ public class WriteToExcel {
 
 			row.createCell(cellIndex++).setCellValue(excelrow.getFR_ResultadoVisitanteAway());
 			
-			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitado_5jogos());
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitadoVenue_5jogos());
 			
-			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitante_5jogos());
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitanteVenue_5jogos());
 			
-			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeResultadoVisitado_5jogos());
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeResultadoVisitadoVenue_5jogos());
 			
-			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeResultadoVisitante_5jogos());
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeResultadoVisitanteVenue_5jogos());
 			
-			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitadoNoIntervalo_5jogos());
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitadoNoIntervaloVenue_5jogos());
 			
-			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitanteNoIntervalo_5jogos());
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitanteNoIntervaloVenue_5jogos());
 			
-			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_numeroJogosVisitado_5jogos());
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_numeroJogosVisitadoVenue_5jogos());
 			
-			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_numeroJogosVisitante_5jogos());
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_numeroJogosVisitanteVenue_5jogos());
 			
-			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitado2_5jogos());
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitadoTrocado_5jogos());
 			
-			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitante2_5jogos());
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitanteTrocado_5jogos());
 			
-			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeResultadoVisitado2_5jogos());
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeResultadoVisitadoTrocado_5jogos());
 			
-			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeResultadoVisitante2_5jogos());
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeResultadoVisitanteTrocado_5jogos());
 			
-			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitadoNoIntervalo2_5jogos());
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitadoNoIntervaloTrocado_5jogos());
 			
-			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitanteNoIntervalo2_5jogos());
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitanteNoIntervaloTrocado_5jogos());
 			
-			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_numeroJogosVisitado2_5jogos());
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_numeroJogosVisitadoTrocado_5jogos());
 			
-			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_numeroJogosVisitante2_5jogos());
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_numeroJogosVisitanteTrocado_5jogos());
 			
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(excelrow.getData());
