@@ -1920,23 +1920,27 @@ public class ExcelRow {
 	// QLT_numeroJogosVisitanteVenue_5jogos =
 	// qLT_numeroJogosVisitanteVenue_5jogos;
 	// }
+	
 
-	// General variables
+	//// General variables \\\\
 
 	// Overall
 	Date data;
 	String nomeVisitado, nomeVisitante;
 	Long idVisitado, idVisitante;
 	Double qualidadeVisitado, qualidadeVisitante;
+	Integer diasDescansoVisitado, diasDescansoVisitante;
 	Integer classificacaoVisitado, classificacaoVisitante;
+	Integer resultado;
 
 	// Venue
 	Double qualidadeVisitadoVenue, qualidadeVisitanteVenue;
 
 	// Switched Venue
 	Double qualidadeVisitadoSwitchedVenue, qualidadeVisitanteSwitchedVenue;
+	
 
-	// Cycle variables
+	//// Cycle variables \\\\
 
 	// Overall
 	Integer cicloNaoResultado_numeroJogosVisitado, cicloNaoResultado_numeroJogosVisitante;
@@ -1965,13 +1969,15 @@ public class ExcelRow {
 	Double cicloResultado_dificuldadeVisitadoSwitchedVenue, cicloResultado_dificuldadeVisitanteSwitchedVenue;
 	Integer cicloResultado_historicosVisitadoSwitchedVenue, cicloResultado_historicosVisitanteSwitchedVenue;
 
-	// FR variables
+	
+	//// FR variables \\\\
 
 	// Overall
 	Double FR_dificuldadeVisitado, FR_dificuldadeVisitante;
 	Integer FR_historicosVisitado, FR_historicosVisitante;
 	Double FR_ratingTemporalResultadoVisitado, FR_ratingTemporalResultadoVisitante;
 	Integer FR_numeroResultadosVisitado, FR_numeroResultadosVisitante;
+	Integer FR_numeroResultadosNoIntervaloVisitado, FR_numeroResultadosNoIntervaloVisitante;
 	Double FR_percentagemResultadoVisitado, FR_percentagemResultadoVisitante;
 	Double FR_percentagemResultadoVisitadoCasa, FR_percentagemResultadoVisitanteFora;
 	Double FR_percentagemResultadoNoIntervaloVisitado, FR_percentagemResultadoNoIntervaloVisitante;
@@ -2009,7 +2015,8 @@ public class ExcelRow {
 	Double FR_mediaGolosMarcadosVisitadoSwitchedVenue, FR_mediaGolosSofridosVisitadoSwitchedVenue;
 	Double FR_mediaGolosMarcadosVisitanteSwitchedVenue, FR_mediaGolosSofridosVisitanteSwitchedVenue;
 
-	// QLT variables
+	
+	//// QLT variables\\\\
 
 	// Overall
 	Integer QLT_numeroJogosVisitado, QLT_numeroJogosVisitante;
@@ -2017,6 +2024,10 @@ public class ExcelRow {
 	Double QLT_dificuldadeResultadoVisitado, QLT_dificuldadeResultadoVisitante;
 	Double QLT_percentagemResultadoNoIntervaloVisitado, QLT_percentagemResultadoNoIntervaloVisitante;
 	Integer QLT_numeroJogosNoIntervaloVisitado, QLT_numeroJogosNoIntervaloVisitante;
+	Integer QLT_golosMarcadosVisitado, QLT_golosSofridosVisitado, QLT_diferencaGolosVisitado;
+	Integer QLT_golosMarcadosVisitante, QLT_golosSofridosVisitante, QLT_diferencaGolosVisitante;
+	Double QLT_mediaGolosMarcadosVisitado, QLT_mediaGolosSofridosVisitado;
+	Double QLT_mediaGolosMarcadosVisitante, QLT_mediaGolosSofridosVisitante;
 
 	// Venue
 	Integer QLT_numeroJogosVisitadoVenue, QLT_numeroJogosVisitanteVenue;
@@ -2024,16 +2035,24 @@ public class ExcelRow {
 	Double QLT_dificuldadeResultadoVisitadoVenue, QLT_dificuldadeResultadoVisitanteVenue;
 	Double QLT_percentagemResultadoNoIntervaloVisitadoVenue, QLT_percentagemResultadoNoIntervaloVisitanteVenue;
 	Integer QLT_numeroJogosNoIntervaloVisitadoVenue, QLT_numeroJogosNoIntervaloVisitanteVenue;
+	Integer QLT_golosMarcadosVisitadoVenue, QLT_golosSofridosVisitadoVenue, QLT_diferencaGolosVisitadoVenue;
+	Integer QLT_golosMarcadosVisitanteVenue, QLT_golosSofridosVisitanteVenue, QLT_diferencaGolosVisitanteVenue;
+	Double QLT_mediaGolosMarcadosVisitadoVenue, QLT_mediaGolosSofridosVisitadoVenue;
+	Double QLT_mediaGolosMarcadosVisitanteVenue, QLT_mediaGolosSofridosVisitanteVenue;
 
 	// Switched Venue
 	Integer QLT_numeroJogosVisitadoSwitchedVenue, QLT_numeroJogosVisitanteSwitchedVenue;
 	Double QLT_percentagemResultadoVisitadoSwitchedVenue, QLT_percentagemResultadoVisitanteSwitchedVenue;
 	Double QLT_dificuldadeResultadoVisitadoSwitchedVenue, QLT_dificuldadeResultadoVisitanteSwitchedVenue;
-	Double QLT_percentagemResultadoNoIntervaloVisitadoSwitchedVenue,
-			QLT_percentagemResultadoNoIntervaloVisitanteSwitchedVenue;
+	Double QLT_percentagemResultadoNoIntervaloVisitadoSwitchedVenue, QLT_percentagemResultadoNoIntervaloVisitanteSwitchedVenue;
 	Integer QLT_numeroJogosNoIntervaloVisitadoSwitchedVenue, QLT_numeroJogosNoIntervaloVisitanteSwitchedVenue;
+	Integer QLT_golosMarcadosVisitadoSwitchedVenue, QLT_golosSofridosVisitadoSwitchedVenue, QLT_diferencaGolosVisitadoSwitchedVenue;
+	Integer QLT_golosMarcadosVisitanteSwitchedVenue, QLT_golosSofridosVisitanteSwitchedVenue, QLT_diferencaGolosVisitanteSwitchedVenue;
+	Double QLT_mediaGolosMarcadosVisitadoSwitchedVenue, QLT_mediaGolosSofridosVisitadoSwitchedVenue;
+	Double QLT_mediaGolosMarcadosVisitanteSwitchedVenue, QLT_mediaGolosSofridosVisitanteSwitchedVenue;
+	
 
-	// H2H variables
+	//// H2H variables \\\\
 
 	// Overall
 	Double h2h_ratingTemporalResultado;
@@ -2053,29 +2072,10 @@ public class ExcelRow {
 	Integer h2h_numeroResultadosSwitchedVenue;
 	Double h2h_percentagemResultadosSwitchedVenue;
 
-	// Goal variables
+	
+	///////////////////////// Construtor e Getters e Setters \\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-	// Overall
-	Integer golosMarcadosVisitado, golosSofridosVisitado, diferencaGolosVisitado;
-	Integer golosMarcadosVisitante, golosSofridosVisitante, diferencaGolosVisitante;
-	Double mediaGolosMarcadosVisitado, mediaGolosSofridosVisitado;
-	Double mediaGolosMarcadosVisitante, mediaGolosSofridosVisitante;
-
-	// Venue
-	Integer golosMarcadosVisitadoVenue, golosSofridosVisitadoVenue, diferencaGolosVisitadoVenue;
-	Integer golosMarcadosVisitanteVenue, golosSofridosVisitanteVenue, diferencaGolosVisitanteVenue;
-	Double mediaGolosMarcadosVisitadoVenue, mediaGolosSofridosVisitadoVenue;
-	Double mediaGolosMarcadosVisitanteVenue, mediaGolosSofridosVisitanteVenue;
-
-	// Switched Venue
-	Integer golosMarcadosVisitadoSwitchedVenue, golosSofridosVisitadoSwitchedVenue, diferencaGolosVisitadoSwitchedVenue;
-	Integer golosMarcadosVisitanteSwitchedVenue, golosSofridosVisitanteSwitchedVenue,
-			diferencaGolosVisitanteSwitchedVenue;
-	Double mediaGolosMarcadosVisitadoSwitchedVenue, mediaGolosSofridosVisitadoSwitchedVenue;
-	Double mediaGolosMarcadosVisitanteSwitchedVenue, mediaGolosSofridosVisitanteSwitchedVenue;
-
-	///////////////////
-
+	
 	public ExcelRow() {
 	}
 
@@ -2135,6 +2135,22 @@ public class ExcelRow {
 		this.qualidadeVisitante = qualidadeVisitante;
 	}
 
+	public Integer getDiasDescansoVisitado() {
+		return diasDescansoVisitado;
+	}
+
+	public void setDiasDescansoVisitado(Integer diasDescansoVisitado) {
+		this.diasDescansoVisitado = diasDescansoVisitado;
+	}
+
+	public Integer getDiasDescansoVisitante() {
+		return diasDescansoVisitante;
+	}
+
+	public void setDiasDescansoVisitante(Integer diasDescansoVisitante) {
+		this.diasDescansoVisitante = diasDescansoVisitante;
+	}
+
 	public Integer getClassificacaoVisitado() {
 		return classificacaoVisitado;
 	}
@@ -2149,6 +2165,14 @@ public class ExcelRow {
 
 	public void setClassificacaoVisitante(Integer classificacaoVisitante) {
 		this.classificacaoVisitante = classificacaoVisitante;
+	}
+
+	public Integer getResultado() {
+		return resultado;
+	}
+
+	public void setResultado(Integer resultado) {
+		this.resultado = resultado;
 	}
 
 	public Double getQualidadeVisitadoVenue() {
@@ -2545,6 +2569,22 @@ public class ExcelRow {
 
 	public void setFR_numeroResultadosVisitante(Integer fR_numeroResultadosVisitante) {
 		FR_numeroResultadosVisitante = fR_numeroResultadosVisitante;
+	}
+
+	public Integer getFR_numeroResultadosNoIntervaloVisitado() {
+		return FR_numeroResultadosNoIntervaloVisitado;
+	}
+
+	public void setFR_numeroResultadosNoIntervaloVisitado(Integer fR_numeroResultadosNoIntervaloVisitado) {
+		FR_numeroResultadosNoIntervaloVisitado = fR_numeroResultadosNoIntervaloVisitado;
+	}
+
+	public Integer getFR_numeroResultadosNoIntervaloVisitante() {
+		return FR_numeroResultadosNoIntervaloVisitante;
+	}
+
+	public void setFR_numeroResultadosNoIntervaloVisitante(Integer fR_numeroResultadosNoIntervaloVisitante) {
+		FR_numeroResultadosNoIntervaloVisitante = fR_numeroResultadosNoIntervaloVisitante;
 	}
 
 	public Double getFR_percentagemResultadoVisitado() {
@@ -3147,6 +3187,86 @@ public class ExcelRow {
 		QLT_numeroJogosNoIntervaloVisitante = qLT_numeroJogosNoIntervaloVisitante;
 	}
 
+	public Integer getQLT_golosMarcadosVisitado() {
+		return QLT_golosMarcadosVisitado;
+	}
+
+	public void setQLT_golosMarcadosVisitado(Integer qLT_golosMarcadosVisitado) {
+		QLT_golosMarcadosVisitado = qLT_golosMarcadosVisitado;
+	}
+
+	public Integer getQLT_golosSofridosVisitado() {
+		return QLT_golosSofridosVisitado;
+	}
+
+	public void setQLT_golosSofridosVisitado(Integer qLT_golosSofridosVisitado) {
+		QLT_golosSofridosVisitado = qLT_golosSofridosVisitado;
+	}
+
+	public Integer getQLT_diferencaGolosVisitado() {
+		return QLT_diferencaGolosVisitado;
+	}
+
+	public void setQLT_diferencaGolosVisitado(Integer qLT_diferencaGolosVisitado) {
+		QLT_diferencaGolosVisitado = qLT_diferencaGolosVisitado;
+	}
+
+	public Integer getQLT_golosMarcadosVisitante() {
+		return QLT_golosMarcadosVisitante;
+	}
+
+	public void setQLT_golosMarcadosVisitante(Integer qLT_golosMarcadosVisitante) {
+		QLT_golosMarcadosVisitante = qLT_golosMarcadosVisitante;
+	}
+
+	public Integer getQLT_golosSofridosVisitante() {
+		return QLT_golosSofridosVisitante;
+	}
+
+	public void setQLT_golosSofridosVisitante(Integer qLT_golosSofridosVisitante) {
+		QLT_golosSofridosVisitante = qLT_golosSofridosVisitante;
+	}
+
+	public Integer getQLT_diferencaGolosVisitante() {
+		return QLT_diferencaGolosVisitante;
+	}
+
+	public void setQLT_diferencaGolosVisitante(Integer qLT_diferencaGolosVisitante) {
+		QLT_diferencaGolosVisitante = qLT_diferencaGolosVisitante;
+	}
+
+	public Double getQLT_mediaGolosMarcadosVisitado() {
+		return QLT_mediaGolosMarcadosVisitado;
+	}
+
+	public void setQLT_mediaGolosMarcadosVisitado(Double qLT_mediaGolosMarcadosVisitado) {
+		QLT_mediaGolosMarcadosVisitado = qLT_mediaGolosMarcadosVisitado;
+	}
+
+	public Double getQLT_mediaGolosSofridosVisitado() {
+		return QLT_mediaGolosSofridosVisitado;
+	}
+
+	public void setQLT_mediaGolosSofridosVisitado(Double qLT_mediaGolosSofridosVisitado) {
+		QLT_mediaGolosSofridosVisitado = qLT_mediaGolosSofridosVisitado;
+	}
+
+	public Double getQLT_mediaGolosMarcadosVisitante() {
+		return QLT_mediaGolosMarcadosVisitante;
+	}
+
+	public void setQLT_mediaGolosMarcadosVisitante(Double qLT_mediaGolosMarcadosVisitante) {
+		QLT_mediaGolosMarcadosVisitante = qLT_mediaGolosMarcadosVisitante;
+	}
+
+	public Double getQLT_mediaGolosSofridosVisitante() {
+		return QLT_mediaGolosSofridosVisitante;
+	}
+
+	public void setQLT_mediaGolosSofridosVisitante(Double qLT_mediaGolosSofridosVisitante) {
+		QLT_mediaGolosSofridosVisitante = qLT_mediaGolosSofridosVisitante;
+	}
+
 	public Integer getQLT_numeroJogosVisitadoVenue() {
 		return QLT_numeroJogosVisitadoVenue;
 	}
@@ -3245,6 +3365,86 @@ public class ExcelRow {
 		QLT_numeroJogosVisitanteSwitchedVenue = qLT_numeroJogosVisitanteSwitchedVenue;
 	}
 
+	public Integer getQLT_golosMarcadosVisitadoVenue() {
+		return QLT_golosMarcadosVisitadoVenue;
+	}
+
+	public void setQLT_golosMarcadosVisitadoVenue(Integer qLT_golosMarcadosVisitadoVenue) {
+		QLT_golosMarcadosVisitadoVenue = qLT_golosMarcadosVisitadoVenue;
+	}
+
+	public Integer getQLT_golosSofridosVisitadoVenue() {
+		return QLT_golosSofridosVisitadoVenue;
+	}
+
+	public void setQLT_golosSofridosVisitadoVenue(Integer qLT_golosSofridosVisitadoVenue) {
+		QLT_golosSofridosVisitadoVenue = qLT_golosSofridosVisitadoVenue;
+	}
+
+	public Integer getQLT_diferencaGolosVisitadoVenue() {
+		return QLT_diferencaGolosVisitadoVenue;
+	}
+
+	public void setQLT_diferencaGolosVisitadoVenue(Integer qLT_diferencaGolosVisitadoVenue) {
+		QLT_diferencaGolosVisitadoVenue = qLT_diferencaGolosVisitadoVenue;
+	}
+
+	public Integer getQLT_golosMarcadosVisitanteVenue() {
+		return QLT_golosMarcadosVisitanteVenue;
+	}
+
+	public void setQLT_golosMarcadosVisitanteVenue(Integer qLT_golosMarcadosVisitanteVenue) {
+		QLT_golosMarcadosVisitanteVenue = qLT_golosMarcadosVisitanteVenue;
+	}
+
+	public Integer getQLT_golosSofridosVisitanteVenue() {
+		return QLT_golosSofridosVisitanteVenue;
+	}
+
+	public void setQLT_golosSofridosVisitanteVenue(Integer qLT_golosSofridosVisitanteVenue) {
+		QLT_golosSofridosVisitanteVenue = qLT_golosSofridosVisitanteVenue;
+	}
+
+	public Integer getQLT_diferencaGolosVisitanteVenue() {
+		return QLT_diferencaGolosVisitanteVenue;
+	}
+
+	public void setQLT_diferencaGolosVisitanteVenue(Integer qLT_diferencaGolosVisitanteVenue) {
+		QLT_diferencaGolosVisitanteVenue = qLT_diferencaGolosVisitanteVenue;
+	}
+
+	public Double getQLT_mediaGolosMarcadosVisitadoVenue() {
+		return QLT_mediaGolosMarcadosVisitadoVenue;
+	}
+
+	public void setQLT_mediaGolosMarcadosVisitadoVenue(Double qLT_mediaGolosMarcadosVisitadoVenue) {
+		QLT_mediaGolosMarcadosVisitadoVenue = qLT_mediaGolosMarcadosVisitadoVenue;
+	}
+
+	public Double getQLT_mediaGolosSofridosVisitadoVenue() {
+		return QLT_mediaGolosSofridosVisitadoVenue;
+	}
+
+	public void setQLT_mediaGolosSofridosVisitadoVenue(Double qLT_mediaGolosSofridosVisitadoVenue) {
+		QLT_mediaGolosSofridosVisitadoVenue = qLT_mediaGolosSofridosVisitadoVenue;
+	}
+
+	public Double getQLT_mediaGolosMarcadosVisitanteVenue() {
+		return QLT_mediaGolosMarcadosVisitanteVenue;
+	}
+
+	public void setQLT_mediaGolosMarcadosVisitanteVenue(Double qLT_mediaGolosMarcadosVisitanteVenue) {
+		QLT_mediaGolosMarcadosVisitanteVenue = qLT_mediaGolosMarcadosVisitanteVenue;
+	}
+
+	public Double getQLT_mediaGolosSofridosVisitanteVenue() {
+		return QLT_mediaGolosSofridosVisitanteVenue;
+	}
+
+	public void setQLT_mediaGolosSofridosVisitanteVenue(Double qLT_mediaGolosSofridosVisitanteVenue) {
+		QLT_mediaGolosSofridosVisitanteVenue = qLT_mediaGolosSofridosVisitanteVenue;
+	}
+
 	public Double getQLT_percentagemResultadoVisitadoSwitchedVenue() {
 		return QLT_percentagemResultadoVisitadoSwitchedVenue;
 	}
@@ -3313,6 +3513,86 @@ public class ExcelRow {
 	public void setQLT_numeroJogosNoIntervaloVisitanteSwitchedVenue(
 			Integer qLT_numeroJogosNoIntervaloVisitanteSwitchedVenue) {
 		QLT_numeroJogosNoIntervaloVisitanteSwitchedVenue = qLT_numeroJogosNoIntervaloVisitanteSwitchedVenue;
+	}
+
+	public Integer getQLT_golosMarcadosVisitadoSwitchedVenue() {
+		return QLT_golosMarcadosVisitadoSwitchedVenue;
+	}
+
+	public void setQLT_golosMarcadosVisitadoSwitchedVenue(Integer qLT_golosMarcadosVisitadoSwitchedVenue) {
+		QLT_golosMarcadosVisitadoSwitchedVenue = qLT_golosMarcadosVisitadoSwitchedVenue;
+	}
+
+	public Integer getQLT_golosSofridosVisitadoSwitchedVenue() {
+		return QLT_golosSofridosVisitadoSwitchedVenue;
+	}
+
+	public void setQLT_golosSofridosVisitadoSwitchedVenue(Integer qLT_golosSofridosVisitadoSwitchedVenue) {
+		QLT_golosSofridosVisitadoSwitchedVenue = qLT_golosSofridosVisitadoSwitchedVenue;
+	}
+
+	public Integer getQLT_diferencaGolosVisitadoSwitchedVenue() {
+		return QLT_diferencaGolosVisitadoSwitchedVenue;
+	}
+
+	public void setQLT_diferencaGolosVisitadoSwitchedVenue(Integer qLT_diferencaGolosVisitadoSwitchedVenue) {
+		QLT_diferencaGolosVisitadoSwitchedVenue = qLT_diferencaGolosVisitadoSwitchedVenue;
+	}
+
+	public Integer getQLT_golosMarcadosVisitanteSwitchedVenue() {
+		return QLT_golosMarcadosVisitanteSwitchedVenue;
+	}
+
+	public void setQLT_golosMarcadosVisitanteSwitchedVenue(Integer qLT_golosMarcadosVisitanteSwitchedVenue) {
+		QLT_golosMarcadosVisitanteSwitchedVenue = qLT_golosMarcadosVisitanteSwitchedVenue;
+	}
+
+	public Integer getQLT_golosSofridosVisitanteSwitchedVenue() {
+		return QLT_golosSofridosVisitanteSwitchedVenue;
+	}
+
+	public void setQLT_golosSofridosVisitanteSwitchedVenue(Integer qLT_golosSofridosVisitanteSwitchedVenue) {
+		QLT_golosSofridosVisitanteSwitchedVenue = qLT_golosSofridosVisitanteSwitchedVenue;
+	}
+
+	public Integer getQLT_diferencaGolosVisitanteSwitchedVenue() {
+		return QLT_diferencaGolosVisitanteSwitchedVenue;
+	}
+
+	public void setQLT_diferencaGolosVisitanteSwitchedVenue(Integer qLT_diferencaGolosVisitanteSwitchedVenue) {
+		QLT_diferencaGolosVisitanteSwitchedVenue = qLT_diferencaGolosVisitanteSwitchedVenue;
+	}
+
+	public Double getQLT_mediaGolosMarcadosVisitadoSwitchedVenue() {
+		return QLT_mediaGolosMarcadosVisitadoSwitchedVenue;
+	}
+
+	public void setQLT_mediaGolosMarcadosVisitadoSwitchedVenue(Double qLT_mediaGolosMarcadosVisitadoSwitchedVenue) {
+		QLT_mediaGolosMarcadosVisitadoSwitchedVenue = qLT_mediaGolosMarcadosVisitadoSwitchedVenue;
+	}
+
+	public Double getQLT_mediaGolosSofridosVisitadoSwitchedVenue() {
+		return QLT_mediaGolosSofridosVisitadoSwitchedVenue;
+	}
+
+	public void setQLT_mediaGolosSofridosVisitadoSwitchedVenue(Double qLT_mediaGolosSofridosVisitadoSwitchedVenue) {
+		QLT_mediaGolosSofridosVisitadoSwitchedVenue = qLT_mediaGolosSofridosVisitadoSwitchedVenue;
+	}
+
+	public Double getQLT_mediaGolosMarcadosVisitanteSwitchedVenue() {
+		return QLT_mediaGolosMarcadosVisitanteSwitchedVenue;
+	}
+
+	public void setQLT_mediaGolosMarcadosVisitanteSwitchedVenue(Double qLT_mediaGolosMarcadosVisitanteSwitchedVenue) {
+		QLT_mediaGolosMarcadosVisitanteSwitchedVenue = qLT_mediaGolosMarcadosVisitanteSwitchedVenue;
+	}
+
+	public Double getQLT_mediaGolosSofridosVisitanteSwitchedVenue() {
+		return QLT_mediaGolosSofridosVisitanteSwitchedVenue;
+	}
+
+	public void setQLT_mediaGolosSofridosVisitanteSwitchedVenue(Double qLT_mediaGolosSofridosVisitanteSwitchedVenue) {
+		QLT_mediaGolosSofridosVisitanteSwitchedVenue = qLT_mediaGolosSofridosVisitanteSwitchedVenue;
 	}
 
 	public Double getH2h_ratingTemporalResultado() {
@@ -3409,245 +3689,5 @@ public class ExcelRow {
 
 	public void setH2h_percentagemResultadosSwitchedVenue(Double h2h_percentagemResultadosSwitchedVenue) {
 		this.h2h_percentagemResultadosSwitchedVenue = h2h_percentagemResultadosSwitchedVenue;
-	}
-
-	public Integer getGolosMarcadosVisitado() {
-		return golosMarcadosVisitado;
-	}
-
-	public void setGolosMarcadosVisitado(Integer golosMarcadosVisitado) {
-		this.golosMarcadosVisitado = golosMarcadosVisitado;
-	}
-
-	public Integer getGolosSofridosVisitado() {
-		return golosSofridosVisitado;
-	}
-
-	public void setGolosSofridosVisitado(Integer golosSofridosVisitado) {
-		this.golosSofridosVisitado = golosSofridosVisitado;
-	}
-
-	public Integer getDiferencaGolosVisitado() {
-		return diferencaGolosVisitado;
-	}
-
-	public void setDiferencaGolosVisitado(Integer diferencaGolosVisitado) {
-		this.diferencaGolosVisitado = diferencaGolosVisitado;
-	}
-
-	public Integer getGolosMarcadosVisitante() {
-		return golosMarcadosVisitante;
-	}
-
-	public void setGolosMarcadosVisitante(Integer golosMarcadosVisitante) {
-		this.golosMarcadosVisitante = golosMarcadosVisitante;
-	}
-
-	public Integer getGolosSofridosVisitante() {
-		return golosSofridosVisitante;
-	}
-
-	public void setGolosSofridosVisitante(Integer golosSofridosVisitante) {
-		this.golosSofridosVisitante = golosSofridosVisitante;
-	}
-
-	public Integer getDiferencaGolosVisitante() {
-		return diferencaGolosVisitante;
-	}
-
-	public void setDiferencaGolosVisitante(Integer diferencaGolosVisitante) {
-		this.diferencaGolosVisitante = diferencaGolosVisitante;
-	}
-
-	public Double getMediaGolosMarcadosVisitado() {
-		return mediaGolosMarcadosVisitado;
-	}
-
-	public void setMediaGolosMarcadosVisitado(Double mediaGolosMarcadosVisitado) {
-		this.mediaGolosMarcadosVisitado = mediaGolosMarcadosVisitado;
-	}
-
-	public Double getMediaGolosSofridosVisitado() {
-		return mediaGolosSofridosVisitado;
-	}
-
-	public void setMediaGolosSofridosVisitado(Double mediaGolosSofridosVisitado) {
-		this.mediaGolosSofridosVisitado = mediaGolosSofridosVisitado;
-	}
-
-	public Double getMediaGolosMarcadosVisitante() {
-		return mediaGolosMarcadosVisitante;
-	}
-
-	public void setMediaGolosMarcadosVisitante(Double mediaGolosMarcadosVisitante) {
-		this.mediaGolosMarcadosVisitante = mediaGolosMarcadosVisitante;
-	}
-
-	public Double getMediaGolosSofridosVisitante() {
-		return mediaGolosSofridosVisitante;
-	}
-
-	public void setMediaGolosSofridosVisitante(Double mediaGolosSofridosVisitante) {
-		this.mediaGolosSofridosVisitante = mediaGolosSofridosVisitante;
-	}
-
-	public Integer getGolosMarcadosVisitadoVenue() {
-		return golosMarcadosVisitadoVenue;
-	}
-
-	public void setGolosMarcadosVisitadoVenue(Integer golosMarcadosVisitadoVenue) {
-		this.golosMarcadosVisitadoVenue = golosMarcadosVisitadoVenue;
-	}
-
-	public Integer getGolosSofridosVisitadoVenue() {
-		return golosSofridosVisitadoVenue;
-	}
-
-	public void setGolosSofridosVisitadoVenue(Integer golosSofridosVisitadoVenue) {
-		this.golosSofridosVisitadoVenue = golosSofridosVisitadoVenue;
-	}
-
-	public Integer getDiferencaGolosVisitadoVenue() {
-		return diferencaGolosVisitadoVenue;
-	}
-
-	public void setDiferencaGolosVisitadoVenue(Integer diferencaGolosVisitadoVenue) {
-		this.diferencaGolosVisitadoVenue = diferencaGolosVisitadoVenue;
-	}
-
-	public Integer getGolosMarcadosVisitanteVenue() {
-		return golosMarcadosVisitanteVenue;
-	}
-
-	public void setGolosMarcadosVisitanteVenue(Integer golosMarcadosVisitanteVenue) {
-		this.golosMarcadosVisitanteVenue = golosMarcadosVisitanteVenue;
-	}
-
-	public Integer getGolosSofridosVisitanteVenue() {
-		return golosSofridosVisitanteVenue;
-	}
-
-	public void setGolosSofridosVisitanteVenue(Integer golosSofridosVisitanteVenue) {
-		this.golosSofridosVisitanteVenue = golosSofridosVisitanteVenue;
-	}
-
-	public Integer getDiferencaGolosVisitanteVenue() {
-		return diferencaGolosVisitanteVenue;
-	}
-
-	public void setDiferencaGolosVisitanteVenue(Integer diferencaGolosVisitanteVenue) {
-		this.diferencaGolosVisitanteVenue = diferencaGolosVisitanteVenue;
-	}
-
-	public Double getMediaGolosMarcadosVisitadoVenue() {
-		return mediaGolosMarcadosVisitadoVenue;
-	}
-
-	public void setMediaGolosMarcadosVisitadoVenue(Double mediaGolosMarcadosVisitadoVenue) {
-		this.mediaGolosMarcadosVisitadoVenue = mediaGolosMarcadosVisitadoVenue;
-	}
-
-	public Double getMediaGolosSofridosVisitadoVenue() {
-		return mediaGolosSofridosVisitadoVenue;
-	}
-
-	public void setMediaGolosSofridosVisitadoVenue(Double mediaGolosSofridosVisitadoVenue) {
-		this.mediaGolosSofridosVisitadoVenue = mediaGolosSofridosVisitadoVenue;
-	}
-
-	public Double getMediaGolosMarcadosVisitanteVenue() {
-		return mediaGolosMarcadosVisitanteVenue;
-	}
-
-	public void setMediaGolosMarcadosVisitanteVenue(Double mediaGolosMarcadosVisitanteVenue) {
-		this.mediaGolosMarcadosVisitanteVenue = mediaGolosMarcadosVisitanteVenue;
-	}
-
-	public Double getMediaGolosSofridosVisitanteVenue() {
-		return mediaGolosSofridosVisitanteVenue;
-	}
-
-	public void setMediaGolosSofridosVisitanteVenue(Double mediaGolosSofridosVisitanteVenue) {
-		this.mediaGolosSofridosVisitanteVenue = mediaGolosSofridosVisitanteVenue;
-	}
-
-	public Integer getGolosMarcadosVisitadoSwitchedVenue() {
-		return golosMarcadosVisitadoSwitchedVenue;
-	}
-
-	public void setGolosMarcadosVisitadoSwitchedVenue(Integer golosMarcadosVisitadoSwitchedVenue) {
-		this.golosMarcadosVisitadoSwitchedVenue = golosMarcadosVisitadoSwitchedVenue;
-	}
-
-	public Integer getGolosSofridosVisitadoSwitchedVenue() {
-		return golosSofridosVisitadoSwitchedVenue;
-	}
-
-	public void setGolosSofridosVisitadoSwitchedVenue(Integer golosSofridosVisitadoSwitchedVenue) {
-		this.golosSofridosVisitadoSwitchedVenue = golosSofridosVisitadoSwitchedVenue;
-	}
-
-	public Integer getDiferencaGolosVisitadoSwitchedVenue() {
-		return diferencaGolosVisitadoSwitchedVenue;
-	}
-
-	public void setDiferencaGolosVisitadoSwitchedVenue(Integer diferencaGolosVisitadoSwitchedVenue) {
-		this.diferencaGolosVisitadoSwitchedVenue = diferencaGolosVisitadoSwitchedVenue;
-	}
-
-	public Integer getGolosMarcadosVisitanteSwitchedVenue() {
-		return golosMarcadosVisitanteSwitchedVenue;
-	}
-
-	public void setGolosMarcadosVisitanteSwitchedVenue(Integer golosMarcadosVisitanteSwitchedVenue) {
-		this.golosMarcadosVisitanteSwitchedVenue = golosMarcadosVisitanteSwitchedVenue;
-	}
-
-	public Integer getGolosSofridosVisitanteSwitchedVenue() {
-		return golosSofridosVisitanteSwitchedVenue;
-	}
-
-	public void setGolosSofridosVisitanteSwitchedVenue(Integer golosSofridosVisitanteSwitchedVenue) {
-		this.golosSofridosVisitanteSwitchedVenue = golosSofridosVisitanteSwitchedVenue;
-	}
-
-	public Integer getDiferencaGolosVisitanteSwitchedVenue() {
-		return diferencaGolosVisitanteSwitchedVenue;
-	}
-
-	public void setDiferencaGolosVisitanteSwitchedVenue(Integer diferencaGolosVisitanteSwitchedVenue) {
-		this.diferencaGolosVisitanteSwitchedVenue = diferencaGolosVisitanteSwitchedVenue;
-	}
-
-	public Double getMediaGolosMarcadosVisitadoSwitchedVenue() {
-		return mediaGolosMarcadosVisitadoSwitchedVenue;
-	}
-
-	public void setMediaGolosMarcadosVisitadoSwitchedVenue(Double mediaGolosMarcadosVisitadoSwitchedVenue) {
-		this.mediaGolosMarcadosVisitadoSwitchedVenue = mediaGolosMarcadosVisitadoSwitchedVenue;
-	}
-
-	public Double getMediaGolosSofridosVisitadoSwitchedVenue() {
-		return mediaGolosSofridosVisitadoSwitchedVenue;
-	}
-
-	public void setMediaGolosSofridosVisitadoSwitchedVenue(Double mediaGolosSofridosVisitadoSwitchedVenue) {
-		this.mediaGolosSofridosVisitadoSwitchedVenue = mediaGolosSofridosVisitadoSwitchedVenue;
-	}
-
-	public Double getMediaGolosMarcadosVisitanteSwitchedVenue() {
-		return mediaGolosMarcadosVisitanteSwitchedVenue;
-	}
-
-	public void setMediaGolosMarcadosVisitanteSwitchedVenue(Double mediaGolosMarcadosVisitanteSwitchedVenue) {
-		this.mediaGolosMarcadosVisitanteSwitchedVenue = mediaGolosMarcadosVisitanteSwitchedVenue;
-	}
-
-	public Double getMediaGolosSofridosVisitanteSwitchedVenue() {
-		return mediaGolosSofridosVisitanteSwitchedVenue;
-	}
-
-	public void setMediaGolosSofridosVisitanteSwitchedVenue(Double mediaGolosSofridosVisitanteSwitchedVenue) {
-		this.mediaGolosSofridosVisitanteSwitchedVenue = mediaGolosSofridosVisitanteSwitchedVenue;
 	}
 }
