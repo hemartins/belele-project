@@ -859,10 +859,6 @@ public class Main {
 			winRow = rowList.get(0);
 			drawRow = rowList.get(1);
 			loseRow = rowList.get(2);
-			rowList = calculateGoalVariables(f, s, homeTeam, awayTeam, winRow, drawRow, loseRow);
-			winRow = rowList.get(0);
-			drawRow = rowList.get(1);
-			loseRow = rowList.get(2);
 
 			OurWinDataList.add(winRow);
 			OurDrawDataList.add(drawRow);
@@ -992,33 +988,11 @@ public class Main {
 		return excelRows;
 	}
 
-	private static List<ExcelRow> calculateGoalVariables(Fixture f, Season s, ExcelColumnsCalculation homeTeam,
-			ExcelColumnsCalculation awayTeam, ExcelRow winRow, ExcelRow drawRow, ExcelRow loseRow) {
-
-		List<ExcelRow> excelRows = new ArrayList<ExcelRow>();
-
-		winRow = goalVenue(f, s, homeTeam, awayTeam, winRow);
-		drawRow = goalVenue(f, s, homeTeam, awayTeam, drawRow);
-		loseRow = goalVenue(f, s, homeTeam, awayTeam, loseRow);
-		winRow = goalSwitchedVenue(f, s, homeTeam, awayTeam, winRow);
-		drawRow = goalSwitchedVenue(f, s, homeTeam, awayTeam, drawRow);
-		loseRow = goalSwitchedVenue(f, s, homeTeam, awayTeam, loseRow);
-		winRow = goalOverall(f, s, homeTeam, awayTeam, winRow);
-		drawRow = goalOverall(f, s, homeTeam, awayTeam, drawRow);
-		loseRow = goalOverall(f, s, homeTeam, awayTeam, loseRow);
-
-		excelRows.add(winRow);
-		excelRows.add(drawRow);
-		excelRows.add(loseRow);
-
-		return excelRows;
-	}
-
 	private static ExcelRow generalVenue(Fixture f, Season s, ExcelColumnsCalculation homeTeam,
 			ExcelColumnsCalculation awayTeam, ExcelRow row) {
 
-		row.setQualidadeVisitadoCasa(homeTeam.getHomeTeamQuality(s, f.getDate()));
-		row.setQualidadeVisitanteFora(awayTeam.getAwayTeamQuality(s, f.getDate()));
+		row.setQualidadeVisitadoVenue(homeTeam.getHomeTeamQuality(s, f.getDate()));
+		row.setQualidadeVisitanteVenue(awayTeam.getAwayTeamQuality(s, f.getDate()));
 
 		return row;
 	}
@@ -1026,8 +1000,8 @@ public class Main {
 	private static ExcelRow generalSwitchedVenue(Fixture f, Season s, ExcelColumnsCalculation homeTeam,
 			ExcelColumnsCalculation awayTeam, ExcelRow row) {
 
-		row.setQualidadeVisitadoFora(awayTeam.getHomeTeamQuality(s, f.getDate()));
-		row.setQualidadeVisitanteCasa(homeTeam.getAwayTeamQuality(s, f.getDate()));
+		row.setQualidadeVisitadoSwitchedVenue(awayTeam.getHomeTeamQuality(s, f.getDate()));
+		row.setQualidadeVisitanteSwitchedVenue(homeTeam.getAwayTeamQuality(s, f.getDate()));
 
 		return row;
 	}
@@ -1036,8 +1010,8 @@ public class Main {
 			ExcelColumnsCalculation awayTeam, ExcelRow row, String resultado) {
 
 		row.setData(f.getDate());
-		row.setHomeTeamName(f.getHomeTeam().getName());
-		row.setAwayTeamName(f.getAwayTeam().getName());
+		row.setNomeVisitado(f.getHomeTeam().getName());
+		row.setNomeVisitante(f.getAwayTeam().getName());
 		row.setIdVisitado(f.getHomeTeam().getId());
 		row.setIdVisitante(f.getAwayTeam().getId());
 		row.setQualidadeVisitado(homeTeam.getTeamQuality(s, f.getDate()));
@@ -1046,11 +1020,11 @@ public class Main {
 		ResultType result = homeTeam.getResultType(f);
 
 		if (resultado.equals("1")) {
-			row.setResult(result.equals(ResultType.WIN) ? 1 : 0);
+			row.setResultado(result.equals(ResultType.WIN) ? 1 : 0);
 		} else if (resultado.equals("X")) {
-			row.setResult(result.equals(ResultType.DRAW) ? 1 : 0);
+			row.setResultado(result.equals(ResultType.DRAW) ? 1 : 0);
 		} else if (resultado.equals("2")) {
-			row.setResult(result.equals(ResultType.LOSE) ? 1 : 0);
+			row.setResultado(result.equals(ResultType.LOSE) ? 1 : 0);
 		} else {
 			// INVALIDO
 			return null;
@@ -1082,30 +1056,78 @@ public class Main {
 			return null;
 		}
 
-		ResultCycle homeTeamCycle = homeTeam.getTeamCycle(f, Venue.HOME, homeResult);
-		ResultCycle awayTeamCycle = awayTeam.getTeamCycle(f, Venue.AWAY, awayResult);
-		ResultCycle homeWinCyclePerna = homeTeam.getTeamCyclePerna(f, Venue.HOME, homeResult);
-		ResultCycle awayLoseCyclePerna = awayTeam.getTeamCyclePerna(f, Venue.AWAY, awayResult);
+		ResultCycle homeTeamCycleNotResult = homeTeam.getTeamCycle(f, Venue.HOME, homeResult);
+		ResultCycle awayTeamCycleNotResult = awayTeam.getTeamCycle(f, Venue.AWAY, awayResult);
+		ResultCycle homeWinCycleResult = homeTeam.getTeamCyclePerna(f, Venue.HOME, homeResult);
+		ResultCycle awayLoseCycleResult = awayTeam.getTeamCyclePerna(f, Venue.AWAY, awayResult);
 
-		row.setCiclo_numeroJogosVisitado(homeTeamCycle.getCycle());
-		row.setCiclo_numeroJogosVisitante(awayTeamCycle.getCycle());
-		row.setCiclo_dificuldadeVisitado(homeTeam.getCycleOpponentAverageQuality(homeTeamCycle));
-		row.setCiclo_dificuldadeVisitante(awayTeam.getCycleOpponentAverageQuality(awayTeamCycle));
-		row.setCiclo_HistoricosVisitado(homeTeam.getCycleHardGamesNumber(homeTeamCycle, historicos));
-		row.setCiclo_HistoricosVisitante(awayTeam.getCycleHardGamesNumber(awayTeamCycle, historicos));
+		row.setCicloNaoResultado_numeroJogosVisitadoVenue(homeTeamCycleNotResult.getCycle());
+		row.setCicloNaoResultado_numeroJogosVisitanteVenue(homeTeamCycleNotResult.getCycle());
+		row.setCicloNaoResultado_dificuldadeVisitadoVenue(
+				homeTeam.getCycleOpponentAverageQuality(homeTeamCycleNotResult));
+		row.setCicloNaoResultado_dificuldadeVisitanteVenue(
+				awayTeam.getCycleOpponentAverageQuality(homeTeamCycleNotResult));
+		row.setCicloNaoResultado_historicosVisitadoVenue(
+				homeTeam.getCycleHardGamesNumber(homeTeamCycleNotResult, historicos));
+		row.setCicloNaoResultado_historicosVisitanteVenue(
+				awayTeam.getCycleHardGamesNumber(homeTeamCycleNotResult, historicos));
 
-		row.setCicloPerna_numeroJogosVisitado(homeWinCyclePerna.getCycle());
-		row.setCicloPerna_numeroJogosVisitante(awayLoseCyclePerna.getCycle());
-		row.setCicloPerna_dificuldadeVisitado(homeTeam.getCycleOpponentAverageQuality(homeWinCyclePerna));
-		row.setCicloPerna_dificuldadeVisitante(awayTeam.getCycleOpponentAverageQuality(awayLoseCyclePerna));
-		row.setCicloPerna_HistoricosVisitado(homeTeam.getCycleHardGamesNumber(homeWinCyclePerna, historicos));
-		row.setCicloPerna_HistoricosVisitante(awayTeam.getCycleHardGamesNumber(awayLoseCyclePerna, historicos));
+		row.setCicloResultado_numeroJogosVisitadoVenue(homeWinCycleResult.getCycle());
+		row.setCicloResultado_numeroJogosVisitanteVenue(homeWinCycleResult.getCycle());
+		row.setCicloResultado_dificuldadeVisitadoVenue(homeTeam.getCycleOpponentAverageQuality(homeWinCycleResult));
+		row.setCicloResultado_dificuldadeVisitanteVenue(awayTeam.getCycleOpponentAverageQuality(homeWinCycleResult));
+		row.setCicloResultado_historicosVisitadoVenue(homeTeam.getCycleHardGamesNumber(homeWinCycleResult, historicos));
+		row.setCicloResultado_historicosVisitanteVenue(
+				awayTeam.getCycleHardGamesNumber(homeWinCycleResult, historicos));
 
 		return row;
 	}
 
 	private static ExcelRow cycleSwitchedVenue(Fixture f, ExcelColumnsCalculation homeTeam,
 			ExcelColumnsCalculation awayTeam, List<String> historicos, String result, ExcelRow row) {
+		ResultType homeResult;
+		ResultType awayResult;
+
+		if (result.equals("1")) {
+			homeResult = ResultType.WIN;
+			awayResult = ResultType.LOSE;
+		} else if (result.equals("X")) {
+			homeResult = ResultType.DRAW;
+			awayResult = ResultType.DRAW;
+		} else if (result.equals("2")) {
+			homeResult = ResultType.LOSE;
+			awayResult = ResultType.WIN;
+		} else {
+			// INVALID RESULT
+			return null;
+		}
+
+		ResultCycle homeTeamCycleNotResult = homeTeam.getTeamCycle(f, Venue.AWAY, homeResult);
+		ResultCycle awayTeamCycleNotResult = awayTeam.getTeamCycle(f, Venue.HOME, awayResult);
+		ResultCycle homeWinCycleResult = homeTeam.getTeamCyclePerna(f, Venue.AWAY, homeResult);
+		ResultCycle awayLoseCycleResult = awayTeam.getTeamCyclePerna(f, Venue.HOME, awayResult);
+
+		row.setCicloNaoResultado_numeroJogosVisitadoSwitchedVenue(homeTeamCycleNotResult.getCycle());
+		row.setCicloNaoResultado_numeroJogosVisitanteSwitchedVenue(homeTeamCycleNotResult.getCycle());
+		row.setCicloNaoResultado_dificuldadeVisitadoSwitchedVenue(
+				homeTeam.getCycleOpponentAverageQuality(homeTeamCycleNotResult));
+		row.setCicloNaoResultado_dificuldadeVisitanteSwitchedVenue(
+				awayTeam.getCycleOpponentAverageQuality(homeTeamCycleNotResult));
+		row.setCicloNaoResultado_historicosVisitadoSwitchedVenue(
+				homeTeam.getCycleHardGamesNumber(homeTeamCycleNotResult, historicos));
+		row.setCicloNaoResultado_historicosVisitanteSwitchedVenue(
+				awayTeam.getCycleHardGamesNumber(homeTeamCycleNotResult, historicos));
+
+		row.setCicloResultado_numeroJogosVisitadoSwitchedVenue(homeWinCycleResult.getCycle());
+		row.setCicloResultado_numeroJogosVisitanteSwitchedVenue(homeWinCycleResult.getCycle());
+		row.setCicloResultado_dificuldadeVisitadoSwitchedVenue(
+				homeTeam.getCycleOpponentAverageQuality(homeWinCycleResult));
+		row.setCicloResultado_dificuldadeVisitanteSwitchedVenue(
+				awayTeam.getCycleOpponentAverageQuality(homeWinCycleResult));
+		row.setCicloResultado_historicosVisitadoSwitchedVenue(
+				homeTeam.getCycleHardGamesNumber(homeWinCycleResult, historicos));
+		row.setCicloResultado_historicosVisitanteSwitchedVenue(
+				awayTeam.getCycleHardGamesNumber(homeWinCycleResult, historicos));
 
 		return row;
 	}
@@ -1130,24 +1152,25 @@ public class Main {
 			return null;
 		}
 
-		ResultCycle homeCycleTotal = homeTeam.getTeamCycle(f, null, homeResult);
-		ResultCycle awayCycleTotal = awayTeam.getTeamCycle(f, null, awayResult);
-		ResultCycle homeCyclePernaTotal = homeTeam.getTeamCyclePerna(f, null, homeResult);
-		ResultCycle awayCyclePernaTotal = awayTeam.getTeamCyclePerna(f, null, awayResult);
+		ResultCycle homeTeamCycleNotResult = homeTeam.getTeamCycle(f, null, homeResult);
+		ResultCycle awayTeamCycleNotResult = awayTeam.getTeamCycle(f, null, awayResult);
+		ResultCycle homeWinCycleResult = homeTeam.getTeamCyclePerna(f, null, homeResult);
+		ResultCycle awayLoseCycleResult = awayTeam.getTeamCyclePerna(f, null, awayResult);
 
-		row.setCiclo_numeroJogosVisitadoTotal(homeCycleTotal.getCycle());
-		row.setCiclo_numeroJogosVisitanteTotal(awayCycleTotal.getCycle());
-		row.setCiclo_dificuldadeVisitadoTotal(homeTeam.getCycleOpponentAverageQuality(homeCycleTotal));
-		row.setCiclo_dificuldadeVisitanteTotal(awayTeam.getCycleOpponentAverageQuality(awayCycleTotal));
-		row.setCiclo_HistoricosVisitadoTotal(homeTeam.getCycleHardGamesNumber(homeCycleTotal, historicos));
-		row.setCiclo_HistoricosVisitanteTotal(awayTeam.getCycleHardGamesNumber(awayCycleTotal, historicos));
-
-		row.setCicloPerna_numeroJogosVisitadoTotal(homeCyclePernaTotal.getCycle());
-		row.setCicloPerna_numeroJogosVisitanteTotal(awayCyclePernaTotal.getCycle());
-		row.setCicloPerna_dificuldadeVisitadoTotal(homeTeam.getCycleOpponentAverageQuality(homeCyclePernaTotal));
-		row.setCicloPerna_dificuldadeVisitanteTotal(awayTeam.getCycleOpponentAverageQuality(awayCyclePernaTotal));
-		row.setCicloPerna_HistoricosVisitadoTotal(homeTeam.getCycleHardGamesNumber(homeCyclePernaTotal, historicos));
-		row.setCicloPerna_HistoricosVisitanteTotal(awayTeam.getCycleHardGamesNumber(awayCyclePernaTotal, historicos));
+		row.setCicloNaoResultado_numeroJogosVisitado(homeTeamCycleNotResult.getCycle());
+		row.setCicloNaoResultado_numeroJogosVisitante(homeTeamCycleNotResult.getCycle());
+		row.setCicloNaoResultado_dificuldadeVisitado(homeTeam.getCycleOpponentAverageQuality(homeTeamCycleNotResult));
+		row.setCicloNaoResultado_dificuldadeVisitante(awayTeam.getCycleOpponentAverageQuality(homeTeamCycleNotResult));
+		row.setCicloNaoResultado_historicosVisitado(
+				homeTeam.getCycleHardGamesNumber(homeTeamCycleNotResult, historicos));
+		row.setCicloNaoResultado_historicosVisitante(
+				awayTeam.getCycleHardGamesNumber(homeTeamCycleNotResult, historicos));
+		row.setCicloResultado_numeroJogosVisitado(homeWinCycleResult.getCycle());
+		row.setCicloResultado_numeroJogosVisitante(homeWinCycleResult.getCycle());
+		row.setCicloResultado_dificuldadeVisitado(homeTeam.getCycleOpponentAverageQuality(homeWinCycleResult));
+		row.setCicloResultado_dificuldadeVisitante(awayTeam.getCycleOpponentAverageQuality(homeWinCycleResult));
+		row.setCicloResultado_historicosVisitado(homeTeam.getCycleHardGamesNumber(homeWinCycleResult, historicos));
+		row.setCicloResultado_historicosVisitante(awayTeam.getCycleHardGamesNumber(homeWinCycleResult, historicos));
 
 		return row;
 	}
@@ -1173,42 +1196,53 @@ public class Main {
 			return null;
 		}
 
-		Double[] percFRResultadoVisitado_5jogos = homeTeam.getRecentFormResultPercentage(f, null, numberOfFixtures,
+		Double[] percentagemFRResultadoVisitado = homeTeam.getRecentFormResultPercentage(f, null, numberOfFixtures,
 				homeResult);
-		Double[] percFRResultadoVisitante_5jogos = awayTeam.getRecentFormResultPercentage(f, null, numberOfFixtures,
+		Double[] percentagemFRResultadoVisitante = awayTeam.getRecentFormResultPercentage(f, null, numberOfFixtures,
 				awayResult);
 
-		TeamRating homeTR_5jogos = homeTeam.getResultPercentage(f, Venue.HOME, homeResult, interval, numberOfFixtures);
-		TeamRating awayTR_5jogos = awayTeam.getResultPercentage(f, Venue.AWAY, awayResult, interval, numberOfFixtures);
+		TeamRating homeTR = homeTeam.getResultPercentage(f, Venue.HOME, homeResult, interval, numberOfFixtures);
+		TeamRating awayTR = awayTeam.getResultPercentage(f, Venue.AWAY, awayResult, interval, numberOfFixtures);
+		
+		Double[] percentagensGolosFRVisitado = homeTeam.averageGoalsLastGames(f, Venue.HOME, numberOfFixtures);
+		Double[] percentagensGolosFRVisitante = awayTeam.averageGoalsLastGames(f, Venue.AWAY, numberOfFixtures);
 
-		row.setFR_dificuldadeVisitadoHome(
+		row.setFR_dificuldadeVisitadoVenue(
 				homeTeam.getLastFixturesOpponentAverageQuality(f, Venue.HOME, numberOfFixtures));
-		row.setFR_dificuldadeVisitanteAway(
+		row.setFR_dificuldadeVisitanteVenue(
 				awayTeam.getLastFixturesOpponentAverageQuality(f, Venue.AWAY, numberOfFixtures));
-		row.setFR_HistoricosVisitadoHome(
+		row.setFR_historicosVisitadoVenue(
 				homeTeam.getLastHardGamesFixturesNumber(f, Venue.HOME, numberOfFixtures, historicos));
-		row.setFR_HistoricosVisitanteAway(
+		row.setFR_historicosVisitanteVenue(
 				awayTeam.getLastHardGamesFixturesNumber(f, Venue.AWAY, numberOfFixtures, historicos));
-		row.setFR_ratingResultadoVisitadoHome(
+		row.setFR_ratingTemporalResultadoVisitadoVenue(
 				homeTeam.getLastFixturesRating(f, Venue.HOME, numberOfFixtures, ratings, homeResult));
-		row.setFR_ratingResultadoVisitanteAway(
+		row.setFR_ratingTemporalResultadoVisitanteVenue(
 				awayTeam.getLastFixturesRating(f, Venue.AWAY, numberOfFixtures, ratings, awayResult));
-		row.setFR_ResultadoVisitadoHome(
+		row.setFR_numeroResultadosVisitadoVenue(
 				homeTeam.getLastFixturesResults(f, Venue.HOME, numberOfFixtures, ratings, homeResult));
-		row.setFR_ResultadoVisitanteAway(
+		row.setFR_numeroResultadosVisitanteVenue(
 				awayTeam.getLastFixturesResults(f, Venue.AWAY, numberOfFixtures, ratings, awayResult));
-
-		row.setPercFRResultadoVisitadoCasa(percFRResultadoVisitado_5jogos[0]);
-		row.setPercFRResultadoVisitanteFora(percFRResultadoVisitante_5jogos[1]);
-
-		row.setQLT_percentagemResultadoVisitadoVenue_5jogos(homeTR_5jogos.getResultPercentage());
-		row.setQLT_percentagemResultadoVisitanteVenue_5jogos(awayTR_5jogos.getResultPercentage());
-		row.setQLT_dificuldadeResultadoVisitadoVenue_5jogos(homeTR_5jogos.getQualityAverage());
-		row.setQLT_dificuldadeResultadoVisitanteVenue_5jogos(awayTR_5jogos.getQualityAverage());
-		row.setQLT_percentagemResultadoVisitadoNoIntervaloVenue_5jogos(homeTR_5jogos.getResultIntervalPercentage());
-		row.setQLT_percentagemResultadoVisitanteNoIntervaloVenue_5jogos(awayTR_5jogos.getResultIntervalPercentage());
-		row.setQLT_numeroJogosVisitadoVenue_5jogos(homeTR_5jogos.getResultIntervalGames());
-		row.setQLT_numeroJogosVisitanteVenue_5jogos(awayTR_5jogos.getResultIntervalGames());
+		row.setFR_percentagemResultadoVisitadoVenue(percentagemFRResultadoVisitado[0]);
+		row.setFR_percentagemResultadoVisitanteVenue(percentagemFRResultadoVisitante[1]);
+		row.setFR_percentagemResultadoVisitadoVenue(homeTR.getResultPercentage());
+		row.setFR_percentagemResultadoVisitanteVenue(awayTR.getResultPercentage());
+		row.setFR_dificuldadeVisitadoVenue(homeTR.getQualityAverage());
+		row.setFR_dificuldadeVisitanteVenue(awayTR.getQualityAverage());
+		row.setFR_percentagemResultadoNoIntervaloVisitadoVenue(homeTR.getResultIntervalPercentage());
+		row.setFR_percentagemResultadoNoIntervaloVisitanteVenue(awayTR.getResultIntervalPercentage());
+		row.setFR_numeroResultadosNoIntervaloVisitadoVenue(homeTR.getResultIntervalGames());
+		row.setFR_numeroResultadosNoIntervaloVisitanteVenue(awayTR.getResultIntervalGames());
+		row.setFR_golosMarcadosVisitadoVenue(homeTeam.getHomeGoals(f.getSeason(), f.getDate()));
+		row.setFR_golosSofridosVisitadoVenue(homeTeam.getHomeGoalsAgainst(f.getSeason(), f.getDate()));
+		row.setFR_diferencaGolosVisitadoVenue(homeTeam.getHomeGoals(f.getSeason(), f.getDate()) - homeTeam.getHomeGoalsAgainst(f.getSeason(), f.getDate()));
+		row.setFR_golosMarcadosVisitanteVenue(awayTeam.getAwayGoals(f.getSeason(), f.getDate()));
+		row.setFR_golosSofridosVisitanteVenue(awayTeam.getAwayGoalsAgainst(f.getSeason(), f.getDate()));
+		row.setFR_diferencaGolosVisitanteVenue(awayTeam.getAwayGoals(f.getSeason(), f.getDate()) - awayTeam.getAwayGoalsAgainst(f.getSeason(), f.getDate()));
+		row.setFR_mediaGolosMarcadosVisitadoVenue(percentagensGolosFRVisitado[2]);
+		row.setFR_mediaGolosSofridosVisitadoVenue(percentagensGolosFRVisitado[3]);
+		row.setFR_mediaGolosMarcadosVisitanteVenue(percentagensGolosFRVisitante[4]);
+		row.setFR_mediaGolosSofridosVisitanteVenue(percentagensGolosFRVisitante[5]);
 
 		return row;
 	}
@@ -1234,31 +1268,47 @@ public class Main {
 			return null;
 		}
 
-		TeamRating homeTR_5jogos = homeTeam.getResultPercentage(f, Venue.AWAY, homeResult, interval, numberOfFixtures);
-		TeamRating awayTR_5jogos = awayTeam.getResultPercentage(f, Venue.HOME, awayResult, interval, numberOfFixtures);
-
-		Double[] percFRResultadoVisitado_5jogos = homeTeam.getRecentFormResultPercentage(f, null, numberOfFixtures,
+		Double[] percentagemFRResultadoVisitado = homeTeam.getRecentFormResultPercentage(f, null, numberOfFixtures,
 				homeResult);
-		Double[] percFRResultadoVisitante_5jogos = awayTeam.getRecentFormResultPercentage(f, null, numberOfFixtures,
+		Double[] percentagemFRResultadoVisitante = awayTeam.getRecentFormResultPercentage(f, null, numberOfFixtures,
 				awayResult);
+		
+		Double[] percentagensGolosFRVisitado = homeTeam.averageGoalsLastGames(f, Venue.AWAY, numberOfFixtures);
+		Double[] percentagensGolosFRVisitante = awayTeam.averageGoalsLastGames(f, Venue.HOME, numberOfFixtures);
 
-		row.setQLT_homeTeamNumeroJogosTrocado(homeTeam.getNumberOfFixtures(f, Venue.AWAY));
-		row.setQLT_awayTeamNumeroJogosTrocado(awayTeam.getNumberOfFixtures(f, Venue.HOME));
+		TeamRating homeTR = homeTeam.getResultPercentage(f, Venue.AWAY, homeResult, interval, numberOfFixtures);
+		TeamRating awayTR = awayTeam.getResultPercentage(f, Venue.HOME, awayResult, interval, numberOfFixtures);
 
-		row.setQLT_percentagemResultadoVisitadoTrocado_5jogos(homeTR_5jogos.getResultPercentage());
-		row.setQLT_percentagemResultadoVisitanteTrocado_5jogos(awayTR_5jogos.getResultPercentage());
-		row.setQLT_dificuldadeResultadoVisitadoTrocado_5jogos(homeTR_5jogos.getQualityAverage());
-		row.setQLT_dificuldadeResultadoVisitanteTrocado_5jogos(awayTR_5jogos.getQualityAverage());
-		row.setQLT_percentagemResultadoVisitadoNoIntervaloTrocado_5jogos(homeTR_5jogos.getResultIntervalPercentage());
-		row.setQLT_percentagemResultadoVisitanteNoIntervaloTrocado_5jogos(awayTR_5jogos.getResultIntervalPercentage());
-		row.setQLT_numeroJogosVisitadoTrocado_5jogos(homeTR_5jogos.getResultIntervalGames());
-		row.setQLT_numeroJogosVisitanteTrocado_5jogos(awayTR_5jogos.getResultIntervalGames());
+		row.setFR_dificuldadeVisitadoSwitchedVenue(homeTeam.getLastFixturesOpponentAverageQuality(f, Venue.AWAY, numberOfFixtures));
+		row.setFR_dificuldadeVisitanteSwitchedVenue(awayTeam.getLastFixturesOpponentAverageQuality(f, Venue.HOME, numberOfFixtures));
+		row.setFR_historicosVisitadoSwitchedVenue(homeTeam.getLastHardGamesFixturesNumber(f, Venue.AWAY, numberOfFixtures, historicos));
+		row.setFR_historicosVisitanteSwitchedVenue(awayTeam.getLastHardGamesFixturesNumber(f, Venue.HOME, numberOfFixtures, historicos));
+		row.setFR_ratingTemporalResultadoVisitadoSwitchedVenue(homeTeam.getLastFixturesRating(f, Venue.AWAY, numberOfFixtures, ratings, homeResult));
+		row.setFR_ratingTemporalResultadoVisitanteSwitchedVenue(awayTeam.getLastFixturesRating(f, Venue.HOME, numberOfFixtures, ratings, awayResult));
+		row.setFR_numeroResultadosVisitadoSwitchedVenue(homeTeam.getLastFixturesResults(f, Venue.AWAY, numberOfFixtures, ratings, homeResult));
+		row.setFR_numeroResultadosVisitanteSwitchedVenue(awayTeam.getLastFixturesResults(f, Venue.HOME, numberOfFixtures, ratings, awayResult));
+		row.setFR_percentagemResultadoVisitadoSwitchedVenue(percentagemFRResultadoVisitado[0]);
+		row.setFR_percentagemResultadoVisitanteSwitchedVenue(percentagemFRResultadoVisitante[1]);
+		row.setFR_percentagemResultadoVisitadoSwitchedVenue(homeTR.getResultPercentage());
+		row.setFR_percentagemResultadoVisitanteSwitchedVenue(awayTR.getResultPercentage());
+		row.setFR_dificuldadeVisitadoSwitchedVenue(homeTR.getQualityAverage());
+		row.setFR_dificuldadeVisitanteSwitchedVenue(awayTR.getQualityAverage());
+		row.setFR_percentagemResultadoNoIntervaloVisitadoSwitchedVenue(homeTR.getResultIntervalPercentage());
+		row.setFR_percentagemResultadoNoIntervaloVisitanteSwitchedVenue(awayTR.getResultIntervalPercentage());
+		row.setFR_numeroResultadosNoIntervaloVisitadoSwitchedVenue(homeTR.getResultIntervalGames());
+		row.setFR_numeroResultadosNoIntervaloVisitanteSwitchedVenue(awayTR.getResultIntervalGames());
+		row.setFR_golosMarcadosVisitadoSwitchedVenue(homeTeam.getHomeGoals(f.getSeason(), f.getDate()));
+		row.setFR_golosSofridosVisitadoSwitchedVenue(homeTeam.getHomeGoalsAgainst(f.getSeason(), f.getDate()));
+		row.setFR_diferencaGolosVisitadoSwitchedVenue(homeTeam.getHomeGoals(f.getSeason(), f.getDate()) - homeTeam.getHomeGoalsAgainst(f.getSeason(), f.getDate()));
+		row.setFR_golosMarcadosVisitanteSwitchedVenue(awayTeam.getAwayGoals(f.getSeason(), f.getDate()));
+		row.setFR_golosSofridosVisitanteSwitchedVenue(awayTeam.getAwayGoalsAgainst(f.getSeason(), f.getDate()));
+		row.setFR_diferencaGolosVisitanteSwitchedVenue(awayTeam.getAwayGoals(f.getSeason(), f.getDate()) - awayTeam.getAwayGoalsAgainst(f.getSeason(), f.getDate()));
+		row.setFR_mediaGolosMarcadosVisitadoSwitchedVenue(percentagensGolosFRVisitado[2]);
+		row.setFR_mediaGolosSofridosVisitadoSwitchedVenue(percentagensGolosFRVisitado[3]);
+		row.setFR_mediaGolosMarcadosVisitanteSwitchedVenue(percentagensGolosFRVisitante[4]);
+		row.setFR_mediaGolosSofridosVisitanteSwitchedVenue(percentagensGolosFRVisitante[5]);
 
-		row.setPercFRResultadoVisitadoFora(percFRResultadoVisitado_5jogos[1]);
-		row.setPercFRResultadoVisitanteCasa(percFRResultadoVisitante_5jogos[0]);
-
-		return row;
-	}
+		return row;	}
 
 	private static ExcelRow FROverall(Fixture f, ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam,
 			List<Double> ratings, List<String> historicos, String result, ExcelRow row, Integer numberOfFixtures,
@@ -1281,22 +1331,49 @@ public class Main {
 			return null;
 		}
 
-		row.setFR_diasDescansoVisitado(homeTeam.getRestingDays(f));
-		row.setFR_diasDescansoVisitante(awayTeam.getRestingDays(f));
-		row.setFR_ratingResultadoVisitado(
-				homeTeam.getLastFixturesRating(f, null, numberOfFixtures, ratings, homeResult));
-		row.setFR_ratingResultadoVisitante(
-				awayTeam.getLastFixturesRating(f, null, numberOfFixtures, ratings, awayResult));
-		row.setFR_ResultadosVisitado(homeTeam.getLastFixturesResults(f, null, numberOfFixtures, ratings, homeResult));
-		row.setFR_ResultadosVisitante(awayTeam.getLastFixturesResults(f, null, numberOfFixtures, ratings, awayResult));
+		Double[] percentagemFRResultadoVisitado = homeTeam.getRecentFormResultPercentage(f, null, numberOfFixtures,
+				homeResult);
+		Double[] percentagemFRResultadoVisitante = awayTeam.getRecentFormResultPercentage(f, null, numberOfFixtures,
+				awayResult);
+		
+		Double[] percentagensGolosFRVisitado = homeTeam.averageGoalsLastGames(f, null, numberOfFixtures);
+		Double[] percentagensGolosFRVisitante = awayTeam.averageGoalsLastGames(f, null, numberOfFixtures);
+
+		TeamRating homeTR = homeTeam.getResultPercentage(f, null, homeResult, interval, numberOfFixtures);
+		TeamRating awayTR = awayTeam.getResultPercentage(f, null, awayResult, interval, numberOfFixtures);
+
 		row.setFR_dificuldadeVisitado(homeTeam.getLastFixturesOpponentAverageQuality(f, null, numberOfFixtures));
 		row.setFR_dificuldadeVisitante(awayTeam.getLastFixturesOpponentAverageQuality(f, null, numberOfFixtures));
-		row.setFR_HistoricosVisitado(homeTeam.getLastHardGamesFixturesNumber(f, null, numberOfFixtures, historicos));
-		row.setFR_HistoricosVisitante(awayTeam.getLastHardGamesFixturesNumber(f, null, numberOfFixtures, historicos));
-		row.setFR_ratingQualidadeResultadoVisitado(
-				homeTeam.getLastFixturesRatingQuality(f, null, numberOfFixtures, ratings, homeResult));
-		row.setFR_ratingQualidadeResultadoVisitante(
-				awayTeam.getLastFixturesRatingQuality(f, null, numberOfFixtures, ratings, awayResult));
+		row.setFR_historicosVisitado(homeTeam.getLastHardGamesFixturesNumber(f, null, numberOfFixtures, historicos));
+		row.setFR_historicosVisitante(awayTeam.getLastHardGamesFixturesNumber(f, null, numberOfFixtures, historicos));
+		row.setFR_ratingTemporalResultadoVisitado(
+				homeTeam.getLastFixturesRating(f, null, numberOfFixtures, ratings, homeResult));
+		row.setFR_ratingTemporalResultadoVisitante(
+				awayTeam.getLastFixturesRating(f, null, numberOfFixtures, ratings, awayResult));
+		row.setFR_numeroResultadosVisitado(
+				homeTeam.getLastFixturesResults(f, null, numberOfFixtures, ratings, homeResult));
+		row.setFR_numeroResultadosVisitante(
+				awayTeam.getLastFixturesResults(f, null, numberOfFixtures, ratings, awayResult));
+		row.setFR_percentagemResultadoVisitado(percentagemFRResultadoVisitado[0]);
+		row.setFR_percentagemResultadoVisitante(percentagemFRResultadoVisitante[1]);
+		row.setFR_percentagemResultadoVisitado(homeTR.getResultPercentage());
+		row.setFR_percentagemResultadoVisitante(awayTR.getResultPercentage());
+		row.setFR_dificuldadeVisitado(homeTR.getQualityAverage());
+		row.setFR_dificuldadeVisitante(awayTR.getQualityAverage());
+		row.setFR_percentagemResultadoNoIntervaloVisitado(homeTR.getResultIntervalPercentage());
+		row.setFR_percentagemResultadoNoIntervaloVisitante(awayTR.getResultIntervalPercentage());
+		row.setFR_numeroResultadosNoIntervaloVisitado(homeTR.getResultIntervalGames());
+		row.setFR_numeroResultadosNoIntervaloVisitante(awayTR.getResultIntervalGames());
+		row.setFR_golosMarcadosVisitado(homeTeam.getHomeGoals(f.getSeason(), f.getDate()));
+		row.setFR_golosSofridosVisitado(homeTeam.getHomeGoalsAgainst(f.getSeason(), f.getDate()));
+		row.setFR_diferencaGolosVisitado(homeTeam.getHomeGoals(f.getSeason(), f.getDate()) - homeTeam.getHomeGoalsAgainst(f.getSeason(), f.getDate()));
+		row.setFR_golosMarcadosVisitante(awayTeam.getAwayGoals(f.getSeason(), f.getDate()));
+		row.setFR_golosSofridosVisitante(awayTeam.getAwayGoalsAgainst(f.getSeason(), f.getDate()));
+		row.setFR_diferencaGolosVisitante(awayTeam.getAwayGoals(f.getSeason(), f.getDate()) - awayTeam.getAwayGoalsAgainst(f.getSeason(), f.getDate()));
+		row.setFR_mediaGolosMarcadosVisitado(percentagensGolosFRVisitado[2]);
+		row.setFR_mediaGolosSofridosVisitado(percentagensGolosFRVisitado[3]);
+		row.setFR_mediaGolosMarcadosVisitante(percentagensGolosFRVisitante[4]);
+		row.setFR_mediaGolosSofridosVisitante(percentagensGolosFRVisitante[5]);
 
 		return row;
 	}
@@ -1325,19 +1402,15 @@ public class Main {
 		TeamRating awayTR = awayTeam.getResultPercentage(f, Venue.AWAY, awayResult, interval, null);
 
 		row.setQLT_numeroJogosVisitadoVenue(homeTeam.getNumberOfFixtures(f, Venue.HOME));
-		row.setQLT_numeroJogosVisitanteVenue(awayTeam.getNumberOfFixtures(f, Venue.AWAY));
-		row.setQLT_numeroJogosVisitadoDaPercentagem(homeTeam.getNumberOfFixtures(f, Venue.HOME)); // PARA
-																									// CORRIGIR
-		row.setQLT_numeroJogosVisitanteDaPercentagem(awayTeam.getNumberOfFixtures(f, Venue.AWAY)); // PARA
-																									// CORRIGIR
+		row.setQLT_numeroJogosVisitanteVenue(awayTeam.getNumberOfFixtures(f, Venue.AWAY)); // CORRIGIR
 		row.setQLT_percentagemResultadoVisitadoVenue(homeTR.getResultPercentage());
 		row.setQLT_percentagemResultadoVisitanteVenue(awayTR.getResultPercentage());
 		row.setQLT_dificuldadeResultadoVisitadoVenue(homeTR.getQualityAverage());
 		row.setQLT_dificuldadeResultadoVisitanteVenue(awayTR.getQualityAverage());
-		row.setQLT_percentagemResultadoVisitadoNoIntervaloVenue(homeTR.getResultIntervalPercentage());
-		row.setQLT_percentagemResultadoVisitanteNoIntervaloVenue(awayTR.getResultIntervalPercentage());
-		row.setQLT_numeroJogosVisitadoNoIntervaloVenue(homeTR.getResultIntervalGames());
-		row.setQLT_numeroJogosVisitanteNoIntervaloVenue(awayTR.getResultIntervalGames());
+		row.setQLT_percentagemResultadoNoIntervaloVisitadoVenue(homeTR.getResultIntervalPercentage());
+		row.setQLT_percentagemResultadoNoIntervaloVisitanteVenue(awayTR.getResultIntervalPercentage());
+		row.setQLT_numeroJogosNoIntervaloVisitadoVenue(homeTR.getResultIntervalGames());
+		row.setQLT_numeroJogosNoIntervaloVisitanteVenue(awayTR.getResultIntervalGames());
 
 		return row;
 	}
@@ -1365,16 +1438,16 @@ public class Main {
 		TeamRating homeTR = homeTeam.getResultPercentage(f, Venue.AWAY, homeResult, interval, null);
 		TeamRating awayTR = awayTeam.getResultPercentage(f, Venue.HOME, awayResult, interval, null);
 
-		row.setQLT_numeroJogosVisitadoTrocado(homeTeam.getNumberOfFixtures(f, Venue.AWAY));
-		row.setQLT_numeroJogosVisitanteTrocado(awayTeam.getNumberOfFixtures(f, Venue.HOME));
-		row.setQLT_percentagemResultadoVisitadoTrocado(homeTR.getResultPercentage());
-		row.setQLT_percentagemResultadoVisitanteTrocado(awayTR.getResultPercentage());
-		row.setQLT_dificuldadeResultadoVisitadoTrocado(homeTR.getQualityAverage());
-		row.setQLT_dificuldadeResultadoVisitanteTrocado(awayTR.getQualityAverage());
-		row.setQLT_percentagemResultadoVisitadoNoIntervaloTrocado(homeTR.getResultIntervalPercentage());
-		row.setQLT_percentagemResultadoVisitanteNoIntervaloTrocado(awayTR.getResultIntervalPercentage());
-		row.setQLT_numeroJogosVisitadoNoIntervaloTrocado(homeTR.getResultIntervalGames());
-		row.setQLT_numeroJogosVisitanteNoIntervaloTrocado(awayTR.getResultIntervalGames());
+		row.setQLT_numeroJogosVisitadoSwitchedVenue(homeTeam.getNumberOfFixtures(f, Venue.AWAY));
+		row.setQLT_numeroJogosVisitanteSwitchedVenue(awayTeam.getNumberOfFixtures(f, Venue.HOME)); // CORRIGIR
+		row.setQLT_percentagemResultadoVisitadoSwitchedVenue(homeTR.getResultPercentage());
+		row.setQLT_percentagemResultadoVisitanteSwitchedVenue(awayTR.getResultPercentage());
+		row.setQLT_dificuldadeResultadoVisitadoSwitchedVenue(homeTR.getQualityAverage());
+		row.setQLT_dificuldadeResultadoVisitanteSwitchedVenue(awayTR.getQualityAverage());
+		row.setQLT_percentagemResultadoNoIntervaloVisitadoSwitchedVenue(homeTR.getResultIntervalPercentage());
+		row.setQLT_percentagemResultadoNoIntervaloVisitanteSwitchedVenue(awayTR.getResultIntervalPercentage());
+		row.setQLT_numeroJogosNoIntervaloVisitadoSwitchedVenue(homeTR.getResultIntervalGames());
+		row.setQLT_numeroJogosNoIntervaloVisitanteSwitchedVenue(awayTR.getResultIntervalGames());
 
 		return row;
 	}
@@ -1408,10 +1481,10 @@ public class Main {
 		row.setQLT_percentagemResultadoVisitante(awayTR.getResultPercentage());
 		row.setQLT_dificuldadeResultadoVisitado(homeTR.getQualityAverage());
 		row.setQLT_dificuldadeResultadoVisitante(awayTR.getQualityAverage());
-		row.setQLT_percentagemResultadoVisitadoNoIntervalo(homeTR.getResultIntervalPercentage());
-		row.setQLT_percentagemResultadoVisitanteNoIntervalo(awayTR.getResultIntervalPercentage());
-		row.setQLT_numeroJogosVisitadoNoIntervalo(homeTR.getResultIntervalGames());
-		row.setQLT_numeroJogosVisitanteNoIntervalo(awayTR.getResultIntervalGames());
+		row.setQLT_percentagemResultadoNoIntervaloVisitado(homeTR.getResultIntervalPercentage());
+		row.setQLT_percentagemResultadoNoIntervaloVisitante(awayTR.getResultIntervalPercentage());
+		row.setQLT_numeroJogosNoIntervaloVisitado(homeTR.getResultIntervalGames());
+		row.setQLT_numeroJogosNoIntervaloVisitante(awayTR.getResultIntervalGames());
 
 		return row;
 
@@ -1439,9 +1512,9 @@ public class Main {
 
 		H2H h2hRatings = homeTeam.getH2HRating(f, ratingsH2H, Venue.HOME, homeResult);
 
-		row.setH2H_ratingResultado(h2hRatings.getRating());
-		row.setH2H_numeroJogos(h2hRatings.getSize());
-		row.setH2h_Results(h2hRatings.getNumberResults());
+		row.setH2H_ratingTemporalResultadoVenue(h2hRatings.getRating());
+		row.setH2H_numeroJogosVenue(h2hRatings.getSize());
+		row.setH2H_numeroResultadosVenue(h2hRatings.getNumberResults());
 
 		return row;
 	}
@@ -1449,72 +1522,61 @@ public class Main {
 	private static ExcelRow H2HSwitchedVenue(Fixture f, List<Double> ratingsH2H, ExcelColumnsCalculation homeTeam,
 			ExcelColumnsCalculation awayTeam, String result, ExcelRow row) {
 
-		return row;
+		ResultType homeResult;
+		ResultType awayResult;
 
+		if (result.equals("1")) {
+			homeResult = ResultType.WIN;
+			awayResult = ResultType.LOSE;
+		} else if (result.equals("X")) {
+			homeResult = ResultType.DRAW;
+			awayResult = ResultType.DRAW;
+		} else if (result.equals("2")) {
+			homeResult = ResultType.LOSE;
+			awayResult = ResultType.WIN;
+		} else {
+			// INVALID RESULT
+			return null;
+		}
+
+		H2H h2hRatings = homeTeam.getH2HRating(f, ratingsH2H, Venue.AWAY, homeResult);
+
+		row.setH2H_ratingTemporalResultadoSwitchedVenue(h2hRatings.getRating());
+		row.setH2H_numeroJogosSwitchedVenue(h2hRatings.getSize());
+		row.setH2H_numeroResultadosSwitchedVenue(h2hRatings.getNumberResults());
+
+		return row;
 	}
 
 	private static ExcelRow H2HOverall(Fixture f, List<Double> ratingsH2H, ExcelColumnsCalculation homeTeam,
 			ExcelColumnsCalculation awayTeam, String result, ExcelRow row) {
 
-		return row;
-	}
+		ResultType homeResult;
+		ResultType awayResult;
 
-	private static ExcelRow goalVenue(Fixture f, Season s, ExcelColumnsCalculation homeTeam,
-			ExcelColumnsCalculation awayTeam, ExcelRow row) {
+		if (result.equals("1")) {
+			homeResult = ResultType.WIN;
+			awayResult = ResultType.LOSE;
+		} else if (result.equals("X")) {
+			homeResult = ResultType.DRAW;
+			awayResult = ResultType.DRAW;
+		} else if (result.equals("2")) {
+			homeResult = ResultType.LOSE;
+			awayResult = ResultType.WIN;
+		} else {
+			// INVALID RESULT
+			return null;
+		}
 
-		Double[] percentagensGolosFRVisitado_5jogos = homeTeam.averageGoalsLastGames(f, null, 5);
-		Double[] percentagensGolosFRVisitante_5jogos = awayTeam.averageGoalsLastGames(f, null, 5);
+		H2H h2hRatings = homeTeam.getH2HRating(f, ratingsH2H, null, homeResult);
 
-		row.setGolosVisitadoCasa(homeTeam.getHomeGoals(s, f.getDate()));
-		row.setGolosSofridosVisitadoCasa(homeTeam.getHomeGoalsAgainst(s, f.getDate()));
-		row.setDiferencaGolosVisitadoCasa(
-				homeTeam.getHomeGoals(s, f.getDate()) - homeTeam.getHomeGoalsAgainst(s, f.getDate()));
-		row.setGolosVisitanteFora(awayTeam.getAwayGoals(s, f.getDate()));
-		row.setGolosSofridosVisitanteFora(awayTeam.getAwayGoalsAgainst(s, f.getDate()));
-		row.setDiferencaGolosVisitanteFora(
-				awayTeam.getAwayGoals(s, f.getDate()) - awayTeam.getAwayGoalsAgainst(s, f.getDate()));
-		row.setMediaGolosMarcadosVisitadoCasa(percentagensGolosFRVisitado_5jogos[2]);
-		row.setMediaGolosSofridosVisitadoCasa(percentagensGolosFRVisitado_5jogos[3]);
-		row.setMediaGolosMarcadosVisitanteFora(percentagensGolosFRVisitante_5jogos[4]);
-		row.setMediaGolosSofridosVisitanteFora(percentagensGolosFRVisitante_5jogos[5]);
-
-		return row;
-	}
-
-	private static ExcelRow goalSwitchedVenue(Fixture f, Season s, ExcelColumnsCalculation homeTeam,
-			ExcelColumnsCalculation awayTeam, ExcelRow row) {
-
-		Double[] percentagensGolosFRVisitado_5jogos = homeTeam.averageGoalsLastGames(f, null, 5);
-		Double[] percentagensGolosFRVisitante_5jogos = awayTeam.averageGoalsLastGames(f, null, 5);
-
-		row.setMediaGolosMarcadosVisitadoFora(percentagensGolosFRVisitado_5jogos[4]);
-		row.setMediaGolosSofridosVisitadoFora(percentagensGolosFRVisitado_5jogos[5]);
-		row.setMediaGolosMarcadosVisitanteCasa(percentagensGolosFRVisitante_5jogos[2]);
-		row.setMediaGolosSofridosVisitanteCasa(percentagensGolosFRVisitante_5jogos[3]);
+		row.setH2H_ratingTemporalResultado(h2hRatings.getRating());
+		row.setH2H_numeroJogos(h2hRatings.getSize());
+		row.setH2H_numeroResultados(h2hRatings.getNumberResults());
 
 		return row;
 	}
-
-	private static ExcelRow goalOverall(Fixture f, Season s, ExcelColumnsCalculation homeTeam,
-			ExcelColumnsCalculation awayTeam, ExcelRow row) {
-
-		Double[] percentagensGolosFRVisitado_5jogos = homeTeam.averageGoalsLastGames(f, null, 5);
-		Double[] percentagensGolosFRVisitante_5jogos = awayTeam.averageGoalsLastGames(f, null, 5);
-
-		row.setGolosVisitado(homeTeam.getGoals(s, f.getDate()));
-		row.setGolosSofridosVisitado(homeTeam.getGoalsAgainst(s, f.getDate()));
-		row.setDiferencaGolosVisitado(homeTeam.getGoals(s, f.getDate()) - homeTeam.getGoalsAgainst(s, f.getDate()));
-		row.setGolosVisitante(awayTeam.getGoals(s, f.getDate()));
-		row.setGolosSofridosVisitante(awayTeam.getGoalsAgainst(s, f.getDate()));
-		row.setDiferencaGolosVisitante(awayTeam.getGoals(s, f.getDate()) - awayTeam.getGoalsAgainst(s, f.getDate()));
-		row.setMediaGolosMarcadosVisitadoTotal(percentagensGolosFRVisitado_5jogos[0]);
-		row.setMediaGolosSofridosVisitadoTotal(percentagensGolosFRVisitado_5jogos[1]);
-		row.setMediaGolosMarcadosVisitanteTotal(percentagensGolosFRVisitante_5jogos[0]);
-		row.setMediaGolosSofridosVisitanteTotal(percentagensGolosFRVisitante_5jogos[1]);
-
-		return row;
-	}
-
+	
 	private static void generateExcelFiles_PlanB(Season s, EntityManager em, String filePath) {
 
 		SeasonController sc = new SeasonController(em);

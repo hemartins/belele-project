@@ -833,29 +833,29 @@ public class WriteToExcel {
 			
 			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_mediaGolosSofridosVisitanteSwitchedVenue());
 			
-			row.createCell(cellIndex++).setCellValue(excelrow.getH2h_numeroJogos());
+			row.createCell(cellIndex++).setCellValue(excelrow.getH2H_numeroJogos());
 			
-			row.createCell(cellIndex++).setCellValue(excelrow.getH2h_numeroResultados());
+			row.createCell(cellIndex++).setCellValue(excelrow.getH2H_numeroResultados());
 			
-			row.createCell(cellIndex++).setCellValue(excelrow.getH2h_percentagemResultados());
+			row.createCell(cellIndex++).setCellValue(excelrow.getH2H_percentagemResultados());
 
-			row.createCell(cellIndex++).setCellValue(excelrow.getH2h_ratingTemporalResultado());
+			row.createCell(cellIndex++).setCellValue(excelrow.getH2H_ratingTemporalResultado());
 			
-			row.createCell(cellIndex++).setCellValue(excelrow.getH2h_numeroJogosVenue());
+			row.createCell(cellIndex++).setCellValue(excelrow.getH2H_numeroJogosVenue());
 			
-			row.createCell(cellIndex++).setCellValue(excelrow.getH2h_numeroResultadosVenue());
+			row.createCell(cellIndex++).setCellValue(excelrow.getH2H_numeroResultadosVenue());
 			
-			row.createCell(cellIndex++).setCellValue(excelrow.getH2h_percentagemResultadosVenue());
+			row.createCell(cellIndex++).setCellValue(excelrow.getH2H_percentagemResultadosVenue());
 
-			row.createCell(cellIndex++).setCellValue(excelrow.getH2h_ratingTemporalResultadoVenue());
+			row.createCell(cellIndex++).setCellValue(excelrow.getH2H_ratingTemporalResultadoVenue());
 			
-			row.createCell(cellIndex++).setCellValue(excelrow.getH2h_numeroJogosSwitchedVenue());
+			row.createCell(cellIndex++).setCellValue(excelrow.getH2H_numeroJogosSwitchedVenue());
 			
-			row.createCell(cellIndex++).setCellValue(excelrow.getH2h_numeroResultadosSwitchedVenue());
+			row.createCell(cellIndex++).setCellValue(excelrow.getH2H_numeroResultadosSwitchedVenue());
 			
-			row.createCell(cellIndex++).setCellValue(excelrow.getH2h_percentagemResultadosSwitchedVenue());
+			row.createCell(cellIndex++).setCellValue(excelrow.getH2H_percentagemResultadosSwitchedVenue());
 
-			row.createCell(cellIndex++).setCellValue(excelrow.getH2h_ratingTemporalResultadoSwitchedVenue());
+			row.createCell(cellIndex++).setCellValue(excelrow.getH2H_ratingTemporalResultadoSwitchedVenue());
 
 			row.createCell(cellIndex++).setCellValue(excelrow.getResultado());
 			
