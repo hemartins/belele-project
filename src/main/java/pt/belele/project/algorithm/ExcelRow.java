@@ -73,22 +73,6 @@ public class ExcelRow {
 	// Venue
 	Double FR_dificuldadeVisitadoVenue, FR_dificuldadeVisitanteVenue;
 	Integer FR_historicosVisitadoVenue, FR_historicosVisitanteVenue;
-	public Integer getFR_numeroResultadosNoIntervaloVisitadoVenue() {
-		return FR_numeroResultadosNoIntervaloVisitadoVenue;
-	}
-
-	public void setFR_numeroResultadosNoIntervaloVisitadoVenue(Integer fR_numeroResultadosNoIntervaloVisitadoVenue) {
-		FR_numeroResultadosNoIntervaloVisitadoVenue = fR_numeroResultadosNoIntervaloVisitadoVenue;
-	}
-
-	public Integer getFR_numeroResultadosNoIntervaloVisitanteVenue() {
-		return FR_numeroResultadosNoIntervaloVisitanteVenue;
-	}
-
-	public void setFR_numeroResultadosNoIntervaloVisitanteVenue(Integer fR_numeroResultadosNoIntervaloVisitanteVenue) {
-		FR_numeroResultadosNoIntervaloVisitanteVenue = fR_numeroResultadosNoIntervaloVisitanteVenue;
-	}
-
 	Double FR_ratingTemporalResultadoVisitadoVenue, FR_ratingTemporalResultadoVisitanteVenue;
 	Integer FR_numeroResultadosVisitadoVenue, FR_numeroResultadosVisitanteVenue;
 	Integer FR_numeroResultadosNoIntervaloVisitadoVenue, FR_numeroResultadosNoIntervaloVisitanteVenue;
@@ -911,6 +895,22 @@ public class ExcelRow {
 
 	public void setFR_numeroResultadosVisitanteVenue(Integer fR_numeroResultadosVisitanteVenue) {
 		FR_numeroResultadosVisitanteVenue = fR_numeroResultadosVisitanteVenue;
+	}
+	
+	public Integer getFR_numeroResultadosNoIntervaloVisitadoVenue() {
+		return FR_numeroResultadosNoIntervaloVisitadoVenue;
+	}
+
+	public void setFR_numeroResultadosNoIntervaloVisitadoVenue(Integer fR_numeroResultadosNoIntervaloVisitadoVenue) {
+		FR_numeroResultadosNoIntervaloVisitadoVenue = fR_numeroResultadosNoIntervaloVisitadoVenue;
+	}
+
+	public Integer getFR_numeroResultadosNoIntervaloVisitanteVenue() {
+		return FR_numeroResultadosNoIntervaloVisitanteVenue;
+	}
+
+	public void setFR_numeroResultadosNoIntervaloVisitanteVenue(Integer fR_numeroResultadosNoIntervaloVisitanteVenue) {
+		FR_numeroResultadosNoIntervaloVisitanteVenue = fR_numeroResultadosNoIntervaloVisitanteVenue;
 	}
 
 	public Double getFR_percentagemResultadoVisitadoVenue() {
