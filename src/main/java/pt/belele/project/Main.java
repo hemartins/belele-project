@@ -1032,8 +1032,8 @@ public class Main {
 	private static ExcelRow generalSwitchedVenue(Fixture f, Season s, ExcelColumnsCalculation homeTeam,
 			ExcelColumnsCalculation awayTeam, ExcelRow row) {
 
-		row.setQualidadeVisitadoSwitchedVenue(awayTeam.getHomeTeamQuality(s, f.getDate()));
-		row.setQualidadeVisitanteSwitchedVenue(homeTeam.getAwayTeamQuality(s, f.getDate()));
+		row.setQualidadeVisitadoSwitchedVenue(homeTeam.getAwayTeamQuality(s, f.getDate()));
+		row.setQualidadeVisitanteSwitchedVenue(awayTeam.getHomeTeamQuality(s, f.getDate()));
 
 		return row;
 	}
