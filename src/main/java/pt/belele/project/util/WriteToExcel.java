@@ -459,7 +459,7 @@ public class WriteToExcel {
 
 			cellIndex = 0;
 
-			row.createCell(cellIndex++).setCellValue(excelrow.getData());
+			row.createCell(cellIndex++).setCellValue(sdf.format(excelrow.getData()));
 
 			row.createCell(cellIndex++).setCellValue(excelrow.getNomeVisitado());
 
