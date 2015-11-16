@@ -116,45 +116,101 @@ public class ExcelColumnsCalculation {
 	}
 
 	public Double[] getRecentFormResultPercentage(Fixture nextFixture, Venue venue, Integer numberOfFixtures,
-			ResultType type) {
+			Double interval, ResultType type) {
 
-		Double[] percentages = new Double[2];
+		Double[] percentages = new Double[4];
 		Double percentageHome = 0.0;
 		Double percentageAway = 0.0;
+		Double percentageIntervalHome = 0.0;
+		Double percentageIntervalAway = 0.0;
 		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team, nextFixture.getSeason(),
-				nextFixture.getDate(), venue, 5);
+				nextFixture.getDate(), venue, numberOfFixtures);
 		Double resultTypeHome = 0.0;
 		Double resultTypeAway = 0.0;
+		Double resultTypeIntervalHome = 0.0;
+		Double resultTypeIntervalAway = 0.0;
 		Double homeGames = 0.0;
 		Double awayGames = 0.0;
+		Double homeIntervalGames = 0.0;
+		Double awayIntervalGames = 0.0;
+
+		ExcelColumnsCalculation ecc = new ExcelColumnsCalculation(nextFixture.getAwayTeam(), em);
+		Double opponentQuality = ecc.getTeamQuality(nextFixture.getSeason(), nextFixture.getDate());
 
 		for (Fixture f : fixtures) {
-			if (f.getHomeTeam().equals(team)){
+			
+			if (f.getHomeTeam().equals(team)) {
 				homeGames++;
+
+				ExcelColumnsCalculation excc = new ExcelColumnsCalculation(f.getAwayTeam(), em);
+				Double fixtureOpponentQuality = excc.getTeamQuality(f.getSeason(), f.getDate());
+
+				if (opponentQuality + interval >= fixtureOpponentQuality
+						&& opponentQuality - interval <= fixtureOpponentQuality) {
+					homeIntervalGames++;
+
+					if (getResultType(f).equals(type)) {
+						resultTypeIntervalHome++;
+					}
+				}
+
 				if (f.getResult().getResultType().equals(type)) {
 					resultTypeHome++;
 				}
-			}
-			else {
+			} else {
 				awayGames++;
+				
+				ExcelColumnsCalculation excc = new ExcelColumnsCalculation(f.getHomeTeam(), em);
+				Double fixtureOpponentQuality = excc.getTeamQuality(f.getSeason(), f.getDate());
+
+				if (opponentQuality + interval >= fixtureOpponentQuality
+						&& opponentQuality - interval <= fixtureOpponentQuality) {
+					awayIntervalGames++;
+
+					if (getResultType(f).equals(type)) {
+						resultTypeIntervalAway++;
+					}
+				}
+				
 				if (f.getResult().getResultType().equals(type)) {
 					resultTypeAway++;
 				}
 			}
 		}
+
 		percentageHome = resultTypeHome / homeGames;
 		percentages[0] = percentageHome;
 		percentageAway = resultTypeAway / awayGames;
 		percentages[1] = percentageAway;
+		percentageIntervalHome = resultTypeIntervalHome / homeIntervalGames;
+		percentages[2] = percentageIntervalHome;
+		percentageIntervalAway = resultTypeIntervalAway / awayIntervalGames;
+		percentages[3] = percentageIntervalAway;
 		
-		if (resultTypeHome >= 5 || resultTypeAway >= 5){
-			System.out.println("team: "+team);
-			System.out.println("resultTypeHome: "+resultTypeHome+"\n");
-			System.out.println("resultTypeAway: "+resultTypeAway+"\n");
-			System.out.println("Fixtures: "+fixtures.size());
-			System.exit(0);
-		}
+
 		return percentages;
+	}
+
+	public Integer[] getHomeAndAwayGames(Fixture nextFixture, Integer numberOfFixtures, ResultType type) {
+
+		Integer[] numberOfGames = new Integer[2];
+		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team, nextFixture.getSeason(),
+				nextFixture.getDate(), null, numberOfFixtures);
+		Integer homeGames = 0;
+		Integer awayGames = 0;
+
+		for (Fixture f : fixtures) {
+			if (f.getHomeTeam().equals(team)) {
+				homeGames++;
+			} else {
+				awayGames++;
+			}
+		}
+
+		numberOfGames[0] = homeGames;
+		numberOfGames[1] = awayGames;
+
+		return numberOfGames;
 	}
 
 	// Media da qualidade das ultimas equipas defrontadas
@@ -231,7 +287,7 @@ public class ExcelColumnsCalculation {
 
 	// Calculo ciclos à sapateiro que o perna pediu para testar a correlacao
 	public ResultCycle getTeamCyclePerna(Fixture nextFixture, Venue venue, ResultType type) {
-		
+
 		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team, nextFixture.getSeason(),
 				nextFixture.getDate(), venue, null);
 		ResultType firstResult = null;
@@ -334,6 +390,7 @@ public class ExcelColumnsCalculation {
 
 	public TeamRating getResultPercentage(Fixture nextFixture, Venue venue, ResultType type, Double interval,
 			Integer numerberOfGames) {
+
 		Season s = nextFixture.getSeason();
 		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team, nextFixture.getSeason(),
 				nextFixture.getDate(), venue, numerberOfGames);
@@ -512,9 +569,9 @@ public class ExcelColumnsCalculation {
 
 		avgGoalsConcededAway = nrGoalsConcededAway / nrGamesAway;
 
-		avgGoalsScoredTotal = nrGoalsScoredTotal / numerberOfGames;
+		avgGoalsScoredTotal = nrGoalsScoredTotal / fixtures.size();
 
-		avgGoalsConcededTotal = nrGoalsConcededTotal / numerberOfGames;
+		avgGoalsConcededTotal = nrGoalsConcededTotal / fixtures.size();
 
 		avgGoalsFR[0] = avgGoalsScoredTotal;
 
