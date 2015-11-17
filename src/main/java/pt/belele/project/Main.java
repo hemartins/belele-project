@@ -880,15 +880,15 @@ public class Main {
 
 		List<ExcelRow> excelRows = new ArrayList<ExcelRow>();
 
+		winRow = generalOverall(f, s, homeTeam, awayTeam, winRow, "1");
+		drawRow = generalOverall(f, s, homeTeam, awayTeam, drawRow, "X");
+		loseRow = generalOverall(f, s, homeTeam, awayTeam, loseRow, "2");
 		winRow = generalVenue(f, s, homeTeam, awayTeam, winRow);
 		drawRow = generalVenue(f, s, homeTeam, awayTeam, drawRow);
 		loseRow = generalVenue(f, s, homeTeam, awayTeam, loseRow);
 		winRow = generalSwitchedVenue(f, s, homeTeam, awayTeam, winRow);
 		drawRow = generalSwitchedVenue(f, s, homeTeam, awayTeam, drawRow);
 		loseRow = generalSwitchedVenue(f, s, homeTeam, awayTeam, loseRow);
-		winRow = generalOverall(f, s, homeTeam, awayTeam, winRow, "1");
-		drawRow = generalOverall(f, s, homeTeam, awayTeam, drawRow, "X");
-		loseRow = generalOverall(f, s, homeTeam, awayTeam, loseRow, "2");
 
 		excelRows.add(winRow);
 		excelRows.add(drawRow);
@@ -903,15 +903,15 @@ public class Main {
 
 		List<ExcelRow> excelRows = new ArrayList<ExcelRow>();
 
+		winRow = cycleOverall(f, homeTeam, awayTeam, historicos, ratings, "1", winRow);
+		drawRow = cycleOverall(f, homeTeam, awayTeam, historicos, ratings, "X", drawRow);
+		loseRow = cycleOverall(f, homeTeam, awayTeam, historicos, ratings, "2", loseRow);
 		winRow = cycleVenue(f, homeTeam, awayTeam, historicos, "1", winRow);
 		drawRow = cycleVenue(f, homeTeam, awayTeam, historicos, "X", drawRow);
 		loseRow = cycleVenue(f, homeTeam, awayTeam, historicos, "2", loseRow);
 		winRow = cycleSwitchedVenue(f, homeTeam, awayTeam, historicos, "1", winRow);
 		drawRow = cycleSwitchedVenue(f, homeTeam, awayTeam, historicos, "X", drawRow);
 		loseRow = cycleSwitchedVenue(f, homeTeam, awayTeam, historicos, "2", loseRow);
-		winRow = cycleOverall(f, homeTeam, awayTeam, historicos, ratings, "1", winRow);
-		drawRow = cycleOverall(f, homeTeam, awayTeam, historicos, ratings, "X", drawRow);
-		loseRow = cycleOverall(f, homeTeam, awayTeam, historicos, ratings, "2", loseRow);
 
 		excelRows.add(winRow);
 		excelRows.add(drawRow);
@@ -926,15 +926,15 @@ public class Main {
 
 		List<ExcelRow> excelRows = new ArrayList<ExcelRow>();
 
+		winRow = FROverall(f, homeTeam, awayTeam, ratings, historicos, "1", winRow, numberOfFixtures, interval);
+		drawRow = FROverall(f, homeTeam, awayTeam, ratings, historicos, "X", drawRow, numberOfFixtures, interval);
+		loseRow = FROverall(f, homeTeam, awayTeam, ratings, historicos, "2", loseRow, numberOfFixtures, interval);
 		winRow = FRVenue(f, homeTeam, awayTeam, ratings, historicos, "1", winRow, numberOfFixtures, interval);
 		drawRow = FRVenue(f, homeTeam, awayTeam, ratings, historicos, "X", drawRow, numberOfFixtures, interval);
 		loseRow = FRVenue(f, homeTeam, awayTeam, ratings, historicos, "2", loseRow, numberOfFixtures, interval);
 		winRow = FRSwitchedVenue(f, homeTeam, awayTeam, ratings, historicos, "1", winRow, numberOfFixtures, interval);
 		drawRow = FRSwitchedVenue(f, homeTeam, awayTeam, ratings, historicos, "X", drawRow, numberOfFixtures, interval);
 		loseRow = FRSwitchedVenue(f, homeTeam, awayTeam, ratings, historicos, "2", loseRow, numberOfFixtures, interval);
-		winRow = FROverall(f, homeTeam, awayTeam, ratings, historicos, "1", winRow, numberOfFixtures, interval);
-		drawRow = FROverall(f, homeTeam, awayTeam, ratings, historicos, "X", drawRow, numberOfFixtures, interval);
-		loseRow = FROverall(f, homeTeam, awayTeam, ratings, historicos, "2", loseRow, numberOfFixtures, interval);
 
 		excelRows.add(winRow);
 		excelRows.add(drawRow);
@@ -948,15 +948,15 @@ public class Main {
 
 		List<ExcelRow> excelRows = new ArrayList<ExcelRow>();
 
+		winRow = QLTOverall(f, homeTeam, awayTeam, interval, "1", winRow);
+		drawRow = QLTOverall(f, homeTeam, awayTeam, interval, "X", drawRow);
+		loseRow = QLTOverall(f, homeTeam, awayTeam, interval, "2", loseRow);
 		winRow = QLTVenue(f, homeTeam, awayTeam, interval, "1", winRow);
 		drawRow = QLTVenue(f, homeTeam, awayTeam, interval, "X", drawRow);
 		loseRow = QLTVenue(f, homeTeam, awayTeam, interval, "2", loseRow);
 		winRow = QLTSwitchedVenue(f, homeTeam, awayTeam, interval, "1", winRow);
 		drawRow = QLTSwitchedVenue(f, homeTeam, awayTeam, interval, "X", drawRow);
 		loseRow = QLTSwitchedVenue(f, homeTeam, awayTeam, interval, "2", loseRow);
-		winRow = QLTOverall(f, homeTeam, awayTeam, interval, "1", winRow);
-		drawRow = QLTOverall(f, homeTeam, awayTeam, interval, "X", drawRow);
-		loseRow = QLTOverall(f, homeTeam, awayTeam, interval, "2", loseRow);
 
 		excelRows.add(winRow);
 		excelRows.add(drawRow);
@@ -971,15 +971,15 @@ public class Main {
 
 		List<ExcelRow> excelRows = new ArrayList<ExcelRow>();
 
+		winRow = H2HOverall(f, ratingsH2H, homeTeam, awayTeam, "1", winRow);
+		drawRow = H2HOverall(f, ratingsH2H, homeTeam, awayTeam, "X", drawRow);
+		loseRow = H2HOverall(f, ratingsH2H, homeTeam, awayTeam, "2", loseRow);
 		winRow = H2HVenue(f, ratingsH2H, homeTeam, awayTeam, "1", winRow);
 		drawRow = H2HVenue(f, ratingsH2H, homeTeam, awayTeam, "X", drawRow);
 		loseRow = H2HVenue(f, ratingsH2H, homeTeam, awayTeam, "2", loseRow);
 		winRow = H2HSwitchedVenue(f, ratingsH2H, homeTeam, awayTeam, "1", winRow);
 		drawRow = H2HSwitchedVenue(f, ratingsH2H, homeTeam, awayTeam, "X", drawRow);
 		loseRow = H2HSwitchedVenue(f, ratingsH2H, homeTeam, awayTeam, "2", loseRow);
-		winRow = H2HOverall(f, ratingsH2H, homeTeam, awayTeam, "1", winRow);
-		drawRow = H2HOverall(f, ratingsH2H, homeTeam, awayTeam, "X", drawRow);
-		loseRow = H2HOverall(f, ratingsH2H, homeTeam, awayTeam, "2", loseRow);
 
 		excelRows.add(winRow);
 		excelRows.add(drawRow);
@@ -1225,18 +1225,16 @@ public class Main {
 		row.setFR_percentagemResultadoNoIntervaloVisitanteFora(percentagemFRResultadoVisitado[3]);
 		row.setFR_numeroJogosVisitadoCasa(numberOfGamesVisitado[0]);
 		row.setFR_numeroJogosVisitanteFora(numberOfGamesVisitante[1]);
-		row.setFR_golosMarcadosVisitado(homeTeam.getGoals(f.getSeason(), f.getDate()));
-		row.setFR_golosSofridosVisitado(homeTeam.getGoalsAgainst(f.getSeason(), f.getDate()));
-		row.setFR_diferencaGolosVisitado(homeTeam.getGoals(f.getSeason(), f.getDate())
-				- homeTeam.getGoalsAgainst(f.getSeason(), f.getDate()));
-		row.setFR_golosMarcadosVisitante(awayTeam.getGoals(f.getSeason(), f.getDate()));
-		row.setFR_golosSofridosVisitante(awayTeam.getGoalsAgainst(f.getSeason(), f.getDate()));
-		row.setFR_diferencaGolosVisitante(awayTeam.getGoals(f.getSeason(), f.getDate())
-				- awayTeam.getGoalsAgainst(f.getSeason(), f.getDate()));
-		row.setFR_mediaGolosMarcadosVisitado(percentagensGolosFRVisitado[2]);
-		row.setFR_mediaGolosSofridosVisitado(percentagensGolosFRVisitado[3]);
-		row.setFR_mediaGolosMarcadosVisitante(percentagensGolosFRVisitante[4]);
-		row.setFR_mediaGolosSofridosVisitante(percentagensGolosFRVisitante[5]);
+		row.setFR_golosMarcadosVisitado(percentagensGolosFRVisitado[0] * numberOfFixtures);
+		row.setFR_golosSofridosVisitado(percentagensGolosFRVisitado[1] * numberOfFixtures);
+		row.setFR_diferencaGolosVisitado((percentagensGolosFRVisitado[0]-percentagensGolosFRVisitado[1]) * numberOfFixtures);
+		row.setFR_golosMarcadosVisitante(percentagensGolosFRVisitante[0] * numberOfFixtures);
+		row.setFR_golosSofridosVisitante(percentagensGolosFRVisitante[1] * numberOfFixtures);
+		row.setFR_diferencaGolosVisitante((percentagensGolosFRVisitante[0]-percentagensGolosFRVisitante[1]) * numberOfFixtures);
+		row.setFR_mediaGolosMarcadosVisitado(percentagensGolosFRVisitado[0]);
+		row.setFR_mediaGolosSofridosVisitado(percentagensGolosFRVisitado[1]);
+		row.setFR_mediaGolosMarcadosVisitante(percentagensGolosFRVisitante[0]);
+		row.setFR_mediaGolosSofridosVisitante(percentagensGolosFRVisitante[1]);
 
 		return row;
 	}
@@ -1293,18 +1291,16 @@ public class Main {
 		row.setFR_percentagemResultadoVisitanteVenue(awayTR.getResultPercentage());
 		row.setFR_percentagemResultadoNoIntervaloVisitadoVenue(homeTR.getResultIntervalPercentage());
 		row.setFR_percentagemResultadoNoIntervaloVisitanteVenue(awayTR.getResultIntervalPercentage());
-		row.setFR_golosMarcadosVisitadoVenue(homeTeam.getHomeGoals(f.getSeason(), f.getDate()));
-		row.setFR_golosSofridosVisitadoVenue(homeTeam.getHomeGoalsAgainst(f.getSeason(), f.getDate()));
-		row.setFR_diferencaGolosVisitadoVenue(homeTeam.getHomeGoals(f.getSeason(), f.getDate())
-				- homeTeam.getHomeGoalsAgainst(f.getSeason(), f.getDate()));
-		row.setFR_golosMarcadosVisitanteVenue(awayTeam.getAwayGoals(f.getSeason(), f.getDate()));
-		row.setFR_golosSofridosVisitanteVenue(awayTeam.getAwayGoalsAgainst(f.getSeason(), f.getDate()));
-		row.setFR_diferencaGolosVisitanteVenue(awayTeam.getAwayGoals(f.getSeason(), f.getDate())
-				- awayTeam.getAwayGoalsAgainst(f.getSeason(), f.getDate()));
+		row.setFR_golosMarcadosVisitadoVenue(percentagensGolosFRVisitado[2] * numberOfFixtures);
+		row.setFR_golosSofridosVisitadoVenue(percentagensGolosFRVisitado[3] * numberOfFixtures);
+		row.setFR_diferencaGolosVisitadoVenue((percentagensGolosFRVisitado[2]-percentagensGolosFRVisitado[3]) * numberOfFixtures);
+		row.setFR_golosMarcadosVisitanteVenue(percentagensGolosFRVisitante[4] * numberOfFixtures);
+		row.setFR_golosSofridosVisitanteVenue(percentagensGolosFRVisitante[5] * numberOfFixtures);
+		row.setFR_diferencaGolosVisitanteVenue((percentagensGolosFRVisitante[4]-percentagensGolosFRVisitante[5]) * numberOfFixtures);
 		row.setFR_mediaGolosMarcadosVisitadoVenue(percentagensGolosFRVisitado[2]);
 		row.setFR_mediaGolosSofridosVisitadoVenue(percentagensGolosFRVisitado[3]);
-		row.setFR_mediaGolosMarcadosVisitanteVenue(percentagensGolosFRVisitante[4]);
-		row.setFR_mediaGolosSofridosVisitanteVenue(percentagensGolosFRVisitante[5]);
+		row.setFR_mediaGolosMarcadosVisitanteVenue(percentagensGolosFRVisitante[5]);
+		row.setFR_mediaGolosSofridosVisitanteVenue(percentagensGolosFRVisitante[4]);
 		
 		return row;
 	}
@@ -1361,18 +1357,16 @@ public class Main {
 		row.setFR_percentagemResultadoVisitanteSwitchedVenue(awayTR.getResultPercentage());
 		row.setFR_percentagemResultadoNoIntervaloVisitadoSwitchedVenue(homeTR.getResultIntervalPercentage());
 		row.setFR_percentagemResultadoNoIntervaloVisitanteSwitchedVenue(awayTR.getResultIntervalPercentage());
-		row.setFR_golosMarcadosVisitadoSwitchedVenue(homeTeam.getAwayGoals(f.getSeason(), f.getDate()));
-		row.setFR_golosSofridosVisitadoSwitchedVenue(homeTeam.getAwayGoalsAgainst(f.getSeason(), f.getDate()));
-		row.setFR_diferencaGolosVisitadoSwitchedVenue(homeTeam.getAwayGoals(f.getSeason(), f.getDate())
-				- homeTeam.getHomeGoalsAgainst(f.getSeason(), f.getDate()));
-		row.setFR_golosMarcadosVisitanteSwitchedVenue(awayTeam.getHomeGoals(f.getSeason(), f.getDate()));
-		row.setFR_golosSofridosVisitanteSwitchedVenue(awayTeam.getHomeGoalsAgainst(f.getSeason(), f.getDate()));
-		row.setFR_diferencaGolosVisitanteSwitchedVenue(awayTeam.getHomeGoals(f.getSeason(), f.getDate())
-				- awayTeam.getHomeGoalsAgainst(f.getSeason(), f.getDate()));
-		row.setFR_mediaGolosMarcadosVisitadoSwitchedVenue(percentagensGolosFRVisitado[2]);
-		row.setFR_mediaGolosSofridosVisitadoSwitchedVenue(percentagensGolosFRVisitado[3]);
-		row.setFR_mediaGolosMarcadosVisitanteSwitchedVenue(percentagensGolosFRVisitante[4]);
-		row.setFR_mediaGolosSofridosVisitanteSwitchedVenue(percentagensGolosFRVisitante[5]);
+		row.setFR_golosMarcadosVisitadoSwitchedVenue(percentagensGolosFRVisitado[4] * numberOfFixtures);
+		row.setFR_golosSofridosVisitadoSwitchedVenue(percentagensGolosFRVisitado[5] * numberOfFixtures);
+		row.setFR_diferencaGolosVisitadoSwitchedVenue((percentagensGolosFRVisitado[4]-percentagensGolosFRVisitado[5]) * numberOfFixtures);
+		row.setFR_golosMarcadosVisitanteSwitchedVenue(percentagensGolosFRVisitante[2] * numberOfFixtures);
+		row.setFR_golosSofridosVisitanteSwitchedVenue(percentagensGolosFRVisitante[3] * numberOfFixtures);
+		row.setFR_diferencaGolosVisitanteSwitchedVenue((percentagensGolosFRVisitante[2]-percentagensGolosFRVisitante[3]) * numberOfFixtures);
+		row.setFR_mediaGolosMarcadosVisitadoSwitchedVenue(percentagensGolosFRVisitado[4]);
+		row.setFR_mediaGolosSofridosVisitadoSwitchedVenue(percentagensGolosFRVisitado[5]);
+		row.setFR_mediaGolosMarcadosVisitanteSwitchedVenue(percentagensGolosFRVisitante[2]);
+		row.setFR_mediaGolosSofridosVisitanteSwitchedVenue(percentagensGolosFRVisitante[3]);
 		
 		return row;
 	}
