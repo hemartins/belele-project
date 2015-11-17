@@ -201,7 +201,7 @@ public class WriteToExcel {
 		
 		row.createCell(cellIndex++).setCellValue("[FR] Média de Golos Marcados do Visitante");
 		
-		row.createCell(cellIndex++).setCellValue("[FR] Média de Golos Sofridos do Visitado");
+		row.createCell(cellIndex++).setCellValue("[FR] Média de Golos Sofridos do Visitante");
 		
 		row.createCell(cellIndex++).setCellValue("[FR] Dificuldade do Visitado - VENUE");
 
@@ -297,7 +297,7 @@ public class WriteToExcel {
 		
 		row.createCell(cellIndex++).setCellValue("[FR] Média de Golos Marcados do Visitante - SWITCHED VENUE");
 		
-		row.createCell(cellIndex++).setCellValue("[FR] Média de Golos Sofridos do Visitado - SWITCHED VENUE");
+		row.createCell(cellIndex++).setCellValue("[FR] Média de Golos Sofridos do Visitante - SWITCHED VENUE");
 
 		row.createCell(cellIndex++).setCellValue("[QLT] Número de Jogos do Visitado");
 
