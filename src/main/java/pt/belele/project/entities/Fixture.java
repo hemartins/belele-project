@@ -105,8 +105,16 @@ public class Fixture implements Serializable {
 
 	@OneToMany(orphanRemoval = true)
 	@JoinColumn(name = "id")
-	private List<Fixture> h2h;
+	private List<Fixture> H2H;
 
+	@OneToMany(orphanRemoval = true)
+	@JoinColumn(name = "id")
+	private List<Fixture> H2HVenue;
+	
+	@OneToMany(orphanRemoval = true)
+	@JoinColumn(name = "id")
+	private List<Fixture> H2HSwitchedVenue;
+	
 	public Fixture() {
 	}
 
@@ -182,11 +190,27 @@ public class Fixture implements Serializable {
 	}
 
 	public List<Fixture> getH2h() {
-		return h2h;
+		return H2H;
 	}
 
-	public void setH2h(List<Fixture> h2h) {
-		this.h2h = h2h;
+	public void setH2H(List<Fixture> h2h) {
+		this.H2H = h2h;
+	}
+	
+	public List<Fixture> getH2HVenue() {
+		return H2HVenue;
+	}
+
+	public void setH2HVenue(List<Fixture> h2hVenue) {
+		this.H2HVenue = h2hVenue;
+	}
+
+	public List<Fixture> getH2HSwitchedVenue() {
+		return H2HSwitchedVenue;
+	}
+
+	public void setH2hSwitchedVenue(List<Fixture> h2hSwitchedVenue) {
+		this.H2HSwitchedVenue = h2hSwitchedVenue;
 	}
 
 	/*
@@ -198,7 +222,7 @@ public class Fixture implements Serializable {
 	 * 
 	 * public void setLayOdd(Odd layOdd) { this.layOdd = layOdd; }
 	 */
-
+	
 	public Odd getOdd() {
 		return odd;
 	}

@@ -30,7 +30,11 @@ public class FixtureController {
 			OddController oddController = new OddController();
 			oddController.calculateLayOddsAsBackOdds(odd);
 			Fixture f = new Fixture(date, s, home, away, result, odd);
-			f.setH2h(fixtureDAO.getH2H(f.getHomeTeam().getId(), f.getAwayTeam()
+			f.setH2H(fixtureDAO.getH2H(f.getHomeTeam().getId(), f.getAwayTeam()
+					.getId(), f.getDate(),10));
+			f.setH2HVenue(fixtureDAO.getH2HVenue(f.getHomeTeam().getId(), f.getAwayTeam()
+					.getId(), f.getDate(),10));
+			f.setH2hSwitchedVenue(fixtureDAO.getH2HSwitchedVenue(f.getHomeTeam().getId(), f.getAwayTeam()
 					.getId(), f.getDate(),10));
 			fixtureDAO.insert(f);
 		}

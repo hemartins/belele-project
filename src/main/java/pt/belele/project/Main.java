@@ -46,7 +46,7 @@ public class Main {
 	public static void main(String[] args) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("database.odb");
 		EntityManager em = emf.createEntityManager();
-		// generateDatabase(em);
+		//generateDatabase(em);
 		createExcels_A_B(em);
 	}
 
@@ -1415,10 +1415,10 @@ public class Main {
 		row.setQLT_golosSofridosVisitante(awayTeam.getGoalsAgainst(f.getSeason(), f.getDate()));
 		row.setQLT_diferencaGolosVisitante(awayTeam.getGoals(f.getSeason(), f.getDate())
 				- awayTeam.getGoalsAgainst(f.getSeason(), f.getDate()));
-		row.setQLT_mediaGolosMarcadosVisitado(percentagensGolosQLTVisitado[2]);
-		row.setQLT_mediaGolosSofridosVisitado(percentagensGolosQLTVisitado[3]);
-		row.setQLT_mediaGolosMarcadosVisitante(percentagensGolosQLTVisitante[4]);
-		row.setQLT_mediaGolosSofridosVisitante(percentagensGolosQLTVisitante[5]);
+		row.setQLT_mediaGolosMarcadosVisitado(percentagensGolosQLTVisitado[0]);
+		row.setQLT_mediaGolosSofridosVisitado(percentagensGolosQLTVisitado[1]);
+		row.setQLT_mediaGolosMarcadosVisitante(percentagensGolosQLTVisitante[0]);
+		row.setQLT_mediaGolosSofridosVisitante(percentagensGolosQLTVisitante[1]);
 
 		return row;
 
@@ -1579,7 +1579,7 @@ public class Main {
 			return null;
 		}
 
-		H2H h2hRatings = homeTeam.getH2HRating(f, ratingsH2H, Venue.HOME, homeResult);
+		H2H h2hRatings = homeTeam.getH2HRatingVenue(f, ratingsH2H, Venue.HOME, homeResult);
 
 		row.setH2H_ratingTemporalResultadoVenue(h2hRatings.getRating());
 		row.setH2H_numeroJogosVenue(h2hRatings.getSize());
@@ -1610,7 +1610,7 @@ public class Main {
 			return null;
 		}
 
-		H2H h2hRatings = homeTeam.getH2HRating(f, ratingsH2H, Venue.AWAY, homeResult);
+		H2H h2hRatings = homeTeam.getH2HRatingSwitchedVenue(f, ratingsH2H, Venue.AWAY, homeResult);
 
 		row.setH2H_ratingTemporalResultadoSwitchedVenue(h2hRatings.getRating());
 		row.setH2H_numeroJogosSwitchedVenue(h2hRatings.getSize());
