@@ -398,13 +398,41 @@ public class ExcelColumnsCalculation {
 		Double opponentSum = 0.0;
 		Double intervalSum = 0.0;
 		Double resultIntervalSum = 0.0;
-		ExcelColumnsCalculation tc = new ExcelColumnsCalculation(
-				venue == Venue.HOME ? nextFixture.getAwayTeam() : nextFixture.getHomeTeam(), em);
+		ExcelColumnsCalculation tc;
+		ExcelColumnsCalculation tec;
+		
+		if (venue == Venue.HOME){
+			tc = new ExcelColumnsCalculation(nextFixture.getAwayTeam(), em);
+		}
+		else if (venue == Venue.AWAY){
+			tc = new ExcelColumnsCalculation(nextFixture.getHomeTeam(), em);
+		}
+		else{
+			if (nextFixture.getHomeTeam() == team){
+				tc = new ExcelColumnsCalculation(nextFixture.getAwayTeam(), em);
+			}
+			else {
+				tc = new ExcelColumnsCalculation(nextFixture.getHomeTeam(), em);
+			}
+		}
+		
 		Double opponentQuality = tc.getTeamQuality(s, nextFixture.getDate());
 
 		for (Fixture f : fixtures) {
-			ExcelColumnsCalculation tec = new ExcelColumnsCalculation(
-					venue == Venue.HOME ? f.getAwayTeam() : f.getHomeTeam(), em);
+			if (venue == Venue.HOME){
+				tec = new ExcelColumnsCalculation(f.getAwayTeam(), em);
+			}
+			else if (venue == Venue.AWAY){
+				tec = new ExcelColumnsCalculation(f.getHomeTeam(), em);
+			}
+			else{
+				if (f.getHomeTeam() == team){
+					tec = new ExcelColumnsCalculation(f.getAwayTeam(), em);
+				}
+				else {
+					tec = new ExcelColumnsCalculation(f.getHomeTeam(), em);
+				}
+			}
 			Double fixtureOpponentQuality = tec.getTeamQuality(s, nextFixture.getDate());
 
 			if (fixtureOpponentQuality != null) {

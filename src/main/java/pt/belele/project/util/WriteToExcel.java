@@ -723,7 +723,7 @@ public class WriteToExcel {
 
 			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeResultadoVisitado());
 
-			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeResultadoVisitado());
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeResultadoVisitante());
 
 			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoNoIntervaloVisitado());
 
@@ -763,7 +763,7 @@ public class WriteToExcel {
 
 			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeResultadoVisitadoVenue());
 
-			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeResultadoVisitadoVenue());
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeResultadoVisitanteVenue());
 
 			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoNoIntervaloVisitadoVenue());
 
@@ -803,7 +803,7 @@ public class WriteToExcel {
 
 			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeResultadoVisitadoSwitchedVenue());
 
-			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeResultadoVisitadoSwitchedVenue());
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeResultadoVisitanteSwitchedVenue());
 
 			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoNoIntervaloVisitadoSwitchedVenue());
 

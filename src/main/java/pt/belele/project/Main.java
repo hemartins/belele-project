@@ -1521,10 +1521,10 @@ public class Main {
 		row.setQLT_golosSofridosVisitanteSwitchedVenue(awayTeam.getHomeGoalsAgainst(f.getSeason(), f.getDate()));
 		row.setQLT_diferencaGolosVisitanteSwitchedVenue(awayTeam.getHomeGoals(f.getSeason(), f.getDate())
 				- awayTeam.getHomeGoalsAgainst(f.getSeason(), f.getDate()));
-		row.setQLT_mediaGolosMarcadosVisitadoSwitchedVenue(percentagensGolosQLTVisitado[2]);
-		row.setQLT_mediaGolosSofridosVisitadoSwitchedVenue(percentagensGolosQLTVisitado[3]);
-		row.setQLT_mediaGolosMarcadosVisitanteSwitchedVenue(percentagensGolosQLTVisitante[4]);
-		row.setQLT_mediaGolosSofridosVisitanteSwitchedVenue(percentagensGolosQLTVisitante[5]);
+		row.setQLT_mediaGolosMarcadosVisitadoSwitchedVenue(percentagensGolosQLTVisitado[4]);
+		row.setQLT_mediaGolosSofridosVisitadoSwitchedVenue(percentagensGolosQLTVisitado[5]);
+		row.setQLT_mediaGolosMarcadosVisitanteSwitchedVenue(percentagensGolosQLTVisitante[2]);
+		row.setQLT_mediaGolosSofridosVisitanteSwitchedVenue(percentagensGolosQLTVisitante[3]);
 		
 		return row;
 	}
