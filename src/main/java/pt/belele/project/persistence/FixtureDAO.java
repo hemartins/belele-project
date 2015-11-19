@@ -95,7 +95,7 @@ public class FixtureDAO extends GenericDAO<Fixture> {
 	public List<Fixture> getH2H(long homeTeamId, long awayTeamId, Date date,
 			int numberOfGames) {
 		Query query = em
-				.createQuery("SELECT f FROM Fixture f WHERE f.homeTeam.id = :homeId OR f.homeTeam.id = :awayId AND f.awayTeam.id = :awayId OR f.awayTeam.id = :homeId AND f.date < :date ORDER BY f.date DESC");
+				.createQuery("SELECT f FROM Fixture f WHERE (f.homeTeam.id = :homeId OR f.homeTeam.id = :awayId) AND (f.awayTeam.id = :awayId OR f.awayTeam.id = :homeId) AND f.date < :date ORDER BY f.date DESC");
 		query.setParameter("homeId", homeTeamId);
 		query.setParameter("awayId", awayTeamId);
 		query.setParameter("date", date);
