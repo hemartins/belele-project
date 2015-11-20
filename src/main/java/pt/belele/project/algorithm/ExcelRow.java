@@ -106,6 +106,7 @@ public class ExcelRow {
 	Integer QLT_numeroJogosVisitado, QLT_numeroJogosVisitante;
 	Double QLT_percentagemResultadoVisitado, QLT_percentagemResultadoVisitante;
 	Double QLT_dificuldadeResultadoVisitado, QLT_dificuldadeResultadoVisitante;
+	Double QLT_dificuldadeJogosVisitado, QLT_dificuldadeJogosVisitante;
 	Double QLT_percentagemResultadoNoIntervaloVisitado, QLT_percentagemResultadoNoIntervaloVisitante;
 	Integer QLT_numeroJogosNoIntervaloVisitado, QLT_numeroJogosNoIntervaloVisitante;
 	Integer QLT_golosMarcadosVisitado, QLT_golosSofridosVisitado, QLT_diferencaGolosVisitado;
@@ -116,6 +117,7 @@ public class ExcelRow {
 	// Venue
 	Integer QLT_numeroJogosVisitadoVenue, QLT_numeroJogosVisitanteVenue;
 	Double QLT_percentagemResultadoVisitadoVenue, QLT_percentagemResultadoVisitanteVenue;
+	Double QLT_dificuldadeJogosVisitadoVenue, QLT_dificuldadeJogosVisitanteVenue;
 	Double QLT_dificuldadeResultadoVisitadoVenue, QLT_dificuldadeResultadoVisitanteVenue;
 	Double QLT_percentagemResultadoNoIntervaloVisitadoVenue, QLT_percentagemResultadoNoIntervaloVisitanteVenue;
 	Integer QLT_numeroJogosNoIntervaloVisitadoVenue, QLT_numeroJogosNoIntervaloVisitanteVenue;
@@ -127,6 +129,7 @@ public class ExcelRow {
 	// Switched Venue
 	Integer QLT_numeroJogosVisitadoSwitchedVenue, QLT_numeroJogosVisitanteSwitchedVenue;
 	Double QLT_percentagemResultadoVisitadoSwitchedVenue, QLT_percentagemResultadoVisitanteSwitchedVenue;
+	Double QLT_dificuldadeJogosVisitadoSwitchedVenue, QLT_dificuldadeJogosVisitanteSwitchedVenue;
 	Double QLT_dificuldadeResultadoVisitadoSwitchedVenue, QLT_dificuldadeResultadoVisitanteSwitchedVenue;
 	Double QLT_percentagemResultadoNoIntervaloVisitadoSwitchedVenue, QLT_percentagemResultadoNoIntervaloVisitanteSwitchedVenue;
 	Integer QLT_numeroJogosNoIntervaloVisitadoSwitchedVenue, QLT_numeroJogosNoIntervaloVisitanteSwitchedVenue;
@@ -139,22 +142,22 @@ public class ExcelRow {
 	//// H2H variables \\\\
 
 	// Overall
-	Double h2h_ratingTemporalResultado;
-	Integer h2h_numeroJogos;
-	Integer h2h_numeroResultados;
-	Double h2h_percentagemResultados;
+	Double H2H_ratingTemporalResultado;
+	Integer H2H_numeroJogos;
+	Integer H2H_numeroResultados;
+	Double H2H_percentagemResultados;
 
 	// Venue
-	Double h2h_ratingTemporalResultadoVenue;
-	Integer h2h_numeroJogosVenue;
-	Integer h2h_numeroResultadosVenue;
-	Double h2h_percentagemResultadosVenue;
+	Double H2H_ratingTemporalResultadoVenue;
+	Integer H2H_numeroJogosVenue;
+	Integer H2H_numeroResultadosVenue;
+	Double H2H_percentagemResultadosVenue;
 
 	// Switched Venue
-	Double h2h_ratingTemporalResultadoSwitchedVenue;
-	Integer h2h_numeroJogosSwitchedVenue;
-	Integer h2h_numeroResultadosSwitchedVenue;
-	Double h2h_percentagemResultadosSwitchedVenue;
+	Double H2H_ratingTemporalResultadoSwitchedVenue;
+	Integer H2H_numeroJogosSwitchedVenue;
+	Integer H2H_numeroResultadosSwitchedVenue;
+	Double H2H_percentagemResultadosSwitchedVenue;
 
 	
 	///////////////////////// Construtor e Getters e Setters \\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -1273,6 +1276,23 @@ public class ExcelRow {
 		QLT_dificuldadeResultadoVisitante = qLT_dificuldadeResultadoVisitante;
 	}
 
+	
+	public Double getQLT_dificuldadeJogosVisitado() {
+		return QLT_dificuldadeJogosVisitado;
+	}
+
+	public void setQLT_dificuldadeJogosVisitado(Double qLT_dificuldadeJogosVisitado) {
+		QLT_dificuldadeJogosVisitado = qLT_dificuldadeJogosVisitado;
+	}
+
+	public Double getQLT_dificuldadeJogosVisitante() {
+		return QLT_dificuldadeJogosVisitante;
+	}
+
+	public void setQLT_dificuldadeJogosVisitante(Double qLT_dificuldadeJogosVisitante) {
+		QLT_dificuldadeJogosVisitante = qLT_dificuldadeJogosVisitante;
+	}
+
 	public Double getQLT_percentagemResultadoNoIntervaloVisitado() {
 		return QLT_percentagemResultadoNoIntervaloVisitado;
 	}
@@ -1407,6 +1427,23 @@ public class ExcelRow {
 
 	public void setQLT_percentagemResultadoVisitadoVenue(Double qLT_percentagemResultadoVisitadoVenue) {
 		QLT_percentagemResultadoVisitadoVenue = qLT_percentagemResultadoVisitadoVenue;
+	}
+	
+
+	public Double getQLT_dificuldadeJogosVisitadoVenue() {
+		return QLT_dificuldadeJogosVisitadoVenue;
+	}
+
+	public void setQLT_dificuldadeJogosVisitadoVenue(Double qLT_dificuldadeJogosVisitadoVenue) {
+		QLT_dificuldadeJogosVisitadoVenue = qLT_dificuldadeJogosVisitadoVenue;
+	}
+
+	public Double getQLT_dificuldadeJogosVisitanteVenue() {
+		return QLT_dificuldadeJogosVisitanteVenue;
+	}
+
+	public void setQLT_dificuldadeJogosVisitanteVenue(Double qLT_dificuldadeJogosVisitanteVenue) {
+		QLT_dificuldadeJogosVisitanteVenue = qLT_dificuldadeJogosVisitanteVenue;
 	}
 
 	public Double getQLT_percentagemResultadoVisitanteVenue() {
@@ -1567,6 +1604,22 @@ public class ExcelRow {
 		return QLT_percentagemResultadoVisitadoSwitchedVenue;
 	}
 
+	public Double getQLT_dificuldadeJogosVisitadoSwitchedVenue() {
+		return QLT_dificuldadeJogosVisitadoSwitchedVenue;
+	}
+
+	public void setQLT_dificuldadeJogosVisitadoSwitchedVenue(Double qLT_dificuldadeJogosVisitadoSwitchedVenue) {
+		QLT_dificuldadeJogosVisitadoSwitchedVenue = qLT_dificuldadeJogosVisitadoSwitchedVenue;
+	}
+
+	public Double getQLT_dificuldadeJogosVisitanteSwitchedVenue() {
+		return QLT_dificuldadeJogosVisitanteSwitchedVenue;
+	}
+
+	public void setQLT_dificuldadeJogosVisitanteSwitchedVenue(Double qLT_dificuldadeJogosVisitanteSwitchedVenue) {
+		QLT_dificuldadeJogosVisitanteSwitchedVenue = qLT_dificuldadeJogosVisitanteSwitchedVenue;
+	}
+
 	public void setQLT_percentagemResultadoVisitadoSwitchedVenue(Double qLT_percentagemResultadoVisitadoSwitchedVenue) {
 		QLT_percentagemResultadoVisitadoSwitchedVenue = qLT_percentagemResultadoVisitadoSwitchedVenue;
 	}
@@ -1714,99 +1767,99 @@ public class ExcelRow {
 	}
 
 	public Double getH2H_ratingTemporalResultado() {
-		return h2h_ratingTemporalResultado;
+		return H2H_ratingTemporalResultado;
 	}
 
 	public void setH2H_ratingTemporalResultado(Double h2h_ratingTemporalResultado) {
-		this.h2h_ratingTemporalResultado = h2h_ratingTemporalResultado;
+		this.H2H_ratingTemporalResultado = h2h_ratingTemporalResultado;
 	}
 
 	public Integer getH2H_numeroJogos() {
-		return h2h_numeroJogos;
+		return H2H_numeroJogos;
 	}
 
 	public void setH2H_numeroJogos(Integer h2h_numeroJogos) {
-		this.h2h_numeroJogos = h2h_numeroJogos;
+		this.H2H_numeroJogos = h2h_numeroJogos;
 	}
 
 	public Integer getH2H_numeroResultados() {
-		return h2h_numeroResultados;
+		return H2H_numeroResultados;
 	}
 
 	public void setH2H_numeroResultados(Integer h2h_numeroResultados) {
-		this.h2h_numeroResultados = h2h_numeroResultados;
+		this.H2H_numeroResultados = h2h_numeroResultados;
 	}
 
 	public Double getH2H_percentagemResultados() {
-		return h2h_percentagemResultados;
+		return H2H_percentagemResultados;
 	}
 
 	public void setH2H_percentagemResultados(Double h2h_percentagemResultados) {
-		this.h2h_percentagemResultados = h2h_percentagemResultados;
+		this.H2H_percentagemResultados = h2h_percentagemResultados;
 	}
 
 	public Double getH2H_ratingTemporalResultadoVenue() {
-		return h2h_ratingTemporalResultadoVenue;
+		return H2H_ratingTemporalResultadoVenue;
 	}
 
 	public void setH2H_ratingTemporalResultadoVenue(Double h2h_ratingTemporalResultadoVenue) {
-		this.h2h_ratingTemporalResultadoVenue = h2h_ratingTemporalResultadoVenue;
+		this.H2H_ratingTemporalResultadoVenue = h2h_ratingTemporalResultadoVenue;
 	}
 
 	public Integer getH2H_numeroJogosVenue() {
-		return h2h_numeroJogosVenue;
+		return H2H_numeroJogosVenue;
 	}
 
 	public void setH2H_numeroJogosVenue(Integer h2h_numeroJogosVenue) {
-		this.h2h_numeroJogosVenue = h2h_numeroJogosVenue;
+		this.H2H_numeroJogosVenue = h2h_numeroJogosVenue;
 	}
 
 	public Integer getH2H_numeroResultadosVenue() {
-		return h2h_numeroResultadosVenue;
+		return H2H_numeroResultadosVenue;
 	}
 
 	public void setH2H_numeroResultadosVenue(Integer h2h_numeroResultadosVenue) {
-		this.h2h_numeroResultadosVenue = h2h_numeroResultadosVenue;
+		this.H2H_numeroResultadosVenue = h2h_numeroResultadosVenue;
 	}
 
 	public Double getH2H_percentagemResultadosVenue() {
-		return h2h_percentagemResultadosVenue;
+		return H2H_percentagemResultadosVenue;
 	}
 
 	public void setH2H_percentagemResultadosVenue(Double h2h_percentagemResultadosVenue) {
-		this.h2h_percentagemResultadosVenue = h2h_percentagemResultadosVenue;
+		this.H2H_percentagemResultadosVenue = h2h_percentagemResultadosVenue;
 	}
 
 	public Double getH2H_ratingTemporalResultadoSwitchedVenue() {
-		return h2h_ratingTemporalResultadoSwitchedVenue;
+		return H2H_ratingTemporalResultadoSwitchedVenue;
 	}
 
 	public void setH2H_ratingTemporalResultadoSwitchedVenue(Double h2h_ratingTemporalResultadoSwitchedVenue) {
-		this.h2h_ratingTemporalResultadoSwitchedVenue = h2h_ratingTemporalResultadoSwitchedVenue;
+		this.H2H_ratingTemporalResultadoSwitchedVenue = h2h_ratingTemporalResultadoSwitchedVenue;
 	}
 
 	public Integer getH2H_numeroJogosSwitchedVenue() {
-		return h2h_numeroJogosSwitchedVenue;
+		return H2H_numeroJogosSwitchedVenue;
 	}
 
 	public void setH2H_numeroJogosSwitchedVenue(Integer h2h_numeroJogosSwitchedVenue) {
-		this.h2h_numeroJogosSwitchedVenue = h2h_numeroJogosSwitchedVenue;
+		this.H2H_numeroJogosSwitchedVenue = h2h_numeroJogosSwitchedVenue;
 	}
 
 	public Integer getH2H_numeroResultadosSwitchedVenue() {
-		return h2h_numeroResultadosSwitchedVenue;
+		return H2H_numeroResultadosSwitchedVenue;
 	}
 
 	public void setH2H_numeroResultadosSwitchedVenue(Integer h2h_numeroResultadosSwitchedVenue) {
-		this.h2h_numeroResultadosSwitchedVenue = h2h_numeroResultadosSwitchedVenue;
+		this.H2H_numeroResultadosSwitchedVenue = h2h_numeroResultadosSwitchedVenue;
 	}
 
 	public Double getH2H_percentagemResultadosSwitchedVenue() {
-		return h2h_percentagemResultadosSwitchedVenue;
+		return H2H_percentagemResultadosSwitchedVenue;
 	}
 
 	public void setH2H_percentagemResultadosSwitchedVenue(Double h2h_percentagemResultadosSwitchedVenue) {
-		this.h2h_percentagemResultadosSwitchedVenue = h2h_percentagemResultadosSwitchedVenue;
+		this.H2H_percentagemResultadosSwitchedVenue = h2h_percentagemResultadosSwitchedVenue;
 	}
 
 }

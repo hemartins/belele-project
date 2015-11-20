@@ -307,6 +307,10 @@ public class WriteToExcel {
 
 		row.createCell(cellIndex++).setCellValue("[QLT] Percentagem de Resultados do Visitante");
 
+		row.createCell(cellIndex++).setCellValue("[QLT] Dificuldade dos Jogos do Visitado");
+
+		row.createCell(cellIndex++).setCellValue("[QLT] Dificuldade dos Jogos do Visitante");
+		
 		row.createCell(cellIndex++).setCellValue("[QLT] Dificuldade dos Resultados do Visitado");
 
 		row.createCell(cellIndex++).setCellValue("[QLT] Dificuldade dos Resultados do Visitante");
@@ -346,6 +350,10 @@ public class WriteToExcel {
 		row.createCell(cellIndex++).setCellValue("[QLT] Percentagem de Resultados do Visitado - VENUE");
 
 		row.createCell(cellIndex++).setCellValue("[QLT] Percentagem de Resultados do Visitante - VENUE");
+		
+		row.createCell(cellIndex++).setCellValue("[QLT] Dificuldade dos Jogos do Visitado - VENUE");
+
+		row.createCell(cellIndex++).setCellValue("[QLT] Dificuldade dos Jogos do Visitante - VENUE");
 
 		row.createCell(cellIndex++).setCellValue("[QLT] Dificuldade dos Resultados do Visitado - VENUE");
 
@@ -386,6 +394,10 @@ public class WriteToExcel {
 		row.createCell(cellIndex++).setCellValue("[QLT] Percentagem de Resultados do Visitado - SWITCHED VENUE");
 
 		row.createCell(cellIndex++).setCellValue("[QLT] Percentagem de Resultados do Visitante - SWITCHED VENUE");
+		
+		row.createCell(cellIndex++).setCellValue("[QLT] Dificuldade dos Jogos do Visitado - SWITCHED VENUE");
+
+		row.createCell(cellIndex++).setCellValue("[QLT] Dificuldade dos Jogos do Visitante - SWITCHED VENUE");
 
 		row.createCell(cellIndex++).setCellValue("[QLT] Dificuldade dos Resultados do Visitado - SWITCHED VENUE");
 
@@ -403,7 +415,7 @@ public class WriteToExcel {
 		
 		row.createCell(cellIndex++).setCellValue("[QLT] Golos Sofridos pelo Visitado - SWITCHED VENUE");
 		
-		row.createCell(cellIndex++).setCellValue("[QLT] Diferençade Golos do Visitado - SWITCHED VENUE");
+		row.createCell(cellIndex++).setCellValue("[QLT] Diferença de Golos do Visitado - SWITCHED VENUE");
 		
 		row.createCell(cellIndex++).setCellValue("[QLT] Golos Marcados pelo Visitante - SWITCHED VENUE");
 		
@@ -720,6 +732,10 @@ public class WriteToExcel {
 			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitado());
 
 			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitante());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeJogosVisitado());
+
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeJogosVisitante());
 
 			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeResultadoVisitado());
 
@@ -761,6 +777,10 @@ public class WriteToExcel {
 
 			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitanteVenue());
 
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeJogosVisitadoVenue());
+
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeJogosVisitanteVenue());
+			
 			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeResultadoVisitadoVenue());
 
 			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeResultadoVisitanteVenue());
@@ -801,6 +821,10 @@ public class WriteToExcel {
 
 			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_percentagemResultadoVisitanteSwitchedVenue());
 
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeJogosVisitadoSwitchedVenue());
+
+			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeJogosVisitanteSwitchedVenue());
+			
 			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeResultadoVisitadoSwitchedVenue());
 
 			row.createCell(cellIndex++).setCellValue(excelrow.getQLT_dificuldadeResultadoVisitanteSwitchedVenue());

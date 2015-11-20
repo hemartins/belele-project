@@ -1401,8 +1401,10 @@ public class Main {
 		row.setQLT_numeroJogosVisitante(awayTeam.getNumberOfFixtures(f, null));
 		row.setQLT_percentagemResultadoVisitado(homeTR.getResultPercentage());
 		row.setQLT_percentagemResultadoVisitante(awayTR.getResultPercentage());
-		row.setQLT_dificuldadeResultadoVisitado(homeTR.getQualityAverage());
-		row.setQLT_dificuldadeResultadoVisitante(awayTR.getQualityAverage());
+		row.setQLT_dificuldadeJogosVisitado(homeTR.getQualityAverage());
+		row.setQLT_dificuldadeJogosVisitante(awayTR.getQualityAverage());
+		row.setQLT_dificuldadeResultadoVisitado(homeTR.getResultDificulty());
+		row.setQLT_dificuldadeResultadoVisitante(awayTR.getResultInvervalDificulty());
 		row.setQLT_percentagemResultadoNoIntervaloVisitado(homeTR.getResultIntervalPercentage());
 		row.setQLT_percentagemResultadoNoIntervaloVisitante(awayTR.getResultIntervalPercentage());
 		row.setQLT_numeroJogosNoIntervaloVisitado(homeTR.getResultIntervalGames());
@@ -1454,8 +1456,10 @@ public class Main {
 		row.setQLT_numeroJogosVisitanteVenue(awayTeam.getNumberOfFixtures(f, Venue.AWAY)); // CORRIGIR
 		row.setQLT_percentagemResultadoVisitadoVenue(homeTR.getResultPercentage());
 		row.setQLT_percentagemResultadoVisitanteVenue(awayTR.getResultPercentage());
-		row.setQLT_dificuldadeResultadoVisitadoVenue(homeTR.getQualityAverage());
-		row.setQLT_dificuldadeResultadoVisitanteVenue(awayTR.getQualityAverage());
+		row.setQLT_dificuldadeJogosVisitadoVenue(homeTR.getQualityAverage());
+		row.setQLT_dificuldadeJogosVisitanteVenue(awayTR.getQualityAverage());
+		row.setQLT_dificuldadeResultadoVisitadoVenue(homeTR.getResultDificulty());
+		row.setQLT_dificuldadeResultadoVisitanteVenue(awayTR.getResultInvervalDificulty());
 		row.setQLT_percentagemResultadoNoIntervaloVisitadoVenue(homeTR.getResultIntervalPercentage());
 		row.setQLT_percentagemResultadoNoIntervaloVisitanteVenue(awayTR.getResultIntervalPercentage());
 		row.setQLT_numeroJogosNoIntervaloVisitadoVenue(homeTR.getResultIntervalGames());
@@ -1506,8 +1510,10 @@ public class Main {
 		row.setQLT_numeroJogosVisitanteSwitchedVenue(awayTeam.getNumberOfFixtures(f, Venue.HOME)); // CORRIGIR
 		row.setQLT_percentagemResultadoVisitadoSwitchedVenue(homeTR.getResultPercentage());
 		row.setQLT_percentagemResultadoVisitanteSwitchedVenue(awayTR.getResultPercentage());
-		row.setQLT_dificuldadeResultadoVisitadoSwitchedVenue(homeTR.getQualityAverage());
-		row.setQLT_dificuldadeResultadoVisitanteSwitchedVenue(awayTR.getQualityAverage());
+		row.setQLT_dificuldadeJogosVisitadoSwitchedVenue(homeTR.getQualityAverage());
+		row.setQLT_dificuldadeJogosVisitanteSwitchedVenue(awayTR.getQualityAverage());
+		row.setQLT_dificuldadeResultadoVisitadoSwitchedVenue(homeTR.getResultDificulty());
+		row.setQLT_dificuldadeResultadoVisitanteSwitchedVenue(awayTR.getResultInvervalDificulty());
 		row.setQLT_percentagemResultadoNoIntervaloVisitadoSwitchedVenue(homeTR.getResultIntervalPercentage());
 		row.setQLT_percentagemResultadoNoIntervaloVisitanteSwitchedVenue(awayTR.getResultIntervalPercentage());
 		row.setQLT_numeroJogosNoIntervaloVisitadoSwitchedVenue(homeTR.getResultIntervalGames());

@@ -138,7 +138,7 @@ public class ExcelColumnsCalculation {
 		Double opponentQuality = ecc.getTeamQuality(nextFixture.getSeason(), nextFixture.getDate());
 
 		for (Fixture f : fixtures) {
-			
+
 			if (f.getHomeTeam().equals(team)) {
 				homeGames++;
 
@@ -159,7 +159,7 @@ public class ExcelColumnsCalculation {
 				}
 			} else {
 				awayGames++;
-				
+
 				ExcelColumnsCalculation excc = new ExcelColumnsCalculation(f.getHomeTeam(), em);
 				Double fixtureOpponentQuality = excc.getTeamQuality(f.getSeason(), f.getDate());
 
@@ -171,7 +171,7 @@ public class ExcelColumnsCalculation {
 						resultTypeIntervalAway++;
 					}
 				}
-				
+
 				if (f.getResult().getResultType().equals(type)) {
 					resultTypeAway++;
 				}
@@ -186,7 +186,6 @@ public class ExcelColumnsCalculation {
 		percentages[2] = percentageIntervalHome;
 		percentageIntervalAway = resultTypeIntervalAway / awayIntervalGames;
 		percentages[3] = percentageIntervalAway;
-		
 
 		return percentages;
 	}
@@ -387,7 +386,7 @@ public class ExcelColumnsCalculation {
 		}
 		return new H2H(resultTypeRating, nextFixture.getH2h().size(), numberResults);
 	}
-	
+
 	public H2H getH2HRatingVenue(Fixture nextFixture, List<Double> ratings, Venue venue, ResultType type) {
 		double rating = 0;
 		double ratingSum = 0;
@@ -419,7 +418,7 @@ public class ExcelColumnsCalculation {
 		}
 		return new H2H(resultTypeRating, nextFixture.getH2HVenue().size(), numberResults);
 	}
-	
+
 	public H2H getH2HRatingSwitchedVenue(Fixture nextFixture, List<Double> ratings, Venue venue, ResultType type) {
 		double rating = 0;
 		double ratingSum = 0;
@@ -451,70 +450,75 @@ public class ExcelColumnsCalculation {
 		}
 		return new H2H(resultTypeRating, nextFixture.getH2HSwitchedVenue().size(), numberResults);
 	}
-	
-//	public H2H getH2HRating(Fixture nextFixture, List<Double> ratings, Venue venue, ResultType type) {
-//		double rating = 0;
-//		double ratingSum = 0;
-//		double resultTypeRating = 0;
-//		int numberResults = 0;
-//		double ratingVenue = 0;
-//		double ratingSumVenue = 0;
-//		double resultTypeRatingVenue = 0;
-//		int numberResultsVenue = 0;
-//		double ratingSwitchedVenue = 0;
-//		double ratingSumSwitchedVenue = 0;
-//		double resultTypeRatingSwitchedVenue = 0;
-//		int numberResultsSwitchedVenue = 0;
-//		int timeInYears = 0;
-//		if (nextFixture.getH2h() != null) {
-//			if (!nextFixture.getH2h().isEmpty()) {
-//				for (Fixture f : nextFixture.getH2h()) {
-//					timeInYears = nextFixture.getSeason().getYear() - f.getSeason().getYear();
-//					if (timeInYears >= ratings.size())
-//						continue;
-//
-//					ratingSum += ratings.get(timeInYears);
-//					if (venue == Venue.HOME) {
-//						if (f.getHomeTeam() == nextFixture.getHomeTeam()) {
-//							if (getResultType(f).equals(type)) {
-//								ratingVenue += ratings.get(timeInYears);
-//								numberResultsVenue++;
-//							} else {
-//								ratingSwitchedVenue += ratings.get(timeInYears);
-//								numberResultsSwitchedVenue++;
-//							}
-//						}
-//					} else if (venue == Venue.AWAY) {
-//						if (f.getAwayTeam() == nextFixture.getAwayTeam()) {
-//							if (getResultType(f).equals(type)) {
-//								rating += ratings.get(timeInYears);
-//								numberResults++;
-//							} else {
-//								ratingSwitchedVenue += ratings.get(timeInYears);
-//								numberResultsSwitchedVenue++;
-//							}
-//						}
-//					} else {
-//						if (getResultType(f).equals(type)) {
-//							rating += ratings.get(timeInYears);
-//							numberResults++;
-//						}
-//					}
-//				}
-//
-//				if (rating != 0) {
-//					resultTypeRating = rating / ratingSum;
-//					resultTypeRatingVenue = ratingVenue / ratingSumVenue;
-//					resultTypeRatingSwitchedVenue = ratingSwitchedVenue / ratingSumSwitchedVenue;
-//				} else {
-//					resultTypeRating = 0;
-//				}
-//			}
-//		}
-//		return new H2H(resultTypeRating, nextFixture.getH2h().size(), numberResults, resultTypeRatingVenue,
-//				nextFixture.getH2h().size(), numberResultsVenue, resultTypeRatingSwitchedVenue,
-//				nextFixture.getH2h().size(), numberResultsSwitchedVenue);
-//	}
+
+	// public H2H getH2HRating(Fixture nextFixture, List<Double> ratings, Venue
+	// venue, ResultType type) {
+	// double rating = 0;
+	// double ratingSum = 0;
+	// double resultTypeRating = 0;
+	// int numberResults = 0;
+	// double ratingVenue = 0;
+	// double ratingSumVenue = 0;
+	// double resultTypeRatingVenue = 0;
+	// int numberResultsVenue = 0;
+	// double ratingSwitchedVenue = 0;
+	// double ratingSumSwitchedVenue = 0;
+	// double resultTypeRatingSwitchedVenue = 0;
+	// int numberResultsSwitchedVenue = 0;
+	// int timeInYears = 0;
+	// if (nextFixture.getH2h() != null) {
+	// if (!nextFixture.getH2h().isEmpty()) {
+	// for (Fixture f : nextFixture.getH2h()) {
+	// timeInYears = nextFixture.getSeason().getYear() -
+	// f.getSeason().getYear();
+	// if (timeInYears >= ratings.size())
+	// continue;
+	//
+	// ratingSum += ratings.get(timeInYears);
+	// if (venue == Venue.HOME) {
+	// if (f.getHomeTeam() == nextFixture.getHomeTeam()) {
+	// if (getResultType(f).equals(type)) {
+	// ratingVenue += ratings.get(timeInYears);
+	// numberResultsVenue++;
+	// } else {
+	// ratingSwitchedVenue += ratings.get(timeInYears);
+	// numberResultsSwitchedVenue++;
+	// }
+	// }
+	// } else if (venue == Venue.AWAY) {
+	// if (f.getAwayTeam() == nextFixture.getAwayTeam()) {
+	// if (getResultType(f).equals(type)) {
+	// rating += ratings.get(timeInYears);
+	// numberResults++;
+	// } else {
+	// ratingSwitchedVenue += ratings.get(timeInYears);
+	// numberResultsSwitchedVenue++;
+	// }
+	// }
+	// } else {
+	// if (getResultType(f).equals(type)) {
+	// rating += ratings.get(timeInYears);
+	// numberResults++;
+	// }
+	// }
+	// }
+	//
+	// if (rating != 0) {
+	// resultTypeRating = rating / ratingSum;
+	// resultTypeRatingVenue = ratingVenue / ratingSumVenue;
+	// resultTypeRatingSwitchedVenue = ratingSwitchedVenue /
+	// ratingSumSwitchedVenue;
+	// } else {
+	// resultTypeRating = 0;
+	// }
+	// }
+	// }
+	// return new H2H(resultTypeRating, nextFixture.getH2h().size(),
+	// numberResults, resultTypeRatingVenue,
+	// nextFixture.getH2h().size(), numberResultsVenue,
+	// resultTypeRatingSwitchedVenue,
+	// nextFixture.getH2h().size(), numberResultsSwitchedVenue);
+	// }
 
 	public TeamRating getResultPercentage(Fixture nextFixture, Venue venue, ResultType type, Double interval,
 			Integer numerberOfGames) {
@@ -526,56 +530,60 @@ public class ExcelColumnsCalculation {
 		Double opponentSum = 0.0;
 		Double intervalSum = 0.0;
 		Double resultIntervalSum = 0.0;
+		Double resultDificultSum = 0.0;
+		Double intervalResultDificultSum = 0.0;
 		ExcelColumnsCalculation tc;
 		ExcelColumnsCalculation tec;
-		
-//		if (venue == Venue.HOME){
-//			tc = new ExcelColumnsCalculation(nextFixture.getAwayTeam(), em);
-//		}
-//		else if (venue == Venue.AWAY){
-//			tc = new ExcelColumnsCalculation(nextFixture.getHomeTeam(), em);
-//		}
-//		else{
-			if (nextFixture.getHomeTeam() == team){
-				tc = new ExcelColumnsCalculation(nextFixture.getAwayTeam(), em);
-			}
-			else {
-				tc = new ExcelColumnsCalculation(nextFixture.getHomeTeam(), em);
-			}
-//		}
-		
+
+		// if (venue == Venue.HOME){
+		// tc = new ExcelColumnsCalculation(nextFixture.getAwayTeam(), em);
+		// }
+		// else if (venue == Venue.AWAY){
+		// tc = new ExcelColumnsCalculation(nextFixture.getHomeTeam(), em);
+		// }
+		// else{
+		if (nextFixture.getHomeTeam() == team) {
+			tc = new ExcelColumnsCalculation(nextFixture.getAwayTeam(), em);
+		} else {
+			tc = new ExcelColumnsCalculation(nextFixture.getHomeTeam(), em);
+		}
+		// }
+
 		Double opponentQuality = tc.getTeamQuality(s, nextFixture.getDate());
 		Double inferiorLimit = opponentQuality - interval;
 		Double superiorLimit = opponentQuality + interval;
 
 		for (Fixture f : fixtures) {
-//			if (venue == Venue.HOME){
-//				tec = new ExcelColumnsCalculation(f.getAwayTeam(), em);
-//			}
-//			else if (venue == Venue.AWAY){
-//				tec = new ExcelColumnsCalculation(f.getHomeTeam(), em);
-//			}
-//			else{
-				if (f.getHomeTeam() == team){
-					tec = new ExcelColumnsCalculation(f.getAwayTeam(), em);
-				}
-				else {
-					tec = new ExcelColumnsCalculation(f.getHomeTeam(), em);
-				}
-//			}
+			// if (venue == Venue.HOME){
+			// tec = new ExcelColumnsCalculation(f.getAwayTeam(), em);
+			// }
+			// else if (venue == Venue.AWAY){
+			// tec = new ExcelColumnsCalculation(f.getHomeTeam(), em);
+			// }
+			// else{
+			if (f.getHomeTeam() == team) {
+				tec = new ExcelColumnsCalculation(f.getAwayTeam(), em);
+			} else {
+				tec = new ExcelColumnsCalculation(f.getHomeTeam(), em);
+			}
+			// }
 			Double fixtureOpponentQuality = tec.getTeamQuality(s, nextFixture.getDate());
 
 			if (fixtureOpponentQuality != null) {
 
-				if (getResultType(f).equals(type))
+				if (getResultType(f).equals(type)) {
 					resultSum++;
+					resultDificultSum += fixtureOpponentQuality;
+				}
 
 				if (interval != null) {
 					if (fixtureOpponentQuality >= inferiorLimit && fixtureOpponentQuality <= superiorLimit) {
 						intervalSum++;
+						intervalResultDificultSum += fixtureOpponentQuality;
 
 						if (getResultType(f).equals(type))
 							resultIntervalSum++;
+
 					}
 				}
 
@@ -585,7 +593,9 @@ public class ExcelColumnsCalculation {
 		}
 		int size = fixtures.size();
 		return new TeamRating(size > 0 ? resultSum / size : 0, size > 0 ? opponentSum / size : 0,
-				intervalSum > 0 ? resultIntervalSum / intervalSum : 0, intervalSum.intValue());
+				intervalSum > 0 ? resultIntervalSum / intervalSum : 0, intervalSum.intValue(),
+				resultSum > 0 ? resultDificultSum / resultSum : 0,
+				resultIntervalSum > 0 ? intervalResultDificultSum / resultIntervalSum : 0);
 	}
 
 	public Integer getNumberOfFixtures(Fixture nextFixture, Venue venue) {
