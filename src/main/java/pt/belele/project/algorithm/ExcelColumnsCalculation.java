@@ -529,38 +529,40 @@ public class ExcelColumnsCalculation {
 		ExcelColumnsCalculation tc;
 		ExcelColumnsCalculation tec;
 		
-		if (venue == Venue.HOME){
-			tc = new ExcelColumnsCalculation(nextFixture.getAwayTeam(), em);
-		}
-		else if (venue == Venue.AWAY){
-			tc = new ExcelColumnsCalculation(nextFixture.getHomeTeam(), em);
-		}
-		else{
+//		if (venue == Venue.HOME){
+//			tc = new ExcelColumnsCalculation(nextFixture.getAwayTeam(), em);
+//		}
+//		else if (venue == Venue.AWAY){
+//			tc = new ExcelColumnsCalculation(nextFixture.getHomeTeam(), em);
+//		}
+//		else{
 			if (nextFixture.getHomeTeam() == team){
 				tc = new ExcelColumnsCalculation(nextFixture.getAwayTeam(), em);
 			}
 			else {
 				tc = new ExcelColumnsCalculation(nextFixture.getHomeTeam(), em);
 			}
-		}
+//		}
 		
 		Double opponentQuality = tc.getTeamQuality(s, nextFixture.getDate());
+		Double inferiorLimit = opponentQuality - interval;
+		Double superiorLimit = opponentQuality + interval;
 
 		for (Fixture f : fixtures) {
-			if (venue == Venue.HOME){
-				tec = new ExcelColumnsCalculation(f.getAwayTeam(), em);
-			}
-			else if (venue == Venue.AWAY){
-				tec = new ExcelColumnsCalculation(f.getHomeTeam(), em);
-			}
-			else{
+//			if (venue == Venue.HOME){
+//				tec = new ExcelColumnsCalculation(f.getAwayTeam(), em);
+//			}
+//			else if (venue == Venue.AWAY){
+//				tec = new ExcelColumnsCalculation(f.getHomeTeam(), em);
+//			}
+//			else{
 				if (f.getHomeTeam() == team){
 					tec = new ExcelColumnsCalculation(f.getAwayTeam(), em);
 				}
 				else {
 					tec = new ExcelColumnsCalculation(f.getHomeTeam(), em);
 				}
-			}
+//			}
 			Double fixtureOpponentQuality = tec.getTeamQuality(s, nextFixture.getDate());
 
 			if (fixtureOpponentQuality != null) {
@@ -569,8 +571,7 @@ public class ExcelColumnsCalculation {
 					resultSum++;
 
 				if (interval != null) {
-					if (opponentQuality + interval >= fixtureOpponentQuality
-							&& opponentQuality - interval <= fixtureOpponentQuality) {
+					if (fixtureOpponentQuality >= inferiorLimit && fixtureOpponentQuality <= superiorLimit) {
 						intervalSum++;
 
 						if (getResultType(f).equals(type))
