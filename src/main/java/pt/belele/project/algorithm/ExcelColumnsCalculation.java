@@ -190,13 +190,34 @@ public class ExcelColumnsCalculation {
 			}
 		}
 
-		percentageHomeTeamCasa = resultTypeHomeTeamCasa / homeGames;
+		if(homeGames == 0){
+			percentageHomeTeamCasa = 0.0;
+		}
+		else{
+			percentageHomeTeamCasa = resultTypeHomeTeamCasa / homeGames;
+		}
+		if(awayGames == 0){
+			percentageAwayTeamFora = 0.0;
+		}
+		else{
+			percentageAwayTeamFora = resultTypeAwayTeamFora / awayGames;
+		}
+		if(homeIntervalGames == 0){
+			percentageIntervalHomeTeamCasa = 0.0;
+		}
+		else{
+			percentageIntervalHomeTeamCasa = resultTypeIntervalHomeTeamCasa / homeIntervalGames;
+		}
+		if(awayIntervalGames == 0){
+			percentageIntervalAwayTeamFora = 0.0;
+		}
+		else{
+			percentageIntervalAwayTeamFora = resultTypeIntervalAwayTeamFora / awayIntervalGames;
+		}
+		
 		percentages[0] = percentageHomeTeamCasa;
-		percentageAwayTeamFora = resultTypeAwayTeamFora / awayGames;
 		percentages[1] = percentageAwayTeamFora;
-		percentageIntervalHomeTeamCasa = resultTypeIntervalHomeTeamCasa / homeIntervalGames;
 		percentages[2] = percentageIntervalHomeTeamCasa;
-		percentageIntervalAwayTeamFora = resultTypeIntervalAwayTeamFora / awayIntervalGames;
 		percentages[3] = percentageIntervalAwayTeamFora;
 
 		return percentages;
@@ -739,18 +760,34 @@ public class ExcelColumnsCalculation {
 
 		nrGoalsScoredTotal = nrGoalsScoredHome + nrGoalsScoredAway;
 		nrGoalsConcededTotal = nrGoalsConcededHome + nrGoalsConcededAway;
-
-		avgGoalsScoredHome = nrGoalsScoredHome / nrGamesHome;
-
-		avgGoalsConcededHome = nrGoalsConcededHome / nrGamesHome;
-
-		avgGoalsScoredAway = nrGoalsScoredAway / nrGamesAway;
-
-		avgGoalsConcededAway = nrGoalsConcededAway / nrGamesAway;
-
-		avgGoalsScoredTotal = nrGoalsScoredTotal / fixtures.size();
-
-		avgGoalsConcededTotal = nrGoalsConcededTotal / fixtures.size();
+		
+		if (nrGamesHome == 0){
+			avgGoalsScoredHome = 0.0;
+			avgGoalsConcededHome = 0.0;
+		}
+		else{
+			avgGoalsScoredHome = nrGoalsScoredHome / nrGamesHome;
+			avgGoalsConcededHome = nrGoalsConcededHome / nrGamesHome;
+		}
+		
+		if (nrGamesAway == 0){
+			avgGoalsScoredAway = 0.0;
+			avgGoalsConcededAway = 0.0;
+		}
+		else{
+			avgGoalsScoredAway = nrGoalsScoredAway / nrGamesAway;
+			avgGoalsConcededAway = nrGoalsConcededAway / nrGamesAway;
+		}
+		
+		if (fixtures.size() == 0){
+			avgGoalsScoredTotal = 0.0;
+			avgGoalsConcededTotal = 0.0;
+		}
+		else{
+			avgGoalsScoredTotal = nrGoalsScoredTotal / fixtures.size();
+			avgGoalsConcededTotal = nrGoalsConcededTotal / fixtures.size();
+		}
+		
 
 		avgGoalsFR[0] = avgGoalsScoredTotal;
 

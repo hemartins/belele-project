@@ -190,7 +190,6 @@ public class WriteToExcel {
 		row.createCell(cellIndex++).setCellValue("[FR] Percentagem de Resultados no Intervalo do Visitado Fora");
 
 		row.createCell(cellIndex++).setCellValue("[FR] Percentagem de Resultados no Intervalo do Visitante em Casa");
-
 		
 		row.createCell(cellIndex++).setCellValue("[FR] Percentagem de Resultados no Intervalo do Visitado");
 
