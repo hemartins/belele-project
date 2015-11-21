@@ -179,6 +179,19 @@ public class WriteToExcel {
 
 		row.createCell(cellIndex++).setCellValue("[FR] Percentagem de Resultados do Visitante Fora");
 		
+		row.createCell(cellIndex++).setCellValue("[FR] Percentagem de Resultados do Visitado Fora");
+
+		row.createCell(cellIndex++).setCellValue("[FR] Percentagem de Resultados do Visitante em Casa");
+		
+		row.createCell(cellIndex++).setCellValue("[FR] Percentagem de Resultados no Intervalo do Visitado em Casa");
+
+		row.createCell(cellIndex++).setCellValue("[FR] Percentagem de Resultados no Intervalo do Visitante Fora");
+		
+		row.createCell(cellIndex++).setCellValue("[FR] Percentagem de Resultados no Intervalo do Visitado Fora");
+
+		row.createCell(cellIndex++).setCellValue("[FR] Percentagem de Resultados no Intervalo do Visitante em Casa");
+
+		
 		row.createCell(cellIndex++).setCellValue("[FR] Percentagem de Resultados no Intervalo do Visitado");
 
 		row.createCell(cellIndex++).setCellValue("[FR] Percentagem de Resultados no Intervalo do Visitante");
@@ -202,6 +215,47 @@ public class WriteToExcel {
 		row.createCell(cellIndex++).setCellValue("[FR] Média de Golos Marcados do Visitante");
 		
 		row.createCell(cellIndex++).setCellValue("[FR] Média de Golos Sofridos do Visitante");
+		
+		row.createCell(cellIndex++).setCellValue("[FR] Golos Marcados pelo Visitado em Casa");
+
+		row.createCell(cellIndex++).setCellValue("[FR] Golos Sofridos pelo Visitado em Casa");
+		
+		row.createCell(cellIndex++).setCellValue("[FR] Diferença de Golos do Visitado em Casa");
+		
+		row.createCell(cellIndex++).setCellValue("[FR] Golos Marcados pelo Visitante Fora");
+
+		row.createCell(cellIndex++).setCellValue("[FR] Golos Sofridos pelo Visitante Fora");
+		
+		row.createCell(cellIndex++).setCellValue("[FR] Diferença de Golos do Visitante Fora");
+		
+		row.createCell(cellIndex++).setCellValue("[FR] Média de Golos Marcados do Visitado em Casa");
+		
+		row.createCell(cellIndex++).setCellValue("[FR] Média de Golos Sofridos do Visitado em Casa");
+		
+		row.createCell(cellIndex++).setCellValue("[FR] Média de Golos Marcados do Visitante Fora");
+		
+		row.createCell(cellIndex++).setCellValue("[FR] Média de Golos Sofridos do Visitante Fora");
+		
+		row.createCell(cellIndex++).setCellValue("[FR] Golos Marcados pelo Visitado Fora");
+
+		row.createCell(cellIndex++).setCellValue("[FR] Golos Sofridos pelo Visitado Fora");
+		
+		row.createCell(cellIndex++).setCellValue("[FR] Diferença de Golos do Visitado Fora");
+		
+		row.createCell(cellIndex++).setCellValue("[FR] Golos Marcados pelo Visitante em Casa");
+
+		row.createCell(cellIndex++).setCellValue("[FR] Golos Sofridos pelo Visitante em Casa");
+		
+		row.createCell(cellIndex++).setCellValue("[FR] Diferença de Golos do Visitante em Casa");
+		
+		row.createCell(cellIndex++).setCellValue("[FR] Média de Golos Marcados do Visitado Fora");
+		
+		row.createCell(cellIndex++).setCellValue("[FR] Média de Golos Sofridos do Visitado Fora");
+		
+		row.createCell(cellIndex++).setCellValue("[FR] Média de Golos Marcados do Visitante em Casa");
+		
+		row.createCell(cellIndex++).setCellValue("[FR] Média de Golos Sofridos do Visitante em Casa");
+
 		
 		row.createCell(cellIndex++).setCellValue("[FR] Dificuldade do Visitado - VENUE");
 
@@ -605,6 +659,18 @@ public class WriteToExcel {
 
 			row.createCell(cellIndex++).setCellValue(excelrow.getFR_percentagemResultadoVisitanteFora());
 			
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_percentagemResultadoVisitadoFora());
+
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_percentagemResultadoVisitanteCasa());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_percentagemResultadoNoIntervaloVisitadoCasa());
+
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_percentagemResultadoNoIntervaloVisitanteFora());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_percentagemResultadoNoIntervaloVisitadoFora());
+
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_percentagemResultadoNoIntervaloVisitanteCasa());
+			
 			row.createCell(cellIndex++).setCellValue(excelrow.getFR_percentagemResultadoNoIntervaloVisitado());
 
 			row.createCell(cellIndex++).setCellValue(excelrow.getFR_percentagemResultadoNoIntervaloVisitante());
@@ -628,6 +694,47 @@ public class WriteToExcel {
 			row.createCell(cellIndex++).setCellValue(excelrow.getFR_mediaGolosMarcadosVisitante());
 			
 			row.createCell(cellIndex++).setCellValue(excelrow.getFR_mediaGolosSofridosVisitante());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_golosMarcadosVisitadoCasa());
+
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_golosSofridosVisitadoCasa());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_diferencaGolosVisitadoCasa());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_golosMarcadosVisitanteFora());
+
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_golosSofridosVisitanteFora());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_diferencaGolosVisitanteFora());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_mediaGolosMarcadosVisitadoCasa());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_mediaGolosSofridosVisitadoCasa());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_mediaGolosMarcadosVisitanteFora());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_mediaGolosSofridosVisitanteFora());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_golosMarcadosVisitadoFora());
+
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_golosSofridosVisitadoFora());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_diferencaGolosVisitadoFora());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_golosMarcadosVisitanteCasa());
+
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_golosSofridosVisitanteCasa());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_diferencaGolosVisitanteCasa());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_mediaGolosMarcadosVisitadoFora());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_mediaGolosSofridosVisitadoFora());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_mediaGolosMarcadosVisitanteCasa());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_mediaGolosSofridosVisitanteCasa());
+
 			
 			row.createCell(cellIndex++).setCellValue(excelrow.getFR_dificuldadeVisitadoVenue());
 

@@ -62,13 +62,29 @@ public class ExcelRow {
 	Integer FR_numeroResultadosNoIntervaloVisitado, FR_numeroResultadosNoIntervaloVisitante;
 	Double FR_percentagemResultadoVisitado, FR_percentagemResultadoVisitante;
 	Double FR_percentagemResultadoVisitadoCasa, FR_percentagemResultadoVisitanteFora;
+	Double FR_percentagemResultadoVisitadoFora, FR_percentagemResultadoVisitanteCasa;
 	Double FR_percentagemResultadoNoIntervaloVisitado, FR_percentagemResultadoNoIntervaloVisitante;
 	Double FR_percentagemResultadoNoIntervaloVisitadoCasa, FR_percentagemResultadoNoIntervaloVisitanteFora;
+	Double FR_percentagemResultadoNoIntervaloVisitadoFora, FR_percentagemResultadoNoIntervaloVisitanteCasa;
 	Integer FR_numeroJogosVisitadoCasa, FR_numeroJogosVisitanteFora;
-	Double FR_golosMarcadosVisitado, FR_golosSofridosVisitado, FR_diferencaGolosVisitado;
-	Double FR_golosMarcadosVisitante, FR_golosSofridosVisitante, FR_diferencaGolosVisitante;
+	Integer FR_golosMarcadosVisitado, FR_golosSofridosVisitado;
+	Double FR_diferencaGolosVisitado;
+	Integer FR_golosMarcadosVisitante, FR_golosSofridosVisitante;
+	Double FR_diferencaGolosVisitante;
 	Double FR_mediaGolosMarcadosVisitado, FR_mediaGolosSofridosVisitado;
 	Double FR_mediaGolosMarcadosVisitante, FR_mediaGolosSofridosVisitante;
+	Integer FR_golosMarcadosVisitadoCasa, FR_golosSofridosVisitadoCasa;
+	Double FR_diferencaGolosVisitadoCasa;
+	Integer FR_golosMarcadosVisitanteFora, FR_golosSofridosVisitanteFora;
+	Double FR_diferencaGolosVisitanteFora;
+	Double FR_mediaGolosMarcadosVisitadoCasa, FR_mediaGolosSofridosVisitadoCasa;
+	Double FR_mediaGolosMarcadosVisitanteFora, FR_mediaGolosSofridosVisitanteFora;
+	Integer FR_golosMarcadosVisitadoFora, FR_golosSofridosVisitadoFora;
+	Double FR_diferencaGolosVisitadoFora;
+	Integer FR_golosMarcadosVisitanteCasa, FR_golosSofridosVisitanteCasa;
+	Double FR_diferencaGolosVisitanteCasa;
+	Double FR_mediaGolosMarcadosVisitadoFora, FR_mediaGolosSofridosVisitadoFora;
+	Double FR_mediaGolosMarcadosVisitanteCasa, FR_mediaGolosSofridosVisitanteCasa;
 
 	// Venue
 	Double FR_dificuldadeVisitadoVenue, FR_dificuldadeVisitanteVenue;
@@ -706,6 +722,22 @@ public class ExcelRow {
 		FR_percentagemResultadoVisitanteFora = fR_percentagemResultadoVisitanteFora;
 	}
 
+	public Double getFR_percentagemResultadoVisitadoFora() {
+		return FR_percentagemResultadoVisitadoFora;
+	}
+
+	public void setFR_percentagemResultadoVisitadoFora(Double fR_percentagemResultadoVisitadoFora) {
+		FR_percentagemResultadoVisitadoFora = fR_percentagemResultadoVisitadoFora;
+	}
+
+	public Double getFR_percentagemResultadoVisitanteCasa() {
+		return FR_percentagemResultadoVisitanteCasa;
+	}
+
+	public void setFR_percentagemResultadoVisitanteCasa(Double fR_percentagemResultadoVisitanteCasa) {
+		FR_percentagemResultadoVisitanteCasa = fR_percentagemResultadoVisitanteCasa;
+	}
+
 	public Double getFR_percentagemResultadoNoIntervaloVisitado() {
 		return FR_percentagemResultadoNoIntervaloVisitado;
 	}
@@ -740,6 +772,22 @@ public class ExcelRow {
 		FR_percentagemResultadoNoIntervaloVisitanteFora = fR_percentagemResultadoNoIntervaloVisitanteFora;
 	}
 
+	public Double getFR_percentagemResultadoNoIntervaloVisitadoFora() {
+		return FR_percentagemResultadoNoIntervaloVisitadoFora;
+	}
+
+	public void setFR_percentagemResultadoNoIntervaloVisitadoFora(Double fR_percentagemResultadoNoIntervaloVisitadoFora) {
+		FR_percentagemResultadoNoIntervaloVisitadoFora = fR_percentagemResultadoNoIntervaloVisitadoFora;
+	}
+
+	public Double getFR_percentagemResultadoNoIntervaloVisitanteCasa() {
+		return FR_percentagemResultadoNoIntervaloVisitanteCasa;
+	}
+
+	public void setFR_percentagemResultadoNoIntervaloVisitanteCasa(Double fR_percentagemResultadoNoIntervaloVisitanteCasa) {
+		FR_percentagemResultadoNoIntervaloVisitanteCasa = fR_percentagemResultadoNoIntervaloVisitanteCasa;
+	}
+
 	public Integer getFR_numeroJogosVisitadoCasa() {
 		return FR_numeroJogosVisitadoCasa;
 	}
@@ -756,19 +804,19 @@ public class ExcelRow {
 		FR_numeroJogosVisitanteFora = fR_numeroJogosVisitanteFora;
 	}
 
-	public Double getFR_golosMarcadosVisitado() {
+	public Integer getFR_golosMarcadosVisitado() {
 		return FR_golosMarcadosVisitado;
 	}
 
-	public void setFR_golosMarcadosVisitado(Double percentagensGolosFRVisitado) {
+	public void setFR_golosMarcadosVisitado(Integer percentagensGolosFRVisitado) {
 		FR_golosMarcadosVisitado = percentagensGolosFRVisitado;
 	}
 
-	public Double getFR_golosSofridosVisitado() {
+	public Integer getFR_golosSofridosVisitado() {
 		return FR_golosSofridosVisitado;
 	}
 
-	public void setFR_golosSofridosVisitado(Double fR_golosSofridosVisitado) {
+	public void setFR_golosSofridosVisitado(Integer fR_golosSofridosVisitado) {
 		FR_golosSofridosVisitado = fR_golosSofridosVisitado;
 	}
 
@@ -780,19 +828,19 @@ public class ExcelRow {
 		FR_diferencaGolosVisitado = fR_diferencaGolosVisitado;
 	}
 
-	public Double getFR_golosMarcadosVisitante() {
+	public Integer getFR_golosMarcadosVisitante() {
 		return FR_golosMarcadosVisitante;
 	}
 
-	public void setFR_golosMarcadosVisitante(Double fR_golosMarcadosVisitante) {
+	public void setFR_golosMarcadosVisitante(Integer fR_golosMarcadosVisitante) {
 		FR_golosMarcadosVisitante = fR_golosMarcadosVisitante;
 	}
 
-	public Double getFR_golosSofridosVisitante() {
+	public Integer getFR_golosSofridosVisitante() {
 		return FR_golosSofridosVisitante;
 	}
 
-	public void setFR_golosSofridosVisitante(Double fR_golosSofridosVisitante) {
+	public void setFR_golosSofridosVisitante(Integer fR_golosSofridosVisitante) {
 		FR_golosSofridosVisitante = fR_golosSofridosVisitante;
 	}
 
@@ -834,6 +882,166 @@ public class ExcelRow {
 
 	public void setFR_mediaGolosSofridosVisitante(Double fR_mediaGolosSofridosVisitante) {
 		FR_mediaGolosSofridosVisitante = fR_mediaGolosSofridosVisitante;
+	}
+
+	public Integer getFR_golosMarcadosVisitadoCasa() {
+		return FR_golosMarcadosVisitadoCasa;
+	}
+
+	public void setFR_golosMarcadosVisitadoCasa(Integer fR_golosMarcadosVisitadoCasa) {
+		FR_golosMarcadosVisitadoCasa = fR_golosMarcadosVisitadoCasa;
+	}
+
+	public Integer getFR_golosSofridosVisitadoCasa() {
+		return FR_golosSofridosVisitadoCasa;
+	}
+
+	public void setFR_golosSofridosVisitadoCasa(Integer fR_golosSofridosVisitadoCasa) {
+		FR_golosSofridosVisitadoCasa = fR_golosSofridosVisitadoCasa;
+	}
+
+	public Double getFR_diferencaGolosVisitadoCasa() {
+		return FR_diferencaGolosVisitadoCasa;
+	}
+
+	public void setFR_diferencaGolosVisitadoCasa(Double fR_diferencaGolosVisitadoCasa) {
+		FR_diferencaGolosVisitadoCasa = fR_diferencaGolosVisitadoCasa;
+	}
+
+	public Integer getFR_golosMarcadosVisitanteFora() {
+		return FR_golosMarcadosVisitanteFora;
+	}
+
+	public void setFR_golosMarcadosVisitanteFora(Integer fR_golosMarcadosVisitanteFora) {
+		FR_golosMarcadosVisitanteFora = fR_golosMarcadosVisitanteFora;
+	}
+
+	public Integer getFR_golosSofridosVisitanteFora() {
+		return FR_golosSofridosVisitanteFora;
+	}
+
+	public void setFR_golosSofridosVisitanteFora(Integer fR_golosSofridosVisitanteFora) {
+		FR_golosSofridosVisitanteFora = fR_golosSofridosVisitanteFora;
+	}
+
+	public Double getFR_diferencaGolosVisitanteFora() {
+		return FR_diferencaGolosVisitanteFora;
+	}
+
+	public void setFR_diferencaGolosVisitanteFora(Double fR_diferencaGolosVisitanteFora) {
+		FR_diferencaGolosVisitanteFora = fR_diferencaGolosVisitanteFora;
+	}
+
+	public Double getFR_mediaGolosMarcadosVisitadoCasa() {
+		return FR_mediaGolosMarcadosVisitadoCasa;
+	}
+
+	public void setFR_mediaGolosMarcadosVisitadoCasa(Double fR_mediaGolosMarcadosVisitadoCasa) {
+		FR_mediaGolosMarcadosVisitadoCasa = fR_mediaGolosMarcadosVisitadoCasa;
+	}
+
+	public Double getFR_mediaGolosSofridosVisitadoCasa() {
+		return FR_mediaGolosSofridosVisitadoCasa;
+	}
+
+	public void setFR_mediaGolosSofridosVisitadoCasa(Double fR_mediaGolosSofridosVisitadoCasa) {
+		FR_mediaGolosSofridosVisitadoCasa = fR_mediaGolosSofridosVisitadoCasa;
+	}
+
+	public Double getFR_mediaGolosMarcadosVisitanteFora() {
+		return FR_mediaGolosMarcadosVisitanteFora;
+	}
+
+	public void setFR_mediaGolosMarcadosVisitanteFora(Double fR_mediaGolosMarcadosVisitanteFora) {
+		FR_mediaGolosMarcadosVisitanteFora = fR_mediaGolosMarcadosVisitanteFora;
+	}
+
+	public Double getFR_mediaGolosSofridosVisitanteFora() {
+		return FR_mediaGolosSofridosVisitanteFora;
+	}
+
+	public void setFR_mediaGolosSofridosVisitanteFora(Double fR_mediaGolosSofridosVisitanteFora) {
+		FR_mediaGolosSofridosVisitanteFora = fR_mediaGolosSofridosVisitanteFora;
+	}
+
+	public Integer getFR_golosMarcadosVisitadoFora() {
+		return FR_golosMarcadosVisitadoFora;
+	}
+
+	public void setFR_golosMarcadosVisitadoFora(Integer fR_golosMarcadosVisitadoFora) {
+		FR_golosMarcadosVisitadoFora = fR_golosMarcadosVisitadoFora;
+	}
+
+	public Integer getFR_golosSofridosVisitadoFora() {
+		return FR_golosSofridosVisitadoFora;
+	}
+
+	public void setFR_golosSofridosVisitadoFora(Integer fR_golosSofridosVisitadoFora) {
+		FR_golosSofridosVisitadoFora = fR_golosSofridosVisitadoFora;
+	}
+
+	public Double getFR_diferencaGolosVisitadoFora() {
+		return FR_diferencaGolosVisitadoFora;
+	}
+
+	public void setFR_diferencaGolosVisitadoFora(Double fR_diferencaGolosVisitadoFora) {
+		FR_diferencaGolosVisitadoFora = fR_diferencaGolosVisitadoFora;
+	}
+
+	public Integer getFR_golosMarcadosVisitanteCasa() {
+		return FR_golosMarcadosVisitanteCasa;
+	}
+
+	public void setFR_golosMarcadosVisitanteCasa(Integer fR_golosMarcadosVisitanteCasa) {
+		FR_golosMarcadosVisitanteCasa = fR_golosMarcadosVisitanteCasa;
+	}
+
+	public Integer getFR_golosSofridosVisitanteCasa() {
+		return FR_golosSofridosVisitanteCasa;
+	}
+
+	public void setFR_golosSofridosVisitanteCasa(Integer fR_golosSofridosVisitanteCasa) {
+		FR_golosSofridosVisitanteCasa = fR_golosSofridosVisitanteCasa;
+	}
+
+	public Double getFR_diferencaGolosVisitanteCasa() {
+		return FR_diferencaGolosVisitanteCasa;
+	}
+
+	public void setFR_diferencaGolosVisitanteCasa(Double fR_diferencaGolosVisitanteCasa) {
+		FR_diferencaGolosVisitanteCasa = fR_diferencaGolosVisitanteCasa;
+	}
+
+	public Double getFR_mediaGolosMarcadosVisitadoFora() {
+		return FR_mediaGolosMarcadosVisitadoFora;
+	}
+
+	public void setFR_mediaGolosMarcadosVisitadoFora(Double fR_mediaGolosMarcadosVisitadoFora) {
+		FR_mediaGolosMarcadosVisitadoFora = fR_mediaGolosMarcadosVisitadoFora;
+	}
+
+	public Double getFR_mediaGolosSofridosVisitadoFora() {
+		return FR_mediaGolosSofridosVisitadoFora;
+	}
+
+	public void setFR_mediaGolosSofridosVisitadoFora(Double fR_mediaGolosSofridosVisitadoFora) {
+		FR_mediaGolosSofridosVisitadoFora = fR_mediaGolosSofridosVisitadoFora;
+	}
+
+	public Double getFR_mediaGolosMarcadosVisitanteCasa() {
+		return FR_mediaGolosMarcadosVisitanteCasa;
+	}
+
+	public void setFR_mediaGolosMarcadosVisitanteCasa(Double fR_mediaGolosMarcadosVisitanteCasa) {
+		FR_mediaGolosMarcadosVisitanteCasa = fR_mediaGolosMarcadosVisitanteCasa;
+	}
+
+	public Double getFR_mediaGolosSofridosVisitanteCasa() {
+		return FR_mediaGolosSofridosVisitanteCasa;
+	}
+
+	public void setFR_mediaGolosSofridosVisitanteCasa(Double fR_mediaGolosSofridosVisitanteCasa) {
+		FR_mediaGolosSofridosVisitanteCasa = fR_mediaGolosSofridosVisitanteCasa;
 	}
 
 	public Double getFR_dificuldadeVisitadoVenue() {
