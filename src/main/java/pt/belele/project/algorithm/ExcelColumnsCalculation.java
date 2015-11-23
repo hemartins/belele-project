@@ -136,19 +136,18 @@ public class ExcelColumnsCalculation {
 		Double inferiorLimit;
 		Double superiorLimit;
 		ExcelColumnsCalculation ecc;
-		
-		if (nextFixture.getHomeTeam().equals(team)){
+
+		if (nextFixture.getHomeTeam().equals(team)) {
 			ecc = new ExcelColumnsCalculation(nextFixture.getAwayTeam(), em);
-		}
-		else {
+		} else {
 			ecc = new ExcelColumnsCalculation(nextFixture.getHomeTeam(), em);
 		}
-		
+
 		Double opponentQuality = ecc.getTeamQuality(nextFixture.getSeason(), nextFixture.getDate());
-		
+
 		inferiorLimit = opponentQuality - 0.15;
 		superiorLimit = opponentQuality + 0.15;
-		
+
 		for (Fixture f : fixtures) {
 
 			if (f.getHomeTeam().equals(team)) {
@@ -157,8 +156,7 @@ public class ExcelColumnsCalculation {
 				ExcelColumnsCalculation excc = new ExcelColumnsCalculation(f.getAwayTeam(), em);
 				Double fixtureOpponentQuality = excc.getTeamQuality(f.getSeason(), f.getDate());
 
-				if (fixtureOpponentQuality >= inferiorLimit
-						&& fixtureOpponentQuality <= superiorLimit) {
+				if (fixtureOpponentQuality >= inferiorLimit && fixtureOpponentQuality <= superiorLimit) {
 					homeIntervalGames++;
 
 					if (getResultType(f).equals(type)) {
@@ -179,42 +177,56 @@ public class ExcelColumnsCalculation {
 						&& opponentQuality - interval <= fixtureOpponentQuality) {
 					awayIntervalGames++;
 
-					if (getResultType(f).equals(type)) {
-						resultTypeIntervalAwayTeamFora++;
+					if (type.equals(ResultType.WIN)) {
+						if (f.getResult().getResultType().equals(ResultType.LOSE)) {
+							resultTypeIntervalAwayTeamFora++;
+						}
+					} else if (type.equals(ResultType.LOSE)) {
+						if (f.getResult().getResultType().equals(ResultType.WIN)) {
+							resultTypeIntervalAwayTeamFora++;
+						}
+					} else {
+						if (f.getResult().getResultType().equals(ResultType.DRAW)) {
+							resultTypeIntervalAwayTeamFora++;
+						}
+					}
+					if (type.equals(ResultType.WIN)) {
+						if (f.getResult().getResultType().equals(ResultType.LOSE)) {
+							resultTypeAwayTeamFora++;
+						}
+					} else if (type.equals(ResultType.LOSE)) {
+						if (f.getResult().getResultType().equals(ResultType.WIN)) {
+							resultTypeAwayTeamFora++;
+						}
+					} else {
+						if (f.getResult().getResultType().equals(ResultType.DRAW)) {
+							resultTypeAwayTeamFora++;
+						}
 					}
 				}
+			}
 
-				if (f.getResult().getResultType().equals(type)) {
-					resultTypeAwayTeamFora++;
-				}
+			if (homeGames == 0) {
+				percentageHomeTeamCasa = 0.0;
+			} else {
+				percentageHomeTeamCasa = resultTypeHomeTeamCasa / homeGames;
+			}
+			if (awayGames == 0) {
+				percentageAwayTeamFora = 0.0;
+			} else {
+				percentageAwayTeamFora = resultTypeAwayTeamFora / awayGames;
+			}
+			if (homeIntervalGames == 0) {
+				percentageIntervalHomeTeamCasa = 0.0;
+			} else {
+				percentageIntervalHomeTeamCasa = resultTypeIntervalHomeTeamCasa / homeIntervalGames;
+			}
+			if (awayIntervalGames == 0) {
+				percentageIntervalAwayTeamFora = 0.0;
+			} else {
+				percentageIntervalAwayTeamFora = resultTypeIntervalAwayTeamFora / awayIntervalGames;
 			}
 		}
-
-		if(homeGames == 0){
-			percentageHomeTeamCasa = 0.0;
-		}
-		else{
-			percentageHomeTeamCasa = resultTypeHomeTeamCasa / homeGames;
-		}
-		if(awayGames == 0){
-			percentageAwayTeamFora = 0.0;
-		}
-		else{
-			percentageAwayTeamFora = resultTypeAwayTeamFora / awayGames;
-		}
-		if(homeIntervalGames == 0){
-			percentageIntervalHomeTeamCasa = 0.0;
-		}
-		else{
-			percentageIntervalHomeTeamCasa = resultTypeIntervalHomeTeamCasa / homeIntervalGames;
-		}
-		if(awayIntervalGames == 0){
-			percentageIntervalAwayTeamFora = 0.0;
-		}
-		else{
-			percentageIntervalAwayTeamFora = resultTypeIntervalAwayTeamFora / awayIntervalGames;
-		}
-		
 		percentages[0] = percentageHomeTeamCasa;
 		percentages[1] = percentageAwayTeamFora;
 		percentages[2] = percentageIntervalHomeTeamCasa;
@@ -603,7 +615,6 @@ public class ExcelColumnsCalculation {
 			Double fixtureOpponentQuality = tec.getTeamQuality(s, nextFixture.getDate());
 
 			if (fixtureOpponentQuality != null) {
-
 				if (getResultType(f).equals(type)) {
 					resultSum++;
 					resultDificultSum += fixtureOpponentQuality;
@@ -760,34 +771,30 @@ public class ExcelColumnsCalculation {
 
 		nrGoalsScoredTotal = nrGoalsScoredHome + nrGoalsScoredAway;
 		nrGoalsConcededTotal = nrGoalsConcededHome + nrGoalsConcededAway;
-		
-		if (nrGamesHome == 0){
+
+		if (nrGamesHome == 0) {
 			avgGoalsScoredHome = 0.0;
 			avgGoalsConcededHome = 0.0;
-		}
-		else{
+		} else {
 			avgGoalsScoredHome = nrGoalsScoredHome / nrGamesHome;
 			avgGoalsConcededHome = nrGoalsConcededHome / nrGamesHome;
 		}
-		
-		if (nrGamesAway == 0){
+
+		if (nrGamesAway == 0) {
 			avgGoalsScoredAway = 0.0;
 			avgGoalsConcededAway = 0.0;
-		}
-		else{
+		} else {
 			avgGoalsScoredAway = nrGoalsScoredAway / nrGamesAway;
 			avgGoalsConcededAway = nrGoalsConcededAway / nrGamesAway;
 		}
-		
-		if (fixtures.size() == 0){
+
+		if (fixtures.size() == 0) {
 			avgGoalsScoredTotal = 0.0;
 			avgGoalsConcededTotal = 0.0;
-		}
-		else{
+		} else {
 			avgGoalsScoredTotal = nrGoalsScoredTotal / fixtures.size();
 			avgGoalsConcededTotal = nrGoalsConcededTotal / fixtures.size();
 		}
-		
 
 		avgGoalsFR[0] = avgGoalsScoredTotal;
 

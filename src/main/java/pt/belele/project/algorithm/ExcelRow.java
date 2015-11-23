@@ -67,22 +67,16 @@ public class ExcelRow {
 	Double FR_percentagemResultadoNoIntervaloVisitadoCasa, FR_percentagemResultadoNoIntervaloVisitanteFora;
 	Double FR_percentagemResultadoNoIntervaloVisitadoFora, FR_percentagemResultadoNoIntervaloVisitanteCasa;
 	Integer FR_numeroJogosVisitadoCasa, FR_numeroJogosVisitanteFora;
-	Integer FR_golosMarcadosVisitado, FR_golosSofridosVisitado;
-	Double FR_diferencaGolosVisitado;
-	Integer FR_golosMarcadosVisitante, FR_golosSofridosVisitante;
-	Double FR_diferencaGolosVisitante;
+	Integer FR_golosMarcadosVisitado, FR_golosSofridosVisitado, FR_diferencaGolosVisitado;
+	Integer FR_golosMarcadosVisitante, FR_golosSofridosVisitante, FR_diferencaGolosVisitante;
 	Double FR_mediaGolosMarcadosVisitado, FR_mediaGolosSofridosVisitado;
 	Double FR_mediaGolosMarcadosVisitante, FR_mediaGolosSofridosVisitante;
-	Integer FR_golosMarcadosVisitadoCasa, FR_golosSofridosVisitadoCasa;
-	Double FR_diferencaGolosVisitadoCasa;
-	Integer FR_golosMarcadosVisitanteFora, FR_golosSofridosVisitanteFora;
-	Double FR_diferencaGolosVisitanteFora;
+	Integer FR_golosMarcadosVisitadoCasa, FR_golosSofridosVisitadoCasa, FR_diferencaGolosVisitadoCasa;
+	Integer FR_golosMarcadosVisitanteFora, FR_golosSofridosVisitanteFora, FR_diferencaGolosVisitanteFora;
 	Double FR_mediaGolosMarcadosVisitadoCasa, FR_mediaGolosSofridosVisitadoCasa;
 	Double FR_mediaGolosMarcadosVisitanteFora, FR_mediaGolosSofridosVisitanteFora;
-	Integer FR_golosMarcadosVisitadoFora, FR_golosSofridosVisitadoFora;
-	Double FR_diferencaGolosVisitadoFora;
-	Integer FR_golosMarcadosVisitanteCasa, FR_golosSofridosVisitanteCasa;
-	Double FR_diferencaGolosVisitanteCasa;
+	Integer FR_golosMarcadosVisitadoFora, FR_golosSofridosVisitadoFora, FR_diferencaGolosVisitadoFora;
+	Integer FR_golosMarcadosVisitanteCasa, FR_golosSofridosVisitanteCasa, FR_diferencaGolosVisitanteCasa;
 	Double FR_mediaGolosMarcadosVisitadoFora, FR_mediaGolosSofridosVisitadoFora;
 	Double FR_mediaGolosMarcadosVisitanteCasa, FR_mediaGolosSofridosVisitanteCasa;
 
@@ -94,8 +88,8 @@ public class ExcelRow {
 	Integer FR_numeroResultadosNoIntervaloVisitadoVenue, FR_numeroResultadosNoIntervaloVisitanteVenue;
 	Double FR_percentagemResultadoVisitadoVenue, FR_percentagemResultadoVisitanteVenue;
 	Double FR_percentagemResultadoNoIntervaloVisitadoVenue, FR_percentagemResultadoNoIntervaloVisitanteVenue;
-	Double FR_golosMarcadosVisitadoVenue, FR_golosSofridosVisitadoVenue, FR_diferencaGolosVisitadoVenue;
-	Double FR_golosMarcadosVisitanteVenue, FR_golosSofridosVisitanteVenue, FR_diferencaGolosVisitanteVenue;
+	Integer FR_golosMarcadosVisitadoVenue, FR_golosSofridosVisitadoVenue, FR_diferencaGolosVisitadoVenue;
+	Integer FR_golosMarcadosVisitanteVenue, FR_golosSofridosVisitanteVenue, FR_diferencaGolosVisitanteVenue;
 	Double FR_mediaGolosMarcadosVisitadoVenue, FR_mediaGolosSofridosVisitadoVenue;
 	Double FR_mediaGolosMarcadosVisitanteVenue, FR_mediaGolosSofridosVisitanteVenue;
 
@@ -108,9 +102,9 @@ public class ExcelRow {
 	Double FR_percentagemResultadoVisitadoSwitchedVenue, FR_percentagemResultadoVisitanteSwitchedVenue;
 	Double FR_percentagemResultadoNoIntervaloVisitadoSwitchedVenue,
 			FR_percentagemResultadoNoIntervaloVisitanteSwitchedVenue;
-	Double FR_golosMarcadosVisitadoSwitchedVenue, FR_golosSofridosVisitadoSwitchedVenue,
+	Integer FR_golosMarcadosVisitadoSwitchedVenue, FR_golosSofridosVisitadoSwitchedVenue,
 			FR_diferencaGolosVisitadoSwitchedVenue;
-	Double FR_golosMarcadosVisitanteSwitchedVenue, FR_golosSofridosVisitanteSwitchedVenue,
+	Integer FR_golosMarcadosVisitanteSwitchedVenue, FR_golosSofridosVisitanteSwitchedVenue,
 			FR_diferencaGolosVisitanteSwitchedVenue;
 	Double FR_mediaGolosMarcadosVisitadoSwitchedVenue, FR_mediaGolosSofridosVisitadoSwitchedVenue;
 	Double FR_mediaGolosMarcadosVisitanteSwitchedVenue, FR_mediaGolosSofridosVisitanteSwitchedVenue;
@@ -820,11 +814,11 @@ public class ExcelRow {
 		FR_golosSofridosVisitado = fR_golosSofridosVisitado;
 	}
 
-	public Double getFR_diferencaGolosVisitado() {
+	public Integer getFR_diferencaGolosVisitado() {
 		return FR_diferencaGolosVisitado;
 	}
 
-	public void setFR_diferencaGolosVisitado(Double fR_diferencaGolosVisitado) {
+	public void setFR_diferencaGolosVisitado(Integer fR_diferencaGolosVisitado) {
 		FR_diferencaGolosVisitado = fR_diferencaGolosVisitado;
 	}
 
@@ -844,11 +838,11 @@ public class ExcelRow {
 		FR_golosSofridosVisitante = fR_golosSofridosVisitante;
 	}
 
-	public Double getFR_diferencaGolosVisitante() {
+	public Integer getFR_diferencaGolosVisitante() {
 		return FR_diferencaGolosVisitante;
 	}
 
-	public void setFR_diferencaGolosVisitante(Double fR_diferencaGolosVisitante) {
+	public void setFR_diferencaGolosVisitante(Integer fR_diferencaGolosVisitante) {
 		FR_diferencaGolosVisitante = fR_diferencaGolosVisitante;
 	}
 
@@ -900,11 +894,11 @@ public class ExcelRow {
 		FR_golosSofridosVisitadoCasa = fR_golosSofridosVisitadoCasa;
 	}
 
-	public Double getFR_diferencaGolosVisitadoCasa() {
+	public Integer getFR_diferencaGolosVisitadoCasa() {
 		return FR_diferencaGolosVisitadoCasa;
 	}
 
-	public void setFR_diferencaGolosVisitadoCasa(Double fR_diferencaGolosVisitadoCasa) {
+	public void setFR_diferencaGolosVisitadoCasa(Integer fR_diferencaGolosVisitadoCasa) {
 		FR_diferencaGolosVisitadoCasa = fR_diferencaGolosVisitadoCasa;
 	}
 
@@ -924,11 +918,11 @@ public class ExcelRow {
 		FR_golosSofridosVisitanteFora = fR_golosSofridosVisitanteFora;
 	}
 
-	public Double getFR_diferencaGolosVisitanteFora() {
+	public Integer getFR_diferencaGolosVisitanteFora() {
 		return FR_diferencaGolosVisitanteFora;
 	}
 
-	public void setFR_diferencaGolosVisitanteFora(Double fR_diferencaGolosVisitanteFora) {
+	public void setFR_diferencaGolosVisitanteFora(Integer fR_diferencaGolosVisitanteFora) {
 		FR_diferencaGolosVisitanteFora = fR_diferencaGolosVisitanteFora;
 	}
 
@@ -980,11 +974,11 @@ public class ExcelRow {
 		FR_golosSofridosVisitadoFora = fR_golosSofridosVisitadoFora;
 	}
 
-	public Double getFR_diferencaGolosVisitadoFora() {
+	public Integer getFR_diferencaGolosVisitadoFora() {
 		return FR_diferencaGolosVisitadoFora;
 	}
 
-	public void setFR_diferencaGolosVisitadoFora(Double fR_diferencaGolosVisitadoFora) {
+	public void setFR_diferencaGolosVisitadoFora(Integer fR_diferencaGolosVisitadoFora) {
 		FR_diferencaGolosVisitadoFora = fR_diferencaGolosVisitadoFora;
 	}
 
@@ -1004,11 +998,11 @@ public class ExcelRow {
 		FR_golosSofridosVisitanteCasa = fR_golosSofridosVisitanteCasa;
 	}
 
-	public Double getFR_diferencaGolosVisitanteCasa() {
+	public Integer getFR_diferencaGolosVisitanteCasa() {
 		return FR_diferencaGolosVisitanteCasa;
 	}
 
-	public void setFR_diferencaGolosVisitanteCasa(Double fR_diferencaGolosVisitanteCasa) {
+	public void setFR_diferencaGolosVisitanteCasa(Integer fR_diferencaGolosVisitanteCasa) {
 		FR_diferencaGolosVisitanteCasa = fR_diferencaGolosVisitanteCasa;
 	}
 
@@ -1158,51 +1152,51 @@ public class ExcelRow {
 		FR_percentagemResultadoNoIntervaloVisitanteVenue = fR_percentagemResultadoNoIntervaloVisitanteVenue;
 	}
 
-	public Double getFR_golosMarcadosVisitadoVenue() {
+	public Integer getFR_golosMarcadosVisitadoVenue() {
 		return FR_golosMarcadosVisitadoVenue;
 	}
 
-	public void setFR_golosMarcadosVisitadoVenue(Double fR_golosMarcadosVisitadoVenue) {
+	public void setFR_golosMarcadosVisitadoVenue(Integer fR_golosMarcadosVisitadoVenue) {
 		FR_golosMarcadosVisitadoVenue = fR_golosMarcadosVisitadoVenue;
 	}
 
-	public Double getFR_golosSofridosVisitadoVenue() {
+	public Integer getFR_golosSofridosVisitadoVenue() {
 		return FR_golosSofridosVisitadoVenue;
 	}
 
-	public void setFR_golosSofridosVisitadoVenue(Double fR_golosSofridosVisitadoVenue) {
+	public void setFR_golosSofridosVisitadoVenue(Integer fR_golosSofridosVisitadoVenue) {
 		FR_golosSofridosVisitadoVenue = fR_golosSofridosVisitadoVenue;
 	}
 
-	public Double getFR_diferencaGolosVisitadoVenue() {
+	public Integer getFR_diferencaGolosVisitadoVenue() {
 		return FR_diferencaGolosVisitadoVenue;
 	}
 
-	public void setFR_diferencaGolosVisitadoVenue(Double fR_diferencaGolosVisitadoVenue) {
+	public void setFR_diferencaGolosVisitadoVenue(Integer fR_diferencaGolosVisitadoVenue) {
 		FR_diferencaGolosVisitadoVenue = fR_diferencaGolosVisitadoVenue;
 	}
 
-	public Double getFR_golosMarcadosVisitanteVenue() {
+	public Integer getFR_golosMarcadosVisitanteVenue() {
 		return FR_golosMarcadosVisitanteVenue;
 	}
 
-	public void setFR_golosMarcadosVisitanteVenue(Double fR_golosMarcadosVisitanteVenue) {
+	public void setFR_golosMarcadosVisitanteVenue(Integer fR_golosMarcadosVisitanteVenue) {
 		FR_golosMarcadosVisitanteVenue = fR_golosMarcadosVisitanteVenue;
 	}
 
-	public Double getFR_golosSofridosVisitanteVenue() {
+	public Integer getFR_golosSofridosVisitanteVenue() {
 		return FR_golosSofridosVisitanteVenue;
 	}
 
-	public void setFR_golosSofridosVisitanteVenue(Double fR_golosSofridosVisitanteVenue) {
+	public void setFR_golosSofridosVisitanteVenue(Integer fR_golosSofridosVisitanteVenue) {
 		FR_golosSofridosVisitanteVenue = fR_golosSofridosVisitanteVenue;
 	}
 
-	public Double getFR_diferencaGolosVisitanteVenue() {
+	public Integer getFR_diferencaGolosVisitanteVenue() {
 		return FR_diferencaGolosVisitanteVenue;
 	}
 
-	public void setFR_diferencaGolosVisitanteVenue(Double fR_diferencaGolosVisitanteVenue) {
+	public void setFR_diferencaGolosVisitanteVenue(Integer fR_diferencaGolosVisitanteVenue) {
 		FR_diferencaGolosVisitanteVenue = fR_diferencaGolosVisitanteVenue;
 	}
 
@@ -1356,51 +1350,51 @@ public class ExcelRow {
 		FR_percentagemResultadoNoIntervaloVisitanteSwitchedVenue = fR_percentagemResultadoNoIntervaloVisitanteSwitchedVenue;
 	}
 
-	public Double getFR_golosMarcadosVisitadoSwitchedVenue() {
+	public Integer getFR_golosMarcadosVisitadoSwitchedVenue() {
 		return FR_golosMarcadosVisitadoSwitchedVenue;
 	}
 
-	public void setFR_golosMarcadosVisitadoSwitchedVenue(Double fR_golosMarcadosVisitadoSwitchedVenue) {
+	public void setFR_golosMarcadosVisitadoSwitchedVenue(Integer fR_golosMarcadosVisitadoSwitchedVenue) {
 		FR_golosMarcadosVisitadoSwitchedVenue = fR_golosMarcadosVisitadoSwitchedVenue;
 	}
 
-	public Double getFR_golosSofridosVisitadoSwitchedVenue() {
+	public Integer getFR_golosSofridosVisitadoSwitchedVenue() {
 		return FR_golosSofridosVisitadoSwitchedVenue;
 	}
 
-	public void setFR_golosSofridosVisitadoSwitchedVenue(Double fR_golosSofridosVisitadoSwitchedVenue) {
+	public void setFR_golosSofridosVisitadoSwitchedVenue(Integer fR_golosSofridosVisitadoSwitchedVenue) {
 		FR_golosSofridosVisitadoSwitchedVenue = fR_golosSofridosVisitadoSwitchedVenue;
 	}
 
-	public Double getFR_diferencaGolosVisitadoSwitchedVenue() {
+	public Integer getFR_diferencaGolosVisitadoSwitchedVenue() {
 		return FR_diferencaGolosVisitadoSwitchedVenue;
 	}
 
-	public void setFR_diferencaGolosVisitadoSwitchedVenue(Double fR_diferencaGolosVisitadoSwitchedVenue) {
+	public void setFR_diferencaGolosVisitadoSwitchedVenue(Integer fR_diferencaGolosVisitadoSwitchedVenue) {
 		FR_diferencaGolosVisitadoSwitchedVenue = fR_diferencaGolosVisitadoSwitchedVenue;
 	}
 
-	public Double getFR_golosMarcadosVisitanteSwitchedVenue() {
+	public Integer getFR_golosMarcadosVisitanteSwitchedVenue() {
 		return FR_golosMarcadosVisitanteSwitchedVenue;
 	}
 
-	public void setFR_golosMarcadosVisitanteSwitchedVenue(Double fR_golosMarcadosVisitanteSwitchedVenue) {
+	public void setFR_golosMarcadosVisitanteSwitchedVenue(Integer fR_golosMarcadosVisitanteSwitchedVenue) {
 		FR_golosMarcadosVisitanteSwitchedVenue = fR_golosMarcadosVisitanteSwitchedVenue;
 	}
 
-	public Double getFR_golosSofridosVisitanteSwitchedVenue() {
+	public Integer getFR_golosSofridosVisitanteSwitchedVenue() {
 		return FR_golosSofridosVisitanteSwitchedVenue;
 	}
 
-	public void setFR_golosSofridosVisitanteSwitchedVenue(Double fR_golosSofridosVisitanteSwitchedVenue) {
+	public void setFR_golosSofridosVisitanteSwitchedVenue(Integer fR_golosSofridosVisitanteSwitchedVenue) {
 		FR_golosSofridosVisitanteSwitchedVenue = fR_golosSofridosVisitanteSwitchedVenue;
 	}
 
-	public Double getFR_diferencaGolosVisitanteSwitchedVenue() {
+	public Integer getFR_diferencaGolosVisitanteSwitchedVenue() {
 		return FR_diferencaGolosVisitanteSwitchedVenue;
 	}
 
-	public void setFR_diferencaGolosVisitanteSwitchedVenue(Double fR_diferencaGolosVisitanteSwitchedVenue) {
+	public void setFR_diferencaGolosVisitanteSwitchedVenue(Integer fR_diferencaGolosVisitanteSwitchedVenue) {
 		FR_diferencaGolosVisitanteSwitchedVenue = fR_diferencaGolosVisitanteSwitchedVenue;
 	}
 
