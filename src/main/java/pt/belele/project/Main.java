@@ -1513,7 +1513,7 @@ public class Main {
 		row.setQLT_dificuldadeJogosVisitadoVenue(homeTR.getQualityAverage());
 		row.setQLT_dificuldadeJogosVisitanteVenue(awayTR.getQualityAverage());
 		row.setQLT_dificuldadeResultadoVisitadoVenue(homeTR.getResultDificulty());
-		row.setQLT_dificuldadeResultadoVisitanteVenue(awayTR.getResultInvervalDificulty());
+		row.setQLT_dificuldadeResultadoVisitanteVenue(awayTR.getResultDificulty());
 		row.setQLT_percentagemResultadoNoIntervaloVisitadoVenue(homeTR.getResultIntervalPercentage());
 		row.setQLT_percentagemResultadoNoIntervaloVisitanteVenue(awayTR.getResultIntervalPercentage());
 		row.setQLT_numeroJogosNoIntervaloVisitadoVenue(homeTR.getResultIntervalGames());
@@ -1567,7 +1567,7 @@ public class Main {
 		row.setQLT_dificuldadeJogosVisitadoSwitchedVenue(homeTR.getQualityAverage());
 		row.setQLT_dificuldadeJogosVisitanteSwitchedVenue(awayTR.getQualityAverage());
 		row.setQLT_dificuldadeResultadoVisitadoSwitchedVenue(homeTR.getResultDificulty());
-		row.setQLT_dificuldadeResultadoVisitanteSwitchedVenue(awayTR.getResultInvervalDificulty());
+		row.setQLT_dificuldadeResultadoVisitanteSwitchedVenue(awayTR.getResultDificulty());
 		row.setQLT_percentagemResultadoNoIntervaloVisitadoSwitchedVenue(homeTR.getResultIntervalPercentage());
 		row.setQLT_percentagemResultadoNoIntervaloVisitanteSwitchedVenue(awayTR.getResultIntervalPercentage());
 		row.setQLT_numeroJogosNoIntervaloVisitadoSwitchedVenue(homeTR.getResultIntervalGames());
@@ -1614,7 +1614,13 @@ public class Main {
 		row.setH2H_ratingTemporalResultado(h2hRatings.getRating());
 		row.setH2H_numeroJogos(h2hRatings.getSize());
 		row.setH2H_numeroResultados(h2hRatings.getNumberResults());
-		row.setH2H_percentagemResultados((double)h2hRatings.getNumberResults()/h2hRatings.getSize());
+		if (h2hRatings.getSize() == 0){
+			row.setH2H_percentagemResultados(0.0);
+		}
+		else {
+			row.setH2H_percentagemResultados((double)h2hRatings.getNumberResults()/h2hRatings.getSize());
+		}
+		
 
 		return row;
 	}
@@ -1644,7 +1650,12 @@ public class Main {
 		row.setH2H_ratingTemporalResultadoVenue(h2hRatings.getRating());
 		row.setH2H_numeroJogosVenue(h2hRatings.getSize());
 		row.setH2H_numeroResultadosVenue(h2hRatings.getNumberResults());
-		row.setH2H_percentagemResultadosVenue((double)h2hRatings.getNumberResults()/h2hRatings.getSize());
+		if (h2hRatings.getSize() == 0){
+			row.setH2H_percentagemResultadosVenue(0.0);
+		}
+		else {
+			row.setH2H_percentagemResultadosVenue((double)h2hRatings.getNumberResults()/h2hRatings.getSize());
+		}
 
 
 		return row;
@@ -1675,7 +1686,12 @@ public class Main {
 		row.setH2H_ratingTemporalResultadoSwitchedVenue(h2hRatings.getRating());
 		row.setH2H_numeroJogosSwitchedVenue(h2hRatings.getSize());
 		row.setH2H_numeroResultadosSwitchedVenue(h2hRatings.getNumberResults());
-		row.setH2H_percentagemResultadosSwitchedVenue((double)h2hRatings.getNumberResults()/h2hRatings.getSize());
+		if (h2hRatings.getSize() == 0){
+			row.setH2H_percentagemResultadosSwitchedVenue(0.0);
+		}
+		else {
+			row.setH2H_percentagemResultadosSwitchedVenue((double)h2hRatings.getNumberResults()/h2hRatings.getSize());
+		}
 
 		return row;
 	}
