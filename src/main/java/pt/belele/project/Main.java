@@ -478,43 +478,43 @@ public class Main {
 		// // ITALIA - SERIE A
 		Season i14 = sc.createSeason("I1", 14);
 		generateExcelFiles_PlanA(i14, em, dir, true, true);
-		// generateExcelFiles_PlanB(i14, em, dir);
+		generateExcelFiles_PlanB(i14, em, dir);
 		//
 		Season i13 = sc.createSeason("I1", 13);
 		generateExcelFiles_PlanA(i13, em, dir, true, true);
-		// generateExcelFiles_PlanB(i13, em, dir);
+		generateExcelFiles_PlanB(i13, em, dir);
 		//
 		Season i12 = sc.createSeason("I1", 12);
 		generateExcelFiles_PlanA(i12, em, dir, true, true);
-		// generateExcelFiles_PlanB(i12, em, dir);
+		generateExcelFiles_PlanB(i12, em, dir);
 		//
 		Season i11 = sc.createSeason("I1", 11);
 		generateExcelFiles_PlanA(i11, em, dir, true, true);
-		// generateExcelFiles_PlanB(i11, em, dir);
+		generateExcelFiles_PlanB(i11, em, dir);
 		//
 		Season i10 = sc.createSeason("I1", 10);
 		generateExcelFiles_PlanA(i10, em, dir, true, true);
-		// generateExcelFiles_PlanB(i10, em, dir);
+		generateExcelFiles_PlanB(i10, em, dir);
 		//
 		Season i9 = sc.createSeason("I1", 9);
 		generateExcelFiles_PlanA(i9, em, dir, true, true);
-		// generateExcelFiles_PlanB(i9, em, dir);
+		generateExcelFiles_PlanB(i9, em, dir);
 		//
 		Season i8 = sc.createSeason("I1", 8);
 		generateExcelFiles_PlanA(i8, em, dir, true, true);
-		// generateExcelFiles_PlanB(i8, em, dir);
+		generateExcelFiles_PlanB(i8, em, dir);
 		//
 		Season i7 = sc.createSeason("I1", 7);
 		generateExcelFiles_PlanA(i7, em, dir, true, true);
-		// generateExcelFiles_PlanB(i7, em, dir);
+		generateExcelFiles_PlanB(i7, em, dir);
 		//
 		Season i6 = sc.createSeason("I1", 6);
 		generateExcelFiles_PlanA(i6, em, dir, true, true);
-		// generateExcelFiles_PlanB(i6, em, dir);
+		generateExcelFiles_PlanB(i6, em, dir);
 		//
 		Season i5 = sc.createSeason("I1", 5);
 		generateExcelFiles_PlanA(i5, em, dir, true, true);
-		// generateExcelFiles_PlanB(i5, em, dir);
+		generateExcelFiles_PlanB(i5, em, dir);
 		//
 		// // ITALIA - SERIE B
 		// Season ii14 = sc.createSeason("I2", 14);
@@ -1803,8 +1803,8 @@ public class Main {
 			String awayTeam = f.getAwayTeam().getName();
 
 			// Classificações
-			Integer class_home = exHomeTeam.getClassification(s, date);
-			Integer class_away = exAwayTeam.getClassification(s, date);
+			Integer class_home = exHomeTeam.getQualityClassification(s, date);
+			Integer class_away = exAwayTeam.getQualityClassification(s, date);
 
 			// Resultado
 			Integer res_win, res_draw, res_lose;
@@ -2070,7 +2070,7 @@ public class Main {
 					}
 
 					ExcelColumnsCalculation exOpponent = new ExcelColumnsCalculation(opponent, em);
-					Integer posOp = exOpponent.getClassification(s, date);
+					Integer posOp = exOpponent.getQualityClassification(s, date);
 					if (fixt.getResult().getResultType().getValue() == 0) {
 						if (posOp <= 5) {
 							if (ho == 1) {
@@ -2469,7 +2469,7 @@ public class Main {
 						opponent = fixt.getAwayTeam();
 					}
 					ExcelColumnsCalculation exOpponent = new ExcelColumnsCalculation(opponent, em);
-					Integer posOp = exOpponent.getClassification(s, date);
+					Integer posOp = exOpponent.getQualityClassification(s, date);
 					if (fixt.getResult().getResultType().getValue() == 0) {
 						if (posOp <= 5) {
 							if (aw == 1) {
