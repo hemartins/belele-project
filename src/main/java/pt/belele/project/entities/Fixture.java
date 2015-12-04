@@ -244,5 +244,10 @@ public class Fixture implements Serializable {
 		return "Fixture [date=" + date + " homeTeam=" + homeTeam
 				+ ", awayTeam=" + awayTeam + "result="+ result.getResultType().name() +"]";
 	}
+	
+	public String printFixuteOdds() {
+		return "Fixture [date=" + date + " homeTeam=" + homeTeam
+				+ ", awayTeam=" + awayTeam + ", odds=" + odd + ", result="+ result.getResultType().name() +"]";
+	}
 
 }

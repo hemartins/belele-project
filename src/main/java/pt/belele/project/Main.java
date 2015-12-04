@@ -875,7 +875,7 @@ public class Main {
 
 	}
 
-	private static List<ExcelRow> calculateGeneralVariables(Fixture f, Season s, ExcelColumnsCalculation homeTeam,
+	public static List<ExcelRow> calculateGeneralVariables(Fixture f, Season s, ExcelColumnsCalculation homeTeam,
 			ExcelColumnsCalculation awayTeam, ExcelRow winRow, ExcelRow drawRow, ExcelRow loseRow) {
 
 		List<ExcelRow> excelRows = new ArrayList<ExcelRow>();
@@ -897,7 +897,7 @@ public class Main {
 		return excelRows;
 	}
 
-	private static List<ExcelRow> calculateCycleVariables(Fixture f, ExcelColumnsCalculation homeTeam,
+	public static List<ExcelRow> calculateCycleVariables(Fixture f, ExcelColumnsCalculation homeTeam,
 			ExcelColumnsCalculation awayTeam, List<String> historicos, List<Double> ratings, ExcelRow winRow,
 			ExcelRow drawRow, ExcelRow loseRow) {
 
@@ -920,7 +920,7 @@ public class Main {
 		return excelRows;
 	}
 
-	private static List<ExcelRow> calculateFRVariables(Fixture f, ExcelColumnsCalculation homeTeam,
+	public static List<ExcelRow> calculateFRVariables(Fixture f, ExcelColumnsCalculation homeTeam,
 			ExcelColumnsCalculation awayTeam, List<Double> ratings, List<String> historicos, ExcelRow winRow,
 			ExcelRow drawRow, ExcelRow loseRow, Integer numberOfFixtures, Double interval) {
 
@@ -943,7 +943,7 @@ public class Main {
 		return excelRows;
 	}
 
-	private static List<ExcelRow> calculateQLTVariables(Fixture f, ExcelColumnsCalculation homeTeam,
+	public static List<ExcelRow> calculateQLTVariables(Fixture f, ExcelColumnsCalculation homeTeam,
 			ExcelColumnsCalculation awayTeam, Double interval, ExcelRow winRow, ExcelRow drawRow, ExcelRow loseRow) {
 
 		List<ExcelRow> excelRows = new ArrayList<ExcelRow>();
@@ -965,7 +965,7 @@ public class Main {
 		return excelRows;
 	}
 
-	private static List<ExcelRow> calculateH2HVariables(Fixture f, List<Double> ratingsH2H,
+	public static List<ExcelRow> calculateH2HVariables(Fixture f, List<Double> ratingsH2H,
 			ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam, ExcelRow winRow, ExcelRow drawRow,
 			ExcelRow loseRow) {
 
@@ -988,7 +988,7 @@ public class Main {
 		return excelRows;
 	}
 
-	private static ExcelRow generalOverall(Fixture f, Season s, ExcelColumnsCalculation homeTeam,
+	public static ExcelRow generalOverall(Fixture f, Season s, ExcelColumnsCalculation homeTeam,
 			ExcelColumnsCalculation awayTeam, ExcelRow row, String resultado) {
 
 		row.setData(f.getDate());
@@ -1020,7 +1020,7 @@ public class Main {
 		return row;
 	}
 
-	private static ExcelRow generalVenue(Fixture f, Season s, ExcelColumnsCalculation homeTeam,
+	public static ExcelRow generalVenue(Fixture f, Season s, ExcelColumnsCalculation homeTeam,
 			ExcelColumnsCalculation awayTeam, ExcelRow row) {
 
 		row.setQualidadeVisitadoVenue(homeTeam.getHomeTeamQuality(s, f.getDate()));
@@ -1029,7 +1029,7 @@ public class Main {
 		return row;
 	}
 
-	private static ExcelRow generalSwitchedVenue(Fixture f, Season s, ExcelColumnsCalculation homeTeam,
+	public static ExcelRow generalSwitchedVenue(Fixture f, Season s, ExcelColumnsCalculation homeTeam,
 			ExcelColumnsCalculation awayTeam, ExcelRow row) {
 
 		row.setQualidadeVisitadoSwitchedVenue(homeTeam.getAwayTeamQuality(s, f.getDate()));
@@ -1038,7 +1038,7 @@ public class Main {
 		return row;
 	}
 
-	private static ExcelRow cycleOverall(Fixture f, ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam,
+	public static ExcelRow cycleOverall(Fixture f, ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam,
 			List<String> historicos, List<Double> ratings, String result, ExcelRow row) {
 
 		ResultType homeResult;
@@ -1081,7 +1081,7 @@ public class Main {
 		return row;
 	}
 
-	private static ExcelRow cycleVenue(Fixture f, ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam,
+	public static ExcelRow cycleVenue(Fixture f, ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam,
 			List<String> historicos, String result, ExcelRow row) {
 
 		ResultType homeResult;
@@ -1123,7 +1123,7 @@ public class Main {
 		return row;
 	}
 
-	private static ExcelRow cycleSwitchedVenue(Fixture f, ExcelColumnsCalculation homeTeam,
+	public static ExcelRow cycleSwitchedVenue(Fixture f, ExcelColumnsCalculation homeTeam,
 			ExcelColumnsCalculation awayTeam, List<String> historicos, String result, ExcelRow row) {
 		ResultType homeResult;
 		ResultType awayResult;
@@ -1165,7 +1165,7 @@ public class Main {
 		return row;
 	}
 
-	private static ExcelRow FROverall(Fixture f, ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam,
+	public static ExcelRow FROverall(Fixture f, ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam,
 			List<Double> ratings, List<String> historicos, String result, ExcelRow row, Integer numberOfFixtures,
 			Double interval) {
 
@@ -1281,7 +1281,7 @@ public class Main {
 		return row;
 	}
 
-	private static ExcelRow FRVenue(Fixture f, ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam,
+	public static ExcelRow FRVenue(Fixture f, ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam,
 			List<Double> ratings, List<String> historicos, String result, ExcelRow row, Integer numberOfFixtures,
 			Double interval) {
 
@@ -1353,7 +1353,7 @@ public class Main {
 		return row;
 	}
 
-	private static ExcelRow FRSwitchedVenue(Fixture f, ExcelColumnsCalculation homeTeam,
+	public static ExcelRow FRSwitchedVenue(Fixture f, ExcelColumnsCalculation homeTeam,
 			ExcelColumnsCalculation awayTeam, List<Double> ratings, List<String> historicos, String result,
 			ExcelRow row, Integer numberOfFixtures, Double interval) {
 
@@ -1425,7 +1425,7 @@ public class Main {
 		return row;
 	}
 
-	private static ExcelRow QLTOverall(Fixture f, ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam,
+	public static ExcelRow QLTOverall(Fixture f, ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam,
 			Double interval, String result, ExcelRow row) {
 
 		ResultType homeResult;
@@ -1480,7 +1480,7 @@ public class Main {
 
 	}
 	
-	private static ExcelRow QLTVenue(Fixture f, ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam,
+	public static ExcelRow QLTVenue(Fixture f, ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam,
 			Double interval, String result, ExcelRow row) {
 
 		ResultType homeResult;
@@ -1534,7 +1534,7 @@ public class Main {
 		return row;
 	}
 
-	private static ExcelRow QLTSwitchedVenue(Fixture f, ExcelColumnsCalculation homeTeam,
+	public static ExcelRow QLTSwitchedVenue(Fixture f, ExcelColumnsCalculation homeTeam,
 			ExcelColumnsCalculation awayTeam, Double interval, String result, ExcelRow row) {
 
 		ResultType homeResult;
@@ -1589,7 +1589,7 @@ public class Main {
 		return row;
 	}
 
-	private static ExcelRow H2HOverall(Fixture f, List<Double> ratingsH2H, ExcelColumnsCalculation homeTeam,
+	public static ExcelRow H2HOverall(Fixture f, List<Double> ratingsH2H, ExcelColumnsCalculation homeTeam,
 			ExcelColumnsCalculation awayTeam, String result, ExcelRow row) {
 
 		ResultType homeResult;
@@ -1625,7 +1625,7 @@ public class Main {
 		return row;
 	}
 	
-	private static ExcelRow H2HVenue(Fixture f, List<Double> ratingsH2H, ExcelColumnsCalculation homeTeam,
+	public static ExcelRow H2HVenue(Fixture f, List<Double> ratingsH2H, ExcelColumnsCalculation homeTeam,
 			ExcelColumnsCalculation awayTeam, String result, ExcelRow row) {
 
 		ResultType homeResult;
@@ -1661,7 +1661,7 @@ public class Main {
 		return row;
 	}
 
-	private static ExcelRow H2HSwitchedVenue(Fixture f, List<Double> ratingsH2H, ExcelColumnsCalculation homeTeam,
+	public static ExcelRow H2HSwitchedVenue(Fixture f, List<Double> ratingsH2H, ExcelColumnsCalculation homeTeam,
 			ExcelColumnsCalculation awayTeam, String result, ExcelRow row) {
 
 		ResultType homeResult;
@@ -1696,7 +1696,7 @@ public class Main {
 		return row;
 	}
 
-	private static void generateExcelFiles_PlanB(Season s, EntityManager em, String filePath) {
+	public static void generateExcelFiles_PlanB(Season s, EntityManager em, String filePath) {
 
 		SeasonController sc = new SeasonController(em);
 
