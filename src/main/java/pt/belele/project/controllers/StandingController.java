@@ -150,5 +150,9 @@ public class StandingController {
 	public List<Team> getTeamsOrderedByClassification(Season s, Date date) {
 		return standingDAO.getStandingsByPoints(date, s.getId());
 	}
+	
+	public List<Team> getTeamsOrderedByQuality(Season s, Date date) {
+		return standingDAO.getStandingsByQuality(date, s.getId());
+	}
 
 }

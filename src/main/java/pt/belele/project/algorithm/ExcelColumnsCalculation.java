@@ -735,6 +735,12 @@ public class ExcelColumnsCalculation {
 
 		return ls.indexOf(team) + 1;
 	}
+	
+	public Integer getQualityClassification(Season season, Date date) {
+		List<Team> ls = standingController.getTeamsOrderedByQuality(season, date);
+
+		return ls.indexOf(team) + 1;
+	}
 
 	public Double[] averageGoalsLastGames(Fixture nextFixture, Venue venue, Integer numerberOfGames) {
 

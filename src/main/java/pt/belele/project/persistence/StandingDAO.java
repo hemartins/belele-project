@@ -53,4 +53,12 @@ public class StandingDAO extends GenericDAO<Standing> {
 		return query.getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Team> getStandingsByQuality(Date date, long seasonId) {
+		Query query = em
+				.createQuery("SELECT t FROM Standing s, IN (s.team) t WHERE s.season.id = :seasonId AND s.date < :date GROUP BY t ORDER BY MAX(s.points) * 1.0 /MAX(s.playedGames) DESC");
+		query.setParameter("seasonId", seasonId);
+		query.setParameter("date", date);
+		return query.getResultList();
+	}
 }
