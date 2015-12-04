@@ -1803,8 +1803,34 @@ public class Main {
 			String awayTeam = f.getAwayTeam().getName();
 
 			// Classificações
-			Integer class_home = exHomeTeam.getQualityClassification(s, date);
-			Integer class_away = exAwayTeam.getQualityClassification(s, date);
+			Integer class_home;
+			Integer class_away;
+			
+			if (exHomeTeam.getQualityClassification(s, date) >= 1 && exHomeTeam.getQualityClassification(s, date) <= 5){
+				class_home = 1;
+			}
+			else if (exHomeTeam.getQualityClassification(s, date) >= 6 && exHomeTeam.getQualityClassification(s, date) <= 10){
+				class_home = 2;
+			}
+			else if (exHomeTeam.getQualityClassification(s, date) >= 11 && exHomeTeam.getQualityClassification(s, date) <= 15){
+				class_home = 3;
+			}
+			else {
+				class_home = 4;
+			}
+			
+			if (exAwayTeam.getQualityClassification(s, date) >= 1 && exAwayTeam.getQualityClassification(s, date) <= 5){
+				class_away = 1;
+			}
+			else if (exAwayTeam.getQualityClassification(s, date) >= 6 && exAwayTeam.getQualityClassification(s, date) <= 10){
+				class_away = 2;
+			}
+			else if (exAwayTeam.getQualityClassification(s, date) >= 11 && exAwayTeam.getQualityClassification(s, date) <= 15){
+				class_away = 3;
+			}
+			else {
+				class_away = 4;
+			}
 
 			// Resultado
 			Integer res_win, res_draw, res_lose;
