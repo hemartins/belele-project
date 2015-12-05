@@ -80,5 +80,12 @@ public class Odd {
 	public void setLayAwayWin(Double layAwayWin) {
 		this.layAwayWin = layAwayWin;
 	}
+
+	@Override
+	public String toString() {
+		return "Odd [backHomeWin=" + backHomeWin + ", backDraw=" + backDraw
+				+ ", backAwayWin=" + backAwayWin + ", layHomeWin=" + layHomeWin
+				+ ", layDraw=" + layDraw + ", layAwayWin=" + layAwayWin + "]";
+	}
 	
 }

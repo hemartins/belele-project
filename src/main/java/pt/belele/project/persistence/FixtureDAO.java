@@ -1,7 +1,9 @@
 package pt.belele.project.persistence;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -128,12 +130,30 @@ public class FixtureDAO extends GenericDAO<Fixture> {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Fixture> findWeekFixtures(Long seasonId, Date begin, Date end)
+	public List<Fixture> findFixturesBetweenDates(Long seasonId, Date begin, Date end)
 	{
-		Query query = em.createQuery("SELECT f FROM Fixture f WHERE f.date BETWEEN :begin AND :end AND f.season.id = :seasonId ");
-		query.setParameter("begin", begin);
-		query.setParameter("end", end);
-		query.setParameter("seasonId", seasonId);
+		StringBuilder sb = new StringBuilder("SELECT f FROM Fixture f WHERE f.season.id = :seasonId");
+		Map<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("seasonId", seasonId);
+		
+		if(begin != null)
+		{
+			sb.append(" AND f.date > :begin ");
+			params.put("begin", begin);
+		}
+		if(end != null)
+		{
+			sb.append(" AND f.date < :end");
+			params.put("end", end);
+		}
+
+		Query query = em.createQuery(sb.toString());
+		
+		for(Map.Entry<String, Object> entry : params.entrySet())
+		{
+			query.setParameter(entry.getKey(), entry.getValue());
+		}
 		
 		return query.getResultList();
 	}
