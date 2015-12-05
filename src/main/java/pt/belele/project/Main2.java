@@ -36,11 +36,11 @@ import pt.belele.project.util.SimpleMaximFunction;
 import pt.belele.project.util.Triplet;
 
 import com.amd.aparapi.Kernel.EXECUTION_MODE;
-import com.github.neuralnetworks.architecture.Layer;
 import com.github.neuralnetworks.architecture.NeuralNetworkImpl;
 import com.github.neuralnetworks.architecture.types.NNFactory;
+import com.github.neuralnetworks.calculation.LayerCalculatorImpl;
 import com.github.neuralnetworks.calculation.OutputError;
-import com.github.neuralnetworks.calculation.memory.ValuesProvider;
+import com.github.neuralnetworks.calculation.neuronfunctions.ConnectionCalculatorFullyConnected;
 import com.github.neuralnetworks.input.MultipleNeuronsOutputError;
 import com.github.neuralnetworks.training.TrainerFactory;
 import com.github.neuralnetworks.training.backpropagation.BackPropagationTrainer;
@@ -76,10 +76,10 @@ public class Main2 {
 		cal.clear(Calendar.SECOND);
 		cal.clear(Calendar.MILLISECOND);
 		cal.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
-		cal.set(Calendar.WEEK_OF_YEAR, 4);
+		cal.set(Calendar.WEEK_OF_YEAR, 5);
 
 		Date begin = cal.getTime();
-		cal.set(Calendar.WEEK_OF_YEAR, 5);
+		cal.set(Calendar.WEEK_OF_YEAR, 6);
 		cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
 		Date end = cal.getTime();
 
@@ -131,7 +131,7 @@ public class Main2 {
 			cal.setTime(winData.get(i).getData());
 			int year = cal.get(Calendar.YEAR);
 			int month = cal.get(Calendar.MONTH);
-
+			LOG.info("FIXTURE " + i + ": " + teWinData.get(i).getNomeVisitado() + " vs " + teWinData.get(i).getNomeVisitante());
 			teWin[i][0] = year;
 			teWin[i][1] = month;
 			teWin[i][2] = teWinData.get(i)
@@ -372,31 +372,40 @@ public class Main2 {
 		Environment.getInstance().setUseDataSharedMemory(true);
 		Environment.getInstance().setUseWeightsSharedMemory(true);
 		
-		// create the network
-		NeuralNetworkImpl mlp = NNFactory.mlpSigmoid(new int[] { 4, 4*2+2, 1 }, true);
-
-		// training and testing data providers
-		BetInputProvider trainInputProvider = new BetInputProvider(input, target);
-		BetInputProvider testInputProvider = new BetInputProvider(test, target);
+		float[][] results = new float[10][];
+		for(int i = 0; i<10; i++)
+		{
+			// create the network
+			NeuralNetworkImpl mlp = NNFactory.mlpSigmoid(new int[] { 4, 4*2+2, 1 }, true);
+	
+			// training and testing data providers
+			BetInputProvider trainInputProvider = new BetInputProvider(input, target);
+			BetInputProvider testInputProvider = new BetInputProvider(test, target);
+			
+			OutputError outputError = new MultipleNeuronsOutputError();
+	
+			// trainer
+			BackPropagationTrainer<?> bpt = TrainerFactory.backPropagation(mlp, trainInputProvider, testInputProvider, outputError, new NNRandomInitializer(new MersenneTwisterRandomInitializer(-0.01f, 0.01f), 0.5f), 0.02f, 0.7f, 0f, 0f, 0f, 150, 1, 2000);
+	
+			LogTrainingListener ltt = new LogTrainingListener(Thread.currentThread().getStackTrace()[1].getMethodName(), true, true);
+			
+			// log data
+			bpt.addEventListener(ltt);
+	
+			// early stopping
+			bpt.addEventListener(new EarlyStoppingListener(testInputProvider, 100, 0.015f));
+	
+			// train
+			bpt.train();
+	
+			// test
+			bpt.test();
+			
+			LOG.info("ANN OUTPUT:\n"+Arrays.toString(ltt.getOutput()));
+			results[i] = ltt.getOutput();
+		}
 		
-		OutputError outputError = new MultipleNeuronsOutputError();
-
-		// trainer
-		BackPropagationTrainer<?> bpt = TrainerFactory.backPropagation(mlp, trainInputProvider, testInputProvider, outputError, new NNRandomInitializer(new MersenneTwisterRandomInitializer(-0.01f, 0.01f), 0.5f), 0.02f, 0.7f, 0f, 0f, 0f, 150, 1, 2000);
-
-		// log data
-		bpt.addEventListener(new LogTrainingListener(Thread.currentThread().getStackTrace()[1].getMethodName(), true, true));
-
-		// early stopping
-		bpt.addEventListener(new EarlyStoppingListener(testInputProvider, 100, 0.015f));
-
-		// train
-		bpt.train();
-
-		// test
-		bpt.test();
-		
-		
+		LOG.info("ANN RESULTS:\n"+Arrays.deepToString(results));
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
