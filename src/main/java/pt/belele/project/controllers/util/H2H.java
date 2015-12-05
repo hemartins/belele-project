@@ -1,6 +1,5 @@
 package pt.belele.project.controllers.util;
 
-import pt.belele.project.entities.Fixture.Venue;
 
 public class H2H {
 

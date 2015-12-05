@@ -83,17 +83,12 @@
 			<scope>system</scope>
 			<systemPath>${project.basedir}/src/main/resources/flanagan.jar</systemPath>
 		</dependency>
-		<!--<dependency>
+		<dependency>
 			<groupId>com.github.neuralnetworks</groupId>
 			<artifactId>nn-core</artifactId>
 			<version>0.1-SNAPSHOT</version>
 			<scope>system</scope>
 			<systemPath>${project.basedir}/src/main/resources/nn-core-0.1-SNAPSHOT.jar</systemPath>
-		</dependency>-->
-		<dependency>
-			<groupId>com.github.neuralnetworks</groupId>
-			<artifactId>nn-core</artifactId>
-			<version>0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.amd</groupId>
@@ -103,21 +98,12 @@
 			<systemPath>${project.basedir}/src/main/resources/aparapi.jar</systemPath>
 		</dependency>
 		<dependency>
-			<groupId>org.neuroph</groupId>
-			<artifactId>neuroph-core</artifactId>
-			<version>2.9</version>
-		</dependency>
-		<dependency>
 			<groupId>org.uncommons.maths</groupId>
 			<artifactId>uncommons-maths</artifactId>
 			<version>1.2.2a</version>
 		</dependency>
 	</dependencies>
 	<repositories>
-		<repository>
-			<id>neuroph.sourceforge.net</id>
-			<url>http://neuroph.sourceforge.net/maven2/</url>
-		</repository>
 		<repository>
 			<id>objectdb</id>
 			<name>ObjectDB Repository</name>

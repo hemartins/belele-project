@@ -25,22 +25,21 @@ public class Algorithm {
 	public Algorithm() {
 	}
 
-	public List<Bet> simpleBetAlgorithm(Week w, Map<Fixture, Odd> fixtures,
+	public List<Bet> simpleBetAlgorithm(Week w, List<Fixture> fixtures,
 			CutOff cutOffSimple, Double investedValue) {
 
 		List<Bet> bets = new ArrayList<Bet>();
 
-		for (Fixture f : fixtures.keySet()) {
+		for (Fixture f : fixtures) {
 
-			Double backHomeWin = fixtures.get(f).getBackHomeWin();
-			Double backDraw = fixtures.get(f).getBackDraw();
-			Double backAwayWin = fixtures.get(f).getBackAwayWin();
-			Double layHomeWin = fixtures.get(f).getLayHomeWin();
-			Double layDraw = fixtures.get(f).getLayDraw();
-			Double layAwayWin = fixtures.get(f).getLayAwayWin();
+			Double backHomeWin = f.getAnnOdd().getBackHomeWin();
+			Double backDraw = f.getAnnOdd().getBackDraw();
+			Double backAwayWin = f.getAnnOdd().getBackAwayWin();
+			Double layHomeWin = f.getAnnOdd().getLayHomeWin();
+			Double layDraw = f.getAnnOdd().getLayDraw();
+			Double layAwayWin = f.getAnnOdd().getLayAwayWin();
 
 			LOG.trace("###########\n" + f.toString() + "\n#####");
-			;
 
 			if (cutOffSimple != null) {
 				Odd simpleNNOdd = calculateNNOdds(f, cutOffSimple, backHomeWin,
@@ -554,9 +553,9 @@ public class Algorithm {
 			List<Triplet<Bet, Bet, Bet>> tripleBetsCombination,
 			List<Bet> multipleBetList, Double investedValue) {
 
-		if(multipleBetList==null && multipleBetList.isEmpty())
+		if (multipleBetList == null || multipleBetList.isEmpty())
 			return null;
-		
+
 		List<MultipleBet> bets = new ArrayList<MultipleBet>();
 
 		// MULTIPLA

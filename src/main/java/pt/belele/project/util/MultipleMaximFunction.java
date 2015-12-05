@@ -41,7 +41,7 @@ public class MultipleMaximFunction implements MaximisationFunction {
 
 		double lucro = 0;
 
-		if(multipleBets==null && multipleBets.isEmpty())
+		if(multipleBets==null || multipleBets.isEmpty())
 			return lucro;
 		
 		for (MultipleBet multipleBet : multipleBets) {

@@ -103,6 +103,9 @@ public class Fixture implements Serializable {
 	@Embedded
 	private Odd odd;
 
+	@Embedded
+	private Odd annOdd;
+
 	@OneToMany(orphanRemoval = true)
 	@JoinColumn(name = "id")
 	private List<Fixture> H2H;
@@ -110,11 +113,11 @@ public class Fixture implements Serializable {
 	@OneToMany(orphanRemoval = true)
 	@JoinColumn(name = "id")
 	private List<Fixture> H2HVenue;
-	
+
 	@OneToMany(orphanRemoval = true)
 	@JoinColumn(name = "id")
 	private List<Fixture> H2HSwitchedVenue;
-	
+
 	public Fixture() {
 	}
 
@@ -196,7 +199,7 @@ public class Fixture implements Serializable {
 	public void setH2H(List<Fixture> h2h) {
 		this.H2H = h2h;
 	}
-	
+
 	public List<Fixture> getH2HVenue() {
 		return H2HVenue;
 	}
@@ -222,13 +225,21 @@ public class Fixture implements Serializable {
 	 * 
 	 * public void setLayOdd(Odd layOdd) { this.layOdd = layOdd; }
 	 */
-	
+
 	public Odd getOdd() {
 		return odd;
 	}
 
 	public void setOdd(Odd odd) {
 		this.odd = odd;
+	}
+
+	public Odd getAnnOdd() {
+		return annOdd;
+	}
+
+	public void setAnnOdd(Odd annOdd) {
+		this.annOdd = annOdd;
 	}
 
 	public List<Bet> getBets() {
@@ -242,12 +253,14 @@ public class Fixture implements Serializable {
 	@Override
 	public String toString() {
 		return "Fixture [date=" + date + " homeTeam=" + homeTeam
-				+ ", awayTeam=" + awayTeam + "result="+ result.getResultType().name() +"]";
+				+ ", awayTeam=" + awayTeam + "result="
+				+ result.getResultType().name() + "]";
 	}
-	
+
 	public String printFixuteOdds() {
 		return "Fixture [date=" + date + " homeTeam=" + homeTeam
-				+ ", awayTeam=" + awayTeam + ", odds=" + odd + ", result="+ result.getResultType().name() +"]";
+				+ ", awayTeam=" + awayTeam + ", odds=" + odd + ", result="
+				+ result.getResultType().name() + "]";
 	}
 
 }

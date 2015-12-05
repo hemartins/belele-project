@@ -1,6 +1,5 @@
 package pt.belele.project;
 
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -22,6 +21,7 @@ import pt.belele.project.algorithm.Algorithm;
 import pt.belele.project.algorithm.ExcelColumnsCalculation;
 import pt.belele.project.algorithm.ExcelRow;
 import pt.belele.project.ann.BetInputProvider;
+import pt.belele.project.ann.LogTrainingListener;
 import pt.belele.project.controllers.SeasonController;
 import pt.belele.project.entities.Bet;
 import pt.belele.project.entities.CutOff;
@@ -38,14 +38,11 @@ import pt.belele.project.util.Triplet;
 import com.amd.aparapi.Kernel.EXECUTION_MODE;
 import com.github.neuralnetworks.architecture.NeuralNetworkImpl;
 import com.github.neuralnetworks.architecture.types.NNFactory;
-import com.github.neuralnetworks.calculation.LayerCalculatorImpl;
 import com.github.neuralnetworks.calculation.OutputError;
-import com.github.neuralnetworks.calculation.neuronfunctions.ConnectionCalculatorFullyConnected;
 import com.github.neuralnetworks.input.MultipleNeuronsOutputError;
 import com.github.neuralnetworks.training.TrainerFactory;
 import com.github.neuralnetworks.training.backpropagation.BackPropagationTrainer;
 import com.github.neuralnetworks.training.events.EarlyStoppingListener;
-import com.github.neuralnetworks.training.events.LogTrainingListener;
 import com.github.neuralnetworks.training.random.MersenneTwisterRandomInitializer;
 import com.github.neuralnetworks.training.random.NNRandomInitializer;
 import com.github.neuralnetworks.util.Environment;
@@ -58,7 +55,7 @@ public class Main2 {
 
 	public static void main(String[] args) {
 		simpleBets(1.0);
-		//multipleBets(1.0);
+		multipleBets(1.0);
 	}
 
 	private static void simpleBets(Double investedValue) {
@@ -70,17 +67,15 @@ public class Main2 {
 
 		FixtureDAO fixtureDAO = new FixtureDAO(em);
 		Calendar cal = Calendar.getInstance();
-		cal.set(Calendar.HOUR_OF_DAY, 0); // ! clear would not reset the hour of
-											// day !
+		cal.set(Calendar.HOUR_OF_DAY, 0);
 		cal.clear(Calendar.MINUTE);
 		cal.clear(Calendar.SECOND);
 		cal.clear(Calendar.MILLISECOND);
-		cal.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
-		cal.set(Calendar.WEEK_OF_YEAR, 5);
+		cal.set(Calendar.DAY_OF_MONTH, 4);
+		cal.set(Calendar.MONTH, 12);
 
 		Date begin = cal.getTime();
-		cal.set(Calendar.WEEK_OF_YEAR, 6);
-		cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+		cal.set(Calendar.DAY_OF_MONTH, 8);
 		Date end = cal.getTime();
 
 		week.setWeekNumber(cal.getWeeksInWeekYear());
@@ -88,83 +83,8 @@ public class Main2 {
 		SeasonController sc = new SeasonController(em);
 		Season s = sc.createSeason("I1", 14);
 
-		List<Fixture> fixtures = fixtureDAO.findFixturesBetweenDates(s.getId(), begin,
-				end);
-		LOG.info("Number of Fixtures: " + fixtures.size());
-
-		// CONSTRUIR EXCEL E IR BUSCAR AS ODDS DO PERNA
-		Map<Fixture, Odd> fixtureMap = new HashMap<Fixture, Odd>();
-
-		Triplet<List<ExcelRow>, List<ExcelRow>, List<ExcelRow>> triplet = generateExcelFiles_PlanA(
-				s, em, null, begin);
-		List<ExcelRow> winData = triplet.getA();
-		List<ExcelRow> drawData = triplet.getB();
-		List<ExcelRow> loseData = triplet.getC();
-
-		float[] taWin = new float[winData.size()];
-		float[][] inWin = new float[winData.size()][6];
-		for (int i = 0; i < winData.size(); i++) {
-			taWin[i] = winData.get(i).getResultado();
-
-			cal = Calendar.getInstance();
-			cal.setTime(winData.get(i).getData());
-			int year = cal.get(Calendar.YEAR);
-			int month = cal.get(Calendar.MONTH);
-
-			inWin[i][0] = year;
-			inWin[i][1] = month;
-			inWin[i][2] = winData.get(i).getQLT_percentagemResultadoVisitadoVenue().floatValue();
-			inWin[i][3] = winData.get(i).getQLT_percentagemResultadoVisitanteVenue().floatValue();
-			inWin[i][4] = winData.get(i).getQLT_percentagemResultadoVisitadoVenue().floatValue();
-			inWin[i][5] = winData.get(i)
-					.getQLT_percentagemResultadoVisitanteSwitchedVenue().floatValue();
-		}
-
-		Triplet<List<ExcelRow>, List<ExcelRow>, List<ExcelRow>> teTriplet = generateExcelFiles_PlanA(
-				s, em, begin, end);
-		List<ExcelRow> teWinData = teTriplet.getA();
-		List<ExcelRow> teDrawData = teTriplet.getB();
-		List<ExcelRow> teLoseData = teTriplet.getC();
-		float[][] teWin = new float[teWinData.size()][6];
-		for (int i = 0; i < teWinData.size(); i++) {
-			cal = Calendar.getInstance();
-			cal.setTime(winData.get(i).getData());
-			int year = cal.get(Calendar.YEAR);
-			int month = cal.get(Calendar.MONTH);
-			LOG.info("FIXTURE " + i + ": " + teWinData.get(i).getNomeVisitado() + " vs " + teWinData.get(i).getNomeVisitante());
-			teWin[i][0] = year;
-			teWin[i][1] = month;
-			teWin[i][2] = teWinData.get(i)
-					.getQLT_percentagemResultadoVisitadoVenue().floatValue();
-			teWin[i][3] = teWinData.get(i)
-					.getQLT_percentagemResultadoVisitanteVenue().floatValue();
-			teWin[i][4] = teWinData.get(i)
-					.getQLT_percentagemResultadoVisitadoVenue().floatValue();
-			teWin[i][5] = teWinData.get(i)
-					.getQLT_percentagemResultadoVisitanteSwitchedVenue().floatValue();
-		}
-		
-		LOG.info("IN:\n"+Arrays.deepToString(inWin));
-		LOG.info("TA:\n"+Arrays.toString(taWin));
-		LOG.info("TE:\n"+Arrays.deepToString(teWin));
-
-//		LOG.info("Start of MATLAB");
-//		ANN ann = new ANN();
-//		Object[] out = ann.nn_10(teWinData.size(), inWin, taWin, teWin);
-//		LOG.info("END of MATLAB. OUT: \n" + out);
-
-		LOG.info("Start of ANN");
-		testMLPSigmoidBP(inWin, teWin, taWin);
-		LOG.info("End of ANN");
-		
-		for (Fixture f : fixtures) {
-			double backANNOdds[] = { 0.2, 0.7, 0.1 };
-			double layANNOdds[] = { 0.6, 0.1, 0.3 };
-			Odd ANNOdds = new Odd(backANNOdds[0], backANNOdds[1],
-					backANNOdds[2], layANNOdds[0], layANNOdds[1], layANNOdds[2]);
-
-			fixtureMap.put(f, ANNOdds);
-		}
+		List<Fixture> oldFixtures = fixtureDAO.findFixturesBetweenDates(
+				s.getId(), null, begin);
 
 		// Create instance of Maximisation
 		Maximisation max = new Maximisation();
@@ -174,7 +94,7 @@ public class Main2 {
 
 		funct.setWeek(week);
 
-		funct.setFixtures(fixtureMap);
+		funct.setFixtures(oldFixtures);
 
 		funct.setInvestedValue(investedValue);
 
@@ -216,7 +136,40 @@ public class Main2 {
 		CutOff cutOffSimple = new CutOff(param[0], param[1], param[2],
 				param[3], param[4], param[5], param[6]);
 
-		List<Bet> bets = new Algorithm().simpleBetAlgorithm(week, fixtureMap,
+		Triplet<float[][], float[][], float[][]> annTriplet = getANNOdds(s, em,
+				begin, end);
+		float[][] annWin = normalize(annTriplet.getA());
+		float[][] annDraw = normalize(annTriplet.getB());
+		float[][] annLose = normalize(annTriplet.getC());
+
+		float[] annWinAverage = average(annWin);
+		float[] annDrawAverage = average(annDraw);
+		float[] annLoseAverage = average(annLose);
+
+		Triplet<float[], float[], float[]> finalOddTriplet = getANNFinalOdds(
+				annWinAverage, annDrawAverage, annLoseAverage);
+
+		float[] annWinOdd = finalOddTriplet.getA();
+		float[] annDrawOdd = finalOddTriplet.getB();
+		float[] annLoseOdd = finalOddTriplet.getC();
+
+		List<Fixture> fixtures = fixtureDAO.findFixturesBetweenDates(s.getId(),
+				begin, end);
+
+		LOG.info("Number of Fixtures: " + fixtures.size());
+		for (int i = 0; i < fixtures.size(); i++) {
+			Fixture f = fixtures.get(i);
+			double backANNOdds[] = { annWinOdd[i], annDrawOdd[i], annLoseOdd[i] };
+			double layANNOdds[] = { 1 - backANNOdds[0], 1 - backANNOdds[1],
+					1 - backANNOdds[2] };
+			Odd ANNOdds = new Odd(backANNOdds[0], backANNOdds[1],
+					backANNOdds[2], layANNOdds[0], layANNOdds[1], layANNOdds[2]);
+
+			f.setAnnOdd(ANNOdds);
+			fixtureDAO.update(f);
+		}
+
+		List<Bet> bets = new Algorithm().simpleBetAlgorithm(week, fixtures,
 				cutOffSimple, investedValue);
 
 		double investido = 0;
@@ -256,8 +209,8 @@ public class Main2 {
 		SeasonController sc = new SeasonController(em);
 		Season s = sc.createSeason("I1", 14);
 
-		List<Fixture> fixtures = fixtureDAO.findFixturesBetweenDates(s.getId(), begin,
-				end);
+		List<Fixture> fixtures = fixtureDAO.findFixturesBetweenDates(s.getId(),
+				begin, end);
 		LOG.info("Number of Fixtures: " + fixtures.size());
 
 		// CONSTRUIR EXCEL E IR BUSCAR AS ODDS DO PERNA
@@ -365,49 +318,209 @@ public class Main2 {
 		LOG.info("Investido: " + investido);
 		LOG.info("Lucro: " + maximum);
 	}
-	
-	private static void testMLPSigmoidBP(float[][] input, float[][] test, float[] target) {
+
+	private static float[][] testMLPSigmoidBP(float[][] input, float[][] test,
+			float[] target) {
 		// execution mode
 		Environment.getInstance().setExecutionMode(EXECUTION_MODE.CPU);
 		Environment.getInstance().setUseDataSharedMemory(true);
 		Environment.getInstance().setUseWeightsSharedMemory(true);
-		
+
 		float[][] results = new float[10][];
-		for(int i = 0; i<10; i++)
-		{
+		for (int i = 0; i < 10; i++) {
 			// create the network
-			NeuralNetworkImpl mlp = NNFactory.mlpSigmoid(new int[] { 4, 4*2+2, 1 }, true);
-	
+			NeuralNetworkImpl mlp = NNFactory.mlpSigmoid(new int[] { 4,
+					4 * 2 + 2, 1 }, true);
+
 			// training and testing data providers
-			BetInputProvider trainInputProvider = new BetInputProvider(input, target);
-			BetInputProvider testInputProvider = new BetInputProvider(test, target);
-			
+			BetInputProvider trainInputProvider = new BetInputProvider(input,
+					target);
+			BetInputProvider testInputProvider = new BetInputProvider(test,
+					target);
+
 			OutputError outputError = new MultipleNeuronsOutputError();
-	
+
 			// trainer
-			BackPropagationTrainer<?> bpt = TrainerFactory.backPropagation(mlp, trainInputProvider, testInputProvider, outputError, new NNRandomInitializer(new MersenneTwisterRandomInitializer(-0.01f, 0.01f), 0.5f), 0.02f, 0.7f, 0f, 0f, 0f, 150, 1, 2000);
-	
-			LogTrainingListener ltt = new LogTrainingListener(Thread.currentThread().getStackTrace()[1].getMethodName(), true, true);
-			
+			BackPropagationTrainer<?> bpt = TrainerFactory
+					.backPropagation(mlp, trainInputProvider,
+							testInputProvider, outputError,
+							new NNRandomInitializer(
+									new MersenneTwisterRandomInitializer(
+											-0.01f, 0.01f), 0.5f), 0.02f, 0.7f,
+							0f, 0f, 0f, 150, 1, 2000);
+
+			LogTrainingListener ltt = new LogTrainingListener(Thread
+					.currentThread().getStackTrace()[1].getMethodName(), true,
+					true);
+
 			// log data
 			bpt.addEventListener(ltt);
-	
+
 			// early stopping
-			bpt.addEventListener(new EarlyStoppingListener(testInputProvider, 100, 0.015f));
-	
+			bpt.addEventListener(new EarlyStoppingListener(testInputProvider,
+					100, 0.015f));
+
 			// train
 			bpt.train();
-	
+
 			// test
 			bpt.test();
-			
-			LOG.info("ANN OUTPUT:\n"+Arrays.toString(ltt.getOutput()));
+
+			LOG.info("ANN OUTPUT:\n" + Arrays.toString(ltt.getOutput()));
 			results[i] = ltt.getOutput();
 		}
-		
-		LOG.info("ANN RESULTS:\n"+Arrays.deepToString(results));
+
+		LOG.info("ANN RESULTS:\n" + Arrays.deepToString(results));
+
+		return results;
 	}
-	
+
+	private static Triplet<float[][], float[][], float[][]> getANNOdds(
+			Season s, EntityManager em, Date begin, Date end) {
+		Triplet<List<ExcelRow>, List<ExcelRow>, List<ExcelRow>> triplet = generateExcelFiles_PlanA(
+				s, em, null, begin);
+
+		float[][] inWin = calculateDataset(triplet.getA());
+		float[][] inDraw = calculateDataset(triplet.getB());
+		float[][] inLose = calculateDataset(triplet.getC());
+
+		float[] taWin = calculateTarget(triplet.getA());
+		float[] taDraw = calculateTarget(triplet.getB());
+		float[] taLose = calculateTarget(triplet.getC());
+
+		Triplet<List<ExcelRow>, List<ExcelRow>, List<ExcelRow>> teTriplet = generateExcelFiles_PlanA(
+				s, em, begin, end);
+
+		float[][] teWin = calculateDataset(teTriplet.getA());
+		float[][] teDraw = calculateDataset(teTriplet.getB());
+		float[][] teLose = calculateDataset(teTriplet.getC());
+
+		LOG.info("IN WIN:\n" + Arrays.deepToString(inWin));
+		LOG.info("TA WIN:\n" + Arrays.toString(taWin));
+		LOG.info("TE WIN:\n" + Arrays.deepToString(teWin));
+
+		float[][] oddWin = testMLPSigmoidBP(inWin, teWin, taWin);
+		LOG.info("ANN ODDS WIN:\n" + Arrays.deepToString(oddWin));
+
+		LOG.info("IN DRAW:\n" + Arrays.deepToString(inDraw));
+		LOG.info("TA DRAW:\n" + Arrays.toString(taDraw));
+		LOG.info("TE DRAW:\n" + Arrays.deepToString(teDraw));
+
+		float[][] oddDraw = testMLPSigmoidBP(inDraw, teDraw, taDraw);
+		LOG.info("ANN ODDS DRAW:\n" + Arrays.deepToString(oddDraw));
+
+		LOG.info("IN LOSE:\n" + Arrays.deepToString(inLose));
+		LOG.info("TA LOSE:\n" + Arrays.toString(taLose));
+		LOG.info("TE LOSE:\n" + Arrays.deepToString(teLose));
+
+		float[][] oddLose = testMLPSigmoidBP(inLose, teLose, taLose);
+		LOG.info("ANN ODDS LOSE:\n" + Arrays.deepToString(oddLose));
+
+		return new Triplet<float[][], float[][], float[][]>(oddWin, oddDraw,
+				oddLose);
+	}
+
+	private static float[][] calculateDataset(List<ExcelRow> data) {
+		float[][] in = new float[data.size()][6];
+		for (int i = 0; i < data.size(); i++) {
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(data.get(i).getData());
+			int year = cal.get(Calendar.YEAR);
+			int month = cal.get(Calendar.MONTH);
+
+			in[i][0] = year;
+			in[i][1] = month;
+			in[i][2] = data.get(i).getQLT_percentagemResultadoVisitadoVenue()
+					.floatValue();
+			in[i][3] = data.get(i).getQLT_percentagemResultadoVisitanteVenue()
+					.floatValue();
+			in[i][4] = data.get(i).getQLT_percentagemResultadoVisitadoVenue()
+					.floatValue();
+			in[i][5] = data.get(i)
+					.getQLT_percentagemResultadoVisitanteSwitchedVenue()
+					.floatValue();
+		}
+
+		return in;
+	}
+
+	private static float[] calculateTarget(List<ExcelRow> data) {
+		float[] ta = new float[data.size()];
+		for (int i = 0; i < data.size(); i++) {
+			ta[i] = data.get(i).getResultado();
+		}
+
+		return ta;
+	}
+
+	private static float[][] normalize(float[][] data) {
+		float[][] dataReturn = new float[data.length][data[0].length];
+		for (int i = 0; i < data.length; i++) {
+			float[] row = data[i];
+			for (int j = 0; j < row.length; j++) {
+				dataReturn[i][j] = (data[i][j] - getColumnMin(data, j))
+						/ (getColumnMax(data, j) - getColumnMin(data, j));
+			}
+		}
+
+		return dataReturn;
+	}
+
+	private static float[] average(float[][] data) {
+		float[] averageData = new float[data.length];
+		for (int i = 0; i < data.length; i++) {
+			float sum = 0;
+
+			for (int j = 0; j < data[i].length; j++) {
+				sum += data[i][j];
+			}
+
+			averageData[i] = sum / data[i].length;
+		}
+
+		return averageData;
+	}
+
+	private static Triplet<float[], float[], float[]> getANNFinalOdds(
+			float[] annWinAverage, float[] annDrawAverage,
+			float[] annLoseAverage) {
+		float[] finalAnnWinAverage = new float[annWinAverage.length];
+		float[] finalAnnDrawAverage = new float[annDrawAverage.length];
+		float[] finalAnnLoseAverage = new float[annLoseAverage.length];
+
+		for (int i = 0; i < annWinAverage.length; i++) {
+			finalAnnWinAverage[i] = annWinAverage[i]
+					/ (annWinAverage[i] + annDrawAverage[i] + annLoseAverage[i]);
+			finalAnnDrawAverage[i] = annDrawAverage[i]
+					/ (annWinAverage[i] + annDrawAverage[i] + annLoseAverage[i]);
+			finalAnnLoseAverage[i] = annLoseAverage[i]
+					/ (annWinAverage[i] + annDrawAverage[i] + annLoseAverage[i]);
+		}
+
+		return new Triplet<float[], float[], float[]>(finalAnnWinAverage,
+				finalAnnDrawAverage, finalAnnLoseAverage);
+	}
+
+	private static float getColumnMin(float[][] data, int column) {
+		float value = data[0][column];
+		for (int row = 1; row < data.length; row++) {
+			if (value > data[row][column])
+				value = data[row][column];
+		}
+
+		return value;
+	}
+
+	private static float getColumnMax(float[][] data, int column) {
+		float value = data[0][column];
+		for (int row = 1; row < data.length; row++) {
+			if (value < data[row][column])
+				value = data[row][column];
+		}
+
+		return value;
+	}
+
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private static Triplet<List<ExcelRow>, List<ExcelRow>, List<ExcelRow>> generateExcelFiles_PlanA(
 			Season s, EntityManager em, Date beginDate, Date limitDate) {
@@ -445,7 +558,7 @@ public class Main2 {
 		ratingsH2H.add(0.03);
 		ratingsH2H.add(0.02);
 		ratingsH2H.add(0.01);
-		
+
 		double interval = 0.15;
 
 		int numberOfFixtures = 5;
@@ -482,24 +595,29 @@ public class Main2 {
 			ExcelColumnsCalculation awayTeam = new ExcelColumnsCalculation(
 					f.getAwayTeam(), em);
 
-			rowList = Main.calculateGeneralVariables(f, s, homeTeam, awayTeam, winRow, drawRow, loseRow);
+			rowList = Main.calculateGeneralVariables(f, s, homeTeam, awayTeam,
+					winRow, drawRow, loseRow);
 			winRow = rowList.get(0);
 			drawRow = rowList.get(1);
 			loseRow = rowList.get(2);
-			rowList = Main.calculateCycleVariables(f, homeTeam, awayTeam, historicos, ratings, winRow, drawRow, loseRow);
+			rowList = Main.calculateCycleVariables(f, homeTeam, awayTeam,
+					historicos, ratings, winRow, drawRow, loseRow);
 			winRow = rowList.get(0);
 			drawRow = rowList.get(1);
 			loseRow = rowList.get(2);
-			rowList = Main.calculateFRVariables(f, homeTeam, awayTeam, ratings, historicos, winRow, drawRow, loseRow,
-					numberOfFixtures, interval);
+			rowList = Main.calculateFRVariables(f, homeTeam, awayTeam, ratings,
+					historicos, winRow, drawRow, loseRow, numberOfFixtures,
+					interval);
 			winRow = rowList.get(0);
 			drawRow = rowList.get(1);
 			loseRow = rowList.get(2);
-			rowList = Main.calculateQLTVariables(f, homeTeam, awayTeam, interval, winRow, drawRow, loseRow);
+			rowList = Main.calculateQLTVariables(f, homeTeam, awayTeam,
+					interval, winRow, drawRow, loseRow);
 			winRow = rowList.get(0);
 			drawRow = rowList.get(1);
 			loseRow = rowList.get(2);
-			rowList = Main.calculateH2HVariables(f, ratingsH2H, homeTeam, awayTeam, winRow, drawRow, loseRow);
+			rowList = Main.calculateH2HVariables(f, ratingsH2H, homeTeam,
+					awayTeam, winRow, drawRow, loseRow);
 			winRow = rowList.get(0);
 			drawRow = rowList.get(1);
 			loseRow = rowList.get(2);

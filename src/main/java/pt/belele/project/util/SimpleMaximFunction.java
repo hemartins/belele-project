@@ -1,7 +1,6 @@
 package pt.belele.project.util;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,7 +10,6 @@ import pt.belele.project.entities.Bet;
 import pt.belele.project.entities.Bet.MatchOddBet;
 import pt.belele.project.entities.CutOff;
 import pt.belele.project.entities.Fixture;
-import pt.belele.project.entities.Odd;
 import pt.belele.project.entities.Week;
 import flanagan.math.MaximisationFunction;
 
@@ -22,7 +20,7 @@ public class SimpleMaximFunction implements MaximisationFunction {
 
 	private Week week;
 
-	private Map<Fixture, Odd> fixtures;
+	private List<Fixture> fixtures;
 	
 	private Double investedValue;
 
@@ -86,7 +84,7 @@ public class SimpleMaximFunction implements MaximisationFunction {
 		this.week = week;
 	}
 
-	public void setFixtures(Map<Fixture, Odd> fixtures) {
+	public void setFixtures(List<Fixture> fixtures) {
 		this.fixtures = fixtures;
 	}
 	
