@@ -79,6 +79,10 @@ public class ExcelRow {
 	Integer FR_golosMarcadosVisitanteCasa, FR_golosSofridosVisitanteCasa, FR_diferencaGolosVisitanteCasa;
 	Double FR_mediaGolosMarcadosVisitadoFora, FR_mediaGolosSofridosVisitadoFora;
 	Double FR_mediaGolosMarcadosVisitanteCasa, FR_mediaGolosSofridosVisitanteCasa;
+	Integer FR_pontuacaoCasa;
+	Double FR_pontuacaoCasaQualidade, FR_pontuacaoCasaQualidadeTempo;
+	Integer FR_pontuacaoFora;
+	Double FR_pontuacaoForaQualidade, FR_pontuacaoForaQualidadeTempo;
 
 	// Venue
 	Double FR_dificuldadeVisitadoVenue, FR_dificuldadeVisitanteVenue;
@@ -92,6 +96,10 @@ public class ExcelRow {
 	Integer FR_golosMarcadosVisitanteVenue, FR_golosSofridosVisitanteVenue, FR_diferencaGolosVisitanteVenue;
 	Double FR_mediaGolosMarcadosVisitadoVenue, FR_mediaGolosSofridosVisitadoVenue;
 	Double FR_mediaGolosMarcadosVisitanteVenue, FR_mediaGolosSofridosVisitanteVenue;
+	Integer FR_pontuacaoCasaVenue;
+	Double FR_pontuacaoCasaQualidadeVenue, FR_pontuacaoCasaQualidadeTempoVenue;
+	Integer FR_pontuacaoForaVenue;
+	Double FR_pontuacaoForaQualidadeVenue, FR_pontuacaoForaQualidadeTempoVenue;
 
 	// Switched Venue
 	Double FR_dificuldadeVisitadoSwitchedVenue, FR_dificuldadeVisitanteSwitchedVenue;
@@ -108,7 +116,11 @@ public class ExcelRow {
 			FR_diferencaGolosVisitanteSwitchedVenue;
 	Double FR_mediaGolosMarcadosVisitadoSwitchedVenue, FR_mediaGolosSofridosVisitadoSwitchedVenue;
 	Double FR_mediaGolosMarcadosVisitanteSwitchedVenue, FR_mediaGolosSofridosVisitanteSwitchedVenue;
-
+	Integer FR_pontuacaoCasaSwitchedVenue;
+	Double FR_pontuacaoCasaQualidadeSwitchedVenue, FR_pontuacaoCasaQualidadeTempoSwitchedVenue;
+	Integer FR_pontuacaoForaSwitchedVenue;
+	Double FR_pontuacaoForaQualidadeSwitchedVenue, FR_pontuacaoForaQualidadeTempoSwitchedVenue;
+	
 	
 	//// QLT variables\\\\
 
@@ -1038,6 +1050,54 @@ public class ExcelRow {
 		FR_mediaGolosSofridosVisitanteCasa = fR_mediaGolosSofridosVisitanteCasa;
 	}
 
+	public Integer getFR_pontuacaoCasa() {
+		return FR_pontuacaoCasa;
+	}
+
+	public void setFR_pontuacaoCasa(Integer fR_pontuacaoCasa) {
+		FR_pontuacaoCasa = fR_pontuacaoCasa;
+	}
+
+	public Double getFR_pontuacaoCasaQualidade() {
+		return FR_pontuacaoCasaQualidade;
+	}
+
+	public void setFR_pontuacaoCasaQualidade(Double fR_pontuacaoCasaQualidade) {
+		FR_pontuacaoCasaQualidade = fR_pontuacaoCasaQualidade;
+	}
+
+	public Double getFR_pontuacaoCasaQualidadeTempo() {
+		return FR_pontuacaoCasaQualidadeTempo;
+	}
+
+	public void setFR_pontuacaoCasaQualidadeTempo(Double fR_pontuacaoCasaQualidadeTempo) {
+		FR_pontuacaoCasaQualidadeTempo = fR_pontuacaoCasaQualidadeTempo;
+	}
+
+	public Integer getFR_pontuacaoFora() {
+		return FR_pontuacaoFora;
+	}
+
+	public void setFR_pontuacaoFora(Integer fR_pontuacaoFora) {
+		FR_pontuacaoFora = fR_pontuacaoFora;
+	}
+
+	public Double getFR_pontuacaoForaQualidade() {
+		return FR_pontuacaoForaQualidade;
+	}
+
+	public void setFR_pontuacaoForaQualidade(Double fR_pontuacaoForaQualidade) {
+		FR_pontuacaoForaQualidade = fR_pontuacaoForaQualidade;
+	}
+
+	public Double getFR_pontuacaoForaQualidadeTempo() {
+		return FR_pontuacaoForaQualidadeTempo;
+	}
+
+	public void setFR_pontuacaoForaQualidadeTempo(Double fR_pontuacaoForaQualidadeTempo) {
+		FR_pontuacaoForaQualidadeTempo = fR_pontuacaoForaQualidadeTempo;
+	}
+
 	public Double getFR_dificuldadeVisitadoVenue() {
 		return FR_dificuldadeVisitadoVenue;
 	}
@@ -1232,6 +1292,54 @@ public class ExcelRow {
 		FR_mediaGolosSofridosVisitanteVenue = fR_mediaGolosSofridosVisitanteVenue;
 	}
 
+	public Integer getFR_pontuacaoCasaVenue() {
+		return FR_pontuacaoCasaVenue;
+	}
+
+	public void setFR_pontuacaoCasaVenue(Integer fR_pontuacaoCasaVenue) {
+		FR_pontuacaoCasaVenue = fR_pontuacaoCasaVenue;
+	}
+
+	public Double getFR_pontuacaoCasaQualidadeVenue() {
+		return FR_pontuacaoCasaQualidadeVenue;
+	}
+
+	public void setFR_pontuacaoCasaQualidadeVenue(Double fR_pontuacaoCasaQualidadeVenue) {
+		FR_pontuacaoCasaQualidadeVenue = fR_pontuacaoCasaQualidadeVenue;
+	}
+
+	public Double getFR_pontuacaoCasaQualidadeTempoVenue() {
+		return FR_pontuacaoCasaQualidadeTempoVenue;
+	}
+
+	public void setFR_pontuacaoCasaQualidadeTempoVenue(Double fR_pontuacaoCasaQualidadeTempoVenue) {
+		FR_pontuacaoCasaQualidadeTempoVenue = fR_pontuacaoCasaQualidadeTempoVenue;
+	}
+
+	public Integer getFR_pontuacaoForaVenue() {
+		return FR_pontuacaoForaVenue;
+	}
+
+	public void setFR_pontuacaoForaVenue(Integer fR_pontuacaoForaVenue) {
+		FR_pontuacaoForaVenue = fR_pontuacaoForaVenue;
+	}
+
+	public Double getFR_pontuacaoForaQualidadeVenue() {
+		return FR_pontuacaoForaQualidadeVenue;
+	}
+
+	public void setFR_pontuacaoForaQualidadeVenue(Double fR_pontuacaoForaQualidadeVenue) {
+		FR_pontuacaoForaQualidadeVenue = fR_pontuacaoForaQualidadeVenue;
+	}
+
+	public Double getFR_pontuacaoForaQualidadeTempoVenue() {
+		return FR_pontuacaoForaQualidadeTempoVenue;
+	}
+
+	public void setFR_pontuacaoForaQualidadeTempoVenue(Double fR_pontuacaoForaQualidadeTempoVenue) {
+		FR_pontuacaoForaQualidadeTempoVenue = fR_pontuacaoForaQualidadeTempoVenue;
+	}
+
 	public Double getFR_dificuldadeVisitadoSwitchedVenue() {
 		return FR_dificuldadeVisitadoSwitchedVenue;
 	}
@@ -1420,6 +1528,54 @@ public class ExcelRow {
 
 	public void setFR_mediaGolosMarcadosVisitanteSwitchedVenue(Double fR_mediaGolosMarcadosVisitanteSwitchedVenue) {
 		FR_mediaGolosMarcadosVisitanteSwitchedVenue = fR_mediaGolosMarcadosVisitanteSwitchedVenue;
+	}
+
+	public Integer getFR_pontuacaoCasaSwitchedVenue() {
+		return FR_pontuacaoCasaSwitchedVenue;
+	}
+
+	public void setFR_pontuacaoCasaSwitchedVenue(Integer fR_pontuacaoCasaSwitchedVenue) {
+		FR_pontuacaoCasaSwitchedVenue = fR_pontuacaoCasaSwitchedVenue;
+	}
+
+	public Double getFR_pontuacaoCasaQualidadeSwitchedVenue() {
+		return FR_pontuacaoCasaQualidadeSwitchedVenue;
+	}
+
+	public void setFR_pontuacaoCasaQualidadeSwitchedVenue(Double fR_pontuacaoCasaQualidadeSwitchedVenue) {
+		FR_pontuacaoCasaQualidadeSwitchedVenue = fR_pontuacaoCasaQualidadeSwitchedVenue;
+	}
+
+	public Double getFR_pontuacaoCasaQualidadeTempoSwitchedVenue() {
+		return FR_pontuacaoCasaQualidadeTempoSwitchedVenue;
+	}
+
+	public void setFR_pontuacaoCasaQualidadeTempoSwitchedVenue(Double fR_pontuacaoCasaQualidadeTempoSwitchedVenue) {
+		FR_pontuacaoCasaQualidadeTempoSwitchedVenue = fR_pontuacaoCasaQualidadeTempoSwitchedVenue;
+	}
+
+	public Integer getFR_pontuacaoForaSwitchedVenue() {
+		return FR_pontuacaoForaSwitchedVenue;
+	}
+
+	public void setFR_pontuacaoForaSwitchedVenue(Integer fR_pontuacaoForaSwitchedVenue) {
+		FR_pontuacaoForaSwitchedVenue = fR_pontuacaoForaSwitchedVenue;
+	}
+
+	public Double getFR_pontuacaoForaQualidadeSwitchedVenue() {
+		return FR_pontuacaoForaQualidadeSwitchedVenue;
+	}
+
+	public void setFR_pontuacaoForaQualidadeSwitchedVenue(Double fR_pontuacaoForaQualidadeSwitchedVenue) {
+		FR_pontuacaoForaQualidadeSwitchedVenue = fR_pontuacaoForaQualidadeSwitchedVenue;
+	}
+
+	public Double getFR_pontuacaoForaQualidadeTempoSwitchedVenue() {
+		return FR_pontuacaoForaQualidadeTempoSwitchedVenue;
+	}
+
+	public void setFR_pontuacaoForaQualidadeTempoSwitchedVenue(Double fR_pontuacaoForaQualidadeTempoSwitchedVenue) {
+		FR_pontuacaoForaQualidadeTempoSwitchedVenue = fR_pontuacaoForaQualidadeTempoSwitchedVenue;
 	}
 
 	public Double getFR_mediaGolosSofridosVisitanteSwitchedVenue() {

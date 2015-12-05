@@ -94,6 +94,111 @@ public class ExcelColumnsCalculation {
 
 		return rating;
 	}
+	
+	//Pontuação Forma Recente
+	public Integer getFRPontuation(Fixture nextFixture, Venue venue, Integer numberOfFixtures) {
+
+		int pontuation = 0;
+
+		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team, nextFixture.getSeason(),
+				nextFixture.getDate(), venue, numberOfFixtures);
+		for (int i = 0; i < fixtures.size(); i++) {
+			Fixture f = fixtures.get(i);
+			if (getResultType(f).equals(ResultType.WIN)){
+				pontuation += 3;
+			}
+			else if (getResultType(f).equals(ResultType.DRAW)){
+				pontuation += 1;
+			}
+			else {
+				pontuation += 0;
+			}	
+		}
+
+		return pontuation;
+	}
+	
+	//Pontuação Forma Recente Com Qualidade
+	public Double getFRPontuationQuality(Fixture nextFixture, Venue venue, Integer numberOfFixtures) {
+
+		double rating = 0;
+
+		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team, nextFixture.getSeason(),
+				nextFixture.getDate(), venue, numberOfFixtures);
+		for (int i = 0; i < fixtures.size(); i++) {
+			Fixture f = fixtures.get(i);
+			if (f.getHomeTeam().equals(team)){
+				Team opponent = f.getAwayTeam();
+				ExcelColumnsCalculation ecc = new ExcelColumnsCalculation(opponent, em);
+				if (getResultType(f).equals(ResultType.WIN)){
+					rating += 3 * ecc.getTeamQuality(nextFixture.getSeason(), nextFixture.getDate());
+				}
+				else if (getResultType(f).equals(ResultType.DRAW)){
+					rating += 1 * ecc.getTeamQuality(nextFixture.getSeason(), nextFixture.getDate());
+				}
+				else {
+					rating += 0;
+				}	
+			}
+			else {
+				Team opponent = f.getHomeTeam();
+				ExcelColumnsCalculation ecc = new ExcelColumnsCalculation(opponent, em);
+				if (getResultType(f).equals(ResultType.WIN)){
+					rating += 3 * ecc.getTeamQuality(nextFixture.getSeason(), nextFixture.getDate());
+				}
+				else if (getResultType(f).equals(ResultType.DRAW)){
+					rating += 1 * ecc.getTeamQuality(nextFixture.getSeason(), nextFixture.getDate());
+				}
+				else {
+					rating += 0;
+				}	
+			}
+		}
+
+		return rating;
+	}
+	
+	//Pontuação Forma Recente Com Qualidade e Aproximação à data do jogo
+	public Double getFRPontuationQualityAndTime(Fixture nextFixture, Venue venue, Integer numberOfFixtures) {
+
+		double rating = 0;
+		double temporal = 1;
+
+		List<Fixture> fixtures = fixtureController.getTeamBeforeFixtures(team, nextFixture.getSeason(),
+				nextFixture.getDate(), venue, numberOfFixtures);
+		for (int i = 0; i < fixtures.size(); i++) {
+			Fixture f = fixtures.get(i);
+			if (f.getHomeTeam().equals(team)){
+				Team opponent = f.getAwayTeam();
+				ExcelColumnsCalculation ecc = new ExcelColumnsCalculation(opponent, em);
+				if (getResultType(f).equals(ResultType.WIN)){
+					rating += 3 * ecc.getTeamQuality(nextFixture.getSeason(), nextFixture.getDate()) * temporal;
+				}
+				else if (getResultType(f).equals(ResultType.DRAW)){
+					rating += 1 * ecc.getTeamQuality(nextFixture.getSeason(), nextFixture.getDate()) * temporal;
+				}
+				else {
+					rating += 0;
+				}	
+			}
+			else {
+				Team opponent = f.getHomeTeam();
+				ExcelColumnsCalculation ecc = new ExcelColumnsCalculation(opponent, em);
+				if (getResultType(f).equals(ResultType.WIN)){
+					rating += 3 * ecc.getTeamQuality(nextFixture.getSeason(), nextFixture.getDate()) * temporal;
+				}
+				else if (getResultType(f).equals(ResultType.DRAW)){
+					rating += 1 * ecc.getTeamQuality(nextFixture.getSeason(), nextFixture.getDate()) * temporal;
+				}
+				else {
+					rating += 0;
+				}	
+			}
+			temporal = temporal - 0.2;
+		}
+
+		return rating;
+	}
 
 	public Integer getLastFixturesResults(Fixture nextFixture, Venue venue, Integer numberOfFixtures,
 			List<Double> ratings, ResultType type) {

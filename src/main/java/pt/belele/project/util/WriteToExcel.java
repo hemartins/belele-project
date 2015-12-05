@@ -255,7 +255,6 @@ public class WriteToExcel {
 		
 		row.createCell(cellIndex++).setCellValue("[FR] Média de Golos Sofridos do Visitante em Casa");
 
-		
 		row.createCell(cellIndex++).setCellValue("[FR] Dificuldade do Visitado - VENUE");
 
 		row.createCell(cellIndex++).setCellValue("[FR] Dificuldade do Visitante - VENUE");
@@ -515,6 +514,42 @@ public class WriteToExcel {
 		row.createCell(cellIndex++).setCellValue("Ano");
 		
 		row.createCell(cellIndex++).setCellValue("Semana");
+		
+		row.createCell(cellIndex++).setCellValue("[FR] Pontuação Casa");
+		
+		row.createCell(cellIndex++).setCellValue("[FR] Pontuação Fora");
+		
+		row.createCell(cellIndex++).setCellValue("[FR] Pontuação com Qualidade Casa");
+		
+		row.createCell(cellIndex++).setCellValue("[FR] Pontuação com Qualidade Fora");
+		
+		row.createCell(cellIndex++).setCellValue("[FR] Pontuação com Qualidade e Tempo Casa");
+		
+		row.createCell(cellIndex++).setCellValue("[FR] Pontuação com Qualidade e Tempo Fora");
+		
+		row.createCell(cellIndex++).setCellValue("[FR] Pontuação Casa - VENUE");
+		
+		row.createCell(cellIndex++).setCellValue("[FR] Pontuação Fora - VENUE");
+		
+		row.createCell(cellIndex++).setCellValue("[FR] Pontuação com Qualidade Casa - VENUE");
+		
+		row.createCell(cellIndex++).setCellValue("[FR] Pontuação com Qualidade Fora - VENUE");
+		
+		row.createCell(cellIndex++).setCellValue("[FR] Pontuação com Qualidade e Tempo Casa - VENUE");
+		
+		row.createCell(cellIndex++).setCellValue("[FR] Pontuação com Qualidade e Tempo Fora - VENUE");
+		
+		row.createCell(cellIndex++).setCellValue("[FR] Pontuação Casa - SWITCHED VENUE");
+		
+		row.createCell(cellIndex++).setCellValue("[FR] Pontuação Fora - SWITCHED VENUE");
+		
+		row.createCell(cellIndex++).setCellValue("[FR] Pontuação com Qualidade Casa - SWITCHED VENUE");
+		
+		row.createCell(cellIndex++).setCellValue("[FR] Pontuação com Qualidade Fora - SWITCHED VENUE");
+		
+		row.createCell(cellIndex++).setCellValue("[FR] Pontuação com Qualidade e Tempo Casa - SWITCHED VENUE");
+		
+		row.createCell(cellIndex++).setCellValue("[FR] Pontuação com Qualidade e Tempo Fora - SWITCHED VENUE");
 
 		rowIndex++;
 
@@ -998,6 +1033,42 @@ public class WriteToExcel {
 			int week = cal.get(Calendar.WEEK_OF_YEAR);
 			
 			row.createCell(cellIndex++).setCellValue(week);
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_pontuacaoCasa());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_pontuacaoFora());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_pontuacaoCasaQualidade());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_pontuacaoForaQualidade());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_pontuacaoCasaQualidadeTempo());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_pontuacaoForaQualidadeTempo());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_pontuacaoCasaVenue());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_pontuacaoForaVenue());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_pontuacaoCasaQualidadeVenue());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_pontuacaoForaQualidadeVenue());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_pontuacaoCasaQualidadeTempoVenue());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_pontuacaoForaQualidadeTempoVenue());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_pontuacaoCasaSwitchedVenue());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_pontuacaoForaSwitchedVenue());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_pontuacaoCasaQualidadeSwitchedVenue());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_pontuacaoForaQualidadeSwitchedVenue());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_pontuacaoCasaQualidadeTempoSwitchedVenue());
+			
+			row.createCell(cellIndex++).setCellValue(excelrow.getFR_pontuacaoForaQualidadeTempoSwitchedVenue());
 
 		}
 
