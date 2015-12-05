@@ -46,8 +46,8 @@ public class Main {
 	public static void main(String[] args) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("database.odb");
 		EntityManager em = emf.createEntityManager();
-		generateDatabase(em);
-		//createExcels_A_B(em);
+		//generateDatabase(em);
+		createExcels_A_B(em);
 	}
 
 	private static void generateDatabase(EntityManager em) {
@@ -988,7 +988,7 @@ public class Main {
 		return excelRows;
 	}
 
-	public static ExcelRow generalOverall(Fixture f, Season s, ExcelColumnsCalculation homeTeam,
+	private static ExcelRow generalOverall(Fixture f, Season s, ExcelColumnsCalculation homeTeam,
 			ExcelColumnsCalculation awayTeam, ExcelRow row, String resultado) {
 
 		row.setData(f.getDate());
@@ -1020,7 +1020,7 @@ public class Main {
 		return row;
 	}
 
-	public static ExcelRow generalVenue(Fixture f, Season s, ExcelColumnsCalculation homeTeam,
+	private static ExcelRow generalVenue(Fixture f, Season s, ExcelColumnsCalculation homeTeam,
 			ExcelColumnsCalculation awayTeam, ExcelRow row) {
 
 		row.setQualidadeVisitadoVenue(homeTeam.getHomeTeamQuality(s, f.getDate()));
@@ -1029,7 +1029,7 @@ public class Main {
 		return row;
 	}
 
-	public static ExcelRow generalSwitchedVenue(Fixture f, Season s, ExcelColumnsCalculation homeTeam,
+	private static ExcelRow generalSwitchedVenue(Fixture f, Season s, ExcelColumnsCalculation homeTeam,
 			ExcelColumnsCalculation awayTeam, ExcelRow row) {
 
 		row.setQualidadeVisitadoSwitchedVenue(homeTeam.getAwayTeamQuality(s, f.getDate()));
@@ -1038,7 +1038,7 @@ public class Main {
 		return row;
 	}
 
-	public static ExcelRow cycleOverall(Fixture f, ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam,
+	private static ExcelRow cycleOverall(Fixture f, ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam,
 			List<String> historicos, List<Double> ratings, String result, ExcelRow row) {
 
 		ResultType homeResult;
@@ -1081,7 +1081,7 @@ public class Main {
 		return row;
 	}
 
-	public static ExcelRow cycleVenue(Fixture f, ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam,
+	private static ExcelRow cycleVenue(Fixture f, ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam,
 			List<String> historicos, String result, ExcelRow row) {
 
 		ResultType homeResult;
@@ -1123,7 +1123,7 @@ public class Main {
 		return row;
 	}
 
-	public static ExcelRow cycleSwitchedVenue(Fixture f, ExcelColumnsCalculation homeTeam,
+	private static ExcelRow cycleSwitchedVenue(Fixture f, ExcelColumnsCalculation homeTeam,
 			ExcelColumnsCalculation awayTeam, List<String> historicos, String result, ExcelRow row) {
 		ResultType homeResult;
 		ResultType awayResult;
@@ -1165,7 +1165,7 @@ public class Main {
 		return row;
 	}
 
-	public static ExcelRow FROverall(Fixture f, ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam,
+	private static ExcelRow FROverall(Fixture f, ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam,
 			List<Double> ratings, List<String> historicos, String result, ExcelRow row, Integer numberOfFixtures,
 			Double interval) {
 
@@ -1287,7 +1287,7 @@ public class Main {
 		return row;
 	}
 
-	public static ExcelRow FRVenue(Fixture f, ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam,
+	private static ExcelRow FRVenue(Fixture f, ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam,
 			List<Double> ratings, List<String> historicos, String result, ExcelRow row, Integer numberOfFixtures,
 			Double interval) {
 
@@ -1365,7 +1365,7 @@ public class Main {
 		return row;
 	}
 
-	public static ExcelRow FRSwitchedVenue(Fixture f, ExcelColumnsCalculation homeTeam,
+	private static ExcelRow FRSwitchedVenue(Fixture f, ExcelColumnsCalculation homeTeam,
 			ExcelColumnsCalculation awayTeam, List<Double> ratings, List<String> historicos, String result,
 			ExcelRow row, Integer numberOfFixtures, Double interval) {
 
@@ -1443,7 +1443,7 @@ public class Main {
 		return row;
 	}
 
-	public static ExcelRow QLTOverall(Fixture f, ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam,
+	private static ExcelRow QLTOverall(Fixture f, ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam,
 			Double interval, String result, ExcelRow row) {
 
 		ResultType homeResult;
@@ -1498,7 +1498,7 @@ public class Main {
 
 	}
 	
-	public static ExcelRow QLTVenue(Fixture f, ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam,
+	private static ExcelRow QLTVenue(Fixture f, ExcelColumnsCalculation homeTeam, ExcelColumnsCalculation awayTeam,
 			Double interval, String result, ExcelRow row) {
 
 		ResultType homeResult;
@@ -1552,7 +1552,7 @@ public class Main {
 		return row;
 	}
 
-	public static ExcelRow QLTSwitchedVenue(Fixture f, ExcelColumnsCalculation homeTeam,
+	private static ExcelRow QLTSwitchedVenue(Fixture f, ExcelColumnsCalculation homeTeam,
 			ExcelColumnsCalculation awayTeam, Double interval, String result, ExcelRow row) {
 
 		ResultType homeResult;
@@ -1607,7 +1607,7 @@ public class Main {
 		return row;
 	}
 
-	public static ExcelRow H2HOverall(Fixture f, List<Double> ratingsH2H, ExcelColumnsCalculation homeTeam,
+	private static ExcelRow H2HOverall(Fixture f, List<Double> ratingsH2H, ExcelColumnsCalculation homeTeam,
 			ExcelColumnsCalculation awayTeam, String result, ExcelRow row) {
 
 		ResultType homeResult;
@@ -1643,7 +1643,7 @@ public class Main {
 		return row;
 	}
 	
-	public static ExcelRow H2HVenue(Fixture f, List<Double> ratingsH2H, ExcelColumnsCalculation homeTeam,
+	private static ExcelRow H2HVenue(Fixture f, List<Double> ratingsH2H, ExcelColumnsCalculation homeTeam,
 			ExcelColumnsCalculation awayTeam, String result, ExcelRow row) {
 
 		ResultType homeResult;
@@ -1679,7 +1679,7 @@ public class Main {
 		return row;
 	}
 
-	public static ExcelRow H2HSwitchedVenue(Fixture f, List<Double> ratingsH2H, ExcelColumnsCalculation homeTeam,
+	private static ExcelRow H2HSwitchedVenue(Fixture f, List<Double> ratingsH2H, ExcelColumnsCalculation homeTeam,
 			ExcelColumnsCalculation awayTeam, String result, ExcelRow row) {
 
 		ResultType homeResult;
@@ -1714,7 +1714,7 @@ public class Main {
 		return row;
 	}
 
-	public static void generateExcelFiles_PlanB(Season s, EntityManager em, String filePath) {
+	private static void generateExcelFiles_PlanB(Season s, EntityManager em, String filePath) {
 
 		SeasonController sc = new SeasonController(em);
 
