@@ -147,6 +147,7 @@ public class LogTrainingListener implements TrainingEventListener {
     	int i = 0;
 
     	for (Float f : output) {
+    		System.out.println("##############################\nOUT: " +f);
     	    floatArray[i++] = (f != null ? f : Float.NaN); // Or whatever default you want.
     	}
     	return floatArray;

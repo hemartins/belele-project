@@ -21,7 +21,8 @@ import pt.belele.project.algorithm.Algorithm;
 import pt.belele.project.algorithm.ExcelColumnsCalculation;
 import pt.belele.project.algorithm.ExcelRow;
 import pt.belele.project.ann.BetInputProvider;
-import pt.belele.project.ann.LogTrainingListener;
+import pt.belele.project.ann.OutputListener;
+import pt.belele.project.controllers.FixtureController;
 import pt.belele.project.controllers.SeasonController;
 import pt.belele.project.entities.Bet;
 import pt.belele.project.entities.CutOff;
@@ -66,25 +67,56 @@ public class Main2 {
 		Week week = new Week();
 
 		FixtureDAO fixtureDAO = new FixtureDAO(em);
+		FixtureController fixtureController = new FixtureController(em);
 		Calendar cal = Calendar.getInstance();
 		cal.set(Calendar.HOUR_OF_DAY, 0);
 		cal.clear(Calendar.MINUTE);
 		cal.clear(Calendar.SECOND);
 		cal.clear(Calendar.MILLISECOND);
-		cal.set(Calendar.DAY_OF_MONTH, 4);
-		cal.set(Calendar.MONTH, 12);
+		cal.set(Calendar.DAY_OF_MONTH, 26);
+		cal.set(Calendar.MONTH, 10);
 
 		Date begin = cal.getTime();
-		cal.set(Calendar.DAY_OF_MONTH, 8);
+		cal.set(Calendar.DAY_OF_MONTH, 1);
+		cal.set(Calendar.MONTH, 11);
 		Date end = cal.getTime();
-
 		week.setWeekNumber(cal.getWeeksInWeekYear());
 
 		SeasonController sc = new SeasonController(em);
-		Season s = sc.createSeason("I1", 14);
+		Season s = sc.createSeason("P1", 15);
 
-		List<Fixture> oldFixtures = fixtureDAO.findFixturesBetweenDates(
-				s.getId(), null, begin);
+		cal = Calendar.getInstance();
+		cal.set(Calendar.HOUR_OF_DAY, 0);
+		cal.clear(Calendar.MINUTE);
+		cal.clear(Calendar.SECOND);
+		cal.clear(Calendar.MILLISECOND);
+		cal.set(Calendar.DAY_OF_MONTH, 1);
+		cal.set(Calendar.MONTH, 0);
+		cal.set(Calendar.YEAR, 2014);
+		Date beginCut = cal.getTime();
+		
+		LOG.info(beginCut);
+		LOG.info(begin);
+		LOG.info(end);
+		
+		List<Fixture> oldFixtures = fixtureDAO.findCountryFixturesBetweenDates(
+				"P1", beginCut, begin);
+		
+		for(Fixture f : oldFixtures)
+		{
+			DateTimeFormatter formatter = DateTimeFormat.forPattern("dd/MM/yy");
+
+			if (f.getDate().before(
+					formatter.parseDateTime("23/11/" + (f.getSeason().getYear() + 2000))
+							.toDate()))
+				continue;
+			
+			LOG.info(f.toString());
+			if(f.getAnnOdd() == null)
+				f.setAnnOdd(fixtureController.calculateAnnOdds(f));
+			LOG.info(f.getAnnOdd()!= null ? f.getAnnOdd().toString() : null);
+			fixtureDAO.update(f);
+		}
 
 		// Create instance of Maximisation
 		Maximisation max = new Maximisation();
@@ -142,6 +174,10 @@ public class Main2 {
 		float[][] annDraw = normalize(annTriplet.getB());
 		float[][] annLose = normalize(annTriplet.getC());
 
+		LOG.info("ANNWIN: " + Arrays.deepToString(annWin));
+		LOG.info("ANNDRAW: " + Arrays.deepToString(annDraw));
+		LOG.info("ANNLOSE: " + Arrays.deepToString(annLose));
+		
 		float[] annWinAverage = average(annWin);
 		float[] annDrawAverage = average(annDraw);
 		float[] annLoseAverage = average(annLose);
@@ -153,6 +189,10 @@ public class Main2 {
 		float[] annDrawOdd = finalOddTriplet.getB();
 		float[] annLoseOdd = finalOddTriplet.getC();
 
+		LOG.info("ANNWIN: " + Arrays.toString(annWinOdd));
+		LOG.info("ANNDRAW: " + Arrays.toString(annDrawOdd));
+		LOG.info("ANNLOSE: " + Arrays.toString(annLoseOdd));
+		
 		List<Fixture> fixtures = fixtureDAO.findFixturesBetweenDates(s.getId(),
 				begin, end);
 
@@ -304,30 +344,30 @@ public class Main2 {
 				param[10], param[11], param[12], param[14]);
 		CutOff cutOffMultiple = new CutOff(param[14], param[15], param[16],
 				param[17], param[18], param[19], param[20]);
-
-		List<MultipleBet> multipleBets = new Algorithm().multipleBetAlgorithm(
-				week, fixtureMap, cutOffDouble, cutOffTriple, cutOffMultiple,
-				investedValue);
-
-		double investido = 0;
-		for (MultipleBet multBet : multipleBets) {
-			investido += multBet.getInvestedValue();
-			LOG.info("MULTIPLEBET:\n" + multBet.toString() + "\n\n");
-		}
-
-		LOG.info("Investido: " + investido);
-		LOG.info("Lucro: " + maximum);
+//
+//		List<MultipleBet> multipleBets = new Algorithm().multipleBetAlgorithm(
+//				week, fixtureMap, cutOffDouble, cutOffTriple, cutOffMultiple,
+//				investedValue);
+//
+//		double investido = 0;
+//		for (MultipleBet multBet : multipleBets) {
+//			investido += multBet.getInvestedValue();
+//			LOG.info("MULTIPLEBET:\n" + multBet.toString() + "\n\n");
+//		}
+//
+//		LOG.info("Investido: " + investido);
+//		LOG.info("Lucro: " + maximum);
 	}
 
 	private static float[][] testMLPSigmoidBP(float[][] input, float[][] test,
 			float[] target) {
 		// execution mode
-		Environment.getInstance().setExecutionMode(EXECUTION_MODE.CPU);
-		Environment.getInstance().setUseDataSharedMemory(true);
-		Environment.getInstance().setUseWeightsSharedMemory(true);
+		Environment.getInstance().setExecutionMode(EXECUTION_MODE.SEQ);
+		Environment.getInstance().setUseDataSharedMemory(false);
+		Environment.getInstance().setUseWeightsSharedMemory(false);
 
-		float[][] results = new float[10][];
-		for (int i = 0; i < 10; i++) {
+		float[][] results = new float[test.length][5];
+		for (int i = 0; i < 5; i++) {
 			// create the network
 			NeuralNetworkImpl mlp = NNFactory.mlpSigmoid(new int[] { 4,
 					4 * 2 + 2, 1 }, true);
@@ -349,9 +389,7 @@ public class Main2 {
 											-0.01f, 0.01f), 0.5f), 0.02f, 0.7f,
 							0f, 0f, 0f, 150, 1, 2000);
 
-			LogTrainingListener ltt = new LogTrainingListener(Thread
-					.currentThread().getStackTrace()[1].getMethodName(), true,
-					true);
+			OutputListener ltt = new OutputListener();
 
 			// log data
 			bpt.addEventListener(ltt);
@@ -366,11 +404,12 @@ public class Main2 {
 			// test
 			bpt.test();
 
-			LOG.info("ANN OUTPUT:\n" + Arrays.toString(ltt.getOutput()));
-			results[i] = ltt.getOutput();
+			for(int j = 0; j<ltt.getOutput().length; j++)
+			{
+				results[j][i] = ltt.getOutput()[j];
+			}
 		}
 
-		LOG.info("ANN RESULTS:\n" + Arrays.deepToString(results));
 
 		return results;
 	}
@@ -533,11 +572,9 @@ public class Main2 {
 		List<ExcelRow> OurLoseDataList = new ArrayList<ExcelRow>();
 
 		List<String> historicos = new ArrayList<String>();
-		historicos.add("Juventus");
-		historicos.add("Roma");
-		historicos.add("Milan");
-		historicos.add("Inter");
-		historicos.add("Napoli");
+		historicos.add("Benfica");
+		historicos.add("Porto");
+		historicos.add("Sp Lisbon");
 
 		List<Double> ratings = new ArrayList<Double>();
 		ratings.add(0.3);
@@ -569,7 +606,7 @@ public class Main2 {
 			fixtureList = s.getFixtures();
 		} else {
 			FixtureDAO fixtureDAO = new FixtureDAO(em);
-			fixtureList = fixtureDAO.findFixturesBetweenDates(s.getId(),
+			fixtureList = fixtureDAO.findCountryFixturesBetweenDates(s.getName(),
 					beginDate, limitDate);
 		}
 
@@ -580,7 +617,7 @@ public class Main2 {
 			DateTimeFormatter formatter = DateTimeFormat.forPattern("dd/MM/yy");
 
 			if (f.getDate().before(
-					formatter.parseDateTime("23/11/" + (s.getYear() + 2000))
+					formatter.parseDateTime("23/11/" + (f.getSeason().getYear() + 2000))
 							.toDate()))
 				continue;
 

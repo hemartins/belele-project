@@ -32,6 +32,9 @@ public class Algorithm {
 
 		for (Fixture f : fixtures) {
 
+			if(f.getAnnOdd() == null)
+				continue;
+			
 			Double backHomeWin = f.getAnnOdd().getBackHomeWin();
 			Double backDraw = f.getAnnOdd().getBackDraw();
 			Double backAwayWin = f.getAnnOdd().getBackAwayWin();
@@ -47,8 +50,11 @@ public class Algorithm {
 				Odd simpleProcessedOdd = calculateSimpleBetProcessedOdds(f,
 						simpleNNOdd, cutOffSimple,
 						atributeOddWeightCutOff(f, cutOffSimple));
-				bets.addAll(betDecision(w, f, simpleProcessedOdd, cutOffSimple,
-						investedValue));
+				List<Bet> betD = betDecision(w, f, simpleProcessedOdd, cutOffSimple,
+						investedValue);
+				
+				if(betD!=null)
+					bets.addAll(betD);
 			}
 		}
 
@@ -56,7 +62,7 @@ public class Algorithm {
 	}
 
 	public List<MultipleBet> multipleBetAlgorithm(Week w,
-			Map<Fixture, Odd> fixtures, CutOff cutOffDouble,
+			List<Fixture> fixtures, CutOff cutOffDouble,
 			CutOff cutOffTriple, CutOff cutOffMultiple, Double investedValue) {
 
 		List<MultipleBet> multipleBets = new ArrayList<MultipleBet>();
@@ -64,14 +70,17 @@ public class Algorithm {
 		List<Bet> tripleBets = new ArrayList<Bet>();
 		List<Bet> multipleBetList = new ArrayList<Bet>();
 
-		for (Fixture f : fixtures.keySet()) {
+		for (Fixture f : fixtures) {
 
-			Double backHomeWin = fixtures.get(f).getBackHomeWin();
-			Double backDraw = fixtures.get(f).getBackDraw();
-			Double backAwayWin = fixtures.get(f).getBackAwayWin();
-			Double layHomeWin = fixtures.get(f).getLayHomeWin();
-			Double layDraw = fixtures.get(f).getLayDraw();
-			Double layAwayWin = fixtures.get(f).getLayAwayWin();
+			if(f.getAnnOdd() == null)
+				continue;
+			
+			Double backHomeWin = f.getAnnOdd().getBackHomeWin();
+			Double backDraw = f.getAnnOdd().getBackDraw();
+			Double backAwayWin = f.getAnnOdd().getBackAwayWin();
+			Double layHomeWin = f.getAnnOdd().getLayHomeWin();
+			Double layDraw = f.getAnnOdd().getLayDraw();
+			Double layAwayWin = f.getAnnOdd().getLayAwayWin();
 
 			LOG.trace("###########\n" + f.toString() + "\n#####");
 			atributeOddWeightCutOff(f, cutOffDouble);

@@ -23,7 +23,7 @@ public class Week implements Serializable {
 	
 	private double earnings;
 
-	@OneToMany(mappedBy = "season")
+	@OneToMany(mappedBy = "week")
 	private List<Bet> bets;
 
 	public Week() {

@@ -157,4 +157,33 @@ public class FixtureDAO extends GenericDAO<Fixture> {
 		
 		return query.getResultList();
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Fixture> findCountryFixturesBetweenDates(String league, Date begin, Date end)
+	{
+		StringBuilder sb = new StringBuilder("SELECT f FROM Fixture f WHERE f.season.name = :league");
+		Map<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("league", league);
+		
+		if(begin != null)
+		{
+			sb.append(" AND f.date > :begin ");
+			params.put("begin", begin);
+		}
+		if(end != null)
+		{
+			sb.append(" AND f.date < :end");
+			params.put("end", end);
+		}
+
+		Query query = em.createQuery(sb.toString());
+		
+		for(Map.Entry<String, Object> entry : params.entrySet())
+		{
+			query.setParameter(entry.getKey(), entry.getValue());
+		}
+		
+		return query.getResultList();
+	}
 }

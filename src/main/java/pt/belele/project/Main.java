@@ -46,8 +46,8 @@ public class Main {
 	public static void main(String[] args) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("database.odb");
 		EntityManager em = emf.createEntityManager();
-		//generateDatabase(em);
-		createExcels_A_B(em);
+		generateDatabase(em);
+		//createExcels_A_B(em);
 	}
 
 	private static void generateDatabase(EntityManager em) {

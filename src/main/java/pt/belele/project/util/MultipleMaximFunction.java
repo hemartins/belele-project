@@ -37,7 +37,7 @@ public class MultipleMaximFunction implements MaximisationFunction {
 				x[20]);
 		
 		Algorithm alg = new Algorithm();
-		List<MultipleBet> multipleBets = alg.multipleBetAlgorithm(week, fixtures, cutOffDouble, cutOffTriple, cutOffMultiple, investedValue);
+		List<MultipleBet> multipleBets = null;//= alg.multipleBetAlgorithm(week, fixtures, cutOffDouble, cutOffTriple, cutOffMultiple, investedValue);
 
 		double lucro = 0;
 
