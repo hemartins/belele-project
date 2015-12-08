@@ -1,0 +1,9 @@
+mvn install:install-file -Dfile=flanagan.jar -DgroupId=flanagan -DartifactId=flanagan -Dversion=1.0 -Dpackaging=jar
+mvn install:install-file -Dfile=nn-core-0.1-SNAPSHOT.jar -DgroupId=com.github.neuralnetworks -DartifactId=nn-core -Dversion=0.1-SNAPSHOT -Dpackaging=jar
+mvn install:install-file -Dfile=aparapi.jar -DgroupId=com.amd -DartifactId=aparapi -Dversion=2013_01_23 -Dpackaging=jar
+
+module add --name=org.postgres --resources=/root/postgresql-9.4-1206-jdbc42.jar --dependencies=javax.api,javax.transaction.api
+
+/subsystem=datasources/jdbc-driver=postgres:add(driver-name="postgres",driver-module-name="org.postgres",driver-class-name=org.postgresql.Driver)
+
+data-source add --jndi-name=java:jboss/datasources/BELELE-PROJECTDS --name=BELELE-PROJECT --connection-url=jdbc:postgresql://database:5432/belele --driver-name=postgres --user-name=postgres --password=postgres
