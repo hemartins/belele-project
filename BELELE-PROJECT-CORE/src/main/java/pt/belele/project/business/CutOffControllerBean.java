@@ -11,13 +11,14 @@ import org.apache.logging.log4j.Logger;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
-import pt.belele.project.business.ann.obj.DatasetProperties;
 import pt.belele.project.business.cutoff.MultipleBetCutoffCalculator;
 import pt.belele.project.business.cutoff.SimpleBetCutoffCalculator;
 import pt.belele.project.business.util.CutOff;
 import pt.belele.project.business.util.Triplet;
 import pt.belele.project.entities.Fixture;
+import pt.belele.project.entities.Odd;
 import pt.belele.project.persistence.FixtureDAO;
+import pt.belele.project.persistence.OddDAO;
 
 @Stateless
 @TransactionAttribute(TransactionAttributeType.SUPPORTS)
@@ -29,10 +30,13 @@ public class CutOffControllerBean implements CutOffController {
     private OddController oddController;
 
     @EJB
+    private OddDAO oddDAO;
+    
+    @EJB
     private FixtureDAO fixtureDAO;
 
     @Override
-    public CutOff getSimpleCutoffForFixtures(List<Fixture> fixtures, Double investedValue, DatasetProperties prop) {
+    public CutOff getSimpleCutoffForFixtures(List<Fixture> fixtures, Double investedValue, List<String> winVariables, List<String> drawVariables, List<String> loseVariables) throws Exception{
 	for (Fixture f : fixtures) {
 	    DateTimeFormatter formatter = DateTimeFormat.forPattern("dd/MM/yy");
 
@@ -40,13 +44,15 @@ public class CutOffControllerBean implements CutOffController {
 		continue;
 	    }
 	    
-	    DateTime beginOld = new DateTime(f.getDate()).minusYears(2);
+	    //DateTime beginOld = new DateTime(f.getDate()).minusYears(2);
+	    DateTime beginOld = new DateTime(f.getDate()).minusMonths(2);
 	    List<Fixture> oldFixtures = fixtureDAO.findCountryFixturesBetweenDates(f.getSeason().getName(), beginOld, f.getDate());
 
 	    if (f.getAnnOdd() == null) {
-		f.setAnnOdd(oddController.calculateAnnOddsForFixture(f, oldFixtures, prop));
+		Odd odd = oddController.calculateAnnOddsForFixture(f, oldFixtures, winVariables, drawVariables, loseVariables);
+		odd = oddDAO.insert(odd);
+		f.setAnnOdd(odd);
 	    }
-
 	    fixtureDAO.update(f);
 	}
 
@@ -95,7 +101,7 @@ public class CutOffControllerBean implements CutOffController {
     }
     
     @Override
-    public Triplet<CutOff, CutOff, CutOff> getMultipleCutOffForFixtures(List<Fixture> fixtures, Double investedValue, DatasetProperties prop)
+    public Triplet<CutOff, CutOff, CutOff> getMultipleCutOffForFixtures(List<Fixture> fixtures, Double investedValue, List<String> winVariables, List<String> drawVariables, List<String> loseVariables) throws Exception
     {
 	for (Fixture f : fixtures) {
 	    DateTimeFormatter formatter = DateTimeFormat.forPattern("dd/MM/yy");
@@ -108,7 +114,9 @@ public class CutOffControllerBean implements CutOffController {
 	    List<Fixture> oldFixtures = fixtureDAO.findCountryFixturesBetweenDates(f.getSeason().getName(), beginOld, f.getDate());
 
 	    if (f.getAnnOdd() == null) {
-		f.setAnnOdd(oddController.calculateAnnOddsForFixture(f, oldFixtures, prop));
+		Odd odd = oddController.calculateAnnOddsForFixture(f, oldFixtures, winVariables, drawVariables, loseVariables);
+		odd = oddDAO.insert(odd);
+		f.setAnnOdd(odd);
 	    }
 
 	    fixtureDAO.update(f);

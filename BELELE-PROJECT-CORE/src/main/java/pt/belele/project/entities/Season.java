@@ -1,5 +1,6 @@
 package pt.belele.project.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Column;
@@ -37,9 +38,11 @@ public class Season implements Serializable {
     @Column(name = "season_year", nullable = false)
     private Integer year;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "season")
     private List<Fixture> fixtures;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "season_teams", joinColumns = @JoinColumn(name = "season_id", unique = false), inverseJoinColumns = @JoinColumn(name = "team_id", unique = false))
     private List<Team> teams;

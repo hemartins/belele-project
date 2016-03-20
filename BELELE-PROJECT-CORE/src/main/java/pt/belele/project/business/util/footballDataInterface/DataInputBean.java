@@ -12,12 +12,14 @@ import javax.annotation.Resource;
 import javax.ejb.AsyncResult;
 import javax.ejb.Asynchronous;
 import javax.ejb.EJB;
+import javax.ejb.Schedule;
 import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import pt.belele.project.business.FixtureController;
@@ -68,7 +70,6 @@ public class DataInputBean implements DataInputInterface {
     @EJB
     private ResultDAO resultDAO;
 
-    //    @Schedule(hour = "02", persistent = false, info = "Updating DataBase")
     @Override
     @Asynchronous
     @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
@@ -362,6 +363,78 @@ public class DataInputBean implements DataInputInterface {
 	context.getBusinessObject(DataInputInterface.class).populateDatabase("G1.csv", "1213", 12);
 	context.getBusinessObject(DataInputInterface.class).populateDatabase("G1.csv", "1314", 13);
 	context.getBusinessObject(DataInputInterface.class).populateDatabase("G1.csv", "1415", 14);
+
+	return new AsyncResult<>(null);
+    }
+
+    @Override
+    @Asynchronous
+    @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+    @Schedule(hour = "02", persistent = false, info = "Updating DataBase")
+    public Future<Void> updateDatabase() {
+
+	DateTime now = new DateTime();
+
+	Integer year;
+
+	if (now.getMonthOfYear() < 7) {
+	    year = now.getYearOfCentury() - 1;
+	} else {
+	    year = now.getYearOfCentury();
+	}
+
+	String yearStr = year.toString() + (year + 1);
+
+	// INGLATERRA - PREMIER LEAGUE
+	context.getBusinessObject(DataInputInterface.class).populateDatabase("E0.csv", yearStr, year);
+
+	// INGLATERRA - CHAMPIONSHIP
+	context.getBusinessObject(DataInputInterface.class).populateDatabase("E1.csv", yearStr, year);
+
+	// INGLATERRA - LEAGUE 1
+	context.getBusinessObject(DataInputInterface.class).populateDatabase("E2.csv", yearStr, year);
+
+	// ESCOCIA - PREMIER LEAGUE
+	context.getBusinessObject(DataInputInterface.class).populateDatabase("SC0.csv", yearStr, year);
+
+	// ALEMANHA - BUNDESLIGA 1
+	context.getBusinessObject(DataInputInterface.class).populateDatabase("D1.csv", yearStr, year);
+
+	// ALEMANHA - BUNDESLIGA 2
+	context.getBusinessObject(DataInputInterface.class).populateDatabase("D2.csv", yearStr, year);
+
+	// ITALIA - SERIE A
+	context.getBusinessObject(DataInputInterface.class).populateDatabase("I1.csv", yearStr, year);
+
+	// ITALIA - SERIE B
+	context.getBusinessObject(DataInputInterface.class).populateDatabase("I2.csv", yearStr, year);
+
+	// ESPANHA - LA LIGA PRIMERA DIVISION
+	context.getBusinessObject(DataInputInterface.class).populateDatabase("SP1.csv", yearStr, year);
+
+	// ESPANHA - LA LIGA SEGUNDA DIVISION
+	context.getBusinessObject(DataInputInterface.class).populateDatabase("SP2.csv", yearStr, year);
+
+	// FRANÇA - LE CHAMPIONNAT
+	context.getBusinessObject(DataInputInterface.class).populateDatabase("F1.csv", yearStr, year);
+
+	// FRANÇA - DIVISION2
+	context.getBusinessObject(DataInputInterface.class).populateDatabase("F2.csv", yearStr, year);
+
+	// HOLANDA - EREDIVISE
+	context.getBusinessObject(DataInputInterface.class).populateDatabase("N1.csv", yearStr, year);
+
+	// BELGICA - JUPILER LEAGUE
+	context.getBusinessObject(DataInputInterface.class).populateDatabase("B1.csv", yearStr, year);
+
+	// PORTUGAL - PRIMEIRA LIGA
+	context.getBusinessObject(DataInputInterface.class).populateDatabase("P1.csv", yearStr, year);
+
+	// TURQUIA - FUTBOL LIGI 1
+	context.getBusinessObject(DataInputInterface.class).populateDatabase("T1.csv", yearStr, year);
+
+	// GRECIA - ETHNIKI KATIGORIA
+	context.getBusinessObject(DataInputInterface.class).populateDatabase("G1.csv", yearStr, year);
 
 	return new AsyncResult<>(null);
     }

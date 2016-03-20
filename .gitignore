@@ -44,3 +44,6 @@ Temporary Items
 /target/
 /.classpath
 /.settings/
+/BELELE-PROJECT-CORE/target/
+/BELELE-PROJECT-API/target/
+/BELELE-PROJECT-EAR/target/

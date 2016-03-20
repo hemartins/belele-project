@@ -16,5 +16,7 @@ import javax.ejb.Local;
 public interface DataInputInterface {
     Future<Void> generateDatabase();
     
+    Future<Void> updateDatabase();
+    
     void populateDatabase(String competitionFile, String season, Integer year);
 }

@@ -11,7 +11,6 @@ import javax.ejb.TransactionAttributeType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.joda.time.DateTime;
-import pt.belele.project.business.ann.obj.DatasetProperties;
 import pt.belele.project.business.util.Combination;
 import pt.belele.project.business.util.CutOff;
 import pt.belele.project.business.util.Triplet;
@@ -149,13 +148,16 @@ public class BetControllerBean implements BetController {
     }
 
     @Override
-    public void doSimpleBetsForSeason(DateTime begin, DateTime end, Season s, Double investedValue, DatasetProperties prop) {
+    public List<Bet> doSimpleBetsForSeason(DateTime begin, DateTime end, Season s, Double investedValue, List<String> winVariables, List<String> drawVariables, List<String> loseVariables) throws Exception{
 
 	LOG.info("Simple Betting for season " + s.getName() + " " + s.getYear() + " between " + begin + " and " + end);
 
-	DateTime beginOld = new DateTime(begin).minusYears(2);
+	//DateTime beginOld = new DateTime(begin).minusYears(2);
+	DateTime beginOld = new DateTime(begin).minusMonths(2);
 	List<Fixture> oldFixtures = fixtureDAO.findCountryFixturesBetweenDates(s.getName(), beginOld, begin);
-	CutOff cutOffSimple = cuttOffController.getSimpleCutoffForFixtures(oldFixtures, investedValue, prop);
+	LOG.info("Number of Fixtures: " + oldFixtures.size());
+	LOG.info("Calculating CuttOffs");
+	CutOff cutOffSimple = cuttOffController.getSimpleCutoffForFixtures(oldFixtures, investedValue, winVariables, drawVariables, loseVariables);
 
 	beginOld = new DateTime(begin).minusYears(7);
 	oldFixtures = fixtureDAO.findCountryFixturesBetweenDates(s.getName(), beginOld, begin);
@@ -163,7 +165,7 @@ public class BetControllerBean implements BetController {
 	List<Fixture> fixtures = fixtureDAO.findFixturesBetweenDates(s.getId(), begin, end);
 	LOG.info("Number of Fixtures: " + fixtures.size());
 
-	Triplet<float[], float[], float[]> finalOddTriplet = oddController.calculateAnnOddsForFixtures(fixtures, oldFixtures, prop);
+	Triplet<float[], float[], float[]> finalOddTriplet = oddController.calculateAnnOddsForFixtures(fixtures, oldFixtures, winVariables, drawVariables, loseVariables);
 
 	float[] annWinOdd = finalOddTriplet.getA();
 	float[] annDrawOdd = finalOddTriplet.getB();
@@ -186,15 +188,17 @@ public class BetControllerBean implements BetController {
 	List<Bet> bets = calculateSimpleBetForFixtures(fixtures, cutOffSimple, investedValue);
 
 	//TODO INTERFACE BETFAIR
+	
+	return bets;
     }
 
     @Override
-    public void doMultipleBetsForSeason(DateTime begin, DateTime end, Season s, Double investedValue, DatasetProperties prop) {
-	LOG.info("Simple Betting for season " + s.getName() + " " + s.getYear() + " between " + begin + " and " + end);
+    public List<MultipleBet> doMultipleBetsForSeason(DateTime begin, DateTime end, Season s, Double investedValue, List<String> winVariables, List<String> drawVariables, List<String> loseVariables) throws Exception{
+	LOG.info("Multiple Betting for season " + s.getName() + " " + s.getYear() + " between " + begin + " and " + end);
 
 	DateTime beginOld = new DateTime(begin).minusYears(2);
 	List<Fixture> oldFixtures = fixtureDAO.findCountryFixturesBetweenDates(s.getName(), beginOld, begin);
-	Triplet<CutOff, CutOff, CutOff> multipleCutoffs = cuttOffController.getMultipleCutOffForFixtures(oldFixtures, investedValue, prop);
+	Triplet<CutOff, CutOff, CutOff> multipleCutoffs = cuttOffController.getMultipleCutOffForFixtures(oldFixtures, investedValue, winVariables, drawVariables, loseVariables);
 
 	beginOld = new DateTime(begin).minusYears(7);
 	oldFixtures = fixtureDAO.findCountryFixturesBetweenDates(s.getName(), beginOld, begin);
@@ -202,7 +206,7 @@ public class BetControllerBean implements BetController {
 	List<Fixture> fixtures = fixtureDAO.findFixturesBetweenDates(s.getId(), begin, end);
 	LOG.info("Number of Fixtures: " + fixtures.size());
 
-	Triplet<float[], float[], float[]> finalOddTriplet = oddController.calculateAnnOddsForFixtures(fixtures, oldFixtures, prop);
+	Triplet<float[], float[], float[]> finalOddTriplet = oddController.calculateAnnOddsForFixtures(fixtures, oldFixtures, winVariables, drawVariables, loseVariables);
 
 	float[] annWinOdd = finalOddTriplet.getA();
 	float[] annDrawOdd = finalOddTriplet.getB();
@@ -227,6 +231,8 @@ public class BetControllerBean implements BetController {
 	List<MultipleBet> multipleBets = calculateMultipleBetForFixtures(fixtures, multipleCutoffs.getA(), multipleCutoffs.getB(), multipleCutoffs.getC(), investedValue);
 
 	//TODO INTERFACE BETFAIR
+	
+	return multipleBets;
     }
 
     /**

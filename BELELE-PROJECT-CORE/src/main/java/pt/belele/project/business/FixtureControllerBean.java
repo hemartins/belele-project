@@ -37,7 +37,7 @@ public class FixtureControllerBean implements FixtureController {
 	    f.setH2H(fixtureDAO.getH2H(f.getHomeTeam().getId(), f.getAwayTeam().getId(), f.getDate(), 10));
 	    f.setH2HVenue(fixtureDAO.getH2HVenue(f.getHomeTeam().getId(), f.getAwayTeam().getId(), f.getDate(), 10));
 	    f.setH2hSwitchedVenue(fixtureDAO.getH2HSwitchedVenue(f.getHomeTeam().getId(), f.getAwayTeam().getId(), f.getDate(), 10));
-	    //f.setAnnOdd(calculateAnnOdds(f));
+	    f.setAnnOdd(calculateAnnOdds(f));
 	    fixture = fixtureDAO.insert(f);
 	}
 

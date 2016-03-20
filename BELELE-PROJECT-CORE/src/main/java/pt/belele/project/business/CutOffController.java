@@ -7,7 +7,6 @@ package pt.belele.project.business;
 
 import java.util.List;
 import javax.ejb.Local;
-import pt.belele.project.business.ann.obj.DatasetProperties;
 import pt.belele.project.business.util.CutOff;
 import pt.belele.project.business.util.Triplet;
 import pt.belele.project.entities.Fixture;
@@ -19,7 +18,7 @@ import pt.belele.project.entities.Fixture;
 @Local
 public interface CutOffController {
 
-    CutOff getSimpleCutoffForFixtures(List<Fixture> fixtures, Double investedValue, DatasetProperties prop);
+    CutOff getSimpleCutoffForFixtures(List<Fixture> fixtures, Double investedValue, List<String> winVariables, List<String> drawVariables, List<String> loseVariables) throws Exception;
 
-    Triplet<CutOff, CutOff, CutOff> getMultipleCutOffForFixtures(List<Fixture> fixtures, Double investedValue, DatasetProperties prop);
+    Triplet<CutOff, CutOff, CutOff> getMultipleCutOffForFixtures(List<Fixture> fixtures, Double investedValue, List<String> winVariables, List<String> drawVariables, List<String> loseVariables) throws Exception;
 }

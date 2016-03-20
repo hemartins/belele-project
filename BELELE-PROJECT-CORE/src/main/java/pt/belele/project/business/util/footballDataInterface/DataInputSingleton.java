@@ -26,7 +26,8 @@ public class DataInputSingleton {
 
     @PostConstruct
     public void init() {
-	dataInput.generateDatabase();
+	//dataInput.generateDatabase();
+	dataInput.updateDatabase();
     }
 
 }

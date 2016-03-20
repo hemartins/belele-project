@@ -5,7 +5,9 @@
  */
 package pt.belele.project.business.ann.obj;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.joda.time.DateTime;
+import pt.belele.project.util.JsonObjectMapper;
 
 /**
  *
@@ -15,2187 +17,2167 @@ public class Dataset {
 
     //// General variables \\\\
     // Overall
-    DateTime data;
-    String nomeVisitado, nomeVisitante;
-    Double qualidadeVisitado, qualidadeVisitante;
-    Integer diasDescansoVisitado, diasDescansoVisitante;
-    Integer classificacaoVisitado, classificacaoVisitante;
-    Integer resultado;
-
+    private DateTime date;
+    private String homeTeam, awayTeam;
+    private Double homeTeamQuality, awayTeamQuality;
+    private Integer homeTeamRestingDays, awayTeamRestingDays;
+    private Integer homeTeamPosition, awayTeamPosition;
+    private Integer result;
     // Venue
-    Double qualidadeVisitadoVenue, qualidadeVisitanteVenue;
-
+    private Double homeTeamQualityVenue, awayTeamQualityVenue;
     // Switched Venue
-    Double qualidadeVisitadoSwitchedVenue, qualidadeVisitanteSwitchedVenue;
+    private Double homeTeamQualitySwitchedVenue, awayTeamQualitySwitchedVenue;
 
     //// Cycle variables \\\\
     // Overall
-    Integer cicloNaoResultado_numeroJogosVisitado, cicloNaoResultado_numeroJogosVisitante;
-    Double cicloNaoResultado_dificuldadeVisitado, cicloNaoResultado_dificuldadeVisitante;
-    Integer cicloNaoResultado_historicosVisitado, cicloNaoResultado_historicosVisitante;
+    private Integer homeTeamCycleNotResultNumberFixtures, awayTeamCycleNotResultNumberFixtures;
+    private Double homeTeamCycleNotResultOpponentAverageQuality, awayTeamCycleNotResultOpponentAverageQuality;
+    private Integer homeTeamCycleNotResultHardFixturesNumber, awayTeamCycleNotResultHardFixturesNumber;
 
-    Integer cicloResultado_numeroJogosVisitado, cicloResultado_numeroJogosVisitante;
-    Double cicloResultado_dificuldadeVisitado, cicloResultado_dificuldadeVisitante;
-    Integer cicloResultado_historicosVisitado, cicloResultado_historicosVisitante;
+    private Integer homeTeamCycleNumberFixtures, awayTeamCycleNumberFixtures;
+    private Double homeTeamCycleOpponentAverageQuality, awayTeamCycleOpponentAverageQuality;
+    private Integer homeTeamCycleHardFixturesNumber, awayTeamCycleHardFixturesNumber;
 
     // Venue
-    Integer cicloNaoResultado_numeroJogosVisitadoVenue, cicloNaoResultado_numeroJogosVisitanteVenue;
-    Double cicloNaoResultado_dificuldadeVisitadoVenue, cicloNaoResultado_dificuldadeVisitanteVenue;
-    Integer cicloNaoResultado_historicosVisitadoVenue, cicloNaoResultado_historicosVisitanteVenue;
+    private Integer homeTeamCycleNotResultNumberFixturesVenue, awayTeamCycleNotResultNumberFixturesVenue;
+    private Double homeTeamCycleNotResultOpponentAverageQualityVenue, awayTeamCycleNotResultOpponentAverageQualityVenue;
+    private Integer homeTeamCycleNotResultHardFixturesVenue, awayTeamCycleNotResultHardFixturesVenue;
 
-    Integer cicloResultado_numeroJogosVisitadoVenue, cicloResultado_numeroJogosVisitanteVenue;
-    Double cicloResultado_dificuldadeVisitadoVenue, cicloResultado_dificuldadeVisitanteVenue;
-    Integer cicloResultado_historicosVisitadoVenue, cicloResultado_historicosVisitanteVenue;
+    private Integer homeTeamCycleNumberFixturesVenue, awayTeamCycleNumberFixturesVenue;
+    private Double homeTeamCycleOpponentAverageQualityVenue, awayTeamCycleOpponentAverageQualityVenue;
+    private Integer homeTeamCycleHardFixturesNumberVenue, awayTeamCycleHardFixturesNumberVenue;
 
     // Switched Venue
-    Integer cicloNaoResultado_numeroJogosVisitadoSwitchedVenue, cicloNaoResultado_numeroJogosVisitanteSwitchedVenue;
-    Double cicloNaoResultado_dificuldadeVisitadoSwitchedVenue, cicloNaoResultado_dificuldadeVisitanteSwitchedVenue;
-    Integer cicloNaoResultado_historicosVisitadoSwitchedVenue, cicloNaoResultado_historicosVisitanteSwitchedVenue;
+    private Integer homeTeamCycleNotResultNumberFixturesVenueSwitchedVenue, awayTeamCycleNotResultNumberFixturesVenueSwitchedVenue;
+    private Double homeTeamCycleNotResultOpponentAverageQualitySwitchedVenue, awayTeamCycleNotResultOpponentAverageQualitySwitchedVenue;
+    private Integer homeTeamCycleNotResultHardFixturesSwitchedVenue, awayTeamCycleNotResultHardFixturesSwitchedVenue;
 
-    Integer cicloResultado_numeroJogosVisitadoSwitchedVenue, cicloResultado_numeroJogosVisitanteSwitchedVenue;
-    Double cicloResultado_dificuldadeVisitadoSwitchedVenue, cicloResultado_dificuldadeVisitanteSwitchedVenue;
-    Integer cicloResultado_historicosVisitadoSwitchedVenue, cicloResultado_historicosVisitanteSwitchedVenue;
+    private Integer homeTeamCycleNumberFixturesSwitchedVenue, awayTeamCycleNumberFixturesSwitchedVenue;
+    private Double homeTeamCycleOpponentAverageQualitySwitchedVenue, awayTeamCycleOpponentAverageQualitySwitchedVenue;
+    private Integer homeTeamCycleHardFixturesNumberSwitchedVenue, awayTeamCycleHardFixturesNumberSwitchedVenue;
 
     //// FR variables \\\\
     // Overall
-    Double FR_dificuldadeVisitado, FR_dificuldadeVisitante;
-    Integer FR_historicosVisitado, FR_historicosVisitante;
-    Double FR_ratingTemporalResultadoVisitado, FR_ratingTemporalResultadoVisitante;
-    Integer FR_numeroResultadosVisitado, FR_numeroResultadosVisitante;
-    Integer FR_numeroResultadosNoIntervaloVisitado, FR_numeroResultadosNoIntervaloVisitante;
-    Double FR_percentagemResultadoVisitado, FR_percentagemResultadoVisitante;
-    Double FR_percentagemResultadoVisitadoCasa, FR_percentagemResultadoVisitanteFora;
-    Double FR_percentagemResultadoVisitadoFora, FR_percentagemResultadoVisitanteCasa;
-    Double FR_percentagemResultadoNoIntervaloVisitado, FR_percentagemResultadoNoIntervaloVisitante;
-    Double FR_percentagemResultadoNoIntervaloVisitadoCasa, FR_percentagemResultadoNoIntervaloVisitanteFora;
-    Double FR_percentagemResultadoNoIntervaloVisitadoFora, FR_percentagemResultadoNoIntervaloVisitanteCasa;
-    Integer FR_numeroJogosVisitadoCasa, FR_numeroJogosVisitanteFora;
-    Integer FR_golosMarcadosVisitado, FR_golosSofridosVisitado, FR_diferencaGolosVisitado;
-    Integer FR_golosMarcadosVisitante, FR_golosSofridosVisitante, FR_diferencaGolosVisitante;
-    Double FR_mediaGolosMarcadosVisitado, FR_mediaGolosSofridosVisitado;
-    Double FR_mediaGolosMarcadosVisitante, FR_mediaGolosSofridosVisitante;
-    Integer FR_golosMarcadosVisitadoCasa, FR_golosSofridosVisitadoCasa, FR_diferencaGolosVisitadoCasa;
-    Integer FR_golosMarcadosVisitanteFora, FR_golosSofridosVisitanteFora, FR_diferencaGolosVisitanteFora;
-    Double FR_mediaGolosMarcadosVisitadoCasa, FR_mediaGolosSofridosVisitadoCasa;
-    Double FR_mediaGolosMarcadosVisitanteFora, FR_mediaGolosSofridosVisitanteFora;
-    Integer FR_golosMarcadosVisitadoFora, FR_golosSofridosVisitadoFora, FR_diferencaGolosVisitadoFora;
-    Integer FR_golosMarcadosVisitanteCasa, FR_golosSofridosVisitanteCasa, FR_diferencaGolosVisitanteCasa;
-    Double FR_mediaGolosMarcadosVisitadoFora, FR_mediaGolosSofridosVisitadoFora;
-    Double FR_mediaGolosMarcadosVisitanteCasa, FR_mediaGolosSofridosVisitanteCasa;
-    Integer FR_pontuacaoCasa;
-    Double FR_pontuacaoCasaQualidade, FR_pontuacaoCasaQualidadeTempo;
-    Integer FR_pontuacaoFora;
-    Double FR_pontuacaoForaQualidade, FR_pontuacaoForaQualidadeTempo;
+    private Double homeTeamLastFixturesOpponentAverageQuality, awayTeamLastFixturesOpponentAverageQuality;
+    private Integer homeTeamLastFixturesHardFixturesNumber, awayTeamLastFixturesHardFixturesNumber;
+    private Double homeTeamLastFixturesRating, awayTeamLastFixturesRating;
+    private Integer homeTeamLastFixturesResults, awayTeamLastFixturesResults;
+    private Integer homeTeamLastFixturesResultIntervalFixtures, awayTeamLastFixturesResultIntervalFixtures;
+    private Double homeTeamLastFixturesResultPercentage, awayTeamLastFixturesResultPercentage;
+    private Double homeTeamLastFixturesHomeResultPercentage, awayTeamLastFixturesHomeResultPercentage;
+    private Double homeTeamLastFixturesAwayResultPercentage, awayTeamLastFixturesAwayResultPercentage;
+    private Double homeTeamLastFixturesResultIntervalPercentage, awayTeamLastFixturesResultIntervalPercentage;
+    private Double homeTeamLastFixturesHomeResultIntervalPercentage, awayTeamLastFixturesHomeResultIntervalPercentage;
+    private Double homeTeamLastFixturesAwayResultIntervalPercentage, awayTeamLastFixturesAwayResultIntervalPercentage;
+    private Integer homeTeamLastFixturesFixturesNumber, awayTeamLastFixturesFixturesNumber;
+    private Integer homeTeamLastFixturesGoals, awayTeamLastFixturesGoals;
+    private Integer homeTeamLastFixturesGoalsConceded, awayTeamLastFixturesGoalsConceded;
+    private Integer homeTeamLastFixturesGoalsDifference, awayTeamLastFixturesGoalsDifference;
+    private Double homeTeamLastFixturesGoalsAverage, awayTeamLastFixturesGoalsAverage;
+    private Double homeTeamLastFixturesGoalsConcededAverage, awayTeamLastFixturesGoalsConcededAverage;
+    private Integer homeTeamLastFixturesHomeGoals, awayTeamLastFixturesAwayGoals;
+    private Integer homeTeamLastFixturesHomeGoalsConceded, awayTeamLastFixturesAwayGoalsConceded;
+    private Integer homeTeamLastFixturesHomeGoalsDifference, awayTeamLastFixturesAwayGoalsDifference;
+    private Double homeTeamLastFixturesHomeGoalsAverage, awayTeamLastFixturesAwayGoalsAverage;
+    private Double homeTeamLastFixturesHomeGoalsConcededAverage, awayTeamLastFixturesAwayGoalsConcededAverage;
+    private Integer homeTeamLastFixturesAwayGoals, awayTeamLastFixturesHomeGoals;
+    private Integer homeTeamLastFixturesAwayGoalsConceded, awayTeamLastFixturesHomeGoalsConceded;
+    private Integer homeTeamLastFixturesAwayGoalsDifference, awayTeamLastFixturesHomeGoalsDifference;
+    private Double homeTeamLastFixturesAwayGoalsAverage, awayTeamLastFixturesHomeGoalsAverage;
+    private Double homeTeamLastFixturesAwayGoalsConcededAverage, awayTeamLastFixturesHimeyGoalsConcededAverage;
+    private Integer homeTeamLastFixturesPontuation, awayTeamLastFixturesPontuation;
+    private Double homeTeamLastFixturesPontuationQuality, awayTeamLastFixturesPontuationQuality;
+    private Double homeTeamLastFixturesPontuationQualityAndTime, awayTeamLastFixturesPontuationQualityAndTime;
 
     // Venue
-    Double FR_dificuldadeVisitadoVenue, FR_dificuldadeVisitanteVenue;
-    Integer FR_historicosVisitadoVenue, FR_historicosVisitanteVenue;
-    Double FR_ratingTemporalResultadoVisitadoVenue, FR_ratingTemporalResultadoVisitanteVenue;
-    Integer FR_numeroResultadosVisitadoVenue, FR_numeroResultadosVisitanteVenue;
-    Integer FR_numeroResultadosNoIntervaloVisitadoVenue, FR_numeroResultadosNoIntervaloVisitanteVenue;
-    Double FR_percentagemResultadoVisitadoVenue, FR_percentagemResultadoVisitanteVenue;
-    Double FR_percentagemResultadoNoIntervaloVisitadoVenue, FR_percentagemResultadoNoIntervaloVisitanteVenue;
-    Integer FR_golosMarcadosVisitadoVenue, FR_golosSofridosVisitadoVenue, FR_diferencaGolosVisitadoVenue;
-    Integer FR_golosMarcadosVisitanteVenue, FR_golosSofridosVisitanteVenue, FR_diferencaGolosVisitanteVenue;
-    Double FR_mediaGolosMarcadosVisitadoVenue, FR_mediaGolosSofridosVisitadoVenue;
-    Double FR_mediaGolosMarcadosVisitanteVenue, FR_mediaGolosSofridosVisitanteVenue;
-    Integer FR_pontuacaoCasaVenue;
-    Double FR_pontuacaoCasaQualidadeVenue, FR_pontuacaoCasaQualidadeTempoVenue;
-    Integer FR_pontuacaoForaVenue;
-    Double FR_pontuacaoForaQualidadeVenue, FR_pontuacaoForaQualidadeTempoVenue;
+    private Double homeTeamLastFixturesOpponentAverageQualityVenue, awayTeamLastFixturesOpponentAverageQualityVenue;
+    private Integer homeTeamLastFixturesHardFixturesNumberVenue, awayTeamLastFixturesHardFixturesNumberVenue;
+    private Double homeTeamLastFixturesRatingVenue, awayTeamLastFixturesRatingVenue;
+    private Integer homeTeamLastFixturesResultsVenue, awayTeamLastFixturesResultsVenue;
+    private Integer homeTeamLastFixturesResultIntervalFixturesVenue, awayTeamLastFixturesResultIntervalFixturesVenue;
+    private Double homeTeamLastFixturesResultPercentageVenue, awayTeamLastFixturesResultPercentageVenue;
+    private Double homeTeamLastFixturesResultIntervalPercentageVenue, awayTeamLastFixturesResultIntervalPercentageVenue;
+    private Integer homeTeamLastFixturesGoalsVenue, awayTeamLastFixturesGoalsVenue;
+    private Integer homeTeamLastFixturesGoalsConcededVenue, awayTeamLastFixturesGoalsConcededVenue;
+    private Integer homeTeamLastFixturesGoalsDifferenceVenue, awayTeamLastFixturesGoalsDifferenceVenue;
+    private Double homeTeamLastFixturesGoalsAverageVenue, awayTeamLastFixturesGoalsAverageVenue;
+    private Double homeTeamLastFixturesGoalsConcededAverageVenue, awayTeamLastFixturesGoalsConcededAverageVenue;
+    private Integer homeTeamLastFixturesPontuationVenue, awayTeamLastFixturesPontuationVenue;
+    private Double homeTeamLastFixturesPontuationQualityVenue, awayTeamLastFixturesPontuationQualityVenue;
+    private Double homeTeamLastFixturesPontuationQualityAndTimeVenue, awayTeamLastFixturesPontuationQualityAndTimeVenue;
 
     // Switched Venue
-    Double FR_dificuldadeVisitadoSwitchedVenue, FR_dificuldadeVisitanteSwitchedVenue;
-    Integer FR_historicosVisitadoSwitchedVenue, FR_historicosVisitanteSwitchedVenue;
-    Double FR_ratingTemporalResultadoVisitadoSwitchedVenue, FR_ratingTemporalResultadoVisitanteSwitchedVenue;
-    Integer FR_numeroResultadosVisitadoSwitchedVenue, FR_numeroResultadosVisitanteSwitchedVenue;
-    Integer FR_numeroResultadosNoIntervaloVisitadoSwitchedVenue, FR_numeroResultadosNoIntervaloVisitanteSwitchedVenue;
-    Double FR_percentagemResultadoVisitadoSwitchedVenue, FR_percentagemResultadoVisitanteSwitchedVenue;
-    Double FR_percentagemResultadoNoIntervaloVisitadoSwitchedVenue,
-	    FR_percentagemResultadoNoIntervaloVisitanteSwitchedVenue;
-    Integer FR_golosMarcadosVisitadoSwitchedVenue, FR_golosSofridosVisitadoSwitchedVenue,
-	    FR_diferencaGolosVisitadoSwitchedVenue;
-    Integer FR_golosMarcadosVisitanteSwitchedVenue, FR_golosSofridosVisitanteSwitchedVenue,
-	    FR_diferencaGolosVisitanteSwitchedVenue;
-    Double FR_mediaGolosMarcadosVisitadoSwitchedVenue, FR_mediaGolosSofridosVisitadoSwitchedVenue;
-    Double FR_mediaGolosMarcadosVisitanteSwitchedVenue, FR_mediaGolosSofridosVisitanteSwitchedVenue;
-    Integer FR_pontuacaoCasaSwitchedVenue;
-    Double FR_pontuacaoCasaQualidadeSwitchedVenue, FR_pontuacaoCasaQualidadeTempoSwitchedVenue;
-    Integer FR_pontuacaoForaSwitchedVenue;
-    Double FR_pontuacaoForaQualidadeSwitchedVenue, FR_pontuacaoForaQualidadeTempoSwitchedVenue;
+    private Double homeTeamLastFixturesOpponentAverageQualitySwitchedVenue, awayTeamLastFixturesOpponentAverageQualitySwitchedVenue;
+    private Integer homeTeamLastFixturesHardFixturesNumberSwitchedVenue, awayTeamLastFixturesHardFixturesNumberSwitchedVenue;
+    private Double homeTeamLastFixturesRatingSwitchedVenue, awayTeamLastFixturesRatingSwitchedVenue;
+    private Integer homeTeamLastFixturesResultsSwitchedVenue, awayTeamLastFixturesResultsSwitchedVenue;
+    private Integer homeTeamLastFixturesResultIntervalFixturesSwitchedVenue, awayTeamLastFixturesResultIntervalFixturesSwitchedVenue;
+    private Double homeTeamLastFixturesResultPercentageSwitchedVenue, awayTeamLastFixturesResultPercentageSwitchedVenue;
+    private Double homeTeamLastFixturesResultIntervalPercentageSwitchedVenue, awayTeamLastFixturesResultIntervalPercentageSwitchedVenue;
+    private Integer homeTeamLastFixturesGoalsSwitchedVenue, awayTeamLastFixturesGoalsSwitchedVenue;
+    private Integer homeTeamLastFixturesGoalsConcededSwitchedVenue, awayTeamLastFixturesGoalsConcededSwitchedVenue;
+    private Integer homeTeamLastFixturesGoalsDifferenceSwitchedVenue, awayTeamLastFixturesGoalsDifferenceSwitchedVenue;
+    private Double homeTeamLastFixturesGoalsAverageSwitchedVenue, awayTeamLastFixturesGoalsAverageSwitchedVenue;
+    private Double homeTeamLastFixturesGoalsConcededAverageSwitchedVenue, awayTeamLastFixturesGoalsConcededAverageSwitchedVenue;
+    private Integer homeTeamLastFixturesPontuationSwitchedVenue, awayTeamLastFixturesPontuationSwitchedVenue;
+    private Double homeTeamLastFixturesPontuationQualitySwitchedVenue, awayTeamLastFixturesPontuationQualitySwitchedVenue;
+    private Double homeTeamLastFixturesPontuationQualityAndTimeSwitchedVenue, awayTeamLastFixturesPontuationQualityAndTimeSwitchedVenue;
 
     //// QLT variables\\\\
     // Overall
-    Integer QLT_numeroJogosVisitado, QLT_numeroJogosVisitante;
-    Double QLT_percentagemResultadoVisitado, QLT_percentagemResultadoVisitante;
-    Double QLT_dificuldadeResultadoVisitado, QLT_dificuldadeResultadoVisitante;
-    Double QLT_dificuldadeJogosVisitado, QLT_dificuldadeJogosVisitante;
-    Double QLT_percentagemResultadoNoIntervaloVisitado, QLT_percentagemResultadoNoIntervaloVisitante;
-    Integer QLT_numeroJogosNoIntervaloVisitado, QLT_numeroJogosNoIntervaloVisitante;
-    Integer QLT_golosMarcadosVisitado, QLT_golosSofridosVisitado, QLT_diferencaGolosVisitado;
-    Integer QLT_golosMarcadosVisitante, QLT_golosSofridosVisitante, QLT_diferencaGolosVisitante;
-    Double QLT_mediaGolosMarcadosVisitado, QLT_mediaGolosSofridosVisitado;
-    Double QLT_mediaGolosMarcadosVisitante, QLT_mediaGolosSofridosVisitante;
+    private Integer homeTeamNumberOfFixtures, awayTeamNumberOfFixtures;
+    private Double homeTeamResultPercentage, awayTeamResultPercentage;
+    private Double homeTeamQualityAverage, awayTeamQualityAverage;
+    private Double homeTeamResultDificulty, awayTeamResultDificulty;
+    private Double homeTeamResultIntervalPercentage, awayTeamResultIntervalPercentage;
+    private Integer homeTeamResultIntervalFixtures, awayTeamResultIntervalFixtures;
+    private Integer homeTeamGoals, awayTeamGoals;
+    private Integer homeTeamConcededGoals, awayTeamConcededGoals;
+    private Integer homeTeamGoalsDifference, awayTeamGoalsDifference;
+    private Double homeTeamGoalsAverage, awayTeamGoalsAverage;
+    private Double homeTeamConcededGoalsAverage, awayTeamConcededGoalsAverage;
 
     // Venue
-    Integer QLT_numeroJogosVisitadoVenue, QLT_numeroJogosVisitanteVenue;
-    Double QLT_percentagemResultadoVisitadoVenue, QLT_percentagemResultadoVisitanteVenue;
-    Double QLT_dificuldadeJogosVisitadoVenue, QLT_dificuldadeJogosVisitanteVenue;
-    Double QLT_dificuldadeResultadoVisitadoVenue, QLT_dificuldadeResultadoVisitanteVenue;
-    Double QLT_percentagemResultadoNoIntervaloVisitadoVenue, QLT_percentagemResultadoNoIntervaloVisitanteVenue;
-    Integer QLT_numeroJogosNoIntervaloVisitadoVenue, QLT_numeroJogosNoIntervaloVisitanteVenue;
-    Integer QLT_golosMarcadosVisitadoVenue, QLT_golosSofridosVisitadoVenue, QLT_diferencaGolosVisitadoVenue;
-    Integer QLT_golosMarcadosVisitanteVenue, QLT_golosSofridosVisitanteVenue, QLT_diferencaGolosVisitanteVenue;
-    Double QLT_mediaGolosMarcadosVisitadoVenue, QLT_mediaGolosSofridosVisitadoVenue;
-    Double QLT_mediaGolosMarcadosVisitanteVenue, QLT_mediaGolosSofridosVisitanteVenue;
+    private Integer homeTeamNumberOfFixturesVenue, awayTeamNumberOfFixturesVenue;
+    private Double homeTeamResultPercentageVenue, awayTeamResultPercentageVenue;
+    private Double homeTeamQualityAverageVenue, awayTeamQualityAverageVenue;
+    private Double homeTeamResultDificultyVenue, awayTeamResultDificultyVenue;
+    private Double homeTeamResultIntervalPercentageVenue, awayTeamResultIntervalPercentageVenue;
+    private Integer homeTeamResultIntervalFixturesVenue, awayTeamResultIntervalFixturesVenue;
+    private Integer homeTeamGoalsVenue, awayTeamGoalsVenue;
+    private Integer homeTeamConcededGoalsVenue, awayTeamConcededGoalsVenue;
+    private Integer homeTeamGoalsDifferenceVenue, awayTeamGoalsDifferenceVenue;
+    private Double homeTeamGoalsAverageVenue, awayTeamGoalsAverageVenue;
+    private Double homeTeamConcededGoalsAverageVenue, awayTeamConcededGoalsAverageVenue;
 
     // Switched Venue
-    Integer QLT_numeroJogosVisitadoSwitchedVenue, QLT_numeroJogosVisitanteSwitchedVenue;
-    Double QLT_percentagemResultadoVisitadoSwitchedVenue, QLT_percentagemResultadoVisitanteSwitchedVenue;
-    Double QLT_dificuldadeJogosVisitadoSwitchedVenue, QLT_dificuldadeJogosVisitanteSwitchedVenue;
-    Double QLT_dificuldadeResultadoVisitadoSwitchedVenue, QLT_dificuldadeResultadoVisitanteSwitchedVenue;
-    Double QLT_percentagemResultadoNoIntervaloVisitadoSwitchedVenue, QLT_percentagemResultadoNoIntervaloVisitanteSwitchedVenue;
-    Integer QLT_numeroJogosNoIntervaloVisitadoSwitchedVenue, QLT_numeroJogosNoIntervaloVisitanteSwitchedVenue;
-    Integer QLT_golosMarcadosVisitadoSwitchedVenue, QLT_golosSofridosVisitadoSwitchedVenue, QLT_diferencaGolosVisitadoSwitchedVenue;
-    Integer QLT_golosMarcadosVisitanteSwitchedVenue, QLT_golosSofridosVisitanteSwitchedVenue, QLT_diferencaGolosVisitanteSwitchedVenue;
-    Double QLT_mediaGolosMarcadosVisitadoSwitchedVenue, QLT_mediaGolosSofridosVisitadoSwitchedVenue;
-    Double QLT_mediaGolosMarcadosVisitanteSwitchedVenue, QLT_mediaGolosSofridosVisitanteSwitchedVenue;
+    private Integer homeTeamNumberOfFixturesSwitchedVenue, awayTeamNumberOfFixturesSwitchedVenue;
+    private Double homeTeamResultPercentageSwitchedVenue, awayTeamResultPercentageSwitchedVenue;
+    private Double homeTeamQualityAverageSwitchedVenue, awayTeamQualityAverageSwitchedVenue;
+    private Double homeTeamResultDificultySwitchedVenue, awayTeamResultDificultySwitchedVenue;
+    private Double homeTeamResultIntervalPercentageSwitchedVenue, awayTeamResultIntervalPercentageSwitchedVenue;
+    private Integer homeTeamResultIntervalFixturesSwitchedVenue, awayTeamResultIntervalFixturesSwitchedVenue;
+    private Integer homeTeamGoalsSwitchedVenue, awayTeamGoalsSwitchedVenue;
+    private Integer homeTeamConcededGoalsSwitchedVenue, awayTeamConcededGoalsSwitchedVenue;
+    private Integer homeTeamGoalsDifferenceSwitchedVenue, awayTeamGoalsDifferenceSwitchedVenue;
+    private Double homeTeamGoalsAverageSwitchedVenue, awayTeamGoalsAverageSwitchedVenue;
+    private Double homeTeamConcededGoalsAverageSwitchedVenue, awayTeamConcededGoalsAverageSwitchedVenue;
 
     //// H2H variables \\\\
     // Overall
-    Double H2H_ratingTemporalResultado;
-    Integer H2H_numeroJogos;
-    Integer H2H_numeroResultados;
-    Double H2H_percentagemResultados;
+    private Double h2hRating;
+    private Integer h2hFixturesNumber;
+    private Integer h2hResultsNumber;
+    private Double h2hResultsPercentage;
 
     // Venue
-    Double H2H_ratingTemporalResultadoVenue;
-    Integer H2H_numeroJogosVenue;
-    Integer H2H_numeroResultadosVenue;
-    Double H2H_percentagemResultadosVenue;
+    private Double h2hRatingVenue;
+    private Integer h2hFixturesNumberVenue;
+    private Integer h2hResultsNumberVenue;
+    private Double h2hResultsPercentageVenue;
 
     // Switched Venue
-    Double H2H_ratingTemporalResultadoSwitchedVenue;
-    Integer H2H_numeroJogosSwitchedVenue;
-    Integer H2H_numeroResultadosSwitchedVenue;
-    Double H2H_percentagemResultadosSwitchedVenue;
+    private Double h2hRatingSwitchedVenue;
+    private Integer h2hFixturesNumberSwitchedVenue;
+    private Integer h2hResultsNumberSwitchedVenue;
+    private Double h2hResultsPercentageSwitchedVenue;
 
     ///////////////////////// Construtor e Getters e Setters \\\\\\\\\\\\\\\\\\\\\\\\\\\
     public Dataset() {
     }
 
-    public DateTime getData() {
-	return data;
+    public DateTime getDate() {
+	return date;
     }
 
-    public void setData(DateTime data) {
-	this.data = data;
+    public void setDate(DateTime date) {
+	this.date = date;
     }
 
-    public String getNomeVisitado() {
-	return nomeVisitado;
+    public String getHomeTeam() {
+	return homeTeam;
     }
 
-    public void setNomeVisitado(String nomeVisitado) {
-	this.nomeVisitado = nomeVisitado;
+    public void setHomeTeam(String homeTeam) {
+	this.homeTeam = homeTeam;
     }
 
-    public String getNomeVisitante() {
-	return nomeVisitante;
+    public String getAwayTeam() {
+	return awayTeam;
     }
 
-    public void setNomeVisitante(String nomeVisitante) {
-	this.nomeVisitante = nomeVisitante;
+    public void setAwayTeam(String awayTeam) {
+	this.awayTeam = awayTeam;
     }
 
-    public Double getQualidadeVisitado() {
-	return qualidadeVisitado;
+    public Double getHomeTeamQuality() {
+	return homeTeamQuality;
     }
 
-    public void setQualidadeVisitado(Double qualidadeVisitado) {
-	this.qualidadeVisitado = qualidadeVisitado;
+    public void setHomeTeamQuality(Double homeTeamQuality) {
+	this.homeTeamQuality = homeTeamQuality;
     }
 
-    public Double getQualidadeVisitante() {
-	return qualidadeVisitante;
+    public Double getAwayTeamQuality() {
+	return awayTeamQuality;
     }
 
-    public void setQualidadeVisitante(Double qualidadeVisitante) {
-	this.qualidadeVisitante = qualidadeVisitante;
+    public void setAwayTeamQuality(Double awayTeamQuality) {
+	this.awayTeamQuality = awayTeamQuality;
     }
 
-    public Integer getDiasDescansoVisitado() {
-	return diasDescansoVisitado;
+    public Integer getHomeTeamRestingDays() {
+	return homeTeamRestingDays;
     }
 
-    public void setDiasDescansoVisitado(Integer diasDescansoVisitado) {
-	this.diasDescansoVisitado = diasDescansoVisitado;
+    public void setHomeTeamRestingDays(Integer homeTeamRestingDays) {
+	this.homeTeamRestingDays = homeTeamRestingDays;
     }
 
-    public Integer getDiasDescansoVisitante() {
-	return diasDescansoVisitante;
+    public Integer getAwayTeamRestingDays() {
+	return awayTeamRestingDays;
     }
 
-    public void setDiasDescansoVisitante(Integer diasDescansoVisitante) {
-	this.diasDescansoVisitante = diasDescansoVisitante;
+    public void setAwayTeamRestingDays(Integer awayTeamRestingDays) {
+	this.awayTeamRestingDays = awayTeamRestingDays;
     }
 
-    public Integer getClassificacaoVisitado() {
-	return classificacaoVisitado;
+    public Integer getHomeTeamPosition() {
+	return homeTeamPosition;
     }
 
-    public void setClassificacaoVisitado(Integer classificacaoVisitado) {
-	this.classificacaoVisitado = classificacaoVisitado;
+    public void setHomeTeamPosition(Integer homeTeamPosition) {
+	this.homeTeamPosition = homeTeamPosition;
     }
 
-    public Integer getClassificacaoVisitante() {
-	return classificacaoVisitante;
+    public Integer getAwayTeamPosition() {
+	return awayTeamPosition;
     }
 
-    public void setClassificacaoVisitante(Integer classificacaoVisitante) {
-	this.classificacaoVisitante = classificacaoVisitante;
+    public void setAwayTeamPosition(Integer awayTeamPosition) {
+	this.awayTeamPosition = awayTeamPosition;
     }
 
-    public Integer getResultado() {
-	return resultado;
+    public Integer getResult() {
+	return result;
     }
 
-    public void setResultado(Integer resultado) {
-	this.resultado = resultado;
+    public void setResult(Integer result) {
+	this.result = result;
     }
 
-    public Double getQualidadeVisitadoVenue() {
-	return qualidadeVisitadoVenue;
+    public Double getHomeTeamQualityVenue() {
+	return homeTeamQualityVenue;
     }
 
-    public void setQualidadeVisitadoVenue(Double qualidadeVisitadoVenue) {
-	this.qualidadeVisitadoVenue = qualidadeVisitadoVenue;
+    public void setHomeTeamQualityVenue(Double homeTeamQualityVenue) {
+	this.homeTeamQualityVenue = homeTeamQualityVenue;
     }
 
-    public Double getQualidadeVisitanteVenue() {
-	return qualidadeVisitanteVenue;
+    public Double getAwayTeamQualityVenue() {
+	return awayTeamQualityVenue;
     }
 
-    public void setQualidadeVisitanteVenue(Double qualidadeVisitanteVenue) {
-	this.qualidadeVisitanteVenue = qualidadeVisitanteVenue;
+    public void setAwayTeamQualityVenue(Double awayTeamQualityVenue) {
+	this.awayTeamQualityVenue = awayTeamQualityVenue;
     }
 
-    public Double getQualidadeVisitadoSwitchedVenue() {
-	return qualidadeVisitadoSwitchedVenue;
+    public Double getHomeTeamQualitySwitchedVenue() {
+	return homeTeamQualitySwitchedVenue;
     }
 
-    public void setQualidadeVisitadoSwitchedVenue(Double qualidadeVisitadoSwitchedVenue) {
-	this.qualidadeVisitadoSwitchedVenue = qualidadeVisitadoSwitchedVenue;
+    public void setHomeTeamQualitySwitchedVenue(Double homeTeamQualitySwitchedVenue) {
+	this.homeTeamQualitySwitchedVenue = homeTeamQualitySwitchedVenue;
     }
 
-    public Double getQualidadeVisitanteSwitchedVenue() {
-	return qualidadeVisitanteSwitchedVenue;
+    public Double getAwayTeamQualitySwitchedVenue() {
+	return awayTeamQualitySwitchedVenue;
     }
 
-    public void setQualidadeVisitanteSwitchedVenue(Double qualidadeVisitanteSwitchedVenue) {
-	this.qualidadeVisitanteSwitchedVenue = qualidadeVisitanteSwitchedVenue;
+    public void setAwayTeamQualitySwitchedVenue(Double awayTeamQualitySwitchedVenue) {
+	this.awayTeamQualitySwitchedVenue = awayTeamQualitySwitchedVenue;
     }
 
-    public Integer getCicloNaoResultado_numeroJogosVisitado() {
-	return cicloNaoResultado_numeroJogosVisitado;
+    public Integer getHomeTeamCycleNotResultNumberFixtures() {
+	return homeTeamCycleNotResultNumberFixtures;
     }
 
-    public void setCicloNaoResultado_numeroJogosVisitado(Integer cicloNaoResultado_numeroJogosVisitado) {
-	this.cicloNaoResultado_numeroJogosVisitado = cicloNaoResultado_numeroJogosVisitado;
+    public void setHomeTeamCycleNotResultNumberFixtures(Integer homeTeamCycleNotResultNumberFixtures) {
+	this.homeTeamCycleNotResultNumberFixtures = homeTeamCycleNotResultNumberFixtures;
     }
 
-    public Integer getCicloNaoResultado_numeroJogosVisitante() {
-	return cicloNaoResultado_numeroJogosVisitante;
+    public Integer getAwayTeamCycleNotResultNumberFixtures() {
+	return awayTeamCycleNotResultNumberFixtures;
     }
 
-    public void setCicloNaoResultado_numeroJogosVisitante(Integer cicloNaoResultado_numeroJogosVisitante) {
-	this.cicloNaoResultado_numeroJogosVisitante = cicloNaoResultado_numeroJogosVisitante;
+    public void setAwayTeamCycleNotResultNumberFixtures(Integer awayTeamCycleNotResultNumberFixtures) {
+	this.awayTeamCycleNotResultNumberFixtures = awayTeamCycleNotResultNumberFixtures;
     }
 
-    public Double getCicloNaoResultado_dificuldadeVisitado() {
-	return cicloNaoResultado_dificuldadeVisitado;
+    public Double getHomeTeamCycleNotResultOpponentAverageQuality() {
+	return homeTeamCycleNotResultOpponentAverageQuality;
     }
 
-    public void setCicloNaoResultado_dificuldadeVisitado(Double cicloNaoResultado_dificuldadeVisitado) {
-	this.cicloNaoResultado_dificuldadeVisitado = cicloNaoResultado_dificuldadeVisitado;
+    public void setHomeTeamCycleNotResultOpponentAverageQuality(Double homeTeamCycleNotResultOpponentAverageQuality) {
+	this.homeTeamCycleNotResultOpponentAverageQuality = homeTeamCycleNotResultOpponentAverageQuality;
     }
 
-    public Double getCicloNaoResultado_dificuldadeVisitante() {
-	return cicloNaoResultado_dificuldadeVisitante;
+    public Double getAwayTeamCycleNotResultOpponentAverageQuality() {
+	return awayTeamCycleNotResultOpponentAverageQuality;
     }
 
-    public void setCicloNaoResultado_dificuldadeVisitante(Double cicloNaoResultado_dificuldadeVisitante) {
-	this.cicloNaoResultado_dificuldadeVisitante = cicloNaoResultado_dificuldadeVisitante;
+    public void setAwayTeamCycleNotResultOpponentAverageQuality(Double awayTeamCycleNotResultOpponentAverageQuality) {
+	this.awayTeamCycleNotResultOpponentAverageQuality = awayTeamCycleNotResultOpponentAverageQuality;
     }
 
-    public Integer getCicloNaoResultado_historicosVisitado() {
-	return cicloNaoResultado_historicosVisitado;
+    public Integer getHomeTeamCycleNotResultHardFixturesNumber() {
+	return homeTeamCycleNotResultHardFixturesNumber;
     }
 
-    public void setCicloNaoResultado_historicosVisitado(Integer cicloNaoResultado_historicosVisitado) {
-	this.cicloNaoResultado_historicosVisitado = cicloNaoResultado_historicosVisitado;
+    public void setHomeTeamCycleNotResultHardFixturesNumber(Integer homeTeamCycleNotResultHardFixturesNumber) {
+	this.homeTeamCycleNotResultHardFixturesNumber = homeTeamCycleNotResultHardFixturesNumber;
     }
 
-    public Integer getCicloNaoResultado_historicosVisitante() {
-	return cicloNaoResultado_historicosVisitante;
+    public Integer getAwayTeamCycleNotResultHardFixturesNumber() {
+	return awayTeamCycleNotResultHardFixturesNumber;
     }
 
-    public void setCicloNaoResultado_historicosVisitante(Integer cicloNaoResultado_historicosVisitante) {
-	this.cicloNaoResultado_historicosVisitante = cicloNaoResultado_historicosVisitante;
+    public void setAwayTeamCycleNotResultHardFixturesNumber(Integer awayTeamCycleNotResultHardFixturesNumber) {
+	this.awayTeamCycleNotResultHardFixturesNumber = awayTeamCycleNotResultHardFixturesNumber;
     }
 
-    public Integer getCicloResultado_numeroJogosVisitado() {
-	return cicloResultado_numeroJogosVisitado;
+    public Integer getHomeTeamCycleNumberFixtures() {
+	return homeTeamCycleNumberFixtures;
     }
 
-    public void setCicloResultado_numeroJogosVisitado(Integer cicloResultado_numeroJogosVisitado) {
-	this.cicloResultado_numeroJogosVisitado = cicloResultado_numeroJogosVisitado;
+    public void setHomeTeamCycleNumberFixtures(Integer homeTeamCycleNumberFixtures) {
+	this.homeTeamCycleNumberFixtures = homeTeamCycleNumberFixtures;
     }
 
-    public Integer getCicloResultado_numeroJogosVisitante() {
-	return cicloResultado_numeroJogosVisitante;
+    public Integer getAwayTeamCycleNumberFixtures() {
+	return awayTeamCycleNumberFixtures;
     }
 
-    public void setCicloResultado_numeroJogosVisitante(Integer cicloResultado_numeroJogosVisitante) {
-	this.cicloResultado_numeroJogosVisitante = cicloResultado_numeroJogosVisitante;
+    public void setAwayTeamCycleNumberFixtures(Integer awayTeamCycleNumberFixtures) {
+	this.awayTeamCycleNumberFixtures = awayTeamCycleNumberFixtures;
     }
 
-    public Double getCicloResultado_dificuldadeVisitado() {
-	return cicloResultado_dificuldadeVisitado;
+    public Double getHomeTeamCycleOpponentAverageQuality() {
+	return homeTeamCycleOpponentAverageQuality;
     }
 
-    public void setCicloResultado_dificuldadeVisitado(Double cicloResultado_dificuldadeVisitado) {
-	this.cicloResultado_dificuldadeVisitado = cicloResultado_dificuldadeVisitado;
+    public void setHomeTeamCycleOpponentAverageQuality(Double homeTeamCycleOpponentAverageQuality) {
+	this.homeTeamCycleOpponentAverageQuality = homeTeamCycleOpponentAverageQuality;
     }
 
-    public Double getCicloResultado_dificuldadeVisitante() {
-	return cicloResultado_dificuldadeVisitante;
+    public Double getAwayTeamCycleOpponentAverageQuality() {
+	return awayTeamCycleOpponentAverageQuality;
     }
 
-    public void setCicloResultado_dificuldadeVisitante(Double cicloResultado_dificuldadeVisitante) {
-	this.cicloResultado_dificuldadeVisitante = cicloResultado_dificuldadeVisitante;
+    public void setAwayTeamCycleOpponentAverageQuality(Double awayTeamCycleOpponentAverageQuality) {
+	this.awayTeamCycleOpponentAverageQuality = awayTeamCycleOpponentAverageQuality;
     }
 
-    public Integer getCicloResultado_historicosVisitado() {
-	return cicloResultado_historicosVisitado;
+    public Integer getHomeTeamCycleHardFixturesNumber() {
+	return homeTeamCycleHardFixturesNumber;
     }
 
-    public void setCicloResultado_historicosVisitado(Integer cicloResultado_historicosVisitado) {
-	this.cicloResultado_historicosVisitado = cicloResultado_historicosVisitado;
+    public void setHomeTeamCycleHardFixturesNumber(Integer homeTeamCycleHardFixturesNumber) {
+	this.homeTeamCycleHardFixturesNumber = homeTeamCycleHardFixturesNumber;
     }
 
-    public Integer getCicloResultado_historicosVisitante() {
-	return cicloResultado_historicosVisitante;
+    public Integer getAwayTeamCycleHardFixturesNumber() {
+	return awayTeamCycleHardFixturesNumber;
     }
 
-    public void setCicloResultado_historicosVisitante(Integer cicloResultado_historicosVisitante) {
-	this.cicloResultado_historicosVisitante = cicloResultado_historicosVisitante;
+    public void setAwayTeamCycleHardFixturesNumber(Integer awayTeamCycleHardFixturesNumber) {
+	this.awayTeamCycleHardFixturesNumber = awayTeamCycleHardFixturesNumber;
     }
 
-    public Integer getCicloNaoResultado_numeroJogosVisitadoVenue() {
-	return cicloNaoResultado_numeroJogosVisitadoVenue;
+    public Integer getHomeTeamCycleNotResultNumberFixturesVenue() {
+	return homeTeamCycleNotResultNumberFixturesVenue;
     }
 
-    public void setCicloNaoResultado_numeroJogosVisitadoVenue(Integer cicloNaoResultado_numeroJogosVisitadoVenue) {
-	this.cicloNaoResultado_numeroJogosVisitadoVenue = cicloNaoResultado_numeroJogosVisitadoVenue;
+    public void setHomeTeamCycleNotResultNumberFixturesVenue(Integer homeTeamCycleNotResultNumberFixturesVenue) {
+	this.homeTeamCycleNotResultNumberFixturesVenue = homeTeamCycleNotResultNumberFixturesVenue;
     }
 
-    public Integer getCicloNaoResultado_numeroJogosVisitanteVenue() {
-	return cicloNaoResultado_numeroJogosVisitanteVenue;
+    public Integer getAwayTeamCycleNotResultNumberFixturesVenue() {
+	return awayTeamCycleNotResultNumberFixturesVenue;
     }
 
-    public void setCicloNaoResultado_numeroJogosVisitanteVenue(Integer cicloNaoResultado_numeroJogosVisitanteVenue) {
-	this.cicloNaoResultado_numeroJogosVisitanteVenue = cicloNaoResultado_numeroJogosVisitanteVenue;
+    public void setAwayTeamCycleNotResultNumberFixturesVenue(Integer awayTeamCycleNotResultNumberFixturesVenue) {
+	this.awayTeamCycleNotResultNumberFixturesVenue = awayTeamCycleNotResultNumberFixturesVenue;
     }
 
-    public Double getCicloNaoResultado_dificuldadeVisitadoVenue() {
-	return cicloNaoResultado_dificuldadeVisitadoVenue;
+    public Double getHomeTeamCycleNotResultOpponentAverageQualityVenue() {
+	return homeTeamCycleNotResultOpponentAverageQualityVenue;
     }
 
-    public void setCicloNaoResultado_dificuldadeVisitadoVenue(Double cicloNaoResultado_dificuldadeVisitadoVenue) {
-	this.cicloNaoResultado_dificuldadeVisitadoVenue = cicloNaoResultado_dificuldadeVisitadoVenue;
+    public void setHomeTeamCycleNotResultOpponentAverageQualityVenue(Double homeTeamCycleNotResultOpponentAverageQualityVenue) {
+	this.homeTeamCycleNotResultOpponentAverageQualityVenue = homeTeamCycleNotResultOpponentAverageQualityVenue;
     }
 
-    public Double getCicloNaoResultado_dificuldadeVisitanteVenue() {
-	return cicloNaoResultado_dificuldadeVisitanteVenue;
+    public Double getAwayTeamCycleNotResultOpponentAverageQualityVenue() {
+	return awayTeamCycleNotResultOpponentAverageQualityVenue;
     }
 
-    public void setCicloNaoResultado_dificuldadeVisitanteVenue(Double cicloNaoResultado_dificuldadeVisitanteVenue) {
-	this.cicloNaoResultado_dificuldadeVisitanteVenue = cicloNaoResultado_dificuldadeVisitanteVenue;
+    public void setAwayTeamCycleNotResultOpponentAverageQualityVenue(Double awayTeamCycleNotResultOpponentAverageQualityVenue) {
+	this.awayTeamCycleNotResultOpponentAverageQualityVenue = awayTeamCycleNotResultOpponentAverageQualityVenue;
     }
 
-    public Integer getCicloNaoResultado_historicosVisitadoVenue() {
-	return cicloNaoResultado_historicosVisitadoVenue;
+    public Integer getHomeTeamCycleNotResultHardFixturesVenue() {
+	return homeTeamCycleNotResultHardFixturesVenue;
     }
 
-    public void setCicloNaoResultado_historicosVisitadoVenue(Integer cicloNaoResultado_historicosVisitadoVenue) {
-	this.cicloNaoResultado_historicosVisitadoVenue = cicloNaoResultado_historicosVisitadoVenue;
+    public void setHomeTeamCycleNotResultHardFixturesVenue(Integer homeTeamCycleNotResultHardFixturesVenue) {
+	this.homeTeamCycleNotResultHardFixturesVenue = homeTeamCycleNotResultHardFixturesVenue;
     }
 
-    public Integer getCicloNaoResultado_historicosVisitanteVenue() {
-	return cicloNaoResultado_historicosVisitanteVenue;
+    public Integer getAwayTeamCycleNotResultHardFixturesVenue() {
+	return awayTeamCycleNotResultHardFixturesVenue;
     }
 
-    public void setCicloNaoResultado_historicosVisitanteVenue(Integer cicloNaoResultado_historicosVisitanteVenue) {
-	this.cicloNaoResultado_historicosVisitanteVenue = cicloNaoResultado_historicosVisitanteVenue;
+    public void setAwayTeamCycleNotResultHardFixturesVenue(Integer awayTeamCycleNotResultHardFixturesVenue) {
+	this.awayTeamCycleNotResultHardFixturesVenue = awayTeamCycleNotResultHardFixturesVenue;
     }
 
-    public Integer getCicloResultado_numeroJogosVisitadoVenue() {
-	return cicloResultado_numeroJogosVisitadoVenue;
+    public Integer getHomeTeamCycleNumberFixturesVenue() {
+	return homeTeamCycleNumberFixturesVenue;
     }
 
-    public void setCicloResultado_numeroJogosVisitadoVenue(Integer cicloResultado_numeroJogosVisitadoVenue) {
-	this.cicloResultado_numeroJogosVisitadoVenue = cicloResultado_numeroJogosVisitadoVenue;
+    public void setHomeTeamCycleNumberFixturesVenue(Integer homeTeamCycleNumberFixturesVenue) {
+	this.homeTeamCycleNumberFixturesVenue = homeTeamCycleNumberFixturesVenue;
     }
 
-    public Integer getCicloResultado_numeroJogosVisitanteVenue() {
-	return cicloResultado_numeroJogosVisitanteVenue;
+    public Integer getAwayTeamCycleNumberFixturesVenue() {
+	return awayTeamCycleNumberFixturesVenue;
     }
 
-    public void setCicloResultado_numeroJogosVisitanteVenue(Integer cicloResultado_numeroJogosVisitanteVenue) {
-	this.cicloResultado_numeroJogosVisitanteVenue = cicloResultado_numeroJogosVisitanteVenue;
+    public void setAwayTeamCycleNumberFixturesVenue(Integer awayTeamCycleNumberFixturesVenue) {
+	this.awayTeamCycleNumberFixturesVenue = awayTeamCycleNumberFixturesVenue;
     }
 
-    public Double getCicloResultado_dificuldadeVisitadoVenue() {
-	return cicloResultado_dificuldadeVisitadoVenue;
+    public Double getHomeTeamCycleOpponentAverageQualityVenue() {
+	return homeTeamCycleOpponentAverageQualityVenue;
     }
 
-    public void setCicloResultado_dificuldadeVisitadoVenue(Double cicloResultado_dificuldadeVisitadoVenue) {
-	this.cicloResultado_dificuldadeVisitadoVenue = cicloResultado_dificuldadeVisitadoVenue;
+    public void setHomeTeamCycleOpponentAverageQualityVenue(Double homeTeamCycleOpponentAverageQualityVenue) {
+	this.homeTeamCycleOpponentAverageQualityVenue = homeTeamCycleOpponentAverageQualityVenue;
     }
 
-    public Double getCicloResultado_dificuldadeVisitanteVenue() {
-	return cicloResultado_dificuldadeVisitanteVenue;
+    public Double getAwayTeamCycleOpponentAverageQualityVenue() {
+	return awayTeamCycleOpponentAverageQualityVenue;
     }
 
-    public void setCicloResultado_dificuldadeVisitanteVenue(Double cicloResultado_dificuldadeVisitanteVenue) {
-	this.cicloResultado_dificuldadeVisitanteVenue = cicloResultado_dificuldadeVisitanteVenue;
+    public void setAwayTeamCycleOpponentAverageQualityVenue(Double awayTeamCycleOpponentAverageQualityVenue) {
+	this.awayTeamCycleOpponentAverageQualityVenue = awayTeamCycleOpponentAverageQualityVenue;
     }
 
-    public Integer getCicloResultado_historicosVisitadoVenue() {
-	return cicloResultado_historicosVisitadoVenue;
+    public Integer getHomeTeamCycleHardFixturesNumberVenue() {
+	return homeTeamCycleHardFixturesNumberVenue;
     }
 
-    public void setCicloResultado_historicosVisitadoVenue(Integer cicloResultado_historicosVisitadoVenue) {
-	this.cicloResultado_historicosVisitadoVenue = cicloResultado_historicosVisitadoVenue;
+    public void setHomeTeamCycleHardFixturesNumberVenue(Integer homeTeamCycleHardFixturesNumberVenue) {
+	this.homeTeamCycleHardFixturesNumberVenue = homeTeamCycleHardFixturesNumberVenue;
     }
 
-    public Integer getCicloResultado_historicosVisitanteVenue() {
-	return cicloResultado_historicosVisitanteVenue;
+    public Integer getAwayTeamCycleHardFixturesNumberVenue() {
+	return awayTeamCycleHardFixturesNumberVenue;
     }
 
-    public void setCicloResultado_historicosVisitanteVenue(Integer cicloResultado_historicosVisitanteVenue) {
-	this.cicloResultado_historicosVisitanteVenue = cicloResultado_historicosVisitanteVenue;
+    public void setAwayTeamCycleHardFixturesNumberVenue(Integer awayTeamCycleHardFixturesNumberVenue) {
+	this.awayTeamCycleHardFixturesNumberVenue = awayTeamCycleHardFixturesNumberVenue;
     }
 
-    public Integer getCicloNaoResultado_numeroJogosVisitadoSwitchedVenue() {
-	return cicloNaoResultado_numeroJogosVisitadoSwitchedVenue;
+    public Integer getHomeTeamCycleNotResultNumberFixturesVenueSwitchedVenue() {
+	return homeTeamCycleNotResultNumberFixturesVenueSwitchedVenue;
     }
 
-    public void setCicloNaoResultado_numeroJogosVisitadoSwitchedVenue(
-	    Integer cicloNaoResultado_numeroJogosVisitadoSwitchedVenue) {
-	this.cicloNaoResultado_numeroJogosVisitadoSwitchedVenue = cicloNaoResultado_numeroJogosVisitadoSwitchedVenue;
+    public void setHomeTeamCycleNotResultNumberFixturesVenueSwitchedVenue(Integer homeTeamCycleNotResultNumberFixturesVenueSwitchedVenue) {
+	this.homeTeamCycleNotResultNumberFixturesVenueSwitchedVenue = homeTeamCycleNotResultNumberFixturesVenueSwitchedVenue;
     }
 
-    public Integer getCicloNaoResultado_numeroJogosVisitanteSwitchedVenue() {
-	return cicloNaoResultado_numeroJogosVisitanteSwitchedVenue;
+    public Integer getAwayTeamCycleNotResultNumberFixturesVenueSwitchedVenue() {
+	return awayTeamCycleNotResultNumberFixturesVenueSwitchedVenue;
     }
 
-    public void setCicloNaoResultado_numeroJogosVisitanteSwitchedVenue(
-	    Integer cicloNaoResultado_numeroJogosVisitanteSwitchedVenue) {
-	this.cicloNaoResultado_numeroJogosVisitanteSwitchedVenue = cicloNaoResultado_numeroJogosVisitanteSwitchedVenue;
+    public void setAwayTeamCycleNotResultNumberFixturesVenueSwitchedVenue(Integer awayTeamCycleNotResultNumberFixturesVenueSwitchedVenue) {
+	this.awayTeamCycleNotResultNumberFixturesVenueSwitchedVenue = awayTeamCycleNotResultNumberFixturesVenueSwitchedVenue;
     }
 
-    public Double getCicloNaoResultado_dificuldadeVisitadoSwitchedVenue() {
-	return cicloNaoResultado_dificuldadeVisitadoSwitchedVenue;
+    public Double getHomeTeamCycleNotResultOpponentAverageQualitySwitchedVenue() {
+	return homeTeamCycleNotResultOpponentAverageQualitySwitchedVenue;
     }
 
-    public void setCicloNaoResultado_dificuldadeVisitadoSwitchedVenue(
-	    Double cicloNaoResultado_dificuldadeVisitadoSwitchedVenue) {
-	this.cicloNaoResultado_dificuldadeVisitadoSwitchedVenue = cicloNaoResultado_dificuldadeVisitadoSwitchedVenue;
+    public void setHomeTeamCycleNotResultOpponentAverageQualitySwitchedVenue(Double homeTeamCycleNotResultOpponentAverageQualitySwitchedVenue) {
+	this.homeTeamCycleNotResultOpponentAverageQualitySwitchedVenue = homeTeamCycleNotResultOpponentAverageQualitySwitchedVenue;
     }
 
-    public Double getCicloNaoResultado_dificuldadeVisitanteSwitchedVenue() {
-	return cicloNaoResultado_dificuldadeVisitanteSwitchedVenue;
+    public Double getAwayTeamCycleNotResultOpponentAverageQualitySwitchedVenue() {
+	return awayTeamCycleNotResultOpponentAverageQualitySwitchedVenue;
     }
 
-    public void setCicloNaoResultado_dificuldadeVisitanteSwitchedVenue(
-	    Double cicloNaoResultado_dificuldadeVisitanteSwitchedVenue) {
-	this.cicloNaoResultado_dificuldadeVisitanteSwitchedVenue = cicloNaoResultado_dificuldadeVisitanteSwitchedVenue;
+    public void setAwayTeamCycleNotResultOpponentAverageQualitySwitchedVenue(Double awayTeamCycleNotResultOpponentAverageQualitySwitchedVenue) {
+	this.awayTeamCycleNotResultOpponentAverageQualitySwitchedVenue = awayTeamCycleNotResultOpponentAverageQualitySwitchedVenue;
     }
 
-    public Integer getCicloNaoResultado_historicosVisitadoSwitchedVenue() {
-	return cicloNaoResultado_historicosVisitadoSwitchedVenue;
+    public Integer getHomeTeamCycleNotResultHardFixturesSwitchedVenue() {
+	return homeTeamCycleNotResultHardFixturesSwitchedVenue;
     }
 
-    public void setCicloNaoResultado_historicosVisitadoSwitchedVenue(
-	    Integer cicloNaoResultado_historicosVisitadoSwitchedVenue) {
-	this.cicloNaoResultado_historicosVisitadoSwitchedVenue = cicloNaoResultado_historicosVisitadoSwitchedVenue;
+    public void setHomeTeamCycleNotResultHardFixturesSwitchedVenue(Integer homeTeamCycleNotResultHardFixturesSwitchedVenue) {
+	this.homeTeamCycleNotResultHardFixturesSwitchedVenue = homeTeamCycleNotResultHardFixturesSwitchedVenue;
     }
 
-    public Integer getCicloNaoResultado_historicosVisitanteSwitchedVenue() {
-	return cicloNaoResultado_historicosVisitanteSwitchedVenue;
+    public Integer getAwayTeamCycleNotResultHardFixturesSwitchedVenue() {
+	return awayTeamCycleNotResultHardFixturesSwitchedVenue;
     }
 
-    public void setCicloNaoResultado_historicosVisitanteSwitchedVenue(
-	    Integer cicloNaoResultado_historicosVisitanteSwitchedVenue) {
-	this.cicloNaoResultado_historicosVisitanteSwitchedVenue = cicloNaoResultado_historicosVisitanteSwitchedVenue;
+    public void setAwayTeamCycleNotResultHardFixturesSwitchedVenue(Integer awayTeamCycleNotResultHardFixturesSwitchedVenue) {
+	this.awayTeamCycleNotResultHardFixturesSwitchedVenue = awayTeamCycleNotResultHardFixturesSwitchedVenue;
     }
 
-    public Integer getCicloResultado_numeroJogosVisitadoSwitchedVenue() {
-	return cicloResultado_numeroJogosVisitadoSwitchedVenue;
+    public Integer getHomeTeamCycleNumberFixturesSwitchedVenue() {
+	return homeTeamCycleNumberFixturesSwitchedVenue;
     }
 
-    public void setCicloResultado_numeroJogosVisitadoSwitchedVenue(
-	    Integer cicloResultado_numeroJogosVisitadoSwitchedVenue) {
-	this.cicloResultado_numeroJogosVisitadoSwitchedVenue = cicloResultado_numeroJogosVisitadoSwitchedVenue;
+    public void setHomeTeamCycleNumberFixturesSwitchedVenue(Integer homeTeamCycleNumberFixturesSwitchedVenue) {
+	this.homeTeamCycleNumberFixturesSwitchedVenue = homeTeamCycleNumberFixturesSwitchedVenue;
     }
 
-    public Integer getCicloResultado_numeroJogosVisitanteSwitchedVenue() {
-	return cicloResultado_numeroJogosVisitanteSwitchedVenue;
+    public Integer getAwayTeamCycleNumberFixturesSwitchedVenue() {
+	return awayTeamCycleNumberFixturesSwitchedVenue;
     }
 
-    public void setCicloResultado_numeroJogosVisitanteSwitchedVenue(
-	    Integer cicloResultado_numeroJogosVisitanteSwitchedVenue) {
-	this.cicloResultado_numeroJogosVisitanteSwitchedVenue = cicloResultado_numeroJogosVisitanteSwitchedVenue;
+    public void setAwayTeamCycleNumberFixturesSwitchedVenue(Integer awayTeamCycleNumberFixturesSwitchedVenue) {
+	this.awayTeamCycleNumberFixturesSwitchedVenue = awayTeamCycleNumberFixturesSwitchedVenue;
     }
 
-    public Double getCicloResultado_dificuldadeVisitadoSwitchedVenue() {
-	return cicloResultado_dificuldadeVisitadoSwitchedVenue;
+    public Double getHomeTeamCycleOpponentAverageQualitySwitchedVenue() {
+	return homeTeamCycleOpponentAverageQualitySwitchedVenue;
     }
 
-    public void setCicloResultado_dificuldadeVisitadoSwitchedVenue(
-	    Double cicloResultado_dificuldadeVisitadoSwitchedVenue) {
-	this.cicloResultado_dificuldadeVisitadoSwitchedVenue = cicloResultado_dificuldadeVisitadoSwitchedVenue;
+    public void setHomeTeamCycleOpponentAverageQualitySwitchedVenue(Double homeTeamCycleOpponentAverageQualitySwitchedVenue) {
+	this.homeTeamCycleOpponentAverageQualitySwitchedVenue = homeTeamCycleOpponentAverageQualitySwitchedVenue;
     }
 
-    public Double getCicloResultado_dificuldadeVisitanteSwitchedVenue() {
-	return cicloResultado_dificuldadeVisitanteSwitchedVenue;
+    public Double getAwayTeamCycleOpponentAverageQualitySwitchedVenue() {
+	return awayTeamCycleOpponentAverageQualitySwitchedVenue;
     }
 
-    public void setCicloResultado_dificuldadeVisitanteSwitchedVenue(
-	    Double cicloResultado_dificuldadeVisitanteSwitchedVenue) {
-	this.cicloResultado_dificuldadeVisitanteSwitchedVenue = cicloResultado_dificuldadeVisitanteSwitchedVenue;
+    public void setAwayTeamCycleOpponentAverageQualitySwitchedVenue(Double awayTeamCycleOpponentAverageQualitySwitchedVenue) {
+	this.awayTeamCycleOpponentAverageQualitySwitchedVenue = awayTeamCycleOpponentAverageQualitySwitchedVenue;
     }
 
-    public Integer getCicloResultado_historicosVisitadoSwitchedVenue() {
-	return cicloResultado_historicosVisitadoSwitchedVenue;
+    public Integer getHomeTeamCycleHardFixturesNumberSwitchedVenue() {
+	return homeTeamCycleHardFixturesNumberSwitchedVenue;
     }
 
-    public void setCicloResultado_historicosVisitadoSwitchedVenue(
-	    Integer cicloResultado_historicosVisitadoSwitchedVenue) {
-	this.cicloResultado_historicosVisitadoSwitchedVenue = cicloResultado_historicosVisitadoSwitchedVenue;
+    public void setHomeTeamCycleHardFixturesNumberSwitchedVenue(Integer homeTeamCycleHardFixturesNumberSwitchedVenue) {
+	this.homeTeamCycleHardFixturesNumberSwitchedVenue = homeTeamCycleHardFixturesNumberSwitchedVenue;
     }
 
-    public Integer getCicloResultado_historicosVisitanteSwitchedVenue() {
-	return cicloResultado_historicosVisitanteSwitchedVenue;
+    public Integer getAwayTeamCycleHardFixturesNumberSwitchedVenue() {
+	return awayTeamCycleHardFixturesNumberSwitchedVenue;
     }
 
-    public void setCicloResultado_historicosVisitanteSwitchedVenue(
-	    Integer cicloResultado_historicosVisitanteSwitchedVenue) {
-	this.cicloResultado_historicosVisitanteSwitchedVenue = cicloResultado_historicosVisitanteSwitchedVenue;
+    public void setAwayTeamCycleHardFixturesNumberSwitchedVenue(Integer awayTeamCycleHardFixturesNumberSwitchedVenue) {
+	this.awayTeamCycleHardFixturesNumberSwitchedVenue = awayTeamCycleHardFixturesNumberSwitchedVenue;
     }
 
-    public Double getFR_dificuldadeVisitado() {
-	return FR_dificuldadeVisitado;
+    public Double getHomeTeamLastFixturesOpponentAverageQuality() {
+	return homeTeamLastFixturesOpponentAverageQuality;
     }
 
-    public void setFR_dificuldadeVisitado(Double fR_dificuldadeVisitado) {
-	FR_dificuldadeVisitado = fR_dificuldadeVisitado;
+    public void setHomeTeamLastFixturesOpponentAverageQuality(Double homeTeamLastFixturesOpponentAverageQuality) {
+	this.homeTeamLastFixturesOpponentAverageQuality = homeTeamLastFixturesOpponentAverageQuality;
     }
 
-    public Double getFR_dificuldadeVisitante() {
-	return FR_dificuldadeVisitante;
+    public Double getAwayTeamLastFixturesOpponentAverageQuality() {
+	return awayTeamLastFixturesOpponentAverageQuality;
     }
 
-    public void setFR_dificuldadeVisitante(Double fR_dificuldadeVisitante) {
-	FR_dificuldadeVisitante = fR_dificuldadeVisitante;
+    public void setAwayTeamLastFixturesOpponentAverageQuality(Double awayTeamLastFixturesOpponentAverageQuality) {
+	this.awayTeamLastFixturesOpponentAverageQuality = awayTeamLastFixturesOpponentAverageQuality;
     }
 
-    public Integer getFR_historicosVisitado() {
-	return FR_historicosVisitado;
+    public Integer getHomeTeamLastFixturesHardFixturesNumber() {
+	return homeTeamLastFixturesHardFixturesNumber;
     }
 
-    public void setFR_historicosVisitado(Integer fR_historicosVisitado) {
-	FR_historicosVisitado = fR_historicosVisitado;
+    public void setHomeTeamLastFixturesHardFixturesNumber(Integer homeTeamLastFixturesHardFixturesNumber) {
+	this.homeTeamLastFixturesHardFixturesNumber = homeTeamLastFixturesHardFixturesNumber;
     }
 
-    public Integer getFR_historicosVisitante() {
-	return FR_historicosVisitante;
+    public Integer getAwayTeamLastFixturesHardFixturesNumber() {
+	return awayTeamLastFixturesHardFixturesNumber;
     }
 
-    public void setFR_historicosVisitante(Integer fR_historicosVisitante) {
-	FR_historicosVisitante = fR_historicosVisitante;
+    public void setAwayTeamLastFixturesHardFixturesNumber(Integer awayTeamLastFixturesHardFixturesNumber) {
+	this.awayTeamLastFixturesHardFixturesNumber = awayTeamLastFixturesHardFixturesNumber;
     }
 
-    public Double getFR_ratingTemporalResultadoVisitado() {
-	return FR_ratingTemporalResultadoVisitado;
+    public Double getHomeTeamLastFixturesRating() {
+	return homeTeamLastFixturesRating;
     }
 
-    public void setFR_ratingTemporalResultadoVisitado(Double fR_ratingTemporalResultadoVisitado) {
-	FR_ratingTemporalResultadoVisitado = fR_ratingTemporalResultadoVisitado;
+    public void setHomeTeamLastFixturesRating(Double homeTeamLastFixturesRating) {
+	this.homeTeamLastFixturesRating = homeTeamLastFixturesRating;
     }
 
-    public Double getFR_ratingTemporalResultadoVisitante() {
-	return FR_ratingTemporalResultadoVisitante;
+    public Double getAwayTeamLastFixturesRating() {
+	return awayTeamLastFixturesRating;
     }
 
-    public void setFR_ratingTemporalResultadoVisitante(Double fR_ratingTemporalResultadoVisitante) {
-	FR_ratingTemporalResultadoVisitante = fR_ratingTemporalResultadoVisitante;
+    public void setAwayTeamLastFixturesRating(Double awayTeamLastFixturesRating) {
+	this.awayTeamLastFixturesRating = awayTeamLastFixturesRating;
     }
 
-    public Integer getFR_numeroResultadosVisitado() {
-	return FR_numeroResultadosVisitado;
+    public Integer getHomeTeamLastFixturesResults() {
+	return homeTeamLastFixturesResults;
     }
 
-    public void setFR_numeroResultadosVisitado(Integer fR_numeroResultadosVisitado) {
-	FR_numeroResultadosVisitado = fR_numeroResultadosVisitado;
+    public void setHomeTeamLastFixturesResults(Integer homeTeamLastFixturesResults) {
+	this.homeTeamLastFixturesResults = homeTeamLastFixturesResults;
     }
 
-    public Integer getFR_numeroResultadosVisitante() {
-	return FR_numeroResultadosVisitante;
+    public Integer getAwayTeamLastFixturesResults() {
+	return awayTeamLastFixturesResults;
     }
 
-    public void setFR_numeroResultadosVisitante(Integer fR_numeroResultadosVisitante) {
-	FR_numeroResultadosVisitante = fR_numeroResultadosVisitante;
+    public void setAwayTeamLastFixturesResults(Integer awayTeamLastFixturesResults) {
+	this.awayTeamLastFixturesResults = awayTeamLastFixturesResults;
     }
 
-    public Integer getFR_numeroResultadosNoIntervaloVisitado() {
-	return FR_numeroResultadosNoIntervaloVisitado;
+    public Integer getHomeTeamLastFixturesResultIntervalFixtures() {
+	return homeTeamLastFixturesResultIntervalFixtures;
     }
 
-    public void setFR_numeroResultadosNoIntervaloVisitado(Integer fR_numeroResultadosNoIntervaloVisitado) {
-	FR_numeroResultadosNoIntervaloVisitado = fR_numeroResultadosNoIntervaloVisitado;
+    public void setHomeTeamLastFixturesResultIntervalFixtures(Integer homeTeamLastFixturesResultIntervalFixtures) {
+	this.homeTeamLastFixturesResultIntervalFixtures = homeTeamLastFixturesResultIntervalFixtures;
     }
 
-    public Integer getFR_numeroResultadosNoIntervaloVisitante() {
-	return FR_numeroResultadosNoIntervaloVisitante;
+    public Integer getAwayTeamLastFixturesResultIntervalFixtures() {
+	return awayTeamLastFixturesResultIntervalFixtures;
     }
 
-    public void setFR_numeroResultadosNoIntervaloVisitante(Integer fR_numeroResultadosNoIntervaloVisitante) {
-	FR_numeroResultadosNoIntervaloVisitante = fR_numeroResultadosNoIntervaloVisitante;
+    public void setAwayTeamLastFixturesResultIntervalFixtures(Integer awayTeamLastFixturesResultIntervalFixtures) {
+	this.awayTeamLastFixturesResultIntervalFixtures = awayTeamLastFixturesResultIntervalFixtures;
     }
 
-    public Double getFR_percentagemResultadoVisitado() {
-	return FR_percentagemResultadoVisitado;
+    public Double getHomeTeamLastFixturesResultPercentage() {
+	return homeTeamLastFixturesResultPercentage;
     }
 
-    public void setFR_percentagemResultadoVisitado(Double fR_percentagemResultadoVisitado) {
-	FR_percentagemResultadoVisitado = fR_percentagemResultadoVisitado;
+    public void setHomeTeamLastFixturesResultPercentage(Double homeTeamLastFixturesResultPercentage) {
+	this.homeTeamLastFixturesResultPercentage = homeTeamLastFixturesResultPercentage;
     }
 
-    public Double getFR_percentagemResultadoVisitante() {
-	return FR_percentagemResultadoVisitante;
+    public Double getAwayTeamLastFixturesResultPercentage() {
+	return awayTeamLastFixturesResultPercentage;
     }
 
-    public void setFR_percentagemResultadoVisitante(Double fR_percentagemResultadoVisitante) {
-	FR_percentagemResultadoVisitante = fR_percentagemResultadoVisitante;
+    public void setAwayTeamLastFixturesResultPercentage(Double awayTeamLastFixturesResultPercentage) {
+	this.awayTeamLastFixturesResultPercentage = awayTeamLastFixturesResultPercentage;
     }
 
-    public Double getFR_percentagemResultadoVisitadoCasa() {
-	return FR_percentagemResultadoVisitadoCasa;
+    public Double getHomeTeamLastFixturesHomeResultPercentage() {
+	return homeTeamLastFixturesHomeResultPercentage;
     }
 
-    public void setFR_percentagemResultadoVisitadoCasa(Double fR_percentagemResultadoVisitadoCasa) {
-	FR_percentagemResultadoVisitadoCasa = fR_percentagemResultadoVisitadoCasa;
+    public void setHomeTeamLastFixturesHomeResultPercentage(Double homeTeamLastFixturesHomeResultPercentage) {
+	this.homeTeamLastFixturesHomeResultPercentage = homeTeamLastFixturesHomeResultPercentage;
     }
 
-    public Double getFR_percentagemResultadoVisitanteFora() {
-	return FR_percentagemResultadoVisitanteFora;
+    public Double getAwayTeamLastFixturesHomeResultPercentage() {
+	return awayTeamLastFixturesHomeResultPercentage;
     }
 
-    public void setFR_percentagemResultadoVisitanteFora(Double fR_percentagemResultadoVisitanteFora) {
-	FR_percentagemResultadoVisitanteFora = fR_percentagemResultadoVisitanteFora;
+    public void setAwayTeamLastFixturesHomeResultPercentage(Double awayTeamLastFixturesHomeResultPercentage) {
+	this.awayTeamLastFixturesHomeResultPercentage = awayTeamLastFixturesHomeResultPercentage;
     }
 
-    public Double getFR_percentagemResultadoVisitadoFora() {
-	return FR_percentagemResultadoVisitadoFora;
+    public Double getHomeTeamLastFixturesAwayResultPercentage() {
+	return homeTeamLastFixturesAwayResultPercentage;
     }
 
-    public void setFR_percentagemResultadoVisitadoFora(Double fR_percentagemResultadoVisitadoFora) {
-	FR_percentagemResultadoVisitadoFora = fR_percentagemResultadoVisitadoFora;
+    public void setHomeTeamLastFixturesAwayResultPercentage(Double homeTeamLastFixturesAwayResultPercentage) {
+	this.homeTeamLastFixturesAwayResultPercentage = homeTeamLastFixturesAwayResultPercentage;
     }
 
-    public Double getFR_percentagemResultadoVisitanteCasa() {
-	return FR_percentagemResultadoVisitanteCasa;
+    public Double getAwayTeamLastFixturesAwayResultPercentage() {
+	return awayTeamLastFixturesAwayResultPercentage;
     }
 
-    public void setFR_percentagemResultadoVisitanteCasa(Double fR_percentagemResultadoVisitanteCasa) {
-	FR_percentagemResultadoVisitanteCasa = fR_percentagemResultadoVisitanteCasa;
+    public void setAwayTeamLastFixturesAwayResultPercentage(Double awayTeamLastFixturesAwayResultPercentage) {
+	this.awayTeamLastFixturesAwayResultPercentage = awayTeamLastFixturesAwayResultPercentage;
     }
 
-    public Double getFR_percentagemResultadoNoIntervaloVisitado() {
-	return FR_percentagemResultadoNoIntervaloVisitado;
+    public Double getHomeTeamLastFixturesResultIntervalPercentage() {
+	return homeTeamLastFixturesResultIntervalPercentage;
     }
 
-    public void setFR_percentagemResultadoNoIntervaloVisitado(Double fR_percentagemResultadoNoIntervaloVisitado) {
-	FR_percentagemResultadoNoIntervaloVisitado = fR_percentagemResultadoNoIntervaloVisitado;
+    public void setHomeTeamLastFixturesResultIntervalPercentage(Double homeTeamLastFixturesResultIntervalPercentage) {
+	this.homeTeamLastFixturesResultIntervalPercentage = homeTeamLastFixturesResultIntervalPercentage;
     }
 
-    public Double getFR_percentagemResultadoNoIntervaloVisitante() {
-	return FR_percentagemResultadoNoIntervaloVisitante;
+    public Double getAwayTeamLastFixturesResultIntervalPercentage() {
+	return awayTeamLastFixturesResultIntervalPercentage;
     }
 
-    public void setFR_percentagemResultadoNoIntervaloVisitante(Double fR_percentagemResultadoNoIntervaloVisitante) {
-	FR_percentagemResultadoNoIntervaloVisitante = fR_percentagemResultadoNoIntervaloVisitante;
+    public void setAwayTeamLastFixturesResultIntervalPercentage(Double awayTeamLastFixturesResultIntervalPercentage) {
+	this.awayTeamLastFixturesResultIntervalPercentage = awayTeamLastFixturesResultIntervalPercentage;
     }
 
-    public Double getFR_percentagemResultadoNoIntervaloVisitadoCasa() {
-	return FR_percentagemResultadoNoIntervaloVisitadoCasa;
+    public Double getHomeTeamLastFixturesHomeResultIntervalPercentage() {
+	return homeTeamLastFixturesHomeResultIntervalPercentage;
     }
 
-    public void setFR_percentagemResultadoNoIntervaloVisitadoCasa(
-	    Double fR_percentagemResultadoNoIntervaloVisitadoCasa) {
-	FR_percentagemResultadoNoIntervaloVisitadoCasa = fR_percentagemResultadoNoIntervaloVisitadoCasa;
+    public void setHomeTeamLastFixturesHomeResultIntervalPercentage(Double homeTeamLastFixturesHomeResultIntervalPercentage) {
+	this.homeTeamLastFixturesHomeResultIntervalPercentage = homeTeamLastFixturesHomeResultIntervalPercentage;
     }
 
-    public Double getFR_percentagemResultadoNoIntervaloVisitanteFora() {
-	return FR_percentagemResultadoNoIntervaloVisitanteFora;
+    public Double getAwayTeamLastFixturesHomeResultIntervalPercentage() {
+	return awayTeamLastFixturesHomeResultIntervalPercentage;
     }
 
-    public void setFR_percentagemResultadoNoIntervaloVisitanteFora(
-	    Double fR_percentagemResultadoNoIntervaloVisitanteFora) {
-	FR_percentagemResultadoNoIntervaloVisitanteFora = fR_percentagemResultadoNoIntervaloVisitanteFora;
+    public void setAwayTeamLastFixturesHomeResultIntervalPercentage(Double awayTeamLastFixturesHomeResultIntervalPercentage) {
+	this.awayTeamLastFixturesHomeResultIntervalPercentage = awayTeamLastFixturesHomeResultIntervalPercentage;
     }
 
-    public Double getFR_percentagemResultadoNoIntervaloVisitadoFora() {
-	return FR_percentagemResultadoNoIntervaloVisitadoFora;
+    public Double getHomeTeamLastFixturesAwayResultIntervalPercentage() {
+	return homeTeamLastFixturesAwayResultIntervalPercentage;
     }
 
-    public void setFR_percentagemResultadoNoIntervaloVisitadoFora(Double fR_percentagemResultadoNoIntervaloVisitadoFora) {
-	FR_percentagemResultadoNoIntervaloVisitadoFora = fR_percentagemResultadoNoIntervaloVisitadoFora;
+    public void setHomeTeamLastFixturesAwayResultIntervalPercentage(Double homeTeamLastFixturesAwayResultIntervalPercentage) {
+	this.homeTeamLastFixturesAwayResultIntervalPercentage = homeTeamLastFixturesAwayResultIntervalPercentage;
     }
 
-    public Double getFR_percentagemResultadoNoIntervaloVisitanteCasa() {
-	return FR_percentagemResultadoNoIntervaloVisitanteCasa;
+    public Double getAwayTeamLastFixturesAwayResultIntervalPercentage() {
+	return awayTeamLastFixturesAwayResultIntervalPercentage;
     }
 
-    public void setFR_percentagemResultadoNoIntervaloVisitanteCasa(Double fR_percentagemResultadoNoIntervaloVisitanteCasa) {
-	FR_percentagemResultadoNoIntervaloVisitanteCasa = fR_percentagemResultadoNoIntervaloVisitanteCasa;
+    public void setAwayTeamLastFixturesAwayResultIntervalPercentage(Double awayTeamLastFixturesAwayResultIntervalPercentage) {
+	this.awayTeamLastFixturesAwayResultIntervalPercentage = awayTeamLastFixturesAwayResultIntervalPercentage;
     }
 
-    public Integer getFR_numeroJogosVisitadoCasa() {
-	return FR_numeroJogosVisitadoCasa;
+    public Integer getHomeTeamLastFixturesFixturesNumber() {
+	return homeTeamLastFixturesFixturesNumber;
     }
 
-    public void setFR_numeroJogosVisitadoCasa(Integer fR_numeroJogosVisitadoCasa) {
-	FR_numeroJogosVisitadoCasa = fR_numeroJogosVisitadoCasa;
+    public void setHomeTeamLastFixturesFixturesNumber(Integer homeTeamLastFixturesFixturesNumber) {
+	this.homeTeamLastFixturesFixturesNumber = homeTeamLastFixturesFixturesNumber;
     }
 
-    public Integer getFR_numeroJogosVisitanteFora() {
-	return FR_numeroJogosVisitanteFora;
+    public Integer getAwayTeamLastFixturesFixturesNumber() {
+	return awayTeamLastFixturesFixturesNumber;
     }
 
-    public void setFR_numeroJogosVisitanteFora(Integer fR_numeroJogosVisitanteFora) {
-	FR_numeroJogosVisitanteFora = fR_numeroJogosVisitanteFora;
+    public void setAwayTeamLastFixturesFixturesNumber(Integer awayTeamLastFixturesFixturesNumber) {
+	this.awayTeamLastFixturesFixturesNumber = awayTeamLastFixturesFixturesNumber;
     }
 
-    public Integer getFR_golosMarcadosVisitado() {
-	return FR_golosMarcadosVisitado;
+    public Integer getHomeTeamLastFixturesGoals() {
+	return homeTeamLastFixturesGoals;
     }
 
-    public void setFR_golosMarcadosVisitado(Integer percentagensGolosFRVisitado) {
-	FR_golosMarcadosVisitado = percentagensGolosFRVisitado;
+    public void setHomeTeamLastFixturesGoals(Integer homeTeamLastFixturesGoals) {
+	this.homeTeamLastFixturesGoals = homeTeamLastFixturesGoals;
     }
 
-    public Integer getFR_golosSofridosVisitado() {
-	return FR_golosSofridosVisitado;
+    public Integer getAwayTeamLastFixturesGoals() {
+	return awayTeamLastFixturesGoals;
     }
 
-    public void setFR_golosSofridosVisitado(Integer fR_golosSofridosVisitado) {
-	FR_golosSofridosVisitado = fR_golosSofridosVisitado;
+    public void setAwayTeamLastFixturesGoals(Integer awayTeamLastFixturesGoals) {
+	this.awayTeamLastFixturesGoals = awayTeamLastFixturesGoals;
     }
 
-    public Integer getFR_diferencaGolosVisitado() {
-	return FR_diferencaGolosVisitado;
+    public Integer getHomeTeamLastFixturesGoalsConceded() {
+	return homeTeamLastFixturesGoalsConceded;
     }
 
-    public void setFR_diferencaGolosVisitado(Integer fR_diferencaGolosVisitado) {
-	FR_diferencaGolosVisitado = fR_diferencaGolosVisitado;
+    public void setHomeTeamLastFixturesGoalsConceded(Integer homeTeamLastFixturesGoalsConceded) {
+	this.homeTeamLastFixturesGoalsConceded = homeTeamLastFixturesGoalsConceded;
     }
 
-    public Integer getFR_golosMarcadosVisitante() {
-	return FR_golosMarcadosVisitante;
+    public Integer getAwayTeamLastFixturesGoalsConceded() {
+	return awayTeamLastFixturesGoalsConceded;
     }
 
-    public void setFR_golosMarcadosVisitante(Integer fR_golosMarcadosVisitante) {
-	FR_golosMarcadosVisitante = fR_golosMarcadosVisitante;
+    public void setAwayTeamLastFixturesGoalsConceded(Integer awayTeamLastFixturesGoalsConceded) {
+	this.awayTeamLastFixturesGoalsConceded = awayTeamLastFixturesGoalsConceded;
     }
 
-    public Integer getFR_golosSofridosVisitante() {
-	return FR_golosSofridosVisitante;
+    public Integer getHomeTeamLastFixturesGoalsDifference() {
+	return homeTeamLastFixturesGoalsDifference;
     }
 
-    public void setFR_golosSofridosVisitante(Integer fR_golosSofridosVisitante) {
-	FR_golosSofridosVisitante = fR_golosSofridosVisitante;
+    public void setHomeTeamLastFixturesGoalsDifference(Integer homeTeamLastFixturesGoalsDifference) {
+	this.homeTeamLastFixturesGoalsDifference = homeTeamLastFixturesGoalsDifference;
     }
 
-    public Integer getFR_diferencaGolosVisitante() {
-	return FR_diferencaGolosVisitante;
+    public Integer getAwayTeamLastFixturesGoalsDifference() {
+	return awayTeamLastFixturesGoalsDifference;
     }
 
-    public void setFR_diferencaGolosVisitante(Integer fR_diferencaGolosVisitante) {
-	FR_diferencaGolosVisitante = fR_diferencaGolosVisitante;
+    public void setAwayTeamLastFixturesGoalsDifference(Integer awayTeamLastFixturesGoalsDifference) {
+	this.awayTeamLastFixturesGoalsDifference = awayTeamLastFixturesGoalsDifference;
     }
 
-    public Double getFR_mediaGolosMarcadosVisitado() {
-	return FR_mediaGolosMarcadosVisitado;
+    public Double getHomeTeamLastFixturesGoalsAverage() {
+	return homeTeamLastFixturesGoalsAverage;
     }
 
-    public void setFR_mediaGolosMarcadosVisitado(Double fR_mediaGolosMarcadosVisitado) {
-	FR_mediaGolosMarcadosVisitado = fR_mediaGolosMarcadosVisitado;
+    public void setHomeTeamLastFixturesGoalsAverage(Double homeTeamLastFixturesGoalsAverage) {
+	this.homeTeamLastFixturesGoalsAverage = homeTeamLastFixturesGoalsAverage;
     }
 
-    public Double getFR_mediaGolosSofridosVisitado() {
-	return FR_mediaGolosSofridosVisitado;
+    public Double getAwayTeamLastFixturesGoalsAverage() {
+	return awayTeamLastFixturesGoalsAverage;
     }
 
-    public void setFR_mediaGolosSofridosVisitado(Double fR_mediaGolosSofridosVisitado) {
-	FR_mediaGolosSofridosVisitado = fR_mediaGolosSofridosVisitado;
+    public void setAwayTeamLastFixturesGoalsAverage(Double awayTeamLastFixturesGoalsAverage) {
+	this.awayTeamLastFixturesGoalsAverage = awayTeamLastFixturesGoalsAverage;
     }
 
-    public Double getFR_mediaGolosMarcadosVisitante() {
-	return FR_mediaGolosMarcadosVisitante;
+    public Double getHomeTeamLastFixturesGoalsConcededAverage() {
+	return homeTeamLastFixturesGoalsConcededAverage;
     }
 
-    public void setFR_mediaGolosMarcadosVisitante(Double fR_mediaGolosMarcadosVisitante) {
-	FR_mediaGolosMarcadosVisitante = fR_mediaGolosMarcadosVisitante;
+    public void setHomeTeamLastFixturesGoalsConcededAverage(Double homeTeamLastFixturesGoalsConcededAverage) {
+	this.homeTeamLastFixturesGoalsConcededAverage = homeTeamLastFixturesGoalsConcededAverage;
     }
 
-    public Double getFR_mediaGolosSofridosVisitante() {
-	return FR_mediaGolosSofridosVisitante;
+    public Double getAwayTeamLastFixturesGoalsConcededAverage() {
+	return awayTeamLastFixturesGoalsConcededAverage;
     }
 
-    public void setFR_mediaGolosSofridosVisitante(Double fR_mediaGolosSofridosVisitante) {
-	FR_mediaGolosSofridosVisitante = fR_mediaGolosSofridosVisitante;
+    public void setAwayTeamLastFixturesGoalsConcededAverage(Double awayTeamLastFixturesGoalsConcededAverage) {
+	this.awayTeamLastFixturesGoalsConcededAverage = awayTeamLastFixturesGoalsConcededAverage;
     }
 
-    public Integer getFR_golosMarcadosVisitadoCasa() {
-	return FR_golosMarcadosVisitadoCasa;
+    public Integer getHomeTeamLastFixturesHomeGoals() {
+	return homeTeamLastFixturesHomeGoals;
     }
 
-    public void setFR_golosMarcadosVisitadoCasa(Integer fR_golosMarcadosVisitadoCasa) {
-	FR_golosMarcadosVisitadoCasa = fR_golosMarcadosVisitadoCasa;
+    public void setHomeTeamLastFixturesHomeGoals(Integer homeTeamLastFixturesHomeGoals) {
+	this.homeTeamLastFixturesHomeGoals = homeTeamLastFixturesHomeGoals;
     }
 
-    public Integer getFR_golosSofridosVisitadoCasa() {
-	return FR_golosSofridosVisitadoCasa;
+    public Integer getAwayTeamLastFixturesAwayGoals() {
+	return awayTeamLastFixturesAwayGoals;
     }
 
-    public void setFR_golosSofridosVisitadoCasa(Integer fR_golosSofridosVisitadoCasa) {
-	FR_golosSofridosVisitadoCasa = fR_golosSofridosVisitadoCasa;
+    public void setAwayTeamLastFixturesAwayGoals(Integer awayTeamLastFixturesAwayGoals) {
+	this.awayTeamLastFixturesAwayGoals = awayTeamLastFixturesAwayGoals;
     }
 
-    public Integer getFR_diferencaGolosVisitadoCasa() {
-	return FR_diferencaGolosVisitadoCasa;
+    public Integer getHomeTeamLastFixturesHomeGoalsConceded() {
+	return homeTeamLastFixturesHomeGoalsConceded;
     }
 
-    public void setFR_diferencaGolosVisitadoCasa(Integer fR_diferencaGolosVisitadoCasa) {
-	FR_diferencaGolosVisitadoCasa = fR_diferencaGolosVisitadoCasa;
+    public void setHomeTeamLastFixturesHomeGoalsConceded(Integer homeTeamLastFixturesHomeGoalsConceded) {
+	this.homeTeamLastFixturesHomeGoalsConceded = homeTeamLastFixturesHomeGoalsConceded;
     }
 
-    public Integer getFR_golosMarcadosVisitanteFora() {
-	return FR_golosMarcadosVisitanteFora;
+    public Integer getAwayTeamLastFixturesAwayGoalsConceded() {
+	return awayTeamLastFixturesAwayGoalsConceded;
     }
 
-    public void setFR_golosMarcadosVisitanteFora(Integer fR_golosMarcadosVisitanteFora) {
-	FR_golosMarcadosVisitanteFora = fR_golosMarcadosVisitanteFora;
+    public void setAwayTeamLastFixturesAwayGoalsConceded(Integer awayTeamLastFixturesAwayGoalsConceded) {
+	this.awayTeamLastFixturesAwayGoalsConceded = awayTeamLastFixturesAwayGoalsConceded;
     }
 
-    public Integer getFR_golosSofridosVisitanteFora() {
-	return FR_golosSofridosVisitanteFora;
+    public Integer getHomeTeamLastFixturesHomeGoalsDifference() {
+	return homeTeamLastFixturesHomeGoalsDifference;
     }
 
-    public void setFR_golosSofridosVisitanteFora(Integer fR_golosSofridosVisitanteFora) {
-	FR_golosSofridosVisitanteFora = fR_golosSofridosVisitanteFora;
+    public void setHomeTeamLastFixturesHomeGoalsDifference(Integer homeTeamLastFixturesHomeGoalsDifference) {
+	this.homeTeamLastFixturesHomeGoalsDifference = homeTeamLastFixturesHomeGoalsDifference;
     }
 
-    public Integer getFR_diferencaGolosVisitanteFora() {
-	return FR_diferencaGolosVisitanteFora;
+    public Integer getAwayTeamLastFixturesAwayGoalsDifference() {
+	return awayTeamLastFixturesAwayGoalsDifference;
     }
 
-    public void setFR_diferencaGolosVisitanteFora(Integer fR_diferencaGolosVisitanteFora) {
-	FR_diferencaGolosVisitanteFora = fR_diferencaGolosVisitanteFora;
+    public void setAwayTeamLastFixturesAwayGoalsDifference(Integer awayTeamLastFixturesAwayGoalsDifference) {
+	this.awayTeamLastFixturesAwayGoalsDifference = awayTeamLastFixturesAwayGoalsDifference;
     }
 
-    public Double getFR_mediaGolosMarcadosVisitadoCasa() {
-	return FR_mediaGolosMarcadosVisitadoCasa;
+    public Double getHomeTeamLastFixturesHomeGoalsAverage() {
+	return homeTeamLastFixturesHomeGoalsAverage;
     }
 
-    public void setFR_mediaGolosMarcadosVisitadoCasa(Double fR_mediaGolosMarcadosVisitadoCasa) {
-	FR_mediaGolosMarcadosVisitadoCasa = fR_mediaGolosMarcadosVisitadoCasa;
+    public void setHomeTeamLastFixturesHomeGoalsAverage(Double homeTeamLastFixturesHomeGoalsAverage) {
+	this.homeTeamLastFixturesHomeGoalsAverage = homeTeamLastFixturesHomeGoalsAverage;
     }
 
-    public Double getFR_mediaGolosSofridosVisitadoCasa() {
-	return FR_mediaGolosSofridosVisitadoCasa;
+    public Double getAwayTeamLastFixturesAwayGoalsAverage() {
+	return awayTeamLastFixturesAwayGoalsAverage;
     }
 
-    public void setFR_mediaGolosSofridosVisitadoCasa(Double fR_mediaGolosSofridosVisitadoCasa) {
-	FR_mediaGolosSofridosVisitadoCasa = fR_mediaGolosSofridosVisitadoCasa;
+    public void setAwayTeamLastFixturesAwayGoalsAverage(Double awayTeamLastFixturesAwayGoalsAverage) {
+	this.awayTeamLastFixturesAwayGoalsAverage = awayTeamLastFixturesAwayGoalsAverage;
     }
 
-    public Double getFR_mediaGolosMarcadosVisitanteFora() {
-	return FR_mediaGolosMarcadosVisitanteFora;
+    public Double getHomeTeamLastFixturesHomeGoalsConcededAverage() {
+	return homeTeamLastFixturesHomeGoalsConcededAverage;
     }
 
-    public void setFR_mediaGolosMarcadosVisitanteFora(Double fR_mediaGolosMarcadosVisitanteFora) {
-	FR_mediaGolosMarcadosVisitanteFora = fR_mediaGolosMarcadosVisitanteFora;
+    public void setHomeTeamLastFixturesHomeGoalsConcededAverage(Double homeTeamLastFixturesHomeGoalsConcededAverage) {
+	this.homeTeamLastFixturesHomeGoalsConcededAverage = homeTeamLastFixturesHomeGoalsConcededAverage;
     }
 
-    public Double getFR_mediaGolosSofridosVisitanteFora() {
-	return FR_mediaGolosSofridosVisitanteFora;
+    public Double getAwayTeamLastFixturesAwayGoalsConcededAverage() {
+	return awayTeamLastFixturesAwayGoalsConcededAverage;
     }
 
-    public void setFR_mediaGolosSofridosVisitanteFora(Double fR_mediaGolosSofridosVisitanteFora) {
-	FR_mediaGolosSofridosVisitanteFora = fR_mediaGolosSofridosVisitanteFora;
+    public void setAwayTeamLastFixturesAwayGoalsConcededAverage(Double awayTeamLastFixturesAwayGoalsConcededAverage) {
+	this.awayTeamLastFixturesAwayGoalsConcededAverage = awayTeamLastFixturesAwayGoalsConcededAverage;
     }
 
-    public Integer getFR_golosMarcadosVisitadoFora() {
-	return FR_golosMarcadosVisitadoFora;
+    public Integer getHomeTeamLastFixturesAwayGoals() {
+	return homeTeamLastFixturesAwayGoals;
     }
 
-    public void setFR_golosMarcadosVisitadoFora(Integer fR_golosMarcadosVisitadoFora) {
-	FR_golosMarcadosVisitadoFora = fR_golosMarcadosVisitadoFora;
+    public void setHomeTeamLastFixturesAwayGoals(Integer homeTeamLastFixturesAwayGoals) {
+	this.homeTeamLastFixturesAwayGoals = homeTeamLastFixturesAwayGoals;
     }
 
-    public Integer getFR_golosSofridosVisitadoFora() {
-	return FR_golosSofridosVisitadoFora;
+    public Integer getAwayTeamLastFixturesHomeGoals() {
+	return awayTeamLastFixturesHomeGoals;
     }
 
-    public void setFR_golosSofridosVisitadoFora(Integer fR_golosSofridosVisitadoFora) {
-	FR_golosSofridosVisitadoFora = fR_golosSofridosVisitadoFora;
+    public void setAwayTeamLastFixturesHomeGoals(Integer awayTeamLastFixturesHomeGoals) {
+	this.awayTeamLastFixturesHomeGoals = awayTeamLastFixturesHomeGoals;
     }
 
-    public Integer getFR_diferencaGolosVisitadoFora() {
-	return FR_diferencaGolosVisitadoFora;
+    public Integer getHomeTeamLastFixturesAwayGoalsConceded() {
+	return homeTeamLastFixturesAwayGoalsConceded;
     }
 
-    public void setFR_diferencaGolosVisitadoFora(Integer fR_diferencaGolosVisitadoFora) {
-	FR_diferencaGolosVisitadoFora = fR_diferencaGolosVisitadoFora;
+    public void setHomeTeamLastFixturesAwayGoalsConceded(Integer homeTeamLastFixturesAwayGoalsConceded) {
+	this.homeTeamLastFixturesAwayGoalsConceded = homeTeamLastFixturesAwayGoalsConceded;
     }
 
-    public Integer getFR_golosMarcadosVisitanteCasa() {
-	return FR_golosMarcadosVisitanteCasa;
+    public Integer getAwayTeamLastFixturesHomeGoalsConceded() {
+	return awayTeamLastFixturesHomeGoalsConceded;
     }
 
-    public void setFR_golosMarcadosVisitanteCasa(Integer fR_golosMarcadosVisitanteCasa) {
-	FR_golosMarcadosVisitanteCasa = fR_golosMarcadosVisitanteCasa;
+    public void setAwayTeamLastFixturesHomeGoalsConceded(Integer awayTeamLastFixturesHomeGoalsConceded) {
+	this.awayTeamLastFixturesHomeGoalsConceded = awayTeamLastFixturesHomeGoalsConceded;
     }
 
-    public Integer getFR_golosSofridosVisitanteCasa() {
-	return FR_golosSofridosVisitanteCasa;
+    public Integer getHomeTeamLastFixturesAwayGoalsDifference() {
+	return homeTeamLastFixturesAwayGoalsDifference;
     }
 
-    public void setFR_golosSofridosVisitanteCasa(Integer fR_golosSofridosVisitanteCasa) {
-	FR_golosSofridosVisitanteCasa = fR_golosSofridosVisitanteCasa;
+    public void setHomeTeamLastFixturesAwayGoalsDifference(Integer homeTeamLastFixturesAwayGoalsDifference) {
+	this.homeTeamLastFixturesAwayGoalsDifference = homeTeamLastFixturesAwayGoalsDifference;
     }
 
-    public Integer getFR_diferencaGolosVisitanteCasa() {
-	return FR_diferencaGolosVisitanteCasa;
+    public Integer getAwayTeamLastFixturesHomeGoalsDifference() {
+	return awayTeamLastFixturesHomeGoalsDifference;
     }
 
-    public void setFR_diferencaGolosVisitanteCasa(Integer fR_diferencaGolosVisitanteCasa) {
-	FR_diferencaGolosVisitanteCasa = fR_diferencaGolosVisitanteCasa;
+    public void setAwayTeamLastFixturesHomeGoalsDifference(Integer awayTeamLastFixturesHomeGoalsDifference) {
+	this.awayTeamLastFixturesHomeGoalsDifference = awayTeamLastFixturesHomeGoalsDifference;
     }
 
-    public Double getFR_mediaGolosMarcadosVisitadoFora() {
-	return FR_mediaGolosMarcadosVisitadoFora;
+    public Double getHomeTeamLastFixturesAwayGoalsAverage() {
+	return homeTeamLastFixturesAwayGoalsAverage;
     }
 
-    public void setFR_mediaGolosMarcadosVisitadoFora(Double fR_mediaGolosMarcadosVisitadoFora) {
-	FR_mediaGolosMarcadosVisitadoFora = fR_mediaGolosMarcadosVisitadoFora;
+    public void setHomeTeamLastFixturesAwayGoalsAverage(Double homeTeamLastFixturesAwayGoalsAverage) {
+	this.homeTeamLastFixturesAwayGoalsAverage = homeTeamLastFixturesAwayGoalsAverage;
     }
 
-    public Double getFR_mediaGolosSofridosVisitadoFora() {
-	return FR_mediaGolosSofridosVisitadoFora;
+    public Double getAwayTeamLastFixturesHomeGoalsAverage() {
+	return awayTeamLastFixturesHomeGoalsAverage;
     }
 
-    public void setFR_mediaGolosSofridosVisitadoFora(Double fR_mediaGolosSofridosVisitadoFora) {
-	FR_mediaGolosSofridosVisitadoFora = fR_mediaGolosSofridosVisitadoFora;
+    public void setAwayTeamLastFixturesHomeGoalsAverage(Double awayTeamLastFixturesHomeGoalsAverage) {
+	this.awayTeamLastFixturesHomeGoalsAverage = awayTeamLastFixturesHomeGoalsAverage;
     }
 
-    public Double getFR_mediaGolosMarcadosVisitanteCasa() {
-	return FR_mediaGolosMarcadosVisitanteCasa;
+    public Double getHomeTeamLastFixturesAwayGoalsConcededAverage() {
+	return homeTeamLastFixturesAwayGoalsConcededAverage;
     }
 
-    public void setFR_mediaGolosMarcadosVisitanteCasa(Double fR_mediaGolosMarcadosVisitanteCasa) {
-	FR_mediaGolosMarcadosVisitanteCasa = fR_mediaGolosMarcadosVisitanteCasa;
+    public void setHomeTeamLastFixturesAwayGoalsConcededAverage(Double homeTeamLastFixturesAwayGoalsConcededAverage) {
+	this.homeTeamLastFixturesAwayGoalsConcededAverage = homeTeamLastFixturesAwayGoalsConcededAverage;
     }
 
-    public Double getFR_mediaGolosSofridosVisitanteCasa() {
-	return FR_mediaGolosSofridosVisitanteCasa;
+    public Double getAwayTeamLastFixturesHimeyGoalsConcededAverage() {
+	return awayTeamLastFixturesHimeyGoalsConcededAverage;
     }
 
-    public void setFR_mediaGolosSofridosVisitanteCasa(Double fR_mediaGolosSofridosVisitanteCasa) {
-	FR_mediaGolosSofridosVisitanteCasa = fR_mediaGolosSofridosVisitanteCasa;
+    public void setAwayTeamLastFixturesHimeyGoalsConcededAverage(Double awayTeamLastFixturesHimeyGoalsConcededAverage) {
+	this.awayTeamLastFixturesHimeyGoalsConcededAverage = awayTeamLastFixturesHimeyGoalsConcededAverage;
     }
 
-    public Integer getFR_pontuacaoCasa() {
-	return FR_pontuacaoCasa;
+    public Integer getHomeTeamLastFixturesPontuation() {
+	return homeTeamLastFixturesPontuation;
     }
 
-    public void setFR_pontuacaoCasa(Integer fR_pontuacaoCasa) {
-	FR_pontuacaoCasa = fR_pontuacaoCasa;
+    public void setHomeTeamLastFixturesPontuation(Integer homeTeamLastFixturesPontuation) {
+	this.homeTeamLastFixturesPontuation = homeTeamLastFixturesPontuation;
     }
 
-    public Double getFR_pontuacaoCasaQualidade() {
-	return FR_pontuacaoCasaQualidade;
+    public Integer getAwayTeamLastFixturesPontuation() {
+	return awayTeamLastFixturesPontuation;
     }
 
-    public void setFR_pontuacaoCasaQualidade(Double fR_pontuacaoCasaQualidade) {
-	FR_pontuacaoCasaQualidade = fR_pontuacaoCasaQualidade;
+    public void setAwayTeamLastFixturesPontuation(Integer awayTeamLastFixturesPontuation) {
+	this.awayTeamLastFixturesPontuation = awayTeamLastFixturesPontuation;
     }
 
-    public Double getFR_pontuacaoCasaQualidadeTempo() {
-	return FR_pontuacaoCasaQualidadeTempo;
+    public Double getHomeTeamLastFixturesPontuationQuality() {
+	return homeTeamLastFixturesPontuationQuality;
     }
 
-    public void setFR_pontuacaoCasaQualidadeTempo(Double fR_pontuacaoCasaQualidadeTempo) {
-	FR_pontuacaoCasaQualidadeTempo = fR_pontuacaoCasaQualidadeTempo;
+    public void setHomeTeamLastFixturesPontuationQuality(Double homeTeamLastFixturesPontuationQuality) {
+	this.homeTeamLastFixturesPontuationQuality = homeTeamLastFixturesPontuationQuality;
     }
 
-    public Integer getFR_pontuacaoFora() {
-	return FR_pontuacaoFora;
+    public Double getAwayTeamLastFixturesPontuationQuality() {
+	return awayTeamLastFixturesPontuationQuality;
     }
 
-    public void setFR_pontuacaoFora(Integer fR_pontuacaoFora) {
-	FR_pontuacaoFora = fR_pontuacaoFora;
+    public void setAwayTeamLastFixturesPontuationQuality(Double awayTeamLastFixturesPontuationQuality) {
+	this.awayTeamLastFixturesPontuationQuality = awayTeamLastFixturesPontuationQuality;
     }
 
-    public Double getFR_pontuacaoForaQualidade() {
-	return FR_pontuacaoForaQualidade;
+    public Double getHomeTeamLastFixturesPontuationQualityAndTime() {
+	return homeTeamLastFixturesPontuationQualityAndTime;
     }
 
-    public void setFR_pontuacaoForaQualidade(Double fR_pontuacaoForaQualidade) {
-	FR_pontuacaoForaQualidade = fR_pontuacaoForaQualidade;
+    public void setHomeTeamLastFixturesPontuationQualityAndTime(Double homeTeamLastFixturesPontuationQualityAndTime) {
+	this.homeTeamLastFixturesPontuationQualityAndTime = homeTeamLastFixturesPontuationQualityAndTime;
     }
 
-    public Double getFR_pontuacaoForaQualidadeTempo() {
-	return FR_pontuacaoForaQualidadeTempo;
+    public Double getAwayTeamLastFixturesPontuationQualityAndTime() {
+	return awayTeamLastFixturesPontuationQualityAndTime;
     }
 
-    public void setFR_pontuacaoForaQualidadeTempo(Double fR_pontuacaoForaQualidadeTempo) {
-	FR_pontuacaoForaQualidadeTempo = fR_pontuacaoForaQualidadeTempo;
+    public void setAwayTeamLastFixturesPontuationQualityAndTime(Double awayTeamLastFixturesPontuationQualityAndTime) {
+	this.awayTeamLastFixturesPontuationQualityAndTime = awayTeamLastFixturesPontuationQualityAndTime;
     }
 
-    public Double getFR_dificuldadeVisitadoVenue() {
-	return FR_dificuldadeVisitadoVenue;
+    public Double getHomeTeamLastFixturesOpponentAverageQualityVenue() {
+	return homeTeamLastFixturesOpponentAverageQualityVenue;
     }
 
-    public void setFR_dificuldadeVisitadoVenue(Double fR_dificuldadeVisitadoVenue) {
-	FR_dificuldadeVisitadoVenue = fR_dificuldadeVisitadoVenue;
+    public void setHomeTeamLastFixturesOpponentAverageQualityVenue(Double homeTeamLastFixturesOpponentAverageQualityVenue) {
+	this.homeTeamLastFixturesOpponentAverageQualityVenue = homeTeamLastFixturesOpponentAverageQualityVenue;
     }
 
-    public Double getFR_dificuldadeVisitanteVenue() {
-	return FR_dificuldadeVisitanteVenue;
+    public Double getAwayTeamLastFixturesOpponentAverageQualityVenue() {
+	return awayTeamLastFixturesOpponentAverageQualityVenue;
     }
 
-    public void setFR_dificuldadeVisitanteVenue(Double fR_dificuldadeVisitanteVenue) {
-	FR_dificuldadeVisitanteVenue = fR_dificuldadeVisitanteVenue;
+    public void setAwayTeamLastFixturesOpponentAverageQualityVenue(Double awayTeamLastFixturesOpponentAverageQualityVenue) {
+	this.awayTeamLastFixturesOpponentAverageQualityVenue = awayTeamLastFixturesOpponentAverageQualityVenue;
     }
 
-    public Integer getFR_historicosVisitadoVenue() {
-	return FR_historicosVisitadoVenue;
+    public Integer getHomeTeamLastFixturesHardFixturesNumberVenue() {
+	return homeTeamLastFixturesHardFixturesNumberVenue;
     }
 
-    public void setFR_historicosVisitadoVenue(Integer fR_historicosVisitadoVenue) {
-	FR_historicosVisitadoVenue = fR_historicosVisitadoVenue;
+    public void setHomeTeamLastFixturesHardFixturesNumberVenue(Integer homeTeamLastFixturesHardFixturesNumberVenue) {
+	this.homeTeamLastFixturesHardFixturesNumberVenue = homeTeamLastFixturesHardFixturesNumberVenue;
     }
 
-    public Integer getFR_historicosVisitanteVenue() {
-	return FR_historicosVisitanteVenue;
+    public Integer getAwayTeamLastFixturesHardFixturesNumberVenue() {
+	return awayTeamLastFixturesHardFixturesNumberVenue;
     }
 
-    public void setFR_historicosVisitanteVenue(Integer fR_historicosVisitanteVenue) {
-	FR_historicosVisitanteVenue = fR_historicosVisitanteVenue;
+    public void setAwayTeamLastFixturesHardFixturesNumberVenue(Integer awayTeamLastFixturesHardFixturesNumberVenue) {
+	this.awayTeamLastFixturesHardFixturesNumberVenue = awayTeamLastFixturesHardFixturesNumberVenue;
     }
 
-    public Double getFR_ratingTemporalResultadoVisitadoVenue() {
-	return FR_ratingTemporalResultadoVisitadoVenue;
+    public Double getHomeTeamLastFixturesRatingVenue() {
+	return homeTeamLastFixturesRatingVenue;
     }
 
-    public void setFR_ratingTemporalResultadoVisitadoVenue(Double fR_ratingTemporalResultadoVisitadoVenue) {
-	FR_ratingTemporalResultadoVisitadoVenue = fR_ratingTemporalResultadoVisitadoVenue;
+    public void setHomeTeamLastFixturesRatingVenue(Double homeTeamLastFixturesRatingVenue) {
+	this.homeTeamLastFixturesRatingVenue = homeTeamLastFixturesRatingVenue;
     }
 
-    public Double getFR_ratingTemporalResultadoVisitanteVenue() {
-	return FR_ratingTemporalResultadoVisitanteVenue;
+    public Double getAwayTeamLastFixturesRatingVenue() {
+	return awayTeamLastFixturesRatingVenue;
     }
 
-    public void setFR_ratingTemporalResultadoVisitanteVenue(Double fR_ratingTemporalResultadoVisitanteVenue) {
-	FR_ratingTemporalResultadoVisitanteVenue = fR_ratingTemporalResultadoVisitanteVenue;
+    public void setAwayTeamLastFixturesRatingVenue(Double awayTeamLastFixturesRatingVenue) {
+	this.awayTeamLastFixturesRatingVenue = awayTeamLastFixturesRatingVenue;
     }
 
-    public Integer getFR_numeroResultadosVisitadoVenue() {
-	return FR_numeroResultadosVisitadoVenue;
+    public Integer getHomeTeamLastFixturesResultsVenue() {
+	return homeTeamLastFixturesResultsVenue;
     }
 
-    public void setFR_numeroResultadosVisitadoVenue(Integer fR_numeroResultadosVisitadoVenue) {
-	FR_numeroResultadosVisitadoVenue = fR_numeroResultadosVisitadoVenue;
+    public void setHomeTeamLastFixturesResultsVenue(Integer homeTeamLastFixturesResultsVenue) {
+	this.homeTeamLastFixturesResultsVenue = homeTeamLastFixturesResultsVenue;
     }
 
-    public Integer getFR_numeroResultadosVisitanteVenue() {
-	return FR_numeroResultadosVisitanteVenue;
+    public Integer getAwayTeamLastFixturesResultsVenue() {
+	return awayTeamLastFixturesResultsVenue;
     }
 
-    public void setFR_numeroResultadosVisitanteVenue(Integer fR_numeroResultadosVisitanteVenue) {
-	FR_numeroResultadosVisitanteVenue = fR_numeroResultadosVisitanteVenue;
+    public void setAwayTeamLastFixturesResultsVenue(Integer awayTeamLastFixturesResultsVenue) {
+	this.awayTeamLastFixturesResultsVenue = awayTeamLastFixturesResultsVenue;
     }
 
-    public Integer getFR_numeroResultadosNoIntervaloVisitadoVenue() {
-	return FR_numeroResultadosNoIntervaloVisitadoVenue;
+    public Integer getHomeTeamLastFixturesResultIntervalFixturesVenue() {
+	return homeTeamLastFixturesResultIntervalFixturesVenue;
     }
 
-    public void setFR_numeroResultadosNoIntervaloVisitadoVenue(Integer fR_numeroResultadosNoIntervaloVisitadoVenue) {
-	FR_numeroResultadosNoIntervaloVisitadoVenue = fR_numeroResultadosNoIntervaloVisitadoVenue;
+    public void setHomeTeamLastFixturesResultIntervalFixturesVenue(Integer homeTeamLastFixturesResultIntervalFixturesVenue) {
+	this.homeTeamLastFixturesResultIntervalFixturesVenue = homeTeamLastFixturesResultIntervalFixturesVenue;
     }
 
-    public Integer getFR_numeroResultadosNoIntervaloVisitanteVenue() {
-	return FR_numeroResultadosNoIntervaloVisitanteVenue;
+    public Integer getAwayTeamLastFixturesResultIntervalFixturesVenue() {
+	return awayTeamLastFixturesResultIntervalFixturesVenue;
     }
 
-    public void setFR_numeroResultadosNoIntervaloVisitanteVenue(Integer fR_numeroResultadosNoIntervaloVisitanteVenue) {
-	FR_numeroResultadosNoIntervaloVisitanteVenue = fR_numeroResultadosNoIntervaloVisitanteVenue;
+    public void setAwayTeamLastFixturesResultIntervalFixturesVenue(Integer awayTeamLastFixturesResultIntervalFixturesVenue) {
+	this.awayTeamLastFixturesResultIntervalFixturesVenue = awayTeamLastFixturesResultIntervalFixturesVenue;
     }
 
-    public Double getFR_percentagemResultadoVisitadoVenue() {
-	return FR_percentagemResultadoVisitadoVenue;
+    public Double getHomeTeamLastFixturesResultPercentageVenue() {
+	return homeTeamLastFixturesResultPercentageVenue;
     }
 
-    public void setFR_percentagemResultadoVisitadoVenue(Double fR_percentagemResultadoVisitadoVenue) {
-	FR_percentagemResultadoVisitadoVenue = fR_percentagemResultadoVisitadoVenue;
+    public void setHomeTeamLastFixturesResultPercentageVenue(Double homeTeamLastFixturesResultPercentageVenue) {
+	this.homeTeamLastFixturesResultPercentageVenue = homeTeamLastFixturesResultPercentageVenue;
     }
 
-    public Double getFR_percentagemResultadoVisitanteVenue() {
-	return FR_percentagemResultadoVisitanteVenue;
+    public Double getAwayTeamLastFixturesResultPercentageVenue() {
+	return awayTeamLastFixturesResultPercentageVenue;
     }
 
-    public void setFR_percentagemResultadoVisitanteVenue(Double fR_percentagemResultadoVisitanteVenue) {
-	FR_percentagemResultadoVisitanteVenue = fR_percentagemResultadoVisitanteVenue;
+    public void setAwayTeamLastFixturesResultPercentageVenue(Double awayTeamLastFixturesResultPercentageVenue) {
+	this.awayTeamLastFixturesResultPercentageVenue = awayTeamLastFixturesResultPercentageVenue;
     }
 
-    public Double getFR_percentagemResultadoNoIntervaloVisitadoVenue() {
-	return FR_percentagemResultadoNoIntervaloVisitadoVenue;
+    public Double getHomeTeamLastFixturesResultIntervalPercentageVenue() {
+	return homeTeamLastFixturesResultIntervalPercentageVenue;
     }
 
-    public void setFR_percentagemResultadoNoIntervaloVisitadoVenue(
-	    Double fR_percentagemResultadoNoIntervaloVisitadoVenue) {
-	FR_percentagemResultadoNoIntervaloVisitadoVenue = fR_percentagemResultadoNoIntervaloVisitadoVenue;
+    public void setHomeTeamLastFixturesResultIntervalPercentageVenue(Double homeTeamLastFixturesResultIntervalPercentageVenue) {
+	this.homeTeamLastFixturesResultIntervalPercentageVenue = homeTeamLastFixturesResultIntervalPercentageVenue;
     }
 
-    public Double getFR_percentagemResultadoNoIntervaloVisitanteVenue() {
-	return FR_percentagemResultadoNoIntervaloVisitanteVenue;
+    public Double getAwayTeamLastFixturesResultIntervalPercentageVenue() {
+	return awayTeamLastFixturesResultIntervalPercentageVenue;
     }
 
-    public void setFR_percentagemResultadoNoIntervaloVisitanteVenue(
-	    Double fR_percentagemResultadoNoIntervaloVisitanteVenue) {
-	FR_percentagemResultadoNoIntervaloVisitanteVenue = fR_percentagemResultadoNoIntervaloVisitanteVenue;
+    public void setAwayTeamLastFixturesResultIntervalPercentageVenue(Double awayTeamLastFixturesResultIntervalPercentageVenue) {
+	this.awayTeamLastFixturesResultIntervalPercentageVenue = awayTeamLastFixturesResultIntervalPercentageVenue;
     }
 
-    public Integer getFR_golosMarcadosVisitadoVenue() {
-	return FR_golosMarcadosVisitadoVenue;
+    public Integer getHomeTeamLastFixturesGoalsVenue() {
+	return homeTeamLastFixturesGoalsVenue;
     }
 
-    public void setFR_golosMarcadosVisitadoVenue(Integer fR_golosMarcadosVisitadoVenue) {
-	FR_golosMarcadosVisitadoVenue = fR_golosMarcadosVisitadoVenue;
+    public void setHomeTeamLastFixturesGoalsVenue(Integer homeTeamLastFixturesGoalsVenue) {
+	this.homeTeamLastFixturesGoalsVenue = homeTeamLastFixturesGoalsVenue;
     }
 
-    public Integer getFR_golosSofridosVisitadoVenue() {
-	return FR_golosSofridosVisitadoVenue;
+    public Integer getAwayTeamLastFixturesGoalsVenue() {
+	return awayTeamLastFixturesGoalsVenue;
     }
 
-    public void setFR_golosSofridosVisitadoVenue(Integer fR_golosSofridosVisitadoVenue) {
-	FR_golosSofridosVisitadoVenue = fR_golosSofridosVisitadoVenue;
+    public void setAwayTeamLastFixturesGoalsVenue(Integer awayTeamLastFixturesGoalsVenue) {
+	this.awayTeamLastFixturesGoalsVenue = awayTeamLastFixturesGoalsVenue;
     }
 
-    public Integer getFR_diferencaGolosVisitadoVenue() {
-	return FR_diferencaGolosVisitadoVenue;
+    public Integer getHomeTeamLastFixturesGoalsConcededVenue() {
+	return homeTeamLastFixturesGoalsConcededVenue;
     }
 
-    public void setFR_diferencaGolosVisitadoVenue(Integer fR_diferencaGolosVisitadoVenue) {
-	FR_diferencaGolosVisitadoVenue = fR_diferencaGolosVisitadoVenue;
+    public void setHomeTeamLastFixturesGoalsConcededVenue(Integer homeTeamLastFixturesGoalsConcededVenue) {
+	this.homeTeamLastFixturesGoalsConcededVenue = homeTeamLastFixturesGoalsConcededVenue;
     }
 
-    public Integer getFR_golosMarcadosVisitanteVenue() {
-	return FR_golosMarcadosVisitanteVenue;
+    public Integer getAwayTeamLastFixturesGoalsConcededVenue() {
+	return awayTeamLastFixturesGoalsConcededVenue;
     }
 
-    public void setFR_golosMarcadosVisitanteVenue(Integer fR_golosMarcadosVisitanteVenue) {
-	FR_golosMarcadosVisitanteVenue = fR_golosMarcadosVisitanteVenue;
+    public void setAwayTeamLastFixturesGoalsConcededVenue(Integer awayTeamLastFixturesGoalsConcededVenue) {
+	this.awayTeamLastFixturesGoalsConcededVenue = awayTeamLastFixturesGoalsConcededVenue;
     }
 
-    public Integer getFR_golosSofridosVisitanteVenue() {
-	return FR_golosSofridosVisitanteVenue;
+    public Integer getHomeTeamLastFixturesGoalsDifferenceVenue() {
+	return homeTeamLastFixturesGoalsDifferenceVenue;
     }
 
-    public void setFR_golosSofridosVisitanteVenue(Integer fR_golosSofridosVisitanteVenue) {
-	FR_golosSofridosVisitanteVenue = fR_golosSofridosVisitanteVenue;
+    public void setHomeTeamLastFixturesGoalsDifferenceVenue(Integer homeTeamLastFixturesGoalsDifferenceVenue) {
+	this.homeTeamLastFixturesGoalsDifferenceVenue = homeTeamLastFixturesGoalsDifferenceVenue;
     }
 
-    public Integer getFR_diferencaGolosVisitanteVenue() {
-	return FR_diferencaGolosVisitanteVenue;
+    public Integer getAwayTeamLastFixturesGoalsDifferenceVenue() {
+	return awayTeamLastFixturesGoalsDifferenceVenue;
     }
 
-    public void setFR_diferencaGolosVisitanteVenue(Integer fR_diferencaGolosVisitanteVenue) {
-	FR_diferencaGolosVisitanteVenue = fR_diferencaGolosVisitanteVenue;
+    public void setAwayTeamLastFixturesGoalsDifferenceVenue(Integer awayTeamLastFixturesGoalsDifferenceVenue) {
+	this.awayTeamLastFixturesGoalsDifferenceVenue = awayTeamLastFixturesGoalsDifferenceVenue;
     }
 
-    public Double getFR_mediaGolosMarcadosVisitadoVenue() {
-	return FR_mediaGolosMarcadosVisitadoVenue;
+    public Double getHomeTeamLastFixturesGoalsAverageVenue() {
+	return homeTeamLastFixturesGoalsAverageVenue;
     }
 
-    public void setFR_mediaGolosMarcadosVisitadoVenue(Double fR_mediaGolosMarcadosVisitadoVenue) {
-	FR_mediaGolosMarcadosVisitadoVenue = fR_mediaGolosMarcadosVisitadoVenue;
+    public void setHomeTeamLastFixturesGoalsAverageVenue(Double homeTeamLastFixturesGoalsAverageVenue) {
+	this.homeTeamLastFixturesGoalsAverageVenue = homeTeamLastFixturesGoalsAverageVenue;
     }
 
-    public Double getFR_mediaGolosSofridosVisitadoVenue() {
-	return FR_mediaGolosSofridosVisitadoVenue;
+    public Double getAwayTeamLastFixturesGoalsAverageVenue() {
+	return awayTeamLastFixturesGoalsAverageVenue;
     }
 
-    public void setFR_mediaGolosSofridosVisitadoVenue(Double fR_mediaGolosSofridosVisitadoVenue) {
-	FR_mediaGolosSofridosVisitadoVenue = fR_mediaGolosSofridosVisitadoVenue;
+    public void setAwayTeamLastFixturesGoalsAverageVenue(Double awayTeamLastFixturesGoalsAverageVenue) {
+	this.awayTeamLastFixturesGoalsAverageVenue = awayTeamLastFixturesGoalsAverageVenue;
     }
 
-    public Double getFR_mediaGolosMarcadosVisitanteVenue() {
-	return FR_mediaGolosMarcadosVisitanteVenue;
+    public Double getHomeTeamLastFixturesGoalsConcededAverageVenue() {
+	return homeTeamLastFixturesGoalsConcededAverageVenue;
     }
 
-    public void setFR_mediaGolosMarcadosVisitanteVenue(Double fR_mediaGolosMarcadosVisitanteVenue) {
-	FR_mediaGolosMarcadosVisitanteVenue = fR_mediaGolosMarcadosVisitanteVenue;
+    public void setHomeTeamLastFixturesGoalsConcededAverageVenue(Double homeTeamLastFixturesGoalsConcededAverageVenue) {
+	this.homeTeamLastFixturesGoalsConcededAverageVenue = homeTeamLastFixturesGoalsConcededAverageVenue;
     }
 
-    public Double getFR_mediaGolosSofridosVisitanteVenue() {
-	return FR_mediaGolosSofridosVisitanteVenue;
+    public Double getAwayTeamLastFixturesGoalsConcededAverageVenue() {
+	return awayTeamLastFixturesGoalsConcededAverageVenue;
     }
 
-    public void setFR_mediaGolosSofridosVisitanteVenue(Double fR_mediaGolosSofridosVisitanteVenue) {
-	FR_mediaGolosSofridosVisitanteVenue = fR_mediaGolosSofridosVisitanteVenue;
+    public void setAwayTeamLastFixturesGoalsConcededAverageVenue(Double awayTeamLastFixturesGoalsConcededAverageVenue) {
+	this.awayTeamLastFixturesGoalsConcededAverageVenue = awayTeamLastFixturesGoalsConcededAverageVenue;
     }
 
-    public Integer getFR_pontuacaoCasaVenue() {
-	return FR_pontuacaoCasaVenue;
+    public Integer getHomeTeamLastFixturesPontuationVenue() {
+	return homeTeamLastFixturesPontuationVenue;
     }
 
-    public void setFR_pontuacaoCasaVenue(Integer fR_pontuacaoCasaVenue) {
-	FR_pontuacaoCasaVenue = fR_pontuacaoCasaVenue;
+    public void setHomeTeamLastFixturesPontuationVenue(Integer homeTeamLastFixturesPontuationVenue) {
+	this.homeTeamLastFixturesPontuationVenue = homeTeamLastFixturesPontuationVenue;
     }
 
-    public Double getFR_pontuacaoCasaQualidadeVenue() {
-	return FR_pontuacaoCasaQualidadeVenue;
+    public Integer getAwayTeamLastFixturesPontuationVenue() {
+	return awayTeamLastFixturesPontuationVenue;
     }
 
-    public void setFR_pontuacaoCasaQualidadeVenue(Double fR_pontuacaoCasaQualidadeVenue) {
-	FR_pontuacaoCasaQualidadeVenue = fR_pontuacaoCasaQualidadeVenue;
+    public void setAwayTeamLastFixturesPontuationVenue(Integer awayTeamLastFixturesPontuationVenue) {
+	this.awayTeamLastFixturesPontuationVenue = awayTeamLastFixturesPontuationVenue;
     }
 
-    public Double getFR_pontuacaoCasaQualidadeTempoVenue() {
-	return FR_pontuacaoCasaQualidadeTempoVenue;
+    public Double getHomeTeamLastFixturesPontuationQualityVenue() {
+	return homeTeamLastFixturesPontuationQualityVenue;
     }
 
-    public void setFR_pontuacaoCasaQualidadeTempoVenue(Double fR_pontuacaoCasaQualidadeTempoVenue) {
-	FR_pontuacaoCasaQualidadeTempoVenue = fR_pontuacaoCasaQualidadeTempoVenue;
+    public void setHomeTeamLastFixturesPontuationQualityVenue(Double homeTeamLastFixturesPontuationQualityVenue) {
+	this.homeTeamLastFixturesPontuationQualityVenue = homeTeamLastFixturesPontuationQualityVenue;
     }
 
-    public Integer getFR_pontuacaoForaVenue() {
-	return FR_pontuacaoForaVenue;
+    public Double getAwayTeamLastFixturesPontuationQualityVenue() {
+	return awayTeamLastFixturesPontuationQualityVenue;
     }
 
-    public void setFR_pontuacaoForaVenue(Integer fR_pontuacaoForaVenue) {
-	FR_pontuacaoForaVenue = fR_pontuacaoForaVenue;
+    public void setAwayTeamLastFixturesPontuationQualityVenue(Double awayTeamLastFixturesPontuationQualityVenue) {
+	this.awayTeamLastFixturesPontuationQualityVenue = awayTeamLastFixturesPontuationQualityVenue;
     }
 
-    public Double getFR_pontuacaoForaQualidadeVenue() {
-	return FR_pontuacaoForaQualidadeVenue;
+    public Double getHomeTeamLastFixturesPontuationQualityAndTimeVenue() {
+	return homeTeamLastFixturesPontuationQualityAndTimeVenue;
     }
 
-    public void setFR_pontuacaoForaQualidadeVenue(Double fR_pontuacaoForaQualidadeVenue) {
-	FR_pontuacaoForaQualidadeVenue = fR_pontuacaoForaQualidadeVenue;
+    public void setHomeTeamLastFixturesPontuationQualityAndTimeVenue(Double homeTeamLastFixturesPontuationQualityAndTimeVenue) {
+	this.homeTeamLastFixturesPontuationQualityAndTimeVenue = homeTeamLastFixturesPontuationQualityAndTimeVenue;
     }
 
-    public Double getFR_pontuacaoForaQualidadeTempoVenue() {
-	return FR_pontuacaoForaQualidadeTempoVenue;
+    public Double getAwayTeamLastFixturesPontuationQualityAndTimeVenue() {
+	return awayTeamLastFixturesPontuationQualityAndTimeVenue;
     }
 
-    public void setFR_pontuacaoForaQualidadeTempoVenue(Double fR_pontuacaoForaQualidadeTempoVenue) {
-	FR_pontuacaoForaQualidadeTempoVenue = fR_pontuacaoForaQualidadeTempoVenue;
+    public void setAwayTeamLastFixturesPontuationQualityAndTimeVenue(Double awayTeamLastFixturesPontuationQualityAndTimeVenue) {
+	this.awayTeamLastFixturesPontuationQualityAndTimeVenue = awayTeamLastFixturesPontuationQualityAndTimeVenue;
     }
 
-    public Double getFR_dificuldadeVisitadoSwitchedVenue() {
-	return FR_dificuldadeVisitadoSwitchedVenue;
+    public Double getHomeTeamLastFixturesOpponentAverageQualitySwitchedVenue() {
+	return homeTeamLastFixturesOpponentAverageQualitySwitchedVenue;
     }
 
-    public void setFR_dificuldadeVisitadoSwitchedVenue(Double fR_dificuldadeVisitadoSwitchedVenue) {
-	FR_dificuldadeVisitadoSwitchedVenue = fR_dificuldadeVisitadoSwitchedVenue;
+    public void setHomeTeamLastFixturesOpponentAverageQualitySwitchedVenue(Double homeTeamLastFixturesOpponentAverageQualitySwitchedVenue) {
+	this.homeTeamLastFixturesOpponentAverageQualitySwitchedVenue = homeTeamLastFixturesOpponentAverageQualitySwitchedVenue;
     }
 
-    public Double getFR_dificuldadeVisitanteSwitchedVenue() {
-	return FR_dificuldadeVisitanteSwitchedVenue;
+    public Double getAwayTeamLastFixturesOpponentAverageQualitySwitchedVenue() {
+	return awayTeamLastFixturesOpponentAverageQualitySwitchedVenue;
     }
 
-    public void setFR_dificuldadeVisitanteSwitchedVenue(Double fR_dificuldadeVisitanteSwitchedVenue) {
-	FR_dificuldadeVisitanteSwitchedVenue = fR_dificuldadeVisitanteSwitchedVenue;
+    public void setAwayTeamLastFixturesOpponentAverageQualitySwitchedVenue(Double awayTeamLastFixturesOpponentAverageQualitySwitchedVenue) {
+	this.awayTeamLastFixturesOpponentAverageQualitySwitchedVenue = awayTeamLastFixturesOpponentAverageQualitySwitchedVenue;
     }
 
-    public Integer getFR_historicosVisitadoSwitchedVenue() {
-	return FR_historicosVisitadoSwitchedVenue;
+    public Integer getHomeTeamLastFixturesHardFixturesNumberSwitchedVenue() {
+	return homeTeamLastFixturesHardFixturesNumberSwitchedVenue;
     }
 
-    public void setFR_historicosVisitadoSwitchedVenue(Integer fR_historicosVisitadoSwitchedVenue) {
-	FR_historicosVisitadoSwitchedVenue = fR_historicosVisitadoSwitchedVenue;
+    public void setHomeTeamLastFixturesHardFixturesNumberSwitchedVenue(Integer homeTeamLastFixturesHardFixturesNumberSwitchedVenue) {
+	this.homeTeamLastFixturesHardFixturesNumberSwitchedVenue = homeTeamLastFixturesHardFixturesNumberSwitchedVenue;
     }
 
-    public Integer getFR_historicosVisitanteSwitchedVenue() {
-	return FR_historicosVisitanteSwitchedVenue;
+    public Integer getAwayTeamLastFixturesHardFixturesNumberSwitchedVenue() {
+	return awayTeamLastFixturesHardFixturesNumberSwitchedVenue;
     }
 
-    public void setFR_historicosVisitanteSwitchedVenue(Integer fR_historicosVisitanteSwitchedVenue) {
-	FR_historicosVisitanteSwitchedVenue = fR_historicosVisitanteSwitchedVenue;
+    public void setAwayTeamLastFixturesHardFixturesNumberSwitchedVenue(Integer awayTeamLastFixturesHardFixturesNumberSwitchedVenue) {
+	this.awayTeamLastFixturesHardFixturesNumberSwitchedVenue = awayTeamLastFixturesHardFixturesNumberSwitchedVenue;
     }
 
-    public Integer getFR_numeroResultadosNoIntervaloVisitadoSwitchedVenue() {
-	return FR_numeroResultadosNoIntervaloVisitadoSwitchedVenue;
+    public Double getHomeTeamLastFixturesRatingSwitchedVenue() {
+	return homeTeamLastFixturesRatingSwitchedVenue;
     }
 
-    public void setFR_numeroResultadosNoIntervaloVisitadoSwitchedVenue(
-	    Integer fR_numeroResultadosNoIntervaloVisitadoSwitchedVenue) {
-	FR_numeroResultadosNoIntervaloVisitadoSwitchedVenue = fR_numeroResultadosNoIntervaloVisitadoSwitchedVenue;
+    public void setHomeTeamLastFixturesRatingSwitchedVenue(Double homeTeamLastFixturesRatingSwitchedVenue) {
+	this.homeTeamLastFixturesRatingSwitchedVenue = homeTeamLastFixturesRatingSwitchedVenue;
     }
 
-    public Integer getFR_numeroResultadosNoIntervaloVisitanteSwitchedVenue() {
-	return FR_numeroResultadosNoIntervaloVisitanteSwitchedVenue;
+    public Double getAwayTeamLastFixturesRatingSwitchedVenue() {
+	return awayTeamLastFixturesRatingSwitchedVenue;
     }
 
-    public void setFR_numeroResultadosNoIntervaloVisitanteSwitchedVenue(
-	    Integer fR_numeroResultadosNoIntervaloVisitanteSwitchedVenue) {
-	FR_numeroResultadosNoIntervaloVisitanteSwitchedVenue = fR_numeroResultadosNoIntervaloVisitanteSwitchedVenue;
+    public void setAwayTeamLastFixturesRatingSwitchedVenue(Double awayTeamLastFixturesRatingSwitchedVenue) {
+	this.awayTeamLastFixturesRatingSwitchedVenue = awayTeamLastFixturesRatingSwitchedVenue;
     }
 
-    public Double getFR_ratingTemporalResultadoVisitadoSwitchedVenue() {
-	return FR_ratingTemporalResultadoVisitadoSwitchedVenue;
+    public Integer getHomeTeamLastFixturesResultsSwitchedVenue() {
+	return homeTeamLastFixturesResultsSwitchedVenue;
     }
 
-    public void setFR_ratingTemporalResultadoVisitadoSwitchedVenue(
-	    Double fR_ratingTemporalResultadoVisitadoSwitchedVenue) {
-	FR_ratingTemporalResultadoVisitadoSwitchedVenue = fR_ratingTemporalResultadoVisitadoSwitchedVenue;
+    public void setHomeTeamLastFixturesResultsSwitchedVenue(Integer homeTeamLastFixturesResultsSwitchedVenue) {
+	this.homeTeamLastFixturesResultsSwitchedVenue = homeTeamLastFixturesResultsSwitchedVenue;
     }
 
-    public Double getFR_ratingTemporalResultadoVisitanteSwitchedVenue() {
-	return FR_ratingTemporalResultadoVisitanteSwitchedVenue;
+    public Integer getAwayTeamLastFixturesResultsSwitchedVenue() {
+	return awayTeamLastFixturesResultsSwitchedVenue;
     }
 
-    public void setFR_ratingTemporalResultadoVisitanteSwitchedVenue(
-	    Double fR_ratingTemporalResultadoVisitanteSwitchedVenue) {
-	FR_ratingTemporalResultadoVisitanteSwitchedVenue = fR_ratingTemporalResultadoVisitanteSwitchedVenue;
+    public void setAwayTeamLastFixturesResultsSwitchedVenue(Integer awayTeamLastFixturesResultsSwitchedVenue) {
+	this.awayTeamLastFixturesResultsSwitchedVenue = awayTeamLastFixturesResultsSwitchedVenue;
     }
 
-    public Integer getFR_numeroResultadosVisitadoSwitchedVenue() {
-	return FR_numeroResultadosVisitadoSwitchedVenue;
+    public Integer getHomeTeamLastFixturesResultIntervalFixturesSwitchedVenue() {
+	return homeTeamLastFixturesResultIntervalFixturesSwitchedVenue;
     }
 
-    public void setFR_numeroResultadosVisitadoSwitchedVenue(Integer fR_numeroResultadosVisitadoSwitchedVenue) {
-	FR_numeroResultadosVisitadoSwitchedVenue = fR_numeroResultadosVisitadoSwitchedVenue;
+    public void setHomeTeamLastFixturesResultIntervalFixturesSwitchedVenue(Integer homeTeamLastFixturesResultIntervalFixturesSwitchedVenue) {
+	this.homeTeamLastFixturesResultIntervalFixturesSwitchedVenue = homeTeamLastFixturesResultIntervalFixturesSwitchedVenue;
     }
 
-    public Integer getFR_numeroResultadosVisitanteSwitchedVenue() {
-	return FR_numeroResultadosVisitanteSwitchedVenue;
+    public Integer getAwayTeamLastFixturesResultIntervalFixturesSwitchedVenue() {
+	return awayTeamLastFixturesResultIntervalFixturesSwitchedVenue;
     }
 
-    public void setFR_numeroResultadosVisitanteSwitchedVenue(Integer fR_numeroResultadosVisitanteSwitchedVenue) {
-	FR_numeroResultadosVisitanteSwitchedVenue = fR_numeroResultadosVisitanteSwitchedVenue;
+    public void setAwayTeamLastFixturesResultIntervalFixturesSwitchedVenue(Integer awayTeamLastFixturesResultIntervalFixturesSwitchedVenue) {
+	this.awayTeamLastFixturesResultIntervalFixturesSwitchedVenue = awayTeamLastFixturesResultIntervalFixturesSwitchedVenue;
     }
 
-    public Double getFR_percentagemResultadoVisitadoSwitchedVenue() {
-	return FR_percentagemResultadoVisitadoSwitchedVenue;
+    public Double getHomeTeamLastFixturesResultPercentageSwitchedVenue() {
+	return homeTeamLastFixturesResultPercentageSwitchedVenue;
     }
 
-    public void setFR_percentagemResultadoVisitadoSwitchedVenue(Double fR_percentagemResultadoVisitadoSwitchedVenue) {
-	FR_percentagemResultadoVisitadoSwitchedVenue = fR_percentagemResultadoVisitadoSwitchedVenue;
+    public void setHomeTeamLastFixturesResultPercentageSwitchedVenue(Double homeTeamLastFixturesResultPercentageSwitchedVenue) {
+	this.homeTeamLastFixturesResultPercentageSwitchedVenue = homeTeamLastFixturesResultPercentageSwitchedVenue;
     }
 
-    public Double getFR_percentagemResultadoVisitanteSwitchedVenue() {
-	return FR_percentagemResultadoVisitanteSwitchedVenue;
+    public Double getAwayTeamLastFixturesResultPercentageSwitchedVenue() {
+	return awayTeamLastFixturesResultPercentageSwitchedVenue;
     }
 
-    public void setFR_percentagemResultadoVisitanteSwitchedVenue(Double fR_percentagemResultadoVisitanteSwitchedVenue) {
-	FR_percentagemResultadoVisitanteSwitchedVenue = fR_percentagemResultadoVisitanteSwitchedVenue;
+    public void setAwayTeamLastFixturesResultPercentageSwitchedVenue(Double awayTeamLastFixturesResultPercentageSwitchedVenue) {
+	this.awayTeamLastFixturesResultPercentageSwitchedVenue = awayTeamLastFixturesResultPercentageSwitchedVenue;
     }
 
-    public Double getFR_percentagemResultadoNoIntervaloVisitadoSwitchedVenue() {
-	return FR_percentagemResultadoNoIntervaloVisitadoSwitchedVenue;
+    public Double getHomeTeamLastFixturesResultIntervalPercentageSwitchedVenue() {
+	return homeTeamLastFixturesResultIntervalPercentageSwitchedVenue;
     }
 
-    public void setFR_percentagemResultadoNoIntervaloVisitadoSwitchedVenue(
-	    Double fR_percentagemResultadoNoIntervaloVisitadoSwitchedVenue) {
-	FR_percentagemResultadoNoIntervaloVisitadoSwitchedVenue = fR_percentagemResultadoNoIntervaloVisitadoSwitchedVenue;
+    public void setHomeTeamLastFixturesResultIntervalPercentageSwitchedVenue(Double homeTeamLastFixturesResultIntervalPercentageSwitchedVenue) {
+	this.homeTeamLastFixturesResultIntervalPercentageSwitchedVenue = homeTeamLastFixturesResultIntervalPercentageSwitchedVenue;
     }
 
-    public Double getFR_percentagemResultadoNoIntervaloVisitanteSwitchedVenue() {
-	return FR_percentagemResultadoNoIntervaloVisitanteSwitchedVenue;
+    public Double getAwayTeamLastFixturesResultIntervalPercentageSwitchedVenue() {
+	return awayTeamLastFixturesResultIntervalPercentageSwitchedVenue;
     }
 
-    public void setFR_percentagemResultadoNoIntervaloVisitanteSwitchedVenue(
-	    Double fR_percentagemResultadoNoIntervaloVisitanteSwitchedVenue) {
-	FR_percentagemResultadoNoIntervaloVisitanteSwitchedVenue = fR_percentagemResultadoNoIntervaloVisitanteSwitchedVenue;
+    public void setAwayTeamLastFixturesResultIntervalPercentageSwitchedVenue(Double awayTeamLastFixturesResultIntervalPercentageSwitchedVenue) {
+	this.awayTeamLastFixturesResultIntervalPercentageSwitchedVenue = awayTeamLastFixturesResultIntervalPercentageSwitchedVenue;
     }
 
-    public Integer getFR_golosMarcadosVisitadoSwitchedVenue() {
-	return FR_golosMarcadosVisitadoSwitchedVenue;
+    public Integer getHomeTeamLastFixturesGoalsSwitchedVenue() {
+	return homeTeamLastFixturesGoalsSwitchedVenue;
     }
 
-    public void setFR_golosMarcadosVisitadoSwitchedVenue(Integer fR_golosMarcadosVisitadoSwitchedVenue) {
-	FR_golosMarcadosVisitadoSwitchedVenue = fR_golosMarcadosVisitadoSwitchedVenue;
+    public void setHomeTeamLastFixturesGoalsSwitchedVenue(Integer homeTeamLastFixturesGoalsSwitchedVenue) {
+	this.homeTeamLastFixturesGoalsSwitchedVenue = homeTeamLastFixturesGoalsSwitchedVenue;
     }
 
-    public Integer getFR_golosSofridosVisitadoSwitchedVenue() {
-	return FR_golosSofridosVisitadoSwitchedVenue;
+    public Integer getAwayTeamLastFixturesGoalsSwitchedVenue() {
+	return awayTeamLastFixturesGoalsSwitchedVenue;
     }
 
-    public void setFR_golosSofridosVisitadoSwitchedVenue(Integer fR_golosSofridosVisitadoSwitchedVenue) {
-	FR_golosSofridosVisitadoSwitchedVenue = fR_golosSofridosVisitadoSwitchedVenue;
+    public void setAwayTeamLastFixturesGoalsSwitchedVenue(Integer awayTeamLastFixturesGoalsSwitchedVenue) {
+	this.awayTeamLastFixturesGoalsSwitchedVenue = awayTeamLastFixturesGoalsSwitchedVenue;
     }
 
-    public Integer getFR_diferencaGolosVisitadoSwitchedVenue() {
-	return FR_diferencaGolosVisitadoSwitchedVenue;
+    public Integer getHomeTeamLastFixturesGoalsConcededSwitchedVenue() {
+	return homeTeamLastFixturesGoalsConcededSwitchedVenue;
     }
 
-    public void setFR_diferencaGolosVisitadoSwitchedVenue(Integer fR_diferencaGolosVisitadoSwitchedVenue) {
-	FR_diferencaGolosVisitadoSwitchedVenue = fR_diferencaGolosVisitadoSwitchedVenue;
+    public void setHomeTeamLastFixturesGoalsConcededSwitchedVenue(Integer homeTeamLastFixturesGoalsConcededSwitchedVenue) {
+	this.homeTeamLastFixturesGoalsConcededSwitchedVenue = homeTeamLastFixturesGoalsConcededSwitchedVenue;
     }
 
-    public Integer getFR_golosMarcadosVisitanteSwitchedVenue() {
-	return FR_golosMarcadosVisitanteSwitchedVenue;
+    public Integer getAwayTeamLastFixturesGoalsConcededSwitchedVenue() {
+	return awayTeamLastFixturesGoalsConcededSwitchedVenue;
     }
 
-    public void setFR_golosMarcadosVisitanteSwitchedVenue(Integer fR_golosMarcadosVisitanteSwitchedVenue) {
-	FR_golosMarcadosVisitanteSwitchedVenue = fR_golosMarcadosVisitanteSwitchedVenue;
+    public void setAwayTeamLastFixturesGoalsConcededSwitchedVenue(Integer awayTeamLastFixturesGoalsConcededSwitchedVenue) {
+	this.awayTeamLastFixturesGoalsConcededSwitchedVenue = awayTeamLastFixturesGoalsConcededSwitchedVenue;
     }
 
-    public Integer getFR_golosSofridosVisitanteSwitchedVenue() {
-	return FR_golosSofridosVisitanteSwitchedVenue;
+    public Integer getHomeTeamLastFixturesGoalsDifferenceSwitchedVenue() {
+	return homeTeamLastFixturesGoalsDifferenceSwitchedVenue;
     }
 
-    public void setFR_golosSofridosVisitanteSwitchedVenue(Integer fR_golosSofridosVisitanteSwitchedVenue) {
-	FR_golosSofridosVisitanteSwitchedVenue = fR_golosSofridosVisitanteSwitchedVenue;
+    public void setHomeTeamLastFixturesGoalsDifferenceSwitchedVenue(Integer homeTeamLastFixturesGoalsDifferenceSwitchedVenue) {
+	this.homeTeamLastFixturesGoalsDifferenceSwitchedVenue = homeTeamLastFixturesGoalsDifferenceSwitchedVenue;
     }
 
-    public Integer getFR_diferencaGolosVisitanteSwitchedVenue() {
-	return FR_diferencaGolosVisitanteSwitchedVenue;
+    public Integer getAwayTeamLastFixturesGoalsDifferenceSwitchedVenue() {
+	return awayTeamLastFixturesGoalsDifferenceSwitchedVenue;
     }
 
-    public void setFR_diferencaGolosVisitanteSwitchedVenue(Integer fR_diferencaGolosVisitanteSwitchedVenue) {
-	FR_diferencaGolosVisitanteSwitchedVenue = fR_diferencaGolosVisitanteSwitchedVenue;
+    public void setAwayTeamLastFixturesGoalsDifferenceSwitchedVenue(Integer awayTeamLastFixturesGoalsDifferenceSwitchedVenue) {
+	this.awayTeamLastFixturesGoalsDifferenceSwitchedVenue = awayTeamLastFixturesGoalsDifferenceSwitchedVenue;
     }
 
-    public Double getFR_mediaGolosMarcadosVisitadoSwitchedVenue() {
-	return FR_mediaGolosMarcadosVisitadoSwitchedVenue;
+    public Double getHomeTeamLastFixturesGoalsAverageSwitchedVenue() {
+	return homeTeamLastFixturesGoalsAverageSwitchedVenue;
     }
 
-    public void setFR_mediaGolosMarcadosVisitadoSwitchedVenue(Double fR_mediaGolosMarcadosVisitadoSwitchedVenue) {
-	FR_mediaGolosMarcadosVisitadoSwitchedVenue = fR_mediaGolosMarcadosVisitadoSwitchedVenue;
+    public void setHomeTeamLastFixturesGoalsAverageSwitchedVenue(Double homeTeamLastFixturesGoalsAverageSwitchedVenue) {
+	this.homeTeamLastFixturesGoalsAverageSwitchedVenue = homeTeamLastFixturesGoalsAverageSwitchedVenue;
     }
 
-    public Double getFR_mediaGolosSofridosVisitadoSwitchedVenue() {
-	return FR_mediaGolosSofridosVisitadoSwitchedVenue;
+    public Double getAwayTeamLastFixturesGoalsAverageSwitchedVenue() {
+	return awayTeamLastFixturesGoalsAverageSwitchedVenue;
     }
 
-    public void setFR_mediaGolosSofridosVisitadoSwitchedVenue(Double fR_mediaGolosSofridosVisitadoSwitchedVenue) {
-	FR_mediaGolosSofridosVisitadoSwitchedVenue = fR_mediaGolosSofridosVisitadoSwitchedVenue;
+    public void setAwayTeamLastFixturesGoalsAverageSwitchedVenue(Double awayTeamLastFixturesGoalsAverageSwitchedVenue) {
+	this.awayTeamLastFixturesGoalsAverageSwitchedVenue = awayTeamLastFixturesGoalsAverageSwitchedVenue;
     }
 
-    public Double getFR_mediaGolosMarcadosVisitanteSwitchedVenue() {
-	return FR_mediaGolosMarcadosVisitanteSwitchedVenue;
+    public Double getHomeTeamLastFixturesGoalsConcededAverageSwitchedVenue() {
+	return homeTeamLastFixturesGoalsConcededAverageSwitchedVenue;
     }
 
-    public void setFR_mediaGolosMarcadosVisitanteSwitchedVenue(Double fR_mediaGolosMarcadosVisitanteSwitchedVenue) {
-	FR_mediaGolosMarcadosVisitanteSwitchedVenue = fR_mediaGolosMarcadosVisitanteSwitchedVenue;
+    public void setHomeTeamLastFixturesGoalsConcededAverageSwitchedVenue(Double homeTeamLastFixturesGoalsConcededAverageSwitchedVenue) {
+	this.homeTeamLastFixturesGoalsConcededAverageSwitchedVenue = homeTeamLastFixturesGoalsConcededAverageSwitchedVenue;
     }
 
-    public Integer getFR_pontuacaoCasaSwitchedVenue() {
-	return FR_pontuacaoCasaSwitchedVenue;
+    public Double getAwayTeamLastFixturesGoalsConcededAverageSwitchedVenue() {
+	return awayTeamLastFixturesGoalsConcededAverageSwitchedVenue;
     }
 
-    public void setFR_pontuacaoCasaSwitchedVenue(Integer fR_pontuacaoCasaSwitchedVenue) {
-	FR_pontuacaoCasaSwitchedVenue = fR_pontuacaoCasaSwitchedVenue;
+    public void setAwayTeamLastFixturesGoalsConcededAverageSwitchedVenue(Double awayTeamLastFixturesGoalsConcededAverageSwitchedVenue) {
+	this.awayTeamLastFixturesGoalsConcededAverageSwitchedVenue = awayTeamLastFixturesGoalsConcededAverageSwitchedVenue;
     }
 
-    public Double getFR_pontuacaoCasaQualidadeSwitchedVenue() {
-	return FR_pontuacaoCasaQualidadeSwitchedVenue;
+    public Integer getHomeTeamLastFixturesPontuationSwitchedVenue() {
+	return homeTeamLastFixturesPontuationSwitchedVenue;
     }
 
-    public void setFR_pontuacaoCasaQualidadeSwitchedVenue(Double fR_pontuacaoCasaQualidadeSwitchedVenue) {
-	FR_pontuacaoCasaQualidadeSwitchedVenue = fR_pontuacaoCasaQualidadeSwitchedVenue;
+    public void setHomeTeamLastFixturesPontuationSwitchedVenue(Integer homeTeamLastFixturesPontuationSwitchedVenue) {
+	this.homeTeamLastFixturesPontuationSwitchedVenue = homeTeamLastFixturesPontuationSwitchedVenue;
     }
 
-    public Double getFR_pontuacaoCasaQualidadeTempoSwitchedVenue() {
-	return FR_pontuacaoCasaQualidadeTempoSwitchedVenue;
+    public Integer getAwayTeamLastFixturesPontuationSwitchedVenue() {
+	return awayTeamLastFixturesPontuationSwitchedVenue;
     }
 
-    public void setFR_pontuacaoCasaQualidadeTempoSwitchedVenue(Double fR_pontuacaoCasaQualidadeTempoSwitchedVenue) {
-	FR_pontuacaoCasaQualidadeTempoSwitchedVenue = fR_pontuacaoCasaQualidadeTempoSwitchedVenue;
+    public void setAwayTeamLastFixturesPontuationSwitchedVenue(Integer awayTeamLastFixturesPontuationSwitchedVenue) {
+	this.awayTeamLastFixturesPontuationSwitchedVenue = awayTeamLastFixturesPontuationSwitchedVenue;
     }
 
-    public Integer getFR_pontuacaoForaSwitchedVenue() {
-	return FR_pontuacaoForaSwitchedVenue;
+    public Double getHomeTeamLastFixturesPontuationQualitySwitchedVenue() {
+	return homeTeamLastFixturesPontuationQualitySwitchedVenue;
     }
 
-    public void setFR_pontuacaoForaSwitchedVenue(Integer fR_pontuacaoForaSwitchedVenue) {
-	FR_pontuacaoForaSwitchedVenue = fR_pontuacaoForaSwitchedVenue;
+    public void setHomeTeamLastFixturesPontuationQualitySwitchedVenue(Double homeTeamLastFixturesPontuationQualitySwitchedVenue) {
+	this.homeTeamLastFixturesPontuationQualitySwitchedVenue = homeTeamLastFixturesPontuationQualitySwitchedVenue;
     }
 
-    public Double getFR_pontuacaoForaQualidadeSwitchedVenue() {
-	return FR_pontuacaoForaQualidadeSwitchedVenue;
+    public Double getAwayTeamLastFixturesPontuationQualitySwitchedVenue() {
+	return awayTeamLastFixturesPontuationQualitySwitchedVenue;
     }
 
-    public void setFR_pontuacaoForaQualidadeSwitchedVenue(Double fR_pontuacaoForaQualidadeSwitchedVenue) {
-	FR_pontuacaoForaQualidadeSwitchedVenue = fR_pontuacaoForaQualidadeSwitchedVenue;
+    public void setAwayTeamLastFixturesPontuationQualitySwitchedVenue(Double awayTeamLastFixturesPontuationQualitySwitchedVenue) {
+	this.awayTeamLastFixturesPontuationQualitySwitchedVenue = awayTeamLastFixturesPontuationQualitySwitchedVenue;
     }
 
-    public Double getFR_pontuacaoForaQualidadeTempoSwitchedVenue() {
-	return FR_pontuacaoForaQualidadeTempoSwitchedVenue;
+    public Double getHomeTeamLastFixturesPontuationQualityAndTimeSwitchedVenue() {
+	return homeTeamLastFixturesPontuationQualityAndTimeSwitchedVenue;
     }
 
-    public void setFR_pontuacaoForaQualidadeTempoSwitchedVenue(Double fR_pontuacaoForaQualidadeTempoSwitchedVenue) {
-	FR_pontuacaoForaQualidadeTempoSwitchedVenue = fR_pontuacaoForaQualidadeTempoSwitchedVenue;
+    public void setHomeTeamLastFixturesPontuationQualityAndTimeSwitchedVenue(Double homeTeamLastFixturesPontuationQualityAndTimeSwitchedVenue) {
+	this.homeTeamLastFixturesPontuationQualityAndTimeSwitchedVenue = homeTeamLastFixturesPontuationQualityAndTimeSwitchedVenue;
     }
 
-    public Double getFR_mediaGolosSofridosVisitanteSwitchedVenue() {
-	return FR_mediaGolosSofridosVisitanteSwitchedVenue;
+    public Double getAwayTeamLastFixturesPontuationQualityAndTimeSwitchedVenue() {
+	return awayTeamLastFixturesPontuationQualityAndTimeSwitchedVenue;
     }
 
-    public void setFR_mediaGolosSofridosVisitanteSwitchedVenue(Double fR_mediaGolosSofridosVisitanteSwitchedVenue) {
-	FR_mediaGolosSofridosVisitanteSwitchedVenue = fR_mediaGolosSofridosVisitanteSwitchedVenue;
+    public void setAwayTeamLastFixturesPontuationQualityAndTimeSwitchedVenue(Double awayTeamLastFixturesPontuationQualityAndTimeSwitchedVenue) {
+	this.awayTeamLastFixturesPontuationQualityAndTimeSwitchedVenue = awayTeamLastFixturesPontuationQualityAndTimeSwitchedVenue;
     }
 
-    public Integer getQLT_numeroJogosVisitado() {
-	return QLT_numeroJogosVisitado;
+    public Integer getHomeTeamNumberOfFixtures() {
+	return homeTeamNumberOfFixtures;
     }
 
-    public void setQLT_numeroJogosVisitado(Integer qLT_numeroJogosVisitado) {
-	QLT_numeroJogosVisitado = qLT_numeroJogosVisitado;
+    public void setHomeTeamNumberOfFixtures(Integer homeTeamNumberOfFixtures) {
+	this.homeTeamNumberOfFixtures = homeTeamNumberOfFixtures;
     }
 
-    public Integer getQLT_numeroJogosVisitante() {
-	return QLT_numeroJogosVisitante;
+    public Integer getAwayTeamNumberOfFixtures() {
+	return awayTeamNumberOfFixtures;
     }
 
-    public void setQLT_numeroJogosVisitante(Integer qLT_numeroJogosVisitante) {
-	QLT_numeroJogosVisitante = qLT_numeroJogosVisitante;
+    public void setAwayTeamNumberOfFixtures(Integer awayTeamNumberOfFixtures) {
+	this.awayTeamNumberOfFixtures = awayTeamNumberOfFixtures;
     }
 
-    public Double getQLT_percentagemResultadoVisitado() {
-	return QLT_percentagemResultadoVisitado;
+    public Double getHomeTeamResultPercentage() {
+	return homeTeamResultPercentage;
     }
 
-    public void setQLT_percentagemResultadoVisitado(Double qLT_percentagemResultadoVisitado) {
-	QLT_percentagemResultadoVisitado = qLT_percentagemResultadoVisitado;
+    public void setHomeTeamResultPercentage(Double homeTeamResultPercentage) {
+	this.homeTeamResultPercentage = homeTeamResultPercentage;
     }
 
-    public Double getQLT_percentagemResultadoVisitante() {
-	return QLT_percentagemResultadoVisitante;
+    public Double getAwayTeamResultPercentage() {
+	return awayTeamResultPercentage;
     }
 
-    public void setQLT_percentagemResultadoVisitante(Double qLT_percentagemResultadoVisitante) {
-	QLT_percentagemResultadoVisitante = qLT_percentagemResultadoVisitante;
+    public void setAwayTeamResultPercentage(Double awayTeamResultPercentage) {
+	this.awayTeamResultPercentage = awayTeamResultPercentage;
     }
 
-    public Double getQLT_dificuldadeResultadoVisitado() {
-	return QLT_dificuldadeResultadoVisitado;
+    public Double getHomeTeamQualityAverage() {
+	return homeTeamQualityAverage;
     }
 
-    public void setQLT_dificuldadeResultadoVisitado(Double qLT_dificuldadeResultadoVisitado) {
-	QLT_dificuldadeResultadoVisitado = qLT_dificuldadeResultadoVisitado;
+    public void setHomeTeamQualityAverage(Double homeTeamQualityAverage) {
+	this.homeTeamQualityAverage = homeTeamQualityAverage;
     }
 
-    public Double getQLT_dificuldadeResultadoVisitante() {
-	return QLT_dificuldadeResultadoVisitante;
+    public Double getAwayTeamQualityAverage() {
+	return awayTeamQualityAverage;
     }
 
-    public void setQLT_dificuldadeResultadoVisitante(Double qLT_dificuldadeResultadoVisitante) {
-	QLT_dificuldadeResultadoVisitante = qLT_dificuldadeResultadoVisitante;
+    public void setAwayTeamQualityAverage(Double awayTeamQualityAverage) {
+	this.awayTeamQualityAverage = awayTeamQualityAverage;
     }
 
-    public Double getQLT_dificuldadeJogosVisitado() {
-	return QLT_dificuldadeJogosVisitado;
+    public Double getHomeTeamResultDificulty() {
+	return homeTeamResultDificulty;
     }
 
-    public void setQLT_dificuldadeJogosVisitado(Double qLT_dificuldadeJogosVisitado) {
-	QLT_dificuldadeJogosVisitado = qLT_dificuldadeJogosVisitado;
+    public void setHomeTeamResultDificulty(Double homeTeamResultDificulty) {
+	this.homeTeamResultDificulty = homeTeamResultDificulty;
     }
 
-    public Double getQLT_dificuldadeJogosVisitante() {
-	return QLT_dificuldadeJogosVisitante;
+    public Double getAwayTeamResultDificulty() {
+	return awayTeamResultDificulty;
     }
 
-    public void setQLT_dificuldadeJogosVisitante(Double qLT_dificuldadeJogosVisitante) {
-	QLT_dificuldadeJogosVisitante = qLT_dificuldadeJogosVisitante;
+    public void setAwayTeamResultDificulty(Double awayTeamResultDificulty) {
+	this.awayTeamResultDificulty = awayTeamResultDificulty;
     }
 
-    public Double getQLT_percentagemResultadoNoIntervaloVisitado() {
-	return QLT_percentagemResultadoNoIntervaloVisitado;
+    public Double getHomeTeamResultIntervalPercentage() {
+	return homeTeamResultIntervalPercentage;
     }
 
-    public void setQLT_percentagemResultadoNoIntervaloVisitado(Double qLT_percentagemResultadoNoIntervaloVisitado) {
-	QLT_percentagemResultadoNoIntervaloVisitado = qLT_percentagemResultadoNoIntervaloVisitado;
+    public void setHomeTeamResultIntervalPercentage(Double homeTeamResultIntervalPercentage) {
+	this.homeTeamResultIntervalPercentage = homeTeamResultIntervalPercentage;
     }
 
-    public Double getQLT_percentagemResultadoNoIntervaloVisitante() {
-	return QLT_percentagemResultadoNoIntervaloVisitante;
+    public Double getAwayTeamResultIntervalPercentage() {
+	return awayTeamResultIntervalPercentage;
     }
 
-    public void setQLT_percentagemResultadoNoIntervaloVisitante(Double qLT_percentagemResultadoNoIntervaloVisitante) {
-	QLT_percentagemResultadoNoIntervaloVisitante = qLT_percentagemResultadoNoIntervaloVisitante;
+    public void setAwayTeamResultIntervalPercentage(Double awayTeamResultIntervalPercentage) {
+	this.awayTeamResultIntervalPercentage = awayTeamResultIntervalPercentage;
     }
 
-    public Integer getQLT_numeroJogosNoIntervaloVisitado() {
-	return QLT_numeroJogosNoIntervaloVisitado;
+    public Integer getHomeTeamResultIntervalFixtures() {
+	return homeTeamResultIntervalFixtures;
     }
 
-    public void setQLT_numeroJogosNoIntervaloVisitado(Integer qLT_numeroJogosNoIntervaloVisitado) {
-	QLT_numeroJogosNoIntervaloVisitado = qLT_numeroJogosNoIntervaloVisitado;
+    public void setHomeTeamResultIntervalFixtures(Integer homeTeamResultIntervalFixtures) {
+	this.homeTeamResultIntervalFixtures = homeTeamResultIntervalFixtures;
     }
 
-    public Integer getQLT_numeroJogosNoIntervaloVisitante() {
-	return QLT_numeroJogosNoIntervaloVisitante;
+    public Integer getAwayTeamResultIntervalFixtures() {
+	return awayTeamResultIntervalFixtures;
     }
 
-    public void setQLT_numeroJogosNoIntervaloVisitante(Integer qLT_numeroJogosNoIntervaloVisitante) {
-	QLT_numeroJogosNoIntervaloVisitante = qLT_numeroJogosNoIntervaloVisitante;
+    public void setAwayTeamResultIntervalFixtures(Integer awayTeamResultIntervalFixtures) {
+	this.awayTeamResultIntervalFixtures = awayTeamResultIntervalFixtures;
     }
 
-    public Integer getQLT_golosMarcadosVisitado() {
-	return QLT_golosMarcadosVisitado;
+    public Integer getHomeTeamGoals() {
+	return homeTeamGoals;
     }
 
-    public void setQLT_golosMarcadosVisitado(Integer qLT_golosMarcadosVisitado) {
-	QLT_golosMarcadosVisitado = qLT_golosMarcadosVisitado;
+    public void setHomeTeamGoals(Integer homeTeamGoals) {
+	this.homeTeamGoals = homeTeamGoals;
     }
 
-    public Integer getQLT_golosSofridosVisitado() {
-	return QLT_golosSofridosVisitado;
+    public Integer getAwayTeamGoals() {
+	return awayTeamGoals;
     }
 
-    public void setQLT_golosSofridosVisitado(Integer qLT_golosSofridosVisitado) {
-	QLT_golosSofridosVisitado = qLT_golosSofridosVisitado;
+    public void setAwayTeamGoals(Integer awayTeamGoals) {
+	this.awayTeamGoals = awayTeamGoals;
     }
 
-    public Integer getQLT_diferencaGolosVisitado() {
-	return QLT_diferencaGolosVisitado;
+    public Integer getHomeTeamConcededGoals() {
+	return homeTeamConcededGoals;
     }
 
-    public void setQLT_diferencaGolosVisitado(Integer qLT_diferencaGolosVisitado) {
-	QLT_diferencaGolosVisitado = qLT_diferencaGolosVisitado;
+    public void setHomeTeamConcededGoals(Integer homeTeamConcededGoals) {
+	this.homeTeamConcededGoals = homeTeamConcededGoals;
     }
 
-    public Integer getQLT_golosMarcadosVisitante() {
-	return QLT_golosMarcadosVisitante;
+    public Integer getAwayTeamConcededGoals() {
+	return awayTeamConcededGoals;
     }
 
-    public void setQLT_golosMarcadosVisitante(Integer qLT_golosMarcadosVisitante) {
-	QLT_golosMarcadosVisitante = qLT_golosMarcadosVisitante;
+    public void setAwayTeamConcededGoals(Integer awayTeamConcededGoals) {
+	this.awayTeamConcededGoals = awayTeamConcededGoals;
     }
 
-    public Integer getQLT_golosSofridosVisitante() {
-	return QLT_golosSofridosVisitante;
+    public Integer getHomeTeamGoalsDifference() {
+	return homeTeamGoalsDifference;
     }
 
-    public void setQLT_golosSofridosVisitante(Integer qLT_golosSofridosVisitante) {
-	QLT_golosSofridosVisitante = qLT_golosSofridosVisitante;
+    public void setHomeTeamGoalsDifference(Integer homeTeamGoalsDifference) {
+	this.homeTeamGoalsDifference = homeTeamGoalsDifference;
     }
 
-    public Integer getQLT_diferencaGolosVisitante() {
-	return QLT_diferencaGolosVisitante;
+    public Integer getAwayTeamGoalsDifference() {
+	return awayTeamGoalsDifference;
     }
 
-    public void setQLT_diferencaGolosVisitante(Integer qLT_diferencaGolosVisitante) {
-	QLT_diferencaGolosVisitante = qLT_diferencaGolosVisitante;
+    public void setAwayTeamGoalsDifference(Integer awayTeamGoalsDifference) {
+	this.awayTeamGoalsDifference = awayTeamGoalsDifference;
     }
 
-    public Double getQLT_mediaGolosMarcadosVisitado() {
-	return QLT_mediaGolosMarcadosVisitado;
+    public Double getHomeTeamGoalsAverage() {
+	return homeTeamGoalsAverage;
     }
 
-    public void setQLT_mediaGolosMarcadosVisitado(Double qLT_mediaGolosMarcadosVisitado) {
-	QLT_mediaGolosMarcadosVisitado = qLT_mediaGolosMarcadosVisitado;
+    public void setHomeTeamGoalsAverage(Double homeTeamGoalsAverage) {
+	this.homeTeamGoalsAverage = homeTeamGoalsAverage;
     }
 
-    public Double getQLT_mediaGolosSofridosVisitado() {
-	return QLT_mediaGolosSofridosVisitado;
+    public Double getAwayTeamGoalsAverage() {
+	return awayTeamGoalsAverage;
     }
 
-    public void setQLT_mediaGolosSofridosVisitado(Double qLT_mediaGolosSofridosVisitado) {
-	QLT_mediaGolosSofridosVisitado = qLT_mediaGolosSofridosVisitado;
+    public void setAwayTeamGoalsAverage(Double awayTeamGoalsAverage) {
+	this.awayTeamGoalsAverage = awayTeamGoalsAverage;
     }
 
-    public Double getQLT_mediaGolosMarcadosVisitante() {
-	return QLT_mediaGolosMarcadosVisitante;
+    public Double getHomeTeamConcededGoalsAverage() {
+	return homeTeamConcededGoalsAverage;
     }
 
-    public void setQLT_mediaGolosMarcadosVisitante(Double qLT_mediaGolosMarcadosVisitante) {
-	QLT_mediaGolosMarcadosVisitante = qLT_mediaGolosMarcadosVisitante;
+    public void setHomeTeamConcededGoalsAverage(Double homeTeamConcededGoalsAverage) {
+	this.homeTeamConcededGoalsAverage = homeTeamConcededGoalsAverage;
     }
 
-    public Double getQLT_mediaGolosSofridosVisitante() {
-	return QLT_mediaGolosSofridosVisitante;
+    public Double getAwayTeamConcededGoalsAverage() {
+	return awayTeamConcededGoalsAverage;
     }
 
-    public void setQLT_mediaGolosSofridosVisitante(Double qLT_mediaGolosSofridosVisitante) {
-	QLT_mediaGolosSofridosVisitante = qLT_mediaGolosSofridosVisitante;
+    public void setAwayTeamConcededGoalsAverage(Double awayTeamConcededGoalsAverage) {
+	this.awayTeamConcededGoalsAverage = awayTeamConcededGoalsAverage;
     }
 
-    public Integer getQLT_numeroJogosVisitadoVenue() {
-	return QLT_numeroJogosVisitadoVenue;
+    public Integer getHomeTeamNumberOfFixturesVenue() {
+	return homeTeamNumberOfFixturesVenue;
     }
 
-    public void setQLT_numeroJogosVisitadoVenue(Integer qLT_numeroJogosVisitadoVenue) {
-	QLT_numeroJogosVisitadoVenue = qLT_numeroJogosVisitadoVenue;
+    public void setHomeTeamNumberOfFixturesVenue(Integer homeTeamNumberOfFixturesVenue) {
+	this.homeTeamNumberOfFixturesVenue = homeTeamNumberOfFixturesVenue;
     }
 
-    public Integer getQLT_numeroJogosVisitanteVenue() {
-	return QLT_numeroJogosVisitanteVenue;
+    public Integer getAwayTeamNumberOfFixturesVenue() {
+	return awayTeamNumberOfFixturesVenue;
     }
 
-    public void setQLT_numeroJogosVisitanteVenue(Integer qLT_numeroJogosVisitanteVenue) {
-	QLT_numeroJogosVisitanteVenue = qLT_numeroJogosVisitanteVenue;
+    public void setAwayTeamNumberOfFixturesVenue(Integer awayTeamNumberOfFixturesVenue) {
+	this.awayTeamNumberOfFixturesVenue = awayTeamNumberOfFixturesVenue;
     }
 
-    public Double getQLT_percentagemResultadoVisitadoVenue() {
-	return QLT_percentagemResultadoVisitadoVenue;
+    public Double getHomeTeamResultPercentageVenue() {
+	return homeTeamResultPercentageVenue;
     }
 
-    public void setQLT_percentagemResultadoVisitadoVenue(Double qLT_percentagemResultadoVisitadoVenue) {
-	QLT_percentagemResultadoVisitadoVenue = qLT_percentagemResultadoVisitadoVenue;
+    public void setHomeTeamResultPercentageVenue(Double homeTeamResultPercentageVenue) {
+	this.homeTeamResultPercentageVenue = homeTeamResultPercentageVenue;
     }
 
-    public Double getQLT_dificuldadeJogosVisitadoVenue() {
-	return QLT_dificuldadeJogosVisitadoVenue;
+    public Double getAwayTeamResultPercentageVenue() {
+	return awayTeamResultPercentageVenue;
     }
 
-    public void setQLT_dificuldadeJogosVisitadoVenue(Double qLT_dificuldadeJogosVisitadoVenue) {
-	QLT_dificuldadeJogosVisitadoVenue = qLT_dificuldadeJogosVisitadoVenue;
+    public void setAwayTeamResultPercentageVenue(Double awayTeamResultPercentageVenue) {
+	this.awayTeamResultPercentageVenue = awayTeamResultPercentageVenue;
     }
 
-    public Double getQLT_dificuldadeJogosVisitanteVenue() {
-	return QLT_dificuldadeJogosVisitanteVenue;
+    public Double getHomeTeamQualityAverageVenue() {
+	return homeTeamQualityAverageVenue;
     }
 
-    public void setQLT_dificuldadeJogosVisitanteVenue(Double qLT_dificuldadeJogosVisitanteVenue) {
-	QLT_dificuldadeJogosVisitanteVenue = qLT_dificuldadeJogosVisitanteVenue;
+    public void setHomeTeamQualityAverageVenue(Double homeTeamQualityAverageVenue) {
+	this.homeTeamQualityAverageVenue = homeTeamQualityAverageVenue;
     }
 
-    public Double getQLT_percentagemResultadoVisitanteVenue() {
-	return QLT_percentagemResultadoVisitanteVenue;
+    public Double getAwayTeamQualityAverageVenue() {
+	return awayTeamQualityAverageVenue;
     }
 
-    public void setQLT_percentagemResultadoVisitanteVenue(Double qLT_percentagemResultadoVisitanteVenue) {
-	QLT_percentagemResultadoVisitanteVenue = qLT_percentagemResultadoVisitanteVenue;
+    public void setAwayTeamQualityAverageVenue(Double awayTeamQualityAverageVenue) {
+	this.awayTeamQualityAverageVenue = awayTeamQualityAverageVenue;
     }
 
-    public Double getQLT_dificuldadeResultadoVisitadoVenue() {
-	return QLT_dificuldadeResultadoVisitadoVenue;
+    public Double getHomeTeamResultDificultyVenue() {
+	return homeTeamResultDificultyVenue;
     }
 
-    public void setQLT_dificuldadeResultadoVisitadoVenue(Double qLT_dificuldadeResultadoVisitadoVenue) {
-	QLT_dificuldadeResultadoVisitadoVenue = qLT_dificuldadeResultadoVisitadoVenue;
+    public void setHomeTeamResultDificultyVenue(Double homeTeamResultDificultyVenue) {
+	this.homeTeamResultDificultyVenue = homeTeamResultDificultyVenue;
     }
 
-    public Double getQLT_dificuldadeResultadoVisitanteVenue() {
-	return QLT_dificuldadeResultadoVisitanteVenue;
+    public Double getAwayTeamResultDificultyVenue() {
+	return awayTeamResultDificultyVenue;
     }
 
-    public void setQLT_dificuldadeResultadoVisitanteVenue(Double qLT_dificuldadeResultadoVisitanteVenue) {
-	QLT_dificuldadeResultadoVisitanteVenue = qLT_dificuldadeResultadoVisitanteVenue;
+    public void setAwayTeamResultDificultyVenue(Double awayTeamResultDificultyVenue) {
+	this.awayTeamResultDificultyVenue = awayTeamResultDificultyVenue;
     }
 
-    public Double getQLT_percentagemResultadoNoIntervaloVisitadoVenue() {
-	return QLT_percentagemResultadoNoIntervaloVisitadoVenue;
+    public Double getHomeTeamResultIntervalPercentageVenue() {
+	return homeTeamResultIntervalPercentageVenue;
     }
 
-    public void setQLT_percentagemResultadoNoIntervaloVisitadoVenue(
-	    Double qLT_percentagemResultadoNoIntervaloVisitadoVenue) {
-	QLT_percentagemResultadoNoIntervaloVisitadoVenue = qLT_percentagemResultadoNoIntervaloVisitadoVenue;
+    public void setHomeTeamResultIntervalPercentageVenue(Double homeTeamResultIntervalPercentageVenue) {
+	this.homeTeamResultIntervalPercentageVenue = homeTeamResultIntervalPercentageVenue;
     }
 
-    public Double getQLT_percentagemResultadoNoIntervaloVisitanteVenue() {
-	return QLT_percentagemResultadoNoIntervaloVisitanteVenue;
+    public Double getAwayTeamResultIntervalPercentageVenue() {
+	return awayTeamResultIntervalPercentageVenue;
     }
 
-    public void setQLT_percentagemResultadoNoIntervaloVisitanteVenue(
-	    Double qLT_percentagemResultadoNoIntervaloVisitanteVenue) {
-	QLT_percentagemResultadoNoIntervaloVisitanteVenue = qLT_percentagemResultadoNoIntervaloVisitanteVenue;
+    public void setAwayTeamResultIntervalPercentageVenue(Double awayTeamResultIntervalPercentageVenue) {
+	this.awayTeamResultIntervalPercentageVenue = awayTeamResultIntervalPercentageVenue;
     }
 
-    public Integer getQLT_numeroJogosNoIntervaloVisitadoVenue() {
-	return QLT_numeroJogosNoIntervaloVisitadoVenue;
+    public Integer getHomeTeamResultIntervalFixturesVenue() {
+	return homeTeamResultIntervalFixturesVenue;
     }
 
-    public void setQLT_numeroJogosNoIntervaloVisitadoVenue(Integer qLT_numeroJogosNoIntervaloVisitadoVenue) {
-	QLT_numeroJogosNoIntervaloVisitadoVenue = qLT_numeroJogosNoIntervaloVisitadoVenue;
+    public void setHomeTeamResultIntervalFixturesVenue(Integer homeTeamResultIntervalFixturesVenue) {
+	this.homeTeamResultIntervalFixturesVenue = homeTeamResultIntervalFixturesVenue;
     }
 
-    public Integer getQLT_numeroJogosNoIntervaloVisitanteVenue() {
-	return QLT_numeroJogosNoIntervaloVisitanteVenue;
+    public Integer getAwayTeamResultIntervalFixturesVenue() {
+	return awayTeamResultIntervalFixturesVenue;
     }
 
-    public void setQLT_numeroJogosNoIntervaloVisitanteVenue(Integer qLT_numeroJogosNoIntervaloVisitanteVenue) {
-	QLT_numeroJogosNoIntervaloVisitanteVenue = qLT_numeroJogosNoIntervaloVisitanteVenue;
+    public void setAwayTeamResultIntervalFixturesVenue(Integer awayTeamResultIntervalFixturesVenue) {
+	this.awayTeamResultIntervalFixturesVenue = awayTeamResultIntervalFixturesVenue;
     }
 
-    public Integer getQLT_numeroJogosVisitadoSwitchedVenue() {
-	return QLT_numeroJogosVisitadoSwitchedVenue;
+    public Integer getHomeTeamGoalsVenue() {
+	return homeTeamGoalsVenue;
     }
 
-    public void setQLT_numeroJogosVisitadoSwitchedVenue(Integer qLT_numeroJogosVisitadoSwitchedVenue) {
-	QLT_numeroJogosVisitadoSwitchedVenue = qLT_numeroJogosVisitadoSwitchedVenue;
+    public void setHomeTeamGoalsVenue(Integer homeTeamGoalsVenue) {
+	this.homeTeamGoalsVenue = homeTeamGoalsVenue;
     }
 
-    public Integer getQLT_numeroJogosVisitanteSwitchedVenue() {
-	return QLT_numeroJogosVisitanteSwitchedVenue;
+    public Integer getAwayTeamGoalsVenue() {
+	return awayTeamGoalsVenue;
     }
 
-    public void setQLT_numeroJogosVisitanteSwitchedVenue(Integer qLT_numeroJogosVisitanteSwitchedVenue) {
-	QLT_numeroJogosVisitanteSwitchedVenue = qLT_numeroJogosVisitanteSwitchedVenue;
+    public void setAwayTeamGoalsVenue(Integer awayTeamGoalsVenue) {
+	this.awayTeamGoalsVenue = awayTeamGoalsVenue;
     }
 
-    public Integer getQLT_golosMarcadosVisitadoVenue() {
-	return QLT_golosMarcadosVisitadoVenue;
+    public Integer getHomeTeamConcededGoalsVenue() {
+	return homeTeamConcededGoalsVenue;
     }
 
-    public void setQLT_golosMarcadosVisitadoVenue(Integer qLT_golosMarcadosVisitadoVenue) {
-	QLT_golosMarcadosVisitadoVenue = qLT_golosMarcadosVisitadoVenue;
+    public void setHomeTeamConcededGoalsVenue(Integer homeTeamConcededGoalsVenue) {
+	this.homeTeamConcededGoalsVenue = homeTeamConcededGoalsVenue;
     }
 
-    public Integer getQLT_golosSofridosVisitadoVenue() {
-	return QLT_golosSofridosVisitadoVenue;
+    public Integer getAwayTeamConcededGoalsVenue() {
+	return awayTeamConcededGoalsVenue;
     }
 
-    public void setQLT_golosSofridosVisitadoVenue(Integer qLT_golosSofridosVisitadoVenue) {
-	QLT_golosSofridosVisitadoVenue = qLT_golosSofridosVisitadoVenue;
+    public void setAwayTeamConcededGoalsVenue(Integer awayTeamConcededGoalsVenue) {
+	this.awayTeamConcededGoalsVenue = awayTeamConcededGoalsVenue;
     }
 
-    public Integer getQLT_diferencaGolosVisitadoVenue() {
-	return QLT_diferencaGolosVisitadoVenue;
+    public Integer getHomeTeamGoalsDifferenceVenue() {
+	return homeTeamGoalsDifferenceVenue;
     }
 
-    public void setQLT_diferencaGolosVisitadoVenue(Integer qLT_diferencaGolosVisitadoVenue) {
-	QLT_diferencaGolosVisitadoVenue = qLT_diferencaGolosVisitadoVenue;
+    public void setHomeTeamGoalsDifferenceVenue(Integer homeTeamGoalsDifferenceVenue) {
+	this.homeTeamGoalsDifferenceVenue = homeTeamGoalsDifferenceVenue;
     }
 
-    public Integer getQLT_golosMarcadosVisitanteVenue() {
-	return QLT_golosMarcadosVisitanteVenue;
+    public Integer getAwayTeamGoalsDifferenceVenue() {
+	return awayTeamGoalsDifferenceVenue;
     }
 
-    public void setQLT_golosMarcadosVisitanteVenue(Integer qLT_golosMarcadosVisitanteVenue) {
-	QLT_golosMarcadosVisitanteVenue = qLT_golosMarcadosVisitanteVenue;
+    public void setAwayTeamGoalsDifferenceVenue(Integer awayTeamGoalsDifferenceVenue) {
+	this.awayTeamGoalsDifferenceVenue = awayTeamGoalsDifferenceVenue;
     }
 
-    public Integer getQLT_golosSofridosVisitanteVenue() {
-	return QLT_golosSofridosVisitanteVenue;
+    public Double getHomeTeamGoalsAverageVenue() {
+	return homeTeamGoalsAverageVenue;
     }
 
-    public void setQLT_golosSofridosVisitanteVenue(Integer qLT_golosSofridosVisitanteVenue) {
-	QLT_golosSofridosVisitanteVenue = qLT_golosSofridosVisitanteVenue;
+    public void setHomeTeamGoalsAverageVenue(Double homeTeamGoalsAverageVenue) {
+	this.homeTeamGoalsAverageVenue = homeTeamGoalsAverageVenue;
     }
 
-    public Integer getQLT_diferencaGolosVisitanteVenue() {
-	return QLT_diferencaGolosVisitanteVenue;
+    public Double getAwayTeamGoalsAverageVenue() {
+	return awayTeamGoalsAverageVenue;
     }
 
-    public void setQLT_diferencaGolosVisitanteVenue(Integer qLT_diferencaGolosVisitanteVenue) {
-	QLT_diferencaGolosVisitanteVenue = qLT_diferencaGolosVisitanteVenue;
+    public void setAwayTeamGoalsAverageVenue(Double awayTeamGoalsAverageVenue) {
+	this.awayTeamGoalsAverageVenue = awayTeamGoalsAverageVenue;
     }
 
-    public Double getQLT_mediaGolosMarcadosVisitadoVenue() {
-	return QLT_mediaGolosMarcadosVisitadoVenue;
+    public Double getHomeTeamConcededGoalsAverageVenue() {
+	return homeTeamConcededGoalsAverageVenue;
     }
 
-    public void setQLT_mediaGolosMarcadosVisitadoVenue(Double qLT_mediaGolosMarcadosVisitadoVenue) {
-	QLT_mediaGolosMarcadosVisitadoVenue = qLT_mediaGolosMarcadosVisitadoVenue;
+    public void setHomeTeamConcededGoalsAverageVenue(Double homeTeamConcededGoalsAverageVenue) {
+	this.homeTeamConcededGoalsAverageVenue = homeTeamConcededGoalsAverageVenue;
     }
 
-    public Double getQLT_mediaGolosSofridosVisitadoVenue() {
-	return QLT_mediaGolosSofridosVisitadoVenue;
+    public Double getAwayTeamConcededGoalsAverageVenue() {
+	return awayTeamConcededGoalsAverageVenue;
     }
 
-    public void setQLT_mediaGolosSofridosVisitadoVenue(Double qLT_mediaGolosSofridosVisitadoVenue) {
-	QLT_mediaGolosSofridosVisitadoVenue = qLT_mediaGolosSofridosVisitadoVenue;
+    public void setAwayTeamConcededGoalsAverageVenue(Double awayTeamConcededGoalsAverageVenue) {
+	this.awayTeamConcededGoalsAverageVenue = awayTeamConcededGoalsAverageVenue;
     }
 
-    public Double getQLT_mediaGolosMarcadosVisitanteVenue() {
-	return QLT_mediaGolosMarcadosVisitanteVenue;
+    public Integer getHomeTeamNumberOfFixturesSwitchedVenue() {
+	return homeTeamNumberOfFixturesSwitchedVenue;
     }
 
-    public void setQLT_mediaGolosMarcadosVisitanteVenue(Double qLT_mediaGolosMarcadosVisitanteVenue) {
-	QLT_mediaGolosMarcadosVisitanteVenue = qLT_mediaGolosMarcadosVisitanteVenue;
+    public void setHomeTeamNumberOfFixturesSwitchedVenue(Integer homeTeamNumberOfFixturesSwitchedVenue) {
+	this.homeTeamNumberOfFixturesSwitchedVenue = homeTeamNumberOfFixturesSwitchedVenue;
     }
 
-    public Double getQLT_mediaGolosSofridosVisitanteVenue() {
-	return QLT_mediaGolosSofridosVisitanteVenue;
+    public Integer getAwayTeamNumberOfFixturesSwitchedVenue() {
+	return awayTeamNumberOfFixturesSwitchedVenue;
     }
 
-    public void setQLT_mediaGolosSofridosVisitanteVenue(Double qLT_mediaGolosSofridosVisitanteVenue) {
-	QLT_mediaGolosSofridosVisitanteVenue = qLT_mediaGolosSofridosVisitanteVenue;
+    public void setAwayTeamNumberOfFixturesSwitchedVenue(Integer awayTeamNumberOfFixturesSwitchedVenue) {
+	this.awayTeamNumberOfFixturesSwitchedVenue = awayTeamNumberOfFixturesSwitchedVenue;
     }
 
-    public Double getQLT_percentagemResultadoVisitadoSwitchedVenue() {
-	return QLT_percentagemResultadoVisitadoSwitchedVenue;
+    public Double getHomeTeamResultPercentageSwitchedVenue() {
+	return homeTeamResultPercentageSwitchedVenue;
     }
 
-    public Double getQLT_dificuldadeJogosVisitadoSwitchedVenue() {
-	return QLT_dificuldadeJogosVisitadoSwitchedVenue;
+    public void setHomeTeamResultPercentageSwitchedVenue(Double homeTeamResultPercentageSwitchedVenue) {
+	this.homeTeamResultPercentageSwitchedVenue = homeTeamResultPercentageSwitchedVenue;
     }
 
-    public void setQLT_dificuldadeJogosVisitadoSwitchedVenue(Double qLT_dificuldadeJogosVisitadoSwitchedVenue) {
-	QLT_dificuldadeJogosVisitadoSwitchedVenue = qLT_dificuldadeJogosVisitadoSwitchedVenue;
+    public Double getAwayTeamResultPercentageSwitchedVenue() {
+	return awayTeamResultPercentageSwitchedVenue;
     }
 
-    public Double getQLT_dificuldadeJogosVisitanteSwitchedVenue() {
-	return QLT_dificuldadeJogosVisitanteSwitchedVenue;
+    public void setAwayTeamResultPercentageSwitchedVenue(Double awayTeamResultPercentageSwitchedVenue) {
+	this.awayTeamResultPercentageSwitchedVenue = awayTeamResultPercentageSwitchedVenue;
     }
 
-    public void setQLT_dificuldadeJogosVisitanteSwitchedVenue(Double qLT_dificuldadeJogosVisitanteSwitchedVenue) {
-	QLT_dificuldadeJogosVisitanteSwitchedVenue = qLT_dificuldadeJogosVisitanteSwitchedVenue;
+    public Double getHomeTeamQualityAverageSwitchedVenue() {
+	return homeTeamQualityAverageSwitchedVenue;
     }
 
-    public void setQLT_percentagemResultadoVisitadoSwitchedVenue(Double qLT_percentagemResultadoVisitadoSwitchedVenue) {
-	QLT_percentagemResultadoVisitadoSwitchedVenue = qLT_percentagemResultadoVisitadoSwitchedVenue;
+    public void setHomeTeamQualityAverageSwitchedVenue(Double homeTeamQualityAverageSwitchedVenue) {
+	this.homeTeamQualityAverageSwitchedVenue = homeTeamQualityAverageSwitchedVenue;
     }
 
-    public Double getQLT_percentagemResultadoVisitanteSwitchedVenue() {
-	return QLT_percentagemResultadoVisitanteSwitchedVenue;
+    public Double getAwayTeamQualityAverageSwitchedVenue() {
+	return awayTeamQualityAverageSwitchedVenue;
     }
 
-    public void setQLT_percentagemResultadoVisitanteSwitchedVenue(
-	    Double qLT_percentagemResultadoVisitanteSwitchedVenue) {
-	QLT_percentagemResultadoVisitanteSwitchedVenue = qLT_percentagemResultadoVisitanteSwitchedVenue;
+    public void setAwayTeamQualityAverageSwitchedVenue(Double awayTeamQualityAverageSwitchedVenue) {
+	this.awayTeamQualityAverageSwitchedVenue = awayTeamQualityAverageSwitchedVenue;
     }
 
-    public Double getQLT_dificuldadeResultadoVisitadoSwitchedVenue() {
-	return QLT_dificuldadeResultadoVisitadoSwitchedVenue;
+    public Double getHomeTeamResultDificultySwitchedVenue() {
+	return homeTeamResultDificultySwitchedVenue;
     }
 
-    public void setQLT_dificuldadeResultadoVisitadoSwitchedVenue(Double qLT_dificuldadeResultadoVisitadoSwitchedVenue) {
-	QLT_dificuldadeResultadoVisitadoSwitchedVenue = qLT_dificuldadeResultadoVisitadoSwitchedVenue;
+    public void setHomeTeamResultDificultySwitchedVenue(Double homeTeamResultDificultySwitchedVenue) {
+	this.homeTeamResultDificultySwitchedVenue = homeTeamResultDificultySwitchedVenue;
     }
 
-    public Double getQLT_dificuldadeResultadoVisitanteSwitchedVenue() {
-	return QLT_dificuldadeResultadoVisitanteSwitchedVenue;
+    public Double getAwayTeamResultDificultySwitchedVenue() {
+	return awayTeamResultDificultySwitchedVenue;
     }
 
-    public void setQLT_dificuldadeResultadoVisitanteSwitchedVenue(
-	    Double qLT_dificuldadeResultadoVisitanteSwitchedVenue) {
-	QLT_dificuldadeResultadoVisitanteSwitchedVenue = qLT_dificuldadeResultadoVisitanteSwitchedVenue;
+    public void setAwayTeamResultDificultySwitchedVenue(Double awayTeamResultDificultySwitchedVenue) {
+	this.awayTeamResultDificultySwitchedVenue = awayTeamResultDificultySwitchedVenue;
     }
 
-    public Double getQLT_percentagemResultadoNoIntervaloVisitadoSwitchedVenue() {
-	return QLT_percentagemResultadoNoIntervaloVisitadoSwitchedVenue;
+    public Double getHomeTeamResultIntervalPercentageSwitchedVenue() {
+	return homeTeamResultIntervalPercentageSwitchedVenue;
     }
 
-    public void setQLT_percentagemResultadoNoIntervaloVisitadoSwitchedVenue(
-	    Double qLT_percentagemResultadoNoIntervaloVisitadoSwitchedVenue) {
-	QLT_percentagemResultadoNoIntervaloVisitadoSwitchedVenue = qLT_percentagemResultadoNoIntervaloVisitadoSwitchedVenue;
+    public void setHomeTeamResultIntervalPercentageSwitchedVenue(Double homeTeamResultIntervalPercentageSwitchedVenue) {
+	this.homeTeamResultIntervalPercentageSwitchedVenue = homeTeamResultIntervalPercentageSwitchedVenue;
     }
 
-    public Double getQLT_percentagemResultadoNoIntervaloVisitanteSwitchedVenue() {
-	return QLT_percentagemResultadoNoIntervaloVisitanteSwitchedVenue;
+    public Double getAwayTeamResultIntervalPercentageSwitchedVenue() {
+	return awayTeamResultIntervalPercentageSwitchedVenue;
     }
 
-    public void setQLT_percentagemResultadoNoIntervaloVisitanteSwitchedVenue(
-	    Double qLT_percentagemResultadoNoIntervaloVisitanteSwitchedVenue) {
-	QLT_percentagemResultadoNoIntervaloVisitanteSwitchedVenue = qLT_percentagemResultadoNoIntervaloVisitanteSwitchedVenue;
+    public void setAwayTeamResultIntervalPercentageSwitchedVenue(Double awayTeamResultIntervalPercentageSwitchedVenue) {
+	this.awayTeamResultIntervalPercentageSwitchedVenue = awayTeamResultIntervalPercentageSwitchedVenue;
     }
 
-    public Integer getQLT_numeroJogosNoIntervaloVisitadoSwitchedVenue() {
-	return QLT_numeroJogosNoIntervaloVisitadoSwitchedVenue;
+    public Integer getHomeTeamResultIntervalFixturesSwitchedVenue() {
+	return homeTeamResultIntervalFixturesSwitchedVenue;
     }
 
-    public void setQLT_numeroJogosNoIntervaloVisitadoSwitchedVenue(
-	    Integer qLT_numeroJogosNoIntervaloVisitadoSwitchedVenue) {
-	QLT_numeroJogosNoIntervaloVisitadoSwitchedVenue = qLT_numeroJogosNoIntervaloVisitadoSwitchedVenue;
+    public void setHomeTeamResultIntervalFixturesSwitchedVenue(Integer homeTeamResultIntervalFixturesSwitchedVenue) {
+	this.homeTeamResultIntervalFixturesSwitchedVenue = homeTeamResultIntervalFixturesSwitchedVenue;
     }
 
-    public Integer getQLT_numeroJogosNoIntervaloVisitanteSwitchedVenue() {
-	return QLT_numeroJogosNoIntervaloVisitanteSwitchedVenue;
+    public Integer getAwayTeamResultIntervalFixturesSwitchedVenue() {
+	return awayTeamResultIntervalFixturesSwitchedVenue;
     }
 
-    public void setQLT_numeroJogosNoIntervaloVisitanteSwitchedVenue(
-	    Integer qLT_numeroJogosNoIntervaloVisitanteSwitchedVenue) {
-	QLT_numeroJogosNoIntervaloVisitanteSwitchedVenue = qLT_numeroJogosNoIntervaloVisitanteSwitchedVenue;
+    public void setAwayTeamResultIntervalFixturesSwitchedVenue(Integer awayTeamResultIntervalFixturesSwitchedVenue) {
+	this.awayTeamResultIntervalFixturesSwitchedVenue = awayTeamResultIntervalFixturesSwitchedVenue;
     }
 
-    public Integer getQLT_golosMarcadosVisitadoSwitchedVenue() {
-	return QLT_golosMarcadosVisitadoSwitchedVenue;
+    public Integer getHomeTeamGoalsSwitchedVenue() {
+	return homeTeamGoalsSwitchedVenue;
     }
 
-    public void setQLT_golosMarcadosVisitadoSwitchedVenue(Integer qLT_golosMarcadosVisitadoSwitchedVenue) {
-	QLT_golosMarcadosVisitadoSwitchedVenue = qLT_golosMarcadosVisitadoSwitchedVenue;
+    public void setHomeTeamGoalsSwitchedVenue(Integer homeTeamGoalsSwitchedVenue) {
+	this.homeTeamGoalsSwitchedVenue = homeTeamGoalsSwitchedVenue;
     }
 
-    public Integer getQLT_golosSofridosVisitadoSwitchedVenue() {
-	return QLT_golosSofridosVisitadoSwitchedVenue;
+    public Integer getAwayTeamGoalsSwitchedVenue() {
+	return awayTeamGoalsSwitchedVenue;
     }
 
-    public void setQLT_golosSofridosVisitadoSwitchedVenue(Integer qLT_golosSofridosVisitadoSwitchedVenue) {
-	QLT_golosSofridosVisitadoSwitchedVenue = qLT_golosSofridosVisitadoSwitchedVenue;
+    public void setAwayTeamGoalsSwitchedVenue(Integer awayTeamGoalsSwitchedVenue) {
+	this.awayTeamGoalsSwitchedVenue = awayTeamGoalsSwitchedVenue;
     }
 
-    public Integer getQLT_diferencaGolosVisitadoSwitchedVenue() {
-	return QLT_diferencaGolosVisitadoSwitchedVenue;
+    public Integer getHomeTeamConcededGoalsSwitchedVenue() {
+	return homeTeamConcededGoalsSwitchedVenue;
     }
 
-    public void setQLT_diferencaGolosVisitadoSwitchedVenue(Integer qLT_diferencaGolosVisitadoSwitchedVenue) {
-	QLT_diferencaGolosVisitadoSwitchedVenue = qLT_diferencaGolosVisitadoSwitchedVenue;
+    public void setHomeTeamConcededGoalsSwitchedVenue(Integer homeTeamConcededGoalsSwitchedVenue) {
+	this.homeTeamConcededGoalsSwitchedVenue = homeTeamConcededGoalsSwitchedVenue;
     }
 
-    public Integer getQLT_golosMarcadosVisitanteSwitchedVenue() {
-	return QLT_golosMarcadosVisitanteSwitchedVenue;
+    public Integer getAwayTeamConcededGoalsSwitchedVenue() {
+	return awayTeamConcededGoalsSwitchedVenue;
     }
 
-    public void setQLT_golosMarcadosVisitanteSwitchedVenue(Integer qLT_golosMarcadosVisitanteSwitchedVenue) {
-	QLT_golosMarcadosVisitanteSwitchedVenue = qLT_golosMarcadosVisitanteSwitchedVenue;
+    public void setAwayTeamConcededGoalsSwitchedVenue(Integer awayTeamConcededGoalsSwitchedVenue) {
+	this.awayTeamConcededGoalsSwitchedVenue = awayTeamConcededGoalsSwitchedVenue;
     }
 
-    public Integer getQLT_golosSofridosVisitanteSwitchedVenue() {
-	return QLT_golosSofridosVisitanteSwitchedVenue;
+    public Integer getHomeTeamGoalsDifferenceSwitchedVenue() {
+	return homeTeamGoalsDifferenceSwitchedVenue;
     }
 
-    public void setQLT_golosSofridosVisitanteSwitchedVenue(Integer qLT_golosSofridosVisitanteSwitchedVenue) {
-	QLT_golosSofridosVisitanteSwitchedVenue = qLT_golosSofridosVisitanteSwitchedVenue;
+    public void setHomeTeamGoalsDifferenceSwitchedVenue(Integer homeTeamGoalsDifferenceSwitchedVenue) {
+	this.homeTeamGoalsDifferenceSwitchedVenue = homeTeamGoalsDifferenceSwitchedVenue;
     }
 
-    public Integer getQLT_diferencaGolosVisitanteSwitchedVenue() {
-	return QLT_diferencaGolosVisitanteSwitchedVenue;
+    public Integer getAwayTeamGoalsDifferenceSwitchedVenue() {
+	return awayTeamGoalsDifferenceSwitchedVenue;
     }
 
-    public void setQLT_diferencaGolosVisitanteSwitchedVenue(Integer qLT_diferencaGolosVisitanteSwitchedVenue) {
-	QLT_diferencaGolosVisitanteSwitchedVenue = qLT_diferencaGolosVisitanteSwitchedVenue;
+    public void setAwayTeamGoalsDifferenceSwitchedVenue(Integer awayTeamGoalsDifferenceSwitchedVenue) {
+	this.awayTeamGoalsDifferenceSwitchedVenue = awayTeamGoalsDifferenceSwitchedVenue;
     }
 
-    public Double getQLT_mediaGolosMarcadosVisitadoSwitchedVenue() {
-	return QLT_mediaGolosMarcadosVisitadoSwitchedVenue;
+    public Double getHomeTeamGoalsAverageSwitchedVenue() {
+	return homeTeamGoalsAverageSwitchedVenue;
     }
 
-    public void setQLT_mediaGolosMarcadosVisitadoSwitchedVenue(Double qLT_mediaGolosMarcadosVisitadoSwitchedVenue) {
-	QLT_mediaGolosMarcadosVisitadoSwitchedVenue = qLT_mediaGolosMarcadosVisitadoSwitchedVenue;
+    public void setHomeTeamGoalsAverageSwitchedVenue(Double homeTeamGoalsAverageSwitchedVenue) {
+	this.homeTeamGoalsAverageSwitchedVenue = homeTeamGoalsAverageSwitchedVenue;
     }
 
-    public Double getQLT_mediaGolosSofridosVisitadoSwitchedVenue() {
-	return QLT_mediaGolosSofridosVisitadoSwitchedVenue;
+    public Double getAwayTeamGoalsAverageSwitchedVenue() {
+	return awayTeamGoalsAverageSwitchedVenue;
     }
 
-    public void setQLT_mediaGolosSofridosVisitadoSwitchedVenue(Double qLT_mediaGolosSofridosVisitadoSwitchedVenue) {
-	QLT_mediaGolosSofridosVisitadoSwitchedVenue = qLT_mediaGolosSofridosVisitadoSwitchedVenue;
+    public void setAwayTeamGoalsAverageSwitchedVenue(Double awayTeamGoalsAverageSwitchedVenue) {
+	this.awayTeamGoalsAverageSwitchedVenue = awayTeamGoalsAverageSwitchedVenue;
     }
 
-    public Double getQLT_mediaGolosMarcadosVisitanteSwitchedVenue() {
-	return QLT_mediaGolosMarcadosVisitanteSwitchedVenue;
+    public Double getHomeTeamConcededGoalsAverageSwitchedVenue() {
+	return homeTeamConcededGoalsAverageSwitchedVenue;
     }
 
-    public void setQLT_mediaGolosMarcadosVisitanteSwitchedVenue(Double qLT_mediaGolosMarcadosVisitanteSwitchedVenue) {
-	QLT_mediaGolosMarcadosVisitanteSwitchedVenue = qLT_mediaGolosMarcadosVisitanteSwitchedVenue;
+    public void setHomeTeamConcededGoalsAverageSwitchedVenue(Double homeTeamConcededGoalsAverageSwitchedVenue) {
+	this.homeTeamConcededGoalsAverageSwitchedVenue = homeTeamConcededGoalsAverageSwitchedVenue;
     }
 
-    public Double getQLT_mediaGolosSofridosVisitanteSwitchedVenue() {
-	return QLT_mediaGolosSofridosVisitanteSwitchedVenue;
+    public Double getAwayTeamConcededGoalsAverageSwitchedVenue() {
+	return awayTeamConcededGoalsAverageSwitchedVenue;
     }
 
-    public void setQLT_mediaGolosSofridosVisitanteSwitchedVenue(Double qLT_mediaGolosSofridosVisitanteSwitchedVenue) {
-	QLT_mediaGolosSofridosVisitanteSwitchedVenue = qLT_mediaGolosSofridosVisitanteSwitchedVenue;
+    public void setAwayTeamConcededGoalsAverageSwitchedVenue(Double awayTeamConcededGoalsAverageSwitchedVenue) {
+	this.awayTeamConcededGoalsAverageSwitchedVenue = awayTeamConcededGoalsAverageSwitchedVenue;
     }
 
-    public Double getH2H_ratingTemporalResultado() {
-	return H2H_ratingTemporalResultado;
+    public Double getH2hRating() {
+	return h2hRating;
     }
 
-    public void setH2H_ratingTemporalResultado(Double h2h_ratingTemporalResultado) {
-	this.H2H_ratingTemporalResultado = h2h_ratingTemporalResultado;
+    public void setH2hRating(Double h2hRating) {
+	this.h2hRating = h2hRating;
     }
 
-    public Integer getH2H_numeroJogos() {
-	return H2H_numeroJogos;
+    public Integer getH2hFixturesNumber() {
+	return h2hFixturesNumber;
     }
 
-    public void setH2H_numeroJogos(Integer h2h_numeroJogos) {
-	this.H2H_numeroJogos = h2h_numeroJogos;
+    public void setH2hFixturesNumber(Integer h2hFixturesNumber) {
+	this.h2hFixturesNumber = h2hFixturesNumber;
     }
 
-    public Integer getH2H_numeroResultados() {
-	return H2H_numeroResultados;
+    public Integer getH2hResultsNumber() {
+	return h2hResultsNumber;
     }
 
-    public void setH2H_numeroResultados(Integer h2h_numeroResultados) {
-	this.H2H_numeroResultados = h2h_numeroResultados;
+    public void setH2hResultsNumber(Integer h2hResultsNumber) {
+	this.h2hResultsNumber = h2hResultsNumber;
     }
 
-    public Double getH2H_percentagemResultados() {
-	return H2H_percentagemResultados;
+    public Double getH2hResultsPercentage() {
+	return h2hResultsPercentage;
     }
 
-    public void setH2H_percentagemResultados(Double h2h_percentagemResultados) {
-	this.H2H_percentagemResultados = h2h_percentagemResultados;
+    public void setH2hResultsPercentage(Double h2hResultsPercentage) {
+	this.h2hResultsPercentage = h2hResultsPercentage;
     }
 
-    public Double getH2H_ratingTemporalResultadoVenue() {
-	return H2H_ratingTemporalResultadoVenue;
+    public Double getH2hRatingVenue() {
+	return h2hRatingVenue;
     }
 
-    public void setH2H_ratingTemporalResultadoVenue(Double h2h_ratingTemporalResultadoVenue) {
-	this.H2H_ratingTemporalResultadoVenue = h2h_ratingTemporalResultadoVenue;
+    public void setH2hRatingVenue(Double h2hRatingVenue) {
+	this.h2hRatingVenue = h2hRatingVenue;
     }
 
-    public Integer getH2H_numeroJogosVenue() {
-	return H2H_numeroJogosVenue;
+    public Integer getH2hFixturesNumberVenue() {
+	return h2hFixturesNumberVenue;
     }
 
-    public void setH2H_numeroJogosVenue(Integer h2h_numeroJogosVenue) {
-	this.H2H_numeroJogosVenue = h2h_numeroJogosVenue;
+    public void setH2hFixturesNumberVenue(Integer h2hFixturesNumberVenue) {
+	this.h2hFixturesNumberVenue = h2hFixturesNumberVenue;
     }
 
-    public Integer getH2H_numeroResultadosVenue() {
-	return H2H_numeroResultadosVenue;
+    public Integer getH2hResultsNumberVenue() {
+	return h2hResultsNumberVenue;
     }
 
-    public void setH2H_numeroResultadosVenue(Integer h2h_numeroResultadosVenue) {
-	this.H2H_numeroResultadosVenue = h2h_numeroResultadosVenue;
+    public void setH2hResultsNumberVenue(Integer h2hResultsNumberVenue) {
+	this.h2hResultsNumberVenue = h2hResultsNumberVenue;
     }
 
-    public Double getH2H_percentagemResultadosVenue() {
-	return H2H_percentagemResultadosVenue;
+    public Double getH2hResultsPercentageVenue() {
+	return h2hResultsPercentageVenue;
     }
 
-    public void setH2H_percentagemResultadosVenue(Double h2h_percentagemResultadosVenue) {
-	this.H2H_percentagemResultadosVenue = h2h_percentagemResultadosVenue;
+    public void setH2hResultsPercentageVenue(Double h2hResultsPercentageVenue) {
+	this.h2hResultsPercentageVenue = h2hResultsPercentageVenue;
     }
 
-    public Double getH2H_ratingTemporalResultadoSwitchedVenue() {
-	return H2H_ratingTemporalResultadoSwitchedVenue;
+    public Double getH2hRatingSwitchedVenue() {
+	return h2hRatingSwitchedVenue;
     }
 
-    public void setH2H_ratingTemporalResultadoSwitchedVenue(Double h2h_ratingTemporalResultadoSwitchedVenue) {
-	this.H2H_ratingTemporalResultadoSwitchedVenue = h2h_ratingTemporalResultadoSwitchedVenue;
+    public void setH2hRatingSwitchedVenue(Double h2hRatingSwitchedVenue) {
+	this.h2hRatingSwitchedVenue = h2hRatingSwitchedVenue;
     }
 
-    public Integer getH2H_numeroJogosSwitchedVenue() {
-	return H2H_numeroJogosSwitchedVenue;
+    public Integer getH2hFixturesNumberSwitchedVenue() {
+	return h2hFixturesNumberSwitchedVenue;
     }
 
-    public void setH2H_numeroJogosSwitchedVenue(Integer h2h_numeroJogosSwitchedVenue) {
-	this.H2H_numeroJogosSwitchedVenue = h2h_numeroJogosSwitchedVenue;
+    public void setH2hFixturesNumberSwitchedVenue(Integer h2hFixturesNumberSwitchedVenue) {
+	this.h2hFixturesNumberSwitchedVenue = h2hFixturesNumberSwitchedVenue;
     }
 
-    public Integer getH2H_numeroResultadosSwitchedVenue() {
-	return H2H_numeroResultadosSwitchedVenue;
+    public Integer getH2hResultsNumberSwitchedVenue() {
+	return h2hResultsNumberSwitchedVenue;
     }
 
-    public void setH2H_numeroResultadosSwitchedVenue(Integer h2h_numeroResultadosSwitchedVenue) {
-	this.H2H_numeroResultadosSwitchedVenue = h2h_numeroResultadosSwitchedVenue;
+    public void setH2hResultsNumberSwitchedVenue(Integer h2hResultsNumberSwitchedVenue) {
+	this.h2hResultsNumberSwitchedVenue = h2hResultsNumberSwitchedVenue;
     }
 
-    public Double getH2H_percentagemResultadosSwitchedVenue() {
-	return H2H_percentagemResultadosSwitchedVenue;
+    public Double getH2hResultsPercentageSwitchedVenue() {
+	return h2hResultsPercentageSwitchedVenue;
     }
 
-    public void setH2H_percentagemResultadosSwitchedVenue(Double h2h_percentagemResultadosSwitchedVenue) {
-	this.H2H_percentagemResultadosSwitchedVenue = h2h_percentagemResultadosSwitchedVenue;
+    public void setH2hResultsPercentageSwitchedVenue(Double h2hResultsPercentageSwitchedVenue) {
+	this.h2hResultsPercentageSwitchedVenue = h2hResultsPercentageSwitchedVenue;
     }
 
+    public String getDatasetJson() {
+	String json = null;
+	try {
+	    json = new JsonObjectMapper().writeValueAsString(this);
+	} catch (JsonProcessingException e) {
+	    e.printStackTrace();
+	}
+
+	return json;
+    }
 }

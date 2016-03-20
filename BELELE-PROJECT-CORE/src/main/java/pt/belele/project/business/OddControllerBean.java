@@ -1,5 +1,7 @@
 package pt.belele.project.business;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
@@ -13,7 +15,6 @@ import org.joda.time.format.DateTimeFormatter;
 import pt.belele.project.business.ann.Ann;
 import pt.belele.project.business.ann.DatasetController;
 import pt.belele.project.business.ann.obj.Dataset;
-import pt.belele.project.business.ann.obj.DatasetProperties;
 import pt.belele.project.business.util.Triplet;
 import pt.belele.project.entities.Fixture;
 import pt.belele.project.entities.Odd;
@@ -38,8 +39,8 @@ public class OddControllerBean implements OddController {
     }
 
     @Override
-    public Odd calculateAnnOddsForFixture(Fixture f, List<Fixture> oldFixtures, DatasetProperties prop) {
-	Triplet<float[][], float[][], float[][]> annTriplet = getANNOddsForFixture(f, oldFixtures, prop);
+    public Odd calculateAnnOddsForFixture(Fixture f, List<Fixture> oldFixtures, List<String> winVariables, List<String> drawVariables, List<String> loseVariables) throws Exception {
+	Triplet<float[][], float[][], float[][]> annTriplet = getANNOddsForFixture(f, oldFixtures, winVariables, drawVariables, loseVariables);
 
 	if (annTriplet == null) {
 	    return null;
@@ -67,8 +68,8 @@ public class OddControllerBean implements OddController {
     }
 
     @Override
-    public Triplet<float[], float[], float[]> calculateAnnOddsForFixtures(List<Fixture> fixtures, List<Fixture> oldFixtures, DatasetProperties prop) {
-	Triplet<float[][], float[][], float[][]> annTriplet = getANNOddsForFixtures(fixtures, oldFixtures, prop);
+    public Triplet<float[], float[], float[]> calculateAnnOddsForFixtures(List<Fixture> fixtures, List<Fixture> oldFixtures, List<String> winVariables, List<String> drawVariables, List<String> loseVariables) throws Exception {
+	Triplet<float[][], float[][], float[][]> annTriplet = getANNOddsForFixtures(fixtures, oldFixtures, winVariables, drawVariables, loseVariables);
 	float[][] annWin = normalize(annTriplet.getA());
 	float[][] annDraw = normalize(annTriplet.getB());
 	float[][] annLose = normalize(annTriplet.getC());
@@ -80,26 +81,26 @@ public class OddControllerBean implements OddController {
 	return getANNFinalOdds(annWinAverage, annDrawAverage, annLoseAverage);
     }
 
-    private Triplet<float[][], float[][], float[][]> getANNOddsForFixtures(List<Fixture> fixtures, List<Fixture> oldFixtures, DatasetProperties prop) {
-	Triplet<List<Dataset>, List<Dataset>, List<Dataset>> triplet = datasetController.generateDatasetForFixtures(oldFixtures, prop);
+    private Triplet<float[][], float[][], float[][]> getANNOddsForFixtures(List<Fixture> fixtures, List<Fixture> oldFixtures, List<String> winVariables, List<String> drawVariables, List<String> loseVariables) throws Exception {
+	Triplet<List<Dataset>, List<Dataset>, List<Dataset>> triplet = datasetController.generateDatasetForFixtures(oldFixtures, winVariables, drawVariables, loseVariables);
 
 	if (triplet.getA() == null || triplet.getA().isEmpty()) {
 	    return null;
 	}
 
-	float[][] inWin = calculateDataset(triplet.getA(), prop);
-	float[][] inDraw = calculateDataset(triplet.getB(), prop);
-	float[][] inLose = calculateDataset(triplet.getC(), prop);
+	float[][] inWin = calculateDataset(triplet.getA(), winVariables);
+	float[][] inDraw = calculateDataset(triplet.getB(), drawVariables);
+	float[][] inLose = calculateDataset(triplet.getC(), loseVariables);
 
-	float[] taWin = calculateTarget(triplet.getA(), prop);
-	float[] taDraw = calculateTarget(triplet.getB(), prop);
-	float[] taLose = calculateTarget(triplet.getC(), prop);
+	float[] taWin = calculateTarget(triplet.getA());
+	float[] taDraw = calculateTarget(triplet.getB());
+	float[] taLose = calculateTarget(triplet.getC());
 
-	Triplet<List<Dataset>, List<Dataset>, List<Dataset>> teTriplet = datasetController.generateDatasetForFixtures(fixtures, prop);
+	Triplet<List<Dataset>, List<Dataset>, List<Dataset>> teTriplet = datasetController.generateDatasetForFixtures(fixtures, winVariables, drawVariables, loseVariables);
 
-	float[][] teWin = calculateDataset(teTriplet.getA(), prop);
-	float[][] teDraw = calculateDataset(teTriplet.getB(), prop);
-	float[][] teLose = calculateDataset(teTriplet.getC(), prop);
+	float[][] teWin = calculateDataset(teTriplet.getA(), winVariables);
+	float[][] teDraw = calculateDataset(teTriplet.getB(), drawVariables);
+	float[][] teLose = calculateDataset(teTriplet.getC(), loseVariables);
 
 	float[][] oddWin = Ann.MLPSigmoidBP(inWin, teWin, taWin);
 	float[][] oddDraw = Ann.MLPSigmoidBP(inDraw, teDraw, taDraw);
@@ -108,34 +109,34 @@ public class OddControllerBean implements OddController {
 	return new Triplet<>(oddWin, oddDraw, oddLose);
     }
 
-    private Triplet<float[][], float[][], float[][]> getANNOddsForFixture(Fixture f, List<Fixture> oldFixtures, DatasetProperties prop) {
+    private Triplet<float[][], float[][], float[][]> getANNOddsForFixture(Fixture f, List<Fixture> oldFixtures, List<String> winVariables, List<String> drawVariables, List<String> loseVariables) throws Exception {
 	DateTimeFormatter formatter = DateTimeFormat.forPattern("dd/MM/yy");
 
 	if (f.getDate().isBefore(formatter.parseDateTime("23/11/" + (f.getSeason().getYear() + 2000)))) {
 	    return null;
 	}
 
-	Triplet<List<Dataset>, List<Dataset>, List<Dataset>> triplet = datasetController.generateDatasetForFixtures(oldFixtures, prop);
+	Triplet<List<Dataset>, List<Dataset>, List<Dataset>> triplet = datasetController.generateDatasetForFixtures(oldFixtures, winVariables, drawVariables, loseVariables);
 
 	if (triplet.getA() == null || triplet.getA().isEmpty()) {
 	    return null;
 	}
 
-	float[][] inWin = calculateDataset(triplet.getA(), prop);
-	float[][] inDraw = calculateDataset(triplet.getB(), prop);
-	float[][] inLose = calculateDataset(triplet.getC(), prop);
+	float[][] inWin = calculateDataset(triplet.getA(), winVariables);
+	float[][] inDraw = calculateDataset(triplet.getB(), drawVariables);
+	float[][] inLose = calculateDataset(triplet.getC(), loseVariables);
 
-	float[] taWin = calculateTarget(triplet.getA(), prop);
-	float[] taDraw = calculateTarget(triplet.getB(), prop);
-	float[] taLose = calculateTarget(triplet.getC(), prop);
+	float[] taWin = calculateTarget(triplet.getA());
+	float[] taDraw = calculateTarget(triplet.getB());
+	float[] taLose = calculateTarget(triplet.getC());
 
 	List<Fixture> teFixture = new ArrayList<>();
 	teFixture.add(f);
-	Triplet<List<Dataset>, List<Dataset>, List<Dataset>> teTriplet = datasetController.generateDatasetForFixtures(teFixture, prop);
+	Triplet<List<Dataset>, List<Dataset>, List<Dataset>> teTriplet = datasetController.generateDatasetForFixtures(teFixture, winVariables, drawVariables, loseVariables);
 
-	float[][] teWin = calculateDataset(teTriplet.getA(), prop);
-	float[][] teDraw = calculateDataset(teTriplet.getB(), prop);
-	float[][] teLose = calculateDataset(teTriplet.getC(), prop);
+	float[][] teWin = calculateDataset(teTriplet.getA(), winVariables);
+	float[][] teDraw = calculateDataset(teTriplet.getB(), drawVariables);
+	float[][] teLose = calculateDataset(teTriplet.getC(), loseVariables);
 
 	float[][] oddWin = Ann.MLPSigmoidBP(inWin, teWin, taWin);
 	float[][] oddDraw = Ann.MLPSigmoidBP(inDraw, teDraw, taDraw);
@@ -161,25 +162,36 @@ public class OddControllerBean implements OddController {
 	return new Triplet<>(finalAnnWinAverage, finalAnnDrawAverage, finalAnnLoseAverage);
     }
 
-    private static float[][] calculateDataset(List<Dataset> data, DatasetProperties prop) {//TODO TEM QUE FILTRAR AS PROPS
-	float[][] in = new float[data.size()][6];
+    private static float[][] calculateDataset(List<Dataset> data, List<String> variables) throws Exception {
+	float[][] in = new float[data.size()][variables.size()];
 	for (int i = 0; i < data.size(); i++) {
-
-	    in[i][0] = data.get(i).getData().getYear();
-	    in[i][1] = data.get(i).getData().getMonthOfYear();
-	    in[i][2] = data.get(i).getQLT_percentagemResultadoVisitadoVenue().floatValue();
-	    in[i][3] = data.get(i).getQLT_percentagemResultadoVisitanteVenue().floatValue();
-	    in[i][4] = data.get(i).getQLT_percentagemResultadoVisitadoVenue().floatValue();
-	    in[i][5] = data.get(i).getQLT_percentagemResultadoVisitanteSwitchedVenue().floatValue();
+	    for (int j = 0; j < variables.size(); j++) {
+		try {
+		    Method method;
+		    method = data.get(i).getClass().getMethod("get" + variables.get(j));
+		    Object value = method.invoke(data.get(i));
+		    if(value instanceof Double)
+		    {
+			in[i][j] = ((Double) method.invoke(data.get(i))).floatValue();
+		    }
+		    else
+		    {
+			in[i][j] = ((Integer) method.invoke(data.get(i))).floatValue();
+		    }
+		} catch (SecurityException | NoSuchMethodException | IllegalArgumentException | IllegalAccessException | InvocationTargetException e) {
+		    LOG.error("CALCULATE DATASET: ERROR GETTING VARIABLE " + variables.get(j));
+		    throw new Exception(e);
+		}
+	    }
 	}
 
 	return in;
     }
 
-    private static float[] calculateTarget(List<Dataset> data, DatasetProperties prop) {
+    private static float[] calculateTarget(List<Dataset> data) {
 	float[] ta = new float[data.size()];
 	for (int i = 0; i < data.size(); i++) {
-	    ta[i] = data.get(i).getResultado();
+	    ta[i] = data.get(i).getResult();
 	}
 
 	return ta;

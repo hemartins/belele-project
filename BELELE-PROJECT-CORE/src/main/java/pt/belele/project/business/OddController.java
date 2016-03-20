@@ -7,7 +7,6 @@ package pt.belele.project.business;
 
 import java.util.List;
 import javax.ejb.Local;
-import pt.belele.project.business.ann.obj.DatasetProperties;
 import pt.belele.project.business.util.Triplet;
 import pt.belele.project.entities.Fixture;
 import pt.belele.project.entities.Odd;
@@ -21,7 +20,7 @@ public interface OddController {
 
     void calculateLayOddsAsBackOdds(Odd odd);
 
-    Odd calculateAnnOddsForFixture(Fixture f, List<Fixture> oldFixtures, DatasetProperties prop);
+    Odd calculateAnnOddsForFixture(Fixture f, List<Fixture> oldFixtures, List<String> winVariables, List<String> drawVariables, List<String> loseVariables) throws Exception;
 
-    Triplet<float[], float[], float[]> calculateAnnOddsForFixtures(List<Fixture> fixtures, List<Fixture> oldFixtures, DatasetProperties prop);
+    Triplet<float[], float[], float[]> calculateAnnOddsForFixtures(List<Fixture> fixtures, List<Fixture> oldFixtures, List<String> winVariables, List<String> drawVariables, List<String> loseVariables) throws Exception;
 }

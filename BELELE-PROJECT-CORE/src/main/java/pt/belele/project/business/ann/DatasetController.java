@@ -8,7 +8,6 @@ package pt.belele.project.business.ann;
 import java.util.List;
 import javax.ejb.Local;
 import pt.belele.project.business.ann.obj.Dataset;
-import pt.belele.project.business.ann.obj.DatasetProperties;
 import pt.belele.project.business.util.Triplet;
 import pt.belele.project.entities.Fixture;
 
@@ -19,5 +18,5 @@ import pt.belele.project.entities.Fixture;
 @Local
 public interface DatasetController {
     
-    public Triplet<List<Dataset>, List<Dataset>, List<Dataset>> generateDatasetForFixtures(List<Fixture> fixtures, DatasetProperties properties);
+    public Triplet<List<Dataset>, List<Dataset>, List<Dataset>> generateDatasetForFixtures(List<Fixture> fixtures, List<String> winVariables, List<String> drawVariables, List<String> loseVariables) throws Exception;
 }

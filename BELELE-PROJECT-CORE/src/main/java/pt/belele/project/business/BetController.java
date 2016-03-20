@@ -8,7 +8,6 @@ package pt.belele.project.business;
 import java.util.List;
 import javax.ejb.Local;
 import org.joda.time.DateTime;
-import pt.belele.project.business.ann.obj.DatasetProperties;
 import pt.belele.project.business.util.CutOff;
 import pt.belele.project.entities.Bet;
 import pt.belele.project.entities.Fixture;
@@ -27,8 +26,8 @@ public interface BetController {
     List<Bet> calculateSimpleBetForFixtures(List<Fixture> fixtures, CutOff cutOffSimple, Double investedValue);
 
     List<MultipleBet> calculateMultipleBetForFixtures(List<Fixture> fixtures, CutOff cutOffDouble, CutOff cutOffTriple, CutOff cutOffMultiple, Double investedValue);
-    
-    void doSimpleBetsForSeason(DateTime begin, DateTime end, Season s, Double investedValue, DatasetProperties prop);
-    
-    void doMultipleBetsForSeason(DateTime begin, DateTime end, Season s, Double investedValue, DatasetProperties prop);
+
+    List<Bet> doSimpleBetsForSeason(DateTime begin, DateTime end, Season s, Double investedValue, List<String> winVariables, List<String> drawVariables, List<String> loseVariables) throws Exception;
+
+    List<MultipleBet> doMultipleBetsForSeason(DateTime begin, DateTime end, Season s, Double investedValue, List<String> winVariables, List<String> drawVariables, List<String> loseVariables) throws Exception;
 }
